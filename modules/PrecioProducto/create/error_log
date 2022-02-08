@@ -1,0 +1,3 @@
+[12-Jul-2021 17:35:58 America/Bogota] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199249120 bytes) in /home3/concr/portal.concretol.co/modules/PrecioProducto/create/nfilas.php on line 36
+[15-Jul-2021 21:24:04 America/Bogota] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 264246408 bytes) in /home3/concr/portal.concretol.co/modules/PrecioProducto/create/nfilas.php on line 36
+[15-Jul-2021 21:24:14 America/Bogota] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 264246408 bytes) in /home3/concr/portal.concretol.co/modules/PrecioProducto/create/nfilas.php on line 36

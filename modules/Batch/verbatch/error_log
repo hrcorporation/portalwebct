@@ -1,0 +1,1462 @@
+[16-Oct-2020 16:45:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:116
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 116
+[17-Oct-2020 11:16:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:116
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 116
+[17-Oct-2020 12:40:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:116
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 116
+[19-Oct-2020 11:01:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:116
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 116
+[22-Oct-2020 10:22:38 America/Bogota] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ct29_estado' in 'field list' in /home3/concr/portal.concretol.co/modelos/t29_batch.php:225
+Stack trace:
+#0 /home3/concr/portal.concretol.co/modelos/t29_batch.php(225): PDOStatement->execute()
+#1 /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php(125): t29_batch->select_batch_remi('66728')
+#2 {main}
+  thrown in /home3/concr/portal.concretol.co/modelos/t29_batch.php on line 225
+[22-Oct-2020 10:22:50 America/Bogota] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ct29_estado' in 'field list' in /home3/concr/portal.concretol.co/modelos/t29_batch.php:225
+Stack trace:
+#0 /home3/concr/portal.concretol.co/modelos/t29_batch.php(225): PDOStatement->execute()
+#1 /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php(125): t29_batch->select_batch_remi('66721')
+#2 {main}
+  thrown in /home3/concr/portal.concretol.co/modelos/t29_batch.php on line 225
+[22-Oct-2020 14:10:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:125
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 125
+[27-Oct-2020 16:17:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:134
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 134
+[03-Nov-2020 19:41:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:135
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 135
+[05-Nov-2020 07:49:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:135
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 135
+[06-Nov-2020 07:51:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:135
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 135
+[10-Nov-2020 09:42:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:135
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 135
+[10-Nov-2020 15:16:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:135
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 135
+[06-Jan-2021 14:57:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 138
+[06-Jan-2021 15:23:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 138
+[09-Jan-2021 09:10:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 138
+[09-Jan-2021 19:50:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 138
+[14-Jan-2021 11:09:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 138
+[14-Jan-2021 11:44:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 138
+[14-Jan-2021 12:06:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 138
+[14-Jan-2021 12:06:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 138
+[14-Jan-2021 14:05:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 138
+[15-Jan-2021 12:03:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[15-Jan-2021 14:02:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[18-Jan-2021 07:11:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[18-Jan-2021 08:57:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[18-Jan-2021 09:50:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[18-Jan-2021 10:56:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[18-Jan-2021 11:56:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[18-Jan-2021 13:14:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[18-Jan-2021 14:00:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[19-Jan-2021 15:39:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[20-Jan-2021 13:28:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[20-Jan-2021 14:10:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[21-Jan-2021 07:51:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[21-Jan-2021 09:25:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[21-Jan-2021 12:24:01 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[21-Jan-2021 13:24:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[21-Jan-2021 13:44:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[21-Jan-2021 17:25:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[22-Jan-2021 12:19:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[22-Jan-2021 17:27:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[23-Jan-2021 07:42:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[23-Jan-2021 09:44:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[23-Jan-2021 11:52:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[25-Jan-2021 06:22:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[25-Jan-2021 07:31:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[25-Jan-2021 15:11:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[26-Jan-2021 08:51:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[26-Jan-2021 10:33:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[26-Jan-2021 13:29:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[26-Jan-2021 14:27:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 06:28:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 07:20:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 09:45:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 09:51:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 09:53:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 10:09:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 10:39:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 12:27:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 14:37:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:143
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 143
+[27-Jan-2021 17:30:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method t5_obras::sincro_obra_nombre() in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php on line 104
+[27-Jan-2021 17:39:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method t5_obras::sincro_obra_nombre() in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php on line 104
+[27-Jan-2021 17:41:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method t5_obras::sincro_obra_nombre() in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php on line 104
+[27-Jan-2021 17:41:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method t5_obras::sincro_obra_nombre() in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php on line 104
+[27-Jan-2021 17:46:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method t5_obras::sincro_obra_nombre() in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php on line 104
+[27-Jan-2021 17:47:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method t5_obras::sincro_obra_nombre() in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php on line 104
+[07-Apr-2021 14:35:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:135
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 135
+[07-Apr-2021 16:06:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:136
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 136
+[07-Apr-2021 16:06:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:136
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 136
+[07-Apr-2021 16:06:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:136
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 136
+[08-Apr-2021 11:46:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[09-Apr-2021 08:56:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Apr-2021 10:26:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[12-Apr-2021 08:30:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[13-Apr-2021 06:32:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[14-Apr-2021 09:11:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Apr-2021 11:21:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[19-Apr-2021 11:13:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[19-Apr-2021 18:34:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[20-Apr-2021 08:32:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Apr-2021 09:26:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[22-Apr-2021 09:53:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[23-Apr-2021 07:28:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Apr-2021 07:08:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Apr-2021 14:36:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Apr-2021 10:15:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Apr-2021 11:49:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Apr-2021 17:43:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[27-Apr-2021 09:45:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[27-Apr-2021 11:19:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Apr-2021 09:25:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Apr-2021 09:25:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Apr-2021 11:56:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Apr-2021 11:56:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[29-Apr-2021 09:26:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[30-Apr-2021 07:51:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-May-2021 10:01:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[04-May-2021 07:02:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[05-May-2021 07:35:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-May-2021 07:11:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[07-May-2021 07:46:01 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-May-2021 09:05:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[11-May-2021 09:03:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[12-May-2021 08:46:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[13-May-2021 10:06:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[14-May-2021 07:31:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-May-2021 06:55:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[18-May-2021 07:04:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[19-May-2021 09:01:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[20-May-2021 13:19:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-May-2021 14:01:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[22-May-2021 13:00:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-May-2021 09:28:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[25-May-2021 09:17:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-May-2021 08:12:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[27-May-2021 08:18:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-May-2021 06:44:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[29-May-2021 06:52:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[31-May-2021 09:25:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[01-Jun-2021 09:45:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[02-Jun-2021 08:02:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Jun-2021 08:35:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[04-Jun-2021 08:24:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[05-Jun-2021 06:43:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[08-Jun-2021 08:47:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[09-Jun-2021 09:18:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Jun-2021 08:19:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[11-Jun-2021 09:39:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[11-Jun-2021 12:09:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[12-Jun-2021 07:42:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Jun-2021 10:41:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Jun-2021 10:41:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[16-Jun-2021 08:11:20 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[16-Jun-2021 13:06:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Jun-2021 08:04:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[18-Jun-2021 08:15:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[18-Jun-2021 14:28:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[19-Jun-2021 07:37:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Jun-2021 08:48:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Jun-2021 15:52:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[22-Jun-2021 09:26:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[23-Jun-2021 09:20:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Jun-2021 10:12:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Jun-2021 10:34:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[25-Jun-2021 08:52:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[25-Jun-2021 11:15:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Jun-2021 08:34:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jun-2021 10:05:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[29-Jun-2021 09:06:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[30-Jun-2021 08:31:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[30-Jun-2021 12:26:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[30-Jun-2021 17:29:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[01-Jul-2021 08:46:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[02-Jul-2021 07:54:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Jul-2021 09:58:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Jul-2021 09:59:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Jul-2021 10:22:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Jul-2021 10:42:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Jul-2021 10:49:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Jul-2021 10:51:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Jul-2021 10:53:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Jul-2021 10:56:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 07:33:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 07:34:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 07:35:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 07:36:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 07:37:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 07:38:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 10:21:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 10:30:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 10:34:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 11:15:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Jul-2021 20:37:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[07-Jul-2021 06:34:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[07-Jul-2021 09:33:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[08-Jul-2021 07:50:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[09-Jul-2021 07:12:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Jul-2021 07:18:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Jul-2021 12:30:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Jul-2021 12:32:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Jul-2021 12:47:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Jul-2021 12:57:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[12-Jul-2021 09:01:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[12-Jul-2021 14:40:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[13-Jul-2021 14:18:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[14-Jul-2021 06:48:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[14-Jul-2021 15:18:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Jul-2021 07:17:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Jul-2021 10:49:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Jul-2021 10:58:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Jul-2021 10:59:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Jul-2021 11:00:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Jul-2021 11:01:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Jul-2021 11:22:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[19-Jul-2021 09:33:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Jul-2021 08:01:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Jul-2021 15:31:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[22-Jul-2021 06:39:22 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[23-Jul-2021 07:58:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[23-Jul-2021 09:20:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[23-Jul-2021 09:51:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Jul-2021 07:28:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Jul-2021 08:24:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[27-Jul-2021 06:55:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[27-Jul-2021 17:08:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jul-2021 07:09:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[29-Jul-2021 07:17:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[29-Jul-2021 11:15:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[30-Jul-2021 09:13:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[31-Jul-2021 07:04:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[31-Jul-2021 18:23:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[02-Aug-2021 09:34:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Aug-2021 09:10:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[04-Aug-2021 06:58:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[05-Aug-2021 06:29:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Aug-2021 07:24:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Aug-2021 11:14:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[09-Aug-2021 08:09:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Aug-2021 08:29:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Aug-2021 10:08:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Aug-2021 13:53:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[11-Aug-2021 08:35:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[11-Aug-2021 10:18:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[12-Aug-2021 08:15:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[13-Aug-2021 08:13:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[14-Aug-2021 07:32:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Aug-2021 09:34:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[18-Aug-2021 09:56:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[23-Aug-2021 08:26:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Aug-2021 07:00:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Aug-2021 17:50:22 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Aug-2021 21:30:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[25-Aug-2021 07:26:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Aug-2021 09:54:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[27-Aug-2021 05:56:20 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Aug-2021 07:23:22 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[30-Aug-2021 06:24:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[30-Aug-2021 12:03:46 America/Bogota] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '24213' for key 'PRIMARY' in /home3/concr/portal.concretol.co/modelos/t26_remisiones.php:1033
+Stack trace:
+#0 /home3/concr/portal.concretol.co/modelos/t26_remisiones.php(1033): PDOStatement->execute()
+#1 /home3/concr/portal.concretol.co/modules/Batch/verbatch/php_crear.php(164): t26_remisiones->insertar_remision('11:44:00', '4" +/-1', 'MIGUEL PE\xC3\x91ALOZ...', '80508', 71831, '2021-08-30', 'RMI', '525', 800185295, 'AMARILO SAS', '425', 'CYMA', 4, '8', '01210100000', 'CRTO. NORMAL 30...', '5', 'TGV233', NULL, 'HERMES A VERGAR...')
+#2 {main}
+  thrown in /home3/concr/portal.concretol.co/modelos/t26_remisiones.php on line 1033
+[31-Aug-2021 09:08:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[31-Aug-2021 10:22:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[01-Sep-2021 00:40:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[01-Sep-2021 07:04:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Sep-2021 07:13:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Sep-2021 11:36:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Sep-2021 17:53:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Sep-2021 10:44:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Sep-2021 18:37:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[07-Sep-2021 09:58:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[08-Sep-2021 07:53:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[08-Sep-2021 18:17:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[08-Sep-2021 18:17:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[09-Sep-2021 07:00:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[09-Sep-2021 10:20:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Sep-2021 06:50:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[11-Sep-2021 07:44:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[11-Sep-2021 09:19:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[13-Sep-2021 09:58:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[14-Sep-2021 10:44:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Sep-2021 08:15:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Sep-2021 10:09:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Sep-2021 14:08:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Sep-2021 14:30:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Sep-2021 14:43:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Sep-2021 14:22:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Sep-2021 14:22:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Sep-2021 14:22:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Sep-2021 15:04:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Sep-2021 17:01:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[22-Sep-2021 10:28:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Sep-2021 14:20:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Sep-2021 14:20:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Sep-2021 14:21:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[29-Sep-2021 17:16:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[02-Oct-2021 14:10:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[08-Oct-2021 09:36:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[08-Oct-2021 10:06:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[09-Oct-2021 06:14:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[11-Oct-2021 14:53:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Oct-2021 08:26:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Oct-2021 08:28:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[15-Oct-2021 08:29:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[16-Oct-2021 20:03:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[22-Oct-2021 14:53:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[22-Oct-2021 17:20:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[25-Oct-2021 06:38:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[25-Oct-2021 08:04:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[25-Oct-2021 13:43:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Oct-2021 06:52:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Oct-2021 10:09:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[27-Oct-2021 08:58:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Oct-2021 09:23:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Oct-2021 12:35:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[29-Oct-2021 06:15:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[29-Oct-2021 09:43:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[30-Oct-2021 19:33:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[04-Nov-2021 11:26:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Nov-2021 13:56:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[07-Nov-2021 11:14:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Nov-2021 07:02:22 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Nov-2021 09:22:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[12-Nov-2021 11:22:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[13-Nov-2021 06:57:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[16-Nov-2021 06:37:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[16-Nov-2021 15:19:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[16-Nov-2021 15:35:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[16-Nov-2021 15:42:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[16-Nov-2021 15:47:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Nov-2021 07:39:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[18-Nov-2021 07:04:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[19-Nov-2021 06:20:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[20-Nov-2021 06:21:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[22-Nov-2021 19:22:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Nov-2021 07:01:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[27-Nov-2021 12:09:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[29-Nov-2021 09:01:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[01-Dec-2021 09:08:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Dec-2021 07:58:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[06-Dec-2021 07:59:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[07-Dec-2021 06:53:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[09-Dec-2021 07:48:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Dec-2021 08:00:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[10-Dec-2021 13:16:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[11-Dec-2021 06:18:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[14-Dec-2021 07:13:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[16-Dec-2021 09:19:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Dec-2021 14:50:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[17-Dec-2021 15:24:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[20-Dec-2021 22:13:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Dec-2021 12:12:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Dec-2021 12:52:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Dec-2021 18:15:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Dec-2021 10:56:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[30-Dec-2021 06:16:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[12-Jan-2022 11:00:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[12-Jan-2022 12:55:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[13-Jan-2022 07:11:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[14-Jan-2022 09:43:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[18-Jan-2022 17:53:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[19-Jan-2022 19:28:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Jan-2022 13:51:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[21-Jan-2022 13:51:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Jan-2022 06:54:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Jan-2022 16:30:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[24-Jan-2022 16:30:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[26-Jan-2022 07:42:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[27-Jan-2022 09:01:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jan-2022 09:24:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jan-2022 11:44:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jan-2022 13:30:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jan-2022 13:31:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jan-2022 13:31:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jan-2022 13:31:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jan-2022 13:52:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jan-2022 13:52:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[28-Jan-2022 18:01:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[31-Jan-2022 07:12:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[01-Feb-2022 06:56:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[02-Feb-2022 06:19:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[03-Feb-2022 08:55:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[04-Feb-2022 07:48:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[05-Feb-2022 08:32:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[07-Feb-2022 13:45:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137
+[07-Feb-2022 13:45:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_batch_remi() on null in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php:137
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/Batch/verbatch/index.php on line 137

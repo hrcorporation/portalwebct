@@ -1,0 +1,90 @@
+[16-Mar-2021 11:11:30 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[16-Mar-2021 11:11:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[16-Apr-2021 09:45:01 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[16-Apr-2021 09:45:01 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[22-May-2021 09:26:02 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[22-May-2021 09:26:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[22-May-2021 09:27:40 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[22-May-2021 09:27:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[18-Jun-2021 17:27:15 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[18-Jun-2021 17:27:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[22-Jun-2021 20:21:49 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[22-Jun-2021 20:21:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[26-Jun-2021 21:49:45 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[26-Jun-2021 21:49:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[30-Jun-2021 11:02:26 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[30-Jun-2021 11:02:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[30-Jun-2021 11:02:28 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[30-Jun-2021 11:02:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[06-Jul-2021 16:44:33 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[06-Jul-2021 16:44:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[12-Jul-2021 17:30:54 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[12-Jul-2021 17:30:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[21-Jul-2021 07:46:28 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[21-Jul-2021 07:46:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[21-Jul-2021 07:46:30 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[21-Jul-2021 07:46:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[21-Jul-2021 07:46:35 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[21-Jul-2021 07:46:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[21-Jul-2021 07:46:36 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[21-Jul-2021 07:46:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[30-Jul-2021 12:22:14 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[30-Jul-2021 12:22:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[30-Jul-2021 12:49:58 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[30-Jul-2021 12:49:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104
+[30-Jul-2021 12:54:30 America/Bogota] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 103
+[30-Jul-2021 12:54:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php:104
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/PrecioProducto/index.php on line 104

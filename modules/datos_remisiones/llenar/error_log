@@ -1,0 +1,22 @@
+[15-Feb-2021 08:27:49 America/Bogota] PHP Fatal error:  Uncaught Error: Class 'php_clases' not found in /home3/concr/portal.concretol.co/modules/datos_remisiones/llenar/detalle_remision.php:12
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/datos_remisiones/llenar/detalle_remision.php on line 12
+[15-Feb-2021 08:27:53 America/Bogota] PHP Fatal error:  Uncaught Error: Class 'php_clases' not found in /home3/concr/portal.concretol.co/modules/datos_remisiones/llenar/detalle_remision.php:12
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/datos_remisiones/llenar/detalle_remision.php on line 12
+[24-Feb-2021 08:02:44 America/Bogota] PHP Fatal error:  Uncaught Error: Class 't26_remisiones' not found in /home3/concr/portal.concretol.co/modules/datos_remisiones/llenar/detalle_remision.php:11
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/datos_remisiones/llenar/detalle_remision.php on line 11
+[28-Oct-2021 16:26:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on string in /home3/concr/portal.concretol.co/modelos/t26_remisiones.php:352
+Stack trace:
+#0 /home3/concr/portal.concretol.co/modules/datos_remisiones/llenar/ajax_detalle_Remi_1.php(19): t26_remisiones->validar_falta_horas_remi_conductor(296)
+#1 {main}
+  thrown in /home3/concr/portal.concretol.co/modelos/t26_remisiones.php on line 352
+[28-Oct-2021 16:27:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on string in /home3/concr/portal.concretol.co/modelos/t26_remisiones.php:352
+Stack trace:
+#0 /home3/concr/portal.concretol.co/modules/datos_remisiones/llenar/ajax_detalle_Remi_1.php(19): t26_remisiones->validar_falta_horas_remi_conductor(296)
+#1 {main}
+  thrown in /home3/concr/portal.concretol.co/modelos/t26_remisiones.php on line 352

@@ -1,0 +1,5 @@
+[28-Oct-2021 16:37:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on string in /home3/concr/portal.concretol.co/modelos/t27_factura.php:30
+Stack trace:
+#0 /home3/concr/portal.concretol.co/modules/facturae/informe/excel.php(19): t27_factura->selectfactura_remi()
+#1 {main}
+  thrown in /home3/concr/portal.concretol.co/modelos/t27_factura.php on line 30
