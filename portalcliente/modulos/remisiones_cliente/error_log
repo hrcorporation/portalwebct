@@ -1,0 +1,1864 @@
+[15-Feb-2021 08:23:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method php_clases::estado_remi_cli() in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:244
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 244
+[15-Feb-2021 08:24:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method php_clases::estado_remi_cli() in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:244
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 244
+[16-Mar-2021 09:03:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Mar-2021 10:00:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Mar-2021 09:48:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Mar-2021 11:44:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Mar-2021 07:42:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Mar-2021 11:16:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Mar-2021 09:14:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Mar-2021 15:23:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Apr-2021 16:15:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Apr-2021 13:56:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Apr-2021 10:53:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Apr-2021 15:06:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Apr-2021 14:06:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Apr-2021 15:36:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-May-2021 11:14:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-May-2021 10:19:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Jun-2021 16:07:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Jun-2021 13:25:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Jul-2021 12:25:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Jul-2021 15:26:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Jul-2021 10:36:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Jul-2021 10:23:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Jul-2021 14:21:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Jul-2021 16:41:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Jul-2021 11:11:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Jul-2021 17:07:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Jul-2021 14:50:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Jul-2021 10:30:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Jul-2021 11:53:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Jul-2021 17:38:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Jul-2021 12:52:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Jul-2021 13:57:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Jul-2021 17:25:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Jul-2021 13:10:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Jul-2021 14:24:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Jul-2021 09:16:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Jul-2021 11:58:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Jul-2021 13:13:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Aug-2021 14:33:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Aug-2021 08:41:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Aug-2021 11:58:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Aug-2021 13:01:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Aug-2021 15:58:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Aug-2021 15:59:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Aug-2021 07:07:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Aug-2021 07:52:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Aug-2021 08:41:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Aug-2021 11:35:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Aug-2021 13:05:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Aug-2021 14:44:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Aug-2021 16:27:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Aug-2021 16:32:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Aug-2021 10:37:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Aug-2021 12:37:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Aug-2021 09:44:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Aug-2021 16:47:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Aug-2021 08:45:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Aug-2021 10:19:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Aug-2021 13:52:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[18-Aug-2021 07:24:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[18-Aug-2021 09:28:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Aug-2021 11:35:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Aug-2021 13:55:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Aug-2021 14:02:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Aug-2021 09:29:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Aug-2021 11:30:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Aug-2021 11:02:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Aug-2021 15:35:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Aug-2021 16:46:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Aug-2021 08:45:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Aug-2021 10:51:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Aug-2021 16:45:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[31-Aug-2021 12:30:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[31-Aug-2021 14:03:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Sep-2021 11:46:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Sep-2021 16:54:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Sep-2021 09:12:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Sep-2021 10:46:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Sep-2021 11:57:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Sep-2021 09:55:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Sep-2021 10:52:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Sep-2021 14:21:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Sep-2021 16:28:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Sep-2021 12:12:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Sep-2021 12:48:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Sep-2021 16:20:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Sep-2021 16:41:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Sep-2021 20:02:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Sep-2021 10:45:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Sep-2021 15:13:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Sep-2021 15:22:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Sep-2021 16:10:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Sep-2021 16:40:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Sep-2021 08:49:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Sep-2021 15:21:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Sep-2021 16:34:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Sep-2021 10:03:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Sep-2021 11:30:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Sep-2021 13:23:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Sep-2021 07:40:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Sep-2021 13:14:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Sep-2021 15:24:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Sep-2021 09:02:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Sep-2021 11:12:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Sep-2021 11:11:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Sep-2021 13:17:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Sep-2021 11:17:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Sep-2021 09:18:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Oct-2021 09:33:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Oct-2021 09:41:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Oct-2021 09:46:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Oct-2021 12:02:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Oct-2021 12:41:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Oct-2021 13:10:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Oct-2021 07:47:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Oct-2021 11:27:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Oct-2021 12:51:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Oct-2021 13:52:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Oct-2021 14:26:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Oct-2021 11:51:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Oct-2021 14:36:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Oct-2021 15:01:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Oct-2021 15:24:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Oct-2021 16:58:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Oct-2021 11:33:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Oct-2021 13:40:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Oct-2021 15:03:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Oct-2021 15:51:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Oct-2021 08:16:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Oct-2021 09:35:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Oct-2021 07:49:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Oct-2021 08:44:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Oct-2021 10:35:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Oct-2021 16:51:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[12-Oct-2021 15:24:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Oct-2021 07:31:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Oct-2021 13:29:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Oct-2021 06:51:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Oct-2021 09:02:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Oct-2021 14:50:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Oct-2021 17:13:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Oct-2021 11:01:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Oct-2021 08:10:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Oct-2021 09:26:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Oct-2021 11:27:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Oct-2021 08:22:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Oct-2021 09:50:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Oct-2021 16:06:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Oct-2021 12:36:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Oct-2021 13:04:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Oct-2021 07:43:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Oct-2021 15:01:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Oct-2021 08:57:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Oct-2021 10:42:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Oct-2021 15:29:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Oct-2021 08:33:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Oct-2021 13:32:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Oct-2021 14:09:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Oct-2021 16:32:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Oct-2021 17:07:01 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Nov-2021 11:29:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Nov-2021 13:24:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Nov-2021 14:26:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Nov-2021 09:12:22 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Nov-2021 14:47:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Nov-2021 10:29:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Nov-2021 09:25:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Nov-2021 07:45:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Nov-2021 09:56:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Nov-2021 13:54:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Nov-2021 13:56:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Nov-2021 07:44:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Nov-2021 09:49:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Nov-2021 18:40:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Nov-2021 09:46:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Nov-2021 10:38:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Nov-2021 10:39:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Nov-2021 10:39:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Nov-2021 10:45:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Nov-2021 11:31:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[12-Nov-2021 07:51:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[12-Nov-2021 08:18:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[12-Nov-2021 16:08:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[12-Nov-2021 23:04:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Nov-2021 01:57:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Nov-2021 02:39:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Nov-2021 05:55:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Nov-2021 15:51:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Nov-2021 01:49:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Nov-2021 03:29:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Nov-2021 10:25:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Nov-2021 10:56:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Nov-2021 20:04:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Nov-2021 20:47:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Nov-2021 05:57:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Nov-2021 06:09:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Nov-2021 11:29:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Nov-2021 17:01:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Nov-2021 03:25:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Nov-2021 08:47:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Nov-2021 10:28:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Nov-2021 13:04:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Nov-2021 15:25:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Nov-2021 17:38:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Nov-2021 20:55:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 03:28:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 06:45:01 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 07:41:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 08:58:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 09:06:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 10:31:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 12:56:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 14:48:54 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 20:23:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Nov-2021 22:47:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[18-Nov-2021 07:05:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[18-Nov-2021 10:51:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[18-Nov-2021 16:47:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[18-Nov-2021 20:33:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Nov-2021 02:37:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Nov-2021 06:23:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Nov-2021 09:35:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Nov-2021 12:08:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Nov-2021 13:10:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Nov-2021 14:15:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Nov-2021 18:59:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Nov-2021 21:34:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Nov-2021 04:22:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Nov-2021 06:59:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Nov-2021 07:32:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Nov-2021 16:00:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Nov-2021 18:38:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Nov-2021 03:04:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Nov-2021 13:06:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Nov-2021 16:08:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Nov-2021 00:27:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Nov-2021 03:26:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Nov-2021 09:39:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Nov-2021 11:10:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Nov-2021 20:01:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Nov-2021 21:31:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Nov-2021 06:23:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Nov-2021 07:53:20 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Nov-2021 12:56:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Nov-2021 12:57:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Nov-2021 15:11:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Nov-2021 16:59:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Nov-2021 00:16:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Nov-2021 04:17:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Nov-2021 10:04:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Nov-2021 14:01:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Nov-2021 14:31:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Nov-2021 16:10:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Nov-2021 17:48:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Nov-2021 21:39:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Nov-2021 03:45:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Nov-2021 06:39:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Nov-2021 09:34:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Nov-2021 11:25:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Nov-2021 13:03:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Nov-2021 15:46:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Nov-2021 16:49:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Nov-2021 20:23:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Nov-2021 03:33:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Nov-2021 07:08:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Nov-2021 11:05:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Nov-2021 14:56:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Nov-2021 22:10:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Nov-2021 02:03:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Nov-2021 10:31:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Nov-2021 12:25:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Nov-2021 14:46:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Nov-2021 21:54:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Nov-2021 02:07:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Nov-2021 08:56:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Nov-2021 09:18:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Nov-2021 15:46:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Nov-2021 19:27:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 02:12:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 07:27:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 08:52:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 11:15:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 13:18:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 14:31:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 17:40:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 17:40:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 19:12:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Nov-2021 21:34:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 05:28:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 07:44:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 07:46:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 07:52:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 08:23:16 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 09:57:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 11:00:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 15:09:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 16:17:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 19:45:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Nov-2021 21:25:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[01-Dec-2021 07:09:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[01-Dec-2021 08:50:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[01-Dec-2021 10:17:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[01-Dec-2021 14:05:20 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[01-Dec-2021 16:05:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 00:10:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 01:57:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 08:22:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 11:33:22 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 13:20:46 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 14:41:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 14:58:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 16:32:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 16:35:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 19:23:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Dec-2021 22:28:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Dec-2021 02:09:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Dec-2021 06:42:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Dec-2021 09:39:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Dec-2021 15:43:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[03-Dec-2021 20:02:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Dec-2021 03:06:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Dec-2021 07:27:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Dec-2021 14:35:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Dec-2021 17:12:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Dec-2021 01:32:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Dec-2021 04:09:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Dec-2021 12:42:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[05-Dec-2021 22:36:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 00:37:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 08:25:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 09:47:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 10:39:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 11:22:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 12:01:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 14:10:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 14:21:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 14:57:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 15:39:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 16:34:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 16:34:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 18:10:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 22:59:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[06-Dec-2021 23:56:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Dec-2021 07:59:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Dec-2021 11:00:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Dec-2021 11:54:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Dec-2021 15:36:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Dec-2021 16:48:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Dec-2021 19:00:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[07-Dec-2021 20:12:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Dec-2021 05:46:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Dec-2021 07:00:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Dec-2021 21:22:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[08-Dec-2021 23:39:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Dec-2021 08:56:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Dec-2021 11:18:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Dec-2021 11:56:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Dec-2021 11:56:08 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Dec-2021 11:56:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Dec-2021 13:57:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Dec-2021 17:57:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Dec-2021 18:17:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[09-Dec-2021 23:17:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Dec-2021 05:33:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Dec-2021 10:15:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Dec-2021 10:19:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Dec-2021 11:00:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Dec-2021 14:30:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Dec-2021 16:20:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Dec-2021 16:40:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[10-Dec-2021 21:29:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Dec-2021 01:27:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Dec-2021 08:29:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Dec-2021 12:31:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Dec-2021 15:02:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[11-Dec-2021 21:01:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[12-Dec-2021 07:00:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[12-Dec-2021 21:46:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Dec-2021 06:58:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Dec-2021 15:58:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Dec-2021 17:49:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Dec-2021 19:06:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Dec-2021 20:00:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[13-Dec-2021 20:31:07 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Dec-2021 13:53:20 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Dec-2021 15:05:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Dec-2021 21:56:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Dec-2021 10:11:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Dec-2021 14:23:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Dec-2021 21:29:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[15-Dec-2021 22:13:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Dec-2021 07:09:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Dec-2021 08:36:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Dec-2021 13:16:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Dec-2021 13:17:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Dec-2021 13:17:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Dec-2021 13:18:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Dec-2021 13:52:47 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Dec-2021 14:35:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[16-Dec-2021 16:30:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Dec-2021 07:32:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Dec-2021 09:36:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Dec-2021 10:33:12 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Dec-2021 17:35:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Dec-2021 21:16:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[18-Dec-2021 13:08:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Dec-2021 01:13:22 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Dec-2021 11:33:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Dec-2021 17:21:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[19-Dec-2021 21:55:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Dec-2021 08:41:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Dec-2021 15:49:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Dec-2021 19:18:18 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Dec-2021 04:01:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Dec-2021 09:52:29 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Dec-2021 10:53:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Dec-2021 12:50:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Dec-2021 13:37:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Dec-2021 14:37:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Dec-2021 14:43:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Dec-2021 14:43:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Dec-2021 16:55:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Dec-2021 12:21:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Dec-2021 14:55:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Dec-2021 18:33:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Dec-2021 22:58:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Dec-2021 00:48:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[23-Dec-2021 23:00:14 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Dec-2021 19:31:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Dec-2021 21:17:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Dec-2021 18:20:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Dec-2021 12:22:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Dec-2021 10:43:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Dec-2021 11:12:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[30-Dec-2021 11:36:06 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[14-Jan-2022 18:10:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[17-Jan-2022 15:47:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[18-Jan-2022 14:58:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[20-Jan-2022 09:12:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Jan-2022 13:13:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Jan-2022 14:15:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Jan-2022 14:15:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[21-Jan-2022 15:42:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[22-Jan-2022 10:33:56 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Jan-2022 07:16:22 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Jan-2022 13:00:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[24-Jan-2022 15:24:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Jan-2022 06:22:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Jan-2022 08:53:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Jan-2022 15:26:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[25-Jan-2022 15:38:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[26-Jan-2022 06:28:38 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Jan-2022 10:26:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[27-Jan-2022 17:04:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Jan-2022 14:09:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[28-Jan-2022 19:00:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Jan-2022 09:41:20 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[29-Jan-2022 11:31:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[31-Jan-2022 07:47:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[31-Jan-2022 08:07:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[31-Jan-2022 09:40:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[02-Feb-2022 08:06:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Feb-2022 10:45:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227
+[04-Feb-2022 11:05:15 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function ct26_Remisiones2() on null in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php:227
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones_cliente/index.php on line 227

@@ -1,0 +1,41 @@
+<?php
+
+session_start();
+header('Content-Type: application/json');
+
+$id_usuario = $_SESSION['id_usuario'];
+
+require '../../../include/conexion.php';
+//require '../../../../includes/LibreriasHR.php';
+
+$conexion_bd = new conexion();
+$conexion_bd->connect();
+
+
+if (isset($_POST['C_Newpass1']) && isset($_POST['C_Newpass2'])) {
+
+    $C_Newpass1 = htmlspecialchars($_POST['C_Newpass1']);
+    $C_Newpass2 = htmlspecialchars($_POST['C_Newpass2']);
+
+    if ($C_Newpass1 == $C_Newpass2) {
+
+        $newPass = md5($C_Newpass1);
+
+        $sql = "UPDATE `ct1_terceros` SET `ct1_pass`=  ? WHERE ct1_terceros.ct1_IdTerceros = ?";
+        $stmt = mysqli_prepare($conexion_bd->myconn, $sql);
+        $stmt->bind_param("si", $newPass, $id_usuario);
+
+        if ($stmt->execute()) {
+            $php_estado = 1;
+        } else {
+            $php_estado = 2;
+        }
+    }
+}
+
+$datos = array(
+    'estado' => $php_estado
+);
+
+
+echo json_encode($datos, JSON_FORCE_OBJECT);
