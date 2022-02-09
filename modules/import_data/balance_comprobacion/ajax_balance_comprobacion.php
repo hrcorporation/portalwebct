@@ -26,6 +26,8 @@ $php_movefile = move_uploaded_file($ruta,$carpeta_destino.$php_serial);
 
 $inputFileName = $_SERVER['DOCUMENT_ROOT'].$php_tempfoto;
 
+$cls_importdata = new cls_importdata();
+
 
 // Clase para Escoger celdas Especificas
 class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter {
@@ -56,20 +58,41 @@ $spreadsheet = $reader->load($inputFileName);
 $array_reg = $spreadsheet->getActiveSheet()->toArray();
 if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
-       $new_array2['num_identificacion'] = $row[0];
-       $new_array2['nombre_cliente'] = $row[1];
-       $new_array2['saldo'] = $row[2];
+
+        if(!is_null($row[0])){
+            $new_array['puc'] = $row[0];
+            $new_array['tercero'] = $row[1];
+            $new_array['cco'] = $row[2];
+            $new_array['scc'] = $row[3];
+            $new_array['nombre'] = $row[4];
+            $new_array['saldo_anterior'] = $row[5];
+            $new_array['mov_debito'] = $row[6];
+            $new_array['mov_credito'] = $row[7];
+            $new_array['nuevo_saldo'] = $row[8];
+
+            $fecha = new DateTime($row[9]);
+        $fecha_d_m_y = $fecha->format('Y/m/d');
+           
+            $new_array['fecha_corte'] = $fecha_d_m_y;
+            
        /** variable final para guardar en la base de datos $new_array */
-       $new_array[] = $new_array2;
+       $new_arrayf[] = $new_array;
+        }
+       
+       
     }
 }
 
-$php_result = "";
+if($php_result= $cls_importdata->insert_alance_comprobacion($new_arrayf)){
+    $php_estado = true;
+}
+
+
 
 $datos = array(
     'estado' => $php_estado,
     'result' => $php_result,
-    'dataload' => $new_array
+    'dataload' => $new_arrayf
 );
 
 
