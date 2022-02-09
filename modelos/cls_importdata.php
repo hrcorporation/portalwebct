@@ -23,6 +23,28 @@ class cls_importdata extends conexionPDO {
                 $stmt->bindParam(':digver', $row['digver'], PDO::PARAM_STR);
                 $stmt->bindParam(':claseid', $row['claseid'], PDO::PARAM_STR);
                 $stmt->bindParam(':codigo', $row['codigo'], PDO::PARAM_STR);
+                $stmt->bindParam(':nombre', $row['nombre'], PDO::PARAM_STR);
+                $stmt->bindParam(':nombrec', $row['nombrec'], PDO::PARAM_STR);
+                $stmt->bindParam(':nombre1', $row['nombre1'], PDO::PARAM_STR);
+                $stmt->bindParam(':nombre2', $row['nombre2'], PDO::PARAM_STR);
+                $stmt->bindParam(':apellido1', $row['apellido1'], PDO::PARAM_STR);
+                $stmt->bindParam(':apellido2', $row['apellido2'], PDO::PARAM_STR);
+                $stmt->bindParam(':perjuridic', $row['perjuridic'], PDO::PARAM_STR);
+                $stmt->bindParam(':inactivo', $row['inactivo'], PDO::PARAM_STR);
+                $stmt->bindParam(':dir', $row['dir'], PDO::PARAM_STR);
+                $stmt->bindParam(':dir2', $row['dir2'], PDO::PARAM_STR);
+                $stmt->bindParam(':dir2', $row['dir2'], PDO::PARAM_STR);
+
+
+
+
+
+
+
+
+
+
+
 
 
                 if ($stmt->execute()) { // Ejecutar
