@@ -8,6 +8,32 @@ class cls_importdata extends conexionPDO {
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
+    function insert_centro_costo(array $array_datos)
+    {
+        if(is_array($array_datos))
+        {
+            foreach ($array_datos as $row) {
+                
+                $sql=" INSERT INTO `centrocostos`( `codigo`, `nombre`, `codigocompleto`) VALUES (:codigo,:nombre,:codigocompleto)";
+                $stmt = $this->con->prepare($sql); // Preparar la conexion
+                $stmt->bindParam(':codigo', $row['codigo'], PDO::PARAM_STR);
+                $stmt->bindParam(':nombre', $row['nombre'], PDO::PARAM_STR);
+                $stmt->bindParam(':codigocompleto', $row['nombre_completo'], PDO::PARAM_STR);
+
+                if ($stmt->execute()) { // Ejecutar
+                    $result = " Exitosso";
+                }else{
+                    $result = "Error";
+
+                }
+
+            }
+            return $result;
+        }else{
+            return false;
+        }
+        
+    }
 
     function insert_alance_comprobacion(array $array_datos)
     {
@@ -41,5 +67,7 @@ class cls_importdata extends conexionPDO {
         }
         
     }
+
+
 
 }
