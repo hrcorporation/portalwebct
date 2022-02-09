@@ -15,6 +15,7 @@ require '../../../vendor/autoload.php'; ?>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
+                    <!-- Titulo de pagina -->
                     <h1>Balance Comprobacion</h1>
                 </div>
                 <div class="col-sm-6">
@@ -31,7 +32,6 @@ require '../../../vendor/autoload.php'; ?>
 
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -46,19 +46,21 @@ require '../../../vendor/autoload.php'; ?>
                 </div>
             </div>
             <div class="card-body">
+                <!-- formulario de balance -->
                 <form name="form_balance" id="form_balance" method="post">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label>Seleccionar Archivo</label>
-                                <input type="file" class="form-control" name="file_balance_comprobacion"
-                                    id="file_balance_comprobacion" />
+                                <!-- input para seleccionar el archivo -->
+                                <input type="file" class="form-control" name="file_balance_comprobacion" id="file_balance_comprobacion" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
+                                <!-- boton para guardar el archivo -->
                                 <button type="submit" class="btn btn-success" name="btn_subirarchivo"
                                     id="btn_subirarchivo">Subir </button>
                             </div>
