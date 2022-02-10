@@ -9,19 +9,31 @@ class cls_importdata extends conexionPDO {
         $this->con = $this->PDO->connect();
     }
 
-    function insert_pptoprod(array $array_datos)
+    function insert_ordenpyg(array $array_datos)
     {
         if(is_array($array_datos))
         {
             foreach ($array_datos as $row) {
                 
-                $sql=" INSERT INTO `prod`(`id`, `fechames`, `unidadnegocio`, `topcliente`, `ciudad`, `m3prod`) VALUES (:fechames,:unidadnegocio,:topcliente,:ciudad,:m3prod)";
+                $sql=" INSERT INTO `ordenpyg`(`id`, `puc`, `cuenta`, `niv1pyg`, `niv2pyg`, `niv3pyg`, `niv4pyg`, `idniv4`, `idniv3`, `idniv2`, `idniv1`, `nomniv1`, `nomniv2`, `nomniv3`, `nomniv4`) VALUES  (:puc,:cuenta,:niv1pyg,:niv2pyg,:niv3pyg,:niv4pyg,:idniv4,:idniv3,:idniv2,:idniv1,:nomniv1,:nomniv2,:nomniv3,:nomniv4)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
-                $stmt->bindParam(':fechames', $row['fechames'], PDO::PARAM_DATE);
-                $stmt->bindParam(':unidadnegocio', $row['unidadnegocio'], PDO::PARAM_STR);
-                $stmt->bindParam(':topcliente', $row['topcliente'], PDO::PARAM_STR);
-                $stmt->bindParam(':ciudad', $row['ciudad'], PDO::PARAM_STR);
-                $stmt->bindParam(':m3prod', $row['m3prod'], PDO::PARAM_INT);
+                $stmt->bindParam(':puc', $row['puc'], PDO::PARAM_INT);
+                $stmt->bindParam(':cuenta', $row['cuenta'], PDO::PARAM_STR);
+                $stmt->bindParam(':niv1pyg', $row['niv1pyg'], PDO::PARAM_STR);
+                $stmt->bindParam(':niv2pyg', $row['niv2pyg'], PDO::PARAM_STR);
+                $stmt->bindParam(':niv3pyg', $row['niv3pyg'], PDO::PARAM_STR);
+                $stmt->bindParam(':niv4pyg', $row['niv4pyg'], PDO::PARAM_STR);
+                $stmt->bindParam(':idniv4', $row['idniv4'], PDO::PARAM_INT);
+                $stmt->bindParam(':idniv3', $row['idniv3'], PDO::PARAM_STR);
+                $stmt->bindParam(':idniv2', $row['idniv2'], PDO::PARAM_INT);
+                $stmt->bindParam(':idniv1', $row['idniv1'], PDO::PARAM_INT);
+                $stmt->bindParam(':nomniv1', $row['nomniv1'], PDO::PARAM_STR);
+                $stmt->bindParam(':nomniv2', $row['nomniv2'], PDO::PARAM_STR);
+                $stmt->bindParam(':nomniv3', $row['nomniv3'], PDO::PARAM_STR);
+                $stmt->bindParam(':nomniv4', $row['nomniv4'], PDO::PARAM_STR);
+
+
+
 
 
 
