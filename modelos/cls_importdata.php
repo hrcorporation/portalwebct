@@ -224,4 +224,31 @@ class cls_importdata extends conexionPDO
             return false;
         }
     }
+
+    function insert_plan_unico_cuentas(array $array_datos)
+    {
+        if (is_array($array_datos)) {
+            foreach ($array_datos as $row) {
+                $sql = "INSERT INTO `plan_unico_cuentas`(`codigo_puc`, `nombre`, `nat`, `terc`, `c_cost`, `doc`, `art`, `deprecia`) 
+                VALUES (:codigo_puc, :nombre, :nat, :terc, :c_cost, :doc, :art, :deprecia)";
+                $stmt = $this->con->prepare($sql); // Preparar la conexion
+                $stmt->bindParam(':codigo_puc', $row['codigo_puc'], PDO::PARAM_INT);
+                $stmt->bindParam(':nombre', $row['nombre'], PDO::PARAM_STR);
+                $stmt->bindParam(':nat', $row['nat'], PDO::PARAM_STR);
+                $stmt->bindParam(':terc', $row['terc'], PDO::PARAM_STR);
+                $stmt->bindParam(':c_cost', $row['c_cost'], PDO::PARAM_STR);
+                $stmt->bindParam(':doc', $row['doc'], PDO::PARAM_STR);
+                $stmt->bindParam(':art', $row['art'], PDO::PARAM_STR);
+                $stmt->bindParam(':deprecia', $row['deprecia'], PDO::PARAM_STR);
+                if ($stmt->execute()) { // Ejecutar
+                    $result = " Exitosso";
+                } else {
+                    $result = "Error";
+                }
+            }
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }
