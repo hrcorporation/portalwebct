@@ -138,4 +138,42 @@ class cls_importdata extends conexionPDO
             return false;
         }
     }
+
+    function insert_kardex(array $array_datos)
+    {
+        if (is_array($array_datos)) {
+            foreach ($array_datos as $row) {
+                $sql = "INSERT INTO `kardex`(`l`, `fecha`, `comprobante`, `entradas`, `salidas`, `saldo`, `costo_aplicacion`, `costo_promedio`, `costo_total_saldo`, `detalle1`, `numero_ext`, `bodega`, `tercero`, `nit`, `elaborado`, `referencia`, `detalle2`, `periodo`, `cuenta`, `unidad_medida`) VALUES (:l, :fecha, :comprobante, :entradas, :salidas, :saldo, :costo_aplicacion, :costo_promedio, :costo_total_saldo, :detalle1, :numero_ext, :bodega, :tercero, :nit, :elaborado, :referencia, :detalle2, :periodo, :cuenta, :unidad_medida)";
+                $stmt = $this->con->prepare($sql); // Preparar la conexion
+                $stmt->bindParam(':l', $row['l'], PDO::PARAM_INT);
+                $stmt->bindParam(':fecha', $row['fecha'], PDO::PARAM_STR);
+                $stmt->bindParam(':comprobante', $row['comprobante'], PDO::PARAM_STR);
+                $stmt->bindParam(':entradas', $row['entradas'], PDO::PARAM_STR);
+                $stmt->bindParam(':salidas', $row['salidas'], PDO::PARAM_STR);
+                $stmt->bindParam(':saldo', $row['saldo'], PDO::PARAM_STR);
+                $stmt->bindParam(':costo_aplicacion', $row['costo_aplicacion'], PDO::PARAM_STR);
+                $stmt->bindParam(':costo_promedio', $row['costo_promedio'], PDO::PARAM_STR);
+                $stmt->bindParam(':costo_total_saldo', $row['costo_total_saldo'], PDO::PARAM_STR);
+                $stmt->bindParam(':detalle1', $row['detalle1'], PDO::PARAM_STR);
+                $stmt->bindParam(':numero_ext', $row['numero_ext'], PDO::PARAM_INT);
+                $stmt->bindParam(':bodega', $row['bodega'], PDO::PARAM_STR);
+                $stmt->bindParam(':tercero', $row['tercero'], PDO::PARAM_STR);
+                $stmt->bindParam(':nit', $row['nit'], PDO::PARAM_INT);
+                $stmt->bindParam(':elaborado', $row['elaborado'], PDO::PARAM_STR);
+                $stmt->bindParam(':referencia', $row['referencia'], PDO::PARAM_INT);
+                $stmt->bindParam(':detalle2', $row['detalle2'], PDO::PARAM_STR);
+                $stmt->bindParam(':periodo', $row['periodo'], PDO::PARAM_STR);
+                $stmt->bindParam(':cuenta', $row['cuenta'], PDO::PARAM_INT);
+                $stmt->bindParam(':unidad_medida', $row['unidad_medida'], PDO::PARAM_STR);
+                if ($stmt->execute()) { // Ejecutar
+                    $result = " Exitosso";
+                } else {
+                    $result = "Error";
+                }
+            }
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }
