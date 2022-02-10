@@ -79,7 +79,7 @@ if (is_array($array_reg)) {
             $new_array['credito'] = $row[16];
             $new_array['elaborado'] = $row[16];
 
-            $fecha = new DateTime($row[9]);
+            $fecha = new DateTime($row[17]);
         $fecha_d_m_y = $fecha->format('Y/m/d');
            
             $new_array['fecha_corte'] = $fecha_d_m_y;
