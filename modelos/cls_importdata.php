@@ -9,6 +9,37 @@ class cls_importdata extends conexionPDO {
         $this->con = $this->PDO->connect();
     }
 
+    function insert_pptoprod(array $array_datos)
+    {
+        if(is_array($array_datos))
+        {
+            foreach ($array_datos as $row) {
+                
+                $sql=" INSERT INTO `prod`(`id`, `fechames`, `unidadnegocio`, `topcliente`, `ciudad`, `m3prod`) VALUES (:fechames,:unidadnegocio,:topcliente,:ciudad,:m3prod)";
+                $stmt = $this->con->prepare($sql); // Preparar la conexion
+                $stmt->bindParam(':fechames', $row['fechames'], PDO::PARAM_DATE);
+                $stmt->bindParam(':unidadnegocio', $row['unidadnegocio'], PDO::PARAM_STR);
+                $stmt->bindParam(':topcliente', $row['topcliente'], PDO::PARAM_STR);
+                $stmt->bindParam(':ciudad', $row['ciudad'], PDO::PARAM_STR);
+                $stmt->bindParam(':m3prod', $row['m3prod'], PDO::PARAM_INT);
+
+
+
+                if ($stmt->execute()) { // Ejecutar
+                    $result = " Exitosso";
+                }else{
+                    $result = "Error";
+
+                }
+
+            }
+            return $result;
+        }else{
+            return false;
+        }
+        
+    }
+
     function insert_prod(array $array_datos)
     {
         if(is_array($array_datos))
