@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-02-2022 a las 22:02:51
+-- Tiempo de generación: 10-02-2022 a las 16:32:35
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -144,6 +144,7 @@ CREATE TABLE `venta` (
   `regimen_ventas` varchar(100) DEFAULT NULL,
   `declaracion_renta` tinyint(1) DEFAULT NULL,
   `agente_retenedor` tinyint(1) DEFAULT NULL,
+  `auto_retenedor` tinyint(1) DEFAULT NULL,
   `no_aplica_impuesto_cree` tinyint(1) DEFAULT NULL,
   `agente_retenedor_ica` tinyint(1) DEFAULT NULL,
   `causas_devolucion` varchar(100) DEFAULT NULL,
