@@ -83,7 +83,7 @@ if (is_array($array_reg)) {
             $new_array['fecha_mes'] = $row[20];
             $new_array['planta'] = $row[21];
 
-            $fecha = new DateTime($row[9]);
+            $fecha = new DateTime($row[22]);
         $fecha_d_m_y = $fecha->format('Y/m/d');
            
             $new_array['fecha_corte'] = $fecha_d_m_y;
