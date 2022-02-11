@@ -63,7 +63,7 @@ if (is_array($array_reg)) {
             $new_array['codigo'] = $row[0];
             $new_array['nombre'] = $row[1];
             $new_array['nombre_completo'] = $row[2];
-
+        
             
        /** variable final para guardar en la base de datos $new_array */
        $new_arrayf[] = $new_array;
@@ -73,7 +73,7 @@ if (is_array($array_reg)) {
     }
 }
 
-if($php_result= $cls_importdata->insert_alance_comprobacion($new_arrayf)){
+if($php_result= $cls_importdata->insert_centro_costo($new_arrayf)){
     $php_estado = true;
 }
 
