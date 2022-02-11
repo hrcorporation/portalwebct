@@ -110,10 +110,7 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':inactivo', $row['inactivo'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir', $row['dir'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir2', $row['dir2'], PDO::PARAM_STR);
-<<<<<<< HEAD
                 $stmt->bindParam(':tel', $row['tel'], PDO::PARAM_INT);
-=======
->>>>>>> dev
                 $stmt->bindParam(':telmovil', $row['telmovil'], PDO::PARAM_INT);
                 $stmt->bindParam(':fax', $row['fax'], PDO::PARAM_INT);
                 $stmt->bindParam(':email', $row['email'], PDO::PARAM_STR);
@@ -230,10 +227,8 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':bodega', $row['bodega'], PDO::PARAM_STR); 
 
 
-
-
                 if ($stmt->execute()) { // Ejecutar
-
+                    $result = true;
                 }
 
             }
@@ -249,7 +244,7 @@ class cls_importdata extends conexionPDO
         if (is_array($array_datos)) {
             foreach ($array_datos as $row) {
 
-                $sql = " INSERT INTO `centrocostos`( `codigo`, `nombre`, `codigocompleto`) VALUES (:codigo, :nombre,:codigocompleto)";
+                $sql = " INSERT IGNORE INTO `centrocostos`( `codigo`, `nombre`, `codigocompleto`) VALUES (:codigo, :nombre,:codigocompleto)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
                 $stmt->bindParam(':codigo', $row['codigo'], PDO::PARAM_STR);
                 $stmt->bindParam(':nombre', $row['nombre'], PDO::PARAM_STR);
@@ -304,7 +299,7 @@ class cls_importdata extends conexionPDO
                 $sql = "INSERT INTO `movimiento_diario`(`tipo`, `numero`, `numero_cheque`, `Num_extension`, `anio`, `mes`, `dia`, `cuenta`, `nit`, `terceros`, `suc_pto`, `drocela`, `c_costo`, `sc_costo`, `detalles`, `debito`, `credito`, `elaborado`) VALUES(:tipo, :numero, :numero_cheque, :num_extension, :anio, :mes, :dia, :cuenta, :nit, :terceros, :suc_pto, :drocela, :c_costo, :sc_costo, :detalles, :debito, :credito, :elaborado)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
                 $stmt->bindParam(':tipo', $row['tipo'], PDO::PARAM_STR);
-                $stmt->bindParam(':numero', $row['numero'], PDO::PARAM_INT);
+                $stmt->bindParam(':numero', $row['numero'], PDO::PARAM_STR);
                 $stmt->bindParam(':numero_cheque', $row['numero_cheque'], PDO::PARAM_INT);
                 $stmt->bindParam(':num_extension', $row['num_extension'], PDO::PARAM_INT);
                 $stmt->bindParam(':anio', $row['anio'], PDO::PARAM_INT);
@@ -362,9 +357,9 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':fecha_mes', $row['fecha_mes'], PDO::PARAM_STR);
                 $stmt->bindParam(':planta', $row['planta'], PDO::PARAM_STR);
                 if ($stmt->execute()) { // Ejecutar
-                    $result = " Exitosso";
+                    $result = true;
                 } else {
-                    $result = "Error";
+                    $result = false;
                 }
             }
             return $result;

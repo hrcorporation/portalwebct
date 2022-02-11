@@ -56,15 +56,26 @@ $spreadsheet = $reader->load($inputFileName);
 
 // Recorremos las Celdas del archivo Tomando como referencia que el excel el numero de celdas comienza desde 0
 $array_reg = $spreadsheet->getActiveSheet()->toArray();
-if (is_array($array_reg)) {
-    foreach ($array_reg as $row) {
 
+if (is_array($array_reg)) {
+    $codigo_principal ='';
+    foreach ($array_reg as $row) {
         if(!is_null($row[0])){
-            $new_array['codigo'] = $row[0];
-            $new_array['nombre'] = $row[1];
-            $new_array['nombre_completo'] = $row[2];
-        
             
+            $codigo_principal2 = str_replace(" ","",$row[0]);
+            if(strlen($codigo_principal2) == 1){
+                $new_array['nombre_completo'] = str_replace(" ","",$row[0]);
+                $codigo_principal =''.intval($codigo_principal2);
+                $new_array['codigo'] = str_replace(" ","",$row[0]);
+                $new_array['nombre'] = str_replace(" ","",$row[1]);
+                
+            }else{
+                $new_array['codigo'] = str_replace(" ","",$row[0]);
+                $new_array['nombre'] = str_replace(" ","",$row[1]);
+                $new_array['nombre_completo'] = $codigo_principal ."-". str_replace(" ","",$row[0]);
+            }
+            
+        
        /** variable final para guardar en la base de datos $new_array */
        $new_arrayf[] = $new_array;
         }
@@ -73,15 +84,10 @@ if (is_array($array_reg)) {
     }
 }
 
-<<<<<<< HEAD
+
 if($php_result= $cls_importdata->insert_centro_costo($new_arrayf)){
-=======
-if($php_result= $cls_importdata->insert_centro_costos($new_arrayf)){
->>>>>>> 9b8fe6ac5ade660c88263dd80727818b7f65e6a7
-    $php_estado = true;
+
 }
-
-
 
 $datos = array(
     'estado' => $php_estado,
