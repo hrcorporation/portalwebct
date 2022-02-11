@@ -13,11 +13,10 @@ class cls_importdata extends conexionPDO
 
     function insert_ordenpyg(array $array_datos)
     {
-        if(is_array($array_datos))
-        {
+        if (is_array($array_datos)) {
             foreach ($array_datos as $row) {
-                
-                $sql=" INSERT INTO `ordenpyg`(`id`, `puc`, `cuenta`, `niv1pyg`, `niv2pyg`, `niv3pyg`, `niv4pyg`, `idniv4`, `idniv3`, `idniv2`, `idniv1`, `nomniv1`, `nomniv2`, `nomniv3`, `nomniv4`) VALUES  (:puc,:cuenta,:niv1pyg,:niv2pyg,:niv3pyg,:niv4pyg,:idniv4,:idniv3,:idniv2,:idniv1,:nomniv1,:nomniv2,:nomniv3,:nomniv4)";
+
+                $sql = " INSERT INTO `ordenpyg`(`id`, `puc`, `cuenta`, `niv1pyg`, `niv2pyg`, `niv3pyg`, `niv4pyg`, `idniv4`, `idniv3`, `idniv2`, `idniv1`, `nomniv1`, `nomniv2`, `nomniv3`, `nomniv4`) VALUES  (:puc,:cuenta,:niv1pyg,:niv2pyg,:niv3pyg,:niv4pyg,:idniv4,:idniv3,:idniv2,:idniv1,:nomniv1,:nomniv2,:nomniv3,:nomniv4)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
                 $stmt->bindParam(':puc', $row['puc'], PDO::PARAM_INT);
                 $stmt->bindParam(':cuenta', $row['cuenta'], PDO::PARAM_STR);
@@ -41,28 +40,46 @@ class cls_importdata extends conexionPDO
 
                 if ($stmt->execute()) { // Ejecutar
                     $result = " Exitosso";
-                }else{
+                } else {
                     $result = "Error";
-
                 }
-
             }
             return $result;
-        }else{
+        } else {
             return false;
         }
-        
+    }
+
+    function insert_centro_costos(array $array_datos)
+    {
+        if (is_array($array_datos)) {
+            foreach ($array_datos as $row) {
+
+                $sql = "INSERT INTO `centrocostos`(`codigo`, `nombre`, `codigocompleto`) VALUES (:codigo, :nombre, :codigocompleto)";
+                $stmt = $this->con->prepare($sql); // Preparar la conexion
+                $stmt->bindParam(':codigo', $row['codigo'], PDO::PARAM_INT);
+                $stmt->bindParam(':nombre', $row['nombre'], PDO::PARAM_STR);
+                $stmt->bindParam(':codigocompleto', $row['codigocompleto'], PDO::PARAM_STR);
+                if ($stmt->execute()) { // Ejecutar
+                    $result = " Exitosso";
+                } else {
+                    $result = "Error";
+                }
+            }
+            return $result;
+        } else {
+            return false;
+        }
     }
 
     function insert_prod(array $array_datos)
     {
-        if(is_array($array_datos))
-        {
+        if (is_array($array_datos)) {
             foreach ($array_datos as $row) {
-                
-                $sql=" INSERT INTO `prod`(`id`, `fechames`, `unidadnegocio`, `topcliente`, `ciudad`, `m3prod`) VALUES (:fechames,:unidadnegocio,:topcliente,:ciudad,:m3prod)";
+
+                $sql = " INSERT INTO `prod`(`id`, `fechames`, `unidadnegocio`, `topcliente`, `ciudad`, `m3prod`) VALUES (:fechames,:unidadnegocio,:topcliente,:ciudad,:m3prod)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
-                $stmt->bindParam(':fechames', $row['fechames'], PDO::PARAM_DATE);
+                $stmt->bindParam(':fechames', $row['fechames'], PDO::PARAM_STR);
                 $stmt->bindParam(':unidadnegocio', $row['unidadnegocio'], PDO::PARAM_STR);
                 $stmt->bindParam(':topcliente', $row['topcliente'], PDO::PARAM_STR);
                 $stmt->bindParam(':ciudad', $row['ciudad'], PDO::PARAM_STR);
@@ -72,29 +89,25 @@ class cls_importdata extends conexionPDO
 
                 if ($stmt->execute()) { // Ejecutar
                     $result = " Exitosso";
-                }else{
+                } else {
                     $result = "Error";
-
                 }
-
             }
             return $result;
-        }else{
+        } else {
             return false;
         }
-        
     }
 
 
 
     function insert_terceros(array $array_datos)
     {
-        if(is_array($array_datos))
-        {
+        if (is_array($array_datos)) {
             foreach ($array_datos as $row) {
-                
-  
-    $sql=" INSERT INTO `terceros`( `nit`, `digver`, `claseid`, `codigo`, `nombre`, `nombrec`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `perjuridic`, `inactivo`, `dir`, `dir2`, `tel`, `telmovil`, `fax`, `email`, `email2`, `ciudad`, `pais`, `barrio`, `escliente`, `especliente`, `esproveedor`, `esvendedor`, `esasociado`, `exasociado`, `esempleado`, `escobrador`, `escomision`, `escodeudor`, `estranspor`, `esingotter`, `esvehiculo`, `esbanco`, `esoficial`, `esuniofi`, `espatronal`, `esssalud`, `esriesgo`, `escaja`, `espension`, `escesantia`, `esbenefi`, `esasegura`, `vendedor`, `cobrador`, `propieta`, `agnete`, `banco`, `grupo`, `subgrupo`, `claseter`, `codpostal`, `zona`, `cupo`, `cupo2`, `califica`, `regimen`, `regiment`, `retefte`, `rettodo`, `noretecre`, `granconte`, `autorete`, `reteica`, `tarica`, `noiva`, `actiecon`, `conpub`, `encargado`, `replegar`, `nacio`, `precio`, `fpago`, `condpago`, `nodatacred`, `passcli`, `plazomax`, `plazo`, `plazo2`, `plazo3`, `pdtocli`, `pdtocli2`, `pdtocli3`, `tdtocli`, `tdtocli2`, `tdtocli3`, `pdtocond`, `pdtocond2`, `pdtocond3`, `usuario1`, `fechar`, `fupdateu`, `fupdate`, `cuentab`, `cuentabac`, `codsocial`, `codseps`, `codafp`, `codarp`, `codccf`, `trecipro`, `latitud`, `longitud`, `usuario2`, `diaconv`, `conveniop`, `porcaiua`, `porcaiui`, `porcariuu`, `nodesctos`, `foto`, `ultventa`, `pfinancia`, `declara`, `codpub2`, `prvtas`, `transporte`, `nit2`, `ccostos`, `scostos`, `lugarnac`, `difcobro`, `reteiva`, `valdiasm`, `nobomberil`, `bodega`) VALUES (:nit,:digver,:claseid,:codigo,:nombre,:nombrec,:nombre1,:nombre2,:apellido1,:apellido2,:perjuridic,:inactivo,:dir,:dir2,:tel,:telmovil,:fax,:email,:email2,:ciudad,:pais,:escliente,:especliente,:esproveedor,:esvendedor,:esasociado,:exasociado,:esempleado,:escobrador,:escomision,:escodeudor,:estranspor,:esingotter,:esvehiculo,:esbanco,:esoficial,:esuniofi,:espatronal,:esssalud,:esriesgo,:escaja,:espension,:escesantia,:esbenefi,:esasegura,:vendedor,:cobrador,:propieta,:agnete,:banco,:grupo,:subgrupo,:claseter,:codpostal,:zona,:cupo,:cupo2,:califica,:regimen,:regiment,:retefte,:rettodo,:noretecre,:granconte,:autorete,:reteica,:tarica,:noiva,:actiecon,:conpub,:encargado,:replegar,:nacio,:precio,:fpago,:condpago,:nodatacred,:passcli,:plazomax,:plazo,:plazo2,:plazo3,:pdtocli,:pdtocli2,:pdtocli3,:tdtocli,:tdtocli2,:tdtocli3,:pdtocond,:pdtocond2,:pdtocond3,:usuario1,:fechar,:fupdateu,:fupdate,:cuentab,:cuentabac,:codsocial,:codseps,:codafp,:codarp,:codccf,:trecipro,:latitud,:longitud,:usuario2,:diaconv,:conveniop,:porcaiua,:porcaiui,:porcariuu,:nodesctos,:foto,:ultventa,:pfinancia,:declara,:codpub2,:prvtas,:transporte,:nit2,:ccostos,:scostos,:lugarnac,:difcobro,:reteiva,:valdiasm,:nobomberil,:bodega)";
+
+
+                $sql = " INSERT INTO `terceros`( `nit`, `digver`, `claseid`, `codigo`, `nombre`, `nombrec`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `perjuridic`, `inactivo`, `dir`, `dir2`, `tel`, `telmovil`, `fax`, `email`, `email2`, `ciudad`, `pais`, `barrio`, `escliente`, `especliente`, `esproveedor`, `esvendedor`, `esasociado`, `exasociado`, `esempleado`, `escobrador`, `escomision`, `escodeudor`, `estranspor`, `esingotter`, `esvehiculo`, `esbanco`, `esoficial`, `esuniofi`, `espatronal`, `esssalud`, `esriesgo`, `escaja`, `espension`, `escesantia`, `esbenefi`, `esasegura`, `vendedor`, `cobrador`, `propieta`, `agnete`, `banco`, `grupo`, `subgrupo`, `claseter`, `codpostal`, `zona`, `cupo`, `cupo2`, `califica`, `regimen`, `regiment`, `retefte`, `rettodo`, `noretecre`, `granconte`, `autorete`, `reteica`, `tarica`, `noiva`, `actiecon`, `conpub`, `encargado`, `replegar`, `nacio`, `precio`, `fpago`, `condpago`, `nodatacred`, `passcli`, `plazomax`, `plazo`, `plazo2`, `plazo3`, `pdtocli`, `pdtocli2`, `pdtocli3`, `tdtocli`, `tdtocli2`, `tdtocli3`, `pdtocond`, `pdtocond2`, `pdtocond3`, `usuario1`, `fechar`, `fupdateu`, `fupdate`, `cuentab`, `cuentabac`, `codsocial`, `codseps`, `codafp`, `codarp`, `codccf`, `trecipro`, `latitud`, `longitud`, `usuario2`, `diaconv`, `conveniop`, `porcaiua`, `porcaiui`, `porcariuu`, `nodesctos`, `foto`, `ultventa`, `pfinancia`, `declara`, `codpub2`, `prvtas`, `transporte`, `nit2`, `ccostos`, `scostos`, `lugarnac`, `difcobro`, `reteiva`, `valdiasm`, `nobomberil`, `bodega`) VALUES (:nit,:digver,:claseid,:codigo,:nombre,:nombrec,:nombre1,:nombre2,:apellido1,:apellido2,:perjuridic,:inactivo,:dir,:dir2,:tel,:telmovil,:fax,:email,:email2,:ciudad,:pais,:escliente,:especliente,:esproveedor,:esvendedor,:esasociado,:exasociado,:esempleado,:escobrador,:escomision,:escodeudor,:estranspor,:esingotter,:esvehiculo,:esbanco,:esoficial,:esuniofi,:espatronal,:esssalud,:esriesgo,:escaja,:espension,:escesantia,:esbenefi,:esasegura,:vendedor,:cobrador,:propieta,:agnete,:banco,:grupo,:subgrupo,:claseter,:codpostal,:zona,:cupo,:cupo2,:califica,:regimen,:regiment,:retefte,:rettodo,:noretecre,:granconte,:autorete,:reteica,:tarica,:noiva,:actiecon,:conpub,:encargado,:replegar,:nacio,:precio,:fpago,:condpago,:nodatacred,:passcli,:plazomax,:plazo,:plazo2,:plazo3,:pdtocli,:pdtocli2,:pdtocli3,:tdtocli,:tdtocli2,:tdtocli3,:pdtocond,:pdtocond2,:pdtocond3,:usuario1,:fechar,:fupdateu,:fupdate,:cuentab,:cuentabac,:codsocial,:codseps,:codafp,:codarp,:codccf,:trecipro,:latitud,:longitud,:usuario2,:diaconv,:conveniop,:porcaiua,:porcaiui,:porcariuu,:nodesctos,:foto,:ultventa,:pfinancia,:declara,:codpub2,:prvtas,:transporte,:nit2,:ccostos,:scostos,:lugarnac,:difcobro,:reteiva,:valdiasm,:nobomberil,:bodega)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
                 $stmt->bindParam(':nit', $row['nit'], PDO::PARAM_INT);
                 $stmt->bindParam(':digver', $row['digver'], PDO::PARAM_INT);
@@ -110,7 +123,10 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':inactivo', $row['inactivo'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir', $row['dir'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir2', $row['dir2'], PDO::PARAM_STR);
+<<<<<<< HEAD
                 $stmt->bindParam(':tel', $row['tel'], PDO::PARAM_INT);
+=======
+>>>>>>> 9039b64b6d1e0f4978142fcbddcebc911b5e6ddf
                 $stmt->bindParam(':telmovil', $row['telmovil'], PDO::PARAM_INT);
                 $stmt->bindParam(':fax', $row['fax'], PDO::PARAM_INT);
                 $stmt->bindParam(':email', $row['email'], PDO::PARAM_STR);
@@ -224,19 +240,22 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':reteiva', $row['reteiva'], PDO::PARAM_STR);
                 $stmt->bindParam(':valdiasm', $row['valdiasm'], PDO::PARAM_INT);
                 $stmt->bindParam(':nobomberil', $row['nobomberil'], PDO::PARAM_STR);
-                $stmt->bindParam(':bodega', $row['bodega'], PDO::PARAM_STR); 
-
+                $stmt->bindParam(':bodega', $row['bodega'], PDO::PARAM_STR);
 
                 if ($stmt->execute()) { // Ejecutar
+<<<<<<< HEAD
                     $result = true;
+=======
+                    $result = " Exitosso";
+                } else {
+                    $result = "Error";
+>>>>>>> 9039b64b6d1e0f4978142fcbddcebc911b5e6ddf
                 }
-
             }
             return $result;
-        }else{
+        } else {
             return false;
         }
-        
     }
 
     function insert_centro_costo(array $array_datos)
@@ -254,9 +273,9 @@ class cls_importdata extends conexionPDO
                     $php_result = true;
                 } else {
                     $php_result = true;
-                        }   
-                    }
-                    return $php_result;
+                }
+            }
+            return $php_result;
         } else {
             return false;
         }
