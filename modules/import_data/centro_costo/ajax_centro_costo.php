@@ -11,30 +11,32 @@ require '../../../vendor/autoload.php';
 $php_estado = false;
 $php_result = "saludo desde el servidor";
 
-$php_fechatime = "".date("Y-m-d H:i:s");
+$php_fechatime = "" . date("Y-m-d H:i:s");
 $image = htmlspecialchars($_FILES['file_centro_costo']['name']);
 $ruta = htmlspecialchars($_FILES['file_centro_costo']['tmp_name']);
 
-$php_fileexten = strrchr($_FILES['file_centro_costo']['name'],".");
-$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_centro_costo']['name'].$php_fechatime),0,40)).$php_fileexten;
+$php_fileexten = strrchr($_FILES['file_centro_costo']['name'], ".");
+$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_centro_costo']['name'] . $php_fechatime), 0, 40)) . $php_fileexten;
 
 
-$carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/internal/load_data/'; 
-$php_tempfoto = ('/internal/load_data/'.$php_serial);
-$php_movefile = move_uploaded_file($ruta,$carpeta_destino.$php_serial);
+$carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/load_data/';
+$php_tempfoto = ('/internal/load_data/' . $php_serial);
+$php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
 
 
-$inputFileName = $_SERVER['DOCUMENT_ROOT'].$php_tempfoto;
+$inputFileName = $_SERVER['DOCUMENT_ROOT'] . $php_tempfoto;
 
 $cls_importdata = new cls_importdata();
 
 
 // Clase para Escoger celdas Especificas
-class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter {
+class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
+{
 
-    public function readCell($column, $row, $worksheetName = '') {
+    public function readCell($column, $row, $worksheetName = '')
+    {
         // Read title row and rows 20 - 30
-        if ($row > 1 ) { // comenzamos desde 1 para omitir el titulo de las comulnas ubicadas en la fila 1(excel)
+        if ($row > 1) { // comenzamos desde 1 para omitir el titulo de las comulnas ubicadas en la fila 1(excel)
             return true;
         }
         return false;
@@ -49,7 +51,7 @@ $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
 $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
 
 // inicializar la Clase leer excel
-$reader->setReadFilter( new MyReadFilter() );
+$reader->setReadFilter(new MyReadFilter());
 
 /**  Cargar $inputFileName al objeto $Spreadsheet **/
 $spreadsheet = $reader->load($inputFileName);
@@ -58,26 +60,26 @@ $spreadsheet = $reader->load($inputFileName);
 $array_reg = $spreadsheet->getActiveSheet()->toArray();
 if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
+        if (!is_null($row[0])) {
+            $codigo_principal2 = str_replace(" ","", $row[0]);
 
-        if(!is_null($row[0])){
-            $new_array['codigo'] = $row[0];
-            $new_array['nombre'] = $row[1];
-            $new_array['nombre_completo'] = $row[2];
-        
-            
-       /** variable final para guardar en la base de datos $new_array */
-       $new_arrayf[] = $new_array;
+            if(strlen($codigo_principal2) == 1){
+                $new_array['codigocompleto'] = str_replace(" ", "", $row[0]);
+                $codigo_principal = ''. intval($codigo_principal2);
+                $new_array['codigo'] = str_replace(" ", "",  $row[0]);
+                $new_array['nombre'] = str_replace(" ", "",  $row[1]);
+            }else{
+                $new_array['codigo'] = str_replace(" ", "",  $row[0]);
+                $new_array['nombre'] = str_replace(" ", "",  $row[1]);
+                $new_array['codigocompleto'] = $codigo_principal. "-".str_replace(" ", "", $row[0]);
+            }
+            /** variable final para guardar en la base de datos $new_array */
+            $new_arrayf[] = $new_array;
         }
-       
-       
     }
 }
 
-<<<<<<< HEAD
-if($php_result= $cls_importdata->insert_centro_costo($new_arrayf)){
-=======
-if($php_result= $cls_importdata->insert_centro_costos($new_arrayf)){
->>>>>>> 9b8fe6ac5ade660c88263dd80727818b7f65e6a7
+if ($php_result = $cls_importdata->insert_centro_costos($new_arrayf)) {
     $php_estado = true;
 }
 
