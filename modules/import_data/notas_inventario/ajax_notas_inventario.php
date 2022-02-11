@@ -66,31 +66,34 @@ if (is_array($array_reg)) {
             $new_array['cantidad'] = $row[3];
             $new_array['precio'] = $row[4];
             $new_array['valor_unidad'] = $row[5];
-            $new_array['valor_iva'] = $row[6];
-            $new_array['total_mas_valor_iva'] = $row[7];
-            $new_array['iva'] = $row[8];
-            $new_array['base_iva'] = $row[9];
-            $new_array['t_iva'] = $row[10];
-            $new_array['ico'] = $row[11];
-            $new_array['referencia1'] = $row[12];
-            $new_array['referencia2'] = $row[13];
-            $new_array['referencia3'] = $row[14];
-            $new_array['referencia4'] = $row[15];
-            $new_array['unidad'] = $row[16];
-            $new_array['referencia_proveedor'] = $row[17];
-            $new_array['tercero'] = $row[18];
-            $new_array['descripcion_adicional'] = $row[19];
-            $new_array['fecha_mes'] = $row[20];
-            $new_array['planta'] = $row[21];
-
-            $fecha = new DateTime($row[22]);
-        $fecha_d_m_y = $fecha->format('Y/m/d');
+            $new_array['valor_total'] = $row[6];
+            $new_array['valor_iva'] = $row[7];
+            $new_array['total_mas_valor_iva'] = $row[8];
+            $new_array['iva'] = $row[9];
+            $new_array['base_iva'] = $row[10];
+            $new_array['t_iva'] = $row[11];
+            $new_array['ico'] = $row[12];
+            $new_array['referencia1'] = $row[13];
+            $new_array['referencia2'] = $row[14];
+            $new_array['referencia3'] = $row[15];
+            $new_array['referencia4'] = $row[16];
+            $new_array['unidad'] = $row[17];
+            $new_array['referencia_proveedor'] = $row[18];
+            $new_array['tercero'] = $row[19];
+            $new_array['descripcion_adicional'] = $row[20];
            
-            $new_array['fecha_corte'] = $fecha_d_m_y;
+            
+            $fecha = new DateTime($row[21]);
+            $fecha_d_m_y = $fecha->format('Y/m/d');
+            
+            $new_array['fecha_mes'] = $fecha_d_m_y;
+            $new_array['planta'] = $row[22];
             
        /** variable final para guardar en la base de datos $new_array */
        $new_arrayf[] = $new_array;
         }
+
+
        
        
     }

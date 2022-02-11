@@ -75,14 +75,10 @@ if (is_array($array_reg)) {
             $new_array['c_costo'] = $row[12];
             $new_array['sc_costo'] = $row[13];
             $new_array['detalles'] = $row[14];
-            $new_array['debito'] = $row[15];
-            $new_array['credito'] = $row[16];
+            $new_array['debito'] = str_replace(",","",$row[15]);
+            $new_array['credito'] = str_replace(",","",$row[16]);
             $new_array['elaborado'] = $row[17];
 
-            $fecha = new DateTime($row[18]);
-        $fecha_d_m_y = $fecha->format('Y/m/d');
-           
-            $new_array['fecha_corte'] = $fecha_d_m_y;
             
        /** variable final para guardar en la base de datos $new_array */
        $new_arrayf[] = $new_array;
