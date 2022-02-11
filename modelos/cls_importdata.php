@@ -123,10 +123,7 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':inactivo', $row['inactivo'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir', $row['dir'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir2', $row['dir2'], PDO::PARAM_STR);
-<<<<<<< HEAD
                 $stmt->bindParam(':tel', $row['tel'], PDO::PARAM_INT);
-=======
->>>>>>> 9039b64b6d1e0f4978142fcbddcebc911b5e6ddf
                 $stmt->bindParam(':telmovil', $row['telmovil'], PDO::PARAM_INT);
                 $stmt->bindParam(':fax', $row['fax'], PDO::PARAM_INT);
                 $stmt->bindParam(':email', $row['email'], PDO::PARAM_STR);
@@ -243,13 +240,7 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':bodega', $row['bodega'], PDO::PARAM_STR);
 
                 if ($stmt->execute()) { // Ejecutar
-<<<<<<< HEAD
                     $result = true;
-=======
-                    $result = " Exitosso";
-                } else {
-                    $result = "Error";
->>>>>>> 9039b64b6d1e0f4978142fcbddcebc911b5e6ddf
                 }
             }
             return $result;
