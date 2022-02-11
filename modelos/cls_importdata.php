@@ -110,10 +110,6 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':inactivo', $row['inactivo'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir', $row['dir'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir2', $row['dir2'], PDO::PARAM_STR);
-<<<<<<< HEAD
-                $stmt->bindParam(':tel', $row['tel'], PDO::PARAM_INT);
-=======
->>>>>>> dev
                 $stmt->bindParam(':telmovil', $row['telmovil'], PDO::PARAM_INT);
                 $stmt->bindParam(':fax', $row['fax'], PDO::PARAM_INT);
                 $stmt->bindParam(':email', $row['email'], PDO::PARAM_STR);

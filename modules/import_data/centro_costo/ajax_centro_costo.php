@@ -58,11 +58,20 @@ $spreadsheet = $reader->load($inputFileName);
 $array_reg = $spreadsheet->getActiveSheet()->toArray();
 if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
-
+        
+        $codigo_principal="";
         if(!is_null($row[0])){
             $new_array['codigo'] = $row[0];
             $new_array['nombre'] = $row[1];
-            $new_array['nombre_completo'] = $row[2];
+            $num_caracteres=strlen($row[0]);
+            if (strlen($row[0]) == 1){
+                $codigo_principal=strval($row[0]); 
+                $new_array['nombre_completo'] = $codigo_principal ."-".strval($row[0]);
+            } else {
+                $new_array['nombre_completo'] = strval($codigo_principal)."-".strval($row[0]);
+
+            }
+            //$new_array['nombre_completo'] = strlen($row[0]);
         
             
        /** variable final para guardar en la base de datos $new_array */
@@ -73,11 +82,7 @@ if (is_array($array_reg)) {
     }
 }
 
-<<<<<<< HEAD
 if($php_result= $cls_importdata->insert_centro_costo($new_arrayf)){
-=======
-if($php_result= $cls_importdata->insert_centro_costos($new_arrayf)){
->>>>>>> 9b8fe6ac5ade660c88263dd80727818b7f65e6a7
     $php_estado = true;
 }
 
