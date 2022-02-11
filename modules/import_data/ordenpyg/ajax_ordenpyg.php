@@ -12,11 +12,11 @@ $php_estado = false;
 $php_result = "saludo desde el servidor";
 
 $php_fechatime = "".date("Y-m-d H:i:s");
-$image = htmlspecialchars($_FILES['file_centro_costo']['name']);
-$ruta = htmlspecialchars($_FILES['file_centro_costo']['tmp_name']);
+$image = htmlspecialchars($_FILES['file_ordenpyg']['name']);
+$ruta = htmlspecialchars($_FILES['file_ordenpyg']['tmp_name']);
 
-$php_fileexten = strrchr($_FILES['file_centro_costo']['name'],".");
-$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_centro_costo']['name'].$php_fechatime),0,40)).$php_fileexten;
+$php_fileexten = strrchr($_FILES['file_ordenpyg']['name'],".");
+$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_ordenpyg']['name'].$php_fechatime),0,40)).$php_fileexten;
 
 
 $carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/internal/load_data/'; 
@@ -60,11 +60,22 @@ if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
 
         if(!is_null($row[0])){
-            $new_array['codigo'] = $row[0];
-            $new_array['nombre'] = $row[1];
-            $new_array['nombre_completo'] = $row[2];
-        
+            $new_array['puc'] = $row[0];
+            $new_array['cuenta'] = $row[1];
+            $new_array['niv1pyg'] = $row[2];
+            $new_array['niv2pyg'] = $row[3];
+            $new_array['niv3pyg'] = $row[4];
+            $new_array['niv4pyg'] = $row[5];
+            $new_array['idniv4'] = $row[6];
+            $new_array['idniv3'] = $row[7];
+            $new_array['idniv2'] = $row[8];
+            $new_array['idniv1'] = $row[9];
+            $new_array['nomniv1'] = $row[10];
+            $new_array['nomniv2'] = $row[11];
+            $new_array['nomniv3'] = $row[12];
+            $new_array['nomniv4'] = $row[13];
             
+
        /** variable final para guardar en la base de datos $new_array */
        $new_arrayf[] = $new_array;
         }
@@ -73,11 +84,7 @@ if (is_array($array_reg)) {
     }
 }
 
-<<<<<<< HEAD
-if($php_result= $cls_importdata->insert_centro_costo($new_arrayf)){
-=======
-if($php_result= $cls_importdata->insert_centro_costos($new_arrayf)){
->>>>>>> 9b8fe6ac5ade660c88263dd80727818b7f65e6a7
+if($php_result= $cls_importdata->insert_ordenpyg($new_arrayf)){
     $php_estado = true;
 }
 
