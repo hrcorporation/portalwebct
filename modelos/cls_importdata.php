@@ -110,9 +110,6 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':inactivo', $row['inactivo'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir', $row['dir'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir2', $row['dir2'], PDO::PARAM_STR);
-<<<<<<< HEAD
-                $stmt->bindParam(':dir2', $row['dir2'], PDO::PARAM_STR);
-=======
                 $stmt->bindParam(':tel', $row['tel'], PDO::PARAM_INT);
                 $stmt->bindParam(':telmovil', $row['telmovil'], PDO::PARAM_INT);
                 $stmt->bindParam(':fax', $row['fax'], PDO::PARAM_INT);
@@ -231,7 +228,6 @@ class cls_importdata extends conexionPDO
 
 
 
->>>>>>> 9b8fe6ac5ade660c88263dd80727818b7f65e6a7
 
                 if ($stmt->execute()) { // Ejecutar
                     $result = " Exitosso";
