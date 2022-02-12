@@ -1,6 +1,6 @@
-<?php include '../../../layout/validar_session3.php' ?>
+<?php include '../../../layout/validar_session3.php'; ?>
 <?php include '../../../layout/head/head3.php'; ?>
-<?php include 'sidebar.php' ?>
+<?php include 'sidebar.php'; ?>
 
 <?php require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
@@ -96,7 +96,6 @@ $("#form_balance").on('submit', (function(e) {
             if (data.estado) {
                 toastr.success('Guardado Correctamente');
             } else {
-
                 toastr.info(data.result);
             }
             // toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
