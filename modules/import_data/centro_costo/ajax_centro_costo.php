@@ -69,11 +69,10 @@ if (is_array($array_reg)) {
                 $new_array['nombre_completo'] = str_replace(" ","",$row[0]);
                 $codigo_principal =''.intval($codigo_principal2);
                 $new_array['codigo'] = str_replace(" ","",$row[0]);
-                $new_array['nombre'] = str_replace(" ","",$row[1]);
-                
+                $new_array['nombre'] = preg_replace('/[@\.\;\%\" "]+/', '',$row[1]);
             }else{
                 $new_array['codigo'] = str_replace(" ","",$row[0]);
-                $new_array['nombre'] = str_replace(" ","",$row[1]);
+                $new_array['nombre'] = preg_replace('/[@\.\;\%\" "]+/', '',$row[1]);
                 $new_array['nombre_completo'] = $codigo_principal ."-". str_replace(" ","",$row[0]);
             }
             
