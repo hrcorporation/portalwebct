@@ -438,9 +438,9 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':saldo', $row['saldo'], PDO::PARAM_STR);
                 $stmt->bindParam(':sin_vencer', $row['sin_vencer'], PDO::PARAM_STR);
                 $stmt->bindParam(':periodo_1_30', $row['periodo_1_30'], PDO::PARAM_STR);
-                $stmt->bindParam(':periodo_31_60', $row['periodo_31_60'], PDO::PARAM_INT);
+                $stmt->bindParam(':periodo_31_60', $row['periodo_31_60'], PDO::PARAM_STR);
                 $stmt->bindParam(':periodo_61_90', $row['periodo_61_90'], PDO::PARAM_STR);
-                $stmt->bindParam(':periodo_91_120', $row['periodo_91_120'], PDO::PARAM_INT);
+                $stmt->bindParam(':periodo_91_120', $row['periodo_91_120'], PDO::PARAM_STR);
                 $stmt->bindParam(':periodo_121_360', $row['periodo_121_360'], PDO::PARAM_STR);
                 $stmt->bindParam(':periodo_mas_361', $row['periodo_mas_361'], PDO::PARAM_STR);
                 $stmt->bindParam(':meses_vencidos', $row['meses_vencidos'], PDO::PARAM_INT);

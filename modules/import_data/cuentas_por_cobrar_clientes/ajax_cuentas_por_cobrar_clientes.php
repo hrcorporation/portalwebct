@@ -91,11 +91,6 @@ if (is_array($array_reg)) {
             $new_array['fecha_ultimo_pago'] = $row[26];
             $new_array['observaciones'] = $row[27];
             $new_array['fecha_corte'] = $row[28];
-            $fecha = new DateTime($row[29]);
-            $fecha_d_m_y = $fecha->format('Y/m/d');
-
-            $new_array['fecha_corte'] = $fecha_d_m_y;
-
             /** variable final para guardar en la base de datos $new_array */
             $new_arrayf[] = $new_array;
         }
