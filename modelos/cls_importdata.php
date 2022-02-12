@@ -238,7 +238,6 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':valdiasm', $row['valdiasm'], PDO::PARAM_INT);
                 $stmt->bindParam(':nobomberil', $row['nobomberil'], PDO::PARAM_STR);
                 $stmt->bindParam(':bodega', $row['bodega'], PDO::PARAM_STR);
-
                 if ($stmt->execute()) { // Ejecutar
                     $result = true;
                 }

@@ -199,7 +199,7 @@ if (is_array($array_reg)) {
     }
 }
 
-if($php_result= $cls_importdata->insert_tercero($new_arrayf)){
+if($php_result= $cls_importdata->insert_terceros($new_arrayf)){
     $php_estado = true;
 }
 
