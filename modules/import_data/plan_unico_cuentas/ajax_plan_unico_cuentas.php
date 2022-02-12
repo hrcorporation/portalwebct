@@ -70,11 +70,6 @@ if (is_array($array_reg)) {
             $new_array['doc'] = $row[5];
             $new_array['art'] = $row[6];
             $new_array['deprecia'] = $row[7];
-            $fecha = new DateTime($row[8]);
-            $fecha_d_m_y = $fecha->format('Y/m/d');
-
-            $new_array['fecha_corte'] = $fecha_d_m_y;
-
             /** variable final para guardar en la base de datos $new_array */
             $new_arrayf[] = $new_array;
         }

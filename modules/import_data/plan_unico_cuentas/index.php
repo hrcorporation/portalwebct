@@ -78,7 +78,7 @@ require '../../../vendor/autoload.php'; ?>
 
 <script>
     // subir Archivo
-    $("#form_balance").on('submit', (function(e) {
+    $("#form_plan_unico_cuentas").on('submit', (function(e) {
         e.preventDefault();
 
         $.ajax({
