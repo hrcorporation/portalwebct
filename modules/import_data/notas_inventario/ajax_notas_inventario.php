@@ -81,7 +81,6 @@ if (is_array($array_reg)) {
             $new_array['referencia_proveedor'] = $row[18];
             $new_array['tercero'] = $row[19];
             $new_array['descripcion_adicional'] = $row[20];
-           
             
             $fecha = new DateTime($row[21]);
             $fecha_d_m_y = $fecha->format('Y/m/d');
