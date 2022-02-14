@@ -203,12 +203,6 @@ if (is_array($array_reg)) {
             $new_array['barrio_area'] = $row[138];
             $new_array['afecta'] = $row[139];
             $new_array['cantidad_parcial_entregada'] = $row[140];
-
-            $fecha = new DateTime($row[140]);
-            $fecha_d_m_y = $fecha->format('Y/m/d');
-
-            $new_array['fecha_corte'] = $fecha_d_m_y;
-
             /** variable final para guardar en la base de datos $new_array */
             $new_arrayf[] = $new_array;
         }

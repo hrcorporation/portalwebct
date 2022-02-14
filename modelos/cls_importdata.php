@@ -498,7 +498,7 @@ class cls_importdata extends conexionPDO
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
                 $stmt->bindParam(':venta_devolucion', $row['venta_devolucion'], PDO::PARAM_STR);
                 $stmt->bindParam(':tipo_comprobante', $row['tipo_comprobante'], PDO::PARAM_STR);
-                $stmt->bindParam(':numero', $row['numero'], PDO::PARAM_INT);
+                $stmt->bindParam(':numero', $row['numero'], PDO::PARAM_STR);
                 $stmt->bindParam(':numero_externo', $row['numero_externo'], PDO::PARAM_INT);
                 $stmt->bindParam(':anio', $row['anio'], PDO::PARAM_INT);
                 $stmt->bindParam(':mes', $row['mes'], PDO::PARAM_INT);
@@ -518,7 +518,7 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':anexo_1', $row['anexo_1'], PDO::PARAM_STR);
                 $stmt->bindParam(':anexo_2', $row['anexo_2'], PDO::PARAM_STR);
                 $stmt->bindParam(':anexo_3', $row['anexo_3'], PDO::PARAM_STR);
-                $stmt->bindParam(':referencia', $row['referencia'], PDO::PARAM_INT);
+                $stmt->bindParam(':referencia', $row['referencia'], PDO::PARAM_STR);
                 $stmt->bindParam(':referencia2', $row['referencia2'], PDO::PARAM_STR);
                 $stmt->bindParam(':servicio', $row['servicio'], PDO::PARAM_STR);
                 $stmt->bindParam(':codigo_barras', $row['codigo_barras'], PDO::PARAM_STR);

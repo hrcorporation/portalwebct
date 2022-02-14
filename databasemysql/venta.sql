@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-02-2022 a las 16:11:15
+-- Tiempo de generación: 14-02-2022 a las 15:52:23
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -31,7 +31,7 @@ CREATE TABLE `venta` (
   `id` int(11) NOT NULL,
   `venta_devolucion` varchar(100) DEFAULT NULL,
   `tipo_comprobante` varchar(100) DEFAULT NULL,
-  `numero` int(20) DEFAULT NULL,
+  `numero` varchar(50) DEFAULT NULL,
   `numero_externo` int(20) DEFAULT NULL,
   `anio` int(20) DEFAULT NULL,
   `mes` int(20) DEFAULT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE `venta` (
   `anexo_1` varchar(100) DEFAULT NULL,
   `anexo_2` varchar(100) DEFAULT NULL,
   `anexo_3` varchar(100) DEFAULT NULL,
-  `referencia` int(20) DEFAULT NULL,
+  `referencia` varchar(50) DEFAULT NULL,
   `referencia2` varchar(100) DEFAULT NULL,
   `servicio` varchar(50) DEFAULT NULL,
   `codigo_barras` varchar(100) DEFAULT NULL,
