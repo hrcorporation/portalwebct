@@ -11,30 +11,32 @@ require '../../../vendor/autoload.php';
 $php_estado = false;
 $php_result = "saludo desde el servidor";
 
-$php_fechatime = "".date("Y-m-d H:i:s");
+$php_fechatime = "" . date("Y-m-d H:i:s");
 $image = htmlspecialchars($_FILES['file_kardex']['name']);
 $ruta = htmlspecialchars($_FILES['file_kardex']['tmp_name']);
 
-$php_fileexten = strrchr($_FILES['file_kardex']['name'],".");
-$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_kardex']['name'].$php_fechatime),0,40)).$php_fileexten;
+$php_fileexten = strrchr($_FILES['file_kardex']['name'], ".");
+$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_kardex']['name'] . $php_fechatime), 0, 40)) . $php_fileexten;
 
 
-$carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/internal/load_data/'; 
-$php_tempfoto = ('/internal/load_data/'.$php_serial);
-$php_movefile = move_uploaded_file($ruta,$carpeta_destino.$php_serial);
+$carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/load_data/';
+$php_tempfoto = ('/internal/load_data/' . $php_serial);
+$php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
 
 
-$inputFileName = $_SERVER['DOCUMENT_ROOT'].$php_tempfoto;
+$inputFileName = $_SERVER['DOCUMENT_ROOT'] . $php_tempfoto;
 
 $cls_importdata = new cls_importdata();
 
 
 // Clase para Escoger celdas Especificas
-class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter {
+class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
+{
 
-    public function readCell($column, $row, $worksheetName = '') {
+    public function readCell($column, $row, $worksheetName = '')
+    {
         // Read title row and rows 20 - 30
-        if ($row > 1 ) { // comenzamos desde 1 para omitir el titulo de las comulnas ubicadas en la fila 1(excel)
+        if ($row > 1) { // comenzamos desde 1 para omitir el titulo de las comulnas ubicadas en la fila 1(excel)
             return true;
         }
         return false;
@@ -49,7 +51,7 @@ $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
 $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
 
 // inicializar la Clase leer excel
-$reader->setReadFilter( new MyReadFilter() );
+$reader->setReadFilter(new MyReadFilter());
 
 /**  Cargar $inputFileName al objeto $Spreadsheet **/
 $spreadsheet = $reader->load($inputFileName);
@@ -59,16 +61,28 @@ $array_reg = $spreadsheet->getActiveSheet()->toArray();
 if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
 
-        if(!is_null($row[0])){
+        if (!is_null($row[0])) {
+            $fechadias = "";
+            $fecha_mes = "";
+            $fecha_ano = "";
+            $fechanueva = "";
+            $arraymeses = [1 => "Ene", 2 => "Feb", 3 => "Mar", 4 => "Abr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Ago", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dic"];
+
+            if (strlen($row[1]) === 15) {
+                $fechadias = substr($row[1], 4, -9);
+                $fecha_mes = array_search(substr($row[1], 0, -12), $arraymeses);
+            }
+            $fecha_ano = substr($row[1], -8);
+            $fechanueva = $fecha_ano . "/" . $fecha_mes . "/" . $fechadias;
             $new_array['l'] = $row[0];
-            $new_array['fecha'] = $row[1];
+            $new_array['fecha'] = $fechanueva;
             $new_array['comprobante'] = $row[2];
             $new_array['entradas'] = $row[3];
             $new_array['salidas'] = $row[4];
-            $new_array['saldo'] = $row[5];
-            $new_array['costo_aplicacion'] = $row[6];
-            $new_array['costo_promedio'] = $row[7];
-            $new_array['costo_total_saldo'] = $row[8];
+            $new_array['saldo'] = str_replace(",","",$row[5]);
+            $new_array['costo_aplicacion'] = str_replace(",","",$row[6]);
+            $new_array['costo_promedio'] = str_replace(",","",$row[7]);
+            $new_array['costo_total_saldo'] = str_replace(",","",$row[8]);
             $new_array['detalle1'] = $row[9];
             $new_array['numero_ext'] = $row[10];
             $new_array['bodega'] = $row[11];
@@ -80,20 +94,13 @@ if (is_array($array_reg)) {
             $new_array['periodo'] = $row[17];
             $new_array['cuenta'] = $row[18];
             $new_array['unidad_medida'] = $row[19];
-            $fecha = new DateTime($row[20]);
-        $fecha_d_m_y = $fecha->format('Y/m/d');
-           
-            $new_array['fecha_corte'] = $fecha_d_m_y;
-            
-       /** variable final para guardar en la base de datos $new_array */
-       $new_arrayf[] = $new_array;
+            /** variable final para guardar en la base de datos $new_array */
+            $new_arrayf[] = $new_array;
         }
-       
-       
     }
 }
 
-if($php_result= $cls_importdata->insert_notas_inventario($new_arrayf)){
+if ($php_result = $cls_importdata->insert_kardex($new_arrayf)) {
     $php_estado = true;
 }
 
