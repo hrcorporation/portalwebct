@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-02-2022 a las 21:54:24
+-- Tiempo de generación: 14-02-2022 a las 20:40:12
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -43,7 +43,7 @@ CREATE TABLE `terceros` (
   `inactivo` tinyint(1) DEFAULT NULL,
   `dir` varchar(100) DEFAULT NULL,
   `dir2` varchar(100) DEFAULT NULL,
-  `tel` int(20) DEFAULT NULL,
+  `tel` varchar(20) DEFAULT NULL,
   `telmovil` int(10) DEFAULT NULL,
   `fax` int(20) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `terceros` (
   `propieta` varchar(100) DEFAULT NULL,
   `agnete` tinyint(1) DEFAULT NULL,
   `banco` int(20) DEFAULT NULL,
-  `grupo` int(10) DEFAULT NULL,
+  `grupo` varchar(10) DEFAULT NULL,
   `subgrupo` varchar(10) DEFAULT NULL,
   `claseter` varchar(100) DEFAULT NULL,
   `codpostal` varchar(100) DEFAULT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE `terceros` (
   `encargado` varchar(100) DEFAULT NULL,
   `replegar` varchar(100) DEFAULT NULL,
   `nacio` varchar(100) DEFAULT NULL,
-  `precio` int(10) DEFAULT NULL,
+  `precio` varchar(10) DEFAULT NULL,
   `fpago` varchar(100) DEFAULT NULL,
   `condpago` varchar(100) DEFAULT NULL,
   `nodatacred` tinyint(1) DEFAULT NULL,
