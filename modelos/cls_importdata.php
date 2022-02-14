@@ -16,7 +16,7 @@ class cls_importdata extends conexionPDO
         if (is_array($array_datos)) {
             foreach ($array_datos as $row) {
 
-                $sql = " INSERT INTO `ordenpyg`(`id`, `puc`, `cuenta`, `niv1pyg`, `niv2pyg`, `niv3pyg`, `niv4pyg`, `idniv4`, `idniv3`, `idniv2`, `idniv1`, `nomniv1`, `nomniv2`, `nomniv3`, `nomniv4`) VALUES  (:puc,:cuenta,:niv1pyg,:niv2pyg,:niv3pyg,:niv4pyg,:idniv4,:idniv3,:idniv2,:idniv1,:nomniv1,:nomniv2,:nomniv3,:nomniv4)";
+                $sql = "INSERT INTO `ordenpyg`(`puc`, `cuenta`, `niv1pyg`, `niv2pyg`, `niv3pyg`, `niv4pyg`, `idniv4`, `idniv3`, `idniv2`, `idniv1`, `nomniv1`, `nomniv2`, `nomniv3`, `nomniv4`) VALUES (:puc,:cuenta,:niv1pyg,:niv2pyg,:niv3pyg,:niv4pyg,:idniv4,:idniv3,:idniv2,:idniv1,:nomniv1,:nomniv2,:nomniv3,:nomniv4)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
                 $stmt->bindParam(':puc', $row['puc'], PDO::PARAM_INT);
                 $stmt->bindParam(':cuenta', $row['cuenta'], PDO::PARAM_STR);
@@ -25,18 +25,13 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':niv3pyg', $row['niv3pyg'], PDO::PARAM_STR);
                 $stmt->bindParam(':niv4pyg', $row['niv4pyg'], PDO::PARAM_STR);
                 $stmt->bindParam(':idniv4', $row['idniv4'], PDO::PARAM_INT);
-                $stmt->bindParam(':idniv3', $row['idniv3'], PDO::PARAM_STR);
+                $stmt->bindParam(':idniv3', $row['idniv3'], PDO::PARAM_INT);
                 $stmt->bindParam(':idniv2', $row['idniv2'], PDO::PARAM_INT);
                 $stmt->bindParam(':idniv1', $row['idniv1'], PDO::PARAM_INT);
                 $stmt->bindParam(':nomniv1', $row['nomniv1'], PDO::PARAM_STR);
                 $stmt->bindParam(':nomniv2', $row['nomniv2'], PDO::PARAM_STR);
                 $stmt->bindParam(':nomniv3', $row['nomniv3'], PDO::PARAM_STR);
                 $stmt->bindParam(':nomniv4', $row['nomniv4'], PDO::PARAM_STR);
-
-
-
-
-
 
                 if ($stmt->execute()) { // Ejecutar
                     $result = " Exitosso";

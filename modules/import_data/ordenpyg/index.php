@@ -81,7 +81,7 @@ require '../../../vendor/autoload.php'; ?>
 
 <script>
 // subir Archivo
-$("#form_balance").on('submit', (function(e) {
+$("#form_ordenpyg").on('submit', (function(e) {
     e.preventDefault();
 
     $.ajax({
