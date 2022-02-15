@@ -63,7 +63,7 @@ if (is_array($array_reg)) {
 
         if (!is_null($row[0])) {
             $new_array['codigo_puc'] = $row[0];
-            $new_array['nombre'] = $row[1];
+            $new_array['nombre'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[1]);
             $new_array['nat'] = $row[2];
             $new_array['terc'] = $row[3];
             $new_array['c_cost'] = $row[4];
