@@ -78,6 +78,25 @@ if (is_array($array_reg)) {
                 $fechaVenceDias = substr($row[9], 3, -3);
                 $fechaVenceMes = array_search(substr($row[9], 0, -5), $arraymeses);
             }
+            if (strlen($row[26]) == 8) {
+                $fechaDias1 = substr($row[26], 0, -7);
+                $fechaMes1 = (array_search(substr($row[26], 2, -3), $arraymeses));
+                $ano1 = strftime("%Y");
+                $anoactual = substr($ano, 0, -2);
+                $fecha_ano1 = substr($row[26], -2);
+            } elseif (strlen($row[26]) == 9) {
+                $fechaDias1 = substr($row[26], 0, -7);
+                $fechaMes1 = array_search(substr($row[26], 3, -3), $arraymeses);
+                $ano1 = strftime("%Y");
+                $anoactual1 = substr($ano, 0, -2);
+                $fecha_ano1 = substr($row[26], -2);
+            } elseif (strlen($row[26]) == 3) {
+                $fechaDias1 = "00";
+                $fechaMes1 = "00";
+                $fecha_ano1 = "00";
+                $anoactual1 = "00";
+            }
+            $fechaNueva1 = $anoactual1 . $fecha_ano1 . "/" . $fechaMes1 . "/" . $fechaDias1;
             $ano = strftime("%Y");
             $anoactual = substr($ano, 0, -2);
             $fecha_ano = substr($row[8], -2);
@@ -114,7 +133,7 @@ if (is_array($array_reg)) {
             $new_array['fax'] = $row[23];
             $new_array['anticipos'] = str_replace(",", "", $row[24]);
             $new_array['cupo'] = str_replace(",", "", $row[25]);
-            $new_array['fecha_ultimo_pago'] = $row[26];
+            $new_array['fecha_ultimo_pago'] = $fechaNueva1;
             $new_array['observaciones'] = $row[27];
             $fecha = new DateTime($row[28]);
             $fecha_d_m_y = $fecha->format('Y/m/d');
