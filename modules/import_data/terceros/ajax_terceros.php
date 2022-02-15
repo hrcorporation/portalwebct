@@ -11,30 +11,32 @@ require '../../../vendor/autoload.php';
 $php_estado = false;
 $php_result = "saludo desde el servidor";
 
-$php_fechatime = "".date("Y-m-d H:i:s");
+$php_fechatime = "" . date("Y-m-d H:i:s");
 $image = htmlspecialchars($_FILES['file_terceros']['name']);
 $ruta = htmlspecialchars($_FILES['file_terceros']['tmp_name']);
 
-$php_fileexten = strrchr($_FILES['file_terceros']['name'],".");
-$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_terceros']['name'].$php_fechatime),0,40)).$php_fileexten;
+$php_fileexten = strrchr($_FILES['file_terceros']['name'], ".");
+$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_terceros']['name'] . $php_fechatime), 0, 40)) . $php_fileexten;
 
 
-$carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/internal/load_data/'; 
-$php_tempfoto = ('/internal/load_data/'.$php_serial);
-$php_movefile = move_uploaded_file($ruta,$carpeta_destino.$php_serial);
+$carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/load_data/';
+$php_tempfoto = ('/internal/load_data/' . $php_serial);
+$php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
 
 
-$inputFileName = $_SERVER['DOCUMENT_ROOT'].$php_tempfoto;
+$inputFileName = $_SERVER['DOCUMENT_ROOT'] . $php_tempfoto;
 
 $cls_importdata = new cls_importdata();
 
 
 // Clase para Escoger celdas Especificas
-class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter {
+class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
+{
 
-    public function readCell($column, $row, $worksheetName = '') {
+    public function readCell($column, $row, $worksheetName = '')
+    {
         // Read title row and rows 20 - 30
-        if ($row > 1 ) { // comenzamos desde 1 para omitir el titulo de las comulnas ubicadas en la fila 1(excel)
+        if ($row > 1) { // comenzamos desde 1 para omitir el titulo de las comulnas ubicadas en la fila 1(excel)
             return true;
         }
         return false;
@@ -49,7 +51,7 @@ $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
 $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
 
 // inicializar la Clase leer excel
-$reader->setReadFilter( new MyReadFilter() );
+$reader->setReadFilter(new MyReadFilter());
 
 /**  Cargar $inputFileName al objeto $Spreadsheet **/
 $spreadsheet = $reader->load($inputFileName);
@@ -59,7 +61,48 @@ $array_reg = $spreadsheet->getActiveSheet()->toArray();
 if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
 
-        if(!is_null($row[0])){
+        if (!is_null($row[0])) {
+            $arraymeses = [1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec"];
+
+            if (strlen($row[93]) == 8) {
+                $fechaDias = substr($row[93], 0, -7);
+                $fechaMes = array_search(substr($row[93], 2, -3), $arraymeses);
+                $ano = strftime("%Y");
+                $anoactual = substr($ano, 0, -2);
+                $fecha_ano = substr($row[93], -2);
+            } elseif (strlen($row[93]) == 9) {
+                $fechaDias = substr($row[93], 0, -7);
+                $fechaMes = array_search(substr($row[93], 3, -3), $arraymeses);
+                $ano = strftime("%Y");
+                $anoactual = substr($ano, 0, -2);
+                $fecha_ano = substr($row[93], -2);
+            } elseif (strlen($row[93]) == 7) {
+                $fechaDias = "00";
+                $fechaMes = "00";
+                $fecha_ano = "00";
+                $anoactual = "00";
+            }
+            // _______________
+            if (strlen($row[114]) == 8) {
+                $fechaDias1 = substr($row[114], 0, -7);
+                $fechaMes1 = (array_search(substr($row[114], 2, -3), $arraymeses));
+                $ano1 = strftime("%Y");
+                $anoactual = substr($ano, 0, -2);
+                $fecha_ano1 = substr($row[114], -2);
+            } elseif (strlen($row[114]) == 9) {
+                $fechaDias1 = substr($row[114], 0, -7);
+                $fechaMes1 = array_search(substr($row[114], 3, -3), $arraymeses);
+                $ano1 = strftime("%Y");
+                $anoactual1 = substr($ano, 0, -2);
+                $fecha_ano1 = substr($row[114], -2);
+            } elseif (strlen($row[114]) == 7) {
+                $fechaDias1 = "00";
+                $fechaMes1 = "00";
+                $fecha_ano1 = "00";
+                $anoactual1 = "00";
+            }
+            $fechanueva1 = $anoactual . $fecha_ano . "/" . $fechaMes . "/" . $fechaDias;
+            $fechanueva2 = $anoactual1 . $fecha_ano1 . "/" . $fechaMes1 . "/" . $fechaDias1;
             $new_array['nit'] = $row[0];
             $new_array['digver'] = $row[1];
             $new_array['claseid'] = $row[2];
@@ -153,9 +196,15 @@ if (is_array($array_reg)) {
             $new_array['pdtocond2'] = $row[90];
             $new_array['pdtocond3'] = $row[91];
             $new_array['usuario1'] = $row[92];
-            $new_array['fechar'] = $row[93];
+            $new_array['fechar'] = $fechanueva1;
             $new_array['fupdateu'] = $row[94];
-            $new_array['fupdate'] = $row[95];
+            $fecha = date_create($row[95]);
+            $fecha_d_m_y = date_format($fecha, 'Y/m/d H:i:s');
+            $new_array['fupdate'] = $fecha_d_m_y;
+            // $fecha = new DateTime($row[95]);
+            // $fecha_d_m_y = $fecha->format('Y-m-d H:i:s');
+            // $new_array['fupdate'] = $fecha_d_m_y;
+            // $new_array['fupdate'] = $fechanueva2;
             $new_array['cuentab'] = $row[96];
             $new_array['cuentabac'] = $row[97];
             $new_array['codsocial'] = $row[98];
@@ -174,7 +223,7 @@ if (is_array($array_reg)) {
             $new_array['porcariuu'] = $row[111];
             $new_array['nodesctos'] = $row[112];
             $new_array['foto'] = $row[113];
-            $new_array['ultventa'] = $row[114];
+            $new_array['ultventa'] = $fechanueva2;
             $new_array['pfinancia'] = $row[115];
             $new_array['declara'] = $row[116];
             $new_array['codpub2'] = $row[117];
@@ -190,16 +239,14 @@ if (is_array($array_reg)) {
             $new_array['nobomberil'] = $row[127];
             $new_array['bodega'] = $row[128];
 
-   
-       /** variable final para guardar en la base de datos $new_array */
-       $new_arrayf[] = $new_array;
+
+            /** variable final para guardar en la base de datos $new_array */
+            $new_arrayf[] = $new_array;
         }
-       
-       
     }
 }
 
-if($php_result= $cls_importdata->insert_terceros($new_arrayf)){
+if ($php_result = $cls_importdata->insert_terceros($new_arrayf)) {
     $php_estado = true;
 }
 
