@@ -6,8 +6,6 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
-
-
 $php_estado = false;
 $php_result = "saludo desde el servidor";
 
@@ -18,16 +16,13 @@ $ruta = htmlspecialchars($_FILES['file_notas_inventario']['tmp_name']);
 $php_fileexten = strrchr($_FILES['file_notas_inventario']['name'],".");
 $php_serial = strtoupper(substr(hash('sha1', $_FILES['file_notas_inventario']['name'].$php_fechatime),0,40)).$php_fileexten;
 
-
 $carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/internal/load_data/'; 
 $php_tempfoto = ('/internal/load_data/'.$php_serial);
 $php_movefile = move_uploaded_file($ruta,$carpeta_destino.$php_serial);
 
-
 $inputFileName = $_SERVER['DOCUMENT_ROOT'].$php_tempfoto;
 
 $cls_importdata = new cls_importdata();
-
 
 // Clase para Escoger celdas Especificas
 class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter {
@@ -91,10 +86,6 @@ if (is_array($array_reg)) {
        /** variable final para guardar en la base de datos $new_array */
        $new_arrayf[] = $new_array;
         }
-
-
-       
-       
     }
 }
 
@@ -102,13 +93,10 @@ if($php_result= $cls_importdata->insert_notas_inventario($new_arrayf)){
     $php_estado = true;
 }
 
-
-
 $datos = array(
     'estado' => $php_estado,
     'result' => $php_result,
     'dataload' => $new_arrayf
 );
-
 
 echo json_encode($datos, JSON_FORCE_OBJECT);
