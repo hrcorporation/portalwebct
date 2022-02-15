@@ -6,8 +6,6 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
-
-
 $php_estado = false;
 $php_result = "saludo desde el servidor";
 
@@ -19,7 +17,7 @@ $php_fileexten = strrchr($_FILES['file_ordenpyg']['name'],".");
 $php_serial = strtoupper(substr(hash('sha1', $_FILES['file_ordenpyg']['name'].$php_fechatime),0,40)).$php_fileexten;
 
 
-$carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/internal/load_data/'; 
+$carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/internal/load_data/';
 $php_tempfoto = ('/internal/load_data/'.$php_serial);
 $php_movefile = move_uploaded_file($ruta,$carpeta_destino.$php_serial);
 
@@ -74,13 +72,9 @@ if (is_array($array_reg)) {
             $new_array['nomniv2'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[11]);
             $new_array['nomniv3'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[12]);
             $new_array['nomniv4'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[13]);
-            
-
        /** variable final para guardar en la base de datos $new_array */
        $new_arrayf[] = $new_array;
         }
-       
-       
     }
 }
 
@@ -88,13 +82,10 @@ if($php_result= $cls_importdata->insert_ordenpyg($new_arrayf)){
     $php_estado = true;
 }
 
-
-
 $datos = array(
     'estado' => $php_estado,
     'result' => $php_result,
     'dataload' => $new_arrayf
 );
-
 
 echo json_encode($datos, JSON_FORCE_OBJECT);
