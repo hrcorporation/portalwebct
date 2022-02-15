@@ -23,7 +23,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">movimiento diario</li>
+                        <li class="nav-header">Tipo de documento</li>
 
                         <li class="nav-item has-treeview">
                             <a href="" class="nav-link active">
