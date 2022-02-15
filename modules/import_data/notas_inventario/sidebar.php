@@ -23,7 +23,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">movimiento diario</li>
+                        <li class="nav-header">Notas inventario</li>
 
                         <li class="nav-item has-treeview">
                             <a href="" class="nav-link active">
