@@ -62,6 +62,17 @@ if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
 
         if (!is_null($row[0])) {
+            $arraymeses = [1 => "Ene", 2 => "Feb", 3 => "Mar", 4 => "Abr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Ago", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dic"];
+
+            if (strlen($row[7]) == 10) {
+                $fechadias = substr($row[7], 4, -5);
+                $fecha_mes = array_search(substr($row[7], 0, -7), $arraymeses);
+            } elseif (strlen($row[7]) == 11) {
+                $fechadias = substr($row[7], 4, -5);
+                $fecha_mes = array_search(substr($row[7], 0, -8), $arraymeses);
+            }
+            $fecha_ano = substr($row[7], -4);
+            $fechanueva = $fecha_ano . "/" . $fecha_mes . "/" . $fechadias;
             $new_array['venta_devolucion'] = $row[0];
             $new_array['tipo_comprobante'] = $row[1];
             $new_array['numero'] = $row[2];
@@ -69,7 +80,7 @@ if (is_array($array_reg)) {
             $new_array['anio'] = $row[4];
             $new_array['mes'] = $row[5];
             $new_array['dia'] = $row[6];
-            $new_array['fecha'] = $row[7];
+            $new_array['fecha'] = $fechanueva;
             $new_array['cliente'] = $row[8];
             $new_array['razon_social'] = $row[9];
             $new_array['persona_juridica'] = $row[10];
