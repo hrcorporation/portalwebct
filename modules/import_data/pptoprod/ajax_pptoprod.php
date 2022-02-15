@@ -65,9 +65,9 @@ if (is_array($array_reg)) {
             $fecha = new DateTime($row[0]);
             $fecha_d_m_y = $fecha->format('Y/m/d');
             $new_array['fechames'] = $fecha_d_m_y;
-            $new_array['unidadnegocio'] = $row[1];
-            $new_array['topcliente'] = $row[2];
-            $new_array['ciudad'] = $row[3];
+            $new_array['unidadnegocio'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[1]);
+            $new_array['topcliente'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[2]);
+            $new_array['ciudad'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[3]);
             $new_array['m3prod'] = $row[4];
             /** variable final para guardar en la base de datos $new_array */
             $new_arrayf[] = $new_array;
