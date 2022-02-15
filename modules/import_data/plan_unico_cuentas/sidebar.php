@@ -23,7 +23,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">movimiento diario</li>
+                        <li class="nav-header">Plan unico de cuentas</li>
 
                         <li class="nav-item has-treeview">
                             <a href="" class="nav-link active">
