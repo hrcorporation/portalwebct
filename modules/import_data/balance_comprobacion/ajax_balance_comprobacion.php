@@ -64,15 +64,13 @@ if (is_array($array_reg)) {
             $new_array['tercero'] = $row[1];
             $new_array['cco'] = $row[2];
             $new_array['scc'] = $row[3];
-            $new_array['nombre'] = $row[4];
+            $new_array['nombre'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[4]);
             $new_array['saldo_anterior'] = str_replace(",","",$row[5]);
             $new_array['mov_debito'] = str_replace(",","",$row[6]);
             $new_array['mov_credito'] = str_replace(",","",$row[7]);
             $new_array['nuevo_saldo'] = str_replace(",","",$row[8]);
-
             $fecha = new DateTime($row[9]);
-        $fecha_d_m_y = $fecha->format('Y/m/d');
-           
+            $fecha_d_m_y = $fecha->format('Y/m/d');
             $new_array['fecha_corte'] = $fecha_d_m_y;
             
        /** variable final para guardar en la base de datos $new_array */
