@@ -66,7 +66,6 @@ if (is_array($array_reg)) {
             $fecha = new DateTime($row[9]);
             $fecha_d_m_y = $fecha->format('Y/m/d');
             $new_array['fecha_corte'] = $fecha_d_m_y;
-            
        /** variable final para guardar en la base de datos $new_array */
        $new_arrayf[] = $new_array;
         }
