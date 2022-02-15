@@ -60,9 +60,9 @@ if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
 
         if(!is_null($row[0])){
-            $new_array['referencia'] = $row[0];
+            $new_array['referencia'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[0]);
             $new_array['servicio'] = $row[1];
-            $new_array['detalle'] = $row[2];
+            $new_array['detalle'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[2]);
             $new_array['cantidad'] = str_replace(",","",$row[3]);
             $new_array['precio'] = str_replace(",","",$row[4]);
             $new_array['valor_unidad'] = str_replace(",","",$row[5]);
@@ -86,7 +86,7 @@ if (is_array($array_reg)) {
             $fecha_d_m_y = $fecha->format('Y/m/d');
             
             $new_array['fecha_mes'] = $fecha_d_m_y;
-            $new_array['planta'] = $row[22];
+            $new_array['planta'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[22]);
             
        /** variable final para guardar en la base de datos $new_array */
        $new_arrayf[] = $new_array;
