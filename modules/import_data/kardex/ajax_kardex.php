@@ -76,24 +76,24 @@ if (is_array($array_reg)) {
             $fechanueva = $fecha_ano . "/" . $fecha_mes . "/" . $fechadias;
             $new_array['l'] = $row[0];
             $new_array['fecha'] = $fechanueva;
-            $new_array['comprobante'] = $row[2];
+            $new_array['comprobante'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[2]);
             $new_array['entradas'] = $row[3];
             $new_array['salidas'] = $row[4];
             $new_array['saldo'] = str_replace(",","",$row[5]);
             $new_array['costo_aplicacion'] = str_replace(",","",$row[6]);
             $new_array['costo_promedio'] = str_replace(",","",$row[7]);
             $new_array['costo_total_saldo'] = str_replace(",","",$row[8]);
-            $new_array['detalle1'] = $row[9];
+            $new_array['detalle1'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[9]);
             $new_array['numero_ext'] = $row[10];
-            $new_array['bodega'] = $row[11];
-            $new_array['tercero'] = $row[12];
+            $new_array['bodega'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[11]);
+            $new_array['tercero'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[12]);
             $new_array['nit'] = $row[13];
-            $new_array['elaborado'] = $row[14];
-            $new_array['referencia'] = $row[15];
-            $new_array['detalle2'] = $row[16];
-            $new_array['periodo'] = $row[17];
+            $new_array['elaborado'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[14]);
+            $new_array['referencia'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[15]);
+            $new_array['detalle2'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[16]);
+            $new_array['periodo'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[17]);
             $new_array['cuenta'] = $row[18];
-            $new_array['unidad_medida'] = $row[19];
+            $new_array['unidad_medida'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[19]);
             /** variable final para guardar en la base de datos $new_array */
             $new_arrayf[] = $new_array;
         }
