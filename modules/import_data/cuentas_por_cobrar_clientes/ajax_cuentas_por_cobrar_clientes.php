@@ -6,8 +6,6 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
-
-
 $php_estado = false;
 $php_result = "saludo desde el servidor";
 
@@ -18,21 +16,17 @@ $ruta = htmlspecialchars($_FILES['file_cuentas_por_cobrar_clientes']['tmp_name']
 $php_fileexten = strrchr($_FILES['file_cuentas_por_cobrar_clientes']['name'], ".");
 $php_serial = strtoupper(substr(hash('sha1', $_FILES['file_cuentas_por_cobrar_clientes']['name'] . $php_fechatime), 0, 40)) . $php_fileexten;
 
-
 $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/load_data/';
 $php_tempfoto = ('/internal/load_data/' . $php_serial);
 $php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
-
 
 $inputFileName = $_SERVER['DOCUMENT_ROOT'] . $php_tempfoto;
 
 $cls_importdata = new cls_importdata();
 
-
 // Clase para Escoger celdas Especificas
 class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
 {
-
     public function readCell($column, $row, $worksheetName = '')
     {
         // Read title row and rows 20 - 30
@@ -42,7 +36,6 @@ class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
         return false;
     }
 }
-
 //$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
 
 /**  identifica el tipo de archivo $inputFileName  **/
@@ -60,10 +53,9 @@ $spreadsheet = $reader->load($inputFileName);
 $array_reg = $spreadsheet->getActiveSheet()->toArray();
 if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
-
         if (!is_null($row[0])) {
             $arraymeses = [1 => "Ene", 2 => "Feb", 3 => "Mar", 4 => "Abr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Ago", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dic"];
-
+            // fecha
             if (strlen($row[8]) == 7) {
                 $fechadias = substr($row[8], 3, -3);
                 $fecha_mes = array_search(substr($row[8], 0, -4), $arraymeses);
@@ -71,6 +63,11 @@ if (is_array($array_reg)) {
                 $fechadias = substr($row[8], 3, -3);
                 $fecha_mes = array_search(substr($row[8], 0, -5), $arraymeses);
             }
+            $ano = strftime("%Y");
+            $anoactual = substr($ano, 0, -2);
+            $fecha_ano = substr($row[8], -2);
+            $fechaNueva = $anoactual . $fecha_ano . "/" . $fecha_mes . "/" . $fechadias;
+            // vence
             if (strlen($row[9]) == 7) {
                 $fechaVenceDias = substr($row[9], 3, -3);
                 $fechaVenceMes = array_search(substr($row[9], 0, -4), $arraymeses);
@@ -78,6 +75,10 @@ if (is_array($array_reg)) {
                 $fechaVenceDias = substr($row[9], 3, -3);
                 $fechaVenceMes = array_search(substr($row[9], 0, -5), $arraymeses);
             }
+            $anio = strftime("%Y");
+            $anioactual = substr($anio, 0, -2);
+            $fechaVenceAnio = substr($row[9], -2);
+            $fechaNuevaVence = $anioactual . $fechaVenceAnio . "/" . $fechaVenceMes . "/" . $fechaVenceDias;
             // if (strlen($row[26]) == 8) {
             //     $fechaDias1 = substr($row[26], 0, -7);
             //     $fechaMes1 = (array_search(substr($row[26], 2, -3), $arraymeses));
@@ -97,16 +98,6 @@ if (is_array($array_reg)) {
             //     $anoactual1 = "00";
             // }
             // $fechaNueva1 = $anoactual1 . $fecha_ano1 . "/" . $fechaMes1 . "/" . $fechaDias1;
-            $ano = strftime("%Y");
-            $anoactual = substr($ano, 0, -2);
-            $fecha_ano = substr($row[8], -2);
-            $fechaNueva = $anoactual . $fecha_ano . "/" . $fecha_mes . "/" . $fechadias;
-
-            $anio = strftime("%Y");
-            $anioactual = substr($anio, 0, -2);
-            $fechaVenceAnio = substr($row[9], -2);
-            $fechaNuevaVence = $anioactual . $fechaVenceAnio . "/" . $fechaVenceMes . "/" . $fechaVenceDias;
-
             $new_array['nit'] = $row[0];
             $new_array['suc_pto'] = $row[1];
             $new_array['codigo'] = $row[2];
@@ -148,13 +139,10 @@ if ($php_result = $cls_importdata->insert_cuentas_por_cobrar_clientes($new_array
     $php_estado = true;
 }
 
-
-
 $datos = array(
     'estado' => $php_estado,
     'result' => $php_result,
     'dataload' => $new_arrayf
 );
-
 
 echo json_encode($datos, JSON_FORCE_OBJECT);
