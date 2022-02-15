@@ -66,7 +66,7 @@ if (is_array($array_reg)) {
             $new_array['clase_doc'] = $row[1];
             $new_array['grupo_td'] = $row[2];
             $new_array['libro'] = $row[3];
-            $new_array['nombre'] = $row[4];
+            $new_array['nombre'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[4]);
             $new_array['consec'] = $row[5];
             $new_array['consec_manu'] = $row[6];
             $new_array['conse_nume'] = $row[7];
