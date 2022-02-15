@@ -23,7 +23,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">balance Comprobacion</li>
+                        <li class="nav-header">Orden PyG</li>
 
                         <li class="nav-item has-treeview">
                             <a href="" class="nav-link active">
