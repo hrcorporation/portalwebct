@@ -62,6 +62,32 @@ if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
 
         if (!is_null($row[0])) {
+            $arraymeses = [1 => "Ene", 2 => "Feb", 3 => "Mar", 4 => "Abr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Ago", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dic"];
+
+            if (strlen($row[8]) == 7) {
+                $fechadias = substr($row[8], 3, -3);
+                $fecha_mes = array_search(substr($row[8], 0, -4), $arraymeses);
+            } elseif (strlen($row[8]) == 8) {
+                $fechadias = substr($row[8], 3, -3);
+                $fecha_mes = array_search(substr($row[8], 0, -5), $arraymeses);
+            }
+            if (strlen($row[9]) == 7) {
+                $fechaVenceDias = substr($row[9], 3, -3);
+                $fechaVenceMes = array_search(substr($row[9], 0, -4), $arraymeses);
+            } elseif (strlen($row[9]) == 8) {
+                $fechaVenceDias = substr($row[9], 3, -3);
+                $fechaVenceMes = array_search(substr($row[9], 0, -5), $arraymeses);
+            }
+            $ano = strftime("%Y");
+            $anoactual = substr($ano, 0, -2);
+            $fecha_ano = substr($row[8], -2);
+            $fechaNueva = $anoactual . $fecha_ano . "/" . $fecha_mes . "/" . $fechadias;
+
+            $anio = strftime("%Y");
+            $anioactual = substr($anio, 0, -2);
+            $fechaVenceAnio = substr($row[9], -2);
+            $fechaNuevaVence = $anioactual . $fechaVenceAnio . "/" . $fechaVenceMes . "/" . $fechaVenceDias;
+
             $new_array['nit'] = $row[0];
             $new_array['suc_pto'] = $row[1];
             $new_array['codigo'] = $row[2];
@@ -70,27 +96,29 @@ if (is_array($array_reg)) {
             $new_array['telefono'] = $row[5];
             $new_array['celular'] = $row[6];
             $new_array['direccion'] = $row[7];
-            $new_array['fecha'] = $row[8];
-            $new_array['vence'] = $row[9];
-            $new_array['saldo'] = str_replace(",","",$row[10]);
-            $new_array['sin_vencer'] =str_replace(",","",$row[11]);
-            $new_array['periodo_1_30'] = str_replace(",","",$row[12]);
-            $new_array['periodo_31_60'] = str_replace(",","",$row[13]);
-            $new_array['periodo_61_90'] = str_replace(",","",$row[14]);
-            $new_array['periodo_91_120'] = str_replace(",","",$row[15]);
-            $new_array['periodo_121_360'] = str_replace(",","",$row[16]);
-            $new_array['periodo_mas_361'] = str_replace(",","",$row[17]);
+            $new_array['fecha'] = $fechaNueva;
+            $new_array['vence'] = $fechaNuevaVence;
+            $new_array['saldo'] = str_replace(",", "", $row[10]);
+            $new_array['sin_vencer'] = str_replace(",", "", $row[11]);
+            $new_array['periodo_1_30'] = str_replace(",", "", $row[12]);
+            $new_array['periodo_31_60'] = str_replace(",", "", $row[13]);
+            $new_array['periodo_61_90'] = str_replace(",", "", $row[14]);
+            $new_array['periodo_91_120'] = str_replace(",", "", $row[15]);
+            $new_array['periodo_121_360'] = str_replace(",", "", $row[16]);
+            $new_array['periodo_mas_361'] = str_replace(",", "", $row[17]);
             $new_array['meses_vencidos'] = $row[18];
             $new_array['plazo'] = $row[19];
             $new_array['mora'] = $row[20];
             $new_array['numero_externo'] = $row[21];
             $new_array['zona'] = $row[22];
             $new_array['fax'] = $row[23];
-            $new_array['anticipos'] = str_replace(",","",$row[24]);
-            $new_array['cupo'] = str_replace(",","",$row[25]);
+            $new_array['anticipos'] = str_replace(",", "", $row[24]);
+            $new_array['cupo'] = str_replace(",", "", $row[25]);
             $new_array['fecha_ultimo_pago'] = $row[26];
             $new_array['observaciones'] = $row[27];
-            $new_array['fecha_corte'] = $row[28];
+            $fecha = new DateTime($row[28]);
+            $fecha_d_m_y = $fecha->format('Y/m/d');
+            $new_array['fecha_corte'] = $fecha_d_m_y;
             /** variable final para guardar en la base de datos $new_array */
             $new_arrayf[] = $new_array;
         }
