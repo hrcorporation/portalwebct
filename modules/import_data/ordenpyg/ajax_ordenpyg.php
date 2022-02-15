@@ -61,19 +61,19 @@ if (is_array($array_reg)) {
 
         if(!is_null($row[0])){
             $new_array['puc'] = $row[0];
-            $new_array['cuenta'] = $row[1];
-            $new_array['niv1pyg'] = $row[2];
-            $new_array['niv2pyg'] = $row[3];
-            $new_array['niv3pyg'] = $row[4];
-            $new_array['niv4pyg'] = $row[5];
+            $new_array['cuenta'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[1]);
+            $new_array['niv1pyg'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[2]);
+            $new_array['niv2pyg'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[3]);
+            $new_array['niv3pyg'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[4]);
+            $new_array['niv4pyg'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[5]);
             $new_array['idniv4'] = $row[6];
             $new_array['idniv3'] = $row[7];
             $new_array['idniv2'] = $row[8];
             $new_array['idniv1'] = $row[9];
-            $new_array['nomniv1'] = $row[10];
-            $new_array['nomniv2'] = $row[11];
-            $new_array['nomniv3'] = $row[12];
-            $new_array['nomniv4'] = $row[13];
+            $new_array['nomniv1'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[10]);
+            $new_array['nomniv2'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[11]);
+            $new_array['nomniv3'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[12]);
+            $new_array['nomniv4'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[13]);
             
 
        /** variable final para guardar en la base de datos $new_array */
