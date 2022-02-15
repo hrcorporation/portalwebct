@@ -6,8 +6,6 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
-
-
 $php_estado = false;
 $php_result = "saludo desde el servidor";
 
@@ -18,21 +16,17 @@ $ruta = htmlspecialchars($_FILES['file_pptoprod']['tmp_name']);
 $php_fileexten = strrchr($_FILES['file_pptoprod']['name'], ".");
 $php_serial = strtoupper(substr(hash('sha1', $_FILES['file_pptoprod']['name'] . $php_fechatime), 0, 40)) . $php_fileexten;
 
-
 $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/load_data/';
 $php_tempfoto = ('/internal/load_data/' . $php_serial);
 $php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
-
 
 $inputFileName = $_SERVER['DOCUMENT_ROOT'] . $php_tempfoto;
 
 $cls_importdata = new cls_importdata();
 
-
 // Clase para Escoger celdas Especificas
 class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
 {
-
     public function readCell($column, $row, $worksheetName = '')
     {
         // Read title row and rows 20 - 30
@@ -42,7 +36,6 @@ class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
         return false;
     }
 }
-
 //$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
 
 /**  identifica el tipo de archivo $inputFileName  **/
@@ -60,7 +53,6 @@ $spreadsheet = $reader->load($inputFileName);
 $array_reg = $spreadsheet->getActiveSheet()->toArray();
 if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
-
         if (!is_null($row[0])) {
             $fecha = new DateTime($row[0]);
             $fecha_d_m_y = $fecha->format('Y/m/d');
@@ -79,13 +71,10 @@ if ($php_result = $cls_importdata->insert_pptoprod($new_arrayf)) {
     $php_estado = true;
 }
 
-
-
 $datos = array(
     'estado' => $php_estado,
     'result' => $php_result,
     'dataload' => $new_arrayf
 );
-
 
 echo json_encode($datos, JSON_FORCE_OBJECT);
