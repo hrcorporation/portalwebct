@@ -110,11 +110,11 @@ if (is_array($array_reg)) {
             $new_array['nit'] = $row[0];
             $new_array['suc_pto'] = $row[1];
             $new_array['codigo'] = $row[2];
-            $new_array['nombre'] = $row[3];
-            $new_array['nom_comerc'] = $row[4];
+            $new_array['nombre'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[3]);
+            $new_array['nom_comerc'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[4]);
             $new_array['telefono'] = $row[5];
             $new_array['celular'] = $row[6];
-            $new_array['direccion'] = $row[7];
+            $new_array['direccion'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[7]);
             $new_array['fecha'] = $fechaNueva;
             $new_array['vence'] = $fechaNuevaVence;
             $new_array['saldo'] = str_replace(",", "", $row[10]);
