@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-02-2022 a las 17:09:23
+-- Tiempo de generación: 16-02-2022 a las 14:31:39
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -42,7 +42,8 @@ CREATE TABLE `centrocostos` (
 -- Indices de la tabla `centrocostos`
 --
 ALTER TABLE `centrocostos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `codigocompleto` (`codigocompleto`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
