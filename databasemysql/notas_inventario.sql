@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `notas_inventario` (
   `id` int(11) NOT NULL,
-  `referencia` int(6) DEFAULT NULL,
+  `referencia`varchar(30) DEFAULT NULL,
   `servicio` varchar(30) DEFAULT NULL,
   `detalle` varchar(40) DEFAULT NULL,
   `cantidad` double(11,2) DEFAULT NULL,
