@@ -239,6 +239,7 @@ class cls_importdata extends conexionPDO
             return false;
         }
     }
+    
     function insert_centro_costo(array $array_datos)
     {
         if (is_array($array_datos)) {
