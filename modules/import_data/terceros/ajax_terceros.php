@@ -99,8 +99,8 @@ if (is_array($array_reg)) {
             $new_array['digver'] = $row[1];
             $new_array['claseid'] = $row[2];
             $new_array['codigo'] = $row[3];
-            $new_array['nombre'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[4]);
-            $new_array['nombrec'] = preg_replace('/[@\.\;\%\$\%\&]+/', '', $row[5]);
+            $new_array['nombre'] = preg_replace('/[@\.\;\%\$\%]+/', '', $row[4]);
+            $new_array['nombrec'] = preg_replace('/[@\.\;\%\$\%]+/', '', $row[5]);
             $new_array['nombre1'] = preg_replace('/[@\.\;\%\$\%]+/', '', $row[6]);
             $new_array['nombre2'] = $row[7];
             $new_array['apellido1'] = $row[8];
