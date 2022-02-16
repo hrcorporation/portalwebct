@@ -45,28 +45,6 @@ class cls_importdata extends conexionPDO
         }
     }
 
-    function insert_centro_costos(array $array_datos)
-    {
-        if (is_array($array_datos)) {
-            foreach ($array_datos as $row) {
-
-                $sql = "INSERT INTO `centrocostos`(`codigo`, `nombre`, `codigocompleto`) VALUES (:codigo, :nombre, :codigocompleto)";
-                $stmt = $this->con->prepare($sql); // Preparar la conexion
-                $stmt->bindParam(':codigo', $row['codigo'], PDO::PARAM_INT);
-                $stmt->bindParam(':nombre', $row['nombre'], PDO::PARAM_STR);
-                $stmt->bindParam(':codigocompleto', $row['codigocompleto'], PDO::PARAM_STR);
-                if ($stmt->execute()) { // Ejecutar
-                    $result = " Exitosso";
-                } else {
-                    $result = "Error";
-                }
-            }
-            return $result;
-        } else {
-            return false;
-        }
-    }
-
     function insert_pptoprod(array $array_datos)
     {
         if (is_array($array_datos)) {
