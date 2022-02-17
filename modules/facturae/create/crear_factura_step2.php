@@ -154,7 +154,7 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php
+                                        <?php
                                         $i = 0;
                                         $datos_remi = $t26_remisiones->select_remisiones_obra($id_obra);
                                         while ($fila_remi = $datos_remi->fetch(PDO::FETCH_ASSOC)) {
@@ -167,15 +167,15 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                             <tr>
                                                 <td><?php echo $i; ?></td>
 
-                                                <td><input type="checkbox" name="remision[]" id="<?php echo $id_remi; ?>" value="<?php echo $id_remi; ?>"><label for="<?php echo $id_remi; ?>">    <?php echo "  " . $codigo_remi; ?></label> </td>
+                                                <td><input type="checkbox" name="remision[]" id="<?php echo $id_remi; ?>" value="<?php echo $id_remi; ?>"><label for="<?php echo $id_remi; ?>"> <?php echo "  " . $codigo_remi; ?></label> </td>
 
-                                                <?php 
+                                                <?php
 
-if(empty($archivo)){
+                                                if (empty($archivo)) {
 
-    $archivo = "../ver_remision/remision.php?id=".  $php_clases->HR_Crypt($id_remi, 1);
-}
-?>
+                                                    $archivo = "../ver_remision/remision.php?id=" .  $php_clases->HR_Crypt($id_remi, 1);
+                                                }
+                                                ?>
                                                 <td><a target="_blank" href="<?php echo $archivo; ?>" class="btn btn-block btn-success btn-sm"> <i class="far fa-eye"></i> ver </a></td>
 
                                             </tr>
@@ -220,7 +220,7 @@ if(empty($archivo)){
 
                                                 <td><input type="checkbox" name="anexo[]" id="<?php echo $id; ?>" value="<?php echo $id; ?>"><label for="<?php echo $id; ?>"> <?php echo "  " . $nombre_doc; ?></label> </td>
 
-                                           
+
                                                 <td><a target="_blank" href="<?php echo $archivo_doc; ?>" class="btn btn-block btn-success btn-sm"> <i class="far fa-eye"></i> ver </a></td>
 
                                             </tr>
@@ -269,7 +269,7 @@ if(empty($archivo)){
         $('#tabla_remisiones').DataTable({});
         $('#tabla_anexos').DataTable({});
 
-        
+
     });
 </script>
 
