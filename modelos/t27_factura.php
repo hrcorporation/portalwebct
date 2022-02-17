@@ -3,6 +3,7 @@
 
 class t27_factura extends conexionPDO
 {
+    protected $con;
 
     private $id;
     private $numero_factura;
@@ -20,7 +21,81 @@ class t27_factura extends conexionPDO
     {
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
+
     }
+
+    function editar_valor_fact($id_factura,  $valor)
+    {
+
+        $this->valor = $valor;
+        $this->id_factura = $id_factura;
+
+        $sql = "UPDATE `ct27_facturae` SET  `ct27_valorfact` = :valor  WHERE `ct27_id_factura` = :id_factura";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':valor', $this->valor, PDO::PARAM_STR);
+        $stmt->bindParam(':id_factura', $this->id_factura, PDO::PARAM_INT);
+
+        if($result = $stmt->execute())
+        {
+            return true;
+        }else{
+            return false;
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
+    function editar_num_fact($id_factura,  $num)
+    {
+
+        $this->num = $num;
+
+        $this->id_factura = $id_factura;
+
+        $sql = "UPDATE `ct27_facturae` SET  `ct27_nombre_factura` = :num WHERE `ct27_id_factura` = :id_factura";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':num', $this->num, PDO::PARAM_STR);
+        $stmt->bindParam(':id_factura', $this->id_factura, PDO::PARAM_INT);
+
+        if($result = $stmt->execute())
+        {
+            return true;
+        }else{
+            return false;
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
+    function editar_cli_obra($id_factura,  $id_cliente, $id_obra)
+    {
+
+        $this->id_cliente = $id_cliente;
+        $this->id_obra = $id_obra;
+        $this->id_factura = $id_factura;
+
+        $sql = "UPDATE `ct27_facturae` SET  `ct27_id_cliente` = :id_cliente , `ct27_id_obra` = :id_obra WHERE `ct27_id_factura` = :id_factura";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_INT);
+        $stmt->bindParam(':id_factura', $this->id_factura, PDO::PARAM_INT);
+
+        if($result = $stmt->execute())
+        {
+            return true;
+        }else{
+            return false;
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
 
     function selectfactura_remi()
     {
