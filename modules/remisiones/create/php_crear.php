@@ -30,8 +30,8 @@ if (isset($_POST['C_IdTerceros']) && !empty($_POST['C_IdTerceros'])){
     $php_idcliente = htmlspecialchars($_POST['C_IdTerceros']);
     $php_idobra = htmlspecialchars($_POST['C_Obras']);
     $php_codigo = htmlspecialchars($_POST['C_codigo']);
-    $php_vehiculo = htmlspecialchars($_POST['C_vehiculo']);
-    $php_conductor = htmlspecialchars($_POST['C_Conductor']);
+    // $php_vehiculo = htmlspecialchars($_POST['C_vehiculo']);
+    // $php_conductor = htmlspecialchars($_POST['C_Conductor']);
     
     $image = htmlspecialchars($_FILES['imgfiles']['name']);
     $ruta = htmlspecialchars($_FILES['imgfiles']['tmp_name']);
@@ -39,8 +39,8 @@ if (isset($_POST['C_IdTerceros']) && !empty($_POST['C_IdTerceros'])){
     $php_fileexten = strrchr($_FILES['imgfiles']['name'], ".");
     $php_serial = strtoupper(substr(hash('sha1', $_FILES['imgfiles']['name'] . $date), 0, 40)) . $php_fileexten;
     
-    $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/images/remisiones/';
-    $php_tempfoto = ('/internal/images/remisiones/' . $php_serial);
+    $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/images/anexos/';
+    $php_tempfoto = ('/internal/images/anexos/' . $php_serial);
     $php_fechatime = date("Y-m-d H:i:s");
     $date = "" . date('Y/m/d h:i:s', time());
     $fecha_remi = $date;

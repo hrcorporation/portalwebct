@@ -38,7 +38,7 @@ require '../../../vendor/autoload.php';
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Subir Remisiones</h1>
+                                <h1>Subir Anexos</h1>
                             </div>
                             <div class="col-sm-6">
                                 <!--
@@ -58,7 +58,7 @@ require '../../../vendor/autoload.php';
                     <!-- Default box -->
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Crear Remisiones</h3>
+                            <h3 class="card-title">Crear Anexos</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -95,7 +95,7 @@ require '../../../vendor/autoload.php';
                                     <div class="row">
                                         <div class="col-7">
                                             <div class="form-group">
-                                                <label>Codigo de la Remision</label>
+                                                <label>Codigo de los Anexos</label>
                                                 <input name="C_codigo" id="C_codigo" type="text" class="form-control" placeholder="Digite el nombre" required>
                                             </div>
                                         </div>
@@ -119,7 +119,7 @@ require '../../../vendor/autoload.php';
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Seleccionar Vehiculo</label>
@@ -140,7 +140,7 @@ require '../../../vendor/autoload.php';
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
