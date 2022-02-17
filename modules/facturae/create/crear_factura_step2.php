@@ -14,6 +14,7 @@ $t5_obras = new t5_obras();
 $php_clases = new php_clases();
 $t1_terceros = new t1_terceros();
 $t26_remisiones = new t26_remisiones();
+$t27_factura = new t27_factura();
 
 
 
@@ -158,6 +159,57 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                         $datos_remi = $t26_remisiones->select_remisiones_obra($id_obra);
                                         while ($fila_remi = $datos_remi->fetch(PDO::FETCH_ASSOC)) {
                                             $i++;
+                                            $id_anexo = $fila_remi['id'];
+                                            $nombre_anexo = $fila_remi['nombre_doc'];
+                                            $archivo = $fila_remi['archivo_doc'];
+                                        ?>
+
+                                            <tr>
+                                                <td><?php echo $i; ?></td>
+
+                                                <td><input type="checkbox" name="remision[]" id="<?php echo $id_remi; ?>" value="<?php echo $id_remi; ?>"><label for="<?php echo $id_remi; ?>"> <?php echo "  " . $codigo_remi; ?></label> </td>
+
+                                                <?php
+
+                                                if (empty($archivo)) {
+
+                                                    $archivo = "../ver_remision/remision.php?id=" .  $php_clases->HR_Crypt($id_remi, 1);
+                                                }
+                                                ?>
+                                                <td><a target="_blank" href="<?php echo $archivo; ?>" class="btn btn-block btn-success btn-sm"> <i class="far fa-eye"></i> ver </a></td>
+
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Codigo Remision</th>
+                                            <th>Imagen </th>
+                                        </tr>
+                                    </tfoot>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <table id="tabla_anexos" class="display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>nombre </th>
+                                            <th>file </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 0;
+                                        $datos_anexo = $t27_factura->select_anexo_factura($id_cliente);
+                                        while ($fila_remi = $datos_anexo->fetch(PDO::FETCH_ASSOC)) {
+                                            $i++;
                                             $id_remi = $fila_remi['ct26_id_remision'];
                                             $codigo_remi = $fila_remi['ct26_codigo_remi'];
                                             $archivo = $fila_remi['ct26_imagen_remi'];
@@ -166,15 +218,15 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                             <tr>
                                                 <td><?php echo $i; ?></td>
 
-                                                <td><input type="checkbox" name="remision[]" id="<?php echo $id_remi; ?>" value="<?php echo $id_remi; ?>"><label for="<?php echo $id_remi; ?>">    <?php echo "  " . $codigo_remi; ?></label> </td>
+                                                <td><input type="checkbox" name="remision[]" id="<?php echo $id_remi; ?>" value="<?php echo $id_remi; ?>"><label for="<?php echo $id_remi; ?>"> <?php echo "  " . $codigo_remi; ?></label> </td>
 
-                                                <?php 
+                                                <?php
 
-if(empty($archivo)){
+                                                if (empty($archivo)) {
 
-    $archivo = "../ver_remision/remision.php?id=".  $php_clases->HR_Crypt($id_remi, 1);
-}
-?>
+                                                    $archivo = "../ver_remision/remision.php?id=" .  $php_clases->HR_Crypt($id_remi, 1);
+                                                }
+                                                ?>
                                                 <td><a target="_blank" href="<?php echo $archivo; ?>" class="btn btn-block btn-success btn-sm"> <i class="far fa-eye"></i> ver </a></td>
 
                                             </tr>
@@ -201,11 +253,6 @@ if(empty($archivo)){
                         </div>
                     </div>
                 </form>
-
-
-
-
-
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

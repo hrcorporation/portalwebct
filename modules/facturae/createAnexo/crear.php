@@ -34,7 +34,7 @@ switch ($rol_user) {
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Subir remisiones</h1>
+                    <h1>Subir anexos</h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -54,7 +54,7 @@ switch ($rol_user) {
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Crear remision</h3>
+                <h3 class="card-title">Crear anexo</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
