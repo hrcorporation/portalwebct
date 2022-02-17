@@ -200,8 +200,8 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>nombre </th>
-                                            <th>file </th>
+                                            <th>Nombre Anexos</th>
+                                            <th>Archivos</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -210,23 +210,17 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                         $datos_anexo = $t27_factura->select_anexo_factura($id_cliente);
                                         while ($fila_remi = $datos_anexo->fetch(PDO::FETCH_ASSOC)) {
                                             $i++;
-                                            $id_remi = $fila_remi['ct26_id_remision'];
-                                            $codigo_remi = $fila_remi['ct26_codigo_remi'];
-                                            $archivo = $fila_remi['ct26_imagen_remi'];
+                                            $id = $fila_remi['id'];
+                                            $nombre_doc = $fila_remi['nombre_doc'];
+                                            $archivo = $fila_remi['archivo_doc'];
                                         ?>
 
                                             <tr>
                                                 <td><?php echo $i; ?></td>
 
-                                                <td><input type="checkbox" name="remision[]" id="<?php echo $id_remi; ?>" value="<?php echo $id_remi; ?>"><label for="<?php echo $id_remi; ?>"> <?php echo "  " . $codigo_remi; ?></label> </td>
+                                                <td><input type="checkbox" name="anexo[]" id="<?php echo $id; ?>" value="<?php echo $id; ?>"><label for="<?php echo $id; ?>"> <?php echo "  " . $nombre_doc; ?></label> </td>
 
-                                                <?php
-
-                                                if (empty($archivo)) {
-
-                                                    $archivo = "../ver_remision/remision.php?id=" .  $php_clases->HR_Crypt($id_remi, 1);
-                                                }
-                                                ?>
+                                           
                                                 <td><a target="_blank" href="<?php echo $archivo; ?>" class="btn btn-block btn-success btn-sm"> <i class="far fa-eye"></i> ver </a></td>
 
                                             </tr>
@@ -235,8 +229,8 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Codigo Remision</th>
-                                            <th>Imagen </th>
+                                            <th>Nombre Anexos</th>
+                                            <th>Archivos</th>
                                         </tr>
                                     </tfoot>
 
