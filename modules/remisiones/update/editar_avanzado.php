@@ -102,9 +102,6 @@ while ($fila_remi = $datos_remision->fetch(PDO::FETCH_ASSOC)) {
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-
-
-
                 <h3 class="card-title"><a href='editar_avanzado.php?id=<?php print_r($id_remision); ?>'><i class="fas fa-tools"></i></a> Remision <strong> <?php print_r($codigo_remi); ?> </strong></h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">

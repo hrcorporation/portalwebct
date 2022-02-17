@@ -81,7 +81,7 @@ require '../../../vendor/autoload.php'; ?>
 
 <script>
 // subir Archivo
-$("#form_balance").on('submit', (function(e) {
+$("#form_cuentas_por_cobrar_clientes").on('submit', (function(e) {
     e.preventDefault();
 
     $.ajax({
