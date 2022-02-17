@@ -141,7 +141,13 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                         </div>
                     </div>
                     <hr>
-
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <h4> Tabla de Remisiones </h4>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -190,6 +196,14 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                     </tfoot>
 
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                    <br><hr><br>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <h4> Tabla de Anexos </h4>
                             </div>
                         </div>
                     </div>
