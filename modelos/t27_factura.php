@@ -272,7 +272,7 @@ class t27_factura extends conexionPDO
     }
     function select_anexo_factura($id_cliente){
         $this->id_cliente = $id_cliente;
-        $sql = "SELECT * FROM `anexos` WHERE ` id_cliente` = :id_cliente";
+        $sql = "SELECT * FROM `anexos` WHERE `id_cliente` =:id_cliente";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
