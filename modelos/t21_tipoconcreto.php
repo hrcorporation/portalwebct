@@ -67,27 +67,51 @@ class t21_tipoconcreto extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    function crear_tipo_concreto($ct21_FechaCreacion, $ct21_estado, $ct21_CodTConcreto, $ct21_DescripcionTC)
+    function crear_tipo_concreto($ct21_CodTConcreto, $ct21_DescripcionTC)
     {
-        $this->ct21_FechaCreacion = $ct21_FechaCreacion;
-        $this->ct21_estado = $ct21_estado;
+        $this->fecha_create = date("Y-m-d H:i:s");
+        $this->estado =1;
         $this->ct21_CodTConcreto = $ct21_CodTConcreto;
         $this->ct21_DescripcionTC = $ct21_DescripcionTC;
 
         $sql = "INSERT INTO `ct21_tipoconcreto`(`ct21_FechaCreacion`, `ct21_estado`, `ct21_CodTConcreto`, `ct21_DescripcionTC`) VALUES (:ct21_FechaCreacion, :ct21_estado, :ct21_CodTConcreto, :ct21_DescripcionTC)";
         $stmt = $this->con->prepare($sql);
 
-        $stmt->bindParam(':ct21_FechaCreacion' , $this->ct21_FechaCreacion, PDO::PARAM_STR);
-        $stmt->bindParam(':ct21_estado' , $this->ct21_estado, PDO::PARAM_INT);
+        $stmt->bindParam(':ct21_FechaCreacion' , $this->fecha_create, PDO::PARAM_STR);
+        $stmt->bindParam(':ct21_estado' , $this->estado, PDO::PARAM_INT);
         $stmt->bindParam(':ct21_CodTConcreto' , $this->ct21_CodTConcreto, PDO::PARAM_STR);
         $stmt->bindParam(':ct21_DescripcionTC' , $this->ct21_DescripcionTC, PDO::PARAM_STR);
 
-        if ($stmt->execute()) { // Ejecutar
-            $id_insert = $this->con->lastInsertId();
-            
-            return $id_insert;
-        }else{
+        $result = $stmt->execute();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        return $result;
+    }
+
+    function get_datatable_tipo_concreto()
+    {
+        $sql ="SELECT `ct21_IdTipoConcreto`, `ct21_FechaCreacion`, `ct21_estado`, `ct21_CodTConcreto`, `ct21_DescripcionTC` FROM `ct21_tipoconcreto`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Ejecutar 
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['ct21_IdTipoConcreto'];
+                    $datos['cod'] = $fila['ct21_CodTConcreto'];
+                    $datos['descripcion'] = $fila['ct21_DescripcionTC'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
             return false;
         }
+
     }
 }

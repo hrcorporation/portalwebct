@@ -41,12 +41,21 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header"></li>
+                        <li class="nav-header">Tipo de concreto</li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="tipoConcreto/index.php" class="nav-link ">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Explorar
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview">
                             <a href="tipoConcreto/create/crear.php" class="nav-link ">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
-                                    add
+                                    Crear
                                 </p>
                             </a>
                         </li>

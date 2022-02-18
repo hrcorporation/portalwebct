@@ -2,7 +2,6 @@
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,11 +31,9 @@
             <div class="card-header">
                 <h3 class="card-title"> Crear Resistencia Concreto</h3>
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                            class="fas fa-expand"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                 </div>
             </div>
             <div class="card-body">
@@ -58,8 +55,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <button type="submit" name="btn-guardar" id="btn-guardar"
-                                    class="btn btn-info">Guardar</button>
+                                <button type="submit" name="btn-guardar" id="btn-guardar" class="btn btn-info">Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -79,33 +75,31 @@
 
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
-$(document).ready(function(e) {
-    $("#form_add_resistencia_concreto").on('submit', (function(e) {
-        e.preventDefault();
-        $.ajax({
-            url: "php_crear.php",
-            type: "POST",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(data) {
-                console.log(data);
-                if (data.estado) {
-                    toastr.success('exitoso');
-                   
-                } else {
-                    toastr.warning(data.errores);
-                }
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
-            },
-        });
-    }));
-});
+    $(document).ready(function(e) {
+        $("#form_add_resistencia_concreto").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_crear.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('exitoso');
+
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
+    });
 </script>
-
 </body>
-
 </html>

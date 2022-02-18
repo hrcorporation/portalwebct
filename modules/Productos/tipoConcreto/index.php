@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div id="contenido">
-                    <table id="t_resistencia_concreto" class="table table-bordered table-striped">
+                    <table id="t_tipo_concreto" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th> N </th>
@@ -84,15 +84,17 @@
 
 <?php include '../../../layout/footer/footer3.php' ?>
 
+
+
 <script>
     $(document).ready(function() {
 
         var n = 1;
-        var table = $('#t_resistencia_concreto').DataTable({
+        var table = $('#t_tipo_concreto').DataTable({
             //"processing": true,
             //"scrollX": true,
             "ajax": {
-                "url": "data_table_resistencia.php",
+                "url": "data_table_tipo_concreto.php",
                 "dataSrc": ""
             },
            
@@ -124,7 +126,7 @@
         } );
     } ).draw();
 
-        $('#t_resistencia_concreto tbody').on('click', 'button', function() {
+        $('#t_tipo_concreto tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data();
             var id = data['id'];
 

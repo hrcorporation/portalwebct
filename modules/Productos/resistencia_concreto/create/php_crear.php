@@ -12,31 +12,20 @@ $t22_resistencia_concre = new t22_resistencia_concre();
 $php_estado = false;
 $log = false;
 
-
-if(isset($_POST['txt_cod']) && !empty($_POST['txt_cod']) && isset($_POST['txt_descripcion']) && !empty($_POST['txt_descripcion']) )
-{
+if (isset($_POST['txt_cod']) && !empty($_POST['txt_cod']) && isset($_POST['txt_descripcion']) && !empty($_POST['txt_descripcion'])) {
     $cod = $_POST['txt_cod'];
     $descripcion = $_POST['txt_descripcion'];
-    if($t22_resistencia_concre->crear_resistencia_concreto($cod, $descripcion)){
+    if ($t22_resistencia_concre->crear_resistencia_concreto($cod, $descripcion)) {
         $php_estado = true;
-    }else{
+    } else {
         $log = 'No Guardo Correctamente';
     }
-
-
 }
-
-
-
-    
-
 $datos = array(
     'estado' => $php_estado,
     'log' => $log,
-    'post' =>$_POST
+    'post' => $_POST
 );
-
-
 echo json_encode($datos, JSON_FORCE_OBJECT);
 
 //print json_encode($datos, JSON_FORCE_OBJECT);

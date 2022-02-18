@@ -44,15 +44,15 @@ require '../../../../vendor/autoload.php'; ?>
                     <form method="POST" name="FormCrearTipoConcreto" id="FormCrearTipoConcreto">
                         <div class="row">
                             <div class="col-md-6">
-                            <div class="form-group">
+                                <div class="form-group">
                                     <label> Codigo TConcreto </label>
-                                    <input type="text" class="form-control" id="Txb_CodTConcreto" name="Txb_CodTConcreto">
+                                    <input type="text" class="form-control" id="txt_CodTConcreto" name="txt_CodTConcreto">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                            <div class="form-group">
+                                <div class="form-group">
                                     <label> Descripcion TC </label>
-                                    <input type="text" class="form-control" id="Txb_DescripcionTC" name="Txb_DescripcionTC">
+                                    <input type="text" class="form-control" id="txt_DescripcionTC" name="txt_DescripcionTC">
                                 </div>
                             </div>
                         </div>
@@ -84,207 +84,33 @@ require '../../../../vendor/autoload.php'; ?>
 <!-- /.content-wrapper -->
 
 <?php include '../../../../layout/footer/footer4.php' ?>
-
-
 <script>
-    $(function() {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-        });
-        //Initialize Select2 Elements
-        $('.select2').select2()
-    });
-</script>
-<script>
-    $(function() {
-        $(document).ready(function(e) {
-            /**********************************************************************************************************************************/
-            // LISTA CLIENTE      - cheke  
-            /**********************************************************************************************************************************/
+    $(document).ready(function(e) {
+        $("#FormCrearTipoConcreto").on('submit', (function(e) {
+            e.preventDefault();
             $.ajax({
-                url: "get_datosConcreto.php",
+                url: "php_crear.php",
                 type: "POST",
-                data: {
-                    tipo: "Get_DatosConcreto",
-                    task: "1",
-                },
-                success: function(response) {
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('exitoso');
 
-                    if (response.estado) {
-                        $('#Txb_CodTConcreto').html(response.CodTConcreto);
-                        $('#Txb_DescripcionTC').html(response.DescripcionTC);
                     } else {
-                        console.log(response.msg);
+                        toastr.warning(data.errores);
                     }
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
-                }
+                },
             });
-            ////////////////////////////////////////////////////
-            $('#Txb_TipoConcreto').on('change', function() {
-                $('#CodigoConcreto').html("");
-                $('#DescripcionConcreto').html("");
-                $.ajax({
-                    url: "GetDatos.php",
-                    type: "POST",
-                    data: {
-                        Txb_TipoConcreto: ($('#Txb_TipoConcreto').val()),
-                        Txb_ResistenciaConcreto: ($('#Txb_ResistenciaConcreto').val()),
-                        Txb_TMAgregado: ($('#Txb_TMAgregado').val()),
-                        Txb_CrtConcreto: ($('#Txb_CrtConcreto').val()),
-                        Txb_ColorConcreto: ($('#Txb_ColorConcreto').val()),
-
-                        tipo: "Get_Datos1",
-                        task: "2",
-                    },
-                    success: function(response) {
-
-                        $('#Txb_CodigoSyscafe').html(response.CodigoF);
-                        $('#CodigoConcreto').html(response.CodigoF);
-                        $('#DescripcionConcreto').html(response.DescpF);
-                        $('#Txb_Nombre').val(response.CodigoF);
-                        $('#Txb_Descripcion').val(response.DescpF);
-                    },
-                    error: function(respuesta) {
-
-                        alert(JSON.stringify(respuesta));
-                    }
-                });
-            });
-            ///////////////////////////////////////////////////
-            ////////////////////////////////////////////////////
-            $('#Txb_ResistenciaConcreto').on('change', function() {
-                $('#CodigoConcreto').html("");
-                $('#DescripcionConcreto').html("");
-                $.ajax({
-                    url: "GetDatos.php",
-                    type: "POST",
-                    data: {
-                        Txb_TipoConcreto: ($('#Txb_TipoConcreto').val()),
-                        Txb_ResistenciaConcreto: ($('#Txb_ResistenciaConcreto').val()),
-                        Txb_TMAgregado: ($('#Txb_TMAgregado').val()),
-                        Txb_CrtConcreto: ($('#Txb_CrtConcreto').val()),
-                        Txb_ColorConcreto: ($('#Txb_ColorConcreto').val()),
-                        tipo: "Get_Datos1",
-                        task: "2",
-                    },
-                    success: function(response) {
-
-
-                        $('#CodigoConcreto').html(response.CodigoF);
-                        $('#DescripcionConcreto').html(response.DescpF);
-                        $('#Txb_Nombre').val(response.CodigoF);
-                        $('#Txb_Descripcion').val(response.DescpF);
-                    },
-                    error: function(respuesta) {
-
-                        alert(JSON.stringify(respuesta));
-
-                    }
-                });
-            });
-            ///////////////////////////////////////////////////
-            ////////////////////////////////////////////////////
-            $('#Txb_TMAgregado').on('change', function() {
-                $.ajax({
-                    url: "GetDatos.php",
-                    type: "POST",
-                    data: {
-
-                        Txb_TipoConcreto: ($('#Txb_TipoConcreto').val()),
-                        Txb_ResistenciaConcreto: ($('#Txb_ResistenciaConcreto').val()),
-                        Txb_TMAgregado: ($('#Txb_TMAgregado').val()),
-                        Txb_CrtConcreto: ($('#Txb_CrtConcreto').val()),
-                        Txb_ColorConcreto: ($('#Txb_ColorConcreto').val()),
-                        tipo: "Get_Datos1",
-                        task: "2",
-                    },
-                    success: function(response) {
-
-                        $('#CodigoConcreto').html(response.CodigoF);
-                        $('#DescripcionConcreto').html(response.DescpF);
-                        $('#Txb_Nombre').val(response.CodigoF);
-                        $('#Txb_Descripcion').val(response.DescpF);
-
-                    },
-                    error: function(respuesta) {
-
-                        alert(JSON.stringify(respuesta));
-
-                    }
-                });
-            });
-
-            ///////////////////////////////////////////////////
-
-            ////////////////////////////////////////////////////
-            $('#Txb_CrtConcreto').on('change', function() {
-                $.ajax({
-                    url: "GetDatos.php",
-                    type: "POST",
-                    data: {
-
-                        Txb_TipoConcreto: ($('#Txb_TipoConcreto').val()),
-                        Txb_ResistenciaConcreto: ($('#Txb_ResistenciaConcreto').val()),
-                        Txb_TMAgregado: ($('#Txb_TMAgregado').val()),
-                        Txb_CrtConcreto: ($('#Txb_CrtConcreto').val()),
-                        Txb_ColorConcreto: ($('#Txb_ColorConcreto').val()),
-                        tipo: "Get_Datos1",
-                        task: "2",
-                    },
-                    success: function(response) {
-
-                        $('#CodigoConcreto').html(response.CodigoF);
-                        $('#DescripcionConcreto').html(response.DescpF);
-                        $('#Txb_Nombre').val(response.CodigoF);
-                        $('#Txb_Descripcion').val(response.DescpF);
-                    },
-                    error: function(respuesta) {
-
-                        alert(JSON.stringify(respuesta));
-
-                    }
-                });
-            }); ////////////////////////////////////////////////////
-            $('#Txb_ColorConcreto').on('change', function() {
-                $.ajax({
-                    url: "GetDatos.php",
-                    type: "POST",
-                    data: {
-
-                        Txb_TipoConcreto: ($('#Txb_TipoConcreto').val()),
-                        Txb_ResistenciaConcreto: ($('#Txb_ResistenciaConcreto').val()),
-                        Txb_TMAgregado: ($('#Txb_TMAgregado').val()),
-                        Txb_CrtConcreto: ($('#Txb_CrtConcreto').val()),
-                        Txb_ColorConcreto: ($('#Txb_ColorConcreto').val()),
-                        tipo: "Get_Datos1",
-                        task: "2",
-                    },
-                    success: function(response) {
-
-                        $('#CodigoConcreto').html(response.CodigoF);
-                        $('#DescripcionConcreto').html(response.DescpF);
-                        $('#Txb_Nombre').val(response.CodigoF);
-                        $('#Txb_Descripcion').val(response.DescpF);
-                    },
-                    error: function(respuesta) {
-                        alert(JSON.stringify(respuesta));
-                    }
-                });
-            });
-
-        });
+        }));
     });
 </script>
-<script src="ajax_crear.js"> </script>
-
 </body>
 
 </html>
