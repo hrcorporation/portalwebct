@@ -14,18 +14,11 @@ require '../../../vendor/autoload.php';
 //$conexion_bd = new conexion();
 //$conexion_bd->connect();
 
-switch ($rol_user) {
-    case 1:
-        $get_datos = new get_datos();
+$get_datos = new get_datos();
         $t10_vehiculo = new t10_vehiculo();
         $t1_terceros = new t1_terceros();
         $php_clases = new php_clases();
-        break;
 
-    default:
-        print('<script> window.location = "../index.php"</script>');
-        break;
-}
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
