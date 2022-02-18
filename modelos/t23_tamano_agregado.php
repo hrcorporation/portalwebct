@@ -10,6 +10,51 @@ class t23_tamano_agregado extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
+    function crear_tamano_agregado_concreto($ct23_CodTAC, $ct23_DescripcionTAC)
+    {
+        $this->fecha_create = date("Y-m-d H:i:s");
+        $this->estado = 1;
+        $this->ct23_CodTAC = $ct23_CodTAC;
+        $this->ct23_DescripcionTAC = $ct23_DescripcionTAC;
+
+        $sql = "INSERT INTO `ct23_tamanoagregadoconcreto`(`ct23_FechaCreacion`, `ct23_estado`, `ct23_CodTAC`, `ct23_DescripcionTAC`) VALUES (:ct23_FechaCreacion, :ct23_estado, :ct23_CodTAC, :ct23_DescripcionTAC)";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':ct23_FechaCreacion', $this->fecha_create, PDO::PARAM_STR);
+        $stmt->bindParam(':ct23_estado', $this->estado, PDO::PARAM_INT);
+        $stmt->bindParam(':ct23_CodTAC', $this->ct23_CodTAC, PDO::PARAM_STR);
+        $stmt->bindParam(':ct23_DescripcionTAC', $this->ct23_DescripcionTAC, PDO::PARAM_STR);
+
+        $result = $stmt->execute();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        return $result;
+    }
+    function get_datatable_tamano_agregado_concreto()
+    {
+        $sql = "SELECT `ct23_IdTAC`, `ct23_FechaCreacion`, `ct23_estado`, `ct23_CodTAC`, `ct23_DescripcionTAC` FROM `ct23_tamanoagregadoconcreto`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Ejecutar 
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['ct23_IdTAC'];
+                    $datos['cod'] = $fila['ct23_CodTAC'];
+                    $datos['descripcion'] = $fila['ct23_DescripcionTAC'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     function get_tamano_agregado_concre_id($id)
     {
         $this->id = $id;

@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tipo de concreto</h1>
+                    <h1>Tamaño agregado del concreto</h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div id="contenido">
-                    <table id="t_tipo_concreto" class="table table-bordered table-striped">
+                    <table id="t_tamano_agregado_concreto" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th> N </th>
@@ -90,11 +90,11 @@
     $(document).ready(function() {
 
         var n = 1;
-        var table = $('#t_tipo_concreto').DataTable({
+        var table = $('#t_tamano_agregado_concreto').DataTable({
             //"processing": true,
             //"scrollX": true,
             "ajax": {
-                "url": "data_table_tipo_concreto.php",
+                "url": "data_table_tamano_agregado_concreto.php",
                 "dataSrc": ""
             },
            
@@ -126,7 +126,7 @@
         } );
     } ).draw();
 
-        $('#t_tipo_concreto tbody').on('click', 'button', function() {
+        $('#t_tamano_agregado_concreto tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data();
             var id = data['id'];
 
@@ -136,13 +136,7 @@
         setInterval(function() {
             table.ajax.reload(null, false);
         }, 10000);
-
-
-
     });
 </script>
-
-
 </body>
-
 </html>
