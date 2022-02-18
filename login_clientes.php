@@ -3,10 +3,10 @@ session_start();
 
 header('Content-Type: application/json');
 
-require 'include/conexion.php';
+require 'include/conexion_local.php';
 //require 'include/LibreriasHR.php';
 
-$conexion_bd = new conexion();
+$conexion_bd = new conexion_local();
 $conexion_bd->connect();
 
 

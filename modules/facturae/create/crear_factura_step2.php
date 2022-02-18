@@ -222,7 +222,8 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                         <?php
                                         $i = 0;
                                         $datos_anexo = $t27_factura->select_anexo_factura($id_cliente);
-                                        while ($fila_remi = $datos_anexo->fetch(PDO::FETCH_ASSOC)) {
+                                        foreach ($datos_anexo as $fila_remi) {
+                                  
                                             $i++;
                                             $id = $fila_remi['id'];
                                             $nombre_doc = $fila_remi['nombre_doc'];
@@ -278,14 +279,7 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
 <?php include '../../../layout/footer/footer3.php' ?>
 <script src="../../../plugins/datatables/datatables.js"></script>
 
-<script>
-    $(document).ready(function() {
-        $('#tabla_remisiones').DataTable({});
-        $('#tabla_anexos').DataTable({});
 
-
-    });
-</script>
 
 <script type="text/javascript">
     function format(input) {
@@ -310,6 +304,11 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
 <script>
     $(document).ready(function() {
         $('#tabla_remi').DataTable({
+            "scrollY": "500px",
+            "scrollCollapse": true,
+            "paging": false
+        });
+        $('#tabla_anexos').DataTable({
             "scrollY": "500px",
             "scrollCollapse": true,
             "paging": false

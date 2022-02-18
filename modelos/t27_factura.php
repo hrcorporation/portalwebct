@@ -131,6 +131,27 @@ class t27_factura extends conexionPDO
         $this->PDO->closePDO();
     }
 
+
+    function eliminafactura_anexo($id_factura)
+    {
+        $this->id_factura = $id_factura;
+
+        $sql = "DELETE FROM `fact_anexos` WHERE `id_fact` = :id_factura";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_factura', $this->id_factura, PDO::PARAM_INT);
+
+        // Ejecutar 
+        $result = $stmt->execute();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function eliminafactura_remi($id_factura)
     {
         $this->id_factura = $id_factura;
@@ -230,6 +251,52 @@ class t27_factura extends conexionPDO
     //   return $result;
     // }
 
+    function buscar_factura_anexos_for_id_factura($id_factura)
+    {
+        $this->numero_factura = $id_factura;
+
+        $sql = "SELECT anexos.id, anexos.nombre_doc, anexos.archivo_doc FROM `fact_anexos` INNER JOIN anexos ON fact_anexos.id_anexo = anexos.id   WHERE `id_fact` = :id_factura";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id_factura', $this->numero_factura, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+              while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                $filaf['nombre_doc'] = $fila['nombre_doc'];
+                $filaf['archivo_doc'] = $fila['archivo_doc'];
+                $filafinal[] =$filaf;
+              }
+              return $filafinal;
+            } else {
+              return false;
+            }
+          } else {
+            return false;
+          }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        return $stmt;
+    }
+
+    function buscar_factura_anexos($id_factura)
+    {
+        $this->numero_factura = $id_factura;
+
+        $sql = "SELECT `id_fact`, `id_anexo` FROM `fact_anexos` WHERE `id_fact` = :id_factura";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id_factura', $this->numero_factura, PDO::PARAM_INT);
+
+        $result = $stmt->execute();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        return $stmt;
+    }
+
     function buscar_factura_remi($id_factura)
     {
         $this->numero_factura = $id_factura;
@@ -245,6 +312,28 @@ class t27_factura extends conexionPDO
 
         return $stmt;
     }
+
+    function insertar_factura_anexo($id_factura, $id_anexo)
+    {
+
+        $this->numero_factura = $id_factura;
+        $this->id_anexo = $id_anexo;
+
+        $sql = "INSERT INTO `fact_anexos`(`id_fact`, `id_anexo`) VALUES (:id_fact, :id_anexo)";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id_fact', $this->numero_factura, PDO::PARAM_INT);
+        $stmt->bindParam(':id_anexo', $this->id_anexo, PDO::PARAM_INT);
+
+
+        $result = $stmt->execute();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        return $result;
+    }
+
+
     function insertar_factura_remi($id_factura, $id_remision)
     {
 
@@ -345,6 +434,9 @@ class t27_factura extends conexionPDO
 
         return $id_insert;
     }
+
+    
+
     function select_anexo_factura($id_cliente){
         $this->id_cliente = $id_cliente;
         $sql = "SELECT * FROM `anexos` WHERE `id_cliente` =:id_cliente";
@@ -354,11 +446,26 @@ class t27_factura extends conexionPDO
         // Asignando Datos ARRAY => SQL
         $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
 
-        // Ejecutar 
-        $result = $stmt->execute();
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+              while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                $filaf['id'] = $fila['id'];
+                $filaf['id_cliente'] = $fila['id_cliente'];
+                $filaf['id_obra'] = $fila['id_obra'];
+                $filaf['nombre_doc'] = $fila['nombre_doc'];
+                $filaf['archivo_doc'] = $fila['archivo_doc'];
+                $filafinal[] =$filaf;
+              }
+              return $filafinal;
+            } else {
+              return false;
+            }
+          } else {
+            return false;
+          }
 
-        //Cerrar Conexionid_remision
-        return $stmt;
+      
     }
     
     function select_factura()

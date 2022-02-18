@@ -115,7 +115,7 @@ if(isset($_POST['check_habilitar_cli_ob']) && !empty($_POST['check_habilitar_cli
 $php_remisiones = $_POST["remision"];
 
 ///remisiones seleccionadas
-$php_contadorremisiones = count($php_remisiones);
+//$php_contadorremisiones = count($php_remisiones);
 
 if ($php_remisiones) {
     $eliminar_remisiones = $t27_factura->eliminafactura_remi($id_factura);
@@ -133,6 +133,42 @@ if ($php_remisiones) {
         }
     }
 }
+
+
+/**
+ * ================================================================================================
+ *  Actualizar Las Anexos
+ * ================================================================================================
+ */
+
+
+///remisiones seleccionadas
+
+if (isset($_POST["anexo"])) {
+    $php_contadoranexos = count($_POST["anexo"]);
+    if($php_contadoranexos >= 1){
+    $eliminar_remisiones = $t27_factura->eliminafactura_anexo($id_factura);
+
+        foreach ($_POST["anexo"] as $number => $id_anexo) {
+            $estado = 1;
+            $result2 = $t27_factura->insertar_factura_anexo($id_factura, $id_anexo);
+            if ($result2) {
+                $php_estado = true;
+                //$php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
+            } else {
+                $php_error[] = "hubo un error al guardar las anexos";
+            }
+        }
+    }else{
+    $eliminar_remisiones = $t27_factura->eliminafactura_anexo($id_factura);
+
+    }
+   
+}else{
+    $eliminar_remisiones = $t27_factura->eliminafactura_anexo($id_factura);
+
+}
+
 
 }else{
     $php_error[] = "No es posible Actualizar la factura";
