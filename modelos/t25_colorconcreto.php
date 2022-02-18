@@ -8,6 +8,52 @@ class t25_colorconcreto extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
+
+    function crear_color_concreto($ct25_CodConcreto, $ct25_DescripcionCC)
+    {
+        $this->fecha_create = date("Y-m-d H:i:s");
+        $this->estado = 1;
+        $this->ct25_CodConcreto = $ct25_CodConcreto;
+        $this->ct25_DescripcionCC = $ct25_DescripcionCC;
+
+        $sql = "INSERT INTO `ct25_colorconcreto`(`ct25_FechaCreacion`, `ct25_Estado`, `ct25_CodConcreto`, `ct25_DescripcionCC`) VALUES  (:ct25_FechaCreacion, :ct25_Estado, :ct25_CodConcreto, :ct25_DescripcionCC)";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':ct25_FechaCreacion', $this->fecha_create, PDO::PARAM_STR);
+        $stmt->bindParam(':ct25_Estado', $this->estado, PDO::PARAM_INT);
+        $stmt->bindParam(':ct25_CodConcreto', $this->ct25_CodConcreto, PDO::PARAM_STR);
+        $stmt->bindParam(':ct25_DescripcionCC', $this->ct25_DescripcionCC, PDO::PARAM_STR);
+
+        $result = $stmt->execute();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        return $result;
+    }
+    function get_datatable_color_concreto()
+    {
+        $sql = "SELECT `ct25_IdColorC`, `ct25_FechaCreacion`, `ct25_Estado`, `ct25_CodConcreto`, `ct25_DescripcionCC` FROM `ct25_colorconcreto`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Ejecutar 
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['ct25_IdColorC'];
+                    $datos['cod'] = $fila['ct25_CodConcreto'];
+                    $datos['descripcion'] = $fila['ct25_DescripcionCC'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     function get_colorconcreto_id($id)
     {
         $this->id = $id;

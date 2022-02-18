@@ -113,6 +113,25 @@
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-header">Color del concreto</li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="color_concreto/index.php" class="nav-link ">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Explorar
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="color_concreto/create/crear.php" class="nav-link ">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Crear
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
