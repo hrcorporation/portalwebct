@@ -172,6 +172,7 @@ while ($fila_remi = $datos_remision->fetch(PDO::FETCH_ASSOC)) {
                                             </select>
                                         </div>
                                     </div>
+                                   
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="txt_conductor"> Conductor</label>
