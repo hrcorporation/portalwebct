@@ -27,7 +27,8 @@ $resultado = "";
 
 if (isset($_POST['valor']) && !empty($_POST['valor']) &&
     isset($_POST['titulo']) && !empty($_POST['titulo']) &&
-    isset($_POST['cliente']) && !empty($_POST['cliente'])
+    isset($_POST['cliente']) && !empty($_POST['cliente']) &&
+    isset($_POST['remision']) && !empty($_POST['remision'])
 ){
 
     $php_idcliente = htmlspecialchars($_POST["cliente"]);
