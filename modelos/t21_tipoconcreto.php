@@ -66,4 +66,28 @@ class t21_tipoconcreto extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+
+    function crear_tipo_concreto($ct21_FechaCreacion, $ct21_estado, $ct21_CodTConcreto, $ct21_DescripcionTC)
+    {
+        $this->ct21_FechaCreacion = $ct21_FechaCreacion;
+        $this->ct21_estado = $ct21_estado;
+        $this->ct21_CodTConcreto = $ct21_CodTConcreto;
+        $this->ct21_DescripcionTC = $ct21_DescripcionTC;
+
+        $sql = "INSERT INTO `ct21_tipoconcreto`(`ct21_FechaCreacion`, `ct21_estado`, `ct21_CodTConcreto`, `ct21_DescripcionTC`) VALUES (:ct21_FechaCreacion, :ct21_estado, :ct21_CodTConcreto, :ct21_DescripcionTC)";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':ct21_FechaCreacion' , $this->ct21_FechaCreacion, PDO::PARAM_STR);
+        $stmt->bindParam(':ct21_estado' , $this->ct21_estado, PDO::PARAM_INT);
+        $stmt->bindParam(':ct21_CodTConcreto' , $this->ct21_CodTConcreto, PDO::PARAM_STR);
+        $stmt->bindParam(':ct21_DescripcionTC' , $this->ct21_DescripcionTC, PDO::PARAM_STR);
+
+        if ($stmt->execute()) { // Ejecutar
+            $id_insert = $this->con->lastInsertId();
+            
+            return $id_insert;
+        }else{
+            return false;
+        }
+    }
 }

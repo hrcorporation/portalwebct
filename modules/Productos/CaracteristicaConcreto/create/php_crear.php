@@ -18,8 +18,7 @@ $resultado = "";
 
 
 if (isset($_POST['campo']) && !empty($_POST['campo'])){
-     
-    
+
 } else {
     
 }
@@ -30,6 +29,4 @@ $datos = array(
     'result' => $resultado,
 );
 
-
 echo json_encode($datos, JSON_FORCE_OBJECT);
-?>
