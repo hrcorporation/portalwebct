@@ -21,12 +21,14 @@ $errores[] = "";
 $resultado = "";
 
 
-if (isset($_POST['Txb_Descripcion']) && !empty($_POST['Txb_Descripcion']) && isset($_POST['Txb_Nombre']) && !empty($_POST['Txb_Nombre'])) {
-
-    
-    
-} else {
-    
+if (isset($_POST['txt_CodTConcreto']) && !empty($_POST['txt_CodTConcreto']) && isset($_POST['txt_DescripcionTC']) && !empty($_POST['txt_DescripcionTC'])) {
+    $codTC = $_POST['txt_CodTConcreto'];
+    $descripcionTC = $_POST['txt_DescripcionTC'];
+    if ($t21_tipoconcreto->crear_tipo_concreto($codTC, $descripcionTC)) {
+        $php_estado = true;
+    } else {
+        $log = 'No Guardo Correctamente';
+    }
 }
 
 $datos = array(
