@@ -63,9 +63,10 @@ if (isset($datos_array)) {
         $observaciones_cliente = $datos['ct26_observaciones_cli'];
         $observaciones_funcionario = $datos['ct26_observaciones'];
         $observaciones_despachador = $datos['ct26_observaciones_desp'];
+        $razon_anulacion = $datos['ct26_razon_anular'];
 
 
-        $observaciones = $bomba." ; ".$observaciones_cliente . " ; " . $observaciones_funcionario. " ; ".$observaciones_despachador;
+        $observaciones = $bomba." ; ".$observaciones_cliente . " ; " . $observaciones_funcionario. " ; ".$observaciones_despachador."; ".$razon_anulacion;
         
         $nombres_recibido = $datos['ct26_recibido'];
         //$ = $datos[''];

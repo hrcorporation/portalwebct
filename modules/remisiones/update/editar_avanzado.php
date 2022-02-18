@@ -818,17 +818,18 @@ $(document).ready(function() {
         });
     });
 
-    $('#C_IdTerceros').on('change', function() {
+    $('#txt_cliente').on('change', function() {
+        
         $.ajax({
             url: "get_data.php",
             type: "POST",
             data: {
-                idCliente: ($('#C_IdTerceros').val()),
+                idCliente: ($('#txt_cliente').val()),
                 task: "1",
             },
             success: function(response) {
-                console.log(response.estado);
-                $('#C_Obras').html(response.obras);
+                
+                $('#txt_obra').html(response.obras);
             },
             error: function(respuesta) {
                 alert(JSON.stringify(respuesta));
