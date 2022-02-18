@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 
 if (
     isset($_SESSION['session_key'])         && !empty($_SESSION['session_key']) &&
@@ -10,6 +11,8 @@ if (
         require '../../../librerias/autoload.php';
         include '../../../modelos/autoload.php';
         include '../../../vendor/autoload.php';
+        $firephp = FirePHP::getInstance(true);
+
 
         $id_usuario = $_SESSION['id_usuario'];
         $nombre_usuario = $_SESSION['nombre_usuario'];
