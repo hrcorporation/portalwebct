@@ -16,6 +16,61 @@ class t26_remisiones extends conexionPDO
   }
   // SELECT ct27_facturae.ct27_nombre_factura, ct26_remisiones.ct26_codigo_remi FROM `ct28_factura_remi` INNER JOIN ct27_facturae ON ct28_factura_remi.ct28_id_fact = ct27_facturae.ct27_id_factura INNER JOIN ct26_remisiones ON ct28_factura_remi.ct28_id_remision = ct26_remisiones.ct26_id_remision WHERE `ct27_fecha_subda` >= '2021-03-01 00:00:40' ORDER BY `ct27_id_factura` DESC
 
+  // Actualizar Hora Remision
+  function update_hora_remi($id_remision, $hora)
+  {
+    $this->id_remision = (int)$id_remision;
+    $this->hora = $hora;
+    $sql = "UPDATE `ct26_remisiones` SET `ct26_hora_remi`= :hora_remi WHERE `ct26_remisiones`.`ct26_id_remision` = :id_remision";
+    $stmt = $this->con->prepare($sql);
+    $stmt->bindParam(':hora_remi', $this->hora, PDO::PARAM_STR);
+    $stmt->bindParam(':id_remision', $this->id_remision, PDO::PARAM_INT);
+
+
+    if ($stmt->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // Numero Remision
+  function numero_remi($id_remision, $num_remi)
+  {
+    $this->id_remision = (int)$id_remision;
+    $this->num_remi = (int)$num_remi;
+    $sql = "UPDATE `ct26_remisiones` SET `ct26_codigo_remi`= :num_remi WHERE `ct26_remisiones`.`ct26_id_remision` = :id_remision";
+    $stmt = $this->con->prepare($sql);
+    $stmt->bindParam(':num_remi', $this->num_remi, PDO::PARAM_INT);
+    $stmt->bindParam(':id_remision', $this->id_remision, PDO::PARAM_INT);
+
+
+    if ($stmt->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  function metros_cubi_remi($id_remision, $metros_cubicos)
+  {
+    $this->id_remision = (int)$id_remision;
+    $this->metros_cubicos = doubleval($metros_cubicos);
+    $sql = "UPDATE `ct26_remisiones` SET `ct26_metros`= :metros_cubicos WHERE `ct26_remisiones`.`ct26_id_remision` = :id_remision";
+    $stmt = $this->con->prepare($sql);
+    $stmt->bindParam(':metros_cubicos', $this->metros_cubicos, PDO::PARAM_STR);
+    $stmt->bindParam(':id_remision', $this->id_remision, PDO::PARAM_INT);
+
+
+    if ($stmt->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
   function lista_estado_obra()
   {
     $sql = "SELECT ct5_obras.ct5_IdObras, ct1_terceros.ct1_RazonSocial,ct5_obras.ct5_NombreObra, ct5_obras.ct5_estado2 FROM `ct5_obras` INNER JOIN ct1_terceros ON ct5_obras.ct5_IdTerceros = ct1_terceros.ct1_IdTerceros WHERE `ct5_estado2` = 2 ";
@@ -1044,6 +1099,26 @@ class t26_remisiones extends conexionPDO
     }
 
     $this->PDO->closePDO();
+  }
+
+
+  //
+
+  function rz_anular_remision($id_remision,$rz_anular)
+  {
+    $this->id_remision = $id_remision;
+    $this->rz_anular = $rz_anular;
+    $sql = "UPDATE `ct26_remisiones` SET `ct26_razon_anular` = :rz_anular WHERE `ct26_remisiones`.`ct26_id_remision` = :id_remision";
+    $stmt = $this->con->prepare($sql);
+
+    $stmt->bindParam(':rz_anular', $this->rz_anular, PDO::PARAM_STR);
+    $stmt->bindParam(':id_remision', $this->id_remision, PDO::PARAM_INT);
+    // Ejecutar 
+    if ($stmt->execute()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   function anular_remision($id_remision)
