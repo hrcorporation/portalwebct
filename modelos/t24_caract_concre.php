@@ -51,7 +51,31 @@ class t24_caract_concre extends conexionPDO
 
         return $result;
     }
-    
+    function modificar_caracteristica_concreto($id, $ct24_CodCC, $ct24_DescripcionCC)
+    {
+        $this->ct24_CodCC = $ct24_CodCC;
+        $this->ct24_DescripcionCC = $ct24_DescripcionCC;
+        $this->id = $id;
+
+        $sql = "UPDATE `ct24_caracteristicaconcreto` SET `ct24_CodCC`= :ct24_CodCC,`ct24_DescripcionCC`= :ct24_DescripcionCC WHERE `ct24_IdCC` = :id";
+
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':ct24_CodCC', $this->ct24_CodCC, PDO::PARAM_STR);
+        $stmt->bindParam(':ct24_DescripcionCC', $this->ct24_DescripcionCC, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+        // Ejecutar 
+        $result = $stmt->execute();
+
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $result;
+    }
     function get_caract_concre_id($id)
     {
         $this->id = $id;
