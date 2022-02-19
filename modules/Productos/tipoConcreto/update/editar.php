@@ -60,7 +60,7 @@ if (is_array($datos_producto)) {
             <div class="card-body">
                 <div id="contenido">
                     <form method="POST" name="FormCrearTipoConcreto" id="FormCrearTipoConcreto">
-                        <input type="hidden" name="txt_id" id="txt_id" value ="<?php echo $id_producto ?>">
+                        <input type="hidden" name="txt_id" id="txt_id" value="<?php echo $id_producto ?>">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -79,8 +79,7 @@ if (is_array($datos_producto)) {
                             <div class="row" style="text-align:center">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <button type="button" id="btn-eliminar" name="btn-eliminar"
-                                            class="btn btn-block btn-danger">Eliminar</button>
+                                        <button type="button" id="btn-eliminar" name="btn-eliminar" class="btn btn-block btn-danger">Eliminar</button>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -135,25 +134,25 @@ if (is_array($datos_producto)) {
             });
         }));
         $("#btn-eliminar").click(function() {
-        var id = <?php echo $id_producto ?>;
-        $.ajax({
-            url: "php_eliminar.php",
-            type: "POST",
-            data: {
-                task: 1,
-                id: id,
+            var id = <?php echo $id_producto ?>;
+            $.ajax({
+                url: "php_eliminar.php",
+                type: "POST",
+                data: {
+                    task: 1,
+                    id: id,
 
-            },
-            success: function(response) {
-                toastr.success('Fue Eliminado Correctamente');
-                window.location = '../index.php'
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
-            },
+                },
+                success: function(response) {
+                    toastr.success('Fue Eliminado Correctamente');
+                    window.location = '../index.php'
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
 
+            });
         });
-    });
     });
 </script>
 </body>
