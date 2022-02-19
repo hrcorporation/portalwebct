@@ -8,7 +8,8 @@ class t24_caract_concre extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
-    function get_datatable_caracteristica_concreto(){
+    function get_datatable_caracteristica_concreto()
+    {
         $sql = "SELECT `ct24_IdCC`, `ct24_FechaCreacion`, `ct24_estado`, `ct24_CodCC`, `ct24_DescripcionCC` FROM `ct24_caracteristicaconcreto`";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -31,7 +32,8 @@ class t24_caract_concre extends conexionPDO
             return false;
         }
     }
-    function crear_caracteristica_concreto($ct24_CodCC, $ct24_DescripcionCC){
+    function crear_caracteristica_concreto($ct24_CodCC, $ct24_DescripcionCC)
+    {
         $this->fecha_create = date("Y-m-d H:i:s");
         $this->estado = 1;
         $this->ct24_CodCC = $ct24_CodCC;
@@ -76,6 +78,25 @@ class t24_caract_concre extends conexionPDO
         //resultado
         return $result;
     }
+    function eliminar_caracteristica_concreto($id)
+    {
+        $this->id = $id;
+        $sql = "DELETE FROM `ct24_caracteristicaconcreto` WHERE `ct24_IdCC` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+    
     function get_caract_concre_id($id)
     {
         $this->id = $id;

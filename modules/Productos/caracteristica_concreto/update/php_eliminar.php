@@ -21,8 +21,7 @@ $resultado = "";
 
 if (isset($_POST['id']) && !empty($_POST['id'])) {
     $id = $_POST['id'];
-   
-    if ($t24_caract_concre->modificar_caracteristica_concreto($id, $CodCC, $DescripcionCC)) {
+    if ($t24_caract_concre->eliminar_caracteristica_concreto($id)) {
         $php_estado = true;
     } else {
         $log = 'No Guardo Correctamente';
