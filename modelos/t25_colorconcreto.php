@@ -30,6 +30,31 @@ class t25_colorconcreto extends conexionPDO
 
         return $result;
     }
+    function modificar_color_concreto($id, $ct25_CodConcreto, $ct25_DescripcionCC)
+    {
+        $this->ct25_CodConcreto = $ct25_CodConcreto;
+        $this->ct25_DescripcionCC = $ct25_DescripcionCC;
+        $this->id = $id;
+
+        $sql = "UPDATE `ct25_colorconcreto` SET `ct25_CodConcreto`= :ct25_CodConcreto,`ct25_DescripcionCC`= :ct25_DescripcionCC WHERE `ct25_IdColorC` = :id";
+
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':ct25_CodConcreto', $this->ct25_CodConcreto, PDO::PARAM_STR);
+        $stmt->bindParam(':ct25_DescripcionCC', $this->ct25_DescripcionCC, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+        // Ejecutar 
+        $result = $stmt->execute();
+
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $result;
+    }
     function get_datatable_color_concreto()
     {
         $sql = "SELECT `ct25_IdColorC`, `ct25_FechaCreacion`, `ct25_Estado`, `ct25_CodConcreto`, `ct25_DescripcionCC` FROM `ct25_colorconcreto`";

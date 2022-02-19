@@ -4,7 +4,7 @@
         $("#F_editar").on('submit', (function (e) {
             e.preventDefault();
             $.ajax({
-                url: "php_crear.php",
+                url: "php_editar.php",
                 type: "POST",
                 data: new FormData(this),
                 contentType: false,
