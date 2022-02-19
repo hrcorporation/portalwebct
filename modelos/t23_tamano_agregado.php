@@ -57,6 +57,24 @@ class t23_tamano_agregado extends conexionPDO
         return $result;
     }
 
+    function eliminar_tamano_agregado_concreto($id)
+    {
+        $this->id = $id;
+        $sql = "DELETE FROM `ct23_tamanoagregadoconcreto` WHERE `ct23_IdTAC` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
     function get_datatable_tamano_agregado_concreto()
     {
         $sql = "SELECT `ct23_IdTAC`, `ct23_FechaCreacion`, `ct23_estado`, `ct23_CodTAC`, `ct23_DescripcionTAC` FROM `ct23_tamanoagregadoconcreto`";

@@ -75,7 +75,13 @@ if (is_array($datos_producto)) {
                         </div>
                         <div class="container">
                             <div class="row" style="text-align:center">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="button" id="btn-eliminar" name="btn-eliminar"
+                                            class="btn btn-block btn-danger">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-block btn-success">Guardar</button>
                                     </div>
@@ -127,6 +133,26 @@ if (is_array($datos_producto)) {
                 },
             });
         }));
+        $("#btn-eliminar").click(function() {
+            var id = <?php echo $id_producto ?>;
+            $.ajax({
+                url: "php_eliminar.php",
+                type: "POST",
+                data: {
+                    task: 1,
+                    id: id,
+
+                },
+                success: function(response) {
+                    toastr.success('Fue Eliminado Correctamente');
+                    window.location = '../index.php'
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+
+            });
+        });
     });
 </script>
 </body>
