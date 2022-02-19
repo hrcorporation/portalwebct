@@ -55,6 +55,24 @@ class t25_colorconcreto extends conexionPDO
         //resultado
         return $result;
     }
+    function eliminar_color_concreto($id)
+    {
+        $this->id = $id;
+        $sql = "DELETE FROM `ct25_colorconcreto` WHERE `ct25_IdColorC` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
     function get_datatable_color_concreto()
     {
         $sql = "SELECT `ct25_IdColorC`, `ct25_FechaCreacion`, `ct25_Estado`, `ct25_CodConcreto`, `ct25_DescripcionCC` FROM `ct25_colorconcreto`";
