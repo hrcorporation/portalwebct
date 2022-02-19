@@ -102,16 +102,34 @@ class t21_tipoconcreto extends conexionPDO
         $stmt->bindParam(':ct21_DescripcionTC', $this->ct21_DescripcionTC, PDO::PARAM_STR);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
 
-         // Ejecutar 
-         $result = $stmt->execute();
+        // Ejecutar 
+        $result = $stmt->execute();
 
-         // Devolver el ultimo Registro insertado
-         //$id_insert = $this->con->lastInsertId();
-         //Cerrar Conexion
-         $this->PDO->closePDO();
- 
-         //resultado
-         return $result;
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $result;
+    }
+    function eliminar_tipo_concreto($id)
+    {
+        $this->id = $id;
+        $sql = "DELETE FROM `ct21_tipoconcreto` WHERE `ct21_IdTipoConcreto` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
     }
     function get_datatable_tipo_concreto()
     {
