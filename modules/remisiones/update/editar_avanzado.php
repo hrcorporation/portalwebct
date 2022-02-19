@@ -11,6 +11,8 @@ require '../../../vendor/autoload.php'; ?>
 switch ($rol_user) {
     case 1:
     case 8:
+    case 15:
+    case 16:
     case 20:
     case 29:
     case 22:
@@ -106,6 +108,12 @@ switch ($rol_user) {
                             $firephp->fb($rol_user ,FirePHP::LOG);
                                 switch ($rol_user) {
                                     case 1:
+                                        case 8:
+                                        case 15:
+                                        case 16:
+                                        case 20:
+                                        case 29:
+                                        case 22:
                                         $permisos_hora = " ";
                                     break;
                                     default:
@@ -129,6 +137,12 @@ switch ($rol_user) {
                             $firephp->fb($rol_user ,FirePHP::LOG);
                                 switch ($rol_user) {
                                     case 1:
+                                        case 8:
+                                        case 15:
+                                        case 16:
+                                        case 20:
+                                        case 29:
+                                        case 22:
                                         $permisos_num_hora = " ";
                                     break;
                                     default:
@@ -154,6 +168,12 @@ switch ($rol_user) {
                             $firephp->fb($rol_user ,FirePHP::LOG);
                                 switch ($rol_user) {
                                     case 1:
+                                        case 8:
+                                        case 15:
+                                        case 16:
+                                        case 20:
+                                        case 29:
+                                        case 22:
                                         $permisos_cli_obra = " ";
                                     break;
                                     default:
@@ -216,6 +236,13 @@ switch ($rol_user) {
                             $firephp->fb('' ,FirePHP::LOG);
                                 switch ($rol_user) {
                                     case 1:
+                                    
+                                            case 8:
+                                            case 15:
+                                            case 16:
+                                            case 20:
+                                            case 29:
+                                            case 22:
                                         $permisos_conductor_mix = " ";
                                     break;
                                     default:
@@ -291,6 +318,12 @@ switch ($rol_user) {
                             $firephp->fb('' ,FirePHP::LOG);
                                 switch ($rol_user) {
                                     case 1:
+                                        case 8:
+                                        case 15:
+                                        case 16:
+                                        case 20:
+                                        case 29:
+                                        case 22:
                                         $permisos_producto = " ";
                                     break;
                                     default:
@@ -374,6 +407,12 @@ switch ($rol_user) {
                             $firephp->fb('' ,FirePHP::LOG);
                                 switch ($rol_user) {
                                     case 1:
+                                        case 8:
+                                        case 15:
+                                        case 16:
+                                        case 20:
+                                        case 29:
+                                        case 22:
                                         $permisos_std = " ";
                                     break;
                                     default:
@@ -473,6 +512,12 @@ switch ($rol_user) {
                             $firephp->fb('' ,FirePHP::LOG);
                                 switch ($rol_user) {
                                     case 1:
+                                        case 8:
+                                        case 15:
+                                        case 16:
+                                        case 20:
+                                        case 29:
+                                        case 22:
                                         $permisos_arch = " ";
                                     break;
                                     default:
@@ -539,6 +584,12 @@ switch ($rol_user) {
                             $firephp->fb('' ,FirePHP::LOG);
                                 switch ($rol_user) {
                                     case 1:
+                                        case 8:
+                                        case 15:
+                                        case 16:
+                                        case 20:
+                                        case 29:
+                                        case 22:
                                         case 20:
                                             case 22:
                                             case 26:
@@ -608,9 +659,12 @@ switch ($rol_user) {
                             $firephp->fb('' ,FirePHP::LOG);
                                 switch ($rol_user) {
                                     case 1:
+                                        case 8:
+                                        case 15:
+                                        case 16:
                                         case 20:
-                                            case 22:
-                                            case 26:
+                                        case 29:
+                                        case 22:
                                         $permisos_btn = " ";
                                     break;
                                     default:
