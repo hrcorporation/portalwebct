@@ -31,7 +31,7 @@
                      </a>
                  </li>
                  <li class="nav-item has-treeview">
-                     <a href="actual.php" class="nav-link active">
+                     <a href="#" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Crear

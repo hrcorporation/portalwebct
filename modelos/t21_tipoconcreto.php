@@ -70,17 +70,17 @@ class t21_tipoconcreto extends conexionPDO
     function crear_tipo_concreto($ct21_CodTConcreto, $ct21_DescripcionTC)
     {
         $this->fecha_create = date("Y-m-d H:i:s");
-        $this->estado =1;
+        $this->estado = 1;
         $this->ct21_CodTConcreto = $ct21_CodTConcreto;
         $this->ct21_DescripcionTC = $ct21_DescripcionTC;
 
         $sql = "INSERT INTO `ct21_tipoconcreto`(`ct21_FechaCreacion`, `ct21_estado`, `ct21_CodTConcreto`, `ct21_DescripcionTC`) VALUES (:ct21_FechaCreacion, :ct21_estado, :ct21_CodTConcreto, :ct21_DescripcionTC)";
         $stmt = $this->con->prepare($sql);
 
-        $stmt->bindParam(':ct21_FechaCreacion' , $this->fecha_create, PDO::PARAM_STR);
-        $stmt->bindParam(':ct21_estado' , $this->estado, PDO::PARAM_INT);
-        $stmt->bindParam(':ct21_CodTConcreto' , $this->ct21_CodTConcreto, PDO::PARAM_STR);
-        $stmt->bindParam(':ct21_DescripcionTC' , $this->ct21_DescripcionTC, PDO::PARAM_STR);
+        $stmt->bindParam(':ct21_FechaCreacion', $this->fecha_create, PDO::PARAM_STR);
+        $stmt->bindParam(':ct21_estado', $this->estado, PDO::PARAM_INT);
+        $stmt->bindParam(':ct21_CodTConcreto', $this->ct21_CodTConcreto, PDO::PARAM_STR);
+        $stmt->bindParam(':ct21_DescripcionTC', $this->ct21_DescripcionTC, PDO::PARAM_STR);
 
         $result = $stmt->execute();
         //Cerrar Conexion
@@ -88,10 +88,34 @@ class t21_tipoconcreto extends conexionPDO
 
         return $result;
     }
+    function modificar_tipo_concreto($id, $ct21_CodTConcreto, $ct21_DescripcionTC)
+    {
+        $this->ct21_CodTConcreto = $ct21_CodTConcreto;
+        $this->ct21_DescripcionTC = $ct21_DescripcionTC;
+        $this->id = $id;
 
+        $sql = "UPDATE `ct21_tipoconcreto` SET `ct21_CodTConcreto`= :ct21_CodTConcreto,`ct21_DescripcionTC`= :ct21_DescripcionTC WHERE `ct21_IdTipoConcreto` = :id";
+
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':ct21_CodTConcreto', $this->ct21_CodTConcreto, PDO::PARAM_STR);
+        $stmt->bindParam(':ct21_DescripcionTC', $this->ct21_DescripcionTC, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+         // Ejecutar 
+         $result = $stmt->execute();
+
+         // Devolver el ultimo Registro insertado
+         //$id_insert = $this->con->lastInsertId();
+         //Cerrar Conexion
+         $this->PDO->closePDO();
+ 
+         //resultado
+         return $result;
+    }
     function get_datatable_tipo_concreto()
     {
-        $sql ="SELECT `ct21_IdTipoConcreto`, `ct21_FechaCreacion`, `ct21_estado`, `ct21_CodTConcreto`, `ct21_DescripcionTC` FROM `ct21_tipoconcreto`";
+        $sql = "SELECT `ct21_IdTipoConcreto`, `ct21_FechaCreacion`, `ct21_estado`, `ct21_CodTConcreto`, `ct21_DescripcionTC` FROM `ct21_tipoconcreto`";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -112,6 +136,5 @@ class t21_tipoconcreto extends conexionPDO
         } else {
             return false;
         }
-
     }
 }

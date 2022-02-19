@@ -13,17 +13,14 @@ $php_clases = new php_clases();
 $id_producto = $_GET['id'];
 
 $datos_producto = $t21_tipoconcreto->get_tipoconcreto_id($id_producto);
-if(is_array($datos_producto)){
+if (is_array($datos_producto)) {
     foreach ($datos_producto as $key) {
-
         $cod_t_concreto = $key['ct21_CodTConcreto'];
         $descripcion_TC = $key['ct21_DescripcionTC'];
     }
-}else{
+} else {
     echo "no es un array";
 }
-
-
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -52,18 +49,18 @@ if(is_array($datos_producto)){
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Crear Producto</h3>
+                <h3 class="card-title">Modificar tipo de concreto</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                 </div>
             </div>
             <div class="card-body">
                 <div id="contenido">
                     <form method="POST" name="FormCrearTipoConcreto" id="FormCrearTipoConcreto">
+                        <input type="hidden" name="txt_id" id="txt_id" value ="<?php echo $id_producto ?>">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -106,7 +103,7 @@ if(is_array($datos_producto)){
 </div>
 <!-- /.content-wrapper -->
 
-<?php include '../../../layout/footer/footer3.php' ?>
+<?php include '../../../../layout/footer/footer4.php' ?>
 <script>
     $(document).ready(function(e) {
         $("#FormCrearTipoConcreto").on('submit', (function(e) {

@@ -1,4 +1,4 @@
-<?php include '../../../../layout/validar_session4.php' ?>
+<?php include '../../../../layout/validar_session4.php'; ?>
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 

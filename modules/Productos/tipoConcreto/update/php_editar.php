@@ -3,10 +3,9 @@
 session_start();
 header('Content-Type: application/json');
 
-require '../../../includes/conexionPDO.php';
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php'; 
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php'; 
 
 $t4_productos = new t4_productos();
 $t21_tipoconcreto = new t21_tipoconcreto();
@@ -17,14 +16,15 @@ $t25_colorconcreto = new t25_colorconcreto();
 $general_modelos = new general_modelos();
 
 $php_estado = false;
-$errores[] = "";
+$php_error[] = "";
 $resultado = "";
 
 
 if (isset($_POST['txt_CodTConcreto']) && !empty($_POST['txt_CodTConcreto']) && isset($_POST['txt_DescripcionTC']) && !empty($_POST['txt_DescripcionTC'])) {
     $codTC = $_POST['txt_CodTConcreto'];
     $descripcionTC = $_POST['txt_DescripcionTC'];
-    if ($t21_tipoconcreto->crear_tipo_concreto($codTC, $descripcionTC)) {
+    $id = $_POST['txt_id'];
+    if ($t21_tipoconcreto->modificar_tipo_concreto($id, $codTC, $descripcionTC)) {
         $php_estado = true;
     } else {
         $log = 'No Guardo Correctamente';
