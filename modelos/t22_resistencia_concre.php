@@ -33,6 +33,32 @@ class t22_resistencia_concre extends conexionPDO
          }
     }
 
+    function modificar_resistencia_concreto($id, $ct22_CodResistenciaConcreto, $ct22_DescripcionRC)
+    {
+        $this->ct22_CodResistenciaConcreto = $ct22_CodResistenciaConcreto;
+        $this->ct22_DescripcionRC = $ct22_DescripcionRC;
+        $this->id = $id;
+
+        $sql = "UPDATE `ct22_resistenciaconcreto` SET `ct22_CodResistenciaConcreto`= :ct22_CodResistenciaConcreto,`ct22_DescripcionRC`= :ct22_DescripcionRC WHERE `ct22_IdResistenciaConcreto` = :id";
+
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':ct22_CodResistenciaConcreto', $this->ct22_CodResistenciaConcreto, PDO::PARAM_STR);
+        $stmt->bindParam(':ct22_DescripcionRC', $this->ct22_DescripcionRC, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+         // Ejecutar 
+         $result = $stmt->execute();
+
+         // Devolver el ultimo Registro insertado
+         //$id_insert = $this->con->lastInsertId();
+         //Cerrar Conexion
+         $this->PDO->closePDO();
+ 
+         //resultado
+         return $result;
+    }
+
     function get_datatable_resistencia_concreto()
     {
         $sql ="SELECT `ct22_IdResistenciaConcreto`, `ct22_FechaCreacion`, `ct22_estado`, `ct22_CodResistenciaConcreto`, `ct22_DescripcionRC` FROM `ct22_resistenciaconcreto`";
