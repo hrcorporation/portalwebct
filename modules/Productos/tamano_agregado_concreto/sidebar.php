@@ -17,7 +17,7 @@
                      <a href="../index.php" class="nav-link ">
                          <i class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
-                             Modulo tamaño agregado del concreto
+                             Modulos
                          </p>
                      </a>
                  </li>

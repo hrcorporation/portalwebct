@@ -1,8 +1,6 @@
 <?php
 class t23_tamano_agregado extends conexionPDO
 {
-
-
     // Iniciar Conexion
     public function __construct()
     {
@@ -10,6 +8,7 @@ class t23_tamano_agregado extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
+    //Esta funcion permite crear datos de la tabla tamaño agregado del concreto y esta requiere unos parametros como ct23_CodTAC y ct23_DescripcionTAC
     function crear_tamano_agregado_concreto($ct23_CodTAC, $ct23_DescripcionTAC)
     {
         $this->fecha_create = date("Y-m-d H:i:s");
@@ -31,6 +30,8 @@ class t23_tamano_agregado extends conexionPDO
 
         return $result;
     }
+
+    //Esta funcion permite modificar datos de la tabla tamaño agregado del concreto y esta requiere unos parametros como el id, ct23_CodTAC y ct23_DescripcionTAC y este va condicionado con el id
     function modificar_tamano_agregado($id, $ct23_CodTAC, $ct23_DescripcionTAC)
     {
         $this->ct23_CodTAC = $ct23_CodTAC;
@@ -57,6 +58,7 @@ class t23_tamano_agregado extends conexionPDO
         return $result;
     }
 
+    //Esta funcion permite eliminar registros de la tabla tamaño agregado del concreto y este requiere un parametro que es el id que se usa como condicional
     function eliminar_tamano_agregado_concreto($id)
     {
         $this->id = $id;
@@ -75,6 +77,8 @@ class t23_tamano_agregado extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+
+    //Esta funcion permite llamar los datos de la tabla tamaño agregado del concreto
     function get_datatable_tamano_agregado_concreto()
     {
         $sql = "SELECT `ct23_IdTAC`, `ct23_FechaCreacion`, `ct23_estado`, `ct23_CodTAC`, `ct23_DescripcionTAC` FROM `ct23_tamanoagregadoconcreto`";
@@ -99,6 +103,7 @@ class t23_tamano_agregado extends conexionPDO
             return false;
         }
     }
+    //Esta funcion permite llamar los datos de la tabla tamaño agregado del concreto y esta requiere un parametro que es el id y este se usa como condicional
     function get_tamano_agregado_concre_id($id)
     {
         $this->id = $id;
@@ -128,7 +133,7 @@ class t23_tamano_agregado extends conexionPDO
         $this->PDO->closePDO();
     }
 
-
+    //Esta funcion permite llamar los datos de la tabla tamaño agregado del concreto y tiene un condicional que el atributo ct23_estado debe ser igual a 1
     function get_tamano_agregado_concre()
     {
         $sql = "SELECT `ct23_IdTAC`, `ct23_CodTAC`, `ct23_DescripcionTAC` FROM `ct23_tamanoagregadoconcreto` WHERE `ct23_estado` = 1 ORDER BY `ct23_IdTAC` DESC";
