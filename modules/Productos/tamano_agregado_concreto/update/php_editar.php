@@ -22,9 +22,13 @@ $php_error[] = "";
 $resultado = "";
 //Se hace un condicional que valida si la variable de los datos de la tabla tamaño agregado del concreto existe y tambien valida si ese dato esta vacio.
 if (isset($_POST['txt_CodTAC']) && !empty($_POST['txt_CodTAC']) && isset($_POST['txt_DescripcionTAC']) && !empty($_POST['txt_DescripcionTAC'])) {
+    //Parametro del campo codigo
     $CodTAC = $_POST['txt_CodTAC'];
+    //Parametro del campo descripcion
     $DescripcionTAC = $_POST['txt_DescripcionTAC'];
+    //Parametro del campo id
     $id = $_POST['txt_id'];
+    //Se hace un condicional para validar la funcion de la clase t23_tamano_agregado con los parametros que se llamaron anteriormente
     if ($t23_tamano_agregado_concre->modificar_tamano_agregado($id, $CodTAC, $DescripcionTAC)) {
         $php_estado = true;
     } else {
