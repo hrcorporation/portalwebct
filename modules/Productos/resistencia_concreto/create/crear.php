@@ -37,6 +37,7 @@
                 </div>
             </div>
             <div class="card-body">
+                <!-- Inicio del formulario -->
                 <form name="form_add_resistencia_concreto" id="form_add_resistencia_concreto" method="post">
                     <div class="row">
                         <div class="col">
@@ -60,6 +61,7 @@
                         </div>
                     </div>
                 </form>
+                <!-- Fin del formulario -->
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

@@ -16,11 +16,11 @@
                      <a href="../../index.php" class="nav-link ">
                          <i class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
-                             Modulos
+                             Modulo resistencia del concreto
                          </p>
                      </a>
                  </li>
-                 <li class="nav-header">Nombre Modulo</li>
+                 <li class="nav-header">Resistencia del concreto</li>
 
                  <li class="nav-item has-treeview">
                      <a href="../index.php" class="nav-link ">

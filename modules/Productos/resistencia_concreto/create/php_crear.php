@@ -7,11 +7,13 @@ require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 
+//Se crea un objeto de la clase php_clases
 $php_clases = new php_clases();
+//Se crea un objeto de la clase t22_resistencia_concre
 $t22_resistencia_concre = new t22_resistencia_concre();
 $php_estado = false;
 $log = false;
-
+//Se hace un condicional que valida si la variable de los datos de la tabla resistencia del concreto existe y tambien valida si ese dato esta vacio.
 if (isset($_POST['txt_cod']) && !empty($_POST['txt_cod']) && isset($_POST['txt_descripcion']) && !empty($_POST['txt_descripcion'])) {
     $cod = $_POST['txt_cod'];
     $descripcion = $_POST['txt_descripcion'];
