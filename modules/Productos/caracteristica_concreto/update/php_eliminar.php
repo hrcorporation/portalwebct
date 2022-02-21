@@ -23,7 +23,9 @@ $php_error[] = "";
 $resultado = "";
 //Se hace un condicional que valida si la variable de los datos de la tabla caracteristicas del concreto existe y tambien valida si ese dato esta vacio.
 if (isset($_POST['id']) && !empty($_POST['id'])) {
+     //Parametro del campo id
     $id = $_POST['id'];
+     //Se hace un condicional que valida si la funcion que se esta el parametro adecuado y este parametro se llamo anteriormente
     if ($t24_caract_concre->eliminar_caracteristica_concreto($id)) {
         $php_estado = true;
     } else {

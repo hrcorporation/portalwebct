@@ -80,7 +80,6 @@
 
 <script>
     $(document).ready(function() {
-
         var n = 1;
         var table = $('#t_caracteristica_concreto').DataTable({
             //"processing": true,

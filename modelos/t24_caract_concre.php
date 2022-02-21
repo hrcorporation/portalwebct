@@ -8,6 +8,7 @@ class t24_caract_concre extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
+    //Esta function permite llamar todos los datos de la tabla caracteristica del concreto
     function get_datatable_caracteristica_concreto()
     {
         $sql = "SELECT `ct24_IdCC`, `ct24_FechaCreacion`, `ct24_estado`, `ct24_CodCC`, `ct24_DescripcionCC` FROM `ct24_caracteristicaconcreto`";
@@ -32,6 +33,8 @@ class t24_caract_concre extends conexionPDO
             return false;
         }
     }
+
+    //Esta funcion permite crear datos de la tabla caracteristica del concreto y requiere unos parametros que son ct24_CodCC y ct24_DescripcionCC
     function crear_caracteristica_concreto($ct24_CodCC, $ct24_DescripcionCC)
     {
         $this->fecha_create = date("Y-m-d H:i:s");
@@ -53,6 +56,7 @@ class t24_caract_concre extends conexionPDO
 
         return $result;
     }
+    //Esta funcion permite modificar datos de la tabla caracteristica del concreto y requiere unos parametros que son el id, ct24_CodCC y ct24_DescripcionCC y va condicionada por el id
     function modificar_caracteristica_concreto($id, $ct24_CodCC, $ct24_DescripcionCC)
     {
         $this->ct24_CodCC = $ct24_CodCC;
@@ -78,6 +82,8 @@ class t24_caract_concre extends conexionPDO
         //resultado
         return $result;
     }
+
+    //Esta funcion permite eliminar los datos de la tabla caracteristica del concreto y se requiere un parametro la cual se usa como condicional
     function eliminar_caracteristica_concreto($id)
     {
         $this->id = $id;
@@ -96,7 +102,8 @@ class t24_caract_concre extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    
+
+    //Esta funcion permite llamar el dato de la tabla caracteristica del concreto y este requiere un parametro que es id y este se usa como condicional
     function get_caract_concre_id($id)
     {
         $this->id = $id;
@@ -126,7 +133,7 @@ class t24_caract_concre extends conexionPDO
         $this->PDO->closePDO();
     }
 
-
+    //Esta funcion permite llamar todos los datos de la tabla caracteristica del concreto pero se listan los que tengan el ct24_estado en 1
     function get_caract_concre()
     {
         $sql = "SELECT `ct24_IdCC`,`ct24_CodCC`, `ct24_DescripcionCC` FROM `ct24_caracteristicaconcreto` WHERE `ct24_estado`  = 1 ORDER BY `ct24_IdCC` DESC";
