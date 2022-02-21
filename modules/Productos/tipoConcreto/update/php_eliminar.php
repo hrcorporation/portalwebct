@@ -23,7 +23,9 @@ $php_error[] = "";
 $resultado = "";
 //Se hace un condicional que valida si la variable de los datos de la tabla tipo de concreto existe y tambien valida si ese dato esta vacio.
 if (isset($_POST['id']) && !empty($_POST['id'])) {
+    //Parametro del campo id
     $id = $_POST['id'];
+    //Se hace un condicional que valida si la variable de los datos de la tabla tipo de concreto existe y tambien valida si ese dato esta vacio.
     if ($t21_tipoconcreto->eliminar_tipo_concreto($id)) {
         $php_estado = true;
     } else {

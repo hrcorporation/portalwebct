@@ -23,9 +23,13 @@ $resultado = "";
 
 //Se hace un condicional que valida si la variable de los datos de la tabla tipo de concreto existe y tambien valida si ese dato esta vacio.
 if (isset($_POST['txt_CodTConcreto']) && !empty($_POST['txt_CodTConcreto']) && isset($_POST['txt_DescripcionTC']) && !empty($_POST['txt_DescripcionTC'])) {
+    //Parametro del campo codigo
     $codTC = $_POST['txt_CodTConcreto'];
+    //Parametro del campo descripcion
     $descripcionTC = $_POST['txt_DescripcionTC'];
+    //Parametro del campo id
     $id = $_POST['txt_id'];
+    //Se hace un condicional para validar la funcion de la clase t21_tipoconcreto con los parametros que se llamaron anteriormente
     if ($t21_tipoconcreto->modificar_tipo_concreto($id, $codTC, $descripcionTC)) {
         $php_estado = true;
     } else {
