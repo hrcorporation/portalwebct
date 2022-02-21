@@ -85,6 +85,7 @@ require '../../../../vendor/autoload.php'; ?>
 
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
+    //Esta funcion ayuda a guardar los registros de la tabla caracteristica del concreto mediante el id del formulario FormCrearCaracteristicaConcreto 
     $(document).ready(function(e) {
         $("#FormCrearCaracteristicaConcreto").on('submit', (function(e) {
             e.preventDefault();

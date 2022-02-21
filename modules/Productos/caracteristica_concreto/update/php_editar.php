@@ -5,20 +5,23 @@ header('Content-Type: application/json');
 
 require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
-require '../../../../vendor/autoload.php'; 
+require '../../../../vendor/autoload.php';
 
+//Se crea un objeto de la clase t4_productos
 $t4_productos = new t4_productos();
-$t21_tipoconcreto = new t21_tipoconcreto();
-$t22_resistencia_concre = new t22_resistencia_concre();
-$t23_tamano_agregado_concre = new t23_tamano_agregado();
+// $t21_tipoconcreto = new t21_tipoconcreto();
+// $t22_resistencia_concre = new t22_resistencia_concre();
+// $t23_tamano_agregado_concre = new t23_tamano_agregado();}
+//Se crea un objeto de la clase t24_caract_concre
 $t24_caract_concre = new t24_caract_concre();
-$t25_colorconcreto = new t25_colorconcreto();
+// $t25_colorconcreto = new t25_colorconcreto();
+//Se crea un objeto de la clase general_modelos
 $general_modelos = new general_modelos();
 
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
-
+//Se hace un condicional que valida si la variable de los datos de la tabla caracteristicas del concreto existe y tambien valida si ese dato esta vacio.
 if (isset($_POST['txt_CodCC']) && !empty($_POST['txt_CodCC']) && isset($_POST['txt_DescripcionCC']) && !empty($_POST['txt_DescripcionCC'])) {
     $CodCC = $_POST['txt_CodCC'];
     $DescripcionCC = $_POST['txt_DescripcionCC'];
@@ -35,6 +38,5 @@ $datos = array(
     'errores' => $php_error,
     'result' => $resultado,
 );
-
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

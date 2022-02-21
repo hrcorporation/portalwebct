@@ -2,7 +2,6 @@
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php' ?>
 
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,11 +31,9 @@
             <div class="card-header">
                 <h3 class="card-title"></h3>
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                            class="fas fa-expand"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                 </div>
             </div>
             <div class="card-body">
@@ -55,10 +52,8 @@
                                 <th> Codigo </th>
                                 <th> Descripcion </th>
                                 <th> Detalle </th>
-
                             </tr>
                         </thead>
-
                         <tfoot>
                             <tr>
                                 <th> N </th>
@@ -76,15 +71,12 @@
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
 <?php include '../../../layout/footer/footer3.php' ?>
-
-
 
 <script>
     $(document).ready(function() {
@@ -97,13 +89,11 @@
                 "url": "data_table_caracteristica_concreto.php",
                 "dataSrc": ""
             },
-           
             "order": [
                 [0, 'desc']
             ],
-            "columns": [
-                {
-                    "data":"id"
+            "columns": [{
+                    "data": "id"
                 },
                 {
                     "data": "cod"
@@ -117,14 +107,15 @@
                 }
             ],
             //"scrollX": true,
-
         });
-
-        table.on( 'order.dt search.dt', function () {
-            table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();
+        table.on('order.dt search.dt', function() {
+            table.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
 
         $('#t_caracteristica_concreto tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data();
@@ -139,4 +130,5 @@
     });
 </script>
 </body>
+
 </html>

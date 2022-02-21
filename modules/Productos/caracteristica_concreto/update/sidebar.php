@@ -20,7 +20,7 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-header">Nombre Modulo</li>
+                 <li class="nav-header">Caracteristica del concreto</li>
 
                  <li class="nav-item has-treeview">
                      <a href="../index.php" class="nav-link ">
@@ -31,7 +31,7 @@
                      </a>
                  </li>
                  <li class="nav-item has-treeview">
-                     <a href="actual.php" class="nav-link active">
+                     <a href="../create/crear.php" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Crear
