@@ -1,5 +1,4 @@
-
-
+//Se llama mediante el id del formulario FormCrearTipoConcreto del archivo crear.php
 $(document).ready(function (e) {
     $("#FormCrearTipoConcreto").on('submit', (function (e) {
         e.preventDefault();
@@ -25,4 +24,3 @@ $(document).ready(function (e) {
         });
     }));
 });
-

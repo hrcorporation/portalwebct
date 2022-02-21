@@ -7,12 +7,15 @@ require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php'; ?>
 
 <?php
+//Se crea un objeto de la clase t21_tipoconcreto
 $t21_tipoconcreto = new t21_tipoconcreto();
+//Se crea un objeto de la clase php_clases
 $php_clases = new php_clases();
-
+//Se saca el id de la tabla tipo de concreto
 $id_producto = $_GET['id'];
-
+//Se le asigna una variable al objeto de t21_tipoconcreto y se llama una funcion llamada get_tipoconcreto_id de la clase t21_tipoconcreto y como parametro se usa el id que se saco anteriormente.
 $datos_producto = $t21_tipoconcreto->get_tipoconcreto_id($id_producto);
+//Se hace una validacion si la variable datos_producto es un arreglo
 if (is_array($datos_producto)) {
     foreach ($datos_producto as $key) {
         $cod_t_concreto = $key['ct21_CodTConcreto'];
@@ -59,6 +62,7 @@ if (is_array($datos_producto)) {
             </div>
             <div class="card-body">
                 <div id="contenido">
+                    <!-- Inicio del formulario -->
                     <form method="POST" name="FormCrearTipoConcreto" id="FormCrearTipoConcreto">
                         <input type="hidden" name="txt_id" id="txt_id" value="<?php echo $id_producto ?>">
                         <div class="row">
@@ -90,6 +94,7 @@ if (is_array($datos_producto)) {
                             </div>
                         </div>
                     </form>
+                    <!-- Fin de formulario -->
                 </div>
             </div>
         </div>
@@ -150,7 +155,6 @@ if (is_array($datos_producto)) {
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
-
             });
         });
     });
