@@ -85,6 +85,7 @@ require '../../../../vendor/autoload.php'; ?>
 
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
+    //Esta funcion ayuda a crear los datos de la tabla color del concreto mediante el id del formulario FormCrearColorConcreto
     $(document).ready(function(e) {
         $("#FormCrearColorConcreto").on('submit', (function(e) {
             e.preventDefault();

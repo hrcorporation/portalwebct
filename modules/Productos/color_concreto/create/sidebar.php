@@ -20,7 +20,7 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-header">Nombre Modulo</li>
+                 <li class="nav-header">Color del concreto</li>
 
                  <li class="nav-item has-treeview">
                      <a href="../index.php" class="nav-link ">

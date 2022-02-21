@@ -7,12 +7,15 @@ require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php'; ?>
 
 <?php
+//Se crea un objeto de la clase t25_colorconcreto
 $t25_colorconcreto = new t25_colorconcreto();
+//Se crea un objeto de la clase php_clases
 $php_clases = new php_clases();
-
+//Se saca el id
 $id_producto = $_GET['id'];
-
+//Se le asigna una variable al objeto de t25_colorconcreto y se llama una funcion llamada get_colorconcreto_id y ella necesita un parametro que es el id que sacamos anteriormente
 $datos_producto = $t25_colorconcreto->get_colorconcreto_id($id_producto);
+//Se valida si la variable que se le asigno anteriormente al objeto es un arreglo o no
 if (is_array($datos_producto)) {
     foreach ($datos_producto as $key) {
         $CodConcreto = $key['ct25_CodConcreto'];
@@ -29,7 +32,7 @@ if (is_array($datos_producto)) {
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Resistencia del concreto</h1>
+                    <h1>Color del concreto</h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -48,7 +51,7 @@ if (is_array($datos_producto)) {
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Modificar resistencia del concreto</h3>
+                <h3 class="card-title">Modificar color del concreto</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -57,6 +60,7 @@ if (is_array($datos_producto)) {
             </div>
             <div class="card-body">
                 <div id="contenido">
+                    <!-- Inicio del formulario -->
                     <form method="POST" name="FormModificarColorConcreto" id="FormModificarColorConcreto">
                         <input type="hidden" name="txt_id" id="txt_id" value="<?php echo $id_producto ?>">
                         <div class="row">
@@ -77,8 +81,7 @@ if (is_array($datos_producto)) {
                             <div class="row" style="text-align:center">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <button type="button" id="btn-eliminar" name="btn-eliminar"
-                                            class="btn btn-block btn-danger">Eliminar</button>
+                                        <button type="button" id="btn-eliminar" name="btn-eliminar" class="btn btn-block btn-danger">Eliminar</button>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -89,6 +92,7 @@ if (is_array($datos_producto)) {
                             </div>
                         </div>
                     </form>
+                    <!-- Fin del formulario -->
                 </div>
             </div>
         </div>
@@ -108,6 +112,7 @@ if (is_array($datos_producto)) {
 
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
+    //Esta funcion ayuda a modificar los datos de la tabla color del concreto mediante el id del formulario FormModificarColorConcreto
     $(document).ready(function(e) {
         $("#FormModificarColorConcreto").on('submit', (function(e) {
             e.preventDefault();
@@ -132,26 +137,27 @@ if (is_array($datos_producto)) {
                 },
             });
         }));
+        //Esta funcion ayuda a eliminar los datos de la tabla color del concreto mediante el id del boton btn-eliminar
         $("#btn-eliminar").click(function() {
-        var id = <?php echo $id_producto ?>;
-        $.ajax({
-            url: "php_eliminar.php",
-            type: "POST",
-            data: {
-                task: 1,
-                id: id,
+            var id = <?php echo $id_producto ?>;
+            $.ajax({
+                url: "php_eliminar.php",
+                type: "POST",
+                data: {
+                    task: 1,
+                    id: id,
 
-            },
-            success: function(response) {
-                toastr.success('Fue Eliminado Correctamente');
-                window.location = '../index.php'
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
-            },
+                },
+                success: function(response) {
+                    toastr.success('Fue Eliminado Correctamente');
+                    window.location = '../index.php'
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
 
+            });
         });
-    });
     });
 </script>
 </body>

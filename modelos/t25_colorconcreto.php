@@ -8,7 +8,7 @@ class t25_colorconcreto extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
-
+    //Esta funcion permite crear los datos de la tabla color del concreto y requiere unos parametros como ct25_CodConcreto y ct25_DescripcionCC
     function crear_color_concreto($ct25_CodConcreto, $ct25_DescripcionCC)
     {
         $this->fecha_create = date("Y-m-d H:i:s");
@@ -30,6 +30,8 @@ class t25_colorconcreto extends conexionPDO
 
         return $result;
     }
+
+    //Esta funcion permite modificar los datos de la tabla color del concreto y requiere unos parametros como el id, ct25_CodConcreto, ct25_DescripcionCC
     function modificar_color_concreto($id, $ct25_CodConcreto, $ct25_DescripcionCC)
     {
         $this->ct25_CodConcreto = $ct25_CodConcreto;
@@ -55,6 +57,8 @@ class t25_colorconcreto extends conexionPDO
         //resultado
         return $result;
     }
+
+    //Esta funcion permite eliminar los datos de la tabla color del concreto y requiere un parametro que es el id
     function eliminar_color_concreto($id)
     {
         $this->id = $id;
@@ -73,6 +77,7 @@ class t25_colorconcreto extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+    //Esta funcion permite llamar todos los datos de la tabla color del concreto
     function get_datatable_color_concreto()
     {
         $sql = "SELECT `ct25_IdColorC`, `ct25_FechaCreacion`, `ct25_Estado`, `ct25_CodConcreto`, `ct25_DescripcionCC` FROM `ct25_colorconcreto`";
@@ -97,6 +102,7 @@ class t25_colorconcreto extends conexionPDO
             return false;
         }
     }
+    //Esta funcion permite llamar los datos de la tabla color del concreto pero deben de tener el id que viene como parametro
     function get_colorconcreto_id($id)
     {
         $this->id = $id;
@@ -126,9 +132,7 @@ class t25_colorconcreto extends conexionPDO
         $this->PDO->closePDO();
     }
 
-
-
-
+    //Esta funcion permite llamar todos los datos de la tabla color del concreto pero con el condicional que el ct25_Estado debe ser igual a 1
     function get_colorconcreto()
     {
         $sql = "SELECT `ct25_IdColorC`, `ct25_CodConcreto`, `ct25_DescripcionCC` FROM `ct25_colorconcreto` WHERE `ct25_Estado` = 1 ORDER BY `ct25_IdColorC` DESC";
