@@ -17,12 +17,12 @@
                      <a href="../index.php" class="nav-link ">
                          <i class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
-                             Modulo Produtos
+                             Modulo tamaño agregado del concreto
                          </p>
                      </a>
                  </li>
 
-                 <li class="nav-header">Resistencia Concreto</li>
+                 <li class="nav-header">Tamaño agregado del concreto</li>
 
                  <li class="nav-item has-treeview">
                      <a href="index.php" class="nav-link active">

@@ -3,21 +3,19 @@
 session_start();
 header('Content-Type: application/json');
 
-
 require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
-
+//Se crea un objeto de la clase php_clases
 $php_clases = new php_clases();
+//Se crea un objeto de la clase t23_tamano_agregado
 $t23_tamano_agregado = new t23_tamano_agregado();
-$php_estado = false;
+
 $log = false;
-
-
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
-
+//Se hace un condicional que valida si la variable de los datos de la tabla resistencia del concreto existe y tambien valida si ese dato esta vacio.
 if (isset($_POST['txt_CodTCA']) && !empty($_POST['txt_CodTCA']) && isset($_POST['txt_DescripcionTCA']) && !empty($_POST['txt_DescripcionTCA'])) {
     $codTCA = $_POST['txt_CodTCA'];
     $descripcionTCA = $_POST['txt_DescripcionTCA'];
@@ -32,6 +30,5 @@ $datos = array(
     'errores' => $php_error,
     'result' => $resultado,
 );
-
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

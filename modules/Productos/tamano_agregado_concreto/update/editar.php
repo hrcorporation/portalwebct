@@ -7,12 +7,15 @@ require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php'; ?>
 
 <?php
+//Se crea un objeto de la clase t23_tamano_agregado
 $t23_tamano_agregado = new t23_tamano_agregado();
+//Se crea un objeto de la clase php_clases
 $php_clases = new php_clases();
-
+//Se obtiene el id
 $id_producto = $_GET['id'];
-
+//Se le asigna una variable al objeto de t23_tamano_agregado y se llama una funcion llamada get_tamano_agregado_concre_id y tiene como parametro el id
 $datos_producto = $t23_tamano_agregado->get_tamano_agregado_concre_id($id_producto);
+//Se verifica si la variable que se le asigno al objeto t23_tamano_agregado es un arreglo o no
 if (is_array($datos_producto)) {
     foreach ($datos_producto as $key) {
         $CodTAC = $key['ct23_CodTAC'];
@@ -29,7 +32,7 @@ if (is_array($datos_producto)) {
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Resistencia del concreto</h1>
+                    <h1>Tamaño agregado del concreto</h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -48,7 +51,7 @@ if (is_array($datos_producto)) {
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Modificar resistencia del concreto</h3>
+                <h3 class="card-title">Modificar tamaño agregado del concreto</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -57,8 +60,9 @@ if (is_array($datos_producto)) {
             </div>
             <div class="card-body">
                 <div id="contenido">
+                    <!-- Inicio del formulario -->
                     <form method="POST" name="FormModificarTamanoAgregado" id="FormModificarTamanoAgregado">
-                        <input type="hidden" name="txt_id" id="txt_id" value ="<?php echo $id_producto ?>">
+                        <input type="hidden" name="txt_id" id="txt_id" value="<?php echo $id_producto ?>">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -75,12 +79,13 @@ if (is_array($datos_producto)) {
                         </div>
                         <div class="container">
                             <div class="row" style="text-align:center">
+                                <!-- Boton eliminar -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <button type="button" id="btn-eliminar" name="btn-eliminar"
-                                            class="btn btn-block btn-danger">Eliminar</button>
+                                        <button type="button" id="btn-eliminar" name="btn-eliminar" class="btn btn-block btn-danger">Eliminar</button>
                                     </div>
                                 </div>
+                                <!-- Boton guardar -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-block btn-success">Guardar</button>
@@ -88,8 +93,8 @@ if (is_array($datos_producto)) {
                                 </div>
                             </div>
                         </div>
-
                     </form>
+                    <!-- Fin del formulario -->
                 </div>
             </div>
         </div>
@@ -109,6 +114,7 @@ if (is_array($datos_producto)) {
 
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
+    //Esta funcion ayuda a modificar los datos de la tabla tamaño agregado del concreto mediante el id del formulario FormModificarTamanoAgregado
     $(document).ready(function(e) {
         $("#FormModificarTamanoAgregado").on('submit', (function(e) {
             e.preventDefault();
@@ -133,6 +139,7 @@ if (is_array($datos_producto)) {
                 },
             });
         }));
+        //Este formulario ayuda a eliminar los datos de la tabla tamaño agregado del concreto mediante el id del boton btn-eliminar
         $("#btn-eliminar").click(function() {
             var id = <?php echo $id_producto ?>;
             $.ajax({
@@ -141,7 +148,6 @@ if (is_array($datos_producto)) {
                 data: {
                     task: 1,
                     id: id,
-
                 },
                 success: function(response) {
                     toastr.success('Fue Eliminado Correctamente');
@@ -150,7 +156,6 @@ if (is_array($datos_producto)) {
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
-
             });
         });
     });

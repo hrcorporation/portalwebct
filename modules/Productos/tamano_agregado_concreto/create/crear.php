@@ -41,6 +41,7 @@ require '../../../../vendor/autoload.php'; ?>
             </div>
             <div class="card-body">
                 <div id="contenido">
+                    <!-- Inicio del formulario -->
                     <form method="POST" name="FormCrearTamanoAgregadoConcreto" id="FormCrearTamanoAgregadoConcreto">
                         <div class="row">
                             <div class="col-md-6">
@@ -66,6 +67,7 @@ require '../../../../vendor/autoload.php'; ?>
                             </div>
                         </div>
                     </form>
+                    <!-- Fin del formulario -->
                 </div>
             </div>
         </div>
