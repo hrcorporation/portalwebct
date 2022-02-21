@@ -23,9 +23,13 @@ $resultado = "";
 
 //Se hace un condicional que valida si la variable de los datos de la tabla resistencia del concreto existe y tambien valida si ese dato esta vacio.
 if (isset($_POST['txt_CodResistenciaConcreto']) && !empty($_POST['txt_CodResistenciaConcreto']) && isset($_POST['txt_DescripcionRC']) && !empty($_POST['txt_DescripcionRC'])) {
+     //Parametro del campo codigo
     $codResistenciaConcreto = $_POST['txt_CodResistenciaConcreto'];
+     //Parametro de la descripcion
     $descripcionRC = $_POST['txt_DescripcionRC'];
+    //Parametro del id
     $id = $_POST['txt_id'];
+    //Se hace un condicional para validar la funcion de la clase t22_resistencia_concre con los parametros que se llamaron anteriormente
     if ($t22_resistencia_concre->modificar_resistencia_concreto($id, $codResistenciaConcreto, $descripcionRC)) {
         $php_estado = true;
     } else {
