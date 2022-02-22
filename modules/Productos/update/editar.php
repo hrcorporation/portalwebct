@@ -24,7 +24,6 @@ foreach ($datos_producto as $key) {
     $descripcion_producto = $key['ct4_Descripcion'];
 }
 
-
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -53,7 +52,7 @@ foreach ($datos_producto as $key) {
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Crear Producto</h3>
+                <h3 class="card-title">Editar Producto</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -92,7 +91,6 @@ foreach ($datos_producto as $key) {
                                     </select>
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
 
@@ -112,7 +110,6 @@ foreach ($datos_producto as $key) {
                                     </select>
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col-12">
@@ -129,8 +126,6 @@ foreach ($datos_producto as $key) {
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="container">
                             <div class="row" style="text-align:center">
                                 <div class="col-md-12">

@@ -17,13 +17,10 @@ $t25_colorconcreto = new t25_colorconcreto();
 $general_modelos = new general_modelos();
 
 $php_estado = false;
-$errores[] = "";
+$php_error = "";
 $resultado = "";
 
-
 if (isset($_POST['Txb_Descripcion']) && !empty($_POST['Txb_Descripcion']) && isset($_POST['Txb_Nombre']) && !empty($_POST['Txb_Nombre'])) {
-
-    
     
 } else {
     
@@ -34,6 +31,5 @@ $datos = array(
     'errores' => $php_error,
     'result' => $resultado,
 );
-
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

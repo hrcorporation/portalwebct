@@ -38,15 +38,12 @@ require '../../../vendor/autoload.php'; ?>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                 </div>
             </div>
             <div class="card-body">
                 <div id="contenido">
                     <form method="POST" name="FormCrearProducto" id="FormCrearProducto">
-
                         <div class="row">
-
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label> Tipo de Concreto </label>
@@ -125,7 +122,6 @@ require '../../../vendor/autoload.php'; ?>
                                 </div>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
