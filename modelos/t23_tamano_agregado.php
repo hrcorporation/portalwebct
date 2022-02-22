@@ -134,8 +134,10 @@ class t23_tamano_agregado extends conexionPDO
     }
 
     //Esta funcion permite llamar los datos de la tabla tamaño agregado del concreto y tiene un condicional que el atributo ct23_estado debe ser igual a 1
-    function get_tamano_agregado_concre()
+    function get_tamano_agregado_concre($id = null)
     {
+        $rowsArray_TamanoAgregado = '<option value="NULL">Seleccionar tamano del concreto </option>';
+
         $sql = "SELECT `ct23_IdTAC`, `ct23_CodTAC`, `ct23_DescripcionTAC` FROM `ct23_tamanoagregadoconcreto` WHERE `ct23_estado` = 1 ORDER BY `ct23_IdTAC` DESC";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -148,9 +150,14 @@ class t23_tamano_agregado extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $datos[] = $fila;
+                    if ($id == $fila['ct23_IdTAC']) {
+                        $selection_tamano_agregado = "selected='true'";
+                    } else {
+                        $selection_tamano_agregado = "";
+                    }
+                    $rowsArray_TamanoAgregado .= '<option value="' . $fila['ct23_IdTAC'] . '"  ' . $selection_tamano_agregado . ' >' . $fila['ct23_CodTAC'] . " - " . $fila['ct23_DescripcionTAC'] . '</option>';
                 }
-                return $datos;
+                return $rowsArray_TamanoAgregado;
             } else {
                 return false;
             }

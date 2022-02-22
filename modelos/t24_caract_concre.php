@@ -134,8 +134,10 @@ class t24_caract_concre extends conexionPDO
     }
 
     //Esta funcion permite llamar todos los datos de la tabla caracteristica del concreto pero se listan los que tengan el ct24_estado en 1
-    function get_caract_concre()
+    function get_caract_concre($id = null)
     {
+        $rowsArray_Caracteristica = '<option value="null">Seleccionar caracteristica concreto</option>';
+
         $sql = "SELECT `ct24_IdCC`,`ct24_CodCC`, `ct24_DescripcionCC` FROM `ct24_caracteristicaconcreto` WHERE `ct24_estado`  = 1 ORDER BY `ct24_IdCC` DESC";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -148,9 +150,14 @@ class t24_caract_concre extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $datos[] = $fila;
+                    if ($id == $fila['ct24_IdCC']) {
+                        $selection_caract_concre = "selected='true'";
+                    } else {
+                        $selection_caract_concre = "";
+                    }
+                    $rowsArray_Caracteristica .= '<option value="' . $fila['ct24_IdCC'] . '"  ' . $selection_caract_concre . ' >' . $fila['ct24_CodCC'] . " - " . $fila['ct24_DescripcionCC'] . '</option>';
                 }
-                return $datos;
+                return $rowsArray_Caracteristica;
             } else {
                 return false;
             }

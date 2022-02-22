@@ -133,8 +133,10 @@ class t25_colorconcreto extends conexionPDO
     }
 
     //Esta funcion permite llamar todos los datos de la tabla color del concreto pero con el condicional que el ct25_Estado debe ser igual a 1
-    function get_colorconcreto()
+    function get_colorconcreto($id = null)
     {
+        $rowsArray_Color = '<option value="">Seleccionar </option>';
+
         $sql = "SELECT `ct25_IdColorC`, `ct25_CodConcreto`, `ct25_DescripcionCC` FROM `ct25_colorconcreto` WHERE `ct25_Estado` = 1 ORDER BY `ct25_IdColorC` DESC";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -147,9 +149,14 @@ class t25_colorconcreto extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $datos[] = $fila;
+                    if ($id == $fila['ct25_IdColorC']) {
+                        $selection_color_concre = "selected='true'";
+                    } else {
+                        $selection_color_concre = "";
+                    }
+                    $rowsArray_Color .= '<option value="' . $fila['ct25_IdColorC'] . '"  ' . $selection_color_concre . ' >' . $fila['ct25_CodConcreto'] . " - " . $fila['ct25_DescripcionCC'] . '</option>';
                 }
-                return $datos;
+                return $rowsArray_Color;
             } else {
                 return false;
             }

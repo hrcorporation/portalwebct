@@ -49,98 +49,29 @@ if ($_POST['task'] == 1 && $_POST['tipo'] == "Get_DatosConcreto") {
     /////////////////////////////////////////////////////////////////////////////
 
     //$id_tipo_concreto  = null;
-    $datos_tipoconcreto = $t21_tipoconcreto->get_tipoconcreto();
+    $rowsArray_TipoConcreto = $t21_tipoconcreto->get_tipoconcreto($id_tipo_concreto);
 
-    $rowsArray_TipoConcreto .= '<option value="">Seleccionar </option>';
-
-    if ($datos_tipoconcreto) {
-
-
-        foreach ($datos_tipoconcreto as $fila_tipoconcr) {
-            //selected
-            if ($id_tipo_concreto == $fila_tipoconcr['ct21_IdTipoConcreto']) {
-                $selection_tipo_concreto = "selected='true'";
-            } else {
-                $selection_tipo_concreto = "";
-            }
-
-            $rowsArray_TipoConcreto .= '<option value="' . $fila_tipoconcr['ct21_IdTipoConcreto'] . '" ' . $selection_tipo_concreto . ' >' . $fila_tipoconcr['ct21_CodTConcreto'] . " - " . $fila_tipoconcr['ct21_DescripcionTC'] . '</option>';
-        }
-    }
+  
     $php_estado = true;
     /////////////////////////////////////////////////////////////////////////////
     //$id_resistencia_concre = null;
-    $datos_resistencia_concre = $t22_resistencia_concre->get_resistencia_concre();
-
-    $rowsArray_Resistencia .= '<option value="">Seleccionar </option>';
-
-    if ($datos_resistencia_concre) {
-        foreach ($datos_resistencia_concre as $fila_resistconcr) {
-            //selected
-            if ($id_resistencia_concre == $fila_resistconcr['ct22_IdResistenciaConcreto']) {
-                $selection_resistencia_concre = "selected='true'";
-            } else {
-                $selection_resistencia_concre = "";
-            }
-            $rowsArray_Resistencia .= '<option value="' . $fila_resistconcr['ct22_IdResistenciaConcreto'] . '"  ' . $selection_resistencia_concre . ' >' . $fila_resistconcr['ct22_CodResistenciaConcreto'] . " - " . $fila_resistconcr['ct22_DescripcionRC'] . '</option>';
-        }
-    }
-
+    $rowsArray_Resistencia = $t22_resistencia_concre->get_resistencia_concre($id_resistencia_concre);
 
     /////////////////////////////////////////////////////////////////////////////
 
     //$id_tamano_agregado = null;
-    $datos_tamano_agregado_concre = $t23_tamano_agregado_concre->get_tamano_agregado_concre();
-
-    $rowsArray_TamanoAgregado .= '<option value="">Seleccionar </option>';
-
-    if ($datos_tamano_agregado_concre) {
-        foreach ($datos_tamano_agregado_concre as $fila_tamanoconcr) {
-            //selected
-            if ($id_tamano_agregado == $fila_tamanoconcr['ct23_IdTAC']) {
-                $selection_tamano_agregado = "selected='true'";
-            } else {
-                $selection_tamano_agregado = "";
-            }
-            $rowsArray_TamanoAgregado .= '<option value="' . $fila_tamanoconcr['ct23_IdTAC'] . '"  ' . $selection_tamano_agregado . ' >' . $fila_tamanoconcr['ct23_CodTAC'] . " - " . $fila_tamanoconcr['ct23_DescripcionTAC'] . '</option>';
-        }
-    }
+    $rowsArray_TamanoAgregado = $t23_tamano_agregado_concre->get_tamano_agregado_concre($id_tamano_agregado);
 
     /////////////////////////////////////////////////////////////////////////////
     //$id_caract_concre = null;
-    $datos_caract_concre = $t24_caract_concre->get_caract_concre();
+    $rowsArray_Caracteristica = $t24_caract_concre->get_caract_concre($id_caract_concre);
 
-    $rowsArray_Caracteristica .= '<option value="">Seleccionar </option>';
-
-    if ($datos_caract_concre) {
-        foreach ($datos_caract_concre as $fila_caract) {
-            //selected
-            if ($id_caract_concre == $fila_caract['ct24_IdCC']) {
-                $selection_caract_concre = "selected='true'";
-            } else {
-                $selection_caract_concre = "";
-            }
-            $rowsArray_Caracteristica .= '<option value="' . $fila_caract['ct24_IdCC'] . '"  ' . $selection_caract_concre . ' >' . $fila_caract['ct24_CodCC'] . " - " . $fila_caract['ct24_DescripcionCC'] . '</option>';
-        }
-    }
 
     /////////////////////////////////////////////////////////////////////////////
     //$id_color_concreto = null;
-    $datos_colorconcreto = $t25_colorconcreto->get_colorconcreto();
+    $rowsArray_Color = $t25_colorconcreto->get_colorconcreto($id_color_concreto);
 
-    $rowsArray_Color .= '<option value="">Seleccionar </option>';
-
-    if ($datos_colorconcreto) {
-        foreach ($datos_colorconcreto as $fila_colorconcr) {
-            //selected
-            if ($id_color_concreto == $fila_colorconcr['ct25_IdColorC']) {
-                $selection_color_concre = "selected='true'";
-            } else {
-                $selection_color_concre = "";
-            }
-            $rowsArray_Color .= '<option value="' . $fila_colorconcr['ct25_IdColorC'] . '"  ' . $selection_color_concre . ' >' . $fila_colorconcr['ct25_CodConcreto'] . " - " . $fila_colorconcr['ct25_DescripcionCC'] . '</option>';
-        }
-    }
+ 
 
 
 

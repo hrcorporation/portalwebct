@@ -137,8 +137,10 @@ class t22_resistencia_concre extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    function get_resistencia_concre()
+    function get_resistencia_concre($id = null)
     {
+        $rowsArray_Resistencia = '<option value="NULL">Seleccionar resistencia Concreto</option>';
+
         $sql = "SELECT `ct22_IdResistenciaConcreto`,`ct22_CodResistenciaConcreto`, `ct22_DescripcionRC` FROM `ct22_resistenciaconcreto`  WHERE `ct22_estado` = 1 ORDER BY `ct22_IdResistenciaConcreto` DESC";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -151,9 +153,17 @@ class t22_resistencia_concre extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $datos[] = $fila;
+                        //selected
+                        if ($id == $fila['ct22_IdResistenciaConcreto']) {
+                            $selection_resistencia_concre = "selected='true'";
+                        } else {
+                            $selection_resistencia_concre = "";
+                        }
+                        $rowsArray_Resistencia .= '<option value="' . $fila['ct22_IdResistenciaConcreto'] . '"  ' . $selection_resistencia_concre . ' >' . $fila['ct22_CodResistenciaConcreto'] . " - " . $fila['ct22_DescripcionRC'] . '</option>';
+                    
+                   
                 }
-                return $datos;
+                return $rowsArray_Resistencia;
             } else {
                 return false;
             }

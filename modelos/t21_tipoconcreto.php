@@ -8,8 +8,10 @@ class t21_tipoconcreto extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
-    function get_tipoconcreto()
+    function get_tipoconcreto($id = null)
     {
+        $rowsArray_TipoConcreto = '<option value="NULL">Seleccionar Tipo Concreto </option>';
+
         $sql = "SELECT  `ct21_IdTipoConcreto`,`ct21_CodTConcreto`, `ct21_DescripcionTC` FROM `ct21_tipoconcreto` WHERE ct21_estado = 1 ORDER BY `ct21_IdTipoConcreto` DESC";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -23,8 +25,16 @@ class t21_tipoconcreto extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos[] = $fila;
+
+                    if ($id == $fila['ct21_IdTipoConcreto']) {
+                        $selection_tipo_concreto = "selected='true'";
+                    } else {
+                        $selection_tipo_concreto = "";
+                    }
+        
+                    $rowsArray_TipoConcreto .= '<option value="' . $fila['ct21_IdTipoConcreto'] . '" ' . $selection_tipo_concreto . ' >' . $fila['ct21_CodTConcreto'] . " - " . $fila['ct21_DescripcionTC'] . '</option>';
                 }
-                return $datos;
+                return $rowsArray_TipoConcreto;
             } else {
                 return false;
             }
