@@ -21,7 +21,7 @@ require '../../vendor/autoload.php'; ?>
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                                 <li class="breadcrumb-item active">Actual</li>
                               </ol> 
-                                -->
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -78,14 +78,12 @@ require '../../vendor/autoload.php'; ?>
                                     <td><?php echo $Nombre ?> </td>
                                     <td> <?php echo $descripcion ?></td>
                                     <td class="project-actions">
-                                        <a class="btn btn-info btn-sm" href=''><i class="far fa-eye"></i></a>
+                                        <a class="btn btn-info btn-sm" href='update/editar.php?id=<?php echo $php_clases->HR_Crypt($IdProducto, 1); ?>'><i class="far fa-eye"></i></a>
                                         <!--<a class="btn btn-warning btn-sm" href='update/editar.php?id=<?php echo $php_clases->HR_Crypt($IdProducto, 1); ?>'><i class="fas fa-edit"></i></a> -->
                                     </td>
                                 </tr>
                             <?php
-
                             }
-
                             ?>
                         </tbody>
                         <tfoot>
@@ -106,15 +104,11 @@ require '../../vendor/autoload.php'; ?>
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
 <?php include '../../layout/footer/footer2.php' ?>
-
-
 <script>
     $(document).ready(function() {
         $('#t_productos').DataTable();

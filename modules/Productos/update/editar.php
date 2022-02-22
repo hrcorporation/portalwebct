@@ -88,6 +88,7 @@ foreach ($datos_producto as $key) {
                                 <div class="form-group">
                                     <label> Tamaño Maximo Agregado </label>
                                     <select class="form-control select2 select2-orange" id="Txb_TMAgregado" name="Txb_TMAgregado" data-dropdown-css-class="select2-orange" style="width: 100%;">
+                                    
                                     </select>
                                 </div>
                             </div>
