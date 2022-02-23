@@ -71,7 +71,7 @@ if (is_array($datos_producto)) {
                                 <div class="form-group">
                                     <label> Codigo resistencia Concreto </label>
                                     <input type="text" class="form-control" id="txt_CodCC" name="txt_CodCC"
-                                        value="<?php echo $CodCC ?>">
+                                        value="<?php echo $CodCC ?>" maxlength="2">
                                 </div>
                             </div>
                             <div class="col-md-6">
