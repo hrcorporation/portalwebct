@@ -15,6 +15,24 @@ class t4_productos extends conexionPDO
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
+    
+    function eliminar_producto($id)
+    {
+        $this->id = $id;
+        $sql = "DELETE FROM `ct4_productos` WHERE `ct4_Id_productos` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
 
     function actualizar_producto($estado, $codigo_syscafe, $tipo_concreto, $resistencia, $tamanoagregado, $caract_concre, $color, $nombre, $descripcion, $id_producto)
     {
@@ -45,7 +63,6 @@ class t4_productos extends conexionPDO
 
         if ($stmt->execute()) { // Ejecutar
             $id_insert = $this->con->lastInsertId();
-
             return $id_insert;
         } else {
             return false;

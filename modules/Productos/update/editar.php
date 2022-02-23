@@ -33,7 +33,7 @@ foreach ($datos_producto as $key) {
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>PRODUCTOS</h1>
-                    <?php var_dump($id_tipo_concreto) ?>
+                    <!-- <?php var_dump($id_tipo_concreto) ?> -->
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -64,10 +64,9 @@ foreach ($datos_producto as $key) {
             </div>
             <div class="card-body">
                 <div id="contenido">
-                    <form method="POST" name="FormCrearProducto" id="FormCrearProducto">
-
+                    <form method="POST" name="FormEditarProducto" id="FormEditarProducto">
+                        <input type="hidden" name="txt_id" id="txt_id" value="<?php echo $id_producto ?>">
                         <div class="row">
-
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label> Tipo de Concreto </label>
@@ -88,7 +87,7 @@ foreach ($datos_producto as $key) {
                                 <div class="form-group">
                                     <label> Tamaño Maximo Agregado </label>
                                     <select class="form-control select2 select2-orange" id="Txb_TMAgregado" name="Txb_TMAgregado" data-dropdown-css-class="select2-orange" style="width: 100%;">
-                                    
+
                                     </select>
                                 </div>
                             </div>
@@ -129,7 +128,12 @@ foreach ($datos_producto as $key) {
                         </div>
                         <div class="container">
                             <div class="row" style="text-align:center">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="button" id="btn-eliminar" name="btn-eliminar" class="btn btn-block btn-danger">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-block btn-success">Guardar</button>
                                     </div>
@@ -394,6 +398,46 @@ foreach ($datos_producto as $key) {
                 });
             });
 
+        });
+        $("#btn-eliminar").click(function() {
+            // definimos variable id para poder eliminar
+            var id = <?php echo $id_producto ?>;
+            Swal.fire({
+                title: 'Esta Seguro(a) de Eliminar el tipo de concreto', // mensaje de la alerta
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'No', // text boton
+                confirmButtonText: 'Si Eliminar'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "php_eliminar.php",
+                        type: "POST",
+                        data: {
+                            task: 1,
+                            id: id,
+                        },
+                        success: function(response) {
+                            if (response.estado) {
+                                Swal.fire(
+                                    'El tipo de concreto fue eliminada correctamente',
+                                    'success'
+                                )
+                                window.location = '../index.php'
+                            } else {
+                                console.log("error");
+
+                            }
+                        },
+                        error: function(respuesta) {
+                            alert(JSON.stringify(respuesta));
+                        },
+                    });
+                }
+            })
         });
     });
 </script>
