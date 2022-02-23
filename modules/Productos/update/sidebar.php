@@ -14,7 +14,7 @@
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                  <li class="nav-item ">
-                     <a href="../../index.php" class="nav-link">
+                     <a href="../index.php" class="nav-link">
                          <i class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
                              Modulos

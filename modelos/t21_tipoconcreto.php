@@ -76,7 +76,6 @@ class t21_tipoconcreto extends conexionPDO
         $this->PDO->closePDO();
     }
 
-
     //Con esta funcion se crean los tipos de concreto y para ello se usan los parametros ct21_CodTConcreto y ct21_DescripcionTC, la fecha de creacion y el estado vienen por defecto.
     function crear_tipo_concreto($ct21_CodTConcreto, $ct21_DescripcionTC)
     {

@@ -34,32 +34,32 @@ class t4_productos extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    function actualizar_producto($estado, $codigo_syscafe, $tipo_concreto, $resistencia, $tamanoagregado, $caract_concre, $color, $nombre, $descripcion, $id_producto)
+    function actualizar_producto($id, $tipo_concreto, $resistencia, $tamanoagregado, $caract_concre, $color)
     {
-        $this->estado = $estado;
-        $this->codigo_syscafe = $codigo_syscafe;
+        // $this->estado = $estado;
+        // $this->codigo_syscafe = $codigo_syscafe;
         $this->tipo_concreto = $tipo_concreto;
         $this->resistencia = $resistencia;
         $this->tamanoagregado = $tamanoagregado;
         $this->caract_concre = $caract_concre;
         $this->color = $color;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->id_producto = $id_producto;
+        // $this->nombre = $nombre;
+        // $this->descripcion = $descripcion;
+        $this->id = $id;
 
-        $sql = "UPDATE `ct4_productos` SET  `ct4_EstadoProducto` = :estado, `ct4_CodigoSyscafe = :codigo_syscafe`,`ct4_TipoConcreto` = :tipo_concreto, `ct4_Resistencia` = :resistencia, `ct4_TamanoMAgregado` = :tamanoagregado, `ct4_CaracteristicaConcreto` = :caract_concre, `ct4_Color` =:color, `ct4_Nombre` = :nombre, `ct4_Descripcion` = :descripcion WHERE ct4_Id_productos = :id_producto ";
+        $sql = "UPDATE `ct4_productos` SET  `ct4_TipoConcreto` = :tipo_concreto, `ct4_Resistencia` = :resistencia, `ct4_TamanoMAgregado` = :tamanoagregado, `ct4_CaracteristicaConcreto` = :caract_concre, `ct4_Color` =:color, WHERE ct4_Id_productos = :ct4_Id_productos ";
         $stmt = $this->con->prepare($sql);
 
-        $stmt->bindParam(':estado', $this->estado, PDO::PARAM_INT);
-        $stmt->bindParam(':codigo_syscafe', $this->codigo_syscafe, PDO::PARAM_STR);
+        // $stmt->bindParam(':estado', $this->estado, PDO::PARAM_INT);
+        // $stmt->bindParam(':codigo_syscafe', $this->codigo_syscafe, PDO::PARAM_STR);
         $stmt->bindParam(':tipo_concreto', $this->tipo_concreto, PDO::PARAM_STR);
         $stmt->bindParam(':resistencia', $this->resistencia, PDO::PARAM_STR);
         $stmt->bindParam(':tamanoagregado', $this->tamanoagregado, PDO::PARAM_STR);
         $stmt->bindParam(':caract_concre', $this->caract_concre, PDO::PARAM_STR);
         $stmt->bindParam(':color', $this->color, PDO::PARAM_STR);
-        $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':descripcion', $this->descripcion, PDO::PARAM_STR);
-        $stmt->bindParam(':id_producto', $this->id_producto, PDO::PARAM_INT);
+        // $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
+        // $stmt->bindParam(':descripcion', $this->descripcion, PDO::PARAM_STR);
+        $stmt->bindParam(':ct4_Id_productos', $this->id, PDO::PARAM_INT);
 
         if ($stmt->execute()) { // Ejecutar
             $id_insert = $this->con->lastInsertId();

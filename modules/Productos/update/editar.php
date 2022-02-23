@@ -11,6 +11,7 @@ $t4_productos = new t4_productos();
 $php_clases = new php_clases();
 
 $id_producto = $php_clases->HR_Crypt($_GET['id'], 2);
+// $id_producto = $_GET['id'];
 
 $datos_producto = $t4_productos->get_productos_for_id($id_producto);
 
@@ -33,7 +34,7 @@ foreach ($datos_producto as $key) {
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>PRODUCTOS</h1>
-                    <!-- <?php var_dump($id_tipo_concreto) ?> -->
+                    <?php var_dump($id_producto) ?>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -185,13 +186,9 @@ foreach ($datos_producto as $key) {
 <script>
     $(function() {
         $(document).ready(function(e) {
-
-
             /**********************************************************************************************************************************/
             // LISTA CLIENTE      - cheke  
             /**********************************************************************************************************************************/
-
-
             $.ajax({
                 url: "get_datosConcreto.php",
                 type: "POST",
@@ -329,9 +326,7 @@ foreach ($datos_producto as $key) {
                     }
                 });
             });
-
             ///////////////////////////////////////////////////
-
             ////////////////////////////////////////////////////
             $('#Txb_CrtConcreto').on('change', function() {
                 $.ajax({
@@ -399,6 +394,29 @@ foreach ($datos_producto as $key) {
             });
 
         });
+        $("#FormEditarProducto").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_editar.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('exitoso');
+
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
         $("#btn-eliminar").click(function() {
             // definimos variable id para poder eliminar
             var id = <?php echo $id_producto ?>;

@@ -47,18 +47,16 @@ if ($_POST['task'] == 1 && $_POST['tipo'] == "Get_DatosConcreto") {
 
 
     /////////////////////////////////////////////////////////////////////////////
-
     //$id_tipo_concreto  = null;
     $rowsArray_TipoConcreto = $t21_tipoconcreto->get_tipoconcreto($id_tipo_concreto);
 
-  
+
     $php_estado = true;
     /////////////////////////////////////////////////////////////////////////////
     //$id_resistencia_concre = null;
     $rowsArray_Resistencia = $t22_resistencia_concre->get_resistencia_concre($id_resistencia_concre);
 
     /////////////////////////////////////////////////////////////////////////////
-
     //$id_tamano_agregado = null;
     $rowsArray_TamanoAgregado = $t23_tamano_agregado_concre->get_tamano_agregado_concre($id_tamano_agregado);
 
@@ -66,14 +64,9 @@ if ($_POST['task'] == 1 && $_POST['tipo'] == "Get_DatosConcreto") {
     //$id_caract_concre = null;
     $rowsArray_Caracteristica = $t24_caract_concre->get_caract_concre($id_caract_concre);
 
-
     /////////////////////////////////////////////////////////////////////////////
     //$id_color_concreto = null;
     $rowsArray_Color = $t25_colorconcreto->get_colorconcreto($id_color_concreto);
-
- 
-
-
 
     $php_estado = true;
 }

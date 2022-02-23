@@ -47,7 +47,7 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label> Codigo TConcreto </label>
-                                    <input type="text" class="form-control" id="txt_CodTConcreto" name="txt_CodTConcreto">
+                                    <input type="text" class="form-control" id="txt_CodTConcreto" name="txt_CodTConcreto" maxlength="2">
                                 </div>
                             </div>
                             <div class="col-md-6">
