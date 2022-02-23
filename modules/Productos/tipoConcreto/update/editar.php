@@ -69,7 +69,7 @@ if (is_array($datos_producto)) {
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label> Codigo TConcreto </label>
-                                    <input type="text" class="form-control" id="txt_CodTConcreto" name="txt_CodTConcreto" value="<?php echo $cod_t_concreto ?>">
+                                    <input type="text" class="form-control" id="txt_CodTConcreto" name="txt_CodTConcreto" value="<?php echo $cod_t_concreto ?>" maxlength="2">
                                 </div>
                             </div>
                             <div class="col-md-6">
