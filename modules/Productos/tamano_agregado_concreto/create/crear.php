@@ -47,7 +47,7 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label> Codigo TAC </label>
-                                    <input type="text" class="form-control" id="txt_CodTCA" name="txt_CodTCA">
+                                    <input type="text" class="form-control" id="txt_CodTCA" name="txt_CodTCA" maxlength="2">
                                 </div>
                             </div>
                             <div class="col-md-6">
