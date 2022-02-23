@@ -162,7 +162,7 @@ if (is_array($datos_producto)) {
                         success: function(response) {
                             if (response.estado) {
                                 Swal.fire(
-                                    'La Caracteristica del Concreto fue eliminada correctamente',
+                                    'El tipo de concreto fue eliminada correctamente',
                                     'success'
                                 )
                                 window.location = '../index.php'
