@@ -142,21 +142,42 @@ if (is_array($datos_producto)) {
         //Esta funcion ayuda a eliminar los datos de la tabla resistencia del concreto llamando el id del boton eliminar
         $("#btn-eliminar").click(function() {
             var id = <?php echo $id_producto ?>;
-            $.ajax({
-                url: "php_eliminar.php",
-                type: "POST",
-                data: {
-                    task: 1,
-                    id: id,
-                },
-                success: function(response) {
-                    toastr.success('Fue Eliminado Correctamente');
-                    window.location = '../index.php'
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
+            Swal.fire({
+            title: 'Esta Seguro(a) de Eliminar la resistencia del concreto', // mensaje de la alerta
+            text: "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'No', // text boton
+            confirmButtonText: 'Si Eliminar'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "php_eliminar.php",
+                    type: "POST",
+                    data: {
+                        task: 1,
+                        id: id,
+                    },
+                    success: function(response) {
+                        if (response.estado) {
+                            Swal.fire(
+                                'La resistencia del concreto fue eliminada correctamente',
+                                'success'
+                            )
+                            window.location = '../index.php'
+                        } else {
+                            console.log("error");
+
+                        }
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            }
+        })
         });
     });
 </script>
