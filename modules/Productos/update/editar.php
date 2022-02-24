@@ -34,7 +34,7 @@ foreach ($datos_producto as $key) {
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>PRODUCTOS</h1>
-                    <?php var_dump($id_producto) ?>
+                   
                 </div>
                 <div class="col-sm-6">
                     <!--

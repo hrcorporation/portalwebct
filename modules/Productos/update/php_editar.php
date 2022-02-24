@@ -29,7 +29,7 @@ if (isset($_POST['Txb_TipoConcreto']) && !empty($_POST['Txb_TipoConcreto']) && i
     $color_concreto = $_POST['Txb_ColorConcreto'];
     // $nombre = "Nombre";
     // $descripcion = "Descripcion";
-    $id = $_POST['Txt_id'];
+    $id = $_POST['txt_id'];
     if ($t4_productos->actualizar_producto($id, $tipo_concreto, $resistencia_concreto, $tamano_agregado_concreto, $caract_concre, $color_concreto)) {
         $php_estado = true;
     } else {

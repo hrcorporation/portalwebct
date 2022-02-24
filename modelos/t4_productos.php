@@ -47,7 +47,7 @@ class t4_productos extends conexionPDO
         // $this->descripcion = $descripcion;
         $this->id = $id;
 
-        $sql = "UPDATE `ct4_productos` SET  `ct4_TipoConcreto` = :tipo_concreto, `ct4_Resistencia` = :resistencia, `ct4_TamanoMAgregado` = :tamanoagregado, `ct4_CaracteristicaConcreto` = :caract_concre, `ct4_Color` =:color, WHERE ct4_Id_productos = :ct4_Id_productos ";
+        $sql = "UPDATE `ct4_productos` SET  `ct4_TipoConcreto` = :tipo_concreto, `ct4_Resistencia` = :resistencia, `ct4_TamanoMAgregado` = :tamanoagregado, `ct4_CaracteristicaConcreto` = :caract_concre, `ct4_Color` =:color WHERE ct4_Id_productos = :id ";
         $stmt = $this->con->prepare($sql);
 
         // $stmt->bindParam(':estado', $this->estado, PDO::PARAM_INT);
@@ -59,11 +59,10 @@ class t4_productos extends conexionPDO
         $stmt->bindParam(':color', $this->color, PDO::PARAM_STR);
         // $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
         // $stmt->bindParam(':descripcion', $this->descripcion, PDO::PARAM_STR);
-        $stmt->bindParam(':ct4_Id_productos', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
 
         if ($stmt->execute()) { // Ejecutar
-            $id_insert = $this->con->lastInsertId();
-            return $id_insert;
+            return true;
         } else {
             return false;
         }
