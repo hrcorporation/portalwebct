@@ -1,0 +1,8 @@
+[18-Feb-2022 14:28:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function fb() on null in /home3/concr/portal.concretol.co/modules/remisiones/update/editar_avanzado.php:108
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/remisiones/update/editar_avanzado.php on line 108
+[18-Feb-2022 14:28:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function fb() on null in /home3/concr/portal.concretol.co/modules/remisiones/update/editar_avanzado.php:108
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/remisiones/update/editar_avanzado.php on line 108

@@ -18,9 +18,9 @@ class t10_vehiculo extends conexionPDO
         $this->placa = $placa;
         $option = "<option  selected='true'  value='0'> Seleccione un Vehiculo</option>";
 
-            $sql = "SELECT `ct10_IdVehiculo`, `ct10_Placa` FROM `ct10_vehiculo` ";
-            $stmt = $this->con->prepare($sql);
-       
+        $sql = "SELECT `ct10_IdVehiculo`, `ct10_Placa` FROM `ct10_vehiculo` ";
+        $stmt = $this->con->prepare($sql);
+
 
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();

@@ -97,12 +97,9 @@ if (is_array($array_reg)) {
     }
 }
 
-<<<<<<< HEAD
 if($php_result= $cls_importdata->insert_centro_costo($new_arrayf)){
     $php_estado = true;
 }
-=======
->>>>>>> dev
 
 if($php_result= $cls_importdata->insert_centro_costo($new_arrayf)){
 

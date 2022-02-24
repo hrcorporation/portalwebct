@@ -234,7 +234,7 @@ switch($rol_user)
                                   
 
                                                 
-                                                <td><a href="update/editar_facturae.php?id=<?php echo $php_clases->HR_Crypt($id_factura,1) ;?>" class="btn btn-block btn-info">Editar</a></td>
+                                                <td><a href="update/editar_facturae.php?id=<?php echo $id_factura ;?>" class="btn btn-block btn-info">Editar</a></td>
                                             </tr>
                                             <?php
                                         }

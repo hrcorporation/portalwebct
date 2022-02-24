@@ -76,7 +76,7 @@
                 </li>
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="../../../assets/images/usuarios/images.png" class="user-image img-circle elevation-2"
+                        <img src="../../../../assets/images/usuarios/images.png" class="user-image img-circle elevation-2"
                             alt="User Image">
                         <span class="d-none d-md-inline"><?php echo $nombre_usuario; ?></span>
                     </a>

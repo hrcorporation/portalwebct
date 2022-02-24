@@ -1070,16 +1070,16 @@ class t1_terceros extends conexionPDO
         return $stmt;
     }
 
-    function option_conductor_edit($id_conductor)
+    function option_conductor_edit($id_conductor = null)
     {
         $id_conductor = intval($id_conductor);
-        $option = "<option  selected='true' value='0'> Seleccione un Cliente</option>";
+        $option = "<option  selected='true' value='0'> Seleccione un Conductor</option>";
         $sql = "SELECT ct1_IdTerceros, ct1_NumeroIdentificacion, ct1_RazonSocial FROM ct1_terceros WHERE ct1_TipoTercero = 10 AND ct1_Estado = 1 AND  `ct1_rol` IN (25,29)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
         // Asignando Datos ARRAY => SQL
-        $stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
         // Ejecutar 
         $result = $stmt->execute();
 

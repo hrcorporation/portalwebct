@@ -16,6 +16,7 @@ $id_remision = (int)htmlspecialchars($_POST['id_remi']);
 
 if($id_remision){
     $resultado = $t26_remisiones->anular_remision($id_remision);
+    $t26_remisiones->rz_anular_remision($id_remision,$_POST['rz_anular']);
     $php_estado = $resultado;
 }else{
     $php_estado = false;
@@ -23,6 +24,7 @@ if($id_remision){
 
 $datos = array(
     'estado' => $php_estado,
+    'post' => $_POST
 
 );
 

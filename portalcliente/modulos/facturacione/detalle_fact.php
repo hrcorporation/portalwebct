@@ -40,43 +40,45 @@ $id = $LibreriasHR->HR_Crypt($_GET['id'],2);
 
 
 
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1>Detalle de la Factura</h1>
-                            </div>
-                            <div class="col-sm-6">
-                                <!--
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Detalle de la Factura</h1>
+                </div>
+                <div class="col-sm-6">
+                    <!--
                               <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                                 <li class="breadcrumb-item active">Actual</li>
                               </ol> 
                                 -->
-                            </div>
-                        </div>
-                    </div><!-- /.container-fluid -->
-                </section>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
-                <!-- Main content -->
-                <section class="content">
+    <!-- Main content -->
+    <section class="content">
 
-                    <!-- Default box -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"></h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                    <i class="fas fa-minus"></i></button>
-                                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>    
-                            </div>
-                        </div>
-                        <div class="card-body">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"></h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                            class="fas fa-expand"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
 
-                        <?php 
+                <?php 
                 $datos_factura = $t27_factura->select_factura_id($id);
                 while($fila_factura = $datos_factura->fetch(PDO::FETCH_ASSOC)){
                     
@@ -92,62 +94,49 @@ $id = $LibreriasHR->HR_Crypt($_GET['id'],2);
                 }
 
 ?>
-                        <div>
-                        <div class="row justify-content-center ">
+                <div>
+                    <div class="row justify-content-center ">
 
-            								<div class="col-4">
-            									<!-- form-group -->
-            									<div class="form-group">
-            										
-            										<a href="<?php echo htmlspecialchars($archivo_fact); ?>" target="_blank"><img src="factura.jpg" width="70%" height="160px"></a>
-            									</div>
-            									<!-- /.form-group -->
-            								</div>
-            								<div class="col-4">
-            									<div class="form-group">
-            										<h3> Factura Numero : <?php echo htmlspecialchars($nombre_factura);?>.</h3>
-            										<hr>
-            										<h3> Fecha Subida : <?php echo htmlspecialchars($fecha_subda);?></h3>
-            										<hr>
-            										<h3> Valor Total: $ <?php echo htmlspecialchars(number_format($valor_factura));?></h3>
+                        <div class="col-4">
+                            <!-- form-group -->
+                            <div class="form-group">
 
-            									</div>
-            								</div>
-            							</div>
+                                <a href="<?php echo htmlspecialchars($archivo_fact); ?>" target="_blank"><img
+                                        src="factura.jpg" width="70%" height="160px"></a>
+                            </div>
+                            <!-- /.form-group -->
                         </div>
-<hr>
-<div>
-<div class="row justify-content-center">
-            								<div class="col-10">
-            									<div class="form-group">
-            										<h4> Identificacion : <?php //echo htmlspecialchars($fila['cliCednit']);?></h4>
-            										<hr>
-            										<h4> Cliente : <?php //echo htmlspecialchars($fila['cliNombre']);?> </h4>
-            										<hr>
-            										<h4> OBRA : <?php //echo htmlspecialchars($fila['nombreObra']);?></h4>
-            										<hr>
-            										<h4> Direccion de la Obra: <?php //echo htmlspecialchars($fila['direccionObra']);?></h4>
-            										<hr>
-            									</div>
-            								</div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <h3> Factura Numero : <?php echo htmlspecialchars($nombre_factura);?>.</h3>
+                                <hr>
+                                <h3> Fecha Subida : <?php echo htmlspecialchars($fecha_subda);?></h3>
+                                <hr>
+                                <h3> Valor Total: $ <?php echo htmlspecialchars(number_format($valor_factura));?></h3>
 
-            							</div>
-            							<br>
-            							
-</div>
-<hr>
-<div>
-<table id="example1" class="table table-bordered table-striped">
-            									<thead >
-            										<tr>
-            											<th>Nº</th>
-            											<th width="70%">Codigo</th>
-            											<th > Archivo</th>
-            											<th > Descargar</th>
-            										</tr>
-            									</thead>
-                                                <tbody>
-                                                <?php
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <h4>Listado de Remisiones</h4>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th width="70%">Codigo</th>
+                                <th> Archivo</th>
+                                <th> Descargar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
                                                 $i = 0;
                     $dato_factura_remi =  $t27_factura->buscar_factura_remi($id);
                     while($fila_factremi = $dato_factura_remi->fetch(PDO::FETCH_ASSOC)){
@@ -171,71 +160,134 @@ $id = $LibreriasHR->HR_Crypt($_GET['id'],2);
 
 ?>
 
-<tr>
-<td><?php echo $i; ?></td>
-<td><?php echo $codigo_remi; ?></td>
-<?php
+                            <tr>
+                                <td><?php echo $i; ?></td>
+                                <td><?php echo $codigo_remi; ?></td>
+                                <?php
 if(empty($archivo)){
 
 $archivo = "ver_remision/remision.php?id=".  $php_clases->HR_Crypt($id_remision, 1);
 }
 ?>
 
-<td><a class="btn btn-block bg-gradient-success" href="<?php echo htmlspecialchars($archivo); ?>" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-<td><a class="btn btn-block bg-gradient-success" href="<?php echo htmlspecialchars($archivo); ?>" download><i class="fa fa-download" aria-hidden="true"></i></a></td>
+                                <td><a class="btn btn-block bg-gradient-success"
+                                        href="<?php echo htmlspecialchars($archivo); ?>" target="_blank"><i
+                                            class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                <td><a class="btn btn-block bg-gradient-success"
+                                        href="<?php echo htmlspecialchars($archivo); ?>" download><i
+                                            class="fa fa-download" aria-hidden="true"></i></a></td>
 
-</tr>
+                            </tr>
 
-                <?php } ?>
-
-
-                                                </tbody>
-                                                <tfooter>
-                                                </tfooter>
-                                                </table>
-</div>
+                            <?php } ?>
 
 
+                        </tbody>
+                        <tfooter>
+                        </tfooter>
+                    </table>
+
+                
 
 
-<br>
+<?php 
+
+if(is_array($datos_anexo =  $t27_factura->buscar_factura_anexos_for_id_factura($id))):
+?>
+
 <hr>
-<hr>
-                        
-                        
-                                                    <div id="contenido">
-
-
-
-
-
-
-
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                        </div>
-                        <!-- /.card-footer-->
+                <div class="row">
+                    <div class="col">
+                        <h4>Listado de Anexos</h4>
                     </div>
-                    <!-- /.card -->
+                </div>
+                <hr>
+<table id="tabla_anexos" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th width="70%">Nombre Documento</th>
+                                <th> Archivo</th>
+                                
+                            </tr>
+                        </thead>
+                        <?php
+                                       
+                                            foreach ($datos_anexo as $fila_remi) {
+                                                $i++;
+                                                $id_anexo = 1;
+                                                $nombre_doc = $fila_remi['nombre_doc'];
+                                                $archivo_doc = $fila_remi['archivo_doc'];
+                                                ?>
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><label><?php echo "  " . $nombre_doc; ?></label> </td>
+                                            <td><a target="_blank" href="<?php echo $archivo_doc; ?>"
+                                                    class="btn btn-block btn-success btn-sm"> <i class="far fa-eye"></i>
+                                                    ver </a></td>
+                                        </tr>
 
-                </section>
-                <!-- /.content -->
+                                        <?php
+
+                                            }
+                                        
+                                      ?>
+
+
+                        <tfooter>
+                        </tfooter>
+                    </table>
+<?php 
+else:
+endif;
+?>
+
+
+                 
+                </div>
+
+
+
+
+                <br>
+                <hr>
+                <hr>
+
+
+                <div id="contenido">
+
+
+
+
+
+
+
+                </div>
             </div>
-            <!-- /.content-wrapper -->
-            
+            <!-- /.card-body -->
+            <div class="card-footer">
+            </div>
+            <!-- /.card-footer-->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
 
-            <?php include '../../../layout/footer/footercliente3.php' ?>
 
-    <script src="../../../plugins/datatables/datatables.js"></script>
-       
-        <script>
-        $(document).ready(function() {
+<?php include '../../../layout/footer/footercliente3.php' ?>
+
+<script src="../../../plugins/datatables/datatables.js"></script>
+
+<script>
+$(document).ready(function() {
     $('#example1').DataTable();
-} );
-        </script>
+});
+</script>
 
-    </body>
+</body>
+
 </html>

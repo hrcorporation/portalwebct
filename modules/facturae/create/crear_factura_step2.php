@@ -14,6 +14,7 @@ $t5_obras = new t5_obras();
 $php_clases = new php_clases();
 $t1_terceros = new t1_terceros();
 $t26_remisiones = new t26_remisiones();
+$t27_factura = new t27_factura();
 
 
 
@@ -140,7 +141,13 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                         </div>
                     </div>
                     <hr>
-
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <h4> Tabla de Remisiones </h4>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -166,15 +173,15 @@ while ($fila_obra = $datos_obras->fetch(PDO::FETCH_ASSOC)) {
                                             <tr>
                                                 <td><?php echo $i; ?></td>
 
-                                                <td><input type="checkbox" name="remision[]" id="<?php echo $id_remi; ?>" value="<?php echo $id_remi; ?>"><label for="<?php echo $id_remi; ?>">    <?php echo "  " . $codigo_remi; ?></label> </td>
+                                                <td><input type="checkbox" name="remision[]" id="<?php echo $id_remi; ?>" value="<?php echo $id_remi; ?>"><label for="<?php echo $id_remi; ?>"> <?php echo "  " . $codigo_remi; ?></label> </td>
 
-                                                <?php 
+                                                <?php
 
-if(empty($archivo)){
+                                                if (empty($archivo)) {
 
-    $archivo = "../ver_remision/remision.php?id=".  $php_clases->HR_Crypt($id_remi, 1);
-}
-?>
+                                                    $archivo = "../ver_remision/remision.php?id=" .  $php_clases->HR_Crypt($id_remi, 1);
+                                                }
+                                                ?>
                                                 <td><a target="_blank" href="<?php echo $archivo; ?>" class="btn btn-block btn-success btn-sm"> <i class="far fa-eye"></i> ver </a></td>
 
                                             </tr>
@@ -192,6 +199,60 @@ if(empty($archivo)){
                             </div>
                         </div>
                     </div>
+                    <br><hr><br>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <h4> Tabla de Anexos </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <table id="tabla_anexos" class="display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nombre Anexos</th>
+                                            <th>Archivos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 0;
+                                        $datos_anexo = $t27_factura->select_anexo_factura($id_cliente);
+                                        foreach ($datos_anexo as $fila_remi) {
+                                  
+                                            $i++;
+                                            $id = $fila_remi['id'];
+                                            $nombre_doc = $fila_remi['nombre_doc'];
+                                            $archivo_doc = $fila_remi['archivo_doc'];
+                                        ?>
+
+                                            <tr>
+                                                <td><?php echo $i; ?></td>
+
+                                                <td><input type="checkbox" name="anexo[]" id="<?php echo $id; ?>" value="<?php echo $id; ?>"><label for="<?php echo $id; ?>"> <?php echo "  " . $nombre_doc; ?></label> </td>
+
+
+                                                <td><a target="_blank" href="<?php echo $archivo_doc; ?>" class="btn btn-block btn-success btn-sm"> <i class="far fa-eye"></i> ver </a></td>
+
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nombre Anexos</th>
+                                            <th>Archivos</th>
+                                        </tr>
+                                    </tfoot>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     <hr>
                     <div class="row">
                         <div class="col">
@@ -201,11 +262,6 @@ if(empty($archivo)){
                         </div>
                     </div>
                 </form>
-
-
-
-
-
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
@@ -223,11 +279,7 @@ if(empty($archivo)){
 <?php include '../../../layout/footer/footer3.php' ?>
 <script src="../../../plugins/datatables/datatables.js"></script>
 
-<script>
-    $(document).ready(function() {
-        $('#tabla_remisiones').DataTable({});
-    });
-</script>
+
 
 <script type="text/javascript">
     function format(input) {
@@ -252,6 +304,11 @@ if(empty($archivo)){
 <script>
     $(document).ready(function() {
         $('#tabla_remi').DataTable({
+            "scrollY": "500px",
+            "scrollCollapse": true,
+            "paging": false
+        });
+        $('#tabla_anexos').DataTable({
             "scrollY": "500px",
             "scrollCollapse": true,
             "paging": false

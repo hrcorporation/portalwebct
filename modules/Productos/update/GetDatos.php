@@ -107,7 +107,7 @@ if ($_POST['task'] == 2 && $_POST['tipo'] == "Get_Datos1") {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     $codigoconcretof = $CodTipoConcreto . "" . $CodResistConcreto . "" . $CodiTMA . "" . $CodiCaract . "" . $CodiColor;
-    $DesCripCocnretoF = $DescripcionTConcreto . " " . $DescpResistConcreto . " " . $DescpTMA . " " . $DescpCaract . " " . $DescpColor ;
+    $DesCripCocnretoF = $DescripcionTConcreto . " " . $DescpResistConcreto . " " . $DescpTMA . " " . $DescpCaract . " " . $DescpColor;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

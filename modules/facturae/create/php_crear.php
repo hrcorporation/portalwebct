@@ -27,7 +27,8 @@ $resultado = "";
 
 if (isset($_POST['valor']) && !empty($_POST['valor']) &&
     isset($_POST['titulo']) && !empty($_POST['titulo']) &&
-    isset($_POST['cliente']) && !empty($_POST['cliente'])
+    isset($_POST['cliente']) && !empty($_POST['cliente']) &&
+    isset($_POST['remision']) && !empty($_POST['remision'])
 ){
 
     $php_idcliente = htmlspecialchars($_POST["cliente"]);
@@ -65,11 +66,30 @@ if (isset($_POST['valor']) && !empty($_POST['valor']) &&
         ///remisiones seleccionadas
         $php_contadorremisiones = count($php_remisiones);
 
+        $php_anexos = $_POST["anexo"];
+    
+        ///remisiones seleccionadas
+        $php_contadoranexos = count($php_anexos);
 
         $id_usuario =1;
         $result = $t27_factura->insertar_factura($php_titulo,$php_fechatime, $php_tempfoto , $php_valor, $id_remision, $php_idcliente, $php_idobra, $id_usuario);
                                     
 if($result>0){
+
+    if($php_contadoranexos >= 1){
+        foreach ($php_anexos as $numbera => $id_anexo){ 
+            
+
+            if($t27_factura->insertar_factura_anexo($result, $id_anexo)){
+                $php_estado = true;
+            }else{
+        $errores = "hubo un error al guardar las anexos";
+                
+            }
+    
+          }
+    }
+    
     
     foreach ($php_remisiones as $number => $idremisiones){ 
         

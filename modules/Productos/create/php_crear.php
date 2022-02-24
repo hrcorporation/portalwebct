@@ -3,7 +3,6 @@
 session_start();
 header('Content-Type: application/json');
 
-
 require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
@@ -16,18 +15,15 @@ $t24_caract_concre = new t24_caract_concre();
 $t25_colorconcreto = new t25_colorconcreto();
 $general_modelos = new general_modelos();
 
-
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
-
 
 if (isset($_POST['Txb_Descripcion']) && !empty($_POST['Txb_Descripcion']) && isset($_POST['Txb_Nombre']) && !empty($_POST['Txb_Nombre'])) {
 
     date_default_timezone_set('America/Bogota');
 
     $fecha_create = "" . date("Y-m-d H:i:s");
-
 
     $estado = 1;
     $codigo_syscafe  = htmlspecialchars($_POST['Txb_Nombre']);

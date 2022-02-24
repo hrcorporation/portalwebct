@@ -14,36 +14,62 @@ $t26_remisiones = new t26_remisiones();
 $php_fechatime = "" . date("Y-m-d H:i:s");
 
 $php_estado = false;
-$errores[] = "";
+$php_error[] = "";
 $resultado = "";
-$php_error = "";
 
-$id_factura = $_POST['id_factura'];
+$id_factura = intval($_POST['id_factura']);
 
-
-
-if (isset($_POST['h_datos']) && !empty($_POST['h_datos']) && $_POST['h_datos'] == 1) {
-    $id_factura = $_POST['id_factura'];
-    $id_cliente = (int) htmlspecialchars($_POST['Txb_IdTercero']);
-    $id_obra = (int) htmlspecialchars($_POST['Txb_IdObras']);
-    $numero_factura = htmlspecialchars($_POST['numero_factura']);
-    $valor = (int) htmlspecialchars($_POST['valor_factura']);
-    //$modificacion = htmlspecialchars($_POST['Txb_RazonM']);
-
-
-    $result = $t27_factura->editar_datos_factura($numero_factura, $valor, $id_cliente, $id_obra, $id_factura);
-
-    if ($result) {
+if(isset($_POST['id_factura']) && !empty($_POST['id_factura']))
+{
+/**
+ * ================================================================================================
+ * Actualizar Valor de la Factura
+ * ================================================================================================
+ */
+if(isset($_POST['check_habilitar_valor']) && !empty($_POST['check_habilitar_valor']))
+{
+    $valor_factura = $_POST['valor_factura'];
+    if($t27_factura->editar_valor_fact($id_factura,$valor_factura))
+    {
         $php_estado = true;
-        $php_error = $result;
-    } else {
-        $php_estado = false;
-        $php_error = "error al guardar en la base de datos";
+        $php_error[] = "Valor de la factura Actualizado Correctamente";
+    }else{
+        $php_error[] = "No Fue Posible Actualizar valor de la factura";
     }
 }
 
-if (isset($_POST['habi_img']) && !empty($_POST['h_datos']) && $_POST['habi_img'] == 1) {
+
+/**
+ * ================================================================================================
+ * Actualizar Numero de la Factura
+ * ================================================================================================
+ */
+if(isset($_POST['check_habilitar_titulo']) && !empty($_POST['check_habilitar_titulo']))
+{
+    $numero_factura = $_POST['numero_factura'];
+
+    if($t27_factura->editar_num_fact($id_factura,$numero_factura))
+    {
+        $php_estado = true;
+
+        $php_error[] = "Titulo de la factura Actualizado Correctamente";
+
+    }else{
+        $php_error[] = "No Fue Posible Actualizar titulo de la factura";
+    }
+}
+ 
+
+    
+/**
+ * ================================================================================================
+ *  Actializar Archiivo Factura
+ * ================================================================================================
+ */
+if(isset($_POST['check_habilitar_arch']) && !empty($_POST['check_habilitar_arch']))
+{
     $php_estado = true;
+
     $image = htmlspecialchars($_FILES['image']['name']);
     $ruta = htmlspecialchars($_FILES['image']['tmp_name']);
 
@@ -61,12 +87,35 @@ if (isset($_POST['habi_img']) && !empty($_POST['h_datos']) && $_POST['habi_img']
         $php_error = "Factura actualizada correctamente";
     }
 }
+/**
+ * ================================================================================================
+ * Actualizar Cliente y Obra
+ * ================================================================================================
+ */
+if(isset($_POST['check_habilitar_cli_ob']) && !empty($_POST['check_habilitar_cli_ob']))
+{
+    $id_cliente = intval($_POST['Txb_IdTercero']);
+    $id_obra = intval($_POST['Txb_IdObras']);
+    if($t27_factura->editar_cli_obra($id_factura,$id_cliente,$id_obra))
+    {
+        $php_estado = true;
 
+        $php_error[] = "Cliente y Obra Actualizado Correctamente";
+
+    }else{
+        $php_error[] = "No Fue Posible Actualizar Cliente y Obra";
+    }
+}
+/**
+ * ================================================================================================
+ *  Actualizar Las Remisiones
+ * ================================================================================================
+ */
 
 $php_remisiones = $_POST["remision"];
 
 ///remisiones seleccionadas
-$php_contadorremisiones = count($php_remisiones);
+//$php_contadorremisiones = count($php_remisiones);
 
 if ($php_remisiones) {
     $eliminar_remisiones = $t27_factura->eliminafactura_remi($id_factura);
@@ -75,31 +124,62 @@ if ($php_remisiones) {
             $estado = 1;
             $t26_remisiones->actualizar_estado_remi_fact($idremisiones, $estado);
             $result2 = $t27_factura->insertar_factura_remi($id_factura, $idremisiones);
-
-
-
             if ($result2) {
                 $php_estado = true;
                 //$php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
             } else {
-                $errores = "hubo un error al guardar las remisiones";
+                $php_error[] = "hubo un error al guardar las remisiones";
             }
         }
     }
 }
 
 
+/**
+ * ================================================================================================
+ *  Actualizar Las Anexos
+ * ================================================================================================
+ */
 
 
+///remisiones seleccionadas
+
+if (isset($_POST["anexo"])) {
+    $php_contadoranexos = count($_POST["anexo"]);
+    if($php_contadoranexos >= 1){
+    $eliminar_remisiones = $t27_factura->eliminafactura_anexo($id_factura);
+
+        foreach ($_POST["anexo"] as $number => $id_anexo) {
+            $estado = 1;
+            $result2 = $t27_factura->insertar_factura_anexo($id_factura, $id_anexo);
+            if ($result2) {
+                $php_estado = true;
+                //$php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
+            } else {
+                $php_error[] = "hubo un error al guardar las anexos";
+            }
+        }
+    }else{
+    $eliminar_remisiones = $t27_factura->eliminafactura_anexo($id_factura);
+
+    }
+   
+}else{
+    $eliminar_remisiones = $t27_factura->eliminafactura_anexo($id_factura);
+
+}
 
 
-
+}else{
+    $php_error[] = "No es posible Actualizar la factura";
+}
 
 
 $datos = array(
     'estado' => $php_estado,
     'errores' => $php_error,
     'result' => $resultado,
+    'post' => $_POST
 );
 
 

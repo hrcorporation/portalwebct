@@ -11,6 +11,7 @@ $t4_productos = new t4_productos();
 $php_clases = new php_clases();
 
 $id_producto = $php_clases->HR_Crypt($_GET['id'], 2);
+// $id_producto = $_GET['id'];
 
 $datos_producto = $t4_productos->get_productos_for_id($id_producto);
 
@@ -22,8 +23,8 @@ foreach ($datos_producto as $key) {
     $id_color_concre = $key['ct4_Color'];
     $nombre_producto = $key['ct4_Nombre'];
     $descripcion_producto = $key['ct4_Descripcion'];
-}
 
+}
 
 ?>
 <!-- Content Wrapper. Contains page content -->
@@ -34,6 +35,7 @@ foreach ($datos_producto as $key) {
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>PRODUCTOS</h1>
+                   
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -53,7 +55,7 @@ foreach ($datos_producto as $key) {
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Crear Producto</h3>
+                <h3 class="card-title">Editar Producto</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -64,10 +66,9 @@ foreach ($datos_producto as $key) {
             </div>
             <div class="card-body">
                 <div id="contenido">
-                    <form method="POST" name="FormCrearProducto" id="FormCrearProducto">
-
+                    <form method="POST" name="FormEditarProducto" id="FormEditarProducto">
+                        <input type="hidden" name="txt_id" id="txt_id" value="<?php echo $id_producto ?>">
                         <div class="row">
-
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label> Tipo de Concreto </label>
@@ -88,10 +89,10 @@ foreach ($datos_producto as $key) {
                                 <div class="form-group">
                                     <label> Tamaño Maximo Agregado </label>
                                     <select class="form-control select2 select2-orange" id="Txb_TMAgregado" name="Txb_TMAgregado" data-dropdown-css-class="select2-orange" style="width: 100%;">
+
                                     </select>
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
 
@@ -111,7 +112,6 @@ foreach ($datos_producto as $key) {
                                     </select>
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col-12">
@@ -120,19 +120,22 @@ foreach ($datos_producto as $key) {
 
                                     <div class="info-box-content text-center">
                                         <span class="info-box-text" id="CodigoConcreto"><?php print_r($nombre_producto); ?> </span>
-                                        <input class="form-control" type="hidden" name="Txb_Nombre" id="Txb_Nombre" placeholder="">
+                                        <input class="form-control" type="hidden" name="Txb_Nombre" id="Txb_Nombre" placeholder="" value="<?php echo $nombre_producto ?>">
                                         <span class="info-box-number" id="DescripcionConcreto"> <?php print_r($descripcion_producto); ?> </span>
-                                        <input class="form-control" type="hidden" name="Txb_Descripcion" id="Txb_Descripcion" placeholder="">
+                                        <input class="form-control" type="hidden" name="Txb_Descripcion" id="Txb_Descripcion" placeholder="" value="<?php echo $descripcion_producto ?>">
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="container">
                             <div class="row" style="text-align:center">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="button" id="btn-eliminar" name="btn-eliminar" class="btn btn-block btn-danger">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-block btn-success">Guardar</button>
                                     </div>
@@ -184,13 +187,9 @@ foreach ($datos_producto as $key) {
 <script>
     $(function() {
         $(document).ready(function(e) {
-
-
             /**********************************************************************************************************************************/
             // LISTA CLIENTE      - cheke  
             /**********************************************************************************************************************************/
-
-
             $.ajax({
                 url: "get_datosConcreto.php",
                 type: "POST",
@@ -328,9 +327,7 @@ foreach ($datos_producto as $key) {
                     }
                 });
             });
-
             ///////////////////////////////////////////////////
-
             ////////////////////////////////////////////////////
             $('#Txb_CrtConcreto').on('change', function() {
                 $.ajax({
@@ -397,6 +394,69 @@ foreach ($datos_producto as $key) {
                 });
             });
 
+        });
+        $("#FormEditarProducto").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_editar.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('exitoso');
+
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
+        $("#btn-eliminar").click(function() {
+            // definimos variable id para poder eliminar
+            var id = <?php echo $id_producto ?>;
+            Swal.fire({
+                title: 'Esta Seguro(a) de Eliminar el tipo de concreto', // mensaje de la alerta
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'No', // text boton
+                confirmButtonText: 'Si Eliminar'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "php_eliminar.php",
+                        type: "POST",
+                        data: {
+                            task: 1,
+                            id: id,
+                        },
+                        success: function(response) {
+                            if (response.estado) {
+                                Swal.fire(
+                                    'El tipo de concreto fue eliminada correctamente',
+                                    'success'
+                                )
+                                window.location = '../index.php'
+                            } else {
+                                console.log("error");
+
+                            }
+                        },
+                        error: function(respuesta) {
+                            alert(JSON.stringify(respuesta));
+                        },
+                    });
+                }
+            })
         });
     });
 </script>
