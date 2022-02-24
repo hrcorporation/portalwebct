@@ -43,7 +43,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="txt_cod">Codigo Resistencia</label>
-                                <input type="text" name="txt_cod" id="txt_cod" class="form-control" maxlength="2">
+                                <input type="text" name="txt_cod" id="txt_cod" class="form-control" maxlength="3">
                             </div>
                         </div>
                         <div class="col">
