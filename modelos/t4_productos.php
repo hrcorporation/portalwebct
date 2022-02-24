@@ -34,7 +34,7 @@ class t4_productos extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    function actualizar_producto($id, $tipo_concreto, $resistencia, $tamanoagregado, $caract_concre, $color)
+    function actualizar_producto($id, $tipo_concreto, $resistencia, $tamanoagregado, $caract_concre, $color,$codigo_concre, $descripcion_concre)
     {
         // $this->estado = $estado;
         // $this->codigo_syscafe = $codigo_syscafe;
@@ -43,11 +43,11 @@ class t4_productos extends conexionPDO
         $this->tamanoagregado = $tamanoagregado;
         $this->caract_concre = $caract_concre;
         $this->color = $color;
-        // $this->nombre = $nombre;
-        // $this->descripcion = $descripcion;
+        $this->codigo_concre = $codigo_concre;
+        $this->descripcion_concre = $descripcion_concre;
         $this->id = $id;
 
-        $sql = "UPDATE `ct4_productos` SET  `ct4_TipoConcreto` = :tipo_concreto, `ct4_Resistencia` = :resistencia, `ct4_TamanoMAgregado` = :tamanoagregado, `ct4_CaracteristicaConcreto` = :caract_concre, `ct4_Color` =:color WHERE ct4_Id_productos = :id ";
+        $sql = "UPDATE `ct4_productos` SET  `ct4_TipoConcreto` = :tipo_concreto, `ct4_Resistencia` = :resistencia, `ct4_TamanoMAgregado` = :tamanoagregado, `ct4_CaracteristicaConcreto` = :caract_concre, `ct4_Color` =:color, ct4_CodigoSyscafe = :codigo, ct4_Nombre = :cod ,ct4_Descripcion = :dsp  WHERE ct4_Id_productos = :id ";
         $stmt = $this->con->prepare($sql);
 
         // $stmt->bindParam(':estado', $this->estado, PDO::PARAM_INT);
@@ -57,6 +57,9 @@ class t4_productos extends conexionPDO
         $stmt->bindParam(':tamanoagregado', $this->tamanoagregado, PDO::PARAM_STR);
         $stmt->bindParam(':caract_concre', $this->caract_concre, PDO::PARAM_STR);
         $stmt->bindParam(':color', $this->color, PDO::PARAM_STR);
+        $stmt->bindParam(':codigo', $this->codigo_concre, PDO::PARAM_STR);
+        $stmt->bindParam(':cod', $this->codigo_concre, PDO::PARAM_STR);
+        $stmt->bindParam(':dsp', $this->descripcion_concre, PDO::PARAM_STR);
         // $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
         // $stmt->bindParam(':descripcion', $this->descripcion, PDO::PARAM_STR);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);

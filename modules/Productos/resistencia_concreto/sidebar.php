@@ -28,7 +28,7 @@
                      <a href="index.php" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Explorar
+                         Productos
                          </p>
                      </a>
                  </li>

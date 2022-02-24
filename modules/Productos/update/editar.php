@@ -23,6 +23,7 @@ foreach ($datos_producto as $key) {
     $id_color_concre = $key['ct4_Color'];
     $nombre_producto = $key['ct4_Nombre'];
     $descripcion_producto = $key['ct4_Descripcion'];
+
 }
 
 ?>
@@ -119,9 +120,9 @@ foreach ($datos_producto as $key) {
 
                                     <div class="info-box-content text-center">
                                         <span class="info-box-text" id="CodigoConcreto"><?php print_r($nombre_producto); ?> </span>
-                                        <input class="form-control" type="hidden" name="Txb_Nombre" id="Txb_Nombre" placeholder="">
+                                        <input class="form-control" type="hidden" name="Txb_Nombre" id="Txb_Nombre" placeholder="" value="<?php echo $nombre_producto ?>">
                                         <span class="info-box-number" id="DescripcionConcreto"> <?php print_r($descripcion_producto); ?> </span>
-                                        <input class="form-control" type="hidden" name="Txb_Descripcion" id="Txb_Descripcion" placeholder="">
+                                        <input class="form-control" type="hidden" name="Txb_Descripcion" id="Txb_Descripcion" placeholder="" value="<?php echo $descripcion_producto ?>">
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
