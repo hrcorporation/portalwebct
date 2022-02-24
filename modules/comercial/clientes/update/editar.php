@@ -1,14 +1,10 @@
-<?php include '../../../layout/validar_session3.php' ?>
-<?php include '../../../layout/head/head3.php'; ?>
+<?php include '../../../../layout/validar_session4.php' ?>
+<?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 <?php //include '../../../include/model/tablas/conexionPDO.php'; 
 ?>
 
-<?php
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
-?>
+
 <?php
 
 $php_clases = new php_clases();
@@ -100,7 +96,7 @@ foreach ($datos_cliente_int as $key) {
                                         <?php
                                         switch ($tipo_cliente) {
                                             case 1:
-                                                $op_tipo_tercero = "<option value='1' selected> Constructora </option>";
+                                                $op_tipo_tercero = "";
                                                 break;
                                             case 2:
                                                 $op_tipo_tercero = "<option value='2' selected> Plan Maestro </option>";
@@ -226,7 +222,7 @@ foreach ($datos_cliente_int as $key) {
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>dv </label>
-                                        <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="9" placeholder="" value="<?php print_r($dv); ?>" />
+                                        <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="1" placeholder="" value="<?php print_r($dv); ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -346,7 +342,7 @@ foreach ($datos_cliente_int as $key) {
 </div>
 <!-- /.content-wrapper -->
 
-<?php include '../../../layout/footer/footer3.php' ?>
+<?php include '../../../../layout/footer/footer4.php' ?>
 
 
 

@@ -16,17 +16,17 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item ">
-                            <a href="../index.php" class="nav-link ">
+                            <a href="../../index.php" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Modulos
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">Funcionario</li>
+                        <li class="nav-header">Nombre Modulo</li>
 
                         <li class="nav-item has-treeview">
-                            <a href="index.php" class="nav-link active">
+                            <a href="../index.php" class="nav-link ">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
                                     Explorar
@@ -34,10 +34,10 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="create/crear.php" class="nav-link ">
+                            <a href="actual.php" class="nav-link active">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
-                                    Crear Funcionario
+                                    Editar 
                                 </p>
                             </a>
                         </li>

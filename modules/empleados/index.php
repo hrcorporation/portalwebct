@@ -12,18 +12,13 @@ $php_clases = new php_clases();
 switch ($rol_user) {
     case 1:
     case 5:
-
         $t1_terceros = new t1_terceros();
         $LibreriasHR = new LibreriasHR();
-
         break;
     default:
         print('<script> window.location = "../index.php"</script>');
         break;
 }
-
-    
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -196,7 +191,7 @@ while ($fila_func = $datos_funcionario->fetch(PDO::FETCH_ASSOC)) {
 
     if ($Estado == 1) {
         $s_clase = " badge-success ";
-        $status = "Aprovado";
+        $status = "Aprobado";
     }
     if ($Estado == 0) {
         $s_clase = " badge-info ";

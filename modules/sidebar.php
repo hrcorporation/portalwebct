@@ -30,53 +30,18 @@
                           <p>
                               Modulos
                               <i class="fas fa-angle-left right"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                     
+                            </p>
+                        </a>
+                  </li>
+                    <li class="nav-header">Areas</li>
+                  <li class="nav-item has-treeview">
+                      
+                              <a href="comercial/" class="nav-link">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>Comercial </p>
+                                  <i class="fas fa-angle-left right"></i>
+                              </a>
                 
-                          <?php
-                                switch ($rol_user){
-                                    // Modulo 
-                                    case 1:
-                                ?>
-                          <li class="nav-item">
-                              <a href="facturae/" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Factura </p>
-                              </a>
-                          </li>
-                                    <?php break; 
-                                    } ?>
-
-                                     <?php
-                                switch ($rol_user){
-                                    // Modulo 
-                                    case 3:
-                                ?>
-                          <li class="nav-item">
-                              <a href="../forms/general.html" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Modulo 2</p>
-                              </a>
-                          </li>
-                                    <?php break; 
-                                    } ?>
-
-                                     <?php
-                                switch ($rol_user){
-                                    // Modulo 
-                                    case 2:
-                                ?>
-                          <li class="nav-item">
-                              <a href="../forms/general.html" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Modulo 3</p>
-                              </a>
-                          </li>
-                                    <?php break; 
-                                    } ?>
-                      </ul>
                   </li>
               </ul>
           </nav>

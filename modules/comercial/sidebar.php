@@ -23,7 +23,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">Funcionario</li>
+                        <li class="nav-header">Comercial</li>
 
                         <li class="nav-item has-treeview">
                             <a href="index.php" class="nav-link active">
@@ -33,14 +33,42 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-header">Oportunidad de Negocio</li>
                         <li class="nav-item has-treeview">
-                            <a href="create/crear.php" class="nav-link ">
+                            <a href="oportunidad_negocio" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
-                                    Crear Funcionario
+                                    Explorar
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a href="oportunidad_negocio/create/crear.php" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Crear
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-header">Cotizaciones</li>
+                        <li class="nav-item has-treeview">
+                            <a href="cotizaciones" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Explorar
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="cotizaciones/create/crear.php" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Crear
+                                </p>
+                            </a>
+                        </li>
+
+                        
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

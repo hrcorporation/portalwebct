@@ -23,7 +23,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">CLIENTES</li>
+                        <li class="nav-header">Clientes</li>
 
                         <li class="nav-item has-treeview">
                             <a href="../index.php" class="nav-link ">
