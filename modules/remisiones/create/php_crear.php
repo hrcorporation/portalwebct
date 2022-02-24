@@ -41,7 +41,6 @@ if (isset($_POST['C_IdTerceros']) && !empty($_POST['C_IdTerceros'])) {
     $php_fileexten = strrchr($_FILES['imgfiles']['name'],".");
     $php_serial = strtoupper(substr(hash('sha1', $_FILES['imgfiles']['name'].$php_fechatime),0,40)).$php_fileexten;
 
-<<<<<<< HEAD
     $php_fileexten = strrchr($_FILES['imgfiles']['name'], ".");
     $php_serial = strtoupper(substr(hash('sha1', $_FILES['imgfiles']['name'] . $date), 0, 40)) . $php_fileexten;
     
@@ -70,10 +69,6 @@ $validar_existencia = $general_modelos->existencia('ct26_remisiones', 'ct26_codi
 if($validar_existencia){
 
     $insertar_remi = $t26_remisiones->subir_remision($php_codigo, $php_tempfoto, $php_idcliente, $php_idobra, $fecha_remi, $estado, $notificacion, $php_conductor, $php_vehiculo);
-=======
-    $carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/internal/images/anexos/'; 
-    $php_tempfoto = ('/internal/images/anexos/'.$php_serial);
->>>>>>> beta
 
     // $image = htmlspecialchars($_FILES['imgfiles']['name']);
     // $ruta = htmlspecialchars($_FILES['imgfiles']['tmp_name']);
