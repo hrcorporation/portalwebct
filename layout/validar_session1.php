@@ -11,6 +11,8 @@ if (
         include '../modelos/autoload.php';
         include '../vendor/autoload.php';
         $php_clases = new php_clases();
+        $firephp = FirePHP::getInstance(true);
+
         $id_usuario = intval($_SESSION['id_usuario']);
         $nombre_usuario = $_SESSION['nombre_usuario'];
         $rol_user = intval($_SESSION['rol_funcionario']);

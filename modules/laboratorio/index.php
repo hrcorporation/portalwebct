@@ -2,15 +2,11 @@
 <?php include '../../layout/head/head2.php'; ?>
 <?php include 'sidebar.php' ?>
 
-<?php require '../../librerias/autoload.php';
-require '../../modelos/autoload.php';
-require '../../vendor/autoload.php'; ?>
+
 
 <?php
 
 
-$usuarios = new usuarios();
-$permisos = new permisos();
 
 
 
