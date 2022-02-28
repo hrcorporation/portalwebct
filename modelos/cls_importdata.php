@@ -52,6 +52,7 @@ class cls_importdata extends conexionPDO
 
                 $sql = "INSERT INTO `pptoprod`(`fechames`, `unidadnegocio`, `topcliente`, `ciudad`, `m3prod`) VALUES (:fechames,:unidadnegocio,:topcliente,:ciudad,:m3prod)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
+                
                 $stmt->bindParam(':fechames', $row['fechames'], PDO::PARAM_STR);
                 $stmt->bindParam(':unidadnegocio', $row['unidadnegocio'], PDO::PARAM_STR);
                 $stmt->bindParam(':topcliente', $row['topcliente'], PDO::PARAM_STR);
@@ -115,13 +116,7 @@ class cls_importdata extends conexionPDO
                 $stmt->bindParam(':inactivo', $row['inactivo'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir', $row['dir'], PDO::PARAM_STR);
                 $stmt->bindParam(':dir2', $row['dir2'], PDO::PARAM_STR);
-<<<<<<< HEAD
                 $stmt->bindParam(':tel', $row['tel'], PDO::PARAM_STR);
-=======
-
-                $stmt->bindParam(':tel', $row['tel'], PDO::PARAM_INT);
-
->>>>>>> david
                 $stmt->bindParam(':telmovil', $row['telmovil'], PDO::PARAM_INT);
                 $stmt->bindParam(':fax', $row['fax'], PDO::PARAM_INT);
                 $stmt->bindParam(':email', $row['email'], PDO::PARAM_STR);
@@ -420,15 +415,9 @@ class cls_importdata extends conexionPDO
                 $sql = "INSERT INTO `cuentas_por_cobrar_clientes`(`nit`, `suc_pto`, `codigo`, `nombre`, `nom_comerc`, `telefono`, `celular`, `direccion`, `fecha`, `vence`, `saldo`, `sin_vencer`, `periodo_1_30`, `periodo_31_60`, `periodo_61_90`, `periodo_91_120`, `periodo_121_360`, `periodo_mas_361`, `meses_vencidos`, `plazo`, `mora`, `numero_externo`, `zona`, `fax`, `anticipos`, `cupo`, `fecha_ultimo_pago`, `observaciones`, `fecha_corte`) 
                 VALUES (:nit, :suc_pto, :codigo, :nombre, :nom_comerc, :telefono, :celular, :direccion, :fecha, :vence, :saldo, :sin_vencer, :periodo_1_30, :periodo_31_60, :periodo_61_90, :periodo_91_120, :periodo_121_360, :periodo_mas_361, :meses_vencidos, :plazo, :mora, :numero_externo, :zona, :fax, :anticipos, :cupo, :fecha_ultimo_pago, :observaciones, :fecha_corte)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
-<<<<<<< HEAD
                 $stmt->bindParam(':nit', $row['nit'], PDO::PARAM_INT);
                 $stmt->bindParam(':suc_pto', $row['suc_pto'], PDO::PARAM_STR);
                 $stmt->bindParam(':codigo', $row['codigo'], PDO::PARAM_INT);
-=======
-                $stmt->bindParam(':nit', $row['nit'], PDO::PARAM_STR);
-                $stmt->bindParam(':suc_pto', $row['suc_pto'], PDO::PARAM_STR);
-                $stmt->bindParam(':codigo', $row['codigo'], PDO::PARAM_STR);
->>>>>>> hr
                 $stmt->bindParam(':nombre', $row['nombre'], PDO::PARAM_STR);
                 $stmt->bindParam(':nom_comerc', $row['nom_comerc'], PDO::PARAM_STR);
                 $stmt->bindParam(':telefono', $row['telefono'], PDO::PARAM_STR);
