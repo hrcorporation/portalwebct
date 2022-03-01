@@ -42,13 +42,13 @@ require '../../../../vendor/autoload.php'; ?>
             </div>
             <div class="card-body">
                 <!-- formulario de balance -->
-                <form name="form_agentes_servicio" id="form_agentes_servicio" method="post">
+                <form name="form_biometrico" id="form_biometrico" method="post">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label>Seleccionar Archivo</label>
                                 <!-- input para seleccionar el archivo -->
-                                <input type="file" class="form-control" name="file_agentes_servicio" id="file_agentes_servicio" />
+                                <input type="file" class="form-control" name="file_biometrico" id="file_biometrico" />
                             </div>
                         </div>
                     </div>
@@ -76,11 +76,11 @@ require '../../../../vendor/autoload.php'; ?>
 
 <script>
 // subir Archivo
-$("#form_agentes_servicio").on('submit', (function(e) {
+$("#form_biometrico").on('submit', (function(e) {
     e.preventDefault();
 
     $.ajax({
-        url: "ajax_agentes_servicio.php",
+        url: "ajax_biometrico.php",
         type: "POST",
         data: new FormData(this),
         contentType: false,

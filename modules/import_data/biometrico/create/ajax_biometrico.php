@@ -10,11 +10,11 @@ $php_estado = false;
 $php_result = "saludo desde el servidor";
 
 $php_fechatime = "" . date("Y-m-d H:i:s");
-$image = htmlspecialchars($_FILES['file_agentes_servicio']['name']);
-$ruta = htmlspecialchars($_FILES['file_agentes_servicio']['tmp_name']);
+$image = htmlspecialchars($_FILES['file_biometrico']['name']);
+$ruta = htmlspecialchars($_FILES['file_biometrico']['tmp_name']);
 
-$php_fileexten = strrchr($_FILES['file_agentes_servicio']['name'], ".");
-$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_agentes_servicio']['name'] . $php_fechatime), 0, 40)) . $php_fileexten;
+$php_fileexten = strrchr($_FILES['file_biometrico']['name'], ".");
+$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_biometrico']['name'] . $php_fechatime), 0, 40)) . $php_fileexten;
 
 $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/load_data/';
 $php_tempfoto = ('/internal/load_data/' . $php_serial);
@@ -86,7 +86,7 @@ if (is_array($array_reg)) {
     }
 }
 
-if ($php_result = $cls_importdata->insert_agente_servicio($new_arrayf)) {
+if ($php_result = $cls_importdata->insert_biometrico($new_arrayf)) {
     $php_estado = true;
 }
 

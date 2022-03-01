@@ -832,12 +832,12 @@ class cls_importdata extends conexionPDO
         }
     }
     // ///////////////////////////////////////////////////////////////////////////
-    function insert_agente_servicio(array $array_datos)
+    function insert_biometrico(array $array_datos)
     {
         if (is_array($array_datos)) {
             foreach ($array_datos as $row) {
 
-                $sql = " INSERT INTO `agentes_servicio`(`fecha`, `id_empleado`, `id_rol`, `numero_nomina`, `nombre`, `entrada_1`, `salida_1`, `entrada_2`, `salida_2`, `entrada_3`, `salida_3`, `h_normales`, `h_ausencias`, `h_extra`, `noc`) VALUES   (:fecha,:id_empleado, :id_rol, :numero_nomina, :nombre, :entrada_1, :salida_1, :entrada_2, :salida_2, :entrada_3, :salida_3 , :h_normales, :h_ausencias, :h_extra, :noc)";
+                $sql = " INSERT INTO `registro_biometrico`(`fecha`, `id_empleado`, `id_rol`, `numero_nomina`, `nombre`, `entrada_1`, `salida_1`, `entrada_2`, `salida_2`, `entrada_3`, `salida_3`, `h_normales`, `h_ausencias`, `h_extra`, `noc`) VALUES   (:fecha,:id_empleado, :id_rol, :numero_nomina, :nombre, :entrada_1, :salida_1, :entrada_2, :salida_2, :entrada_3, :salida_3 , :h_normales, :h_ausencias, :h_extra, :noc)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
                 $stmt->bindParam(':fecha', $row['fecha'], PDO::PARAM_STR);
                 $stmt->bindParam(':id_empleado', $row['id_empleado'], PDO::PARAM_STR);
@@ -893,7 +893,7 @@ class cls_importdata extends conexionPDO
     function select_get_biometrico_id($id)
     {
         $this->id = $id;
-        $sql = "SELECT * FROM `agentes_servicio` WHERE  `id` = :id";
+        $sql = "SELECT * FROM `registro_biometrico` WHERE  `id` = :id";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -916,7 +916,7 @@ class cls_importdata extends conexionPDO
 
     function get_datatable_biometrico()
     {
-        $sql = "SELECT `id`, `fecha`, `numero_nomina`, `nombre`, `entrada_1`, `salida_1`, `entrada_2`, `salida_2`, `entrada_3`, `salida_3`, `h_normales`, `h_ausencias`, `h_extra`, `noc` FROM `agentes_servicio`";
+        $sql = "SELECT `id`, `fecha`, `numero_nomina`, `nombre`, `entrada_1`, `salida_1`, `entrada_2`, `salida_2`, `entrada_3`, `salida_3`, `h_normales`, `h_ausencias`, `h_extra`, `noc` FROM `registro_biometrico`";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -949,7 +949,7 @@ class cls_importdata extends conexionPDO
         $this->salida_1 = $salida_1;
         $this->id = $id;
 
-        $sql = "UPDATE `agentes_servicio` SET `fecha`= :fecha,`entrada_1`= :entrada_1, `salida_1` = :salida_1 WHERE `id` = :id";
+        $sql = "UPDATE `registro_biometrico` SET `fecha`= :fecha,`entrada_1`= :entrada_1, `salida_1` = :salida_1 WHERE `id` = :id";
 
         $stmt = $this->con->prepare($sql);
 
@@ -972,7 +972,7 @@ class cls_importdata extends conexionPDO
     function eliminar_datos_biometrico($id)
     {
         $this->id = $id;
-        $sql = "DELETE FROM `agentes_servicio` WHERE `id` = :id";
+        $sql = "DELETE FROM `registro_biometrico` WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
         // Ejecutar 
