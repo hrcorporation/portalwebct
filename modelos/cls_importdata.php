@@ -52,7 +52,7 @@ class cls_importdata extends conexionPDO
 
                 $sql = "INSERT INTO `pptoprod`(`fechames`, `unidadnegocio`, `topcliente`, `ciudad`, `m3prod`) VALUES (:fechames,:unidadnegocio,:topcliente,:ciudad,:m3prod)";
                 $stmt = $this->con->prepare($sql); // Preparar la conexion
-                
+
                 $stmt->bindParam(':fechames', $row['fechames'], PDO::PARAM_STR);
                 $stmt->bindParam(':unidadnegocio', $row['unidadnegocio'], PDO::PARAM_STR);
                 $stmt->bindParam(':topcliente', $row['topcliente'], PDO::PARAM_STR);
@@ -240,7 +240,7 @@ class cls_importdata extends conexionPDO
             return false;
         }
     }
-    
+
     function insert_centro_costo(array $array_datos)
     {
         if (is_array($array_datos)) {
@@ -830,5 +830,160 @@ class cls_importdata extends conexionPDO
         } else {
             return false;
         }
+    }
+    // ///////////////////////////////////////////////////////////////////////////
+    function insert_agente_servicio(array $array_datos)
+    {
+        if (is_array($array_datos)) {
+            foreach ($array_datos as $row) {
+
+                $sql = " INSERT INTO `agentes_servicio`(`fecha`, `id_empleado`, `id_rol`, `numero_nomina`, `nombre`, `entrada_1`, `salida_1`, `entrada_2`, `salida_2`, `entrada_3`, `salida_3`, `h_normales`, `h_ausencias`, `h_extra`, `noc`) VALUES   (:fecha,:id_empleado, :id_rol, :numero_nomina, :nombre, :entrada_1, :salida_1, :entrada_2, :salida_2, :entrada_3, :salida_3 , :h_normales, :h_ausencias, :h_extra, :noc)";
+                $stmt = $this->con->prepare($sql); // Preparar la conexion
+                $stmt->bindParam(':fecha', $row['fecha'], PDO::PARAM_STR);
+                $stmt->bindParam(':id_empleado', $row['id_empleado'], PDO::PARAM_STR);
+                $stmt->bindParam(':id_rol', $row['rol_empleado'], PDO::PARAM_STR);
+                $stmt->bindParam(':numero_nomina', $row['numero_nomina'], PDO::PARAM_STR);
+                $stmt->bindParam(':nombre', $row['nombre'], PDO::PARAM_STR);
+                $stmt->bindParam(':entrada_1', $row['entrada_1'], PDO::PARAM_STR);
+                $stmt->bindParam(':salida_1', $row['salida_1'], PDO::PARAM_STR);
+                $stmt->bindParam(':entrada_2', $row['entrada_2'], PDO::PARAM_STR);
+                $stmt->bindParam(':salida_2', $row['salida_2'], PDO::PARAM_STR);
+                $stmt->bindParam(':entrada_3', $row['entrada_3'], PDO::PARAM_STR);
+                $stmt->bindParam(':salida_3', $row['salida_3'], PDO::PARAM_STR);
+                $stmt->bindParam(':h_normales', $row['h_normales'], PDO::PARAM_STR);
+                $stmt->bindParam(':h_ausencias', $row['h_ausencias'], PDO::PARAM_STR);
+                $stmt->bindParam(':h_extra', $row['h_extra'], PDO::PARAM_STR);
+                $stmt->bindParam(':noc', $row['noc'], PDO::PARAM_STR);
+                if ($stmt->execute()) { // Ejecutar
+                    $result = " Exitosso";
+                } else {
+                    $result = "Error";
+                }
+            }
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    function select_get_id_terceros($numero_nomina)
+    {
+        $sql = "SELECT `ct1_IdTerceros`, `ct1_rol` FROM `ct1_terceros` WHERE  `ct1_NumeroIdentificacion` = '$numero_nomina'";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Ejecutar 
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['ct1_IdTerceros'];
+                    $datos['rol'] = $fila['ct1_rol'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function select_get_biometrico_id($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT * FROM `agentes_servicio` WHERE  `id` = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function get_datatable_biometrico()
+    {
+        $sql = "SELECT `id`, `fecha`, `numero_nomina`, `nombre`, `entrada_1`, `salida_1`, `entrada_2`, `salida_2`, `entrada_3`, `salida_3`, `h_normales`, `h_ausencias`, `h_extra`, `noc` FROM `agentes_servicio`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Ejecutar 
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['id'];
+                    $datos['fecha'] = $fila['fecha'];
+                    $datos['numero_nomina'] = $fila['numero_nomina'];
+                    $datos['nombre'] = $fila['nombre'];
+                    $datos['entrada_1'] = $fila['entrada_1'];
+                    $datos['salida_1'] = $fila['salida_1'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function modificar_datos_biometrico($id, $fecha, $entrada_1, $salida_1)
+    {
+        $this->fecha = $fecha;
+        $this->entrada_1 = $entrada_1;
+        $this->salida_1 = $salida_1;
+        $this->id = $id;
+
+        $sql = "UPDATE `agentes_servicio` SET `fecha`= :fecha,`entrada_1`= :entrada_1, `salida_1` = :salida_1 WHERE `id` = :id";
+
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':fecha', $this->fecha, PDO::PARAM_STR);
+        $stmt->bindParam(':entrada_1', $this->entrada_1, PDO::PARAM_STR);
+        $stmt->bindParam(':salida_1', $this->salida_1, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+        // Ejecutar 
+        $result = $stmt->execute();
+
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $result;
+    }
+
+    function eliminar_datos_biometrico($id)
+    {
+        $this->id = $id;
+        $sql = "DELETE FROM `agentes_servicio` WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
     }
 }
