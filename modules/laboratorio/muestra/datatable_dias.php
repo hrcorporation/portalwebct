@@ -9,8 +9,7 @@ require '../../../vendor/autoload.php';
 
 $php_clases = new php_clases();
 $t5_obras = new t5_obras();
-$permisos = new permisos();
-$usuarios = new usuarios();
+
 $modelo_laboratorio = new modelo_laboratorio();
 
 

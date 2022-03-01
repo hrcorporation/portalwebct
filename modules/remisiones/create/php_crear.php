@@ -108,5 +108,7 @@ $datos = array(
     'errores' => $errores,
     'result' => $resultado,
 );
+}
+
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

@@ -8,21 +8,10 @@ require '../../../vendor/autoload.php'; ?>
 
 <?php
 
-$usuarios = new usuarios();
-$permisos = new permisos();
 
 
 
-// Roles
-$rol_user = $usuarios->buscar_roles($_SESSION['id_usuario']);
-$modulo_remisiones = array(1, 8, 15, 17, 20, 29, 22, 26);
-$modulo_remisiones =  $permisos->habilitar($modulo_remisiones, $rol_user);
 
-if ($modulo_remisiones) {
-} else {
-    $data = null;
-    print('<script> window.location = "../index.php"</script>');
-}
 
 
 
