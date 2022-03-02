@@ -26,7 +26,6 @@ require '../../../vendor/autoload.php'; ?>
         return new_fecha;
     }
 </script>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -42,7 +41,7 @@ require '../../../vendor/autoload.php'; ?>
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                                 <li class="breadcrumb-item active">Actual</li>
                               </ol>
-                                -->
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -211,7 +210,7 @@ require '../../../vendor/autoload.php'; ?>
                                 <div class="modal-footer justify-content-between">
 
                                     <button type="button" class="btn btn-info" id="cargar_data">Cargar Datos</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    
                                 </div>
                             </div>
                             <!-- /.modal-content -->

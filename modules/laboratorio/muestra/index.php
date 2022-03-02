@@ -153,7 +153,7 @@ require '../../../vendor/autoload.php'; ?>
         $('#t_muestras tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data();
             var id = data['id_muestra'];
-            window.location = "update.php?id=" + id;
+            window.location = "/update.php?id=" + id;
         });
 
         setInterval(function() {

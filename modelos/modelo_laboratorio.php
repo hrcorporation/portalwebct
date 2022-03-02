@@ -178,7 +178,6 @@ class modelo_laboratorio extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id_muestra'] = $fila['ct57_id_muestra'];
-
                     $datos['id_tipo_muestra'] = $fila['ct57_tipo_muestra'];
                     $datos['tipo_muestra'] = $fila['ct62_descripcion'];
                     $datos['fecha'] = $fila['ct57_fecha'];
@@ -289,7 +288,7 @@ class modelo_laboratorio extends conexionPDO
     function actualizar_data_muestra($id_muestra, $asentamiento, $temperatura, $m3, $cementante, $aire, $rendimiento_volumentrico)
     {
 
-        $sql = "UPDATE `ct57_muestra` SET  `ct57_asentamiento`= :asentamiento,`ct57_temperatura`=:temperatura, ct57_m3_muestra = :m3,ct57_rend_volumetrico = :rendimiento_volumetrico, ct57_cementante = :cementante , ct57_aire = :aire WHERE `ct57_id_muestra` = :id_muestra";
+        $sql = "UPDATE `ct57_muestra` SET  `ct57_asentamiento`= :asentamiento,`ct57_temperatura`=:temperatura, ct57_cantidad_muestra = :m3,ct57_rend_volumetrico = :rendimiento_volumetrico, ct57_cementante = :cementante , ct57_aire = :aire WHERE `ct57_id_muestra` = :id_muestra";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':asentamiento', $asentamiento, PDO::PARAM_STR);
         $stmt->bindParam(':temperatura', $temperatura, PDO::PARAM_STR);
