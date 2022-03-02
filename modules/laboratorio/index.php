@@ -5,6 +5,8 @@
 <?php
 // Cargar Clases clases
 $t1_terceros = new t1_terceros();
+$t5_obras = new t5_obras();
+$t4_productos = new t4_productos();
 
 ?>
 <!-- Content Wrapper. Contains page content -->
@@ -22,7 +24,7 @@ $t1_terceros = new t1_terceros();
                               <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                                 <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
+                              </ol>
                     -->
                 </div>
             </div>
@@ -64,7 +66,10 @@ $t1_terceros = new t1_terceros();
                     <div class="col-3">
                         <div class="form-group">
                             <label for="">Codigo Concreto</label>
-                            <input type="number" name="txt_concreto" id="txt_concreto" class="form-control" />
+                            <select id="txt_concreto" name="txt_concreto" class="form-control select2">
+                            <?php echo $t4_productos->option_producto_edit($id_producto); ?>
+                        </select>
+                            
                         </div>
                     </div>
                 </div>
@@ -81,9 +86,8 @@ $t1_terceros = new t1_terceros();
                     <div class="col-3">
                         <div class="form-group">
                             <label for="">Obra</label>
-                            <select name="txd_obra" id="txd_obra" class="form-control">
-                                <option disabled selected> </option>
-
+                            <select name="txd_obra" id="txd_obra" class="form-control select2">
+                            
                             </select>
                         </div>
                     </div>
@@ -91,8 +95,7 @@ $t1_terceros = new t1_terceros();
                         <div class="form-group">
                             <label for="">Status</label>
                             <select name="txd_status" id="txd_status" class="form-control">
-                                <option disabled selected> </option>
-
+                           
                             </select>
                         </div>
                     </div>
@@ -104,10 +107,11 @@ $t1_terceros = new t1_terceros();
                     </div>
                 </div>
                 <!-- Tabla de Muestras -->
-                <table id="t_muestras" class="display" style="width:100%">
+                <table id="t_muestras" class="display " style="width:100%">
                     <thead>
                         <tr>
                             <th>N</th>
+                            <th>Codigo Muestra</th>
                             <th>Fecha</th>
                             <th>Cod Remision </th>
                             <th>Cod Concreto</th>
@@ -140,12 +144,14 @@ $t1_terceros = new t1_terceros();
 <?php include '../../layout/footer/footer2.php' ?>
 
 <script>
+    
 
 $('.select2').select2();
 
     function datatable_muestra(fecha,cod_remi,cod_muestra,id_producto,id_cliente,id_obra,status) {
 
         var table = $('#t_muestras').DataTable({
+            'searching': false,
             "processing": true,
             "scrollX": true,
             "ajax": {
@@ -167,6 +173,9 @@ $('.select2').select2();
             ],
             "columns": [
                 // los datos que se importan debe tener el mismo nombre que el objeto
+                {
+                    "data": "id"
+                },
                 {
                     "data": "id"
                 },
@@ -202,8 +211,8 @@ $('.select2').select2();
                     "defaultContent": "<button class='btn btn-warning btn-sm btn_editar'> <i class='fas fa-edit'></i> </button>"
                 }
             ],
-            'paging': false,
-            'search':false,
+            'paging': true,
+
         });
 
         table.on('order.dt search.dt', function() {
@@ -227,6 +236,23 @@ $('.select2').select2();
         table.ajax.reload();
         return table;
     }
+    $('#txd_cliente').on('change', function(){
+        $.ajax({
+            url: "getdata.php",
+            type: "POST",
+            data: {
+                idCliente: ($('#txd_cliente').val()),
+                task: "1",
+            },
+            success: function(response) {
+                
+                $('#txd_obra').html(response.obras);
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    })
 
     $('#buscar').on('click', function() {
         var fecha = $('#txt_fecha').val();
@@ -246,7 +272,7 @@ $('.select2').select2();
         }, 5000);
     });
 
-   
+
 </script>
 </body>
 

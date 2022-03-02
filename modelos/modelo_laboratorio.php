@@ -342,12 +342,56 @@ class modelo_laboratorio extends conexionPDO
         }
     }
 
+    public static function get_nombre_obra($con,$id)
+    {
+        $sql = "SELECT `ct5_NombreObra` FROM `ct5_obras` WHERE `ct5_IdObras` = :id_obra";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':id_obra', $id, PDO::PARAM_STR);
+        if ($result = $stmt->execute()) {
+            // Devolver el ultimo Registro insertado
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['nombre_obra'] = $fila['ct5_NombreObra'];
+                    $array_data[] = $datos;
+                }
+                return $array_data;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public static function get_nombre_cliente($con,$id)
+    {
+        $sql = "SELECT `ct1_RazonSocial`  FROM `ct1_terceros` WHERE `ct1_IdTerceros` = :id_cliente";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $id, PDO::PARAM_STR);
+        if ($result = $stmt->execute()) {
+            // Devolver el ultimo Registro insertado
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['nombre_cliente'] = $fila['ct1_RazonSocial'];
+                    $array_data[] = $datos;
+                }
+                return $array_data;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     function crear_muestras($id_remision, $fecha_remision, $codigo_remi, $id_cliente, $id_obra, $id_mixer, $id_producto, $metros, $hora, $tipo_muesta)
     {
 
 
         $id_tipo_producto  = 1;
-        $sql = "INSERT INTO `ct57_muestra`( `ct57_tipo_muestra`, `ct57_fecha`, `ct57_hora`, `ct57_cantidad`, `ct57_id_remision`, `ct57_id_mixer`, `ct57_id_cliente`, `ct57_id_obra`, `ct57_codremision`, `ct57_id_producto`, `ct57_id_tipo_producto`) VALUES (:tipomuestra, :fecha, :hora, :cantidad, :id_remision, :id_mixer, :id_cliente, :id_obra, :codigo_remision, :id_producto, :id_tipo_producto)";
+        $sql = "INSERT INTO `ct57_muestra`( `ct57_tipo_muestra`, `ct57_fecha`, `ct57_hora`, `ct57_cantidad`, `ct57_id_remision`, `ct57_id_mixer`, `ct57_id_cliente`,ct57_nombre_cliente, `ct57_id_obra`, `ct57_codremision`, `ct57_id_producto`, `ct57_id_tipo_producto`) VALUES (:tipomuestra, :fecha, :hora, :cantidad, :id_remision, :id_mixer, :id_cliente,:nombre_cliente, :id_obra, :codigo_remision, :id_producto, :id_tipo_producto)";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':tipomuestra', $tipo_muesta, PDO::PARAM_STR);
         $stmt->bindParam(':fecha', $fecha_remision, PDO::PARAM_STR);
@@ -355,6 +399,7 @@ class modelo_laboratorio extends conexionPDO
         $stmt->bindParam(':cantidad', $metros, PDO::PARAM_STR);
         $stmt->bindParam(':id_remision', $id_remision, PDO::PARAM_STR);
         $stmt->bindParam(':id_mixer', $id_mixer, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
         $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_STR);
         $stmt->bindParam(':codigo_remision', $codigo_remi, PDO::PARAM_STR);
