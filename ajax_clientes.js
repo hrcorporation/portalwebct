@@ -10,11 +10,13 @@ $(document).ready(function (e) {
             processData: false,
             success: function (data)
             {
+  
+                console.log(data);
                 if(data.estado){
                     toastr.success('Inicio de sesion ha sido exitoso');
                     window.location = data.codigo;
                 }else{
-                    toastr.warning(data.errores);               
+                    toastr.warning(data.msg);               
                 }
             },
             error: function (respuesta) {

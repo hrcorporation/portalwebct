@@ -26,7 +26,7 @@
                  <li class="nav-header">Muestras</li>
 
                  <li class="nav-item has-treeview">
-                     <a href="index.php" class="nav-link">
+                     <a href="../index.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar

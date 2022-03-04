@@ -5,8 +5,8 @@ class conexion{
     
     var $port = "3306";
     var $host = 'localhost';
-    var $user = 'concr_adminconcretol';
-    var $pass = 'Nirvana1310';
+    var $user = 'root';
+    var $pass = '';
     var $db = 'concr_bdportalconcretol';
     var $myconn = null;
     

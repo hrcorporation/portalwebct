@@ -12,8 +12,6 @@ $t5_obras = new t5_obras();
 
 $modelo_laboratorio = new modelo_laboratorio();
 
-
-
 // Roles
 //$id_cliente = intval($_POST['cliente']);
 //$id_cliente = 21;
@@ -31,8 +29,6 @@ if ($modulo_usuarios) {
 } else {
     $data = null;
 }
-
-
 
 print json_encode($data, JSON_UNESCAPED_UNICODE);
 

@@ -1,12 +1,10 @@
 <?php
 
-
 class modelo_remisiones extends conexionPDO
 {
     protected $con;
 
     private $id;
-
 
     // Iniciar Conexion
     public function __construct()
@@ -15,22 +13,106 @@ class modelo_remisiones extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
-    public function data_remision_id($cod_remision,$id_remision){
+    public function data_remision_id($cod_remision, $id_remision)
+    {
         $this->id_remision = intval($id_remision);
-        $sql="";
-        
+        $sql = "";
+    }
+    
+    function data_muestras_for_id($id_muestra)
+    {
+        $this->id = intval($id_muestra);
+        $sql = "SELECT `ct57_id_muestra`, `ct57_tipo_muestra`, ct62_tipomuestra.ct62_descripcion, `ct57_fecha`, `ct57_hora`, `ct57_cantidad`, `ct57_id_remision`, `ct57_id_mixer`, ct10_vehiculo.ct10_Placa, `ct57_id_cliente`, `ct57_nombre_cliente`, `ct57_id_obra`, `ct57_nombre_obra`, `ct57_codremision`, `ct57_id_producto`, `ct57_cod_producto`, `ct57_nombre_producto`, `ct57_id_tipo_producto`, `ct57_cantidad_muestra`, `ct57_m3_muestra`, `ct57_asentamiento`, `ct57_temperatura`, `ct57_cementante`, `ct57_aire`, `ct57_rend_volumetrico` FROM `ct57_muestra` INNER JOIN ct10_vehiculo ON ct57_muestra.ct57_id_mixer = ct10_vehiculo.ct10_IdVehiculo INNER JOIN ct62_tipomuestra ON ct57_muestra.ct57_tipo_muestra = ct62_tipomuestra.ct62_id WHERE `ct57_id_muestra` = :id_muestra";
 
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_muestra', $this->id, PDO::PARAM_INT);
+
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['ct57_id_muestra'];
+                    $datos['tipo_muestra'] = $fila['ct57_tipo_muestra'];
+                    $datos['descripcion'] = $fila['ct62_descripcion'];
+                    $datos['fecha'] = $fila['ct57_fecha'];
+                    $datos['hora'] = $fila['ct57_hora'];
+                    $datos['cantidad'] = $fila['ct57_cantidad'];
+                    $datos['remision'] = $fila['ct57_id_remision'];
+                    $datos['id_mixer'] = $fila['ct57_id_mixer'];
+                    $datos['placa'] = $fila['ct10_Placa'];
+                    $datos['id_cliente'] = $fila['ct57_id_cliente'];
+                    $datos['nombre_cliente'] = $fila['ct57_nombre_cliente'];
+                    $datos['id_obra'] = $fila['ct57_id_obra'];
+                    $datos['nombre_obra'] = $fila['ct57_nombre_obra'];
+                    $datos['codigo_remision'] = $fila['ct57_codremision'];
+                    $datos['id_producto'] = $fila['ct57_id_producto'];
+                    $datos['cod_producto'] = $fila['ct57_cod_producto'];
+                    $datos['nombre_producto'] = $fila['ct57_nombre_producto'];
+                    $datos['id_tipo_producto'] = $fila['ct57_id_tipo_producto'];
+                    $datos['cantidad_muestra'] = $fila['ct57_cantidad_muestra'];
+                    $datos['muestra'] = $fila['ct57_m3_muestra'];
+                    $datos['asentamiento'] = $fila['ct57_asentamiento'];
+                    $datos['temperatura'] = $fila['ct57_temperatura'];
+                    $datos['cementante'] = $fila['ct57_cementante'];
+                    $datos['aire'] = $fila['ct57_aire'];
+                    $datos['rend_volumetrico'] = $fila['ct57_rend_volumetrico'];
+                    $array_data[] = $datos;
+                }
+                return $array_data;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+    function data_productos_for_id($id_producto)
+    {
+        $this->id_producto = intval($id_producto);
+        $sql = "SELECT `ct4_Id_productos`, `ct4_FechaCreacion`, `ct4_EstadoProducto`, `ct4_CodigoSyscafe`, `ct4_TipoConcreto`, `ct4_Resistencia`, `ct4_TamanoMAgregado`, `ct4_CaracteristicaConcreto`, `ct4_Color`, `ct4_Nombre`, `ct4_Descripcion` FROM `ct4_productos` WHERE `ct4_Id_productos` = :id_producto";
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_producto', $this->id_producto, PDO::PARAM_INT);
+
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id_producto'] = $fila['ct4_Id_productos'];
+                    $datos['fecha_creacion'] = $fila['ct4_FechaCreacion'];
+                    $datos['estado_producto'] = $fila['ct4_EstadoProducto'];
+                    $datos['codproducto'] = $fila['ct4_CodigoSyscafe'];
+                    $datos['tipo_concreto'] = $fila['ct4_TipoConcreto'];
+                    $datos['resistencia'] = $fila['ct4_Resistencia'];
+                    $datos['tamano_agregado'] = $fila['ct4_TamanoMAgregado'];
+                    $datos['caracteristica_concreto'] = $fila['ct4_CaracteristicaConcreto'];
+                    $datos['color'] = $fila['ct4_Color'];
+                    $datos['nombre'] = $fila['ct4_Nombre'];
+                    $datos['descripcion'] = $fila['ct4_Descripcion'];
+                    $array_data[] = $datos;
+                }
+                return $array_data;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
     }
 
     function data_remision_for_id($id_remision)
     {
-        
         $this->id_remision = intval($id_remision);
         $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi,ct26_idcliente, ct26_razon_social , ct26_idObra,ct26_nombre_obra ,ct26_id_vehiculo, ct26_vehiculo, ct26_fecha_remi,ct26_id_producto,ct26_descripcion_producto,ct26_codigo_producto, ct26_metros FROM `ct26_remisiones` WHERE `ct26_id_remision` = :id_remision ORDER BY `ct26_id_remision` DESC";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
-       
+
         $stmt->bindParam(':id_remision', $this->id_remision, PDO::PARAM_INT);
         // Ejecutar 
         if ($result = $stmt->execute()) {
@@ -40,7 +122,7 @@ class modelo_remisiones extends conexionPDO
                     $datos['id_remision'] = $fila['ct26_id_remision']; // id Remision
                     $datos['fecha_remi'] = $fila['ct26_fecha_remi'];
                     $datos['codigo_remi'] = $fila['ct26_codigo_remi'];
-                    $datos['id_cliente'] = $fila['ct26_idcliente'];// Id cliente
+                    $datos['id_cliente'] = $fila['ct26_idcliente']; // Id cliente
                     $datos['nombre_cliente'] = $fila['ct26_razon_social'];
                     $datos['id_obra'] = $fila['ct26_idObra'];
                     $datos['nombre_obra'] = $fila['ct26_nombre_obra'];
@@ -66,8 +148,6 @@ class modelo_remisiones extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    
-
     public static function data_table_remision($con)
     {
         $year = date('Y');
@@ -75,7 +155,7 @@ class modelo_remisiones extends conexionPDO
         $dia = date('d');
 
         $fecha = $year . '-' . --$mes . '-' . $dia;
-       
+
         $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi,ct26_idcliente, ct26_razon_social , ct26_idObra,ct26_nombre_obra ,ct26_id_vehiculo, ct26_vehiculo, ct26_fecha_remi,ct26_id_producto,ct26_descripcion_producto,ct26_codigo_producto, ct26_metros FROM `ct26_remisiones` WHERE `ct26_fecha_remi` >= :fecha_remi ORDER BY `ct26_id_remision` DESC";
         //Preparar Conexion
         $stmt = $con->prepare($sql);
@@ -90,7 +170,7 @@ class modelo_remisiones extends conexionPDO
                     $datos['id_remision'] = $fila['ct26_id_remision']; // id Remision
                     $datos['fecha_remi'] = $fila['ct26_fecha_remi'];
                     $datos['codigo_remi'] = $fila['ct26_codigo_remi'];
-                    $datos['id_cliente'] = $fila['ct26_idcliente'];// Id cliente
+                    $datos['id_cliente'] = $fila['ct26_idcliente']; // Id cliente
                     $datos['nombre_cliente'] = $fila['ct26_razon_social'];
                     $datos['id_obra'] = $fila['ct26_idObra'];
                     $datos['nombre_obra'] = $fila['ct26_nombre_obra'];
@@ -113,7 +193,7 @@ class modelo_remisiones extends conexionPDO
         }
 
         //Cerrar Conexion
-        
+
     }
 
 
