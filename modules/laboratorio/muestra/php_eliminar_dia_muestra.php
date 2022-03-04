@@ -3,7 +3,6 @@
 session_start();
 header('Content-Type: application/json');
 
-
 require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
@@ -13,7 +12,6 @@ require '../../../vendor/autoload.php';
 //$t26_remisiones = new t26_remisiones();
 $modelo_remisiones = new modelo_remisiones();
 $modelo_laboratorio = new modelo_laboratorio();
-
 
 $php_estado = false;
 $php_error[] = '';
@@ -31,21 +29,16 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
 
     $result = $modelo_laboratorio::eliminar_dias_cant_muestra($con, $id);
 
-    if($result)
-    {
+    if ($result) {
         $php_estado = true;
-    }else{
+    } else {
 
         $php_estado = false;
     }
-
     $msg[] = $result;
-
-
 } else {
     $php_error[] = "No es posible guardar, Faltan campos para llenar";
 }
-
 
 $datos = array(
     'estado' => $php_estado,
@@ -54,6 +47,5 @@ $datos = array(
     'post' => $post_msg,
     'result' => $result,
 );
-
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

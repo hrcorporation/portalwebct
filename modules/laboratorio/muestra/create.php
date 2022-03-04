@@ -5,9 +5,7 @@
 <?php require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php'; ?>
-
 <?php
-
 ?>
 <script>
     function sumarDias(fecha, dias) {
@@ -170,11 +168,11 @@ require '../../../vendor/autoload.php'; ?>
                                             </div>
                                             <div class="col">
                                                 <label>Cantidad</label>
-                                                <input type="text" class="form-control" id="n_muestra" name="n_muestra" />
+                                                <input type="text" class="form-control" id="n_muestra" name="n_muestra" required />
                                             </div>
                                             <div class="col">
                                                 <label>Dia</label>
-                                                <input type="number" class="form-control" id="n_dias" name="n_dias" onchange="updateInput(value)">
+                                                <input type="number" class="form-control" id="n_dias" name="n_dias" onchange="updateInput(value)" required>
                                             </div>
                                             <div class="col">
                                                 <label>Fecha</label>
@@ -185,9 +183,7 @@ require '../../../vendor/autoload.php'; ?>
                                                 <button type="submit" class="btn btn-success form-control">Guardar </button>
                                             </div>
                                         </div>
-
                                     </form>
-
                                     <div class="row">
                                         <div class="col">
                                             <table id="tabla_cant_muestra" class="display" style="width:100%">
@@ -200,7 +196,6 @@ require '../../../vendor/autoload.php'; ?>
                                                         <th>Fecha</th>
                                                         <th>Acciones</th>
                                                     </tr>
-
                                                 </thead>
                                                 <tbody></tbody>
                                             </table>
@@ -208,9 +203,7 @@ require '../../../vendor/autoload.php'; ?>
                                     </div>
                                 </div>
                                 <div class="modal-footer justify-content-between">
-
                                     <button type="button" class="btn btn-info" id="cargar_data">Cargar Datos</button>
-                                    
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -267,9 +260,7 @@ require '../../../vendor/autoload.php'; ?>
                     </form>
                     <hr>
                     <br>
-
                     <!-- Button trigger modal -->
-
                     <div class="row">
                         <div class="col">
                             <table id="t_remisiones" class="display" style="width:100%">
@@ -304,7 +295,6 @@ require '../../../vendor/autoload.php'; ?>
                             </table>
                         </div>
                     </div>
-
                 </div>
                 <!-- </form> -->
             </div>
@@ -314,23 +304,13 @@ require '../../../vendor/autoload.php'; ?>
 
         </div>
 </div>
-
 </section>
 </div>
 
-
-
 <?php include '../../../layout/footer/footer3.php' ?>
-
-
 
 <script>
     $(document).ready(function() {
-
-
-
-
-
         // ==============================================================
         // Funciones 
         // ==============================================================
@@ -351,10 +331,7 @@ require '../../../vendor/autoload.php'; ?>
                 "order": [
                     [0, 'desc']
                 ],
-
-                "columns": [
-
-                    {
+                "columns": [{
                         "data": "id"
                     },
                     {
@@ -386,11 +363,9 @@ require '../../../vendor/autoload.php'; ?>
                     cell.innerHTML = i + 1;
                 });
             }).draw();
-
             table_dia_muestra.ajax.reload();
             return table_dia_muestra;
         }
-
         // Accion Boton Tabla Ver Remision
         $('#tabla_cant_muestra tbody').on('click', 'button.btn_eliminar_dia', function() {
             var data = table_dia_muestra.row($(this).parents('tr')).data();
@@ -403,7 +378,6 @@ require '../../../vendor/autoload.php'; ?>
                 },
                 buttonsStyling: false
             })
-
             swalWithBootstrapButtons.fire({
                 title: 'Esta Seguro de eliminar?',
                 //text: "You won't be able to revert this!",
@@ -451,20 +425,12 @@ require '../../../vendor/autoload.php'; ?>
             var table_dia_muestra = $('#tabla_cant_muestra').DataTable();
             table_dia_muestra.destroy();
         }
-
-
-
         // ==============================================================
         // ==============================================================
         // Tabla dia muestra
         // ==============================================================
         var n = 1;
         //var id_muestra = $("#id_remision").val();
-
-
-
-
-
         $("#btn_modal_dias_fallo").click(function() {
             var id_muestra = $("#id_muestra").val();
             if ($.fn.dataTable.isDataTable('#tabla_cant_muestra')) {
@@ -500,33 +466,22 @@ require '../../../vendor/autoload.php'; ?>
                         for (let indexh = 0; indexh < datos_msg.length; indexh++) {
                             toastr.success(data.msg[indexh]);
                         }
-
-
                     } else {
                         for (let index = 0; index < datos_errores.length; index++) {
                             toastr.warning(data.errores[index]);
                         }
                     }
-
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
             });
-
-
-
-
-
             if ($.fn.dataTable.isDataTable('#tabla_cant_muestra')) {
                 table_dia_muestra = $('#tabla_cant_muestra').DataTable();
                 table_dia_muestra.destroy();
             }
             table_dia_muestra = datatable_dia_muestra($("#id_muestra").val());
-
         });
-
-
         // ==============================================================
         // ==============================================================
         // Tabla Remisiones
@@ -567,16 +522,13 @@ require '../../../vendor/autoload.php'; ?>
                 {
                     "data": "placa"
                 },
-
                 {
                     "data": null,
                     "defaultContent": "<button class='btn btn-info get_remi  btn-sm'> <i class='fas fa-hand-point-up'></i> </button><button class='btn btn-success ver_remi btn-sm'> <i class='fas fa-eye'></i> </button>"
                 }
             ],
             //"scrollX": true,
-
         });
-
         table_remisiones.on('order.dt search.dt', function() {
             table_remisiones.column(0, {
                 search: 'applied',
@@ -626,9 +578,6 @@ require '../../../vendor/autoload.php'; ?>
         setInterval(function() {
             table_remisiones.ajax.reload(null, false);
         }, 5000);
-
-
-
     });
 </script>
 <script>
@@ -636,7 +585,6 @@ require '../../../vendor/autoload.php'; ?>
         $('.select2').select2();
 
     });
-
     $(document).ready(function() {
 
         // Crear Muestra
@@ -680,8 +628,6 @@ require '../../../vendor/autoload.php'; ?>
                     alert(JSON.stringify(respuesta));
                 },
             });
-
-
         }));
 
         // Adicionar datos de las muestras temperatura asentamiento
@@ -715,9 +661,6 @@ require '../../../vendor/autoload.php'; ?>
                 },
             });
         }));
-
-
-
         // Crear Dias y Cantidades de las Muestras
         $("#form_crear_cant").on('submit', (function(e) {
             e.preventDefault();
@@ -752,16 +695,7 @@ require '../../../vendor/autoload.php'; ?>
                 },
             });
         }));
-
-
-
-
     });
-
-
-
-
-
     // Crear 2
 </script>
 

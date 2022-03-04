@@ -15,17 +15,17 @@ class modelo_laboratorio extends conexionPDO
 
     public static function eliminar_dias_cant_muestra($con, $id)
     {
-        $sql ="DELETE FROM `ct59_dias_fallo_result` WHERE `ct59_dias_fallo_result`.`ct59_id` = :id";
+        $sql = "DELETE FROM `ct59_dias_fallo_result` WHERE `ct59_dias_fallo_result`.`ct59_id` = :id";
         $stmt = $con->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         if ($result = $stmt->execute()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function cargar_data_dias($id_muestra,$codigo_muestra)
+    public function cargar_data_dias($id_muestra, $codigo_muestra)
     {
         //=============================================================
         // obtener datos de la muestra por id
@@ -43,11 +43,11 @@ class modelo_laboratorio extends conexionPDO
             if ($id_tipo_producto = SELF::obtener_tipo_producto($this->con, $tipo_producto)) {
                 if (is_array($array_data_dias = SELF::get_dias_for_tipo_concreto($this->con, $id_tipo_producto))) {
                     foreach ($array_data_dias as $key_data) {
-        
+
                         $dias = $key_data['dias_fallo'];
                         $cant = $key_data['cantidad'];
                         $fecha = $key_data['fecha'];
-                        $result = SELF::insert_cant_dias_muestra($this->con,$id_muestra, $codigo_muestra, $cant, $dias, $fecha);
+                        $result = SELF::insert_cant_dias_muestra($this->con, $id_muestra, $codigo_muestra, $cant, $dias, $fecha);
                     }
                 }
             }
@@ -74,7 +74,7 @@ class modelo_laboratorio extends conexionPDO
                     $datos['id_tipo_concreto'] = $fila['ct61_id_tipoconcreto'];
                     $datos['dias_fallo'] = $fila['ct61_diasfallo'];
                     $date_now = date('Y-m-d');
-                    $dias_add = '+'.$fila['ct61_diasfallo'].'day';
+                    $dias_add = '+' . $fila['ct61_diasfallo'] . 'day';
                     $date_future = strtotime($dias_add, strtotime($date_now));
                     $date_future = date('Y-m-d', $date_future);
                     $datos['fecha'] = $date_future;
@@ -110,13 +110,7 @@ class modelo_laboratorio extends conexionPDO
             return false;
         }
     }
-
-
-
-
-
-
-
+        
     function datatable_dias_muesta($id_muestra)
     {
 
@@ -147,7 +141,7 @@ class modelo_laboratorio extends conexionPDO
     }
 
 
-    public static function insert_cant_dias_muestra($con,$id_muestra, $codigo_muestra, $cant, $dias, $fecha)
+    public static function insert_cant_dias_muestra($con, $id_muestra, $codigo_muestra, $cant, $dias, $fecha)
     {
         $sql = "INSERT INTO `concr_bdportalconcretol`.`ct59_dias_fallo_result` (`ct59_id_muestra`, `ct59_codigo_muestra`, `ct59_cantidad_muestra`, `ct59_dias`, `ct59_fecha_result`) VALUES (:id_muestra, :codigo_muestra,:cant, :dia, :fecha);";
 
@@ -282,36 +276,11 @@ class modelo_laboratorio extends conexionPDO
         }
     }
 
-
-
-
-    function actualizar_data_muestra($id_muestra, $asentamiento, $temperatura, $m3, $cementante, $aire, $rendimiento_volumentrico)
-    {
-
-        $sql = "UPDATE `ct57_muestra` SET  `ct57_asentamiento`= :asentamiento,`ct57_temperatura`=:temperatura, ct57_cantidad_muestra = :m3,ct57_rend_volumetrico = :rendimiento_volumetrico, ct57_cementante = :cementante , ct57_aire = :aire WHERE `ct57_id_muestra` = :id_muestra";
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':asentamiento', $asentamiento, PDO::PARAM_STR);
-        $stmt->bindParam(':temperatura', $temperatura, PDO::PARAM_STR);
-        $stmt->bindParam(':m3', $m3, PDO::PARAM_STR);
-        $stmt->bindParam(':cementante', $cementante, PDO::PARAM_STR);
-        $stmt->bindParam(':aire', $aire, PDO::PARAM_STR);
-        $stmt->bindParam(':rendimiento_volumetrico', $rendimiento_volumentrico, PDO::PARAM_STR);
-
-        $stmt->bindParam(':id_muestra', $id_muestra, PDO::PARAM_STR);
-
-        if ($result = $stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function select_muestra_for_id($id_muestra)
     {
-
         $sql = "SELECT `ct57_id_muestra`, `ct57_tipo_muestra`, `ct57_fecha`, `ct57_hora`, `ct57_cantidad`, `ct57_id_remision`, `ct57_id_mixer`, `ct57_id_cliente`, `ct57_id_obra`, `ct57_codremision`, `ct57_id_producto`, `ct57_id_tipo_producto`, `ct57_cantidad_muestra`, `ct57_asentamiento`, `ct57_temperatura` FROM `ct57_muestra` WHERE `ct57_id_muestra` = :id_muestra";
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_muestra', $id_muestra, PDO::PARAM_STR);
+        $stmt->bindParam(':id_muestra', $this->$id_muestra, PDO::PARAM_STR);
         if ($result = $stmt->execute()) {
             // Devolver el ultimo Registro insertado
             $num_reg =  $stmt->rowCount();
@@ -342,7 +311,7 @@ class modelo_laboratorio extends conexionPDO
         }
     }
 
-    public static function get_nombre_obra($con,$id)
+    public static function get_nombre_obra($con, $id)
     {
         $sql = "SELECT `ct5_NombreObra` FROM `ct5_obras` WHERE `ct5_IdObras` = :id_obra";
         $stmt = $con->prepare($sql);
@@ -364,7 +333,7 @@ class modelo_laboratorio extends conexionPDO
         }
     }
 
-    public static function get_nombre_cliente($con,$id)
+    public static function get_nombre_cliente($con, $id)
     {
         $sql = "SELECT `ct1_RazonSocial`  FROM `ct1_terceros` WHERE `ct1_IdTerceros` = :id_cliente";
         $stmt = $con->prepare($sql);
@@ -386,26 +355,27 @@ class modelo_laboratorio extends conexionPDO
         }
     }
 
-    function crear_muestras($id_remision, $fecha_remision, $codigo_remi, $id_cliente, $id_obra, $id_mixer, $id_producto, $metros, $hora, $tipo_muesta)
+    function crear_muestras($id_remision, $fecha_remision, $codigo_remi, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_mixer, $id_producto, $codproducto, $producto, $metros,$m3_muestra, $hora, $tipo_muesta)
     {
-
-
         $id_tipo_producto  = 1;
-        $sql = "INSERT INTO `ct57_muestra`( `ct57_tipo_muestra`, `ct57_fecha`, `ct57_hora`, `ct57_cantidad`, `ct57_id_remision`, `ct57_id_mixer`, `ct57_id_cliente`,ct57_nombre_cliente, `ct57_id_obra`, `ct57_codremision`, `ct57_id_producto`, `ct57_id_tipo_producto`) VALUES (:tipomuestra, :fecha, :hora, :cantidad, :id_remision, :id_mixer, :id_cliente,:nombre_cliente, :id_obra, :codigo_remision, :id_producto, :id_tipo_producto)";
+        $sql = "INSERT INTO `ct57_muestra`( `ct57_tipo_muestra`, `ct57_fecha`, `ct57_hora`, `ct57_cantidad`, ct57_m3_muestra, `ct57_id_remision`, `ct57_id_mixer`, `ct57_id_cliente`,ct57_nombre_cliente, `ct57_id_obra`, `ct57_nombre_obra`, `ct57_codremision`, `ct57_id_producto`, `ct57_cod_producto`, `ct57_nombre_producto`, `ct57_id_tipo_producto`) VALUES (:tipomuestra, :fecha, :hora, :cantidad, :m3_muestra, :id_remision, :id_mixer, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :codigo_remision, :id_producto, :codproducto, :nombre_producto, :id_tipo_producto)";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':tipomuestra', $tipo_muesta, PDO::PARAM_STR);
         $stmt->bindParam(':fecha', $fecha_remision, PDO::PARAM_STR);
         $stmt->bindParam(':hora', $hora, PDO::PARAM_STR);
         $stmt->bindParam(':cantidad', $metros, PDO::PARAM_STR);
+        $stmt->bindParam(':m3_muestra', $m3_muestra, PDO::PARAM_STR);
         $stmt->bindParam(':id_remision', $id_remision, PDO::PARAM_STR);
         $stmt->bindParam(':id_mixer', $id_mixer, PDO::PARAM_STR);
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_cliente', $nombre_cliente, PDO::PARAM_STR);
         $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_obra', $nombre_obra, PDO::PARAM_STR);
         $stmt->bindParam(':codigo_remision', $codigo_remi, PDO::PARAM_STR);
         $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
+        $stmt->bindParam(':codproducto', $codproducto, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_producto', $producto, PDO::PARAM_STR);
         $stmt->bindParam(':id_tipo_producto', $id_tipo_producto, PDO::PARAM_STR);
-
         if ($result = $stmt->execute()) {
             $id_insert = $this->con->lastInsertId();
 
@@ -414,7 +384,39 @@ class modelo_laboratorio extends conexionPDO
             return false;
         }
     }
+    public function actualizar_datos_muestra($id, $hora, $tipo_muestra)
+    {
+        $sql = "UPDATE `ct57_muestra` SET `ct57_tipo_muestra` = :tipo_muestra, `ct57_hora` = :hora WHERE `ct57_id_muestra` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':hora', $hora, PDO::PARAM_STR);
+        $stmt->bindParam(':tipo_muestra', $tipo_muestra, PDO::PARAM_INT);
 
+        if ($result = $stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function actualizar_data_muestra($id_muestra, $asentamiento, $temperatura, $m3, $cementante, $aire, $rendimiento_volumentrico)
+    {
+        $sql = "UPDATE `ct57_muestra` SET  `ct57_asentamiento`= :asentamiento,`ct57_temperatura`=:temperatura, ct57_cantidad_muestra = :m3,ct57_rend_volumetrico = :rendimiento_volumetrico, ct57_cementante = :cementante , ct57_aire = :aire WHERE `ct57_id_muestra` = :id_muestra";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':asentamiento', $asentamiento, PDO::PARAM_STR);
+        $stmt->bindParam(':temperatura', $temperatura, PDO::PARAM_STR);
+        $stmt->bindParam(':m3', $m3, PDO::PARAM_STR);
+        $stmt->bindParam(':cementante', $cementante, PDO::PARAM_STR);
+        $stmt->bindParam(':aire', $aire, PDO::PARAM_STR);
+        $stmt->bindParam(':rendimiento_volumetrico', $rendimiento_volumentrico, PDO::PARAM_STR);
+
+        $stmt->bindParam(':id_muestra', $id_muestra, PDO::PARAM_STR);
+
+        if ($result = $stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public static function buscar_existencia_registro($con, $id_log)
     {
         $sql = "SELECT `ct58_id_resultado` FROM `ct58_resultado` WHERE ct58_id_log =:id_log";
@@ -432,7 +434,6 @@ class modelo_laboratorio extends conexionPDO
             return false;
         }
     }
-
 
     public static function actualizar_log_resultado($con, $id_remision, $id_producto, $id_log)
     {
@@ -452,7 +453,6 @@ class modelo_laboratorio extends conexionPDO
             return false;
         }
     }
-
     public static function buscar_id_remi($con, $cod_remision)
     {
         $cod_remision = intval($cod_remision);
@@ -476,7 +476,6 @@ class modelo_laboratorio extends conexionPDO
             return false;
         }
     }
-
     function guardar_data_archivo_plano($id_log, $fecha, $hora, $cod_remision, $resultado1, $resultado2)
     {
         $this->id_log = $id_log;

@@ -3,7 +3,6 @@
 session_start();
 header('Content-Type: application/json');
 
-
 require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
@@ -14,13 +13,11 @@ require '../../../vendor/autoload.php';
 $modelo_remisiones = new modelo_remisiones();
 $modelo_laboratorio = new modelo_laboratorio();
 
-
 $php_estado = false;
 $php_error[] = '';
 $msg[] = '';
 $id_muestra = false;
 $var = 12;
-
 
 $post_msg = $_POST;
 
@@ -45,18 +42,11 @@ ANTES SACAR DEBIDO AL A
     3 -> function para sumar los dias y definir las fechas de fallo
     4 -> insertar registros
 * 
-
 */
-
-
-
     $msg[] = $result;
-
-
 } else {
     $php_error[] = "No es posible guardar, Faltan campos para llenar";
 }
-
 
 $datos = array(
     'estado' => $php_estado,
@@ -65,6 +55,5 @@ $datos = array(
     'post' => $post_msg,
   
 );
-
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

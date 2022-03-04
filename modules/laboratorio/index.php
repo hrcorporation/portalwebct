@@ -231,7 +231,7 @@ $('.select2').select2();
             var data = table.row($(this).parents('tr')).data();
             var id = data['id']; // obtenemos el id
             // la accion de Rederigir al editar.
-            window.location = "muestras/update.php?id=" + id;
+            window.location = "muestra/update.php?id=" + id;
         });
         table.ajax.reload();
         return table;
