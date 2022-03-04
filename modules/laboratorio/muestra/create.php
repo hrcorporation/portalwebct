@@ -166,7 +166,7 @@ require '../../../vendor/autoload.php'; ?>
                                         <div class="row">
                                             <div class="col">
                                                 <label>Codigo Muestra</label>
-                                                <input type="text" class="form-control" id="codigo_muestra" name="codigo_muestra" />
+                                                <input type="text" class="form-control" id="Z" name="codigo_muestra" />
                                             </div>
                                             <div class="col">
                                                 <label>Cantidad</label>
@@ -666,6 +666,7 @@ require '../../../vendor/autoload.php'; ?>
                         $("#btn_modal_dias_fallo").show();
                         $("#btn_crear_muestra").hide();
                         $("#id_muestra").val(data.id_muestra);
+                        $("#codigo_muestra").val(data.id_muestra);
 
                         $("#asentamiento").val(data.asentamiento);
                         $("#temperatura").val(data.temperatura);
