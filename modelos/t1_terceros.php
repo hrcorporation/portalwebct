@@ -69,6 +69,32 @@ class t1_terceros extends conexionPDO
     }
 
 
+    public function get_nombre_for_id(int $id)
+    {
+        $this->id = $id;
+        $sql = "SELECT `ct1_RazonSocial` FROM `ct1_terceros` WHERE `ct1_IdTerceros` = :id ";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+
+        if ($stmt->execute()) { // Ejecutar
+            $num_reg =  $stmt->rowCount(); // Get Numero de Registros
+            if ($num_reg > 0) { // Validar el numero de Registros
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+
+                    return  $fila['ct1_RazonSocial'];
+                }
+
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
     function conductor_estado($id_conductor)
     {
         $this->id_conductor = (int)$id_conductor;

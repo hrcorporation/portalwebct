@@ -10,6 +10,7 @@ require '../../../vendor/autoload.php';
 $modelo_remisiones = new modelo_remisiones();
 $modelo_laboratorio = new modelo_laboratorio();
 $t4_productos = new t4_productos();
+$cls_terceros = new t1_terceros();
 
 $php_estado = false;
 $php_error[] = '';
@@ -30,7 +31,7 @@ if (isset($_POST['id_remision']) && !empty($_POST['id_remision'])) {
             $fecha_remision = $fila['fecha_remi'];
             $codigo_remi = $fila['codigo_remi'];
             $id_cliente = $fila['id_cliente'];
-            $nombre_cliente = $fila['nombre_cliente'];
+            $nombre_cliente = $cls_terceros->get_nombre_for_id(intval($fila['id_cliente']));
             $id_obra = $fila['id_obra'];
             $nombre_obra = $fila['nombre_obra'];
             $id_mixer = $fila['id_mixer'];
@@ -58,17 +59,22 @@ if (isset($_POST['id_remision']) && !empty($_POST['id_remision'])) {
     }
     $hora = $_POST['hora'];
     $tipo_muesta = $_POST['tipo_muestra'];
+    $m3_muestra = null;
 
     // funcion guardar Datos 
-    $id_muestra = $modelo_laboratorio->crear_muestras($id_remision, $fecha_remision, $codigo_remi, $id_cliente, $nombre_cliente, $metros ,$id_obra, $nombre_obra, $id_mixer, $id_producto, $codproducto, $producto, $metros, $hora, $tipo_muesta);
+    $id_muestra = $modelo_laboratorio->crear_muestras($id_remision, $fecha_remision, $codigo_remi, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_mixer, $id_producto, $codproducto, $producto, $metros, $m3_muestra, $hora, $tipo_muesta);
 
     if ($id_muestra) {
-        $array_data_muestra = $modelo_laboratorio->select_muestra_for_id($id_muestra);
+        
 
-        foreach ($array_data_muestra as $fila_muestra) {
-            $asentamiento = $fila_muestra['asentamieto'];
-            $temperatura = $fila_muestra['temperarura'];
+        if(is_array($array_data_muestra = $modelo_laboratorio->select_muestra_for_id($id_muestra)))
+        {
+            foreach ($array_data_muestra as $fila_muestra) {
+                $asentamiento = $fila_muestra['asentamieto'];
+                $temperatura = $fila_muestra['temperarura'];
+            }
         }
+        
         $msg[] = "Guardado Correctamente";
         $php_estado = true;
     } else {

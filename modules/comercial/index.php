@@ -29,15 +29,8 @@
         /**
          * Validacion de Usuario
          */
-        if (is_array($array_rol_user =  $login->get_rol_tercero($_SESSION['id_usuario']))) :
-
-            $modulos = array(1); // Array de roles para habilitar roles
-            if ($login->validar_rol_user($modulos, $array_rol_user)) : // Validacion para habilitar el usuario
-                $t1_terceros = new t1_terceros();
-                /**
-                 * Card Body
-                 */
-        ?>
+        $t1_terceros = new t1_terceros();
+       ?>
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -111,19 +104,7 @@
         </div>
         <!-- /.card -->
 
-        <?php
-            else :
-            ?>
-        <div class="callout callout-warning">
-            <h5>No posee permisos en este modulo</h5>
-        </div>
-        <?php
-            endif;
-        else :
-            header('location : ../../cerrar.php');
-        endif;
-
-        ?>
+       
 
     </section>
     <!-- /.content -->

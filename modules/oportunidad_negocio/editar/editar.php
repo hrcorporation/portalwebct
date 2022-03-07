@@ -1,5 +1,5 @@
-<?php include '../../../../layout/validar_session4.php' ?>
-<?php include '../../../../layout/head/head4.php'; ?>
+<?php include '../../../layout/validar_session3.php' ?>
+<?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php' ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -295,7 +295,7 @@
 <!-- /.modal-dialog -->
 </div>
 
-<?php include '../../../../layout/footer/footer4.php' ?>
+<?php include '../../../layout/footer/footer3.php' ?>
 <script>
 $(document).ready(function(e) {
     $('.select2').select2();

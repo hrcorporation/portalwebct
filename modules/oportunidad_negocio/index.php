@@ -1,5 +1,5 @@
-<?php include '../../../layout/validar_session3.php' ?>
-<?php include '../../../layout/head/head3.php'; ?>
+<?php include '../../layout/validar_session2.php' ?>
+<?php include '../../layout/head/head2.php'; ?>
 <?php include 'sidebar.php' ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -68,7 +68,7 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php include '../../../layout/footer/footer3.php' ?>
+<?php include '../../layout/footer/footer2.php' ?>
 <script>
     $(document).ready(function() {
 
