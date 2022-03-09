@@ -1,9 +1,9 @@
 <?php
 
-require '../../../vendor/autoload.php';
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 
 
 use PhpOffice\PhpSpreadsheet\Helper\Sample;
@@ -109,7 +109,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
 
     // Rename worksheet
 
-    $spreadsheet->getActiveSheet()->setTitle('Remisiones');
+    $spreadsheet->getActiveSheet()->setTitle('Oportunidad de negocio');
 
 
 

@@ -330,6 +330,29 @@ class oportunidad_negocio extends conexionPDO
         return $option;
     }
 
+    public function select_resultado($id = null)
+    {
+        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione resultado</option>";
+
+        $sql = "SELECT `id`, `descripcion` FROM `resultado_op`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+
+
+        if ($result = $stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['id']) {
+                    $selection = "selected='true'";
+                } else {
+                    $selection = "";
+                }
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
+
     public function editar_oportunidad($id, $num_ident, $nombre_completos, $apellidos_completos, $result)
     {
         $razon_social = $nombre_completos . " " . $apellidos_completos;

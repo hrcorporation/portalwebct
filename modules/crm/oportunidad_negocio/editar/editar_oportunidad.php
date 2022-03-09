@@ -2,9 +2,9 @@
 
 header('Content-Type: application/json');
 session_start();
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 
 
 $php_estado = false;

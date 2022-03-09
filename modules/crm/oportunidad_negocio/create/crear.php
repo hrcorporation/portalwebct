@@ -1,5 +1,5 @@
-<?php include '../../../layout/validar_session3.php' ?>
-<?php include '../../../layout/head/head3.php'; ?>
+<?php include '../../../../layout/validar_session4.php' ?>
+<?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -17,7 +17,7 @@
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                                 <li class="breadcrumb-item active">Actual</li>
                               </ol> 
-                                -->
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -201,11 +201,7 @@
                                 <div class="form-group">
                                     <label for="">Resultado de la Gestion</label>
                                     <select name="resultado" id="resultado" class="form-control select2">
-                                        <option value="NULL">Seleccione</option>
-                                        <option value="1">Ganado</option>
-                                        <option value="2">Perdido</option>
-                                        <option value="3">Visitar Nuevamente</option>
-                                        <option value="4">Llamar Nuevamente</option>
+                                    <?php echo $oportunidad_negocio->select_resultado() ?>
                                     </select>
                                 </div>
                             </div>
@@ -248,7 +244,6 @@
                                 <div id="bq-boton">
 
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -274,7 +269,7 @@
 <!-- /.modal-dialog -->
 </div>
 
-<?php include '../../../layout/footer/footer3.php' ?>
+<?php include '../../../../layout/footer/footer4.php' ?>
 <script>
 $(document).ready(function(e) {
     $(".progress").hide();

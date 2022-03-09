@@ -1,0 +1,352 @@
+[28-Jan-2021 18:51:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:93
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 93
+[12-Mar-2021 14:24:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:93
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 93
+[29-Mar-2021 12:33:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:93
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 93
+[08-Apr-2021 09:30:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:94
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 94
+[18-Apr-2021 17:41:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:118
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 118
+[22-Apr-2021 20:56:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:118
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 118
+[27-Apr-2021 16:13:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:118
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 118
+[06-May-2021 17:34:01 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[11-May-2021 10:48:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[22-May-2021 09:26:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[22-May-2021 09:26:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[22-May-2021 09:26:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[22-May-2021 09:27:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[22-May-2021 09:27:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[01-Jun-2021 07:15:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[10-Jun-2021 14:47:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[12-Jun-2021 08:18:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[18-Jun-2021 17:27:22 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[19-Jun-2021 07:58:40 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[19-Jun-2021 10:32:04 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[23-Jun-2021 07:32:24 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[23-Jun-2021 13:52:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[23-Jun-2021 19:57:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[23-Jun-2021 19:57:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[26-Jun-2021 10:38:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[28-Jun-2021 12:33:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[28-Jun-2021 12:49:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[30-Jun-2021 11:02:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[01-Jul-2021 14:01:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[02-Jul-2021 21:41:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[07-Jul-2021 09:15:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[12-Jul-2021 17:23:45 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[12-Jul-2021 17:51:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[21-Jul-2021 07:46:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[21-Jul-2021 07:46:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[23-Jul-2021 15:38:11 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[28-Jul-2021 15:16:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[29-Jul-2021 14:18:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[29-Jul-2021 14:19:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[30-Jul-2021 12:54:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[03-Aug-2021 07:48:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[06-Aug-2021 15:05:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[08-Aug-2021 09:37:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[08-Aug-2021 09:37:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[12-Aug-2021 16:17:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[19-Aug-2021 07:05:27 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[19-Aug-2021 07:07:20 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[23-Aug-2021 08:16:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[23-Aug-2021 20:25:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[26-Aug-2021 07:05:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[26-Aug-2021 07:40:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[26-Aug-2021 16:04:03 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[28-Aug-2021 12:04:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[28-Aug-2021 16:10:41 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[06-Sep-2021 14:18:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[11-Sep-2021 12:20:57 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[18-Sep-2021 09:41:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[07-Oct-2021 07:14:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[08-Oct-2021 09:38:01 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[11-Oct-2021 06:34:01 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[13-Oct-2021 17:05:52 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[14-Oct-2021 07:59:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[15-Oct-2021 16:01:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[15-Oct-2021 16:01:19 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[19-Oct-2021 07:17:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[03-Nov-2021 20:25:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[07-Nov-2021 10:45:21 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[16-Nov-2021 13:53:58 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[22-Nov-2021 17:10:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[29-Nov-2021 11:50:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[29-Nov-2021 14:02:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[09-Dec-2021 18:16:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[14-Dec-2021 07:37:02 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[18-Dec-2021 10:55:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[22-Dec-2021 09:26:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[22-Dec-2021 12:46:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[28-Dec-2021 11:17:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[28-Dec-2021 11:17:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[03-Jan-2022 15:59:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[04-Jan-2022 15:18:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[05-Jan-2022 07:11:44 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[06-Jan-2022 07:01:13 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[15-Jan-2022 14:35:48 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[19-Jan-2022 15:36:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[21-Jan-2022 08:35:49 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[25-Jan-2022 20:13:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[26-Jan-2022 18:21:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
+[07-Feb-2022 18:11:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to a member function select_obras() on null in /home3/concr/portal.concretol.co/modules/obra/index.php:119
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/obra/index.php on line 119
