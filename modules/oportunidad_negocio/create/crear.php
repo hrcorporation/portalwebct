@@ -52,7 +52,7 @@
                 <div id="contenido">
                     <form name="form_crear_op" id="form_crear_op" method="post">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
                                     <label>Asesora Comercial</label>
                                     <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" >           
@@ -60,13 +60,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-2 col-sm-12">
                                 <div class="form-group">
                                     <label>Fecha Contacto</label>
                                     <input type="date" name="fecha_contacto" id="fecha_contacto" class="form-control" />
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col col-sm-6">
                                 <div class="form-group">
                                     <label>Tipo Cliente</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2">
@@ -78,7 +78,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col col-sm-6">
                                 <div class="form-group">
                                     <label>Tipo PLAN MAESTRO</label>
                                     <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2">
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col-2 col-sm-3">
                                 <div class="form-group">
                                     <label for="">Departamento</label>
                                     <select name="departamento" id="departamento" class="form-control select2">
@@ -98,7 +98,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-2 col-sm-3">
                                 <div class="form-group">
                                     <label for="municipio">Municipio</label>
                                     <select name="municipio" id="municipio" class="form-control select2">
@@ -106,7 +106,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-2 col-sm-2">
                                 <div class="form-group">
                                     <label for="">Comuna</label>
                                     <select name="comuna" id="comuna" class="form-control select2">
@@ -287,6 +287,16 @@ $(document).ready(function(e) {
             $("#tipo_plan_maestro").attr('disabled', false);
         }else{
             $("#tipo_plan_maestro").attr('disabled', true);
+        }
+    });
+
+    $("#municipio").change(function() {
+        var municipio =  $("#municipio").val();
+       
+        if(municipio == 428){
+            $("#comuna").attr('disabled', false);
+        }else{
+            $("#comuna").attr('disabled', true);
         }
     });
 

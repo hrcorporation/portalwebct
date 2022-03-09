@@ -11,6 +11,49 @@ class auth extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
+    // funcion sirve para validar permisos
+    function validar_permisos($array_rol, $array_permisos)
+    {
+        // se valida que los datos parametros sea array
+        if (is_array($array_rol) &&  is_array($array_permisos)) {
+            // recorre los permisos
+            foreach ($array_permisos as $key) {
+                // se valida que los permisos esten en el rol
+                if(in_array($key, $array_rol)){
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            return false; // los parametros no son array;
+        }
+    }
+
+
+    function get_rol($id)
+    {
+        $sql = "SELECT `id_rol` FROM `tercero_has_rol` WHERE `id_tercero` = :id_tercero";
+        $stmt = $this->con->prepare($sql); // Preparar la conexion
+        $stmt->bindParam(':id_tercero', $id, PDO::PARAM_STR);
+
+
+        if ($result = $stmt->execute()) { // Ejecutar
+            $num_reg =  $stmt->rowCount(); // Get Numero de Registros
+            if ($num_reg == 1) { // Validar el numero de Registros
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $data_array['id_rol'] = $fila['id_rol'];
+                    $data_arrayf[] = $data_array;
+                }
+                return $data_arrayf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        $this->PDO->closePDO(); // Cerrar Conexion 
+    }
+
     function actualizar_contrasenia($id_usuario, $contrasenia)
     {
         $this->id_usuario = $id_usuario;

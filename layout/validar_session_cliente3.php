@@ -1,5 +1,8 @@
 <?php
 session_start();
+require '../../../librerias/autoload.php';
+    include '../../../modelos/autoload.php';
+    include '../../../vendor/autoload.php';
 
 if(isset($_SESSION['tipo'])         && !empty($_SESSION['tipo']) && 
     isset($_SESSION['id_usuario'])  && !empty($_SESSION['id_usuario']) &&
@@ -36,7 +39,7 @@ if($rs)
     
     
 }else{
-    header('location: ../../../cerrar.php');
+   // header('location: ../../../cerrar.php');
 }
 ?>
     
