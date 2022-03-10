@@ -45,8 +45,6 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
         ->setKeywords('')
         ->setCategory('');
 
-
-
     // FILA 1 = NOMBRE DE COLUMNAS
     $spreadsheet->setActiveSheetIndex(0)
         ->setCellValue('A1', 'FECHA CONTACTO')
@@ -76,7 +74,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
 
     if (is_array($datos)) {
         foreach ($datos as $fila) {
-     
+
             $spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $x, $fila['fecha_contacto'])
                 ->setCellValue('B' . $x, $fila['asesora_comercial'])
@@ -104,21 +102,14 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
             $x++;
         }
     }
-
-
-
     // Rename worksheet
 
     $spreadsheet->getActiveSheet()->setTitle('Oportunidad de negocio');
 
-
-
-
-
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('A')
         ->setAutoSize(true);
-        $spreadsheet->getActiveSheet()
+    $spreadsheet->getActiveSheet()
         ->getColumnDimension('B')
         ->setAutoSize(true);
     $spreadsheet->getActiveSheet()
@@ -315,8 +306,6 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
 
         ->setAutoSize(true);
 
-
-
     $styleArray = [
         'font' => [
             'bold' => true,
@@ -326,13 +315,10 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
             'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
             'startColor' => [
                 'argb' => 'DE9D24', // encabezado Amarillo
-
             ],
 
             'endColor' => [
-
                 'argb' => 'DE9D24',
-
             ],
 
         ],
@@ -344,8 +330,6 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 
     $spreadsheet->setActiveSheetIndex(0);
-
-
 
     // Redirect output to a client’s web browser (Xlsx)
 
@@ -359,8 +343,6 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
 
     header('Cache-Control: max-age=1');
 
-
-
     // If you're serving to IE over SSL, then the following may be needed
 
     // header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
@@ -371,18 +353,12 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
 
     header('Pragma: public'); // HTTP/1.0
 
-
-
     $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 
     $writer->save('php://output');
 
-
-
     exit;
 } else {
-
-
 
     header('location: index.php');
 }

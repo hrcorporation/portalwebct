@@ -46,11 +46,11 @@
                                 <thead>
                                     <tr>
                                         <th>N</th>
-                                        <th>status</th>
+                                        <th>Status</th>
                                         <th>Fecha</th>
                                         <th>identificacion</th>
                                         <th>Nombre cliente</th>
-                                        <th>Detalle</th>
+                                        <th>Detalles</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,7 +87,7 @@
                     "data": "id"
                 },
                 {
-                    "data": "status_op"
+                    "data": "resultado"
                 },
                 {
                     "data": "fecha"

@@ -120,11 +120,7 @@
                                 <div class="form-group">
                                     <label>Tipo Cliente</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" disabled="true">
-                                        <option value="NULL">Seleccione</option>
-                                        <option value="1">CONSTRUCTOR VIVIENDA</option>
-                                        <option value="2">CONSTRUCTOR INSTITUCIONAL</option>
-                                        <option value="3">PLAN MAESTRO</option>
-                                        <option value="4">PÚBLICO</option>
+                                        <?php echo $op->select_tipo_cliente($tipo_cliente) ?>
                                     </select>
                                 </div>
                             </div>
@@ -132,9 +128,10 @@
                                 <div class="form-group">
                                     <label>Tipo PLAN MAESTRO</label>
                                     <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2" disabled="true">
-                                        <option value="NULL">Seleccione</option>
+                                        <!-- <option value="NULL">Seleccione</option>
                                         <option value="1">Tipo A</option>
-                                        <option value="2">Tipo B</option>
+                                        <option value="2">Tipo B</option> -->
+                                        <?php echo $op->select_tipo_plan_maestro($tipo_plan_maestro) ?>
                                     </select>
                                 </div>
                             </div>
@@ -334,14 +331,7 @@
                                 <div class="form-group">
                                     <label for="">Forma que se contacto con el cliente</label>
                                     <select name="contacto_cliente" id="contacto_cliente" class="form-control select2" disabled="true">
-                                        <option value="NULL">Seleccione</option>
-                                        <option value="1">Cliente llamo a solicitar Cotizacion</option>
-                                        <option value="2">Estrategia Digital</option>
-                                        <option value="3">Servicio al Cliente</option>
-                                        <option value="4">Por Rutero Comercial</option>
-                                        <option value="5">Campaña o Evento de mercadeo </option>
-                                        <option value="6">Referido por otro Cliente </option>
-                                        <option value="7">Campaña de Telemercadeo </option>
+                                        <?php echo $op->select_contacto($contacto_cliente) ?>
                                     </select>
                                 </div>
                             </div>
@@ -350,7 +340,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Observaciones</label>
-                                    <input type="text" name="observaciones" id="observaciones" class="form-control " value="<?= $observacion ?>">
+                                    <input type="text" name="observacion" id="observacion" class="form-control " value="<?= $observacion ?>">
                                 </div>
                             </div>
                         </div>
@@ -439,7 +429,7 @@
                                     <div class="form-group">
                                         <label for="result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="result_vist" id="result_visit">
-                                            <?php echo $op->select_resultado_op($estado) ?>
+                                            <?php echo $op->select_status_op($status_op) ?>
                                         </select>
 
                                     </div>
@@ -495,7 +485,7 @@
                                     <div class="form-group">
                                         <label for="edit_result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="edit_result_visit" id="edit_result_visit">
-                                            <?php echo $op->select_resultado_op($estado) ?>
+                                            <?php echo $op->select_status_op($status_op) ?>
                                         </select>
 
                                     </div>

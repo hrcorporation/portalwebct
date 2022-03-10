@@ -13,10 +13,10 @@
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
                     -->
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         aria-valuemin="0" aria-valuemax="100"> <span class=" text_progresbar">0% </span> </div>
                 </div>
                 <div id="contenido">
-                    <form name="form_crear_op" id="form_crear_op" method="post">
+                    <form name="form_crear_op" id="form_crear_op" method="post" content="width=device-width, initial-scale=1">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
@@ -66,25 +66,19 @@
                                     <input type="date" name="fecha_contacto" id="fecha_contacto" class="form-control" />
                                 </div>
                             </div>
-                            <div class="col col-sm-6">
+                            <div class="col col-sm-3">
                                 <div class="form-group">
                                     <label>Tipo Cliente</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2">
-                                        <option value="NULL">Seleccione</option>
-                                        <option value="1">CONSTRUCTOR VIVIENDA</option>
-                                        <option value="2">CONSTRUCTOR INSTITUCIONAL</option>
-                                        <option value="3">PLAN MAESTRO</option>
-                                        <option value="4">PÚBLICO</option>
+                                        <?php echo $oportunidad_negocio->select_tipo_cliente() ?>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col col-sm-6">
+                            <div class="col col-sm-3">
                                 <div class="form-group">
                                     <label>Tipo PLAN MAESTRO</label>
                                     <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2">
-                                        <option value="NULL">Seleccione</option>
-                                        <option value="1">Tipo A</option>
-                                        <option value="2">Tipo B</option>
+                                        <?php echo $oportunidad_negocio->select_tipo_plan_maestro() ?>
                                     </select>
                                 </div>
                             </div>
@@ -123,48 +117,45 @@
                         </div>
 
                         <div class="row">
-
-                            <div class="col-md-4  col-sm-12">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>Numero de Documento</label>
                                     <input type="text" name="nit" id="nit" class="form-control" />
                                 </div>
                             </div>
-                            <div class="col-md-4  col-sm-12">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="form-gorup">
                                     <label>Nombre Completo</label>
                                     <input type="text" name="nombre_completo" id="nombrecompleto"
                                         class="form-control" />
                                 </div>
                             </div>
-                            <div class="col-md-4  col-sm-12">
+                            <div class="col-md-3  col-sm-12">
                                 <div class="form-gorup">
                                     <label>Apellido Completo</label>
                                     <input type="text" name="ap_completo" id="ap_completo" class="form-control" />
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="">Nombre de la Obra</label>
-                                    <input type="text" name="nombre_obra" id="nombre_obra" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="">Direccion de la Obra</label>
-                                    <input type="text" name="direccion_obra" id="direccion_obra" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="col">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label for="telefono_cliente">Telefono del Cliente</label>
                                         <input type="text" name="telefono_cliente" id="telefono_cliente" class="form-control" />
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="">Nombre de la Obra</label>
+                                    <input type="text" name="nombre_obra" id="nombre_obra" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="">Direccion de la Obra</label>
+                                    <input type="text" name="direccion_obra" id="direccion_obra" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -209,14 +200,7 @@
                                 <div class="form-group">
                                     <label for="">Forma que se contacto con el cliente</label>
                                     <select name="contacto_cliente" id="contacto_cliente" class="form-control select2">
-                                        <option value="NULL">Seleccione</option>
-                                        <option value="1">Cliente llamo a solicitar Cotizacion</option>
-                                        <option value="2">Estrategia Digital</option>
-                                        <option value="3">Servicio al Cliente</option>
-                                        <option value="4">Por Rutero Comercial</option>
-                                        <option value="5">Campaña o Evento de mercadeo </option>
-                                        <option value="6">Referido por otro Cliente </option>
-                                        <option value="7">Campaña de Telemercadeo </option>
+                                    <?php echo $oportunidad_negocio->select_contacto() ?>
                                     </select>
                                 </div>
                             </div>
@@ -242,7 +226,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <div id="bq-boton">
-
+                                    
                                 </div>
                             </div>
                         </div>

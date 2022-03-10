@@ -41,17 +41,12 @@ if (isset($_POST['id_visita']) && !empty($_POST['id_visita']) &&
             {
                 $op->actualizar_resultado_op($id_cliente,$resultado); 
             }
-        
-
         }
     }
-
     /**
      * /internal/images/remisiones/85017C96BDE3385DB4E956FF354D9710B30683F1.PNG
      * 
      */
-    
-    
         $php_estado = true;
     }else{
         $php_estado = false;
