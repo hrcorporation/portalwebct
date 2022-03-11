@@ -14,7 +14,7 @@ require '../../../../vendor/autoload.php';
 $php_clases = new php_clases();
 $t1_terceros = new t1_terceros();
 $t3_clientes = new t3_clientes();
-
+$op = new oportunidad_negocio();
 
 $id = $php_clases->HR_Crypt($_GET['id'], 2);
 $datos = $t1_terceros->search_tercero_custom_id($id);
@@ -35,11 +35,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
     $email = $fila['ct1_CorreoElectronico'];
 
     $tipo_documento = $fila['ct1_TipoIdentificacion'];
-
-    
 }
-
-
 $datos_cliente_int = $t3_clientes->get_datos_cliente($id);
 
 foreach ($datos_cliente_int as $key) {
@@ -48,10 +44,7 @@ foreach ($datos_cliente_int as $key) {
     $tipo_cliente = $key['ct3_TipoCliente'];
     $saldo_cliente = $key['ct3_SaldoCartera'];
 }
-
 ?>
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -91,39 +84,14 @@ foreach ($datos_cliente_int as $key) {
             <div class="card-body">
                 <div id="contenido">
                     <form method="POST" name="F_editar" id="F_editar">
-                        <input type="hidden" name="id_cliente" id="id_cliente"  value="<?php echo $id; ?>"  />
+                        <input type="hidden" name="id_cliente" id="id_cliente" value="<?php echo $id; ?>" />
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Tipo Cliente (*)</label>
-                                    <div class="form-group">
-                                        <?php
-                                        switch ($tipo_cliente) {
-                                            case 1:
-                                                $op_tipo_tercero = "<option value='1' selected> Constructora </option>";
-                                                break;
-                                            case 2:
-                                                $op_tipo_tercero = "<option value='2' selected> Plan Maestro </option>";
-
-                                                break;
-                                            case 3:
-                                                $op_tipo_tercero = "<option value='3' selected> Institucional </option>";
-
-                                                break;
-
-                                            default:
-                                                $op_tipo_tercero = "<option disabled selected> no se ha clasificado este cliente </option>";
-                                                break;
-                                        }
-                                        ?>
-                                        <select class="form-control select2" style="width: 100%;" name="tbx_tipotercero" id="tbx_tipotercero">
-                                            <?php print $op_tipo_tercero; ?>
-                                            <option value="1">Constructora</option>
-                                            <option value="2">Plan Maestro</option>
-                                            <option value="3">Institucional</option>
-                                        </select>
-
-                                    </div>
+                                    <label>Tipo Cliente</label>
+                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2">
+                                        <?php echo $op->select_tipo_cliente($tipo_cliente) ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col">
@@ -149,8 +117,6 @@ foreach ($datos_cliente_int as $key) {
                                         <option value="2"> Pago Anticipado </option>
                                     </select>
                                 </div>
-
-
                             </div>
                             <div class="col">
                                 <div class="form-group" style=" text-align:center">
@@ -162,17 +128,12 @@ foreach ($datos_cliente_int as $key) {
                                         case 'PN':
                                             $op_naturaleza_pn  = " checked='checked' ";
                                             break;
-
                                         case 'PJ':
                                             $op_naturaleza_pj  = " checked='checked' ";
-
                                             break;
                                         default:
-
                                             break;
                                     }
-
-
                                     ?>
                                     <div class="form-group clearfix">
                                         <div class="icheck-primary d-inline">
@@ -191,9 +152,7 @@ foreach ($datos_cliente_int as $key) {
                         </div>
                         <div class="row">
                             <div class="col-3">
-
                                 <?php
-
                                 switch ($tipo_documento) {
                                     case 1:
                                         $op_tipo_doc = "<option value='1' selected> Nit </option>";
@@ -316,7 +275,7 @@ foreach ($datos_cliente_int as $key) {
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Saldo Cliente</label>
-                                        <input type="text" class="form-control" name="saldo_cliente" id="saldo_cliente" onkeyup='format(this)' value="<?php echo $saldo_cliente; ?>"  />
+                                        <input type="text" class="form-control" name="saldo_cliente" id="saldo_cliente" onkeyup='format(this)' value="<?php echo $saldo_cliente; ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -361,16 +320,16 @@ foreach ($datos_cliente_int as $key) {
         $("#boxPJ1").show();
 
 
-        $("#txt_forma_pago").change(function(){
-            var forma_pago =  $("#txt_forma_pago").val();
+        $("#txt_forma_pago").change(function() {
+            var forma_pago = $("#txt_forma_pago").val();
 
-            if(forma_pago == 2){
+            if (forma_pago == 2) {
                 $("#txt_cupo").val(0);
                 $("#blq_cupo").hide();
-                
+
             }
 
-            if(forma_pago == 1){
+            if (forma_pago == 1) {
                 $("#blq_cupo").show();
             }
         });

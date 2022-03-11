@@ -239,20 +239,14 @@
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-
         <!-- Default box -->
-
         <!-- /.card -->
-        
-
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
 <!-- /.modal-dialog -->
 </div>
-
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
 $(document).ready(function(e) {

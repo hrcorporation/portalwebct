@@ -17,11 +17,11 @@ require '../../../../vendor/autoload.php'; ?>
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -29,7 +29,10 @@ require '../../../../vendor/autoload.php'; ?>
 
     <!-- Main content -->
     <section class="content">
-
+        <?php
+            $t1_terceros = new t1_terceros();
+            $oportunidad_negocio = new oportunidad_negocio();
+        ?>
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -68,11 +71,12 @@ require '../../../../vendor/autoload.php'; ?>
                                     <label>Tipo Cliente (*)</label>
                                     <div class="form-group">
                                         <select class="form-control select2" style="width: 100%;" name="tbx_tipotercero" id="tbx_tipotercero">
-                                            <option disabled selected>Seleccionar </option>
+                                            <!-- <option disabled selected>Seleccionar </option>
                                             <option value="1">Constructora</option>
                                             <option value="2">Plan Maestro</option>
                                             <option value="3">Institucional</option>
-                                            <option value="4">Publico </option>
+                                            <option value="4">Publico </option> -->
+                                            <?=$oportunidad_negocio->select_tipo_cliente() ?>
                                         </select>
 
                                     </div>
@@ -172,8 +176,6 @@ require '../../../../vendor/autoload.php'; ?>
                                 </div>
                             </div>
                         </div>
-
-
                         <hr>
                         <div class="row">
                             <div class="col">
@@ -205,7 +207,6 @@ require '../../../../vendor/autoload.php'; ?>
                             </div>
                         </div>
                         <div class="row">
-
                             <div class="container">
                                 <div class="row ">
                                     <div class="col align-self-center">
@@ -220,37 +221,29 @@ require '../../../../vendor/autoload.php'; ?>
             </div>
             <div class="card-footer"></div>
         </div>
-
-
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
 <?php include '../../../../layout/footer/footer4.php' ?>
-
-
 <script>
     $(document).ready(function() {
         $("#boxPN1").hide();
         $("#boxPJ2").show();
         $("#boxPJ1").show();
 
+        $("#txt_forma_pago").change(function() {
+            var forma_pago = $("#txt_forma_pago").val();
 
-        $("#txt_forma_pago").change(function(){
-            var forma_pago =  $("#txt_forma_pago").val();
-
-            if(forma_pago == 2){
+            if (forma_pago == 2) {
                 $("#txt_cupo").val(0);
                 $("#blq_cupo").hide();
-                
             }
-
-            if(forma_pago == 1){
+            if (forma_pago == 1) {
                 $("#blq_cupo").show();
             }
         });
-
         $("#r_PJ").change(function() {
 
             $("#boxPJ2").hide();
