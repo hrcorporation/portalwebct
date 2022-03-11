@@ -155,7 +155,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label for="">Direccion de la Obra</label>
-                                    <input type="text" name="direccion_obra" id="direccion_obra" class="form-control" />
+                                    <input type="text" name="direccion_obra" id="direccion_obra" class="form-control"  />
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                                 <div class="form-group">
                                     <label for="">Telefono Celular Maestro</label>
                                     <input type="text" name="celular_maestro" id="celular_maestro"
-                                        class="form-control" />
+                                        class="form-control"  />
                                 </div>
                             </div>
                             <div class="col">
@@ -209,7 +209,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Observaciones</label>
-                                    <input type="text" name="observaciones" id="observaciones" class="form-control ">
+                                    <input type="text" name="observaciones" id="observaciones" class="form-control" >
                                 </div>
                             </div>
                         </div>
@@ -261,8 +261,8 @@ $(document).ready(function(e) {
 
     $("#tipo_cliente").change(function() {
         var tipo_cliente =  $("#tipo_cliente").val();
-       
-        if(tipo_cliente == 3){
+        console.log(tipo_cliente);
+        if(tipo_cliente == 2){
             $("#tipo_plan_maestro").attr('disabled', false);
         }else{
             $("#tipo_plan_maestro").attr('disabled', true);

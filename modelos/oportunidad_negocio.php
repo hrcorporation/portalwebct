@@ -616,7 +616,7 @@ class oportunidad_negocio extends conexionPDO
 
     public function datatable_visita($id_cliente)
     {
-        $sql = "SELECT cliente_has_visitas.id, `id_cliente`, `fecha`, `resultado`,status_op.descripcion as resultado_visita, `obs` FROM `cliente_has_visitas` INNER JOIN status_op ON cliente_has_visitas.resultado = status_op.id  WHERE id_cliente = :id_cliente";
+        $sql = "SELECT cliente_has_visitas.id, `id_cliente`, `fecha`, `resultado`,resultado_op.descripcion as resultado_visita, `obs` FROM `cliente_has_visitas` INNER JOIN resultado_op ON cliente_has_visitas.resultado = resultado_op.id  WHERE id_cliente = :id_cliente";
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);

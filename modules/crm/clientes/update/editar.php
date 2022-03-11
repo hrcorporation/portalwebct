@@ -1,13 +1,13 @@
-<?php include '../../../layout/validar_session3.php' ?>
-<?php include '../../../layout/head/head3.php'; ?>
+<?php include '../../../../layout/validar_session4.php' ?>
+<?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 <?php //include '../../../include/model/tablas/conexionPDO.php'; 
 ?>
 
 <?php
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 ?>
 <?php
 
@@ -328,7 +328,10 @@ foreach ($datos_cliente_int as $key) {
                             <div class="container">
                                 <div class="row ">
                                     <div class="col align-self-center">
-                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> CREAR CLIENTE </button>
+                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ACTUALIZAR CLIENTE </button>
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ADICIONAR VISITAS CLIENTES </button>
                                     </div>
                                 </div>
                                 <br><br>
@@ -346,7 +349,7 @@ foreach ($datos_cliente_int as $key) {
 </div>
 <!-- /.content-wrapper -->
 
-<?php include '../../../layout/footer/footer3.php' ?>
+<?php include '../../../../layout/footer/footer4.php' ?>
 
 
 

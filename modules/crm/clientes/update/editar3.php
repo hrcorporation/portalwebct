@@ -1,12 +1,12 @@
-<?php include '../../../layout/validar_session3.php' ?>
-<?php include '../../../layout/head/head3.php'; ?>
+<?php include '../../../../layout/validar_session4.php' ?>
+<?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 <?php //include '../../../include/model/tablas/conexionPDO.php'; ?>
 
 <?php
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 ?>
 <?php
 
@@ -108,7 +108,7 @@ while($fila = $datos->fetch(PDO::FETCH_ASSOC)){
 </div>
 <!-- /.content-wrapper -->
 
-<?php include '../../../layout/footer/footer3.php' ?>
+<?php include '../../../../layout/footer/footer4.php' ?>
 <script src="ajax_editar.js"></script>
 
 
