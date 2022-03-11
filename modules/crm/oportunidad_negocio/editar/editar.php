@@ -161,7 +161,6 @@
                                 <div class="form-group">
                                     <label for="municipio">Municipio</label>
                                     <select name="municipio" id="municipio" class="form-control select2" disabled="true">
-
                                         <?php echo  $op->select_municipio($departamento, $municipio) ?>
                                     </select>
                                 </div>
