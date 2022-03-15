@@ -287,7 +287,10 @@ foreach ($datos_cliente_int as $key) {
                             <div class="container">
                                 <div class="row ">
                                     <div class="col align-self-center">
-                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> CREAR CLIENTE </button>
+                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ACTUALIZAR CLIENTE </button>
+                                    </div>
+                                    <div class="col align-self-center">
+                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ADICIONAR VISITAS CLIENTES </button>
                                     </div>
                                 </div>
                                 <br><br>

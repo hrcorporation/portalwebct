@@ -24,7 +24,7 @@ if (
     if (isset($_POST['comuna']) && !empty($_POST['comuna'])) {
         $comuna = $_POST['comuna'];
     } else {
-        $comuna = 14;
+        $comuna = NULL;
     }
     $barrio = $_POST['barrio'];
     $tipo_cliente = $_POST['tipo_cliente'];
@@ -48,7 +48,12 @@ if (
     $fecha_posible_fundida = $_POST['fecha_posible_fundida'];
     $resultado = $_POST['resultado'];
     $contacto_cliente = $_POST['contacto_cliente'];
-    $observaciones = $_POST['observacion'];
+
+    if (isset($_POST['observacion']) && !empty($_POST['observacion'])) {
+        $observaciones = $_POST['observacion'];
+    } else {
+        $observaciones = NULL;
+    }
     /**
      * STATUS
      * 1- Aprovado

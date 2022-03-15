@@ -2,6 +2,13 @@
 //////////////////////////////////////////////////
 switch ($rol_user) {
     case 1:
+        case 7:
+        case 8:
+        case 12:
+        case 13:
+        case 14:
+        case 20:
+case 29:
         //case 20:
 
 ?>
