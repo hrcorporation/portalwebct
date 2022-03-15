@@ -56,11 +56,11 @@ foreach ($datos_cliente_int as $key) {
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -78,7 +78,6 @@ foreach ($datos_cliente_int as $key) {
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                 </div>
             </div>
             <div class="card-body">
@@ -98,7 +97,6 @@ foreach ($datos_cliente_int as $key) {
                                 <div class="form-group">
                                     <label> Forma de Pago</label>
                                     <?php
-
                                     switch ($forma_pago) {
                                         case 1:
                                             $op_forma_pago = "<option value='1' selected> Credito </option>";
@@ -190,7 +188,6 @@ foreach ($datos_cliente_int as $key) {
                                 </div>
                             </div>
                         </div>
-
                         <div id="boxPJ2">
                             <div class="row">
                                 <div class="col">
@@ -201,7 +198,6 @@ foreach ($datos_cliente_int as $key) {
                                 </div>
                             </div>
                         </div>
-
                         <div id="boxPN1">
                             <div class="row">
                                 <div class="col">
@@ -230,8 +226,6 @@ foreach ($datos_cliente_int as $key) {
                                 </div>
                             </div>
                         </div>
-
-
                         <hr>
                         <div class="row">
                             <div class="col">
@@ -282,7 +276,6 @@ foreach ($datos_cliente_int as $key) {
                         <?php
                         }
                         ?>
-
                         <div class="row">
                             <div class="container">
                                 <div class="row ">
@@ -301,8 +294,6 @@ foreach ($datos_cliente_int as $key) {
             </div>
             <div class="card-footer"></div>
         </div>
-
-
     </section>
     <!-- /.content -->
 </div>
@@ -310,15 +301,11 @@ foreach ($datos_cliente_int as $key) {
 
 <?php include '../../../../layout/footer/footer4.php' ?>
 
-
-
-
 <script>
     $(document).ready(function() {
         $("#boxPN1").hide();
         $("#boxPJ2").show();
         $("#boxPJ1").show();
-
 
         $("#txt_forma_pago").change(function() {
             var forma_pago = $("#txt_forma_pago").val();
@@ -328,14 +315,12 @@ foreach ($datos_cliente_int as $key) {
                 $("#blq_cupo").hide();
 
             }
-
             if (forma_pago == 1) {
                 $("#blq_cupo").show();
             }
         });
 
         $("#r_PJ").change(function() {
-
             $("#boxPJ2").hide();
             $("#tbx_pnombre1").val();
             $("#tbx_pnombre2").val();
@@ -349,17 +334,14 @@ foreach ($datos_cliente_int as $key) {
         $("#r_PN").change(function() {
             $("#boxPN1").hide();
             $("#boxPJ1").show();
-
             var apellido1 = $("#tbx_papellido1").val();
             var apellido2 = $("#tbx_papellido2").val();
             var nombre1 = $("#tbx_pnombre1").val();
             var nombre2 = $("#tbx_pnombre2").val();
-
             $("#tbx_pnombre1").val('');
             $("#tbx_pnombre2").val('');
             $("#tbx_papellido1").val('');
             $("#tbx_papellido2").val('');
-
             $("#tbx_RazonSocial").val(apellido1 + ' ' + apellido2 + ' ' + nombre1 + ' ' + nombre2);
             $("#boxPJ2").show();
         });
@@ -375,12 +357,10 @@ foreach ($datos_cliente_int as $key) {
             input.value = num;
             document.getElementById("h2valor").innerHTML = "$ " + num;
         } else {
-
             input.value = input.value.replace(/[^\d\.]*/g, '');
         }
     }
 </script>
-
 
 <script src="ajax_editar.js"></script>
 

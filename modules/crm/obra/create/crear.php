@@ -88,6 +88,22 @@ $modelo_obras = new modelo_obras();
             </div>
 
             <div class="card-body">
+            <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for=""> Cargar Datos de la Oportunidad Negocio </label>
+                            <input type="text" name="txt_op" id="txt_op" class="form-control" placeholder="Digite el codigo de la oportunidad de negocio a cargar">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <br>
+                            <button type="button" id="btn_cargar_data" class="btn btn-warning">Cargar Datos Cliente</button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
                 <div id="contenido">
                     <form name="form_crear" id="form_crear" method="POST">
                         <div class="card">

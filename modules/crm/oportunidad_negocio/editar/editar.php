@@ -120,7 +120,7 @@
                                 <div class="form-group">
                                     <label>Tipo Cliente</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" disabled="true">
-                                        <?php echo $op->select_tipo_cliente($tipo_cliente) ?>
+                                        <?php echo $op->select_tipo_cliente($_POST['tipo_cliente']) ?>
                                     </select>
                                 </div>
                             </div>
@@ -231,7 +231,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col-md-6  col-sm-12">
@@ -343,8 +342,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="row">
                             <div class="col-12">
                                 <button type="submit" name="crear_op" id="crear_op" class="btn btn-info form-control">Actualizar</button>

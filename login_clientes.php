@@ -1,111 +1,90 @@
 <?php
 session_start();
-
 header('Content-Type: application/json');
 require 'librerias/autoload.php';
 require 'modelos/autoload.php';
 require 'vendor/autoload.php';
 
+$t1_terceros = new t1_terceros();
+$t11_usuarios = new t11_usuarios();
+$php_clases = new php_clases();
 $cls_auth = new auth();
 
-
-
-//$HR_librerias = new HR_librerias();
-$php_codigo = "nada";
-$php_error = "";
 $php_estado = false;
-
-
+$datos_usuario = false;
+$php_msg = false;
+$php_codigo = false;
+$array_roles = false;
+$permisos = false;
 
 if (isset($_POST['usuario']) && !empty($_POST['usuario']) && isset($_POST['contrasenia']) && !empty($_POST['contrasenia'])) {
-    $php_estado = false;
-
     $php_usuario = htmlspecialchars($_POST['usuario']);
-    $php_password = htmlspecialchars(md5($_POST['contrasenia']));
+    $php_password = htmlspecialchars($_POST['contrasenia']);
 
-    if ($_POST['usuario'] == $_POST['contrasenia']) {
-        $cambio_pass = true;
-    } else {
-        $cambio_pass = false;
-    }
+    $datos_usuario = false;
+    $datos = false;
+    $validacion_autenticacion = false;
 
-    // se busca en la funcion el usuario y la clave
-    if (is_array($data_usuario = $cls_auth->autenticacion_usuario($php_usuario, $php_password))) {
-
-        // se Recorre el array de datos del usuario
-        foreach ($data_usuario as $fila) {
-            // se valida que el usuario este activo
-            if (intval($fila['estado']) == 1) {
-                // se valida el rol del usuario
-                switch (intval($fila['id_rol'])) {
-                        // el usuario de Facturacion
-                    case 101:
-                    case '101':
-                        $php_codigo = "portalcliente/modulos/facturacione/index.php"; // enruta al modulo de facturacion
-                        $_SESSION['id_cliente1'] = $fila['id_usuario']; // se inicia sesion con el id_cliente
-                        break;
-
-                        // El usuario es el que firma las remisiones
-                    case 102:
-                    case '102':
-                        if ($_POST['usuario'] == $_POST['contrasenia']) {
-                            $php_codigo = "portalcliente/modulos/profile/passnew.php";
-                        } else {
-                            $php_codigo = "portalcliente/modulos/remisiones/index.php";
-                        }
+    if (is_array($datos_usuario = $cls_auth->autenticacion_usuario($php_usuario, md5($php_password)))) {
+        foreach ($datos_usuario as $key) {
+            if ($key['estado'] == 1) {
+                $id_usuario = $key['id_usuario'];
+                $nombre_usuario = $key['nombre_cliente'];
+                // traermos los Roles
+                if (is_array($array_roles = $cls_auth->get_rol($key['id_usuario']))) {
+                    if ($cls_auth->validar_permisos($array_roles, [3,101])) {
                         $php_estado = true;
-                        $php_msg = 'Exitoso';
-
-                        break;
-
-                    case 103:
-                    case '103':
-                        if ($_POST['usuario'] == $_POST['contrasenia']) {
-                            $php_codigo = "portalcliente/modulos/profile/passnew.php";
-                        } else {
-                            $php_codigo = "portalcliente/modulos/remisiones_cliente/index.php";
-                        }
+                        $php_codigo = "portalcliente/index.php";
+                        $php_codigo = "#";
+                    }elseif ($cls_auth->validar_permisos($array_roles, [3, 102, 103])) {
                         $php_estado = true;
-                        $php_msg = 'Exitoso';
-                        break;
+                        $php_codigo = "portalcliente/index.php";
+                        $php_codigo = "#";                        
+                    }else{
+                        
 
-                    default:
-                        $php_codigo = "cerrar.php";
-                        $php_estado = false;
-                        $php_error = "Usuario no posee permisos";
-                        break;
-                }
+                        $array_roles = false;
+                    }
 
-                // La se valida que el estado este activo y se inicia sesion
-                if ($php_estado) {
-                    $_SESSION['id_usuario'] = $fila['id_usuario'];
-                    $_SESSION['nombre_usuario'] = $fila['nombre_cliente'];
-                    $_SESSION['rol'] = $fila['id_rol'];
-                    $_SESSION['id_cliente1'] = $fila['id_cliente1'];
-                    $_SESSION['id_obra1 '] = $fila['id_obra1'];
-                    $_SESSION['numero_identificacion'] = $fila['numero_identificacion'];
+                    $php_msg = "El usuario no cuenta permisos";
+                        $array_permisos = array(1);
+                        foreach ($array_permisos as $key) {
+                            // se valida que los permisos esten en el rol
+                            if(in_array($key, (array)$array_roles)){
+                                $php_msg = "bien";
+                                
+                            }else{
+                                $php_msg =  "mal";
+                            }
+                        }
+
                 } else {
-                    $php_estado = false;
-                    $php_msg = 'Usuario desabilitado';
+                    $array_roles = false;
+                    $php_msg = "El usuario no cuenta permisos";
                 }
+            } else {
+                $php_msg = "El Usuario se encuentra deshabilitado";
             }
         }
     } else {
-        $php_estado = false;
-        $php_msg = 'Usuario o Contraseña Incorrectos';
-        $id_usuario = 0;
+        //$datos_usuario = false;
+        $php_msg = "Usuario y/o Contraseña Incorrectas";
     }
-}else{
-    $php_msg = "Por favor diligencie los campos requeridos";
+
+
+    
+} else {
+    $php_msg = "Faltan datos Requeridos para la autenticacion";
 }
+
 
 
 $datos = array(
     'estado' => $php_estado,
     'codigo' => $php_codigo,
-    'msg' => $php_msg,
-    "errores" => $php_error,
-
+    'errores' => $php_msg,
+    //'datos_usuario' => $array_roles,
+    //'array_roles' => $cls_auth->validar_permisos($array_roles, [1,'1']),
 );
 
 

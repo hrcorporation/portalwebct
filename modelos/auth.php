@@ -23,8 +23,10 @@ class auth extends conexionPDO
                     return true;
                 }
             }
+            return "02";
             return false;
         } else {
+            return "01"; // los parametros no son array;
             return false; // los parametros no son array;
         }
     }
@@ -39,7 +41,7 @@ class auth extends conexionPDO
 
         if ($result = $stmt->execute()) { // Ejecutar
             $num_reg =  $stmt->rowCount(); // Get Numero de Registros
-            if ($num_reg == 1) { // Validar el numero de Registros
+            if ($num_reg > 0) { // Validar el numero de Registros
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $data_array['id_rol'] = $fila['id_rol'];
                     $data_arrayf[] = $data_array;

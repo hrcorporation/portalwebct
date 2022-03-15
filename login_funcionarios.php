@@ -39,7 +39,7 @@ if(isset($_POST['usuario']) && !empty($_POST['usuario']) && isset($_POST['contra
     if($datos){
         $datos = $t1_terceros->get_datos_terceros_user($datos);
         foreach ($datos as $valor) {
-            $id_usuario = $php_clases->HR_Crypt($valor['ct1_IdTerceros'],1);
+            $id_usuario = $valor['ct1_IdTerceros'];
             $tipo_tercero = $valor['ct1_TipoTercero'];
             $nombre_usuario = $valor['ct1_RazonSocial'];
             $rol_usuario = $valor['ct1_rol'];
