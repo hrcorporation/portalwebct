@@ -77,6 +77,32 @@ class oportunidad_negocio extends conexionPDO
 
     }
 
+    function get_datos_cliente_id($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT `id`, `tipo_cliente`, `nidentificacion`, `nombrescompletos`, `apellidoscompletos`, `telefono_cliente` FROM `ct63_oportuniodad_negocio` WHERE `id` = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
     public function log_registro_oportunidad_negocio($accion, $descripcion, $id_oportunidad, $id_usuario)
     {
         $fecha_creacion = "" . date("Y-m-d H:i:s");

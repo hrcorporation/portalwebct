@@ -30,8 +30,8 @@ require '../../../../vendor/autoload.php'; ?>
     <!-- Main content -->
     <section class="content">
         <?php
-            $t1_terceros = new t1_terceros();
-            $oportunidad_negocio = new oportunidad_negocio();
+        $t1_terceros = new t1_terceros();
+        $oportunidad_negocio = new oportunidad_negocio();
         ?>
         <!-- Default box -->
         <div class="card">
@@ -46,23 +46,23 @@ require '../../../../vendor/autoload.php'; ?>
                 </div>
             </div>
             <div class="card-body">
-               <hr>
+                <hr>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label for=""> Cargar Datos de la Oportunidad Negocio </label>
-                            <input type="text" name="txt_op" id="txt_op" class="form-control " placeholder="Digite el codigo de la oportunidad de negocio a cargar">
+                            <input type="text" name="txt_op" id="txt_op" class="form-control" placeholder="Digite el codigo de la oportunidad de negocio a cargar">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <br>
-                            <button type="button" class="btn btn-warning">Cargar Datos Cliente</button>
+                            <button type="button" id="btn_cargar_data" class="btn btn-warning">Cargar Datos Cliente</button>
                         </div>
                     </div>
                 </div>
-               <hr>
-            
+                <hr>
+
                 <div id="contenido">
                     <form method="POST" name="F_crear" id="F_crear">
                         <div class="row">
@@ -76,7 +76,7 @@ require '../../../../vendor/autoload.php'; ?>
                                             <option value="2">Plan Maestro</option>
                                             <option value="3">Institucional</option>
                                             <option value="4">Publico </option> -->
-                                            <?=$oportunidad_negocio->select_tipo_cliente() ?>
+                                            <?= $oportunidad_negocio->select_tipo_cliente() ?>
                                         </select>
 
                                     </div>
@@ -164,7 +164,7 @@ require '../../../../vendor/autoload.php'; ?>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Primer Apellido</label>
+                                        <label> Primer Apellido (*)</label>
                                         <input type="text" name="tbx_papellido1" id="tbx_papellido1" class="form-control" placeholder="">
                                     </div>
                                 </div>
@@ -233,6 +233,38 @@ require '../../../../vendor/autoload.php'; ?>
         $("#boxPJ2").show();
         $("#boxPJ1").show();
 
+        // boton Cargar datos del cliente de la oportunidad de negocio
+        $("#btn_cargar_data").click(function() {
+            // traemos los datos del campo codigo de la oportunidad de negocio
+            var id_oportunidad = $("#txt_op").val();
+            // se crea el ajax para cargar datos
+            $.ajax({
+                url: "load_op.php", // archivo donde se encuentra la consulta
+                type: "POST",
+                data: {
+                    // transferimos la variable con POST
+                    id_oportunidad: id_oportunidad
+                },
+                success: function(data) {
+                    // Restultado del ajax
+                    if (data.estado) {
+                        $("#tbx_NumeroDocumento").val(data.nidentificacion);
+                        $("#tbx_pnombre1").val(data.nombrescompletos);
+                        $("#tbx_papellido1").val(data.apellidoscompletos);
+                        $("#tbx_telefono").val(data.telefono_cliente);
+                        $("#tbx_tipotercero").val(data.tipo_cliente);
+                        $("#tbx_RazonSocial").val(data.nombrescompletos + " "+ data.apellidoscompletos);
+                        $("#tbx_celular").val(data.telefono_cliente);
+                        toastr.success('exitoso');
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        })
         $("#txt_forma_pago").change(function() {
             var forma_pago = $("#txt_forma_pago").val();
 
@@ -251,7 +283,7 @@ require '../../../../vendor/autoload.php'; ?>
             $("#tbx_pnombre2").val();
             $("#tbx_papellido1").val();
             $("#tbx_papellido2").val();
-            $("#tbx_RazonSocial").val(' ');
+            $("#tbx_RazonSocial").val();
             $("#boxPN1").show();
             $("#boxPJ1").hide();
         });
@@ -265,12 +297,12 @@ require '../../../../vendor/autoload.php'; ?>
             var nombre1 = $("#tbx_pnombre1").val();
             var nombre2 = $("#tbx_pnombre2").val();
 
-            $("#tbx_pnombre1").val('');
-            $("#tbx_pnombre2").val('');
-            $("#tbx_papellido1").val('');
-            $("#tbx_papellido2").val('');
+            $("#tbx_pnombre1").val();
+            $("#tbx_pnombre2").val();
+            $("#tbx_papellido1").val();
+            $("#tbx_papellido2").val();
 
-            $("#tbx_RazonSocial").val(apellido1 + ' ' + apellido2 + ' ' + nombre1 + ' ' + nombre2);
+            $("#tbx_RazonSocial").val(nombre1 + ' ' + nombre2 + ' ' +  apellido1 + ' ' + apellido2 );
             $("#boxPJ2").show();
         });
     })
