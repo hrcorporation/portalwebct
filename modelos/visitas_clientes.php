@@ -35,7 +35,7 @@ class visitas_clientes extends conexionPDO
         $stmt = $this->con->prepare($sql);
 
         // Asignando Datos ARRAY => SQL
-        $stmt->bindParam(':fecha', $fecha, PDO::PARAM_INT);
+        $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
         $stmt->bindParam(':id_tipo_visita', $id_tipo_visita, PDO::PARAM_INT);
         $stmt->bindParam(':tipo_visita', $tipo_visita, PDO::PARAM_STR);
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
@@ -158,5 +158,26 @@ class visitas_clientes extends conexionPDO
         }
         //Cerrar Conexion
         $this->PDO->closePDO();
+    }
+
+    public function edit_visita_cliente($id, $fecha, $id_tipo_visita, $tipo_visita, $observacion)
+    {
+        $sql = "UPDATE `visitas_clientes` SET `fecha`= :fecha, `id_tipo_visita`= :id_tipo_visita, `tipo_visita`= :tipo_visita, `observaciones` = :observacion WHERE `id` = :id";
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        // Marcadores
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+        $stmt->bindParam(':id_tipo_visita', $id_tipo_visita, PDO::PARAM_STR);
+        $stmt->bindParam(':tipo_visita', $tipo_visita, PDO::PARAM_STR);
+        $stmt->bindParam(':observacion', $observacion, PDO::PARAM_STR);
+
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false; // Error en la sentencia sql
+        }
     }
 }

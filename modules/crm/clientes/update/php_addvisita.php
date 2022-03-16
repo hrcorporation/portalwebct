@@ -10,18 +10,16 @@ $php_estado = false;
 $errores = "";
 $resultado = "";
 $id_lastinsert = "";
-$op = new oportunidad_negocio;
+$op = new oportunidad_negocio();
 $visita_clientes = new visitas_clientes();
 
 if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente']) &&
     isset($_POST['fecha_vist']) && !empty($_POST['fecha_vist'])) {
 
-   
     $id_cliente = $_POST['id_cliente'];
+    $fecha = $_POST['fecha_vist'];
     $id_tipo_visita = $_POST['objetivo_visita'];
     $observacion = $_POST['obs_visit'];
-    $fecha = $_POST['fecha_vist'];
-    $tipo_visita = null;
     $id_obra = null;
     $nombre_obra = null;
 

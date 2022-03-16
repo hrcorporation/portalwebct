@@ -18,7 +18,6 @@ $id = $php_clases->HR_Crypt($_GET['id'], 2);
 $datos = $t1_terceros->search_tercero_custom_id($id);
 
 while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
-
     $nit = $fila['ct1_NumeroIdentificacion'];
     $razon_social = $fila['ct1_RazonSocial'];
     $naturaleza = $fila['ct1_naturaleza'];
@@ -314,12 +313,13 @@ foreach ($datos_cliente_int as $key) {
                             <tr>
                                 <th>id</th>
                                 <th>Fecha</th>
-                                <th>Resultado </th>
+                                <th>Objetivo visita </th>
                                 <th>Observacion</th>
                                 <th>Detalle</th>
                             </tr>
                         </thead>
                         <tbody>
+
                         </tbody>
                     </table>
                 </div>
@@ -345,7 +345,7 @@ foreach ($datos_cliente_int as $key) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="">Fecha</label>
+                                        <label for="fecha_vist">Fecha</label>
                                         <input type="date" name="fecha_vist" id="fecha_vist" class="form-control" />
                                     </div>
                                 </div>
@@ -357,7 +357,6 @@ foreach ($datos_cliente_int as $key) {
                                         <select class="select2 form-control" name="objetivo_visita" id="objetivo_visita">
                                             <?= $visita_clientes->select_tipo_visita() ?>
                                         </select>
-
                                     </div>
                                 </div>
                             </div>
@@ -382,8 +381,6 @@ foreach ($datos_cliente_int as $key) {
             </div>
             <!-- /.modal-content -->
         </div>
-
-
         <!--- Modal Editar Visita -->
         <div class="modal fade" id="edit_visita">
             <div class="modal-dialog">
@@ -409,12 +406,10 @@ foreach ($datos_cliente_int as $key) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="edit_result_visit">Resultado de la Visita</label>
+                                        <label for="edit_result_visit">Objetivo de la visita</label>
                                         <select class="select2 form-control" name="edit_result_visit" id="edit_result_visit">
-                                            <?php echo $op->select_resultado($status_op) ?>
-
+                                            <?= $visita_clientes->select_tipo_visita() ?>
                                         </select>
-
                                     </div>
                                 </div>
                             </div>
@@ -433,6 +428,7 @@ foreach ($datos_cliente_int as $key) {
                                     </div>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -472,9 +468,6 @@ foreach ($datos_cliente_int as $key) {
                     }
                 }
                 $('#crear_visita').modal('toggle');
-
-
-
             },
             error: function(respuesta) {
                 alert(JSON.stringify(respuesta));
@@ -506,7 +499,7 @@ foreach ($datos_cliente_int as $key) {
                     "data": "fecha"
                 },
                 {
-                    "data": "id_tipo_visita"
+                    "data": "tipo_visita"
                 },
                 {
                     "data": "observaciones"
@@ -534,9 +527,6 @@ foreach ($datos_cliente_int as $key) {
         table.ajax.reload();
         return table;
     }
-
-
-
     if ($.fn.dataTable.isDataTable('#table_visitas')) {
         table_visitas = $('#table_visitas').DataTable();
         table_visitas.destroy();
@@ -551,17 +541,50 @@ foreach ($datos_cliente_int as $key) {
     $('#table_visitas tbody').on('click', 'button', function() {
         var data = table_visitas.row($(this).parents('tr')).data();
         var id = data['id'];
+        console.log(data['tipo_visita']);
 
-        $('#id_visita').val(data['id'])
+        $('#id_visita').val(data['id']);
         $('#edit_fecha_vist').val(data['fecha']);
+        $('#edit_obs_visit').val(data['observaciones']);
+        $('#edit_result_visit').val(data['id_tipo_visita']);
+      
         //var resultado = data['resultado'];
 
 
         //$("#edit_result_visit option[value='']").prop("selected", 'selected');
         //$('#edit_result_visit').val(data['resultado']);
-        $('#edit_obs_visit').val(data['obs']);
+       
 
     });
+
+    $("#form_edit_visita").on('submit', (function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "php_edit_visita.php",
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                console.log(data);
+                const datos_errores = Object.values(data.errores);
+                console.log(datos_errores);
+                if (data.estado) {
+                    toastr.success('visita Editada exitosamente');
+                } else {
+                    for (let index = 0; index < datos_errores.length; index++) {
+                        toastr.warning(data.errores[index]);
+                    }
+                }
+                $('#edit_visita').modal('toggle');
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    }));
+
     $(document).ready(function() {
         $("#boxPN1").hide();
         $("#boxPJ2").show();
