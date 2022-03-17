@@ -58,10 +58,8 @@ class visitas_clientes extends conexionPDO
 
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-
         // Asignando Datos ARRAY => SQL
         //$stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
-
         // Ejecutar 
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -135,6 +133,31 @@ class visitas_clientes extends conexionPDO
         $this->PDO->closePDO();
     }
 
+    public function get_nombre_obra($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT `ct5_IdObras`, `ct5_NombreObra` FROM `ct5_obras` WHERE `ct5_IdObras` = :id";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['ct5_NombreObra'];
+                }
+                
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
     public function visitas_x_clientes($id_cliente)
     {
         $this->id = $id_cliente;
@@ -160,9 +183,9 @@ class visitas_clientes extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    public function edit_visita_cliente($id, $fecha, $id_tipo_visita, $tipo_visita, $observacion)
+    public function edit_visita_cliente($id, $fecha, $id_tipo_visita, $tipo_visita, $id_obra, $nombre_obra, $observacion)
     {
-        $sql = "UPDATE `visitas_clientes` SET `fecha`= :fecha, `id_tipo_visita`= :id_tipo_visita, `tipo_visita`= :tipo_visita, `observaciones` = :observacion WHERE `id` = :id";
+        $sql = "UPDATE `visitas_clientes` SET `fecha`= :fecha, `id_tipo_visita`= :id_tipo_visita, `tipo_visita`= :tipo_visita, `id_obra` = :id_obra, `nombre_obra` = :nombre_obra, `observaciones` = :observacion WHERE `id` = :id";
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
         // Marcadores
@@ -170,6 +193,8 @@ class visitas_clientes extends conexionPDO
         $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
         $stmt->bindParam(':id_tipo_visita', $id_tipo_visita, PDO::PARAM_STR);
         $stmt->bindParam(':tipo_visita', $tipo_visita, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_obra', $nombre_obra, PDO::PARAM_STR);
         $stmt->bindParam(':observacion', $observacion, PDO::PARAM_STR);
 
         //$stmt->bindParam(':var', $var, PDO::PARAM_STR);

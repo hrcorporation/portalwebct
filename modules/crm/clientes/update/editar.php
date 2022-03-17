@@ -11,6 +11,7 @@ require '../../../../vendor/autoload.php';
 $php_clases = new php_clases();
 $t1_terceros = new t1_terceros();
 $t3_clientes = new t3_clientes();
+$t5_obras = new t5_obras();
 $op = new oportunidad_negocio();
 $visita_clientes = new visitas_clientes();
 
@@ -363,6 +364,16 @@ foreach ($datos_cliente_int as $key) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
+                                        <label for="result_visit">Nombre obra</label>
+                                        <select id="txt_obra" name="txt_obra" class="form-control select2">
+                                            <?php echo $t5_obras->option_obra($id); ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
                                         <label for="obs_visit">Observaciones</label>
                                         <input type="text" name="obs_visit" id="obs_visit" class="form-control" />
                                     </div>
@@ -416,6 +427,16 @@ foreach ($datos_cliente_int as $key) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
+                                        <label for="result_visit">Nombre obra</label>
+                                        <select id="txt_obra_editar" name="txt_obra_editar" class="form-control select2">
+                                            <?php echo $t5_obras->option_obra($id); ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
                                         <label for="edit_obs_visit">Observaciones</label>
                                         <input type="text" name="edit_obs_visit" id="edit_obs_visit" class="form-control" />
                                     </div>
@@ -425,6 +446,11 @@ foreach ($datos_cliente_int as $key) {
                                 <div class="col">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Actualizar</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <button type="button" id="btn_eliminar_visitas" class="btn btn-danger">Eliminar</button>
                                     </div>
                                 </div>
                             </div>
@@ -538,6 +564,26 @@ foreach ($datos_cliente_int as $key) {
     }, 5000);
 
 
+    $("#btn_eliminar_visitas").on('click', function() {
+        var id_visita = $("#id_visita").val();
+        $.ajax({
+            url: "php_eliminar_visita.php",
+            type: "POST",
+            data: {
+                'id_visita': id_visita,
+            },
+
+            success: function(data) {
+                console.log(data);
+                $("#edit_visita").modal('hide');
+                toastr.success("Visita eliminada Exitosamente");
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
     $('#table_visitas tbody').on('click', 'button', function() {
         var data = table_visitas.row($(this).parents('tr')).data();
         var id = data['id'];
@@ -547,13 +593,14 @@ foreach ($datos_cliente_int as $key) {
         $('#edit_fecha_vist').val(data['fecha']);
         $('#edit_obs_visit').val(data['observaciones']);
         $('#edit_result_visit').val(data['id_tipo_visita']);
-      
+        $('#txt_obra_editar').val(data['id_obra']);
+        
         //var resultado = data['resultado'];
 
 
         //$("#edit_result_visit option[value='']").prop("selected", 'selected');
         //$('#edit_result_visit').val(data['resultado']);
-       
+
 
     });
 
