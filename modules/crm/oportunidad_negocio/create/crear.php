@@ -47,7 +47,8 @@
             <div class="card-body">
                 <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" style="width: 0.5%" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"> <span class=" text_progresbar">0% </span> </div>
+                        aria-valuemin="0" aria-valuemax="100"> <span class=" text_progresbar">0% </span>
+                    </div>
                 </div>
                 <div id="contenido">
                     <form name="form_crear_op" id="form_crear_op" method="post" content="width=device-width, initial-scale=1">
@@ -161,7 +162,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="form-grou">
+                                <div class="form-group">
                                     <label for="">Nombre del Maestro</label>
                                     <input type="text" name="nombre_maestro" id="nombre_maestro" class="form-control">
                                 </div>
