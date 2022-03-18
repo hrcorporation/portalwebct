@@ -8,9 +8,11 @@ require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
 //$oportunidad_negocio = new oportunidad_negocio();
+$novedades_despacho = new novedades_despacho();
 
-if(isset($_POST['fecha_novedad']) && !empty($_POST['fecha_novedad'])){
-    //$data = $oportunidad_negocio->dt_oportunidad_negocio();
+if(isset($_POST['id_novedad']) && !empty($_POST['id_novedad']) && isset($_POST['id_novedad']) && !empty($_POST['id_novedad']) ){
+    $data = $novedades_despacho->select_datos_cliente($_POST['id_novedad']);
+    //$data = $novedades_despacho->dt_oportunidad_negocio();
 
 }
 

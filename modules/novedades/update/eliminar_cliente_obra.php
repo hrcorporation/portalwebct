@@ -6,27 +6,21 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
+$cls_novedades_despacho = new novedades_despacho();
 $php_estado = false;
 $php_msg = "";
-$id_novedad  = 0;
 
-$cls_novedades = new novedades_despacho();
-
-if (isset($_POST['fecha_novedad']) && !empty($_POST['fecha_novedad']) ){
-    if($id_novedad = $cls_novedades->insertar_novedad_despacho($_POST['fecha_novedad'])){
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+    if ($cls_novedades_despacho->delete_datos_clientes($_POST['id'])) {
         $php_estado = true;
-    }else{
-        $php_msg = "No Guardo Correctamente";
-        $php_estado = false;
     }
-}else{
+} else {
     $php_msg = "Falta datos requeridos para crear la novedad";
 }
 
 $datos = array(
     'estado' => $php_estado,
     'msg' => $php_msg,
-    'id_novedad' => $id_novedad,
     'post' => $_POST,
 );
 
