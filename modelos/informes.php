@@ -344,7 +344,7 @@ class informes extends conexionPDO
     {
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
-        $sql = "SELECT * FROM `dasa` WHERE `fecha` BETWEEN :fecha_ini AND :fecha_fin";
+        $sql = "SELECT `fecha_hora`, `placa`, `producto`, `cantidad`, `ppu`, `iva`, `total_producto`, `total_documento`, gps.UnitName1, gps.MilesDriven, gps.Textbox3, gps.Textbox6, gps.Textbox11 FROM `dasa` INNER JOIN gps ON dasa.placa = gps.UnitName1 WHERE `fecha` BETWEEN :fecha_ini AND :fecha_fin";
         $stmt = $this->con->prepare($sql);
         //Formato fecha  AAAA-MM-DD
         $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
@@ -353,10 +353,18 @@ class informes extends conexionPDO
             $num_reg =  $stmt->rowCount(); // Get Numero de Registros
             if ($num_reg > 1) { // Validar el numero de Registros
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $data_array['documento'] = $fila['documento'];
-                    $data_array['fecha'] = $fila['fecha'];
-                    $data_array['cliente'] = $fila['cliente'];
-                    $data_array['dependencia'] = $fila['dependencia'];
+                    $data_array['fecha_hora'] = $fila['fecha_hora'];
+                    $data_array['placa'] = $fila['placa'];
+                    $data_array['producto'] = $fila['producto'];
+                    $data_array['cantidad'] = $fila['cantidad'];
+                    $data_array['ppu'] = $fila['ppu'];
+                    $data_array['total_producto'] = $fila['total_producto'];
+                    $data_array['total_documento'] = $fila['total_documento'];
+                    $data_array['UnitName1'] = $fila['UnitName1'];
+                    $data_array['MilesDriven'] = $fila['MilesDriven'];
+                    $data_array['Textbox3'] = $fila['Textbox3'];
+                    $data_array['Textbox6'] = $fila['Textbox6'];
+                    $data_array['Textbox11'] = $fila['Textbox11'];
                     $datosf[] = $data_array;
                 }
                 return $datosf;
