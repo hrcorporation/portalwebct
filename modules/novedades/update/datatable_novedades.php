@@ -13,9 +13,11 @@ $data = false;
 
 if(isset($_POST['id_novedad']) && !empty($_POST['id_novedad'] )){
     if(isset($_POST['id_remision']) && !empty($_POST['id_remision'] ) ){
-        $data = $cls_novedades->select_novedad_generales($_POST['id_novedad'],$_POST['id_remision']);
+        $data = $cls_novedades->select_novedad_remisiones($_POST['id_remision']);
+        
 
     }else{
+        
         $data = $cls_novedades->select_novedad_generales($_POST['id_novedad']);
     }
 }

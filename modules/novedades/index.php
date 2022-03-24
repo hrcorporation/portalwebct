@@ -15,7 +15,7 @@ $oportunidad_negocio = new oportunidad_negocio();
                 <div class="col">
                     <div class="form-group">
                         <label for=""></label>
-                        <h1>Registrar novedad</h1>
+                        <h1>Tabla de novedades</h1>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@ $oportunidad_negocio = new oportunidad_negocio();
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Registrar novedad</h3>
+                <h3 class="card-title">Tabla de Novedades</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -41,10 +41,20 @@ $oportunidad_negocio = new oportunidad_negocio();
                 </div>
             </div>
             <div class="card-body">
-                
+                <table id="table_novedades">
+                    <thead>
+                        <th> N </th>
+                        <th>Fecha</th>
+                        <th> Codigo de la novedad </th>
+                        <th>Detalle</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
         </div>
-        
+
         <!-- /.card-body -->
         <div class="card-footer">
         </div>
@@ -54,6 +64,67 @@ $oportunidad_negocio = new oportunidad_negocio();
 </div>
 <?php include '../../layout/footer/footer2.php' ?>
 
+<script>
+
+if ($.fn.dataTable.isDataTable('#table_novedades')) {
+            table_novedades = $('#table_novedades').DataTable();
+            table_novedades.destroy();
+        }
+        table_novedades = datatable_novedades();
+        setInterval(function() {
+            table_novedades.ajax.reload(null, false);
+        }, 5000);
+
+        $('#table_novedades tbody').on('click', 'button', function() {
+            var data = table_novedades.row($(this).parents('tr')).data();
+            var id_novedad = data['id'];
+
+            window.location = "update/editar.php?id=" + id_novedad;
+        });
+
+function datatable_novedades() {
+        var table_novedades = $('#table_novedades').DataTable({
+            //"processing": true,
+            //"scrollX": true,
+            "ajax": {
+                "url": "datatable_novedades.php",
+                'type': 'post',
+                "dataSrc": ""
+
+            },
+            "order": [
+                [0, 'desc']
+            ],
+            "columns": [{
+                    "data": "id"
+                },
+                {
+                    "data": "fecha"
+                },
+                {
+                    "data": "id" // codigo de la novedad
+                },
+                {
+                    "data": null,
+                    "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-eye'></i> Ver </button>"
+                }
+            ],
+            //"scrollX": true,
+        });
+
+        table_novedades.on('order.dt search.dt', function() {
+            table_novedades.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        table_novedades.ajax.reload();
+        return table_novedades;
+    } //  fin de la funcion
+
+</script>
 
 </body>
 

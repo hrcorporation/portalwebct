@@ -121,6 +121,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 </div>
                 <hr>
                 <form id="form_guardar_remi" name="form_guardar_remi" method="post">
+                    <input type="hidden" name="id_novedades_for_remision" name="id_novedades_for_remision" value="<?php echo $id_novedad; ?>" >
                     <div class="row">
                         <div class="col">
                             <table name="table_remisiones" id="table_remisiones" class="display" width="100%" cellspacing="0">
@@ -157,7 +158,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
 
         <div class="modal fade" id="modal_adicionar_novedades">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Adicionar Novedades </h4>
@@ -167,27 +168,27 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     </div>
                     <div class="modal-body">
                         <form method="post" id="form_novedades" name="form_novedades">
-                            <input type="hidden" name="task_novedad" id="task_novedad">
-                            <input type="hidden" name="id_novedad" id="id_novedad">
-                            <input type="hidden" name="id_remision" id="id_remision">
-
+                            <div class="row">
+                                <div class="col">
+                                    <input type="hidden" name="task_novedad" id="task_novedad">
+                                    <input type="hidden" name="id_novedad" id="id_novedad">
+                                    <input type="hidden" name="id_remision" id="id_remision">
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="">Tipo de Novedad</label>
-                                        <select class="js-example-basic-single select2  form-control" id="txt_tipo_novedad" name="txt_tipo_novedad" required />
+                                        <select class="select2  form-control" id="txt_tipo_novedad" name="txt_tipo_novedad" style="width:100%" required />
                                         <?php echo  $cls_novedades->option_tipo_novedades(); ?>
-
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-
                                         <label for="">Area Afectada</label>
-                                        <select class="js-example-basic-single select2  form-control" id="txt_area_novedad" name="txt_area_novedad" required />
-                                        <?php echo  $cls_novedades->option_areas_novedades(); ?>
-
+                                        <select class="j select2  form-control" id="txt_area_novedad" name="txt_area_novedad" style="width:100%" required />
+                                        
                                         </select>
                                     </div>
                                 </div>
@@ -196,8 +197,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="">Novedad</label>
-                                        <select class="js-example-basic-single select2  form-control" id="txt_novedad" name="txt_novedad" required />
-                                        <?php echo  $cls_novedades->option_novedades(); ?>
+                                        <select class="select2  form-control" id="txt_novedad" name="txt_novedad" style="width:100%" required />
+                                        
 
                                         </select>
                                     </div>
@@ -214,7 +215,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-gorup">
-                                        <button type="submit" id="btn_guardar_novedad" name="btn_guardar_novedad">Guardar Novedad</button>
+                                        <button type="submit" class="btn btn-success" id="btn_guardar_novedad" name="btn_guardar_novedad">Guardar Novedad</button>
                                     </div>
                                 </div>
                             </div>
@@ -222,16 +223,17 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         <hr>
                         <div class="row">
                             <div class="col">
-                                <table id="datatable_novedades">
+                                <table id="datatable_novedades" class="display" width="100%" cellspacing="0">
                                     <thead>
                                         <th></th>
                                         <th>Tipo Novedad</th>
                                         <th>Area Afectada</th>
                                         <th>Novedad</th>
+                                        <th>Observaciones</th>
                                         <th>Detalle</th>
                                     </thead>
+                                    <tbody></tbody>
                                 </table>
-                                <tbody></tbody>
                             </div>
                         </div>
                     </div>
@@ -281,7 +283,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             task: $('#task_novedad').val()
                         },
                         success: function(response) {
-                            conosole.log("eliminado");
+                            console.log(data.estado);
+                            if (data.estado) {
+                                toastr.success('exitoso');
+                            } else {
+                                toastr.warning(data.msg);
+                            }
                         },
                         error: function(respuesta) {
                             alert(JSON.stringify(respuesta));
@@ -324,6 +331,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     },
                     {
                         "data": "novedad" // codigo de la novedad
+                    },
+                    {
+                        "data":"observacion"
                     },
                     {
                         "data": null,
@@ -417,19 +427,56 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         });
 
 
-     
+
 
         $('#adicionar_novedades_generales').on('click', function() {
             table_novedades = datatable_novedades(id_novedad);
             $("#id_remision").val(null);
             $("#id_novedad").val(id_novedad);
             $("#task_novedad").val('1'); // 1 novedades generales , 2 novedades remisiones
-            
+
             if ($.fn.dataTable.isDataTable('#datatable_novedades')) {
                 table_novedades = $('#datatable_novedades').DataTable();
                 table_novedades.destroy();
             }
-        })
+        });
+
+        $('#txt_tipo_novedad').on('change', function(){
+            $.ajax({
+                url: "get_data.php",
+                type: "POST",
+                data: {
+                    tipo_novedad: ($('#txt_tipo_novedad').val()),
+                    task: "2",
+                },
+                success: function(response) {
+
+                    $('#txt_area_novedad').html(response.subtipo_novedad);
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+
+        $('#txt_area_novedad').on('change', function(){
+            $.ajax({
+                url: "get_data.php",
+                type: "POST",
+                data: {
+                    tipo_novedad: ($('#txt_tipo_novedad').val()),
+                    subtipo_novedad: ($('#txt_area_novedad').val()),
+                    task: "3",
+                },
+                success: function(response) {
+
+                    $('#txt_novedad').html(response.novedades);
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
 
 
 
@@ -441,10 +488,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             $("#id_novedad").val(id_novedad);
             $("#task_novedad").val('2'); // 1 novedades generales , 2 novedades remisiones
 
+            table_novedades = datatable_novedades(id_novedad, data['id']);
 
-            table_novedades = datatable_novedades(id_novedad,data['id']);
-            
-            
+
             if ($.fn.dataTable.isDataTable('#datatable_novedades')) {
                 table_novedades = $('#datatable_novedades').DataTable();
                 table_novedades.destroy();
@@ -585,7 +631,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     },
                     {
                         "data": null,
-                        "defaultContent": "<button  type='button' class='btn btn-danger btn-sm'> Ver </button>"
+                        "defaultContent": "<button  type='button' class='btn btn-warning btn-sm'> Novedades </button>"
                     }
                 ],
 

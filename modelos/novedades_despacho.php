@@ -11,18 +11,9 @@ class novedades_despacho extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
-    function insert_novedad_remisiones($id_novedad,$id_remision,$cod_remision,$id_tipo_novedad, $tipo_novedad, $id_area_afectada,$area_afectada, $id_listado_novedad, $novedad, $observacion){
-        $this->id_novedad = $id_novedad;
-        $this->id_remision = $id_remision;
-        $this->cod_remision = $cod_remision;
-        $this->id_tipo_novedad = $id_tipo_novedad;
-        $this->tipo_novedad = $tipo_novedad;
-        $this->id_area_afectada = $id_area_afectada;
-        $this->area_afectada = $area_afectada;
-        $this->id_listado_novedad = $id_listado_novedad;
-        $this->novedad = $novedad;
-        $this->observacion = $observacion;
-        $sql = "INSERT INTO `novedades_por_remision`( `id_novedad`, `id_remision`, `cod_remision`, `id_tipo_novedad`, `tipo_novedad`, `id_area_afectada`, `area_afectada`, `id_listado_novedad`, `novedad`, `observacion`) VALUES (:id_novedad,:id_remision,:cod_remision,:id_tipo_novedad,:tipo_novedad,:id_area_afectada,:area_afectada, :id_listado_novedad, :novedad, :observacion )  ";
+
+    function select_novedad_remisiones($id_remisiones){
+        $sql = "SELECT `id`, `id_novedad`, `id_remision`, `cod_remision`, `id_tipo_novedad`, `tipo_novedad`, `id_area_afectada`, `area_afectada`, `id_listado_novedad`, `novedad`, `observacion` FROM `novedades_por_remision` WHERE `id_remision` = :id  ";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $id_remisiones, PDO::PARAM_STR);
 
@@ -33,8 +24,6 @@ class novedades_despacho extends conexionPDO
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
                     $datos['id_novedad'] = $fila['id_novedad'];
-                    $datos['id_remision'] = $fila['id_remision'];
-                    $datos['cod_remision'] = $fila['cod_remision'];
                     $datos['id_tipo_novedad'] = $fila['id_tipo_novedad'];
                     $datos['tipo_novedad'] = $fila['tipo_novedad'];
                     $datos['id_area_afectada'] = $fila['id_area_afectada'];
@@ -48,6 +37,38 @@ class novedades_despacho extends conexionPDO
             } else {
                 return false;
             }
+        } else {
+            return false;
+        }
+    }
+
+    function insert_novedad_remisiones($id_novedad,$id_remision,$cod_remision,$id_tipo_novedad, $tipo_novedad, $id_area_afectada,$area_afectada, $id_listado_novedad, $novedad, $observacion){
+        $this->id_novedad = $id_novedad;
+        $this->id_remision = $id_remision;
+        $this->cod_remision = $cod_remision;
+        $this->id_tipo_novedad = $id_tipo_novedad;
+        $this->tipo_novedad = $tipo_novedad;
+        $this->id_area_afectada = $id_area_afectada;
+        $this->area_afectada = $area_afectada;
+        $this->id_listado_novedad = $id_listado_novedad;
+        $this->novedad = $novedad;
+        $this->observacion = $observacion;
+        $sql = "INSERT INTO `novedades_por_remision`( `id_novedad`, `id_remision`, `cod_remision`, `id_tipo_novedad`, `tipo_novedad`, `id_area_afectada`, `area_afectada`, `id_listado_novedad`, `novedad`, `observacion`) VALUES (:id_novedad,:id_remision,:cod_remision,:id_tipo_novedad,:tipo_novedad,:id_area_afectada,:area_afectada, :id_listado_novedad, :novedad, :observacion )  ";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id_novedad', $this->id_novedad, PDO::PARAM_INT);
+        $stmt->bindParam(':id_remision', $this->id_remision, PDO::PARAM_INT);
+        $stmt->bindParam(':cod_remision', $this->cod_remision, PDO::PARAM_INT);
+        $stmt->bindParam(':id_tipo_novedad', $this->id_tipo_novedad, PDO::PARAM_INT);
+        $stmt->bindParam(':tipo_novedad', $this->tipo_novedad, PDO::PARAM_STR);
+        $stmt->bindParam(':id_area_afectada', $this->id_area_afectada, PDO::PARAM_INT);
+        $stmt->bindParam(':area_afectada', $this->area_afectada, PDO::PARAM_STR);
+        $stmt->bindParam(':id_listado_novedad', $this->id_listado_novedad, PDO::PARAM_INT);
+        $stmt->bindParam(':novedad', $this->novedad, PDO::PARAM_STR);
+        $stmt->bindParam(':observacion', $this->observacion, PDO::PARAM_STR);
+        // Ejecutar 
+         if ($result = $stmt->execute()) {
+            return true;
         } else {
             return false;
         }
@@ -218,15 +239,16 @@ class novedades_despacho extends conexionPDO
     }
 
 
-    function option_novedades($id_novedades = null)
+    function option_novedades($tipo_novedad,$subtipo_novedad,$id_novedades = null)
     {
         $option = "<option  selected='true' value='0'> Seleccione un tipo Novedades</option>";
-        $sql = "SELECT `id`, `descripcion` FROM `listado_novedades`";
+        $sql = "SELECT `id`, `descripcion` FROM `listado_novedades` WHERE id_tipo_novedad = :id_tipo_novedad AND id_subtipo_novedad  = :id_subtipo_novedad ";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
         // Asignando Datos ARRAY => SQL
-        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_tipo_novedad', $tipo_novedad, PDO::PARAM_INT);
+        $stmt->bindParam(':id_subtipo_novedad', $subtipo_novedad, PDO::PARAM_INT);
         // Ejecutar 
         if($result = $stmt->execute())
         {
@@ -276,20 +298,20 @@ class novedades_despacho extends conexionPDO
         return $option;
     }
 
-    function option_areas_novedades($id_tipo_novedades = null)
+    function option_areas_novedades($id_tipo_novedad, $id_subtipo_novedades = null)
     {
         $option = "<option  selected='true' value='0'> Seleccione un tipo Novedades</option>";
-        $sql = "SELECT `id`, `descripcion` FROM `areas_afectadas_novedades`";
+        $sql = "SELECT `id`, `descripcion` FROM `areas_afectadas_novedades` WHERE id_tipo_novedad = :id_tipo_novedad";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
         // Asignando Datos ARRAY => SQL
-        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_tipo_novedad', $id_tipo_novedad, PDO::PARAM_INT);
         // Ejecutar 
         if($result = $stmt->execute())
         {
             while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if ($id_tipo_novedades == $fila['id']) {
+                if ($id_subtipo_novedades == $fila['id']) {
                     $selection = "selected='true'";
                 } else {
                     $selection = "";
@@ -376,6 +398,31 @@ class novedades_despacho extends conexionPDO
         $sql = "SELECT `id`, `fecha_novedad`, `estatus`, `observaciones` FROM `novedades_despacho` WHERE id = :id  ";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+
+        // Ejecutar 
+         if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['id'];
+                    $datos['fecha'] = $fila['fecha_novedad'];
+                    $datos['estatus'] = $fila['estatus'];
+                    $datos['observacion'] = $fila['observaciones'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+    function select_novedad_despacho_index(){
+        $sql = "SELECT `id`, `fecha_novedad`, `estatus`, `observaciones` FROM `novedades_despacho`  ";
+        $stmt = $this->con->prepare($sql);
 
         // Ejecutar 
          if ($result = $stmt->execute()) {

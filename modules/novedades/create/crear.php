@@ -85,7 +85,7 @@ $oportunidad_negocio = new oportunidad_negocio();
                         <thead>
                             <th> N </th>
                             <th>Fecha</th>
-                            <th> Codigo </th>
+                            <th> Codigo de la novedad </th>
                             <th>Detalle</th>
                         </thead>
                         <tbody>
@@ -175,7 +175,7 @@ $(document).ready(function() {
                     "data": "fecha"
                 },
                 {
-                    "data": "estatus" // codigo de la novedad
+                    "data": "id" // codigo de la novedad
                 },
                 {
                     "data": null,

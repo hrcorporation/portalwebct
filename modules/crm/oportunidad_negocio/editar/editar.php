@@ -78,7 +78,6 @@
                 <div id="contenido">
                     <form name="form_edit_op" id="form_edit_op" method="post">
                         <input type="hidden" name="id_oportunidad_negocio" id="id_oportunidad_negocio" value="<?php echo $_GET['id']; ?>" />
-
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group clearfix">
@@ -425,7 +424,7 @@
                                     <div class="form-group">
                                         <label for="result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="result_vist" id="result_visit">
-                                        <?php echo $op->select_resultado($status_op) ?>
+                                        <?php echo $op->select_resultado_visita() ?>
                                          
                                         </select>
 
@@ -482,10 +481,9 @@
                                     <div class="form-group">
                                         <label for="edit_result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="edit_result_visit" id="edit_result_visit">
-                                        <?php echo $op->select_resultado($status_op) ?>
+                                        <?php echo $op->select_resultados_visita($status_op) ?>
 
                                         </select>
-
                                     </div>
                                 </div>
                             </div>
@@ -505,7 +503,6 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>

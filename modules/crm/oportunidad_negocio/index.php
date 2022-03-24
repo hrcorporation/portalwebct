@@ -87,7 +87,7 @@
                     "data": "id"
                 },
                 {
-                    "data": "resultado"
+                    "data": "status_op"
                 },
                 {
                     "data": "fecha"

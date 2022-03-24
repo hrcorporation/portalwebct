@@ -18,12 +18,14 @@ if (isset($_POST['task_novedad']) && !empty($_POST['task_novedad']) && isset($_P
         $id_tipo_novedad = $_POST['txt_tipo_novedad'];
         $nombre_tipo_novedad = $novedades_despacho->get_tipo_novedad($id_tipo_novedad);
         $id_area_novedad = $_POST['txt_area_novedad'];
-        $area_novedad = $novedades_despacho->get_tipo_novedad($id_area_novedad);
+        $area_novedad = $novedades_despacho->get_area_novedad($id_area_novedad);
         $id_listnovedad = $_POST['txt_novedad'];
-        $novedad = $novedades_despacho->get_tipo_novedad($id_listnovedad);
+        $novedad = $novedades_despacho->get_novedad($id_listnovedad);
         $observacion =  $_POST['txt_obs'];
 
-        $novedades_despacho->guardar_novedades_generales($id_novedad,$id_tipo_novedad, $nombre_tipo_novedad, $id_area_novedad,$area_novedad, $id_listnovedad, $novedad, $observacion);
+        if($novedades_despacho->guardar_novedades_generales($id_novedad,$id_tipo_novedad, $nombre_tipo_novedad, $id_area_novedad,$area_novedad, $id_listnovedad, $novedad, $observacion)){
+            $php_estado = true;
+        }
         
 
     }elseif (intval($_POST['task_novedad']) == 2) {
@@ -31,14 +33,18 @@ if (isset($_POST['task_novedad']) && !empty($_POST['task_novedad']) && isset($_P
         $id_remision = $_POST['id_remision'];
         $cod_remision = $novedades_despacho->get_cod_remision($id_remision);
         $id_tipo_novedad = $_POST['txt_tipo_novedad'];
-        $nombre_novedad = $novedades_despacho->get_tipo_novedad($id_tipo_novedad);
+        $nombre_tipo_novedad = $novedades_despacho->get_tipo_novedad($id_tipo_novedad);
+
         $id_area_novedad = $_POST['txt_area_novedad'];
-        $area_novedad = $novedades_despacho->get_tipo_novedad($id_area_novedad);
-        $id_novedad = $_POST['txt_novedad'];
-        $novedad = $novedades_despacho->get_tipo_novedad($id_novedad);
+        $area_novedad = $novedades_despacho->get_area_novedad($id_area_novedad);
+        $id_listnovedad = $_POST['txt_novedad'];
+        $novedad = $novedades_despacho->get_novedad($id_listnovedad);
         $obs =  $_POST['txt_obs'];
 
-        $novedades_despacho->insert_novedad_remisiones($id_novedad,$id_remision,$cod_remision,$id_tipo_novedad, $tipo_novedad, $id_area_afectada,$area_afectada, $id_listado_novedad, $novedad, $observacion);
+        if($novedades_despacho->insert_novedad_remisiones($id_novedad,$id_remision,$cod_remision,$id_tipo_novedad, $nombre_tipo_novedad, $id_area_novedad,$area_novedad, $id_listnovedad, $novedad, $obs))
+        {
+            $php_estado = true;
+        }
 
         $php_msg = "Guardo en novedades Remisiones";
         

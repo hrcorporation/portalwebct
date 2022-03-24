@@ -58,6 +58,10 @@ if (
             $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['nit']. $_POST['nombre_completo'] . " - " .$_POST['ap_completo'] . " - " .$_POST['telefono_cliente'], $id, $_SESSION['id_usuario']);
             $php_estado = true;
         }
+        if ($op->actualizar_nombre_completo($_POST['nombre_completo'], $_POST['ap_completo'], $id)) {
+            $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['nombre_completo'], $id, $_SESSION['id_usuario']);
+            $php_estado = true;
+        }
     }
     if (isset($_POST['check_hab_datos_obra']) && !empty($_POST['check_hab_datos_obra'])) {
         if ($op->actualizar_datos_obra($_POST['nombre_obra'], $_POST['direccion_obra'], $id)) {
@@ -84,7 +88,7 @@ if (
         }
     }
     if (isset($_POST['check_hab_contacto']) && !empty($_POST['check_hab_contacto'])) {
-        if ($op->actualizar_datos_resultado($_POST['contacto_cliente'], $id)) {
+        if ($op->actualizar_datos_contacto($_POST['contacto_cliente'], $id)) {
             $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['contacto_cliente'], $id, $_SESSION['id_usuario']);
             $php_estado = true;
         }

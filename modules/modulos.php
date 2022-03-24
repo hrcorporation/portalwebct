@@ -259,7 +259,37 @@ switch ($rol_user) {
 }
 ?>
 
+<?php
 
+switch ($rol_user) {
+    case 1:
+    case 2:
+    case 8:
+    case 7:
+    case 15:
+    case 16:
+    case 20:
+        case 19:
+
+?>
+        <div class="col-4" id="">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Novedades</H3>
+                </div>
+                <div class="icon">
+                    <i class="far fa-image"></i>
+                </div>
+                <a class="small-box-footer" href="novedades/">
+                    Ir <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+<?php
+        break;
+}
+?>
 
 
 <?php

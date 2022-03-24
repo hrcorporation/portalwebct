@@ -237,6 +237,20 @@ class oportunidad_negocio extends conexionPDO
         }
     }
 
+    public function actualizar_datos_status($status_op, $id)
+    {
+        $sql = "UPDATE `ct63_oportuniodad_negocio` SET status_op = :status_op WHERE id = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':status_op', $status_op, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($result = $stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function actualizar_datos_observaciones($observaciones, $id)
     {
         $sql = "UPDATE `ct63_oportuniodad_negocio` SET observacion = :observacion WHERE id = :id";
@@ -264,6 +278,21 @@ class oportunidad_negocio extends conexionPDO
             return false;
         }
     }
+    public function actualizar_nombre_completo($nombre, $apellido, $id)
+    {
+        $razon_social = $nombre . " " . $apellido;
+        $sql = "UPDATE `ct63_oportuniodad_negocio` SET razon_social = :nombre_completo WHERE id = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':nombre_completo', $razon_social, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function select_comercial($id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione Comercial</option>";
@@ -429,6 +458,46 @@ class oportunidad_negocio extends conexionPDO
         return $option;
     }
 
+    public function select_resultado_visita($id = null)
+    {
+        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione resultado</option>";
+
+        $sql = "SELECT `id`, `descripcion` FROM `resultado_vista`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        if ($result = $stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['id']) {
+                    $selection = "selected='true'";
+                } else {
+                    $selection = "";
+                }
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
+
+    public function select_resultados_visita($id = null)
+    {
+        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione resultado</option>";
+
+        $sql = "SELECT `id`, `resultado`, resultado_vista.descripcion FROM `cliente_has_visitas` INNER JOIN resultado_vista ON cliente_has_visitas.resultado = resultado_vista.id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        if ($result = $stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['id']) {
+                    $selection = "selected='true'";
+                } else {
+                    $selection = "";
+                }
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
+
     public function select_contacto($id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione forma de contacto</option>";
@@ -468,10 +537,10 @@ class oportunidad_negocio extends conexionPDO
         }
         return $option;
     }
-    public function editar_oportunidad($id, $num_ident, $nombre_completos, $apellidos_completos, $result, $status)
+    public function editar_oportunidad($id, $num_ident, $nombre_completos, $apellidos_completos, $result)
     {
         $razon_social = $nombre_completos . " " . $apellidos_completos;
-        $sql = "UPDATE `ct63_oportuniodad_negocio` SET `nidentificacion`=:num_ident ,`razon_social`= :razon_social ,`nombrescompletos`= :nombre_completos,`apellidoscompletos`= :apellidos_completos,`resultado`= :resultado, `status_op`=:estatus WHERE `id` = :id";
+        $sql = "UPDATE `ct63_oportuniodad_negocio` SET `nidentificacion`=:num_ident ,`razon_social`= :razon_social ,`nombrescompletos`= :nombre_completos,`apellidoscompletos`= :apellidos_completos,`resultado`= :resultado WHERE `id` = :id";
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
         // Marcadores
@@ -642,7 +711,7 @@ class oportunidad_negocio extends conexionPDO
 
     public function datatable_visita($id_cliente)
     {
-        $sql = "SELECT cliente_has_visitas.id, `id_cliente`, `fecha`, `resultado`,resultado_op.descripcion as resultado_visita, `obs` FROM `cliente_has_visitas` INNER JOIN resultado_op ON cliente_has_visitas.resultado = resultado_op.id  WHERE id_cliente = :id_cliente";
+        $sql = "SELECT cliente_has_visitas.id, `id_cliente`, `fecha`, `resultado`, resultado_vista.descripcion as resultado_visita, `obs` FROM `cliente_has_visitas` INNER JOIN resultado_vista ON cliente_has_visitas.resultado = resultado_vista.id  WHERE id_cliente = :id_cliente";
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
@@ -694,7 +763,7 @@ class oportunidad_negocio extends conexionPDO
     public function crear_oportunidad_negocio($asesora_comercial, $fecha_contacto, $tipo_cliente, $tipo_plan_maestro, $departamento, $municipio, $comuna, $barrio, $nit, $nombre_completo, $ap_completo, $nombre_obra, $direccion_obra, $telefono_cliente, $nombre_maestro, $celular_maestro, $m3_potenciales, $fecha_posible_fundida, $resultado, $contacto_cliente, $observacion)
     {
         $razon_social = $nombre_completo . " " . $ap_completo;
-        $sql = "INSERT INTO `ct63_oportuniodad_negocio`(`asesora_comercial`, `fecha_contacto`,tipo_cliente, tipo_plan_maestro, `departamento`, `municipio`, `comuna`, `barrio`, `nidentificacion`, `razon_social`, `nombrescompletos`, `apellidoscompletos`, `nombre_obra`, `direccion_obra`,telefono_cliente, `nombre_maestro`, `celular_maestro`, `m3_potenciales`, `fecha_posible_fundida`, `status_op`, `contacto_cliente`, `observacion`) VALUES (:asesora_comercial, :fecha_contacto,:tipo_cliente, :tipo_plan_maestro,:departamento, :municipio, :comuna, :barrio, :nit, :razon_social ,:nombre_completo, :ap_completo, :nombre_obra, :direccion_obra,:telefono_cliente,  :nombre_maestro ,:celular_maestro, :m3_potenciales, :fecha_posible_fundida, :resultado , :contacto_cliente, :observacion)";
+        $sql = "INSERT INTO `ct63_oportuniodad_negocio`(`asesora_comercial`, `fecha_contacto`,tipo_cliente, tipo_plan_maestro, `departamento`, `municipio`, `comuna`, `barrio`, `nidentificacion`, `razon_social`, `nombrescompletos`, `apellidoscompletos`, `nombre_obra`, `direccion_obra`,telefono_cliente, `nombre_maestro`, `celular_maestro`, `m3_potenciales`, `fecha_posible_fundida`, `resultado`, `contacto_cliente`, `observacion`) VALUES (:asesora_comercial, :fecha_contacto,:tipo_cliente, :tipo_plan_maestro,:departamento, :municipio, :comuna, :barrio, :nit, :razon_social ,:nombre_completo, :ap_completo, :nombre_obra, :direccion_obra,:telefono_cliente,  :nombre_maestro ,:celular_maestro, :m3_potenciales, :fecha_posible_fundida, :resultado , :contacto_cliente, :observacion)";
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
         // Marcadores
@@ -732,7 +801,7 @@ class oportunidad_negocio extends conexionPDO
 
     public function dt_oportunidad_negocio()
     {
-        $sql = "SELECT ct63_oportuniodad_negocio.id , `fecha_contacto`, `nidentificacion`,razon_social, `nombrescompletos`, `apellidoscompletos`, `resultado`, `observacion`, `status_op`, resultado_op.descripcion as estado_op FROM `ct63_oportuniodad_negocio`  INNER JOIN resultado_op ON ct63_oportuniodad_negocio.status_op = resultado_op.id; LIMIT 1000";
+        $sql = "SELECT ct63_oportuniodad_negocio.id , `fecha_contacto`, `nidentificacion`,razon_social, `nombrescompletos`, `apellidoscompletos`, `resultado`, `observacion`, `status_op`, resultado_op.descripcion as estado_op FROM `ct63_oportuniodad_negocio`  INNER JOIN resultado_op ON ct63_oportuniodad_negocio.resultado = resultado_op.id; LIMIT 1000";
         $stmt = $this->con->prepare($sql);
         //  $stmt-> (':id_cliente', $this->id, PDO::PARAM_INT);
         if ($result = $stmt->execute()) {
@@ -743,15 +812,9 @@ class oportunidad_negocio extends conexionPDO
                     $datos['fecha'] = $fila['fecha_contacto'];
                     $datos['nidentificacion'] = $fila['nidentificacion'];
                     $datos['razon_social'] = $fila['razon_social'];
-                    if($fila['resultado'] == 1){
-                        $datos['resultado'] = "GANADO";
-                    }else if($fila['resultado'] == 2){
-                        $datos['resultado'] = "PERDIDO";
-                    }else{
-                        $datos['resultado'] = "PENDIENTE";
-                    }
-                    $datos['observacion'] = $fila['observacion'];
                     $datos['status_op'] = $fila['estado_op'];
+                    $datos['observacion'] = $fila['observacion'];
+                    $datos['resultado'] = $fila['resultado'];
                     $datosf[] = $datos;
                 }
                 return $datosf;

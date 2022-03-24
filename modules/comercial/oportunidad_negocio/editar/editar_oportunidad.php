@@ -22,7 +22,6 @@ if (isset($_POST['id_oportunidad_negocio']) && !empty($_POST['id_oportunidad_neg
     $apellido_completo = $_POST['ap_completo'];
     $numero_identificacion = $_POST['nit'];
     $resultado = $_POST['resultado'];
-    $status = $_POST['result_visit'];
    
     
     /**
@@ -32,7 +31,7 @@ if (isset($_POST['id_oportunidad_negocio']) && !empty($_POST['id_oportunidad_neg
      * 10- Rechazhado 
      */
     
-    if($id_lastinsert = $op->editar_oportunidad($id,$numero_identificacion,$nombre_completo, $apellido_completo, $resultado, $status)){
+    if($id_lastinsert = $op->editar_oportunidad($id,$numero_identificacion,$nombre_completo, $apellido_completo, $resultado)){
         $op->actualizar_resultado_op($id,$resultado);
         $php_estado = true;
 
