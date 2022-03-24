@@ -241,7 +241,7 @@ class cls_importdata extends conexionPDO
             return false;
         }
     }
-    
+
     function insert_centro_costo(array $array_datos)
     {
         if (is_array($array_datos)) {
@@ -831,5 +831,103 @@ class cls_importdata extends conexionPDO
         } else {
             return false;
         }
+    }
+
+    function insert_dasa(array $array_datos)
+    {
+        if (is_array($array_datos)) {
+            foreach ($array_datos as $row) {
+
+                $sql = "INSERT INTO `dasa`(`documento`, `fecha_hora`, `hora`, `fecha`, `cliente`, `dependencia`, `validador`, `id_vehiculo`, `placa`, `klm`, `distancia_recorrida`, `producto`, `cantidad`, `ppu`, `iva`, `total_producto`, `total_documento`) VALUES  (:documento, :fecha_hora, :hora, :fecha, :cliente, :dependencia, :validador, :id_vehiculo, :placa, :klm, :distancia_recorrida , :producto, :cantidad, :ppu, :iva, :total_producto, :total_documento)";
+                $stmt = $this->con->prepare($sql); // Preparar la conexion
+                $stmt->bindParam(':documento', $row['documento'], PDO::PARAM_STR);
+                $stmt->bindParam(':fecha_hora', $row['fecha_hora'], PDO::PARAM_STR);
+                $stmt->bindParam(':hora', $row['hora'], PDO::PARAM_STR);
+                $stmt->bindParam(':fecha', $row['fecha'], PDO::PARAM_STR);
+                $stmt->bindParam(':cliente', $row['cliente'], PDO::PARAM_STR);
+                $stmt->bindParam(':dependencia', $row['dependencia'], PDO::PARAM_STR);
+                $stmt->bindParam(':validador', $row['validador'], PDO::PARAM_STR);
+                $stmt->bindParam(':id_vehiculo', $row['id_vehiculo'], PDO::PARAM_STR);
+                $stmt->bindParam(':placa', $row['placa'], PDO::PARAM_STR);
+                $stmt->bindParam(':klm', $row['klm'], PDO::PARAM_STR);
+                $stmt->bindParam(':distancia_recorrida', $row['distancia_recorrida'], PDO::PARAM_STR);
+                $stmt->bindParam(':producto', $row['producto'], PDO::PARAM_STR);
+                $stmt->bindParam(':cantidad', $row['cantidad'], PDO::PARAM_STR);
+                $stmt->bindParam(':ppu', $row['ppu'], PDO::PARAM_STR);
+                $stmt->bindParam(':iva', $row['iva'], PDO::PARAM_STR);
+                $stmt->bindParam(':total_producto', $row['total_producto'], PDO::PARAM_STR);
+                $stmt->bindParam(':total_documento', $row['total_documento'], PDO::PARAM_STR);
+                if ($stmt->execute()) { // Ejecutar
+                    $result = " Exitosso";
+                } else {
+                    $result = "Error";
+                }
+            }
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    function insert_gps(array $array_datos)
+    {
+        if (is_array($array_datos)) {
+            foreach ($array_datos as $row) {
+
+                $sql = "INSERT INTO `gps`(`GroupName`, `UnitID`, `id_vehiculo`,`UnitName1`, `MaxSpeed`, `MilesDriven`, `TravelTimeSecs`, `Textbox3`, `IdleTimeSecs`, `Textbox6`, `IdleTimeSecs2`, `Textbox11`, `Textbox20`, `Textbox21`, `Textbox24`, `Textbox25`, `Textbox26`, `Textbox27`, `Textbox28`) VALUES (:GroupName, :UnitID, :id_vehiculo, :UnitName1, :MaxSpeed, :MilesDriven, :TravelTimeSecs, :Textbox3, :IdleTimeSecs, :Textbox6 , :IdleTimeSecs2, :Textbox11, :Textbox20, :Textbox21, :Textbox24, :Textbox25, :Textbox26, :Textbox27, :Textbox28)";
+                $stmt = $this->con->prepare($sql); // Preparar la conexion
+                $stmt->bindParam(':GroupName', $row['GroupName'], PDO::PARAM_STR);
+                $stmt->bindParam(':UnitID', $row['UnitID'], PDO::PARAM_STR);
+                $stmt->bindParam(':id_vehiculo', $row['id_vehiculo'], PDO::PARAM_STR);
+                $stmt->bindParam(':UnitName1', $row['UnitName1'], PDO::PARAM_STR);
+                $stmt->bindParam(':MaxSpeed', $row['MaxSpeed'], PDO::PARAM_STR);
+                $stmt->bindParam(':MilesDriven', $row['MilesDriven'], PDO::PARAM_STR);
+                $stmt->bindParam(':TravelTimeSecs', $row['TravelTimeSecs'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox3', $row['Textbox3'], PDO::PARAM_STR);
+                $stmt->bindParam(':IdleTimeSecs', $row['IdleTimeSecs'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox6', $row['Textbox6'], PDO::PARAM_STR);
+                $stmt->bindParam(':IdleTimeSecs2', $row['IdleTimeSecs2'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox11', $row['Textbox11'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox20', $row['Textbox20'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox21', $row['Textbox21'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox24', $row['Textbox24'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox25', $row['Textbox25'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox26', $row['Textbox26'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox27', $row['Textbox27'], PDO::PARAM_STR);
+                $stmt->bindParam(':Textbox28', $row['Textbox28'], PDO::PARAM_STR);
+                if ($stmt->execute()) { // Ejecutar
+                    $result = " Exitosso";
+                } else {
+                    $result = "Error";
+                }
+            }
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function get_id_vehiculo($placa)
+    {
+        $this->placa = $placa;
+        $sql = "SELECT `ct10_IdVehiculo`, `ct10_Placa` FROM `ct10_vehiculo` WHERE `ct10_Placa` = :placa";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':placa', $this->placa, PDO::PARAM_STR);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['ct10_IdVehiculo'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
     }
 }
