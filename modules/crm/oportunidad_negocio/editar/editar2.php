@@ -13,11 +13,11 @@
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                     -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -37,7 +37,6 @@
 
                 $data_array['fecha_contacto'] = $fila['fecha_contacto'];
                 $fecha_contacto = $fila['fecha_contacto'];
-                $id_sede  = $fila['id_sede'];
                 $tipo_cliente = $fila['tipo_cliente'];
                 $tipo_plan_maestro = $fila['tipo_plan_maestro'];
                 $departamento =  $fila['departamento'];
@@ -91,17 +90,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="checkbox" value="1" name="check_hab_sede" id="check_hab_sede" ?>
-                                        <label for="check_hab_sede">
-                                            Habilitar
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-8">
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
                                         <input type="checkbox" value="1" name="check_hab_fecha_contacto" id="check_hab_fecha_contacto" ?>
@@ -116,42 +105,18 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Asesora Comercial</label>
-                                    
                                     <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" disabled="true">
                                         <?php echo $op->select_comercial($id_comercial) ?>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-5 col-sm-12">
-                                <div class="form-group">
-                                    <label>Sede</label>
-                                    <select name="sede" id="sede" class="form-control select2 " disabled="true">
-                                        <?php echo $op->select_sede($id_sede) ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Fecha Contacto</label>
                                     <input type="date" name="fecha_contacto" id="fecha_contacto" class="form-control" value="<?php echo $fecha_contacto ?>" disabled="true"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            
-                            <div class="col-md-12">
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="checkbox" value="1" name="check_hab_contacto" id="check_hab_contacto" ?>
-                                        <label for="check_hab_contacto">
-                                            Habilitar
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label>Tipo Cliente</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" disabled="true">
@@ -159,7 +124,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label>Tipo PLAN MAESTRO</label>
                                     <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2" disabled="true">
@@ -464,7 +429,7 @@
                                     <div class="form-group">
                                         <label for="result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="result_vist" id="result_visit">
-                                        <?php echo $op->select_resultado_visita($status_op) ?>
+                                        <?php echo $op->select_resultado($status_op) ?>
                                          
                                         </select>
 
@@ -586,33 +551,15 @@
                 $("#asesora_comercial").attr('disabled', false);
             }
         });
-
-        $('#check_hab_sede').click(function(){
-            if(!$(this).is(':checked')){
-                $('#sede').attr('disabled',true);
-            }else{
-                $('#sede').attr('disabled',false);
-            }
-        })
-
-        $('#check_hab_contacto').click(function() {
-            if (!$(this).is(':checked')) {
-            
-                $("#tipo_cliente").attr('disabled', true);
-                $("#tipo_plan_maestro").attr('disabled', true);
-            } else {
-           
-                $("#tipo_cliente").attr('disabled', false);
-                $("#tipo_plan_maestro").attr('disabled', false);
-            }
-        });
         $('#check_hab_fecha_contacto').click(function() {
             if (!$(this).is(':checked')) {
                 $("#fecha_contacto").attr('disabled', true);
-              
+                $("#tipo_cliente").attr('disabled', true);
+                $("#tipo_plan_maestro").attr('disabled', true);
             } else {
                 $("#fecha_contacto").attr('disabled', false);
-              
+                $("#tipo_cliente").attr('disabled', false);
+                $("#tipo_plan_maestro").attr('disabled', false);
             }
         });
         $('#check_hab_dpt_municipio').click(function() {

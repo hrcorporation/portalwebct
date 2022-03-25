@@ -193,6 +193,7 @@ switch ($rol_user) {
     case 9:
     case 10:
     case 11:
+    case 12:
     case 13:
     case 15:
     case 16:
@@ -230,6 +231,7 @@ switch ($rol_user) {
 switch ($rol_user) {
     case 1:
     case 8:
+    case 12:
     case 13:
     case 15:
     case 16:

@@ -150,6 +150,20 @@ class oportunidad_negocio extends conexionPDO
         }
     }
 
+    public function actualizar_sede($sede, $nombre ,$id)
+    {
+        $sql = "UPDATE `ct63_oportuniodad_negocio` SET id_sede = :id_sede, nombre_sede = :nombre_sede  WHERE id = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_sede', $sede, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_sede', $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function actualizar_dep_municipio($departamento, $municipio, $comuna, $barrio, $id)
     {
         $sql = "UPDATE `ct63_oportuniodad_negocio` SET departamento = :departamento, municipio = :municipio, comuna = :comuna, barrio = :barrio WHERE id = :id";
@@ -306,7 +320,7 @@ class oportunidad_negocio extends conexionPDO
                 if ($id == $fila['ct1_IdTerceros']) {
                     $selection = "selected='true'";
                 } else {
-                    $selection = "";
+                    $selection = " ";
                 }
                 $option .= '<option value="' . $fila['ct1_IdTerceros'] . '" ' . $selection . ' >' . $fila['ct1_RazonSocial'] . ' </option>';
             }
@@ -831,14 +845,16 @@ class oportunidad_negocio extends conexionPDO
     }
 
 
-    public function dt_oportunidad_negocio()
+    public function dt_oportunidad_negocio_por_id($asesora_comercial)
     {
-        $sql = "SELECT ct63_oportuniodad_negocio.id , `fecha_contacto`, `nidentificacion`,razon_social, `nombrescompletos`, `apellidoscompletos`, `resultado`, `observacion`, `status_op`, resultado_op.descripcion as estado_op FROM `ct63_oportuniodad_negocio`  INNER JOIN resultado_op ON ct63_oportuniodad_negocio.resultado = resultado_op.id; LIMIT 1000";
+        $sql = "SELECT ct63_oportuniodad_negocio.id , `fecha_contacto`, `nidentificacion`,razon_social, `nombrescompletos`, `apellidoscompletos`, `resultado`, `observacion`, `status_op`, resultado_op.descripcion as estado_op FROM `ct63_oportuniodad_negocio`  INNER JOIN resultado_op ON ct63_oportuniodad_negocio.resultado = resultado_op.id WHERE `asesora_comercial` = :asesora_comercial LIMIT 1000";
         $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':asesora_comercial', $asesora_comercial, PDO::PARAM_STR);
+
         //  $stmt-> (':id_cliente', $this->id, PDO::PARAM_INT);
-        if ($result = $stmt->execute()) {
+        if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
-            if ($num_reg >= 0) {
+            if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
                     $datos['fecha'] = $fila['fecha_contacto'];
@@ -851,7 +867,36 @@ class oportunidad_negocio extends conexionPDO
                 }
                 return $datosf;
             } else {
-                return "Resultado de registros es Cero";
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
+    public function dt_oportunidad_negocio()
+    {
+        $sql = "SELECT ct63_oportuniodad_negocio.id , `fecha_contacto`, `nidentificacion`,razon_social, `nombrescompletos`, `apellidoscompletos`, `resultado`, `observacion`, `status_op`, resultado_op.descripcion as estado_op FROM `ct63_oportuniodad_negocio`  INNER JOIN resultado_op ON ct63_oportuniodad_negocio.resultado = resultado_op.id  LIMIT 1000";
+        $stmt = $this->con->prepare($sql);
+        //  $stmt-> (':id_cliente', $this->id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['id'];
+                    $datos['fecha'] = $fila['fecha_contacto'];
+                    $datos['nidentificacion'] = $fila['nidentificacion'];
+                    $datos['razon_social'] = $fila['razon_social'];
+                    $datos['status_op'] = $fila['estado_op'];
+                    $datos['observacion'] = $fila['observacion'];
+                    $datos['resultado'] = $fila['resultado'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
             }
         } else {
             return false;

@@ -14,10 +14,9 @@ $resultado = "";
 $op = new oportunidad_negocio;
 
 
-if (
-    isset($_POST['id_visita']) && !empty($_POST['id_visita']) &&
-    isset($_POST['edit_fecha_vist']) && !empty($_POST['edit_fecha_vist'])
-) {
+if (isset($_POST['id_visita']) && !empty($_POST['id_visita']) &&
+    isset($_POST['edit_fecha_vist']) && !empty($_POST['edit_fecha_vist'])) {
+    
     $id = $_POST['id_visita'];
     $id_cliente = intval($_POST['id_clente_edit']);
     $fecha = $_POST['edit_fecha_vist'];

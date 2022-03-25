@@ -52,17 +52,33 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
+
                                     <label>Asesora Comercial</label>
-                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>           
-                                        <?php echo $oportunidad_negocio->select_comercial() ?>
-                                    </select>
+
+
+                                    <?php
+                                    if (intval($_SESSION['rol_funcionario']) == 1) :
+                                    ?>
+                                        <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
+                                            <?php echo $oportunidad_negocio->select_comercial() ?>
+                                        </select>
+                                    <?php
+                                    elseif (intval($_SESSION['rol_funcionario']) == 12 || intval($_SESSION['rol_funcionario']) == 13) :
+                                    ?>
+                                        <input type="hidden" name="asesora_comercial" id="asesora_comercial" value="<?php echo $_SESSION['id_usuario'] ?>">
+                                        <h5><?php echo $_SESSION['nombre_usuario']; ?></h5>
+
+                                    <?php
+                                    endif;
+                                    ?>
+
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
                                     <label>Sede</label>
                                     <select name="sede" id="sede" class="form-control select2 ">
-                                        <?=$oportunidad_negocio->select_sede() ?>
+                                        <?php echo $oportunidad_negocio->select_sede() ?>
                                     </select>
                                 </div>
                             </div>
@@ -267,24 +283,9 @@
             }
         });
 
-<<<<<<< HEAD
-  
-    $("#municipio").change(function() {
-        $.ajax({
-=======
-        $("#municipio").change(function() {
-            var municipio = $("#municipio").val();
-
-            if (municipio == 428) {
-                $("#comuna").attr('disabled', false);
-            } else {
-                $("#comuna").attr('disabled', true);
-            }
-        });
 
         $("#municipio").change(function() {
             $.ajax({
->>>>>>> 615d7adaa30761d6456360298496dd92fd8b7c86
                 url: "load_data.php",
                 type: "POST",
                 data: {

@@ -1,5 +1,7 @@
 <?php
 session_start();
+ob_start();
+
 
 if (
     isset($_SESSION['session_key'])         && !empty($_SESSION['session_key']) &&

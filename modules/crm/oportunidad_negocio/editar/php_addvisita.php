@@ -14,10 +14,8 @@ $resultado = "";
 $op = new oportunidad_negocio;
 
 
-if (
-    isset($_POST['id_cliente']) && !empty($_POST['id_cliente']) &&
-    isset($_POST['fecha_vist']) && !empty($_POST['fecha_vist'])
-) {
+if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente']) &&
+    isset($_POST['fecha_vist']) && !empty($_POST['fecha_vist'])) {
     
     $fecha = $_POST['fecha_vist'];
     $id_cliente = $_POST['id_cliente'];
@@ -35,10 +33,10 @@ if (
     } else {
         $php_estado = false;
     }
-    if ($_POST['result_vist'] == 3 || $_POST['result_vist'] == 4) {
-        $resultado = 2;
-        $op->actualizar_datos_resultado($resultado, $_POST['id']);
-    }
+    // if ($_POST['result_vist'] == 3 || $_POST['result_vist'] == 4) {
+    //     $resultado = 2;
+    //     $op->actualizar_datos_resultado($resultado, $_POST['id']);
+    // }
 } else {
     $errores = "faltan campos requeridos";
 }
