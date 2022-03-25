@@ -56,7 +56,7 @@
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
                                     <label>Asesora Comercial</label>
-                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" >           
+                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>           
                                         <?php echo $oportunidad_negocio->select_comercial() ?>
                                     </select>
                                 </div>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="col-2 col-sm-2">
                                 <div class="form-group">
-                                    <label for="">Comuna</label>
+                                    <label for="">Zona/Comuna</label>
                                     <select name="comuna" id="comuna" class="form-control select2">
                                         
                                     </select>
@@ -264,16 +264,7 @@ $(document).ready(function(e) {
         }
     });
 
-    $("#municipio").change(function() {
-        var municipio =  $("#municipio").val();
-       
-        if(municipio == 428){
-            $("#comuna").attr('disabled', false);
-        }else{
-            $("#comuna").attr('disabled', true);
-        }
-    });
-
+  
     $("#municipio").change(function() {
         $.ajax({
                 url: "load_data.php",

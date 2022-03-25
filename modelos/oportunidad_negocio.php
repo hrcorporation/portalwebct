@@ -362,10 +362,18 @@ class oportunidad_negocio extends conexionPDO
         $this->id_comuna = intval($id_comuna);
 
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione</option>";
-        $sql = "SELECT `id`, `nombre_comuna` FROM `comunas` WHERE `id_municipio` = :id_municipio";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_municipio', $id_municipio, PDO::PARAM_INT);
+
+        if($id_municipio == 427 || $id_municipio == 428 ){
+            $sql = "SELECT `id`, `nombre_comuna` FROM `comunas` WHERE `id_municipio` = :id_municipio";
+            //Preparar Conexion
+            $stmt = $this->con->prepare($sql);
+            $stmt->bindParam(':id_municipio', $id_municipio, PDO::PARAM_INT);
+        }else{
+            $sql = "SELECT `id`, `nombre_comuna` FROM `comunas` WHERE `id_municipio` = 0";
+            //Preparar Conexion
+            $stmt = $this->con->prepare($sql);
+        }
+        
 
         // Ejecutar 
         $result = $stmt->execute();

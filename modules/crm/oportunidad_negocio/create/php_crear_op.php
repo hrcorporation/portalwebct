@@ -13,7 +13,6 @@ $resultado = "";
 $op = new oportunidad_negocio;
 
 if (
-    isset($_POST['nit']) && !empty($_POST['nit']) &&
     isset($_POST['nombre_completo']) && !empty($_POST['nombre_completo'])
 ) {
     $fecha = "" . date("Y-m-d H:i:s");
