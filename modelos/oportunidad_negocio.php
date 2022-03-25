@@ -314,6 +314,27 @@ class oportunidad_negocio extends conexionPDO
         return $option;
     }
 
+    public function select_sede($id = null)
+    {
+        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione la sede</option>";
+
+        $sql = "SELECT `id`, `descripcion` FROM `listado_sedes`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        
+        if ($result = $stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['id']) {
+                    $selection = "selected='true'";
+                } else {
+                    $selection = "";
+                }
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
+
     public function select_tipo_cliente($id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione tipo de cliente</option>";
@@ -682,6 +703,7 @@ class oportunidad_negocio extends conexionPDO
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $data_array['id'] = $fila['id'];
                     $data_array['fecha'] = $fila['fecha'];
+                    $data_array['id_sede'] = $fila['id_sede'];
                     $data_array['asesora_comercial'] = $fila['asesora_comercial'];
                     $data_array['fecha_contacto'] = $fila['fecha_contacto'];
                     $data_array['tipo_cliente'] = $fila['tipo_cliente'];
@@ -768,15 +790,17 @@ class oportunidad_negocio extends conexionPDO
         }
     }
 
-    public function crear_oportunidad_negocio($asesora_comercial, $fecha_contacto, $tipo_cliente, $tipo_plan_maestro, $departamento, $municipio, $comuna, $barrio, $nit, $nombre_completo, $ap_completo, $nombre_obra, $direccion_obra, $telefono_cliente, $nombre_maestro, $celular_maestro, $m3_potenciales, $fecha_posible_fundida, $resultado, $contacto_cliente, $observacion)
+    public function crear_oportunidad_negocio($asesora_comercial, $sede, $nombre_sede, $fecha_contacto, $tipo_cliente, $tipo_plan_maestro, $departamento, $municipio, $comuna, $barrio, $nit, $nombre_completo, $ap_completo, $nombre_obra, $direccion_obra, $telefono_cliente, $nombre_maestro, $celular_maestro, $m3_potenciales, $fecha_posible_fundida, $resultado, $contacto_cliente, $observacion)
     {
         $razon_social = $nombre_completo . " " . $ap_completo;
-        $sql = "INSERT INTO `ct63_oportuniodad_negocio`(`asesora_comercial`, `fecha_contacto`,tipo_cliente, tipo_plan_maestro, `departamento`, `municipio`, `comuna`, `barrio`, `nidentificacion`, `razon_social`, `nombrescompletos`, `apellidoscompletos`, `nombre_obra`, `direccion_obra`,telefono_cliente, `nombre_maestro`, `celular_maestro`, `m3_potenciales`, `fecha_posible_fundida`, `resultado`, `contacto_cliente`, `observacion`) VALUES (:asesora_comercial, :fecha_contacto,:tipo_cliente, :tipo_plan_maestro,:departamento, :municipio, :comuna, :barrio, :nit, :razon_social ,:nombre_completo, :ap_completo, :nombre_obra, :direccion_obra,:telefono_cliente,  :nombre_maestro ,:celular_maestro, :m3_potenciales, :fecha_posible_fundida, :resultado , :contacto_cliente, :observacion)";
+        $sql = "INSERT INTO `ct63_oportuniodad_negocio`(`asesora_comercial`, `fecha_contacto`, `id_sede`, nombre_sede, tipo_cliente, tipo_plan_maestro, `departamento`, `municipio`, `comuna`, `barrio`, `nidentificacion`, `razon_social`, `nombrescompletos`, `apellidoscompletos`, `nombre_obra`, `direccion_obra`,telefono_cliente, `nombre_maestro`, `celular_maestro`, `m3_potenciales`, `fecha_posible_fundida`, `resultado`, `contacto_cliente`, `observacion`) VALUES (:asesora_comercial, :fecha_contacto, :id_sede, :nombre_obra, :tipo_cliente, :tipo_plan_maestro,:departamento, :municipio, :comuna, :barrio, :nit, :razon_social ,:nombre_completo, :ap_completo, :nombre_obra, :direccion_obra,:telefono_cliente,  :nombre_maestro ,:celular_maestro, :m3_potenciales, :fecha_posible_fundida, :resultado , :contacto_cliente, :observacion)";
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
         // Marcadores
         $stmt->bindParam(':asesora_comercial', $asesora_comercial, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_contacto', $fecha_contacto, PDO::PARAM_STR);
+        $stmt->bindParam(':id_sede', $sede, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_sede', $nombre_sede, PDO::PARAM_STR);
         $stmt->bindParam(':tipo_cliente', $tipo_cliente, PDO::PARAM_STR);
         $stmt->bindParam(':tipo_plan_maestro', $tipo_plan_maestro, PDO::PARAM_STR);
         $stmt->bindParam(':departamento', $departamento, PDO::PARAM_STR);
@@ -828,6 +852,30 @@ class oportunidad_negocio extends conexionPDO
                 return $datosf;
             } else {
                 return "Resultado de registros es Cero";
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
+    public function get_nombre_sede($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT * FROM `listado_sedes` WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['descripcion'];
+                }
+            } else {
+                return false;
             }
         } else {
             return false;
