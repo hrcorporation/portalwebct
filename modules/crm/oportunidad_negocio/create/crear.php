@@ -37,17 +37,14 @@
             <div class="card-header">
                 <h3 class="card-title">CREAR OPORTUNIDAD DE NEGOCIO</h3>
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                            class="fas fa-expand"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                 </div>
             </div>
             <div class="card-body">
                 <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 0.5%" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"> <span class=" text_progresbar">0% </span>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 0.5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <span class=" text_progresbar">0% </span>
                     </div>
                 </div>
                 <div id="contenido">
@@ -56,18 +53,28 @@
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
                                     <label>Asesora Comercial</label>
-                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" >           
+                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2">
                                         <?php echo $oportunidad_negocio->select_comercial() ?>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-2 col-sm-12">
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label>Sede</label>
+                                    <select name="sede" id="sede" class="form-control select2 ">
+                                        <?=$oportunidad_negocio->select_sede() ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
                                     <label>Fecha Contacto</label>
                                     <input type="date" name="fecha_contacto" id="fecha_contacto" class="form-control" />
                                 </div>
                             </div>
-                            <div class="col col-sm-3">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label>Tipo Cliente</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2">
@@ -75,7 +82,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col col-sm-3">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label>Tipo PLAN MAESTRO</label>
                                     <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2">
@@ -97,7 +104,7 @@
                                 <div class="form-group">
                                     <label for="municipio">Municipio</label>
                                     <select name="municipio" id="municipio" class="form-control select2">
-                                       
+
                                     </select>
                                 </div>
                             </div>
@@ -105,7 +112,7 @@
                                 <div class="form-group">
                                     <label for="">Comuna</label>
                                     <select name="comuna" id="comuna" class="form-control select2">
-                                        
+
                                     </select>
                                 </div>
                             </div>
@@ -127,8 +134,7 @@
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-gorup">
                                     <label>Nombre Completo</label>
-                                    <input type="text" name="nombre_completo" id="nombrecompleto"
-                                        class="form-control" />
+                                    <input type="text" name="nombre_completo" id="nombrecompleto" class="form-control" />
                                 </div>
                             </div>
                             <div class="col-md-3  col-sm-12">
@@ -156,7 +162,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label for="">Direccion de la Obra</label>
-                                    <input type="text" name="direccion_obra" id="direccion_obra" class="form-control"  />
+                                    <input type="text" name="direccion_obra" id="direccion_obra" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -170,8 +176,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Telefono Celular Maestro</label>
-                                    <input type="text" name="celular_maestro" id="celular_maestro"
-                                        class="form-control"  />
+                                    <input type="text" name="celular_maestro" id="celular_maestro" class="form-control" />
                                 </div>
                             </div>
                             <div class="col">
@@ -183,8 +188,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Fecha Posible Fundida</label>
-                                    <input type="date" name="fecha_posible_fundida" id="fecha_posible_fundida"
-                                        class="form-control" />
+                                    <input type="date" name="fecha_posible_fundida" id="fecha_posible_fundida" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -193,7 +197,7 @@
                                 <div class="form-group">
                                     <label for="">Resultado de la Gestion</label>
                                     <select name="resultado" id="resultado" class="form-control select2">
-                                    <?php echo $oportunidad_negocio->select_resultado() ?>
+                                        <?php echo $oportunidad_negocio->select_resultado() ?>
                                     </select>
                                 </div>
                             </div>
@@ -201,7 +205,7 @@
                                 <div class="form-group">
                                     <label for="">Forma que se contacto con el cliente</label>
                                     <select name="contacto_cliente" id="contacto_cliente" class="form-control select2">
-                                    <?php echo $oportunidad_negocio->select_contacto() ?>
+                                        <?php echo $oportunidad_negocio->select_contacto() ?>
                                     </select>
                                 </div>
                             </div>
@@ -210,15 +214,14 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Observaciones</label>
-                                    <input type="text" name="observaciones" id="observaciones" class="form-control" >
+                                    <input type="text" name="observaciones" id="observaciones" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <button type="submit" name="crear_op" id="crear_op"
-                                        class="btn btn-block btn-info">Crear</button>
+                                    <button type="submit" name="crear_op" id="crear_op" class="btn btn-block btn-info">Crear</button>
                                 </div>
                             </div>
                         </div>
@@ -227,7 +230,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <div id="bq-boton">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -250,68 +253,66 @@
 </div>
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
-$(document).ready(function(e) {
-    $(".progress").hide();
-    $(".select2").select2();
+    $(document).ready(function(e) {
+        $(".progress").hide();
+        $(".select2").select2();
 
-    $("#tipo_cliente").change(function() {
-        var tipo_cliente =  $("#tipo_cliente").val();
-        console.log(tipo_cliente);
-        if(tipo_cliente == 2){
-            $("#tipo_plan_maestro").attr('disabled', false);
-        }else{
-            $("#tipo_plan_maestro").attr('disabled', true);
-        }
-    });
+        $("#tipo_cliente").change(function() {
+            var tipo_cliente = $("#tipo_cliente").val();
+            console.log(tipo_cliente);
+            if (tipo_cliente == 2) {
+                $("#tipo_plan_maestro").attr('disabled', false);
+            } else {
+                $("#tipo_plan_maestro").attr('disabled', true);
+            }
+        });
 
-    $("#municipio").change(function() {
-        var municipio =  $("#municipio").val();
-       
-        if(municipio == 428){
-            $("#comuna").attr('disabled', false);
-        }else{
-            $("#comuna").attr('disabled', true);
-        }
-    });
+        $("#municipio").change(function() {
+            var municipio = $("#municipio").val();
 
-    $("#municipio").change(function() {
-        $.ajax({
+            if (municipio == 428) {
+                $("#comuna").attr('disabled', false);
+            } else {
+                $("#comuna").attr('disabled', true);
+            }
+        });
+
+        $("#municipio").change(function() {
+            $.ajax({
                 url: "load_data.php",
                 type: "POST",
                 data: {
-                    'task' : 2,
-                    'id_municipio' : $('#municipio').val()
+                    'task': 2,
+                    'id_municipio': $('#municipio').val()
                 },
                 dataType: 'json',
-                success: function (data)
-                {
+                success: function(data) {
                     $('#comuna').html(data.option_comuna);
                 },
-                error: function (respuesta) {
+                error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
             });
-    });
-    
-    $("#departamento").change(function() {
-        $.ajax({
+        });
+
+        $("#departamento").change(function() {
+            $.ajax({
                 url: "load_data.php",
                 type: "POST",
                 data: {
-                    'task' : 1,
-                    'id_departamento' : $('#departamento').val()
+                    'task': 1,
+                    'id_departamento': $('#departamento').val()
                 },
                 dataType: 'json',
-                success: function (data)
-                {
+                success: function(data) {
                     $('#municipio').html(data.option_municipio);
                 },
-                error: function (respuesta) {
+                error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
             });
+        });
     });
-});
 </script>
 
 <script src="ajax_crear.js"></script>

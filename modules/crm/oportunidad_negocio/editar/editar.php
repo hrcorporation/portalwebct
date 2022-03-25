@@ -37,6 +37,7 @@
 
                 $data_array['fecha_contacto'] = $fila['fecha_contacto'];
                 $fecha_contacto = $fila['fecha_contacto'];
+                $id_sede = $fila['id_sede'];
                 $tipo_cliente = $fila['tipo_cliente'];
                 $tipo_plan_maestro = $fila['tipo_plan_maestro'];
                 $departamento =  $fila['departamento'];
@@ -106,6 +107,14 @@
                                     <label>Asesora Comercial</label>
                                     <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" disabled="true">
                                         <?php echo $op->select_comercial($id_comercial) ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label>Sede</label>
+                                    <select name="sede" id="sede" class="form-control select2 ">
+                                        <?=$op->select_sede($id_sede) ?>
                                     </select>
                                 </div>
                             </div>
