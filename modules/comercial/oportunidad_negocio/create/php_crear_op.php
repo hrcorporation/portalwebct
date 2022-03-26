@@ -22,10 +22,23 @@ if (isset($_POST['nit']) && !empty($_POST['nit']) &&
     $fecha_contacto = $_POST['fecha_contacto'];
     $departamento = $_POST['departamento'];
     $municipio = $_POST['municipio'];
-    $comuna = $_POST['comuna'];
+    if(isset($_POST['comuna']) && !empty($_POST['comuna'])){
+        $comuna = $_POST['comuna'];
+    }else{
+        $comuna = NULL;
+    }
     $barrio = $_POST['barrio'];
     $tipo_cliente = $_POST['tipo_cliente'];
-    $tipo_plan_maestro = $_POST['tipo_plan_maestro'];
+
+
+    if(isset($_POST['tipo_plan_maestro']) && !empty($_POST['tipo_plan_maestro'])){
+        $tipo_plan_maestro = $_POST['tipo_plan_maestro'];
+    }else{
+        $tipo_plan_maestro = NULL;
+    }
+
+
+
     $nombre_obra = $_POST['nombre_obra'];
     $telefono_cliente = $_POST['telefono_cliente'];
     $nit = $_POST['nit'];

@@ -245,15 +245,15 @@ class t26_remisiones extends conexionPDO
         }
 
         foreach ($datos as $fila) {
-           // Obtener los datos de los valores
-           $id_obra = (int)$fila['ct26_idObra'];
+          // Obtener los datos de los valores
+          $id_obra = (int)$fila['ct26_idObra'];
 
 
 
-        
 
 
-       
+
+
 
           // Valida si Existe Remision Fisica
           if (is_null($fila['ct26_imagen_remi']) || empty($fila['ct26_imagen_remi'])) {
@@ -274,7 +274,7 @@ class t26_remisiones extends conexionPDO
           }
 
 
-        
+
           $numero_remision = $fila['ct26_codigo_remi'];
           $cliente = $fila['ct26_razon_social'];
           $obra = $fila['ct26_nombre_obra'];
@@ -285,7 +285,7 @@ class t26_remisiones extends conexionPDO
           $stmt_obra = $this->con->prepare($sql_obra);
           $stmt_obra->bindParam(':estado_obra', $estado, PDO::PARAM_INT);
           $stmt_obra->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
-          if ( $stmt_result = $stmt_obra->execute()) {
+          if ($stmt_result = $stmt_obra->execute()) {
             $fila_obra = $stmt_obra->rowCount();
             $resultado['remision'] = $numero_remision;
             $resultado['cliente'] = $cliente;
@@ -295,16 +295,15 @@ class t26_remisiones extends conexionPDO
             $resultado['fisica'] = $this->fisica;
             $resultado['firma'] = $fila['ct26_recibido'];
             $resultado['imagen'] = $fila['ct26_imagen_remi'];
-            $resultado['Rangofecha']= $this->fechaR .' - '.$this->fechaH;
+            $resultado['Rangofecha'] = $this->fechaR . ' - ' . $this->fechaH;
             $resultado['ejecucion'] = $stmt_result;
-            $resultado['Filas Afectadas'] = $fila_obra ." filas"  ;
+            $resultado['Filas Afectadas'] = $fila_obra . " filas";
           } else {
             $resultado[] = false;
           }
           $full[] = $resultado;
-          $datos[] = $fila; 
-
-      }
+          $datos[] = $fila;
+        }
         return $full;
       } else {
         return 2;
@@ -452,7 +451,7 @@ class t26_remisiones extends conexionPDO
           return false;
         }
       } else {
-        
+
         $estado = 1;
         $sql_conductor = 'UPDATE `ct1_terceros` SET `ct1_estado2`= :estado WHERE `ct1_IdTerceros` = :id_conductor';
         $stmt_conductor = $this->con->prepare($sql_conductor);
@@ -463,8 +462,6 @@ class t26_remisiones extends conexionPDO
         } else {
           return false;
         }
-
-
       }
     } else {
       return false;
@@ -844,7 +841,7 @@ class t26_remisiones extends conexionPDO
 
     $this->id_cliente = intval($id_cliente);
     if (is_null($id_obra)) {
-      $sql_cli = "SELECT `ct26_id_remision`, `ct26_codigo_remi`, `ct26_imagen_remi`, `ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra`, `ct26_fecha_remi`, `ct26_estado`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra`, `ct26_hora_inicio_descargue`, `ct26_hora_terminada_descargue` FROM `ct26_remisiones` WHERE `ct26_idcliente` =  :id_cliente  ORDER BY  `ct26_remisiones`.`ct26_fecha_remi` DESC"; //Select Cliente
+      $sql_cli = "SELECT `ct26_id_remision`, `ct26_codigo_remi`, `ct26_imagen_remi`, `ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra`, `ct26_fecha_remi`, `ct26_estado`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra`, `ct26_hora_inicio_descargue`, `ct26_hora_terminada_descargue` FROM `ct26_remisiones` WHERE `ct26_idcliente` LIKE %id_cliente%  ORDER BY  `ct26_remisiones`.`ct26_fecha_remi` DESC"; //Select Cliente
       $stmt_cli = $this->con->prepare($sql_cli);
       $stmt_cli->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
       if ($stmt_cli->execute()) {
@@ -1104,7 +1101,7 @@ class t26_remisiones extends conexionPDO
 
   //
 
-  function rz_anular_remision($id_remision,$rz_anular)
+  function rz_anular_remision($id_remision, $rz_anular)
   {
     $this->id_remision = $id_remision;
     $this->rz_anular = $rz_anular;
@@ -1554,7 +1551,7 @@ class t26_remisiones extends conexionPDO
   function select_remisiones_for_table()
   {
 
-$sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_social ,ct26_nombre_obra ,ct26_vehiculo, ct26_fecha_remi FROM `ct26_remisiones` ORDER BY `ct26_id_remision` DESC LIMIT 10000";
+    $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_social ,ct26_nombre_obra ,ct26_vehiculo, ct26_fecha_remi FROM `ct26_remisiones` ORDER BY `ct26_id_remision` DESC LIMIT 10000";
 
     //$sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_social ,ct26_nombre_obra ,ct26_vehiculo, ct26_fecha_remi FROM `ct26_remisiones` ORDER BY `ct26_id_remision` DESC ";
     //Preparar Conexion
@@ -1660,6 +1657,56 @@ $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_
   }
 
 
+  function agregar_copia($hora, $numero_remision, $id_cliente, $id_obra, $doc_remi, $id_vehiculo, $id_conductor, $metros, $id_producto, $asentamiento, $sello, $estado, $hora_salida_planta, $hora_llegada_obra, $hora_inicio_descargue, $hora_terminada_descargue, $hora_llegada_planta, $id_usuario, $nombre_usuario)
+  {
+    $this->numero_remision = $numero_remision;
+    $this->hora = $hora;
+    $this->doc = $doc_remi;
+    $this->cliente = $id_cliente;
+    $this->obra = $id_obra;
+    $this->conductor = $id_conductor;
+    $this->vehiculo = $id_vehiculo;
+    $this->estado = $estado;
+    $this->sello = $sello;
+    $this->metrosC = $metros;
+    $this->producto = $id_producto;
+    $this->asentamiento = $asentamiento;
+    $this->hora_salida_planta = $hora_salida_planta;
+    $this->hora_llegada_obra = $hora_llegada_obra;
+    $this->hora_inicio_descargue = $hora_inicio_descargue;
+    $this->hora_terminada_descargue = $hora_terminada_descargue;
+    $this->hora_llegada_planta = $hora_llegada_planta;
+    $this->id_usuario = $id_usuario;
+    $this->nombre_usuario = $nombre_usuario;
+
+    $sql = "INSERT INTO `remision_update`(`hora`, `numero_remision`, `id_cliente`, `id_obra`, `doc_remi`, `id_vehiculo`, `id_conductor`, `metros`, `id_producto`, `asentamiento`, `sello`, `estado`, `hora_salida_planta`, `hora_llegada_obra`, `hora_inicio_descargue`, `hora_terminada_descargue`, `hora_llegada_planta`, `id_usuario`, `nombre_usuario`) VALUES (:hora, :numero_remision, :id_cliente, :id_obra, :doc_remi, :id_vehiculo, :id_conductor, :metros, :id_producto, :asentamiento, :sello, :estado, :hora_salida_planta, :hora_llegada_obra, :hora_inicio_descargue, :hora_terminada_descargue, :hora_llegada_planta, :id_usuario, :nombre_usuario)";
+    $stmt = $this->con->prepare($sql);
+    $stmt->bindParam(':hora', $this->hora, PDO::PARAM_STR);
+    $stmt->bindParam(':numero_remision', $this->numero_remision, PDO::PARAM_STR);
+    $stmt->bindParam(':id_cliente', $this->cliente, PDO::PARAM_STR);
+    $stmt->bindParam(':id_obra', $this->obra, PDO::PARAM_STR);
+    $stmt->bindParam(':doc_remi', $this->doc, PDO::PARAM_STR);
+    $stmt->bindParam(':id_vehiculo', $this->vehiculo, PDO::PARAM_STR);
+    $stmt->bindParam(':id_conductor', $this->conductor, PDO::PARAM_STR);
+    $stmt->bindParam(':metros', $this->metros, PDO::PARAM_STR);
+    $stmt->bindParam(':id_producto', $this->producto, PDO::PARAM_STR);
+    $stmt->bindParam(':asentamiento', $this->asentamiento, PDO::PARAM_STR);
+    $stmt->bindParam(':sello', $this->sello, PDO::PARAM_STR);
+    $stmt->bindParam(':estado', $this->estado, PDO::PARAM_STR);
+    $stmt->bindParam(':hora_salida_planta', $this->hora_salida_planta, PDO::PARAM_STR);
+    $stmt->bindParam(':hora_llegada_obra', $this->hora_llegada_obra, PDO::PARAM_STR);
+    $stmt->bindParam(':hora_inicio_descargue', $this->hora_inicio_descargue, PDO::PARAM_STR);
+    $stmt->bindParam(':hora_terminada_descargue', $this->hora_terminada_descargue, PDO::PARAM_STR);
+    $stmt->bindParam(':hora_llegada_planta', $this->hora_llegada_planta, PDO::PARAM_STR);
+    $stmt->bindParam(':id_usuario', $this->id_usuario, PDO::PARAM_INT);
+    $stmt->bindParam(':nombre_usuario', $this->nombre_usuario, PDO::PARAM_STR);
+
+    $result = $stmt->execute();
+    return $result;
+
+    $this->PDO->closePDO();
+  }
+
   function get_remision_id($id_remision)
   {
     $this->id = $id_remision;
@@ -1734,21 +1781,7 @@ $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_
     return $stmt;
   }
 
-  function insert_datos_remi(
-    $codigo_remi,
-    $fecha,
-    $hora,
-    $cliente,
-    $placa,
-    $obra,
-    $conductor,
-    $planta,
-    $sello,
-    $metrosC,
-    $producto,
-    $asentamiento,
-    $observacion
-  ) {
+  function insert_datos_remi($codigo_remi, $fecha, $hora, $cliente, $placa, $obra, $conductor, $planta, $sello, $metrosC,$producto, $asentamiento, $observacion) {
     $this->codigo_remi = $codigo_remi;
     $this->fecha = $fecha;
     $this->hora = $hora;
@@ -1763,9 +1796,7 @@ $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_
     $this->asentamiento = $asentamiento;
     $this->observacion = $observacion;
 
-    $sql = "INSERT INTO `ct26_remisiones`( `ct26_codigo_remi`, `ct26_fecha_remi`, `ct26_hora_remi`, `ct26_cliente_remi`, `ct26_placa`, `ct26_idObra`, `ct26_conductor`, 
-              `ct26_planta`, `ct26_sello_seguridad`,  `ct26_metrosC`, `ct26_producto`, `ct26_asentamiento`,  `ct26_observaciones`) 
-              VALUES (:codigo_remi, :fecha, :hora, :cliente, :placa, :obra, :conductor, :planta, :sello, :metrosC, :producto, :asentamiento, :observacion)";
+    $sql = "INSERT INTO `ct26_remisiones`( `ct26_codigo_remi`, `ct26_fecha_remi`, `ct26_hora_remi`, `ct26_cliente_remi`, `ct26_placa`, `ct26_idObra`, `ct26_conductor`, `ct26_planta`, `ct26_sello_seguridad`,  `ct26_metrosC`, `ct26_producto`, `ct26_asentamiento`,  `ct26_observaciones`) VALUES (:codigo_remi, :fecha, :hora, :cliente, :placa, :obra, :conductor, :planta, :sello, :metrosC, :producto, :asentamiento, :observacion)";
     $stmt = $this->con->prepare($sql);
 
     $stmt->bindParam(':codigo_remi', $this->codigo_remi, PDO::PARAM_STR);

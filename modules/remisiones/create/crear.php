@@ -52,15 +52,8 @@ switch ($rol_user) {
         </div><!-- /.container-fluid -->
     </section>
 
-<<<<<<< HEAD
-                    <!-- Default box -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Crear Anexos</h3>
-=======
     <!-- Main content -->
     <section class="content">
->>>>>>> beta
 
         <!-- Default box -->
         <div class="card">
@@ -96,90 +89,6 @@ switch ($rol_user) {
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <div class="card-body">
-                            <div id="contenido">
-                                <form name="F_crear" id="F_crear" method="POST">
-
-
-                                <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                           
-                                                <label>Cliente</label>
-                                                <select class="js-example-basic-single select2  form-control" id="C_IdTerceros" name="C_IdTerceros" required />
-                                                <?php echo $t1_terceros->option_cliente(); ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Obra</label>
-                                                <select class="js-example-basic-single select2 form-control" id="C_Obras" name="C_Obras" required />
-                                                    <?php //var_dump($get_datos->Select_Cliente($conexion_bd)); ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <div class="form-group">
-                                                <label>Codigo de los Anexos</label>
-                                                <input name="C_codigo" id="C_codigo" type="text" class="form-control" placeholder="Digite el nombre" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="form-group">
-                                                <label>Subir Imagen</label>
-                                                <input type="radio" class="form-control tipoarchivo" name="subirtipo"  value="image/x-png,image/jpeg" required checked="">
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="form-group">
-                                                <label>Subir PDF</label>
-                                                <input type="radio" class="form-control tipoarchivo" name="subirtipo"  value="application/pdf" required> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <input  class="form-control" type="file" name="imgfiles" id="imgfiles" accept="image/x-png,image/jpeg" required="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Seleccionar Vehiculo</label>
-                                                <select class="js-example-basic-single select2 form-control" id="C_vehiculo" name="C_vehiculo">
-                                                    <?php 
-                                                     echo $t10_vehiculo->select_conductor();
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Seleccionar Seleccionar Conductor</label>
-                                                <select class="js-example-basic-single select2 form-control" id="C_Conductor" name="C_Conductor">
-                                                    <?php 
-                                                        echo $t1_terceros->select_conductor();
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-block bg-gradient-orange" name="Registrar" value="Registrar" id="Guardar">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-=======
                         <hr>
                         <div class="row">
                             <div class="col-7">
@@ -199,7 +108,6 @@ switch ($rol_user) {
                                     <label>Subir PDF</label>
                                     <input type="radio" class="form-control tipoarchivo" name="subirtipo" value="application/pdf" required>
                                 </div>
->>>>>>> beta
                             </div>
                         </div>
                         <div class="row">

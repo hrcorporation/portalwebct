@@ -539,33 +539,16 @@ $modelo_obras = new modelo_obras();
         }
 
 
-
-
-
-       
-
-
-
         $('#cliente').on('change', function() {
-
             var id_cliente = $('#cliente').val();
-
             if ($.fn.dataTable.isDataTable('#tabla_obras')) {
-
                 table = $('#tabla_obras').DataTable();
-
                 table.destroy();
-
             }
-
             table = datatable_obra(id_cliente);
-
             setInterval(function() {
-
                 table.ajax.reload(null, false);
-
             }, 5000);
-
         });
 
 

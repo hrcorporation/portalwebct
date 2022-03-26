@@ -11,6 +11,7 @@ switch ($rol_user) {
     case 1:
     case 3:
     case 8:
+    case 12:
     case 13:
     case 15:
     case 16:

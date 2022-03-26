@@ -21,7 +21,7 @@ if (isset($_POST['id_oportunidad_negocio']) && !empty($_POST['id_oportunidad_neg
     $nombre_completo = $_POST['nombre_completo'];
     $apellido_completo = $_POST['ap_completo'];
     $numero_identificacion = $_POST['nit'];
-    $resultado = $_POST['resultado_op_edit'];
+    $resultado = $_POST['resultado'];
    
     
     /**

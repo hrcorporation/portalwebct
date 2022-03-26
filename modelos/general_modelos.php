@@ -27,6 +27,7 @@ class general_modelos extends conexionPDO {
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
+    
         // Asignando Datos ARRAY => SQL
         $stmt->bindParam(':search_id', $this->search_id, PDO::PARAM_STR);
 

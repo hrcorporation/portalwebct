@@ -1,0 +1,6 @@
+[11-Mar-2022 14:21:34 America/Bogota] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'concr_bdportalconcretol.contacto_cliente' doesn't exist in /home3/concr/portal.concretol.co/modelos/oportunidad_negocio.php:413
+Stack trace:
+#0 /home3/concr/portal.concretol.co/modelos/oportunidad_negocio.php(413): PDOStatement->execute()
+#1 /home3/concr/portal.concretol.co/modules/crm/oportunidad_negocio/create/crear.php(203): oportunidad_negocio->select_contacto()
+#2 {main}
+  thrown in /home3/concr/portal.concretol.co/modelos/oportunidad_negocio.php on line 413

@@ -5,23 +5,7 @@
 <?php require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php'; ?>
-
 <?php
-
-$usuarios = new usuarios();
-$permisos = new permisos();
-
-// Roles
-$rol_user = $usuarios->buscar_roles($_SESSION['id_usuario']);
-$modulo_remisiones = array(1, 8, 15, 17, 20, 29, 22, 26);
-$modulo_remisiones =  $permisos->habilitar($modulo_remisiones, $rol_user);
-
-if ($modulo_remisiones) {
-} else {
-    $data = null;
-    print('<script> window.location = "../index.php"</script>');
-}
-
 ?>
 <script>
     function sumarDias(fecha, dias) {
@@ -40,7 +24,6 @@ if ($modulo_remisiones) {
         return new_fecha;
     }
 </script>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -56,7 +39,7 @@ if ($modulo_remisiones) {
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                                 <li class="breadcrumb-item active">Actual</li>
                               </ol>
-                                -->
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -181,15 +164,15 @@ if ($modulo_remisiones) {
                                         <div class="row">
                                             <div class="col">
                                                 <label>Codigo Muestra</label>
-                                                <input type="text" class="form-control" id="codigo_muestra" name="codigo_muestra" />
+                                                <input type="text" class="form-control" id="Z" name="codigo_muestra" />
                                             </div>
                                             <div class="col">
                                                 <label>Cantidad</label>
-                                                <input type="text" class="form-control" id="n_muestra" name="n_muestra" />
+                                                <input type="text" class="form-control" id="n_muestra" name="n_muestra" required />
                                             </div>
                                             <div class="col">
                                                 <label>Dia</label>
-                                                <input type="number" class="form-control" id="n_dias" name="n_dias" onchange="updateInput(value)">
+                                                <input type="number" class="form-control" id="n_dias" name="n_dias" onchange="updateInput(value)" required>
                                             </div>
                                             <div class="col">
                                                 <label>Fecha</label>
@@ -200,9 +183,7 @@ if ($modulo_remisiones) {
                                                 <button type="submit" class="btn btn-success form-control">Guardar </button>
                                             </div>
                                         </div>
-
                                     </form>
-
                                     <div class="row">
                                         <div class="col">
                                             <table id="tabla_cant_muestra" class="display" style="width:100%">
@@ -215,7 +196,6 @@ if ($modulo_remisiones) {
                                                         <th>Fecha</th>
                                                         <th>Acciones</th>
                                                     </tr>
-
                                                 </thead>
                                                 <tbody></tbody>
                                             </table>
@@ -223,9 +203,7 @@ if ($modulo_remisiones) {
                                     </div>
                                 </div>
                                 <div class="modal-footer justify-content-between">
-
                                     <button type="button" class="btn btn-info" id="cargar_data">Cargar Datos</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -282,9 +260,7 @@ if ($modulo_remisiones) {
                     </form>
                     <hr>
                     <br>
-
                     <!-- Button trigger modal -->
-
                     <div class="row">
                         <div class="col">
                             <table id="t_remisiones" class="display" style="width:100%">
@@ -319,7 +295,6 @@ if ($modulo_remisiones) {
                             </table>
                         </div>
                     </div>
-
                 </div>
                 <!-- </form> -->
             </div>
@@ -329,23 +304,13 @@ if ($modulo_remisiones) {
 
         </div>
 </div>
-
 </section>
 </div>
 
-
-
 <?php include '../../../layout/footer/footer3.php' ?>
-
-
 
 <script>
     $(document).ready(function() {
-
-
-
-
-
         // ==============================================================
         // Funciones 
         // ==============================================================
@@ -366,10 +331,7 @@ if ($modulo_remisiones) {
                 "order": [
                     [0, 'desc']
                 ],
-
-                "columns": [
-
-                    {
+                "columns": [{
                         "data": "id"
                     },
                     {
@@ -401,11 +363,9 @@ if ($modulo_remisiones) {
                     cell.innerHTML = i + 1;
                 });
             }).draw();
-
             table_dia_muestra.ajax.reload();
             return table_dia_muestra;
         }
-
         // Accion Boton Tabla Ver Remision
         $('#tabla_cant_muestra tbody').on('click', 'button.btn_eliminar_dia', function() {
             var data = table_dia_muestra.row($(this).parents('tr')).data();
@@ -418,7 +378,6 @@ if ($modulo_remisiones) {
                 },
                 buttonsStyling: false
             })
-
             swalWithBootstrapButtons.fire({
                 title: 'Esta Seguro de eliminar?',
                 //text: "You won't be able to revert this!",
@@ -466,20 +425,12 @@ if ($modulo_remisiones) {
             var table_dia_muestra = $('#tabla_cant_muestra').DataTable();
             table_dia_muestra.destroy();
         }
-
-
-
         // ==============================================================
         // ==============================================================
         // Tabla dia muestra
         // ==============================================================
         var n = 1;
         //var id_muestra = $("#id_remision").val();
-
-
-
-
-
         $("#btn_modal_dias_fallo").click(function() {
             var id_muestra = $("#id_muestra").val();
             if ($.fn.dataTable.isDataTable('#tabla_cant_muestra')) {
@@ -515,33 +466,22 @@ if ($modulo_remisiones) {
                         for (let indexh = 0; indexh < datos_msg.length; indexh++) {
                             toastr.success(data.msg[indexh]);
                         }
-
-
                     } else {
                         for (let index = 0; index < datos_errores.length; index++) {
                             toastr.warning(data.errores[index]);
                         }
                     }
-
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
             });
-
-
-
-
-
             if ($.fn.dataTable.isDataTable('#tabla_cant_muestra')) {
                 table_dia_muestra = $('#tabla_cant_muestra').DataTable();
                 table_dia_muestra.destroy();
             }
             table_dia_muestra = datatable_dia_muestra($("#id_muestra").val());
-
         });
-
-
         // ==============================================================
         // ==============================================================
         // Tabla Remisiones
@@ -582,16 +522,13 @@ if ($modulo_remisiones) {
                 {
                     "data": "placa"
                 },
-
                 {
                     "data": null,
                     "defaultContent": "<button class='btn btn-info get_remi  btn-sm'> <i class='fas fa-hand-point-up'></i> </button><button class='btn btn-success ver_remi btn-sm'> <i class='fas fa-eye'></i> </button>"
                 }
             ],
             //"scrollX": true,
-
         });
-
         table_remisiones.on('order.dt search.dt', function() {
             table_remisiones.column(0, {
                 search: 'applied',
@@ -641,9 +578,6 @@ if ($modulo_remisiones) {
         setInterval(function() {
             table_remisiones.ajax.reload(null, false);
         }, 5000);
-
-
-
     });
 </script>
 <script>
@@ -651,7 +585,6 @@ if ($modulo_remisiones) {
         $('.select2').select2();
 
     });
-
     $(document).ready(function() {
 
         // Crear Muestra
@@ -681,6 +614,7 @@ if ($modulo_remisiones) {
                         $("#btn_modal_dias_fallo").show();
                         $("#btn_crear_muestra").hide();
                         $("#id_muestra").val(data.id_muestra);
+                        $("#codigo_muestra").val(data.id_muestra);
 
                         $("#asentamiento").val(data.asentamiento);
                         $("#temperatura").val(data.temperatura);
@@ -695,8 +629,6 @@ if ($modulo_remisiones) {
                     alert(JSON.stringify(respuesta));
                 },
             });
-
-
         }));
 
         // Adicionar datos de las muestras temperatura asentamiento
@@ -730,9 +662,6 @@ if ($modulo_remisiones) {
                 },
             });
         }));
-
-
-
         // Crear Dias y Cantidades de las Muestras
         $("#form_crear_cant").on('submit', (function(e) {
             e.preventDefault();
@@ -767,16 +696,7 @@ if ($modulo_remisiones) {
                 },
             });
         }));
-
-
-
-
     });
-
-
-
-
-
     // Crear 2
 </script>
 

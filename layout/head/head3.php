@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
 
     <link href="../../../custom/remi.css" rel="stylesheet" />
-
+    <link type="text/css" href="https://cdn.datatables.net/select/1.3.4/css/select.dataTables.min.css" rel="stylesheet" />
 </head>
 
 <body class="hold-transition sidebar-mini">

@@ -29,24 +29,19 @@
         /**
          * Validacion de Usuario
          */
-        if (is_array($array_rol_user =  $login->get_rol_tercero($_SESSION['id_usuario']))) :
+        $op = new oportunidad_negocio();
 
-            $modulos = array(1); // Array de roles para habilitar roles
-            if ($login->validar_rol_user($modulos, $array_rol_user)) : // Validacion para habilitar el usuario
-                $op = new oportunidad_negocio();
+        if (is_array($array_data = $op->getdata_oportunidad_negocio_for_id(intval($_GET['id'])))) {
+            foreach ($array_data as $key) {
+                $nidentificacion = $key['nidentificacion'];
+                $nombres_completos = $key['nombrescompletos'];
+                $apellidos_completos = $key['apellidoscompletos'];
+                $estado = $key['status_op'];
 
-                if (is_array($array_data = $op->getdata_oportunidad_negocio_for_id(intval($_GET['id'])))) {
-                    foreach ($array_data as $key) {
-                        $nidentificacion = $key['nidentificacion'];
-                        $nombres_completos = $key['nombrescompletos'];
-                        $apellidos_completos = $key['apellidoscompletos'];
-                        $estado = $key['status_op'];
+            }
+        }
 
-                    }
-                }
-                /**
-                 * Card Body
-                 */
+     
         ?>
         <!-- Default box -->
         <div class="card">
@@ -173,20 +168,7 @@
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-        <?php
-            else :
-            ?>
-        <div class="callout callout-warning">
-            <h5>No posee permisos en este modulo</h5>
-        </div>
-        <?php
-            endif;
-        else :
-            header('location : ../../../../cerrar.php');
-        endif;
-
-        ?>
-
+     
 
         <div class="modal fade" id="crear_visita">
             <div class="modal-dialog">

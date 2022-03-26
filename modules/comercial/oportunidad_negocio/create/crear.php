@@ -29,16 +29,8 @@
         /**
          * Validacion de Usuario
          */
-        if (is_array($array_rol_user =  $login->get_rol_tercero($_SESSION['id_usuario']))) :
-
-            $modulos = array(1); // Array de roles para habilitar roles
-            if ($login->validar_rol_user($modulos, $array_rol_user)) : // Validacion para habilitar el usuario
-                $t1_terceros = new t1_terceros();
-                $oportunidad_negocio = new oportunidad_negocio();
-
-                /**
-                 * Card Body
-                 */
+        $t1_terceros = new t1_terceros();
+        $oportunidad_negocio = new oportunidad_negocio();
         ?>
         <!-- Default box -->
         <div class="card">
@@ -63,12 +55,8 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label>Asesora Comercial</label>
-                                    <select name="asesora_comercial" id="asesora_comercial"
-                                        class="form-control select2">
-                                        <option value="NULL">Seleccione</option>
-                                        <option value="1">Angie Mondragon</option>
-                                        <option value="1">Sirley Acevedo</option>
-                                        <option value="1">Paula Gomez</option>
+                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" >           
+                                        <?php echo $oportunidad_negocio->select_comercial() ?>
                                     </select>
                                 </div>
                             </div>
@@ -276,19 +264,7 @@
         <!-- Default box -->
 
         <!-- /.card -->
-        <?php
-            else :
-            ?>
-        <div class="callout callout-warning">
-            <h5>No posee permisos en este modulo</h5>
-        </div>
-        <?php
-            endif;
-        else :
-            header('location : ../../../../cerrar.php');
-        endif;
-
-        ?>
+        
 
     </section>
     <!-- /.content -->
@@ -303,6 +279,16 @@
 $(document).ready(function(e) {
     $(".progress").hide();
     $(".select2").select2();
+
+    $("#tipo_cliente").change(function() {
+        var tipo_cliente =  $("#tipo_cliente").val();
+       
+        if(tipo_cliente == 3){
+            $("#tipo_plan_maestro").attr('disabled', false);
+        }else{
+            $("#tipo_plan_maestro").attr('disabled', true);
+        }
+    });
 
     $("#municipio").change(function() {
         $.ajax({

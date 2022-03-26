@@ -9,11 +9,8 @@ require '../../../vendor/autoload.php';
 
 $php_clases = new php_clases();
 $t5_obras = new t5_obras();
-$permisos = new permisos();
-$usuarios = new usuarios();
+
 $modelo_laboratorio = new modelo_laboratorio();
-
-
 
 // Roles
 //$id_cliente = intval($_POST['cliente']);
@@ -32,8 +29,6 @@ if ($modulo_usuarios) {
 } else {
     $data = null;
 }
-
-
 
 print json_encode($data, JSON_UNESCAPED_UNICODE);
 
