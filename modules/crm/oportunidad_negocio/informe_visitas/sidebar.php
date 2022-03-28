@@ -2,8 +2,7 @@
  <aside class="main-sidebar sidebar-light-orange elevation-4">
      <!-- Brand Logo -->
      <a href="#" class="brand-link">
-         <img src="../../../assets/images/logos/Logo-v8.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-             style="opacity: .8">
+         <img src="../../../../assets/images/logos/Logo-v8.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">CONCRETOL</span>
      </a>
 
@@ -26,7 +25,7 @@
                  
                  <li class="nav-header">Oportunidad de Negocio</li>
                  <li class="nav-item has-treeview">
-                     <a href="" class="nav-link active">
+                     <a href="../index.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar
@@ -34,7 +33,7 @@
                      </a>
                  </li>
                  <li class="nav-item has-treeview">
-                     <a href="create/crear.php" class="nav-link">
+                     <a href="../create/crear.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Crear
@@ -43,22 +42,14 @@
                  </li>
                  <li class="nav-header">Exportar</li>
                  <li class="nav-item has-treeview">
-                     <a href="informe/index.php" class="nav-link ">
+                     <a href="#" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Exportar informe oportunidades
+                             Exportar informe
                          </p>
                      </a>
                  </li>
-                 <li class="nav-header">Exportar</li>
-                 <li class="nav-item has-treeview">
-                     <a href="informe_visitas/index.php" class="nav-link ">
-                         <i class="nav-icon fas fa-copy"></i>
-                         <p>
-                             Exportar informe visitas
-                         </p>
-                     </a>
-                 </li>
+             
 
 
              </ul>

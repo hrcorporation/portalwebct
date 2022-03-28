@@ -44,6 +44,15 @@ if (isset($_POST['id_visita']) && !empty($_POST['id_visita']) &&
     } else {
         $php_estado = false;
     }
+    $st = $op->get_id_status($id_cliente);
+
+    if($st == 3 || $st == 4){
+        $resultado = 2;
+        $op->actualizar_resultado($id_cliente, $resultado);
+    }else{
+        $resultado = 1;
+        $op->actualizar_resultado($id_cliente, $resultado);
+    }
 } else {
     $errores = "faltan campos requeridos";
 }

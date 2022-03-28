@@ -58,7 +58,12 @@
                 $resultado = $fila['resultado'];
                 $contacto_cliente = $fila['contacto_cliente'];
                 $observacion = $fila['observacion'];
-                $status_op = $fila['status_op'];
+                
+            }
+        }
+        if(is_array($datos = $op->get_data_visitas_id($_GET['id']))){
+            foreach($datos as $dato){
+                $status_op = $dato['resultado'];
             }
         }
         ?>
@@ -464,7 +469,7 @@
                                     <div class="form-group">
                                         <label for="result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="result_vist" id="result_visit">
-                                        <?php echo $op->select_resultado_visita($status_op) ?>
+                                        <?php echo $op->select_resultado_visita() ?>
                                          
                                         </select>
 
@@ -475,7 +480,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="obs_visit">Observaciones</label>
-                                        <input type="text" name="obs_visit" id="obs_visit" class="form-control" />
+                                        <input type="text" name="obs_visit" id="obs_visit" class="form-control" required = "true"/>
                                     </div>
                                 </div>
                             </div>
@@ -521,7 +526,7 @@
                                     <div class="form-group">
                                         <label for="edit_result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="edit_result_visit" id="edit_result_visit">
-                                        <?php echo $op->select_resultado($status_op) ?>
+                                        <?php echo $op->select_resultado_visita($status_op) ?>
 
                                         </select>
 
@@ -532,7 +537,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="edit_obs_visit">Observaciones</label>
-                                        <input type="text" name="edit_obs_visit" id="edit_obs_visit" class="form-control" />
+                                        <input type="text" name="edit_obs_visit" id="edit_obs_visit" class="form-control" required="true"/>
                                     </div>
                                 </div>
                             </div>
