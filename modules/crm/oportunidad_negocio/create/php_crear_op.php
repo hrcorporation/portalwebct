@@ -28,7 +28,7 @@ if (
     } else {
         $comuna = NULL;
     }
-    $barrio = $_POST['barrio'];
+    $barrio = preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['barrio']));
     $tipo_cliente = $_POST['tipo_cliente'];
 
     if (isset($_POST['tipo_plan_maestro']) && !empty($_POST['tipo_plan_maestro'])) {
@@ -37,14 +37,14 @@ if (
         $tipo_plan_maestro = NULL;
     }
 
-    $nombre_obra = $_POST['nombre_obra'];
-    $telefono_cliente = $_POST['telefono_cliente'];
-    $nit = $_POST['nit'];
-    $nombre_completo = $_POST['nombre_completo'];
-    $ap_completo = $_POST['ap_completo'];
-    $nombre_maestro = $_POST['nombre_maestro'];
-    $direccion_obra = $_POST['direccion_obra'];
-    $celular_maestro = $_POST['celular_maestro'];
+    $nombre_obra = preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['nombre_obra']));
+    $telefono_cliente = preg_replace('/[@\.\;\%\$\%\ ]+/', '', $_POST['telefono_cliente']);
+    $nit = preg_replace('/[@\.\;\%\$\%\ ]+/', '', $_POST['nit']);
+    $nombre_completo = preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['nombre_completo']));
+    $ap_completo = preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['ap_completo']));
+    $nombre_maestro = preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['nombre_maestro']));
+    $direccion_obra = strtoupper($_POST['direccion_obra']);
+    $celular_maestro = preg_replace('/[@\.\;\%\$\%\ ]+/', '', $_POST['celular_maestro']);
     $m3_potenciales = $_POST['m3_potenciales'];
     $fecha_posible_fundida = $_POST['fecha_posible_fundida'];
     $resultado = $_POST['resultado'];

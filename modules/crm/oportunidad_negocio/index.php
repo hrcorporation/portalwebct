@@ -30,38 +30,39 @@
          * Validacion de Usuario
          */
         $t1_terceros = new t1_terceros();
-     ?>
-                <!-- Default box -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">TABLA DE LAS OPORTUNIDADES DE NEGOCIO</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                <i class="fas fa-minus"></i></button>
-                            <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                            <table id="table_op" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>N</th>
-                                        <th>Status</th>
-                                        <th>Fecha</th>
-                                        <th>identificacion</th>
-                                        <th>Nombre cliente</th>
-                                        <th>Detalles</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                    </div>
-                    <!-- /.card-body -->
+        ?>
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">TABLA DE LAS OPORTUNIDADES DE NEGOCIO</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                 </div>
-                <!-- /.card -->
-       
+            </div>
+            <div class="card-body">
+                <table id="table_op" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>N</th>
+                            <th>Cod. de la oportunidad</th>
+                            <th>Status</th>
+                            <th>Fecha</th>
+                            <th>identificacion</th>
+                            <th>Nombre cliente</th>
+                            <th>Detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
 
     </section>
     <!-- /.content -->
@@ -87,6 +88,9 @@
                     "data": "id"
                 },
                 {
+                    "data": "id"
+                },
+                {
                     "data": "status_op"
                 },
                 {
@@ -97,7 +101,7 @@
                 },
                 {
                     "data": "razon_social"
-                }, 
+                },
                 {
                     "data": null,
                     "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-eye'></i> </button>"

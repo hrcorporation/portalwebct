@@ -15,6 +15,7 @@ switch($rol_user)
     case 12:
     case 13:
     case 14:
+    case 16:
         case 26:
         case 27:
         case 29:
