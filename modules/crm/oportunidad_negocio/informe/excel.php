@@ -68,15 +68,15 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
         ->setCellValue('S1', 'CELULAR MAESTRO')
         ->setCellValue('T1', 'M3 POTENCIALES')
         ->setCellValue('U1', 'FECHA POSIBLE FUNDIDA')
-        ->setCellValue('V1', 'RESULTADO')
+        ->setCellValue('V1', 'ESTADO')
         ->setCellValue('W1', 'CONTACTO CLIENTE')
         ->setCellValue('X1', 'OBSERVACION')
-        ->setCellValue('Y1', 'STATUS');
+        ->setCellValue('Y1', 'CANTIDAD DE VISITAS');
     $x = 2;
 
     if (is_array($datos)) {
         foreach ($datos as $fila) {
-
+            
             $spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $x, $fila['id'])
                 ->setCellValue('B' . $x, $fila['fecha_contacto'])
@@ -101,8 +101,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
                 ->setCellValue('U' . $x, $fila['fecha_posible_fundida'])
                 ->setCellValue('V' . $x, $fila['resultado'])
                 ->setCellValue('W' . $x, $fila['contacto_cliente'])
-                ->setCellValue('X' . $x, $fila['observacion'])
-                ->setCellValue('Y' . $x, $fila['status_op']);
+                ->setCellValue('X' . $x, $fila['observacion']);
             $x++;
         }
     }
@@ -119,23 +118,15 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('C')
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('D')
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('E')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('F')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
 
         ->getColumnDimension('G')

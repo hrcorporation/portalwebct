@@ -236,6 +236,7 @@ $('.select2').select2();
         table.ajax.reload();
         return table;
     }
+    
     $('#txd_cliente').on('change', function(){
         $.ajax({
             url: "getdata.php",

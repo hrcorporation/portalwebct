@@ -42,10 +42,19 @@
                  </li>
                  <li class="nav-header">Exportar</li>
                  <li class="nav-item has-treeview">
+                     <a href="../informe/index.php" class="nav-link ">
+                         <i class="nav-icon fas fa-copy"></i>
+                         <p>
+                             Exportar informe oportunidades
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-header">Exportar</li>
+                 <li class="nav-item has-treeview">
                      <a href="#" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Exportar informe
+                             Exportar informe visitas
                          </p>
                      </a>
                  </li>

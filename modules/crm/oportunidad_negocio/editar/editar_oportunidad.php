@@ -35,14 +35,25 @@ if (
         }
     }
     if (isset($_POST['check_hab_fecha_contacto']) && !empty($_POST['check_hab_fecha_contacto'])) {
+        if ($op->actualizar_fecha_contacto($_POST['fecha_contacto'], $id)) {
+            $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['fecha_contacto'], $id, $_SESSION['id_usuario']);
+            $php_estado = true;
+        }
+        if ($op->actualizar_fecha_contacto($_POST['fecha_contacto'], $id)) {
+            $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['fecha_contacto'], $id, $_SESSION['id_usuario']);
+            $php_estado = true;
+        }
+    }
+
+    if (isset($_POST['check_tipo_cliente']) && !empty($_POST['check_tipo_cliente'])) {
         if (!empty($_POST['tipo_plan_maestro'])) {
-            if ($op->actualizar_fecha_contacto($_POST['fecha_contacto'], $_POST['tipo_cliente'], $_POST['tipo_plan_maestro'], $id)) {
-                $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['fecha_contacto'] . " - " . $_POST['tipo_cliente'] . " - " . $_POST['tipo_plan_maestro'], $id, $_SESSION['id_usuario']);
+            if ($op->actualizar_tipo_cliente($_POST['tipo_cliente'], $_POST['tipo_plan_maestro'], $id)) {
+                $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['tipo_cliente'] . " - " . $_POST['tipo_plan_maestro'], $id, $_SESSION['id_usuario']);
                 $php_estado = true;
             }
         } else {
-            if ($op->actualizar_fecha_contacto($_POST['fecha_contacto'], $_POST['tipo_cliente'], " ", $id)) {
-                $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['fecha_contacto'] . " - " . $_POST['tipo_cliente'] . " - ", $id, $_SESSION['id_usuario']);
+            if ($op->actualizar_tipo_cliente($_POST['tipo_cliente'], 3, $id)) {
+                $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['tipo_cliente'] . " - ", $id, $_SESSION['id_usuario']);
                 $php_estado = true;
             }
         }
@@ -66,7 +77,7 @@ if (
             $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['nit'] . $_POST['nombre_completo'] . " - " . $_POST['ap_completo'] . " - " . $_POST['telefono_cliente'], $id, $_SESSION['id_usuario']);
             $php_estado = true;
         }
-        if ($op->actualizar_nombre_completo($_POST['nombre_completo'], $_POST['ap_completo'], $id)) {
+        if ($op->actualizar_nombre_completo(preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['nombre_completo'])), preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['ap_completo'])), $id)) {
             $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['nombre_completo'], $id, $_SESSION['id_usuario']);
             $php_estado = true;
         }

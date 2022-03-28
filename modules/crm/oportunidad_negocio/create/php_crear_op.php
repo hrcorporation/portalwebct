@@ -13,9 +13,8 @@ $resultado = "";
 $php_clases = new php_clases();
 $op = new oportunidad_negocio;
 
-if (
-    isset($_POST['nombre_completo']) && !empty($_POST['nombre_completo'])
-) {
+if (isset($_POST['nombre_completo']) && !empty($_POST['nombre_completo'])) {
+    
     $fecha = "" . date("Y-m-d H:i:s");
     $asesora_comercial = $_POST['asesora_comercial'];
     $id_sede = $_POST['sede'];
@@ -23,18 +22,20 @@ if (
     $fecha_contacto = $_POST['fecha_contacto'];
     $departamento = $_POST['departamento'];
     $municipio = $_POST['municipio'];
+
     if (isset($_POST['comuna']) && !empty($_POST['comuna'])) {
         $comuna = $_POST['comuna'];
     } else {
         $comuna = NULL;
     }
+
     $barrio = preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['barrio']));
     $tipo_cliente = $_POST['tipo_cliente'];
 
     if (isset($_POST['tipo_plan_maestro']) && !empty($_POST['tipo_plan_maestro'])) {
         $tipo_plan_maestro = $_POST['tipo_plan_maestro'];
     } else {
-        $tipo_plan_maestro = NULL;
+        $tipo_plan_maestro = 3;
     }
 
     $nombre_obra = preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['nombre_obra']));
@@ -55,6 +56,7 @@ if (
     } else {
         $observaciones = NULL;
     }
+
     /**
      * STATUS
      * 1- Aprovado

@@ -1,6 +1,9 @@
 <?php include '../../../layout/validar_session3.php' ?>
 <?php include '../../../layout/head/head3.php'; ?>
-<?php include 'sidebar.php' ?>
+<?php include 'sidebar.php';
+
+$t1_terceros = new t1_terceros();
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -42,6 +45,20 @@
                 </div>
             </div>
             <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">Codigo oportunidad de negocio</label>
+                            <input type="number" name="txt_cod_oportunidad" id="txt_cod_oportunidad" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">Buscar</label>
+                            <button type="button" id="buscar" class="btn btn-block btn-info">Buscar</button>
+                        </div>
+                    </div>
+                </div>
                 <table id="table_op" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -70,15 +87,22 @@
 <!-- /.content-wrapper -->
 
 <?php include '../../../layout/footer/footer3.php' ?>
-<script>
-    $(document).ready(function() {
 
-        var n = 1;
+<script>
+    $('.select2').select2();
+
+    function datatable_oportunidad_negocio(cod, nombre) {
         var table = $('#table_op').DataTable({
-            //"processing": true,
-            //"scrollX": true,
+            'searching': true,
+            "processing": true,
+            "scrollX": true,
             "ajax": {
                 "url": "datatable.php",
+                "data": {
+                    'id': cod,
+                    'razon_social': nombre,
+                },
+                'type': 'post',
                 "dataSrc": ""
             },
             "order": [
@@ -119,14 +143,27 @@
                 cell.innerHTML = i + 1;
             });
         }).draw();
+
         $('#table_op tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data();
             var id = data['id'];
             window.location = "editar/editar.php?id=" + id;
         });
+        table.ajax.reload();
+        return table;
+    }
+
+    $('#buscar').on('click', function() {
+        var cod = $('#txt_cod_oportunidad').val();
+        var nombre = $('#txd_cliente').val();
+        if ($.fn.dataTable.isDataTable('#table_op')) {
+            table = $('#table_op').DataTable();
+            table.destroy();
+        }
+        table = datatable_oportunidad_negocio(cod, nombre);
         setInterval(function() {
             table.ajax.reload(null, false);
-        }, 10000);
+        }, 5000);
     });
 </script>
 
