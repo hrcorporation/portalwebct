@@ -101,7 +101,8 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
                 ->setCellValue('U' . $x, $fila['fecha_posible_fundida'])
                 ->setCellValue('V' . $x, $fila['resultado'])
                 ->setCellValue('W' . $x, $fila['contacto_cliente'])
-                ->setCellValue('X' . $x, $fila['observacion']);
+                ->setCellValue('X' . $x, $fila['observacion'])
+                ->setCellValue('Y' . $x, $fila['cantidad']);
             $x++;
         }
     }

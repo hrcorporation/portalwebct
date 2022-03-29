@@ -201,7 +201,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-2 col-sm-2">
+                            <div class="col-4 col-sm-3">
                                 <div class="form-group">
                                     <label for="">Comuna</label>
                                     <select name="comuna" id="comuna" class="form-control select2" disabled="true">

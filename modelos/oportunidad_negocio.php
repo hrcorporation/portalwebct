@@ -113,7 +113,7 @@ class oportunidad_negocio extends conexionPDO
                     return $fila['descripcion'];
                 }
             } else {
-                return false;
+                return "NO APLICA";
             }
         } else {
             return false;
@@ -166,6 +166,7 @@ class oportunidad_negocio extends conexionPDO
                     $data_array['resultado'] = $fila['resultado'];
                     $data_array['contacto_cliente'] = $fila['contacto'];
                     $data_array['observacion'] = $fila['observacion'];
+                    $data_array['cantidad'] = SELF::get_cantidad_visitas($fila['id']);
                     $datosf[] = $data_array;
                 }
                 return $datosf; // Retorna el resultado
@@ -196,6 +197,30 @@ class oportunidad_negocio extends conexionPDO
             }
         } else {
             return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
+    public function get_cantidad_visitas($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT COUNT(id) as cantidad_visitas FROM `cliente_has_visitas` WHERE `id_cliente` =  :id";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['cantidad_visitas'];
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
         }
         //Cerrar Conexion
         $this->PDO->closePDO();
