@@ -64,7 +64,7 @@ $t1_terceros = new t1_terceros();
                         <tr>
                             <th>N</th>
                             <th>Cod. de la oportunidad</th>
-                            <th>Status</th>
+                            <th>Estado</th>
                             <th>Fecha</th>
                             <th>identificacion</th>
                             <th>Nombre cliente</th>

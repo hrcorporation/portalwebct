@@ -48,12 +48,14 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     // FILA 1 = NOMBRE DE COLUMNAS
     $spreadsheet->setActiveSheetIndex(0)
         ->setCellValue('A1', 'CODIGO DE LA OPORTUNIDAD DE NEGOCIO')
-        ->setCellValue('B1', 'FECHA VISITA')
-        ->setCellValue('C1', 'NUMERO DE IDENTIFICACION CLIENTE')
-        ->setCellValue('D1', 'NOMBRE DEL CLIENTE')
-        ->setCellValue('E1', 'RESULTADO')
-        ->setCellValue('F1', 'MOTIVO DE PERDIDA')
-        ->setCellValue('G1', 'OBSERVACIONES');
+        ->setCellValue('B1', 'ASESORA COMERCIAL')
+        ->setCellValue('C1', 'FECHA VISITA')
+        ->setCellValue('D1', 'NUMERO DE IDENTIFICACION CLIENTE')
+        ->setCellValue('E1', 'NOMBRE DEL CLIENTE')
+        ->setCellValue('F1', 'TELEFONO DEL CLIENTE')
+        ->setCellValue('G1', 'RESULTADO')
+        ->setCellValue('H1', 'MOTIVO DE PERDIDA')
+        ->setCellValue('I1', 'OBSERVACIONES');
         // ->setCellValue('E1', 'DEPARTAMENTO')
         // ->setCellValue('F1', 'MUNICIPIO')
         // ->setCellValue('G1', 'COMUNA')
@@ -80,12 +82,14 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
 
             $spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $x, $fila['id_cliente'])
-                ->setCellValue('B' . $x, $fila['fecha'])
-                ->setCellValue('C' . $x, $fila['nidentificacion'])
-                ->setCellValue('D' . $x, $fila['razon_social'])
-                ->setCellValue('E' . $x, $fila['resultado'])
-                ->setCellValue('F' . $x, $fila['nombre_motivo'])
-                ->setCellValue('G' . $x, $fila['obs']);
+                ->setCellValue('B' . $x, $fila['asesora_comercial'])
+                ->setCellValue('C' . $x, $fila['fecha'])
+                ->setCellValue('D' . $x, $fila['nidentificacion'])
+                ->setCellValue('E' . $x, $fila['razon_social'])
+                ->setCellValue('F' . $x, $fila['telefono_cliente'])
+                ->setCellValue('G' . $x, $fila['resultado'])
+                ->setCellValue('H' . $x, $fila['nombre_motivo'])
+                ->setCellValue('I' . $x, $fila['obs']);
                 // ->setCellValue('D' . $x, $fila['tipo_plan_maestro'])
                 // ->setCellValue('E' . $x, $fila['departamento'])
                 // ->setCellValue('F' . $x, $fila['municipio'])

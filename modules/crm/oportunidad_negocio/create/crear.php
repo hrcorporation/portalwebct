@@ -52,10 +52,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-
                                     <label>Asesora Comercial</label>
-
-
                                     <?php
                                     if (intval($_SESSION['rol_funcionario']) == 1) :
                                     ?>
@@ -67,11 +64,9 @@
                                     ?>
                                         <input type="hidden" name="asesora_comercial" id="asesora_comercial" value="<?php echo $_SESSION['id_usuario'] ?>">
                                         <h5><?php echo $_SESSION['nombre_usuario']; ?></h5>
-
                                     <?php
                                     endif;
                                     ?>
-
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-12">
@@ -93,7 +88,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Tipo Cliente</label>
-                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2">
+                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required = "true">
                                         <?php echo $oportunidad_negocio->select_tipo_cliente() ?>
                                     </select>
                                 </div>
@@ -111,7 +106,7 @@
                             <div class="col-2 col-sm-3">
                                 <div class="form-group">
                                     <label for="">Departamento</label>
-                                    <select name="departamento" id="departamento" class="form-control select2">
+                                    <select name="departamento" id="departamento" class="form-control select2" required = "true">
                                         <?php echo $oportunidad_negocio->select_departamento(null); ?>
                                     </select>
                                 </div>
@@ -119,7 +114,7 @@
                             <div class="col-2 col-sm-3">
                                 <div class="form-group">
                                     <label for="municipio">Municipio</label>
-                                    <select name="municipio" id="municipio" class="form-control select2">
+                                    <select name="municipio" id="municipio" class="form-control select2" required = "true">
 
                                     </select>
                                 </div>
@@ -127,7 +122,7 @@
                             <div class="col-2 col-sm-2">
                                 <div class="form-group">
                                     <label for="">Zona/Comuna</label>
-                                    <select name="comuna" id="comuna" class="form-control select2">
+                                    <select name="comuna" id="comuna" class="form-control select2" required = "true">
 
                                     </select>
                                 </div>
