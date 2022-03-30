@@ -104,7 +104,7 @@ require '../../../../vendor/autoload.php'; ?>
                                             </label>
                                         </div>
                                         <div class="icheck-primary d-inline">
-                                            <input type="radio" id="r_PJ" value="PN" name="r_naturaleza">
+                                            <input type="radio" id="r_PJ" name="r_naturaleza" value="PN">
                                             <label for="r_PJ"> Persona Natural
                                             </label>
                                         </div>
@@ -253,7 +253,7 @@ require '../../../../vendor/autoload.php'; ?>
                         $("#tbx_papellido1").val(data.apellidoscompletos);
                         $("#tbx_telefono").val(data.telefono_cliente);
                         $("#tbx_tipotercero").val(data.tipo_cliente);
-                        $("#tbx_RazonSocial").val(data.nombrescompletos + " "+ data.apellidoscompletos);
+                        $("#tbx_RazonSocial").val(data.nombrescompletos + " " + data.apellidoscompletos);
                         $("#tbx_celular").val(data.telefono_cliente);
                         toastr.success('exitoso');
                     } else {
@@ -276,7 +276,7 @@ require '../../../../vendor/autoload.php'; ?>
                 $("#blq_cupo").show();
             }
         });
-        $("#r_PJ").change(function() {
+        $("#r_PN").change(function() {
 
             $("#boxPJ2").hide();
             $("#tbx_pnombre1").val();
@@ -288,10 +288,9 @@ require '../../../../vendor/autoload.php'; ?>
             $("#boxPJ1").hide();
         });
 
-        $("#r_PN").change(function() {
+        $("#r_PJ").change(function() {
             $("#boxPN1").hide();
             $("#boxPJ1").show();
-
             var apellido1 = $("#tbx_papellido1").val();
             var apellido2 = $("#tbx_papellido2").val();
             var nombre1 = $("#tbx_pnombre1").val();
@@ -302,7 +301,7 @@ require '../../../../vendor/autoload.php'; ?>
             $("#tbx_papellido1").val();
             $("#tbx_papellido2").val();
 
-            $("#tbx_RazonSocial").val(nombre1 + ' ' + nombre2 + ' ' +  apellido1 + ' ' + apellido2 );
+            $("#tbx_RazonSocial").val(nombre1 + ' ' + nombre2 + ' ' + apellido1 + ' ' + apellido2);
             $("#boxPJ2").show();
         });
     })

@@ -17,16 +17,8 @@ $errores = "";
 $resultado = "";
 
 
-if (
-    isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) &&
-    isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) &&
-    isset($_POST['r_naturaleza']) && !empty($_POST['r_naturaleza']) &&
-    isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) &&
-    isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']) &&
-    isset($_POST['tbx_RazonSocial']) && !empty($_POST['tbx_RazonSocial'])
-
-
-) {
+if (isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) && isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) && isset($_POST['r_naturaleza']) && !empty($_POST['r_naturaleza']) && isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) && isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento'])) 
+{
 
     $tipo_tercero = htmlspecialchars($_POST['tbx_tipotercero']);
     $formapago = htmlspecialchars($_POST['txt_forma_pago']);
@@ -47,10 +39,6 @@ if (
     $email = htmlspecialchars($_POST['tbx_email']);
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);
-
-    
-
-
     
     switch ($formapago) {
         case 1:
