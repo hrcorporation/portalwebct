@@ -17,6 +17,13 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente']) && isset($_POST[
     $fecha = $_POST['fecha_vist'];
     $id_cliente = $_POST['id_cliente'];
     $resultado = $_POST['result_vist'];
+    if (!empty($_POST['motivo_perdida'])) {
+        $id_motivo_perdida = $_POST['motivo_perdida'];
+        $nombre_motivo = $op->get_nombre_motivo_perdida($id_motivo_perdida);
+    } else {
+        $id_motivo_perdida = 6;
+        $nombre_motivo = $op->get_nombre_motivo_perdida($id_motivo_perdida);
+    }
     $observacion = $_POST['obs_visit'];
     /**
      * STATUS
@@ -24,7 +31,7 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente']) && isset($_POST[
      * 2- En Progreso
      * 10- Rechazado 
      */
-    if ($id_lastinsert = $op->crear_visita($id_cliente, $fecha, $resultado, $observacion)) {
+    if ($id_lastinsert = $op->crear_visita($id_cliente, $fecha, $resultado, $id_motivo_perdida, $nombre_motivo, $observacion)) {
         $op->actualizar_resultado_op($id_cliente, $resultado);
         $php_estado = true;
     } else {
@@ -32,10 +39,10 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente']) && isset($_POST[
     }
     $st = $op->get_id_status($id_cliente);
 
-    if($st == 3 || $st == 4){
+    if ($st == 3 || $st == 4) {
         $resultado = 2;
         $op->actualizar_resultado($id_cliente, $resultado);
-    }else{
+    } else {
         $resultado = 1;
         $op->actualizar_resultado($id_cliente, $resultado);
     }

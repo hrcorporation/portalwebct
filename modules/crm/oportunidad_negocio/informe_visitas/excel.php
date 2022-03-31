@@ -39,18 +39,23 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     // se define las Propiedades del documento
     $spreadsheet->getProperties()->setCreator('PORTAL CONCRETOL')
         ->setLastModifiedBy('PORTAL CONCRETOL')
-        ->setTitle('Informe de Oportunidades de negocio')
-        ->setSubject('Informe de Oportunidades de negocio')
-        ->setDescription('Informe de Oportunidades de negocio')
+        ->setTitle('Informe de las visitas de OP')
+        ->setSubject('Informe de las visitas de OP')
+        ->setDescription('Informe de las visitas de OP')
         ->setKeywords('')
         ->setCategory('');
 
     // FILA 1 = NOMBRE DE COLUMNAS
     $spreadsheet->setActiveSheetIndex(0)
-        ->setCellValue('A1', 'FECHA VISITA')
-        ->setCellValue('B1', 'RESULTADO')
-        ->setCellValue('C1', 'OBSERVACIONES');
-        // ->setCellValue('D1', 'TIPO PLAN MAESTRO')
+        ->setCellValue('A1', 'CODIGO DE LA OPORTUNIDAD DE NEGOCIO')
+        ->setCellValue('B1', 'ASESORA COMERCIAL')
+        ->setCellValue('C1', 'FECHA VISITA')
+        ->setCellValue('D1', 'NUMERO DE IDENTIFICACION CLIENTE')
+        ->setCellValue('E1', 'NOMBRE DEL CLIENTE')
+        ->setCellValue('F1', 'TELEFONO DEL CLIENTE')
+        ->setCellValue('G1', 'RESULTADO')
+        ->setCellValue('H1', 'MOTIVO DE PERDIDA')
+        ->setCellValue('I1', 'OBSERVACIONES');
         // ->setCellValue('E1', 'DEPARTAMENTO')
         // ->setCellValue('F1', 'MUNICIPIO')
         // ->setCellValue('G1', 'COMUNA')
@@ -76,9 +81,15 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
         foreach ($datos as $fila) {
 
             $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A' . $x, $fila['fecha'])
-                ->setCellValue('B' . $x, $fila['resultado'])
-                ->setCellValue('C' . $x, $fila['obs']);
+                ->setCellValue('A' . $x, $fila['id_cliente'])
+                ->setCellValue('B' . $x, $fila['asesora_comercial'])
+                ->setCellValue('C' . $x, $fila['fecha'])
+                ->setCellValue('D' . $x, $fila['nidentificacion'])
+                ->setCellValue('E' . $x, $fila['razon_social'])
+                ->setCellValue('F' . $x, $fila['telefono_cliente'])
+                ->setCellValue('G' . $x, $fila['resultado'])
+                ->setCellValue('H' . $x, $fila['nombre_motivo'])
+                ->setCellValue('I' . $x, $fila['obs']);
                 // ->setCellValue('D' . $x, $fila['tipo_plan_maestro'])
                 // ->setCellValue('E' . $x, $fila['departamento'])
                 // ->setCellValue('F' . $x, $fila['municipio'])
@@ -104,7 +115,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     }
     // Rename worksheet
 
-    $spreadsheet->getActiveSheet()->setTitle('Oportunidad de negocio');
+    $spreadsheet->getActiveSheet()->setTitle('Visitas de las OP');
 
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('A')
@@ -335,7 +346,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
-    header('Content-Disposition: attachment;filename="OportunidadNegocio.xlsx"');
+    header('Content-Disposition: attachment;filename="VisitasOportunidad.xlsx"');
 
     header('Cache-Control: max-age=0');
 

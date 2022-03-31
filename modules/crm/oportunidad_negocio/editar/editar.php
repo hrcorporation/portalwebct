@@ -13,11 +13,11 @@
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -58,11 +58,10 @@
                 $resultado = $fila['resultado'];
                 $contacto_cliente = $fila['contacto_cliente'];
                 $observacion = $fila['observacion'];
-                
             }
         }
-        if(is_array($datos = $op->get_data_visitas_id($_GET['id']))){
-            foreach($datos as $dato){
+        if (is_array($datos = $op->get_data_visitas_id($_GET['id']))) {
+            foreach ($datos as $dato) {
                 $status_op = $dato['resultado'];
             }
         }
@@ -121,7 +120,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Asesora Comercial</label>
-                                    
+
                                     <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" disabled="true">
                                         <?php echo $op->select_comercial($id_comercial) ?>
                                     </select>
@@ -138,17 +137,16 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Fecha Contacto</label>
-                                    <input type="date" name="fecha_contacto" id="fecha_contacto" class="form-control" value="<?php echo $fecha_contacto ?>" disabled="true"/>
+                                    <input type="date" name="fecha_contacto" id="fecha_contacto" class="form-control" value="<?php echo $fecha_contacto ?>" disabled="true" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            
                             <div class="col-md-12">
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
-                                        <input type="checkbox" value="1" name="check_hab_contacto" id="check_hab_contacto" ?>
-                                        <label for="check_hab_contacto">
+                                        <input type="checkbox" value="1" name="check_tipo_cliente" id="check_tipo_cliente" ?>
+                                        <label for="check_tipo_cliente">
                                             Habilitar
                                         </label>
                                     </div>
@@ -168,9 +166,6 @@
                                 <div class="form-group">
                                     <label>Tipo PLAN MAESTRO</label>
                                     <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2" disabled="true">
-                                        <!-- <option value="NULL">Seleccione</option>
-                                        <option value="1">Tipo A</option>
-                                        <option value="2">Tipo B</option> -->
                                         <?php echo $op->select_tipo_plan_maestro($tipo_plan_maestro) ?>
                                     </select>
                                 </div>
@@ -206,7 +201,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-2 col-sm-2">
+                            <div class="col-4 col-sm-3">
                                 <div class="form-group">
                                     <label for="">Comuna</label>
                                     <select name="comuna" id="comuna" class="form-control select2" disabled="true">
@@ -237,13 +232,13 @@
                             <div class="col-md-3  col-sm-12">
                                 <div class="form-group">
                                     <label>Numero de Documento</label>
-                                    <input type="text" name="nit" id="nit" class="form-control" value="<?php echo $nidentificacion ?>"disabled="true" />
+                                    <input type="text" name="nit" id="nit" class="form-control" value="<?php echo $nidentificacion ?>" disabled="true" />
                                 </div>
                             </div>
                             <div class="col-md-3  col-sm-12">
                                 <div class="form-gorup">
                                     <label>Nombre Completo</label>
-                                    <input type="text" name="nombre_completo" id="nombre_completo" class="form-control" value="<?php echo $nombres_completos ?>" disabled="true"/>
+                                    <input type="text" name="nombre_completo" id="nombre_completo" class="form-control" value="<?php echo $nombres_completos ?>" disabled="true" />
                                 </div>
                             </div>
                             <div class="col-md-3  col-sm-12">
@@ -284,7 +279,7 @@
                             <div class="col-md-6  col-sm-12">
                                 <div class="form-group">
                                     <label for="">Direccion de la Obra</label>
-                                    <input type="text" name="direccion_obra" id="direccion_obra" class="form-control" value="<?= $direccion_obra ?>" disabled="true"/>
+                                    <input type="text" name="direccion_obra" id="direccion_obra" class="form-control" value="<?= $direccion_obra ?>" disabled="true" />
                                 </div>
                             </div>
                         </div>
@@ -469,8 +464,19 @@
                                     <div class="form-group">
                                         <label for="result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="result_vist" id="result_visit">
-                                        <?php echo $op->select_resultado_visita() ?>
-                                         
+                                            <?php echo $op->select_resultado_visita() ?>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="result_visit">Motivo de la perdida</label>
+                                        <select class="select2 form-control" name="motivo_perdida" id="motivo_perdida">
+                                            <?php echo $op->select_motivo() ?>
                                         </select>
 
                                     </div>
@@ -480,7 +486,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="obs_visit">Observaciones</label>
-                                        <input type="text" name="obs_visit" id="obs_visit" class="form-control" required = "true"/>
+                                        <input type="text" name="obs_visit" id="obs_visit" class="form-control" required="true" />
                                     </div>
                                 </div>
                             </div>
@@ -526,7 +532,7 @@
                                     <div class="form-group">
                                         <label for="edit_result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="edit_result_visit" id="edit_result_visit">
-                                        <?php echo $op->select_resultado_visita($status_op) ?>
+                                            <?php echo $op->select_resultado_visita($status_op) ?>
 
                                         </select>
 
@@ -536,8 +542,19 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
+                                        <label for="result_visit">Motivo de la perdida</label>
+                                        <select class="select2 form-control" name="edit_motivo_perdida" id="edit_motivo_perdida">
+                                            <?php echo $op->select_motivo() ?>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
                                         <label for="edit_obs_visit">Observaciones</label>
-                                        <input type="text" name="edit_obs_visit" id="edit_obs_visit" class="form-control" required="true"/>
+                                        <input type="text" name="edit_obs_visit" id="edit_obs_visit" class="form-control" required="true" />
                                     </div>
                                 </div>
                             </div>
@@ -569,20 +586,40 @@
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
     $(document).ready(function(e) {
+        $("#result_visit").change(function() {
+            var resultado_visita = $("#result_visit").val();
+
+            if (resultado_visita == 4) {
+                $("#motivo_perdida").attr('disabled', false);
+            } else {
+                $("#motivo_perdida").attr('disabled', true);
+            }
+        });
+
+        $("#edit_result_visit").change(function() {
+            var resultado_visita_edit = $("#edit_result_visit").val();
+
+            if (resultado_visita_edit == 4) {
+                $("#edit_motivo_perdida").attr('disabled', false);
+            } else {
+                $("#edit_motivo_perdida").attr('disabled', true);
+            }
+        });
+
         $('.select2').select2();
 
         $(".progress").hide();
 
 
         $("#tipo_cliente").change(function() {
-        var tipo_cliente =  $("#tipo_cliente").val();
-       
-        if(tipo_cliente == 2){
-            $("#tipo_plan_maestro").attr('disabled', false);
-        }else{
-            $("#tipo_plan_maestro").attr('disabled', true);
-        }
-    });
+            var tipo_cliente = $("#tipo_cliente").val();
+
+            if (tipo_cliente == 2) {
+                $("#tipo_plan_maestro").attr('disabled', false);
+            } else {
+                $("#tipo_plan_maestro").attr('disabled', true);
+            }
+        });
 
         $('#check_hab_asesora_comercial').click(function() {
             if (!$(this).is(':checked')) {
@@ -592,21 +629,21 @@
             }
         });
 
-        $('#check_hab_sede').click(function(){
-            if(!$(this).is(':checked')){
-                $('#sede').attr('disabled',true);
-            }else{
-                $('#sede').attr('disabled',false);
+        $('#check_hab_sede').click(function() {
+            if (!$(this).is(':checked')) {
+                $('#sede').attr('disabled', true);
+            } else {
+                $('#sede').attr('disabled', false);
             }
         })
 
-        $('#check_hab_contacto').click(function() {
+        $('#check_tipo_cliente').click(function() {
             if (!$(this).is(':checked')) {
-            
+
                 $("#tipo_cliente").attr('disabled', true);
                 $("#tipo_plan_maestro").attr('disabled', true);
             } else {
-           
+
                 $("#tipo_cliente").attr('disabled', false);
                 $("#tipo_plan_maestro").attr('disabled', false);
             }
@@ -614,10 +651,10 @@
         $('#check_hab_fecha_contacto').click(function() {
             if (!$(this).is(':checked')) {
                 $("#fecha_contacto").attr('disabled', true);
-              
+
             } else {
                 $("#fecha_contacto").attr('disabled', false);
-              
+
             }
         });
         $('#check_hab_dpt_municipio').click(function() {

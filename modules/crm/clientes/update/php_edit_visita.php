@@ -21,14 +21,14 @@ if (isset($_POST['id_visita']) && !empty($_POST['id_visita']) && isset($_POST['e
     $tipo_visita = $visita_clientes->get_nombre_tipo_visita($id_tipo_visita);
     $observacion = $_POST['edit_obs_visit'];
     $id_cliente = intval($_POST['id_clente_edit']);
-    $id_obra = $_POST['txt_obra_editar'];
+    
+    if(isset($_POST['txt_obra_editar'])){
+        $id_obra = $_POST['txt_obra_editar'];
+    }else{
+        $id_obra = null;
+    }
     $nombre_obra = $visita_clientes->get_nombre_obra($id_obra);
-    /**
-     * STATUS
-     * 1- Aprobado
-     * 2- En Progreso
-     * 10- Rechazado 
-     */
+
     if($id_lastinsert = $visita_clientes->edit_visita_cliente($id, $fecha, $id_tipo_visita, $tipo_visita, $id_obra, $nombre_obra, $observacion)){
         $php_estado = true;
     }else{

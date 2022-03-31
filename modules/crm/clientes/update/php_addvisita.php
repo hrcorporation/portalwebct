@@ -20,17 +20,18 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente']) &&
     $fecha = $_POST['fecha_vist'];
     $id_tipo_visita = $_POST['objetivo_visita'];
     $observacion = $_POST['obs_visit'];
-    $id_obra = $_POST['txt_obra'];
+
+    if(isset($_POST['txt_obra'])){
+        $id_obra = $_POST['txt_obra'];
+    }else{
+        $id_obra = null;
+    }
+
     $nombre_obra = null;
     $nombre_obra = $visita_clientes->get_nombre_obra($id_obra);
     $nombre_cliente = $visita_clientes->get_nombre_cliente($id_cliente);
     $tipo_visita = $visita_clientes->get_nombre_tipo_visita($id_tipo_visita);
-    /**
-     * STATUS
-     * 1- Aprobado
-     * 2- En Progreso
-     * 10- Rechazado 
-     */
+    
     if ($id_lastinsert = $visita_clientes->crear_vista_cliente($fecha, $id_tipo_visita, $tipo_visita, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $observacion)) {
         // $op->actualizar_resultado_op($id_cliente, $resultado);
         $php_estado = true;

@@ -9,12 +9,12 @@ require '../../../vendor/autoload.php';
 
 $data = "";
 $oportunidad_negocio = new oportunidad_negocio();
-
+$id = $_POST['id'];
 $id_usuario = (int) ($_SESSION['id_usuario']);
 if ($_SESSION['rol_funcionario'] == 1) {
-    $data = $oportunidad_negocio->dt_oportunidad_negocio();
+    $data = $oportunidad_negocio->dt_oportunidad_negocio($id);
 } else if ($_SESSION['rol_funcionario'] == 12 || $_SESSION['rol_funcionario'] == 13) {
-    $data = $oportunidad_negocio->dt_oportunidad_negocio_por_id($id_usuario);
+    $data = $oportunidad_negocio->dt_oportunidad_negocio_por_id($id_usuario, $id);
 }
 
 //print json_encode($datos, JSON_FORCE_OBJECT);
