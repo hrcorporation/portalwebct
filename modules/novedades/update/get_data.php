@@ -27,6 +27,7 @@ $errores = "";
 $resultado = "";
 $select_obras ="";
 
+$tipo_novedad = null;
 $select_tipo_novedad = null;
 $select_subtipo_novedad = null;
 $select_novedades = null;

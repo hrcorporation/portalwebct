@@ -12,6 +12,39 @@ class novedades_despacho extends conexionPDO
     }
 
 
+    function select_novedades_cli_obra($id_novedad,$id_cliente,$id_obra){
+        $sql = "SELECT novedades_por_remision.id, novedades_por_remision.id_novedad,novedades_por_remision.id_remision, novedades_por_remision.cod_remision,  novedades_por_remision.id_tipo_novedad,novedades_por_remision.tipo_novedad, novedades_por_remision.area_afectada, novedades_por_remision.novedad,novedades_por_remision.observacion FROM `novedades_por_remision` INNER JOIN ct26_remisiones ON novedades_por_remision.id_remision = ct26_remisiones.ct26_id_remision WHERE novedades_por_remision.id_novedad  = :id_novedad AND ct26_remisiones.ct26_idcliente = :id_cliente AND ct26_remisiones.ct26_idObra = :id_obra ";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_novedad', $id_novedad, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
+
+        // Ejecutar 
+         if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['id'];
+                    $datos['id_novedad'] = $fila['id_novedad'];
+                    $datos['id_remision'] = $fila['id_remision'];
+                    $datos['cod_remision'] = $fila['cod_remision'];
+                    $datos['tipo_novedad'] = $fila['tipo_novedad'];
+                    $datos['novedad'] = $fila['novedad'];
+                    $datos['area_afectada'] = $fila['area_afectada'];
+                    $datos['observacion'] = $fila['observacion'];
+                   
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
     function select_novedad_remisiones($id_remisiones){
         $sql = "SELECT `id`, `id_novedad`, `id_remision`, `cod_remision`, `id_tipo_novedad`, `tipo_novedad`, `id_area_afectada`, `area_afectada`, `id_listado_novedad`, `novedad`, `observacion` FROM `novedades_por_remision` WHERE `id_remision` = :id  ";
         $stmt = $this->con->prepare($sql);
@@ -503,6 +536,7 @@ class novedades_despacho extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
+                    $datos['cant_novedades'] = SELF::contar_novedades_despacho_for_cli_obra($this->con,$id_novedad ,$fila['id_cliente'],$fila['id_obra']);
                     $datos['id_novedad'] = $fila['id_novedad'];
                     $datos['id_cliente'] = $fila['id_cliente'];
                     $datos['nombre_cliente'] = $fila['nombre_cliente'];
@@ -569,11 +603,55 @@ class novedades_despacho extends conexionPDO
     }
 
 
+    public static function contar_novedades_despacho_for_cli_obra($con, $id_novedad, $id_cliente,$id_obra)
+    {
+        $sql = "SELECT  count(novedades_por_remision.id) as cantidad_novedades FROM `novedades_por_remision` INNER JOIN ct26_remisiones ON novedades_por_remision.id_remision = ct26_remisiones.ct26_id_remision WHERE novedades_por_remision.id_novedad  = :id_novedad AND ct26_remisiones.ct26_idcliente = :id_cliente AND ct26_remisiones.ct26_idObra = :id_obra ";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':id_novedad', $id_novedad, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
+
+        // Ejecutar 
+         if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+               
+                    return $fila['cantidad_novedades'];
+                   
+                }
+                
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    public static function contar_novedades_despacho_for_remi($con, $id_remision)
+    {
+        $sql = "SELECT COUNT(id) as numero_novedades FROM `novedades_por_remision` WHERE id_remision = :id_remision ";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':id_remision', $id_remision, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                   return $fila['numero_novedades'];    
+                }
+            }else{
+                return 0;
+            }
+        }else{
+            return 0;
+        }
+    }
     
 
 
     function select_datos_remisiones($fecha_remi, $id_clientes,$id_obras){
-        $sql = "SELECT ct26_id_remision, `ct26_codigo_remi`, `ct26_razon_social`, `ct26_nombre_obra`,  `ct26_vehiculo`, `ct26_hora_remi` FROM `ct26_remisiones`  WHERE  `ct26_fecha_remi` = :fecha_remi AND `ct26_idcliente` IN ($id_clientes)  AND `ct26_idObra` IN ($id_obras) ORDER BY `ct26_id_remision` DESC ";
+        $sql = "SELECT ct26_id_remision, `ct26_codigo_remi`, `ct26_razon_social`, `ct26_nombre_obra`,  `ct26_vehiculo`, `ct26_hora_remi` ,ct26_codigo_producto, ct26_descripcion_producto FROM `ct26_remisiones`  WHERE  `ct26_fecha_remi` = :fecha_remi AND `ct26_idcliente` IN ($id_clientes)  AND `ct26_idObra` IN ($id_obras) ORDER BY `ct26_id_remision` DESC ";
      
 
         $stmt = $this->con->prepare($sql);
@@ -584,12 +662,15 @@ class novedades_despacho extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['ct26_id_remision']; 
+                    $datos['num_novedades'] = SELF::contar_novedades_despacho_for_remi($this->con, $fila['ct26_id_remision']);
                     $datos['ckeck'] = "<input type='checkbox' value='".$fila['ct26_id_remision']."' name='check_id_remi[]'  >";  
                     $datos['codigo_remi'] = $fila['ct26_codigo_remi'];
                     $datos['razon_social'] = $fila['ct26_razon_social'];
                     $datos['nombre_obra'] = $fila['ct26_nombre_obra'];
                     $datos['vehiculo'] = $fila['ct26_vehiculo'];
                     $datos['hora_remi'] = $fila['ct26_hora_remi'];
+                    $datos['cod_producto'] = $fila['ct26_codigo_producto'];
+                    $datos['nombre_producto'] = $fila['ct26_descripcion_producto'];
                     $datosf[] = $datos;
                 }
                 return $datosf;
