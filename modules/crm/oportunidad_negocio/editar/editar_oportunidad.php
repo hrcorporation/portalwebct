@@ -28,21 +28,32 @@ if (
     }
     if (isset($_POST['check_hab_sede']) && !empty($_POST['check_hab_sede'])) {
         $nombre_sede = $op->get_nombre_sede($_POST['sede']);
-        
+
         if ($op->actualizar_sede($_POST['sede'], $nombre_sede, $id)) {
             $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['sede'], $id, $_SESSION['id_usuario']);
             $php_estado = true;
         }
     }
     if (isset($_POST['check_hab_fecha_contacto']) && !empty($_POST['check_hab_fecha_contacto'])) {
+        if ($op->actualizar_fecha_contacto($_POST['fecha_contacto'], $id)) {
+            $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['fecha_contacto'], $id, $_SESSION['id_usuario']);
+            $php_estado = true;
+        }
+        if ($op->actualizar_fecha_contacto($_POST['fecha_contacto'], $id)) {
+            $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['fecha_contacto'], $id, $_SESSION['id_usuario']);
+            $php_estado = true;
+        }
+    }
+
+    if (isset($_POST['check_tipo_cliente']) && !empty($_POST['check_tipo_cliente'])) {
         if (!empty($_POST['tipo_plan_maestro'])) {
-            if ($op->actualizar_fecha_contacto($_POST['fecha_contacto'], $_POST['tipo_cliente'], $_POST['tipo_plan_maestro'], $id)) {
-                $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['fecha_contacto'] . " - " . $_POST['tipo_cliente'] . " - " . $_POST['tipo_plan_maestro'], $id, $_SESSION['id_usuario']);
+            if ($op->actualizar_tipo_cliente($_POST['tipo_cliente'], $_POST['tipo_plan_maestro'], $id)) {
+                $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['tipo_cliente'] . " - " . $_POST['tipo_plan_maestro'], $id, $_SESSION['id_usuario']);
                 $php_estado = true;
             }
         } else {
-            if ($op->actualizar_fecha_contacto($_POST['fecha_contacto'], $_POST['tipo_cliente'], " ", $id)) {
-                $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['fecha_contacto'] . " - " . $_POST['tipo_cliente'] . " - ", $id, $_SESSION['id_usuario']);
+            if ($op->actualizar_tipo_cliente($_POST['tipo_cliente'], 3, $id)) {
+                $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['tipo_cliente'] . " - ", $id, $_SESSION['id_usuario']);
                 $php_estado = true;
             }
         }
@@ -50,11 +61,11 @@ if (
 
     if (isset($_POST['check_hab_dpt_municipio']) && !empty($_POST['check_hab_dpt_municipio'])) {
         if (!empty($_POST['comuna'])) {
-            if ($op->actualizar_dep_municipio($_POST['departamento'], $_POST['municipio'], $_POST['comuna'], $_POST['barrio'], $id)) {
+            if ($op->actualizar_dep_municipio($_POST['departamento'], $_POST['municipio'], $_POST['comuna'], preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['barrio'])), $id)) {
                 $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['departamento'] . $_POST['municipio'] . " - " . $_POST['comuna'] . " - " . $_POST['barrio'], $id, $_SESSION['id_usuario']);
                 $php_estado = true;
             } else {
-                if ($op->actualizar_dep_municipio($_POST['departamento'], $_POST['municipio'], " ", $_POST['barrio'], $id)) {
+                if ($op->actualizar_dep_municipio($_POST['departamento'], $_POST['municipio'], " ", preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['barrio'])), $id)) {
                     $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['departamento'] . $_POST['municipio'] . " - " . $_POST['barrio'], $id, $_SESSION['id_usuario']);
                     $php_estado = true;
                 }
@@ -62,23 +73,23 @@ if (
         }
     }
     if (isset($_POST['check_hab_datos_cliente']) && !empty($_POST['check_hab_datos_cliente'])) {
-        if ($op->actualizar_datos_cliente($_POST['nit'], $_POST['nombre_completo'], $_POST['ap_completo'], $_POST['telefono_cliente'], $id)) {
+        if ($op->actualizar_datos_cliente(preg_replace('/[@\.\;\%\$\%\ ]+/', '', $_POST['nit']), preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['nombre_completo'])), preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['ap_completo'])), preg_replace('/[@\.\;\%\$\%\ ]+/', '', $_POST['telefono_cliente']), $id)) {
             $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['nit'] . $_POST['nombre_completo'] . " - " . $_POST['ap_completo'] . " - " . $_POST['telefono_cliente'], $id, $_SESSION['id_usuario']);
             $php_estado = true;
         }
-        if ($op->actualizar_nombre_completo($_POST['nombre_completo'], $_POST['ap_completo'], $id)) {
+        if ($op->actualizar_nombre_completo(preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['nombre_completo'])), preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['ap_completo'])), $id)) {
             $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['nombre_completo'], $id, $_SESSION['id_usuario']);
             $php_estado = true;
         }
     }
     if (isset($_POST['check_hab_datos_obra']) && !empty($_POST['check_hab_datos_obra'])) {
-        if ($op->actualizar_datos_obra($_POST['nombre_obra'], $_POST['direccion_obra'], $id)) {
+        if ($op->actualizar_datos_obra(preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['nombre_obra'])), strtoupper($_POST['direccion_obra']), $id)) {
             $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['nombre_obra'] . $_POST['direccion_obra'], $id, $_SESSION['id_usuario']);
             $php_estado = true;
         }
     }
     if (isset($_POST['check_hab_datos_maestro']) && !empty($_POST['check_hab_datos_maestro'])) {
-        if ($op->actualizar_datos_maestro($_POST['nombre_maestro'], $_POST['celular_maestro'], $id)) {
+        if ($op->actualizar_datos_maestro(preg_replace('/[@\.\;\%\$\%\&]+/', '', strtoupper($_POST['nombre_maestro'])), preg_replace('/[@\.\;\%\$\%\ ]+/', '', $_POST['celular_maestro']), $id)) {
             $op->log_registro_oportunidad_negocio("Actualizar", "se actualizo el campo " . $_POST['nombre_maestro'] . $_POST['celular_maestro'], $id, $_SESSION['id_usuario']);
             $php_estado = true;
         }

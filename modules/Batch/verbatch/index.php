@@ -27,6 +27,7 @@ $t26_remisiones->validar_falta_horas_remi_conductor($id_conductor);
 switch ($rol_user) {
     case 1:
     case 8:
+    case 16:
     case 29:
     case 20:
     case 22:

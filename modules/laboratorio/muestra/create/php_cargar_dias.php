@@ -3,9 +3,9 @@
 session_start();
 header('Content-Type: application/json');
 
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 
 //$con = new conexionPDO();
 //$php_clases = new php_clases();
@@ -18,17 +18,18 @@ $php_error[] = '';
 $msg[] = '';
 $id_muestra = false;
 $var = 12;
-
+$result = false;
 $post_msg = $_POST;
+$codigo_muestra = false;
+$result  = false;
 
-if (isset($_POST['id_muestra']) && !empty($_POST['id_muestra'])) {
+
+if (isset($_POST['id_muestra']) && !empty($_POST['id_muestra']) && isset($_POST['codigo_muestra']) && !empty($_POST['codigo_muestra'])) {
 
     $id_muestra = intval($_POST['id_muestra']);
     $codigo_muestra = intval($_POST['codigo_muestra']);
 
-    $result =$modelo_laboratorio->cargar_data_dias($id_muestra,$codigo_muestra);
-
-    if($result)
+    if($result = $modelo_laboratorio->cargar_data_dias($id_muestra,$codigo_muestra))
     {
         $php_estado = true;
     }else{

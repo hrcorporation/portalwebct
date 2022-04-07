@@ -7,6 +7,7 @@ switch ($rol_user) {
         case 12:
         case 13:
         case 14:
+        case 16:
         case 20:
 case 29:
         //case 20:
@@ -42,6 +43,7 @@ switch ($rol_user) {
     case 8:
     case 11:
     case 14:
+    case 16:
     case 20:
     case 22:
     case 27:
@@ -102,6 +104,7 @@ switch ($rol_user) {
 switch ($rol_user) {
     case 26:
     case 1:
+    case 12:
     case 27:
     case 20:
     case 22:
@@ -134,6 +137,7 @@ switch ($rol_user) {
 switch ($rol_user) {
     case 1:
     case 9:
+    case 16:
 ?>
         <div class="col-4" id="">
             <div class="small-box bg-info">
@@ -153,12 +157,38 @@ switch ($rol_user) {
         break;
 }
 ?>
+
+<?php
+
+switch ($rol_user) {
+    case 1:
+    case 6:
+    case 21:
+?>
+        <div class="col-4" id="">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Elementos EPP</H3>
+                </div>
+                <div class="icon">
+                    <i class="fab fa-elementor"></i>
+                </div>
+                <a class="small-box-footer" href="elementos/">
+                    Ir <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+<?php
+        break;
+}
+?>
 <?php
 
 switch ($rol_user) {
     case 1:
     case 15:
-    case 16:
+    //case 16:
     case 22:
 ?>
         <div class="col-4" id="">

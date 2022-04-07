@@ -96,8 +96,8 @@ require '../../../vendor/autoload.php'; ?>
                                     <span class="info-box-icon"><i class="far fa-comment"></i></span>
 
                                     <div class="info-box-content text-center">
-                                        <span class="info-box-text" id="CodigoConcreto"> </span>
-                                        <span class="info-box-number" id="DescripcionConcreto"></span>
+                                        <span class="info-box-text" id="CodigoConcrDescripcionConcretoeto"> </span>
+                                        <span class="info-box-number" id=""></span>
                                         <br>
 
                                     </div>
@@ -107,12 +107,10 @@ require '../../../vendor/autoload.php'; ?>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <input class="form-control" type="text" name="Txb_Nombre" id="Txb_Nombre" placeholder="">
-                                <input class="form-control" type="text" name="Txb_Descripcion" id="Txb_Descripcion" placeholder="">
+                                <input class="form-control" type="hidden" name="Txb_Nombre" id="Txb_Nombre" placeholder="">
+                                <input class="form-control" type="hidden" name="Txb_Descripcion" id="Txb_Descripcion" placeholder="">
                             </div>
                         </div>
-
-
                         <div class="container">
                             <div class="row" style="text-align:center">
                                 <div class="col-md-12">

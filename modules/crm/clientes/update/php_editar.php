@@ -17,14 +17,7 @@ $errores = "";
 $resultado = "";
 
 
-if (
-    isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) &&
-    isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) &&
-    isset($_POST['r_naturaleza']) && !empty($_POST['r_naturaleza']) &&
-    isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) &&
-    isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']) &&
-    isset($_POST['tbx_RazonSocial']) && !empty($_POST['tbx_RazonSocial'])
-) {
+if (isset($_POST['tipo_cliente']) && !empty($_POST['tipo_cliente']) && isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) && isset($_POST['r_naturaleza']) && !empty($_POST['r_naturaleza']) && isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) && isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento'])) {
 
     $id_cliente = (int)htmlspecialchars($_POST['id_cliente']);
     $tipo_tercero = 1;
@@ -46,16 +39,13 @@ if (
     $email = htmlspecialchars($_POST['tbx_email']);
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);
-    $saldo_cliente = htmlspecialchars($_POST['saldo_cliente']);
-    
+    // $saldo_cliente = htmlspecialchars($_POST['saldo_cliente']);
 
-
-    
     switch ($formapago) {
         case 1:
             $cupo_cliente = htmlspecialchars($_POST['txt_cupo']);
             $cupo_cliente = str_replace('.', '', $cupo_cliente);
-            $saldo_cartera  = str_replace('.', '', $saldo_cliente);; 
+            $saldo_cartera  = str_replace('.', '', $cupo_cliente);
             break;
         case 2:
             $cupo_cliente = 0;
@@ -76,7 +66,7 @@ if (
     $TipoTercero = 1;
 
     $validarExistencias = true;
-    
+
     $x = false;
 
     if ($validarExistencias) {

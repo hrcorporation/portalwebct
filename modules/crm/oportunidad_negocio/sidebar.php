@@ -46,7 +46,16 @@
                      <a href="informe/index.php" class="nav-link ">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Exportar informe
+                             Exportar informe oportunidades
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-header">Exportar</li>
+                 <li class="nav-item has-treeview">
+                     <a href="informe_visitas/index.php" class="nav-link ">
+                         <i class="nav-icon fas fa-copy"></i>
+                         <p>
+                             Exportar informe visitas
                          </p>
                      </a>
                  </li>

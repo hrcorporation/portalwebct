@@ -47,58 +47,62 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
 
     // FILA 1 = NOMBRE DE COLUMNAS
     $spreadsheet->setActiveSheetIndex(0)
-        ->setCellValue('A1', 'FECHA CONTACTO')
-        ->setCellValue('B1', 'ASESORA COMERCIAL')
-        ->setCellValue('C1', 'TIPO CLIENTE')
-        ->setCellValue('D1', 'TIPO PLAN MAESTRO')
-        ->setCellValue('E1', 'DEPARTAMENTO')
-        ->setCellValue('F1', 'MUNICIPIO')
-        ->setCellValue('G1', 'COMUNA')
-        ->setCellValue('H1', 'BARRIO')
-        ->setCellValue('I1', 'NUMERO IDENTIFICACION')
-        ->setCellValue('J1', 'NOMBRES COMPLETOS')
-        ->setCellValue('K1', 'NOMBRE')
-        ->setCellValue('L1', 'APELLIDO')
-        ->setCellValue('M1', 'TELEFONO DEL CLIENTE')
-        ->setCellValue('N1', 'NOMBRE OBRA')
-        ->setCellValue('O1', 'DIRECCION OBRA')
-        ->setCellValue('P1', 'NOMBRE MAESTRO')
-        ->setCellValue('Q1', 'CELULAR MAESTRO')
-        ->setCellValue('R1', 'M3 POTENCIALES')
-        ->setCellValue('S1', 'FECHA POSIBLE FUNDIDA')
-        ->setCellValue('T1', 'RESULTADO')
-        ->setCellValue('U1', 'CONTACTO CLIENTE')
-        ->setCellValue('V1', 'OBSERVACION')
-        ->setCellValue('W1', 'STATUS');
+        ->setCellValue('A1', 'CODIGO DE LA OPORTUNIDAD')
+        ->setCellValue('B1', 'FECHA CONTACTO')
+        ->setCellValue('C1', 'ASESORA COMERCIAL')
+        ->setCellValue('D1', 'NOMBRE SEDE')
+        ->setCellValue('E1', 'TIPO CLIENTE')
+        ->setCellValue('F1', 'TIPO PLAN MAESTRO')
+        ->setCellValue('G1', 'DEPARTAMENTO')
+        ->setCellValue('H1', 'MUNICIPIO')
+        ->setCellValue('I1', 'COMUNA')
+        ->setCellValue('J1', 'BARRIO')
+        ->setCellValue('K1', 'NUMERO IDENTIFICACION')
+        ->setCellValue('L1', 'NOMBRES COMPLETOS')
+        ->setCellValue('M1', 'NOMBRE')
+        ->setCellValue('N1', 'APELLIDO')
+        ->setCellValue('O1', 'TELEFONO DEL CLIENTE')
+        ->setCellValue('P1', 'NOMBRE OBRA')
+        ->setCellValue('Q1', 'DIRECCION OBRA')
+        ->setCellValue('R1', 'NOMBRE MAESTRO')
+        ->setCellValue('S1', 'CELULAR MAESTRO')
+        ->setCellValue('T1', 'M3 POTENCIALES')
+        ->setCellValue('U1', 'FECHA POSIBLE FUNDIDA')
+        ->setCellValue('V1', 'ESTADO')
+        ->setCellValue('W1', 'CONTACTO CLIENTE')
+        ->setCellValue('X1', 'OBSERVACION')
+        ->setCellValue('Y1', 'CANTIDAD DE VISITAS');
     $x = 2;
 
     if (is_array($datos)) {
         foreach ($datos as $fila) {
-
+            
             $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A' . $x, $fila['fecha_contacto'])
-                ->setCellValue('B' . $x, $fila['asesora_comercial'])
-                ->setCellValue('C' . $x, $fila['tipo_cliente'])
-                ->setCellValue('D' . $x, $fila['tipo_plan_maestro'])
-                ->setCellValue('E' . $x, $fila['departamento'])
-                ->setCellValue('F' . $x, $fila['municipio'])
-                ->setCellValue('G' . $x, $fila['nombre_comuna'])
-                ->setCellValue('H' . $x, $fila['barrio'])
-                ->setCellValue('I' . $x, $fila['nidentificacion'])
-                ->setCellValue('J' . $x, $fila['razon_social'])
-                ->setCellValue('K' . $x, $fila['nombrescompletos'])
-                ->setCellValue('L' . $x, $fila['apellidoscompletos'])
-                ->setCellValue('M' . $x, $fila['telefono_cliente'])
-                ->setCellValue('N' . $x, $fila['nombre_obra'])
-                ->setCellValue('O' . $x, $fila['direccion_obra'])
-                ->setCellValue('P' . $x, $fila['nombre_maestro'])
-                ->setCellValue('Q' . $x, $fila['celular_maestro'])
-                ->setCellValue('R' . $x, $fila['m3_potenciales'])
-                ->setCellValue('S' . $x, $fila['fecha_posible_fundida'])
-                ->setCellValue('T' . $x, $fila['resultado'])
-                ->setCellValue('U' . $x, $fila['contacto_cliente'])
-                ->setCellValue('V' . $x, $fila['observacion'])
-                ->setCellValue('W' . $x, $fila['status_op']);
+                ->setCellValue('A' . $x, $fila['id'])
+                ->setCellValue('B' . $x, $fila['fecha_contacto'])
+                ->setCellValue('C' . $x, $fila['asesora_comercial'])
+                ->setCellValue('D' . $x, $fila['nombre_sede'])
+                ->setCellValue('E' . $x, $fila['tipo_cliente'])
+                ->setCellValue('F' . $x, $fila['tipo_plan_maestro'])
+                ->setCellValue('G' . $x, $fila['departamento'])
+                ->setCellValue('H' . $x, $fila['municipio'])
+                ->setCellValue('I' . $x, $fila['nombre_comuna'])
+                ->setCellValue('J' . $x, $fila['barrio'])
+                ->setCellValue('K' . $x, $fila['nidentificacion'])
+                ->setCellValue('L' . $x, $fila['razon_social'])
+                ->setCellValue('M' . $x, $fila['nombrescompletos'])
+                ->setCellValue('N' . $x, $fila['apellidoscompletos'])
+                ->setCellValue('O' . $x, $fila['telefono_cliente'])
+                ->setCellValue('P' . $x, $fila['nombre_obra'])
+                ->setCellValue('Q' . $x, $fila['direccion_obra'])
+                ->setCellValue('R' . $x, $fila['nombre_maestro'])
+                ->setCellValue('S' . $x, $fila['celular_maestro'])
+                ->setCellValue('T' . $x, $fila['m3_potenciales'])
+                ->setCellValue('U' . $x, $fila['fecha_posible_fundida'])
+                ->setCellValue('V' . $x, $fila['resultado'])
+                ->setCellValue('W' . $x, $fila['contacto_cliente'])
+                ->setCellValue('X' . $x, $fila['observacion'])
+                ->setCellValue('Y' . $x, $fila['cantidad']);
             $x++;
         }
     }
@@ -115,23 +119,15 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('C')
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('D')
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('E')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('F')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
 
         ->getColumnDimension('G')

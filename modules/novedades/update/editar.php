@@ -7,14 +7,12 @@ $t1_terceros = new t1_terceros();
 $cls_novedades = new novedades_despacho();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id_novedad = intval($_GET['id']);
-
     if (is_array($data_novedades = $cls_novedades->select_novedad_despacho_for_id($id_novedad))) {
         foreach ($data_novedades as $key) {
             $fecha_novedad = $key['fecha'];
         }
     }
 }
-
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -25,7 +23,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 <div class="col">
                     <div class="form-group">
                         <label for=""></label>
-                        <h1>Registrar novedad</h1>
+                        <h1>Gestion de novedades</h1>
                     </div>
                 </div>
             </div>
@@ -77,7 +75,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <div class="form-group">
                                 <label>Obra</label>
                                 <select class="js-example-basic-single select2 form-control" id="txt_obra" name="txt_obra" required />
-                                <option value="2">obra_prueba</option>
+                                <option value="0">Seleccione un Obra</option>
 
                                 </select>
                             </div>
@@ -85,7 +83,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="">Adicionar Cliente y Obra</label>
-                                <button type="submit" name="btn_adicionar_cliente_obra" id="btn_adicionar_cliente_obra" class="btn btn-block btn-info">
+                                <button type="submit" name="btn_adicionar_cliente_obra" id="btn_adicionar_cliente_obra" class="btn btn-block btn-success">
                                     Adicionar
                                 </button>
                             </div>
@@ -101,6 +99,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                                     <th>#</th>
                                     <th>Cliente</th>
                                     <th>Obra </th>
+                                    <th>Novedades</th>
                                     <th>Detalle </th>
                                 </tr>
                             </thead>
@@ -113,27 +112,31 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 <hr>
                 <div class="row">
                     <div class="col-6">
-                        <button type="button" class="btn btn-block btn-warning" name="cargar_remisiones" id="cargar_remisiones">Cargar Remisiones </button>
+
+                        <button type="button" class="btn btn-block btn-warning" name="cargar_remisiones" id="cargar_remisiones"> <i class='fas fa-folder'></i> Cargar Remisiones </button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn btn-block btn-info" name="adicionar_novedades_generales" id="adicionar_novedades_generales" data-toggle="modal" data-target="#modal_adicionar_novedades">Adicionar novedades generales</button>
+                        <button type="button" class="btn btn-block btn-info" name="adicionar_novedades_generales" id="adicionar_novedades_generales" data-toggle="modal" data-target="#modal_adicionar_novedades"> <i class='fas fa-eye'></i> Novedades
+                            Generales</button>
                     </div>
                 </div>
                 <hr>
                 <form id="form_guardar_remi" name="form_guardar_remi" method="post">
-                    <input type="hidden" name="id_novedades_for_remision" name="id_novedades_for_remision" value="<?php echo $id_novedad; ?>" >
+                    <input type="hidden" name="id_novedades_for_remision" name="id_novedades_for_remision" value="<?php echo $id_novedad; ?>">
                     <div class="row">
                         <div class="col">
                             <table name="table_remisiones" id="table_remisiones" class="display" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th></th>
+                                        <th>N</th>
+                                        <th>Select</th>
+                                        <th>Novedades</th>
                                         <th>Remision</th>
                                         <th>Cliente </th>
                                         <th>Obra </th>
                                         <th>Mixer </th>
                                         <th>Hora </th>
+                                        <th>Cod Producto </th>
                                         <th>Detalle </th>
                                     </tr>
                                 </thead>
@@ -146,7 +149,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <hr>
                     <div class="row">
                         <div class="col-6">
-                            <button type="submit" class="btn btn-block btn-info" name="guardar_novedades_generales" id="guardar_novedades_generales">Guardar Novedades Remisiones Generalles</button>
+                            <button type="submit" class="btn btn-block btn-success" name="guardar_novedades_generales" id="guardar_novedades_generales"><i class="fas fa-save"></i> Guardar Novedades
+                                Remisiones Generales</button>
                         </div>
                     </div>
                 </form>
@@ -155,13 +159,52 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         <hr>
 
+        <!--Modal Ver novedades cliente y obra -->
+        <div class="modal fade" id="modal_novedades_generales_cli_ob">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Ver Novedades </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <table id="datatable_novedades_cli_obra" class="display" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>N</th>
+                                        <th>Remision</th>
+                                        <th>Tipo Novedad</th>
+                                        <th>Area Afectada</th>
+                                        <th>Novedad</th>
+                                        <th>Observaciones</th>
+                                        <th>Detalle</th>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
 
         <div class="modal fade" id="modal_adicionar_novedades">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Adicionar Novedades </h4>
+                        <h4 class="modal-title">Novedades </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -188,7 +231,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                                     <div class="form-group">
                                         <label for="">Area Afectada</label>
                                         <select class="j select2  form-control" id="txt_area_novedad" name="txt_area_novedad" style="width:100%" required />
-                                        
+
                                         </select>
                                     </div>
                                 </div>
@@ -198,7 +241,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                                     <div class="form-group">
                                         <label for="">Novedad</label>
                                         <select class="select2  form-control" id="txt_novedad" name="txt_novedad" style="width:100%" required />
-                                        
+
 
                                         </select>
                                     </div>
@@ -262,6 +305,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         var id_novedad = '<?php echo $id_novedad; ?>';
         var fecha_novedad = '<?php echo $fecha_novedad; ?>';
 
+        // accion boton Eliminar en la tabla de novedades generales y por remision
         $('#datatable_novedades tbody').on('click', 'button', function() {
             var data = table_novedades.row($(this).parents('tr')).data();
             var id = data['id'];
@@ -283,11 +327,50 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             task: $('#task_novedad').val()
                         },
                         success: function(response) {
-                            console.log(data.estado);
-                            if (data.estado) {
-                                toastr.success('exitoso');
-                            } else {
-                                toastr.warning(data.msg);
+                            table_novedades.ajax.reload();
+                            toastr.success('exitoso');
+                        },
+                        error: function(respuesta) {
+                            alert(JSON.stringify(respuesta));
+                        },
+                    });
+
+                } else {
+
+
+                }
+            })
+
+        });
+
+        // Accion de Eliminar en la tabla de novedades por cliente y obra
+        $('#datatable_novedades_cli_obra tbody').on('click', 'button', function() {
+            var data = table_novedades_cli_obra.row($(this).parents('tr')).data();
+            var id = data['id'];
+            Swal.fire({
+                title: '',
+                text: "",
+                icon: 'success',
+                html: "Esta seguro de eliminar la Novedad<br>",
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "eliminar_novedad.php",
+                        type: "POST",
+                        data: {
+                            id: data['id'], // el id de la novedad
+                            task: 2 // task 2 Elimina por Remision
+                        },
+                        success: function(response) {
+                            // Recargar la ta bla
+                            table_novedades_cli_obra.ajax.reload();
+                            if(data.estado){
+                                toastr.success("Eliminado Correctamente");
+                            }else{
+                                toastr.warning("Eliminado Correctamente");
                             }
                         },
                         error: function(respuesta) {
@@ -302,6 +385,75 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             })
 
         });
+
+
+
+        /**
+         * ============================================================================================
+         * Tablas
+         * ============================================================================================
+         */
+
+        // tabla novedades cliente y obras
+        function datatable_novedades_cli_obra(id_novedad, id_cliente, id_obra) {
+            var table_novedades_cli_obra = $('#datatable_novedades_cli_obra').DataTable({
+                //"processing": true,
+                //"scrollX": true,
+                "ajax": {
+                    "url": "datatable_novedades_cli_obra.php",
+                    'data': {
+                        'id_novedad': id_novedad,
+                        'id_cliente': id_cliente,
+                        'id_obra': id_obra,
+                    },
+                    'type': 'post',
+                    "dataSrc": ""
+
+                },
+                "order": [
+                    [0, 'desc']
+                ],
+                "columns": [{
+                        "data": 'id',
+                    },
+                    {
+                        "data": 'cod_remision',
+                    },
+                    {
+                        "data": "tipo_novedad"
+                    },
+                    {
+                        "data": "area_afectada" // codigo de la novedad
+                    },
+                    {
+                        "data": "novedad" // codigo de la novedad
+                    },
+                    {
+                        "data": "observacion"
+                    },
+                    {
+                        "data": null,
+                        "defaultContent": "<button class='btn btn-danger btn-sm'> Eliminar </button>"
+                    }
+                ],
+
+
+                //"scrollX": true,
+            });
+
+            table_novedades_cli_obra.on('order.dt search.dt', function() {
+                table_novedades_cli_obra.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+            //table_novedades_cli_obra.ajax.reload();
+            return table_novedades_cli_obra;
+        } //  fin de la funcion
+
+
         // tabla de cliente y obras
         function datatable_novedades(id_novedad, id_remision = null) {
             var table_novedades = $('#datatable_novedades').DataTable({
@@ -333,7 +485,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         "data": "novedad" // codigo de la novedad
                     },
                     {
-                        "data":"observacion"
+                        "data": "observacion"
                     },
                     {
                         "data": null,
@@ -358,8 +510,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         } //  fin de la funcion
 
 
-
-
+        /**
+         * ==============================================================
+         * Formularios
+         * ==============================================================
+         */
+        // Guardar novedades Generales en Remisiones.
         $("#form_guardar_remi").on('submit', (function(e) {
             // actualizar la tabla
             e.preventDefault();
@@ -388,7 +544,112 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         }));
 
-        $('#table_clientes_obras tbody').on('click', 'button', function() {
+
+        /**
+         * ==============================================================
+         * Formularios
+         * ==============================================================
+         */
+
+         /**
+          * Accion Eliminar NOVEDAD cliente y Obra asociados al id de la novedad
+          */
+        $('#table_clientes_obras tbody').on('click', 'button.btn_eliminar', function() {
+            var data = table_cliente_obra.row($(this).parents('tr')).data();
+            var id_novedad = data['id']; // trae el id de la tabla de novedades tiene clientes y obras
+
+            // alerta de eliminar
+            Swal.fire({
+                title: '',
+                text: "",
+                icon: 'success',
+                html: "Esta seguro de eliminar  <br>", // mensaje de alerta
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                if (result.value) {
+                    // ajax para eliminar cliente y Ivra
+                    $.ajax({
+                        url: "eliminar_cliente_obra.php",
+                        type: "POST",
+                        data: {
+                            id: id_novedad, // id de la Novedad
+                            task: "1",   
+                        },
+                        success: function(response) {
+                            table_cliente_obra.ajax.reload(); // Recarga de la Tabla
+                            toastr.success("Cliente y Obra Eliminado Correctamente");
+                            //$('#txt_obra').html(response.obras); // 
+                        },
+                        error: function(respuesta) {
+                            alert(JSON.stringify(respuesta));
+                        },
+                    });
+
+                } else {
+
+
+                }
+            })
+
+        });
+
+
+        /**
+         * Cargar Novedades por cliente y obra
+         */
+        $('#table_clientes_obras tbody').on('click', 'button.btn_vernovedades', function() {
+            // traer los datos y guardarlos en variables
+            var data = table_cliente_obra.row($(this).parents('tr')).data();
+            var id_novedad = data['id_novedad'];
+            var fecha_novedad = '<?php echo $fecha_novedad; ?>';
+            var id_cliente = data['id_cliente'];
+            var id_obra = data['id_obra'];
+
+            /** Recargar tabla de novedades de clientes y obra */
+            // Busca la Tabla y la destruye
+            if ($.fn.dataTable.isDataTable('#datatable_novedades_cli_obra')) {
+                table_novedades_cli_obra = $('#datatable_novedades_cli_obra').DataTable();
+                table_novedades_cli_obra.destroy();
+            }
+            // se crea la tabla
+            table_novedades_cli_obra = datatable_novedades_cli_obra(id_novedad, id_cliente, id_obra);
+            // Recargar tabla cada 5 segundos
+            table_novedades_cli_obra.ajax.reload(null, false);
+            
+            
+        });
+
+        /**
+         *  Cargar en la tabla de remisiones por cliente y obra.
+         * se filtra id_novedad, id_cliente, id_obra
+         */
+        $('#table_clientes_obras tbody').on('click', 'button.btn_cargar_remisiones', function() {
+            var data = table_cliente_obra.row($(this).parents('tr')).data();
+            var id_novedad = data['id_novedad'];
+            var fecha_novedad = '<?php echo $fecha_novedad; ?>';
+            var id_cliente = data['id_cliente'];
+            var id_obra = data['id_obra'];
+
+            /** Recargar tabla de novedades de clientes y obra */
+            // Busca la Tabla y la destruye
+            if ($.fn.dataTable.isDataTable('#table_remisiones')) {
+                table_remisiones = $('#table_remisiones').DataTable();
+                table_remisiones.destroy();
+            }
+            // se crea la tabla
+            table_remisiones = datatable_remisiones(id_novedad, fecha_novedad, id_cliente, id_obra);
+            // Recargar tabla cada 5 segundos
+            
+                table_remisiones.ajax.reload(null, false);
+            
+        });
+
+        /**
+         * Accion Eliminar Clientes y obras asosciadas al id de la 
+         */
+        $('#table_clientes_obras tbody').on('click', 'button.btn_eliminar', function() {
             var data = table_cliente_obra.row($(this).parents('tr')).data();
             var id_novedad = data['id'];
 
@@ -426,22 +687,22 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         });
 
-
-
-
+        // ver novedades abrir el modal de la novedades generales. 
         $('#adicionar_novedades_generales').on('click', function() {
-            table_novedades = datatable_novedades(id_novedad);
             $("#id_remision").val(null);
             $("#id_novedad").val(id_novedad);
             $("#task_novedad").val('1'); // 1 novedades generales , 2 novedades remisiones
-
             if ($.fn.dataTable.isDataTable('#datatable_novedades')) {
                 table_novedades = $('#datatable_novedades').DataTable();
                 table_novedades.destroy();
             }
+            table_novedades = datatable_novedades(id_novedad,null);
+
+            
+
         });
 
-        $('#txt_tipo_novedad').on('change', function(){
+        $('#txt_tipo_novedad').on('change', function() {
             $.ajax({
                 url: "get_data.php",
                 type: "POST",
@@ -459,7 +720,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             });
         });
 
-        $('#txt_area_novedad').on('change', function(){
+        $('#txt_area_novedad').on('change', function() {
             $.ajax({
                 url: "get_data.php",
                 type: "POST",
@@ -488,13 +749,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             $("#id_novedad").val(id_novedad);
             $("#task_novedad").val('2'); // 1 novedades generales , 2 novedades remisiones
 
-            table_novedades = datatable_novedades(id_novedad, data['id']);
-
-
+            
+            
             if ($.fn.dataTable.isDataTable('#datatable_novedades')) {
                 table_novedades = $('#datatable_novedades').DataTable();
                 table_novedades.destroy();
             }
+            table_novedades = datatable_novedades(id_novedad, data['id']);
 
             $("#modal_adicionar_novedades").modal('show');
         });
@@ -521,7 +782,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         table_cliente_obra = datatable_cliente_obras(id_novedad);
         setInterval(function() {
             table_cliente_obra.ajax.reload(null, false);
-        }, 5000);
+        }, 3000);
 
         // $('#cliente').on('change', function() {
 
@@ -554,8 +815,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         "data": "nombre_obra" // codigo de la novedad
                     },
                     {
+                        "data": "cant_novedades"
+                    },
+                    {
+                        // modal_novedades_generales_cli_ob  = ln 161
+                        // btn_vernovedades = ln 470
+                        // btn_cargar_remisiones
                         "data": null,
-                        "defaultContent": "<button class='btn btn-danger btn-sm'> Eliminar </button>"
+                        "defaultContent": "<button class='btn btn_vernovedades btn-info btn-sm' data-toggle='modal' data-target='#modal_novedades_generales_cli_ob'> <i class='fas fa-eye'></i> Novedades </button>  <button class='btn btn_cargar_remisiones btn-warning btn-sm'> <i class='fas fa-folder'></i> Remisiones </button> <button class='btn btn-danger btn_eliminar btn-sm'> <i class='fas fa-trash'></i> </button>"
                     }
                 ],
 
@@ -577,14 +844,17 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         // =======================================================+
         // crear tablas
 
+
+
+
         $("#cargar_remisiones").click(function() {
+            var id_novedad = '<?php echo $id_novedad; ?>';
+            var fecha_novedad = '<?php echo $fecha_novedad; ?>';
             if ($.fn.dataTable.isDataTable('#table_remisiones')) {
                 table_remisiones = $('#table_remisiones').DataTable();
                 table_remisiones.destroy();
             }
-            table_remisiones = datatable_remisiones(id_novedad, fecha_novedad);
-
-
+            table_remisiones = datatable_remisiones(id_novedad, fecha_novedad, null, null);
         });
 
 
@@ -593,7 +863,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         var n = 1;
 
         // tabla de cliente y obras
-        function datatable_remisiones(id_novedad, fecha_novedad) {
+        function datatable_remisiones(id_novedad, fecha_novedad, id_cliente, id_obra) {
             var table_remisiones = $('#table_remisiones').DataTable({
                 //"processing": true,
                 //"scrollX": true,
@@ -601,18 +871,21 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     "url": "datatable_remisiones.php",
                     'data': {
                         'id_novedad': id_novedad,
-                        'fecha_novedad': fecha_novedad
+                        'fecha_novedad': fecha_novedad,
+                        'id_cliente': id_cliente,
+                        'id_obra': id_obra
                     },
                     'type': 'post',
                     "dataSrc": "",
                 },
-
-
                 "columns": [{
                         "data": "id"
                     },
                     {
-                        "data": 'ckeck',
+                        "data": "ckeck",
+                    },
+                    {
+                        "data": 'num_novedades',
                     },
                     {
                         "data": "codigo_remi"
@@ -630,9 +903,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         "data": "hora_remi"
                     },
                     {
+                        "data": 'cod_producto'
+                    },
+                    {
                         "data": null,
-                        "defaultContent": "<button  type='button' class='btn btn-warning btn-sm'> Novedades </button>"
-                    }
+                        "defaultContent": "<button  type='button' class='btn btn-warning btn-sm'> Novedades </button><button  type='button' class='btn ver_remi btn-info btn-sm'> <i class='fas fa-eye'></i> </button>"
+                    },
+
                 ],
 
 
@@ -695,12 +972,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    console.log(data.estado);
-                    if (data.estado) {
-                        toastr.success('exitoso');
-                    } else {
-                        toastr.warning(data.msg);
-                    }
+                    toastr.success("Exitoso");
+                    var id_novedad = '<?php echo $id_novedad; ?>';
+                    
+                    table_novedades.ajax.reload();
+                    
+
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));

@@ -3,9 +3,9 @@
 session_start();
 header('Content-Type: application/json');
 
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 
 $modelo_remisiones = new modelo_remisiones();
 $modelo_laboratorio = new modelo_laboratorio();
@@ -14,7 +14,7 @@ $cls_terceros = new t1_terceros();
 
 $php_estado = false;
 $php_error[] = '';
-$msg[] = '';
+//$msg[] = '';
 $id_muestra = false;
 $asentamiento = null;
 $temperatura = null;

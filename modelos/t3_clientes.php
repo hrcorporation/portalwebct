@@ -44,9 +44,6 @@ class t3_clientes extends conexionPDO
         date_default_timezone_set('America/Bogota');   
     }
 
-
-    
-
     function get_datos_cliente($id_cliente){
 
         $this->id_cliente = (int)$id_cliente;

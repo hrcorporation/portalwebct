@@ -1,6 +1,8 @@
 <?php include '../../../../layout/validar_session4.php' ?>
 <?php include '../../../../layout/head/head4.php'; ?>
-<?php include 'sidebar.php' ?>
+<?php include 'sidebar.php';
+$php_clases = new php_clases();
+?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -52,11 +54,11 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
-
                                     <label>Asesora Comercial</label>
 
-
                                     <?php
+                                    $id_usuario = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
+                                   
                                     if (intval($_SESSION['rol_funcionario']) == 1) :
                                     ?>
                                         <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
@@ -65,13 +67,11 @@
                                     <?php
                                     elseif (intval($_SESSION['rol_funcionario']) == 12 || intval($_SESSION['rol_funcionario']) == 13) :
                                     ?>
-                                        <input type="hidden" name="asesora_comercial" id="asesora_comercial" value="<?php echo $_SESSION['id_usuario'] ?>">
+                                        <input type="hidden" name="asesora_comercial" id="asesora_comercial" value="<?php echo $id_usuario ?>">
                                         <h5><?php echo $_SESSION['nombre_usuario']; ?></h5>
-
                                     <?php
                                     endif;
                                     ?>
-
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-12">
@@ -93,7 +93,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Tipo Cliente</label>
-                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2">
+                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required = "true">
                                         <?php echo $oportunidad_negocio->select_tipo_cliente() ?>
                                     </select>
                                 </div>
@@ -111,7 +111,7 @@
                             <div class="col-2 col-sm-3">
                                 <div class="form-group">
                                     <label for="">Departamento</label>
-                                    <select name="departamento" id="departamento" class="form-control select2">
+                                    <select name="departamento" id="departamento" class="form-control select2" required = "true">
                                         <?php echo $oportunidad_negocio->select_departamento(null); ?>
                                     </select>
                                 </div>
@@ -119,15 +119,15 @@
                             <div class="col-2 col-sm-3">
                                 <div class="form-group">
                                     <label for="municipio">Municipio</label>
-                                    <select name="municipio" id="municipio" class="form-control select2">
+                                    <select name="municipio" id="municipio" class="form-control select2" required = "true">
 
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-2 col-sm-2">
+                            <div class="col-4 col-sm-2">
                                 <div class="form-group">
                                     <label for="">Zona/Comuna</label>
-                                    <select name="comuna" id="comuna" class="form-control select2">
+                                    <select name="comuna" id="comuna" class="form-control select2" required = "true">
 
                                     </select>
                                 </div>

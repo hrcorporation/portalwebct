@@ -15,8 +15,8 @@ $t26_remisiones = new t26_remisiones();
 $php_clases = new php_clases();
 $modelo_t26 = new modelo_t26();
 
-$id = $php_clases->HR_Crypt($_GET['id'], 2);
-$nombre_obra = $php_clases->HR_Crypt($_GET['ob'], 2);
+$id = $_GET['id'];
+$nombre_obra = $_GET['ob'];
 
 
 $result = $t26_remisiones->get_remision_id($id);

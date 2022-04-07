@@ -31,7 +31,7 @@ class t21_tipoconcreto extends conexionPDO
                     } else {
                         $selection_tipo_concreto = "";
                     }
-        
+
                     $rowsArray_TipoConcreto .= '<option value="' . $fila['ct21_IdTipoConcreto'] . '" ' . $selection_tipo_concreto . ' >' . $fila['ct21_CodTConcreto'] . " - " . $fila['ct21_DescripcionTC'] . '</option>';
                 }
                 return $rowsArray_TipoConcreto;
@@ -45,7 +45,7 @@ class t21_tipoconcreto extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    
+
     //Esta funcion trae los datos del tipo del concreto condicionado que el estado sea activo (1) y el id buscado.
     function get_tipoconcreto_id($id)
     {
@@ -144,7 +144,7 @@ class t21_tipoconcreto extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    
+
 
     //En esta funcion se buscan todos los datos de la tabla tipo de concreto
     function get_datatable_tipo_concreto()

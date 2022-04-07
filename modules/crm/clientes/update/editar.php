@@ -115,33 +115,55 @@ foreach ($datos_cliente_int as $key) {
                             </div>
                             <div class="col">
                                 <div class="form-group" style=" text-align:center">
-                                    <label>Naturaleza (*)</label>
                                     <?php
-                                    $op_naturaleza_pn = "";
-                                    $op_naturaleza_pj = "";
                                     switch ($naturaleza) {
                                         case 'PN':
-                                            $op_naturaleza_pn  = " checked='checked' ";
+                                    ?>
+                                            <label>Naturaleza (*)</label>
+                                            <div class="form-group clearfix">
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="radio" id="r_PJ" value="PJ" name="r_naturaleza" value="PJ">
+                                                    <label for="r_PJ"> Persona Juridica </label>
+                                                </div>
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="radio" id="r_PN" value="PN" name="r_naturaleza" value="PN" checked="checked">
+                                                    <label for="r_PN"> Persona Natural </label>
+                                                </div>
+                                            </div>
+                                        <?php
                                             break;
                                         case 'PJ':
-                                            $op_naturaleza_pj  = " checked='checked' ";
+                                        ?>
+                                            <label>Naturaleza (*)</label>
+                                            <div class="form-group clearfix">
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="radio" id="r_PJ" value="PJ" name="r_naturaleza" value="PJ" checked="checked">
+                                                    <label for="r_PJ"> Persona Juridica </label>
+                                                </div>
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="radio" id="r_PN" value="PN" name="r_naturaleza" value="PN">
+                                                    <label for="r_PN"> Persona Natural </label>
+                                                </div>
+                                            </div>
+                                        <?php
                                             break;
                                         default:
+                                        ?>
+                                            <label>Naturaleza (*)</label>
+                                            <div class="form-group clearfix">
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="radio" id="r_PJ" value="PJ" name="r_naturaleza">
+                                                    <label for="r_PJ"> Persona Juridica </label>
+                                                </div>
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="radio" id="r_PN" value="PN" name="r_naturaleza">
+                                                    <label for="r_PN"> Persona Natural </label>
+                                                </div>
+                                            </div>
+                                    <?php
                                             break;
                                     }
                                     ?>
-                                    <div class="form-group clearfix">
-                                        <div class="icheck-primary d-inline">
-                                            <input type="radio" id="r_PJ" name="r_naturaleza" value="PJ" <?php print_r($op_naturaleza_pj); ?>>
-                                            <label for="r_PJ"> Persona Juridica
-                                            </label>
-                                        </div>
-                                        <div class="icheck-primary d-inline">
-                                            <input type="radio" id="r_PN" value="PN" name="r_naturaleza" <?php print_r($op_naturaleza_pn); ?>>
-                                            <label for="r_PN"> Persona Natural
-                                            </label>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -185,6 +207,7 @@ foreach ($datos_cliente_int as $key) {
                                 </div>
                             </div>
                         </div>
+                        
                         <div id="boxPJ2">
                             <div class="row">
                                 <div class="col">
@@ -211,7 +234,7 @@ foreach ($datos_cliente_int as $key) {
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Primer Apellido</label>
+                                        <label> Primer Apellido (*)</label>
                                         <input type="text" name="tbx_papellido1" id="tbx_papellido1" class="form-control" placeholder="" value="<?php print_r($apellido1); ?>" />
                                     </div>
                                 </div>
@@ -249,29 +272,10 @@ foreach ($datos_cliente_int as $key) {
                             <div class="col">
                                 <div class="form-group">
                                     <label>Cupo Cliente</label>
-                                    <input type='text' class='form-control ' name='txt_cupo' onkeyup='format(this)' value="<?php print_r($cupo_cliente) ?>" required />
+                                    <input type='text' class='form-control ' name='txt_cupo' onkeyup='format(this)' value="<?php print_r($cupo_cliente) ?>" />
                                 </div>
                             </div>
                         </div>
-                        <?php
-                        if ($rol_user == 1) {
-                        ?>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label> <input type="checkbox" id="habi_saldo"> Habilitar </label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Saldo Cliente</label>
-                                        <input type="text" class="form-control" name="saldo_cliente" id="saldo_cliente" onkeyup='format(this)' value="<?php echo $saldo_cliente; ?>" />
-                                    </div>
-                                </div>
-                            </div>
-                        <?php
-                        }
-                        ?>
                         <div class="row">
                             <div class="container">
                                 <div class="row ">
@@ -594,7 +598,7 @@ foreach ($datos_cliente_int as $key) {
         $('#edit_obs_visit').val(data['observaciones']);
         $('#edit_result_visit').val(data['id_tipo_visita']);
         $('#txt_obra_editar').val(data['id_obra']);
-        
+
         //var resultado = data['resultado'];
 
 
@@ -650,28 +654,29 @@ foreach ($datos_cliente_int as $key) {
             }
         });
 
-        $("#r_PJ").change(function() {
+        $("#r_PN").change(function() {
             $("#boxPJ2").hide();
             $("#tbx_pnombre1").val();
             $("#tbx_pnombre2").val();
             $("#tbx_papellido1").val();
             $("#tbx_papellido2").val();
-            $("#tbx_RazonSocial").val(' ');
+            $("#tbx_RazonSocial").val();
             $("#boxPN1").show();
             $("#boxPJ1").hide();
         });
 
-        $("#r_PN").change(function() {
+        $("#r_PJ").change(function() {
             $("#boxPN1").hide();
             $("#boxPJ1").show();
             var apellido1 = $("#tbx_papellido1").val();
             var apellido2 = $("#tbx_papellido2").val();
             var nombre1 = $("#tbx_pnombre1").val();
             var nombre2 = $("#tbx_pnombre2").val();
-            $("#tbx_pnombre1").val('');
-            $("#tbx_pnombre2").val('');
-            $("#tbx_papellido1").val('');
-            $("#tbx_papellido2").val('');
+
+            $("#tbx_pnombre1").val();
+            $("#tbx_pnombre2").val();
+            $("#tbx_papellido1").val();
+            $("#tbx_papellido2").val();
             $("#tbx_RazonSocial").val(apellido1 + ' ' + apellido2 + ' ' + nombre1 + ' ' + nombre2);
             $("#boxPJ2").show();
         });

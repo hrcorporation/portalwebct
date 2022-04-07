@@ -36,7 +36,7 @@ $t4_productos = new t4_productos();
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"></h3>
+                <h3 class="card-title">Explorar Muestras</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -44,6 +44,13 @@ $t4_productos = new t4_productos();
                 </div>
             </div>
             <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <h4>Buscador</h4>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-3">
                         <div class="form-group">
@@ -106,6 +113,7 @@ $t4_productos = new t4_productos();
                         </div>
                     </div>
                 </div>
+                <hr><hr>
                 <!-- Tabla de Muestras -->
                 <table id="t_muestras" class="display " style="width:100%">
                     <thead>
@@ -236,6 +244,7 @@ $('.select2').select2();
         table.ajax.reload();
         return table;
     }
+    
     $('#txd_cliente').on('change', function(){
         $.ajax({
             url: "getdata.php",

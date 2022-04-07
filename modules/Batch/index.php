@@ -21,6 +21,7 @@ switch (intval($_SESSION['rol_funcionario'])) {
     case 8:
     case 11:
     case 13:
+    case 16:
     case 29:
     case 20:
     case 22:

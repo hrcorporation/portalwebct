@@ -28,7 +28,6 @@ if (isset($_POST['id']) && !empty($_POST['id'] && isset($_POST['id']) && !empty(
 $datos = array(
     'estado' => $php_estado,
     'msg' => $php_msg,
-    'post' => $_POST,
 );
 
 echo json_encode($datos, JSON_FORCE_OBJECT);
