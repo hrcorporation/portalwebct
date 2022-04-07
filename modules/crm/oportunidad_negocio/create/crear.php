@@ -1,6 +1,8 @@
 <?php include '../../../../layout/validar_session4.php' ?>
 <?php include '../../../../layout/head/head4.php'; ?>
-<?php include 'sidebar.php' ?>
+<?php include 'sidebar.php';
+$php_clases = new php_clases();
+?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -53,7 +55,10 @@
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
                                     <label>Asesora Comercial</label>
+
                                     <?php
+                                    $id_usuario = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
+                                   
                                     if (intval($_SESSION['rol_funcionario']) == 1) :
                                     ?>
                                         <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
@@ -62,7 +67,7 @@
                                     <?php
                                     elseif (intval($_SESSION['rol_funcionario']) == 12 || intval($_SESSION['rol_funcionario']) == 13) :
                                     ?>
-                                        <input type="hidden" name="asesora_comercial" id="asesora_comercial" value="<?php echo $_SESSION['id_usuario'] ?>">
+                                        <input type="hidden" name="asesora_comercial" id="asesora_comercial" value="<?php echo $id_usuario ?>">
                                         <h5><?php echo $_SESSION['nombre_usuario']; ?></h5>
                                     <?php
                                     endif;

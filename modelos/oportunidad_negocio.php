@@ -127,12 +127,12 @@ class oportunidad_negocio extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT ct63_oportuniodad_negocio.id, ct1_terceros.ct1_RazonSocial as asesora_comercial, `fecha_contacto`,ct63_oportuniodad_negocio.nombre_sede, ct14_tipocliente.TipoCliente as tipo_cliente, `tipo_plan_maestro`, departamentos.departamento, municipios.municipio, comunas.nombre_comuna , `barrio`, `nidentificacion`, `razon_social`, `nombrescompletos`, `apellidoscompletos`, `nombre_obra`, `direccion_obra`, `telefono_cliente`, `nombre_maestro`, `celular_maestro`, `m3_potenciales`, `fecha_posible_fundida`,status_op.descripcion as resultado , contacto_cliente.descripcion as contacto, `observacion` FROM `ct63_oportuniodad_negocio` INNER JOIN ct1_terceros ON ct63_oportuniodad_negocio.asesora_comercial = ct1_terceros.ct1_IdTerceros INNER JOIN ct14_tipocliente ON ct63_oportuniodad_negocio.tipo_cliente = ct14_tipocliente.ct14_IdTipoCliente INNER JOIN departamentos ON ct63_oportuniodad_negocio.departamento = departamentos.id_departamento INNER JOIN municipios ON ct63_oportuniodad_negocio.municipio = municipios.id_municipio INNER JOIN comunas ON ct63_oportuniodad_negocio.comuna = comunas.id INNER JOIN status_op ON ct63_oportuniodad_negocio.estado = status_op.id INNER JOIN contacto_cliente ON ct63_oportuniodad_negocio.contacto_cliente = contacto_cliente.id  WHERE `fecha_contacto` BETWEEN :fecha_ini AND :fecha_fin ORDER BY `fecha_contacto` DESC;";
+        $sql = "SELECT ct63_oportuniodad_negocio.id, ct1_terceros.ct1_RazonSocial as asesora_comercial, `fecha_contacto`,ct63_oportuniodad_negocio.nombre_sede, ct14_tipocliente.TipoCliente as tipo_cliente, `tipo_plan_maestro`, departamentos.departamento, municipios.municipio, comunas.nombre_comuna , `barrio`, `nidentificacion`, `razon_social`, `nombrescompletos`, `apellidoscompletos`, `nombre_obra`, `direccion_obra`, `telefono_cliente`, `nombre_maestro`, `celular_maestro`, `m3_potenciales`, `fecha_posible_fundida`,status_op.descripcion as resultado , contacto_cliente.descripcion as contacto, `observacion` FROM `ct63_oportuniodad_negocio` INNER JOIN ct1_terceros ON ct63_oportuniodad_negocio.asesora_comercial = ct1_terceros.ct1_IdTerceros INNER JOIN ct14_tipocliente ON ct63_oportuniodad_negocio.tipo_cliente = ct14_tipocliente.ct14_IdTipoCliente INNER JOIN departamentos ON ct63_oportuniodad_negocio.departamento = departamentos.id_departamento INNER JOIN municipios ON ct63_oportuniodad_negocio.municipio = municipios.id_municipio INNER JOIN comunas ON ct63_oportuniodad_negocio.comuna = comunas.id INNER JOIN status_op ON ct63_oportuniodad_negocio.estado = status_op.id INNER JOIN contacto_cliente ON ct63_oportuniodad_negocio.contacto_cliente = contacto_cliente.id ";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
+        // $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
+        // $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
 
         //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
         // Ejecuta SQL
@@ -226,6 +226,41 @@ class oportunidad_negocio extends conexionPDO
         $this->PDO->closePDO();
     }
 
+    public function informe_excel_visitas_clientes($fecha_ini, $fecha_fin)
+    {
+        $this->fecha_ini = $fecha_ini;
+        $this->fecha_fin = $fecha_fin;
+        $sql = "SELECT `id`, `fecha`, `tipo_visita`, `nombre_cliente`, `nombre_obra`, `observaciones` FROM `visitas_clientes` WHERE fecha BETWEEN :fecha_ini AND :fecha_fin ORDER BY `fecha` DESC;";
+
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
+
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['id'] = $fila['id'];
+                    $data_array['fecha'] = $fila['fecha'];
+                    $data_array['tipo_visita'] = $fila['tipo_visita'];
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['observaciones'] = $fila['observaciones'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0
+            }
+        } else {
+            return false; // Error en la sentencia sql
+        }
+    }
     public function informe_excel_visitas($fecha_ini, $fecha_fin)
     {
         $this->fecha_ini = $fecha_ini;
@@ -559,7 +594,7 @@ class oportunidad_negocio extends conexionPDO
 
 
 
-        if ($result = $stmt->execute()) {
+        if ($stmt->execute()) {
             while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if ($id == $fila['id_tipo_cliente']) {
                     $selection = "selected='true'";

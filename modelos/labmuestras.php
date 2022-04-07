@@ -177,7 +177,7 @@ class labmuestras extends conexionPDO
     function get_datos_lab_id($id)
     {
         $this->id = $id;
-        $sql = "SELECT `ct57_id_muestra`, `ct57_tipo_muestra`, `ct57_fecha`, `ct57_hora`, `ct57_cantidad`, `ct57_id_remision`, `ct57_id_mixer`, `ct57_id_cliente`, `ct57_id_obra`, `ct57_codremision`, `ct57_id_producto`, `ct57_id_tipo_producto`, `ct57_cantidad_muestra`, `ct57_m3_muestra`, `ct57_asentamiento`, `ct57_temperatura`, `ct57_cementante`, `ct57_aire`, `ct57_rend_volumetrico` FROM `ct57_muestra` WHERE `ct57_id_muestra` = :id";
+        $sql = "SELECT `ct57_id_muestra`, `ct57_tipo_muestra`, `ct57_fecha`, `ct57_hora`, `ct57_cantidad`, `ct57_id_remision`, `ct57_id_mixer`, `ct57_id_cliente`, `ct57_id_obra`, `ct57_codremision`, `ct57_id_producto`, `ct57_id_tipo_producto`, `ct57_cantidad_muestra`, `ct57_m3_muestra`, `ct57_asentamiento`, `ct57_temperatura`, `ct57_cementante`, `ct57_aire`, `ct57_rend_volumetrico` FROM `ct57_muestra`  WHERE `ct57_id_muestra` = :id";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 

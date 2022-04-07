@@ -26,7 +26,7 @@
                  <li class="nav-header">Muestras</li>
 
                  <li class="nav-item has-treeview">
-                     <a href="#" class="nav-link active">
+                     <a href="index.php" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar
@@ -34,7 +34,7 @@
                      </a>
                  </li>
                  <li class="nav-item has-treeview">
-                     <a href="muestra/create.php" class="nav-link ">
+                     <a href="muestra/create/create.php" class="nav-link ">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Crear
@@ -44,7 +44,7 @@
                  <li class="nav-header">Plano</li>
 
                  <li class="nav-item has-treeview">
-                     <a href="subirplano/" class="nav-link ">
+                     <a href="muestra/subirplano/" class="nav-link ">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Subir Plano

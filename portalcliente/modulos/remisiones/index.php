@@ -161,7 +161,7 @@ $t5_obra = new t5_obras();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1> <strong> <?php echo $_SESSION['nombre_usuario']; ?> </strong> Bienvenido a <strong style="color:#ac4661"> REMIWEB CONCRETOL </strong> </h1>
+                            <h1> <strong> <?php echo $nombre_usuario; ?> </strong> Bienvenido a <strong style="color:#ac4661"> REMIWEB CONCRETOL </strong> </h1>
 
                         </div>
                         <div class="col-sm-6">
@@ -193,7 +193,30 @@ $t5_obra = new t5_obras();
                     </div>
                     <div class="card-body">
 
-                    
+                    <?php 
+                    $id_obra = (int)$_SESSION['id_obra'];
+                   
+                        $t26_remisiones->validar_falta_firma_por_obra_all();
+                        $estado_obra2  = (int)$t26_remisiones->validar_estado_obra($id_obra);
+                        $estado_obra2  = 1;
+
+
+                        if($estado_obra2 == 2){
+                            ?>
+                            <span id="bloquealerta" >
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-warning alert-dismissible">
+                                        <h5><i class="icon fas fa-ban"></i> INHABILITADO!</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                        <?php
+                   
+                    }
+
+                    ?>
 
                            
                        
@@ -208,7 +231,6 @@ $t5_obra = new t5_obras();
                                     </div>
                                 </div>
                                 <br>
-                                <?php var_dump($_SESSION['id_usuario']) ?>
                                 <table id="t_remisiones" class="display" style="width:100%">
                                     <thead>
                                         <tr>
@@ -230,12 +252,12 @@ $t5_obra = new t5_obras();
 
                                         switch ($id_cliente) {
                                             case 252:
-                                            //case 21:
+                                            case 21:
                                                 $datosTabla = $t26_remisiones->remision_cliente($id_cliente);
                                                 break;
 
                                             default:
-                                                $id_obra =   $_SESSION['id_obra1'];
+                                                $id_obra =   $_SESSION['id_obra'];
                                                 $datosTabla = $t26_remisiones->remision_cliente($id_cliente, $id_obra);
                                                 break;
                                         }
@@ -349,6 +371,14 @@ $t5_obra = new t5_obras();
 
     <script>
         $(document).ready(function() {
+
+      
+
+
+            $('#t_remisiones').DataTable({
+
+            });
+
 
             $("#form_aceptar_remi").on('submit', (function(e) {
                 e.preventDefault();

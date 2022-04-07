@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+require '../../../include/conexion.php';
+
+
+$conexion_bd = new conexion();
+$conexion_bd->connect();
+
+
+$tipoTercero = 3;
 $id_Usuario = $_SESSION['id_usuario'];
 ?>
 
@@ -47,7 +55,7 @@ $id_Usuario = $_SESSION['id_usuario'];
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                             <img src="../../../assets/images/usuarios/images.png" class="user-image img-circle elevation-2" alt="User Image">
-                            <span class="d-none d-md-inline"><?php echo $_SESSION['nombre_usuario']; ?></span>
+                            <span class="d-none d-md-inline">Usuario</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             <!-- User image -->
@@ -84,7 +92,11 @@ $id_Usuario = $_SESSION['id_usuario'];
                     </li>
                 </ul>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                        <i class="fas fa-th-large"></i>
+                    </a>
+                </li>
                 </ul>
             </nav>
             <!-- /.navbar -->

@@ -888,9 +888,6 @@
                         }
                     }
                     $('#crear_visita').modal('toggle');
-
-
-
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));

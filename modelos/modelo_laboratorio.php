@@ -13,6 +13,25 @@ class modelo_laboratorio extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
+    function buscar_muestras_existentes($id_remision){
+        $sql = "SELECT `ct57_id_muestra` FROM `ct57_muestra` WHERE `ct57_id_remision` = :id_remision";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_remision', $id_remision, PDO::PARAM_INT);
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return intval($fila['ct57_id_muestra']);
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
     public static function eliminar_dias_cant_muestra($con, $id)
     {
         $sql = "DELETE FROM `ct59_dias_fallo_result` WHERE `ct59_dias_fallo_result`.`ct59_id` = :id";
@@ -29,19 +48,23 @@ class modelo_laboratorio extends conexionPDO
     {
         //=============================================================
         // obtener datos de la muestra por id
-        $array_data_muestra = SELF::data_id_muestra($this->con, $id_muestra);
+        // ============================================================
+        
 
         // verifica si es array
-        if (is_array($array_data_muestra)) {
+        if (is_array($array_data_muestra = SELF::data_id_muestra($this->con, $id_muestra))) {
             // define variables del codigo del producto
             foreach ($array_data_muestra as $key_muestra) {
-                $id_producto = $key_muestra['id_producto'];
-                $cod_producto = $key_muestra['cod_producto'];
-                $tipo_producto = substr($cod_producto, 0, -9);
+                $id_producto = $key_muestra['id_producto']; // id del producto
+                $cod_producto = $key_muestra['cod_producto']; // codigo del producto
+                $tipo_producto = substr($cod_producto, 0, -9); // Extraemos los digitos del tipo del producto
             }
 
+            // obtenemos el id del producto 
             if ($id_tipo_producto = SELF::obtener_tipo_producto($this->con, $tipo_producto)) {
+                // Hacemos una consulta en la tabla parara verificar si existe dias creados previamente para solo cargar los datos
                 if (is_array($array_data_dias = SELF::get_dias_for_tipo_concreto($this->con, $id_tipo_producto))) {
+                    // Recorremos la consulta con el foreach
                     foreach ($array_data_dias as $key_data) {
 
                         $dias = $key_data['dias_fallo'];
@@ -49,15 +72,18 @@ class modelo_laboratorio extends conexionPDO
                         $fecha = $key_data['fecha'];
                         $result = SELF::insert_cant_dias_muestra($this->con, $id_muestra, $codigo_muestra, $cant, $dias, $fecha);
                     }
+                    return $result;
+                }else{
+                    $msg = "No se encontro Registros de Dias de fallo";
                 }
             }
         } else {
-            $msg = "No se Encontro el id de la muestra";
+            $msg = "No se Encontro el id de la muestra"; // con el codigo del producto
             $estado = false;
         }
 
         //return $estado;
-        return $result;
+        return $msg;
     }
 
     public static function get_dias_for_tipo_concreto($con, $id_tipo_producto)
@@ -110,7 +136,7 @@ class modelo_laboratorio extends conexionPDO
             return false;
         }
     }
-        
+
     function datatable_dias_muesta($id_muestra)
     {
 
@@ -355,7 +381,7 @@ class modelo_laboratorio extends conexionPDO
         }
     }
 
-    function crear_muestras($id_remision, $fecha_remision, $codigo_remi, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_mixer, $id_producto, $codproducto, $producto, $metros,$m3_muestra, $hora, $tipo_muesta)
+    function crear_muestras($id_remision, $fecha_remision, $codigo_remi, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_mixer, $id_producto, $codproducto, $producto, $metros, $m3_muestra, $hora, $tipo_muesta)
     {
         $id_tipo_producto  = 1;
         $sql = "INSERT INTO `ct57_muestra`( `ct57_tipo_muestra`, `ct57_fecha`, `ct57_hora`, `ct57_cantidad`, ct57_m3_muestra, `ct57_id_remision`, `ct57_id_mixer`, `ct57_id_cliente`,ct57_nombre_cliente, `ct57_id_obra`, `ct57_nombre_obra`, `ct57_codremision`, `ct57_id_producto`, `ct57_cod_producto`, `ct57_nombre_producto`, `ct57_id_tipo_producto`) VALUES (:tipomuestra, :fecha, :hora, :cantidad, :m3_muestra, :id_remision, :id_mixer, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :codigo_remision, :id_producto, :codproducto, :nombre_producto, :id_tipo_producto)";

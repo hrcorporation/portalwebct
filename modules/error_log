@@ -1,0 +1,12 @@
+[06-Apr-2022 15:42:02 America/Bogota] PHP Fatal error:  Uncaught Error: Class 'Elementos' not found in /home3/concr/portal.concretol.co/modules/elementos/index.php:30
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/elementos/index.php on line 30
+[06-Apr-2022 15:42:04 America/Bogota] PHP Fatal error:  Uncaught Error: Class 'Elementos' not found in /home3/concr/portal.concretol.co/modules/elementos/index.php:30
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/elementos/index.php on line 30
+[06-Apr-2022 15:42:13 America/Bogota] PHP Fatal error:  Uncaught Error: Class 'Elementos' not found in /home3/concr/portal.concretol.co/modules/elementos/index.php:30
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/elementos/index.php on line 30

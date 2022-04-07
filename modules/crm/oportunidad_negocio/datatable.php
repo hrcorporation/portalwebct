@@ -9,8 +9,12 @@ require '../../../vendor/autoload.php';
 
 $data = "";
 $oportunidad_negocio = new oportunidad_negocio();
+$php_clases = new php_clases();
+
 $id = $_POST['id'];
-$id_usuario = (int) ($_SESSION['id_usuario']);
+
+$id_usuario = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
+
 if ($_SESSION['rol_funcionario'] == 1) {
     $data = $oportunidad_negocio->dt_oportunidad_negocio($id);
 } else if ($_SESSION['rol_funcionario'] == 12 || $_SESSION['rol_funcionario'] == 13) {
