@@ -103,13 +103,6 @@ if (isset($_POST['C_IdTerceros']) && !empty($_POST['C_IdTerceros'])) {
     } else {
         $errores = "faltan llenar los campos requeridos";
     }
-<<<<<<< HEAD
-    $datos = array(
-        'estado' => $php_estado,
-        'errores' => $errores,
-        'result' => $resultado,
-    );
-=======
 } else {
     $errores = "faltan llenar los campos requeridos";
 }
@@ -118,9 +111,8 @@ $datos = array(
     'errores' => $errores,
     'result' => $resultado,
 );
-}
 
->>>>>>> hr
+
 
     echo json_encode($datos, JSON_FORCE_OBJECT);
-}
+

@@ -183,7 +183,7 @@ switch ($rol_user) {
         break;
 }
 
-<?php
+
 
 switch ($rol_user) {
     case 1:

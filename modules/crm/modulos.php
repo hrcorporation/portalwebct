@@ -101,3 +101,27 @@ switch ($rol_user) {
         break;
 }
 ?>
+
+<?php
+
+switch ($rol_user) {
+    case 1:
+?>
+        <div class="col-4" id="">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Pedidos</H3>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <a class="small-box-footer" href="pedidos/">
+                    Ir <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+<?php
+        break;
+}
+?>
