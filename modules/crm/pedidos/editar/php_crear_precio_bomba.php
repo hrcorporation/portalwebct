@@ -17,16 +17,14 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
-if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
-    
-    $id_cliente = $_POST['id_cliente'];
-    $nombre_cliente = $pedidos->get_nombre_cliente($id_cliente);
-    $id_obra = $_POST['id_obra'];
-    $nombre_obra = $pedidos->get_nombre_obra($id_obra);
-    $fecha_vencimiento = $_POST['fecha_vencimiento'];
-    $id_asesora = $_POST['asesora_comercial'];
-    $nombre_asesora = $pedidos->get_nombre_asesora($id_asesora);
-    if ($pedidos->crear_pedido($fecha_vencimiento, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora)) {
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+    $id_pedido = $_POST['id'];
+    $id_tipo_bomba = $_POST['id_tipo_bomba'];
+    $nombre_tipo_bomba = $pedidos->get_nombre_bomba($id_tipo_bomba);
+    $minimo = $_POST['minimo'];
+    $maximo = $_POST['maximo'];
+    $precio = $_POST['precio'];
+    if ($pedidos->crear_precio_bomba($id_pedido, $id_tipo_bomba, $nombre_tipo_bomba, $minimo, $maximo, $precio)) {
         $php_estado = true;
     } else {
         $log = 'No Guardo Correctamente';

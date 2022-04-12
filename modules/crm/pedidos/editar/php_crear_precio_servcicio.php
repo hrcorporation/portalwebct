@@ -17,16 +17,12 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
-if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
-    
-    $id_cliente = $_POST['id_cliente'];
-    $nombre_cliente = $pedidos->get_nombre_cliente($id_cliente);
-    $id_obra = $_POST['id_obra'];
-    $nombre_obra = $pedidos->get_nombre_obra($id_obra);
-    $fecha_vencimiento = $_POST['fecha_vencimiento'];
-    $id_asesora = $_POST['asesora_comercial'];
-    $nombre_asesora = $pedidos->get_nombre_asesora($id_asesora);
-    if ($pedidos->crear_pedido($fecha_vencimiento, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora)) {
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+    $id_pedido = $_POST['id'];
+    $id_tipo_servicio = $_POST['id_tipo_servicio'];
+    $nombre_tipo_servicio = $pedidos->get_nombre_servicio($id_tipo_servicio);
+    $precio = $_POST['precio'];
+    if ($pedidos->crear_precio_servicio($id_pedido, $id_tipo_servicio, $nombre_tipo_servicio, $precio)) {
         $php_estado = true;
     } else {
         $log = 'No Guardo Correctamente';

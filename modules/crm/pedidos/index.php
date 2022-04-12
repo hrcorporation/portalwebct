@@ -33,6 +33,7 @@ $t1_terceros = new t1_terceros();
          * Validacion de Usuario
          */
         $t1_terceros = new t1_terceros();
+        $pedidos = new pedidos();
         ?>
         <!-- Default box -->
         <div class="card">
@@ -45,7 +46,7 @@ $t1_terceros = new t1_terceros();
                 </div>
             </div>
             <div class="card-body">
-                <table id="table_op" class="display" style="width:100%">
+                <table id="table_pedidos" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>N</th>
@@ -74,7 +75,56 @@ $t1_terceros = new t1_terceros();
 <?php include '../../../layout/footer/footer3.php' ?>
 
 <script>
-   
+   $(document).ready(function(){
+    var n = 1;
+        var table = $('#table_pedidos').DataTable({
+            "ajax": {
+                "url": "data_table_salidas.php",
+                "dataSrc": ""
+            },
+            "order": [
+                [0, 'desc']
+            ],
+            "columns": [{
+                    "data": "id"
+                },
+                {
+                    "data": "fecha_vencimiento"
+                },
+                {
+                    "data": "nombre_cliente"
+                },
+                {
+                    "data": "nombre_obra"
+                },
+                {
+                    "data": "nombre_asesora"
+                },
+                {
+                    "data": null,
+                    "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-edit'></i> </button>"
+                }
+            ],
+            //"scrollX": true,
+        });
+
+        table.on('order.dt search.dt', function() {
+            table.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+        $('#table_pedidos tbody').on('click', 'button', function() {
+            var data = table.row($(this).parents('tr')).data();
+            var id = data['id'];
+            window.location = "editar/editar.php?id=" + id;
+        });
+        setInterval(function() {
+            table.ajax.reload(null, false);
+        }, 10000);
+   })
 </script>
 
 </body>
