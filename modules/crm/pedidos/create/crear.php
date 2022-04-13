@@ -127,6 +127,7 @@
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
+                        window.location = '../editar/editar.php?id=' + data.id;
                     } else {
                         toastr.warning(data.errores);
                     }

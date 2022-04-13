@@ -16,6 +16,7 @@ $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
+$id = 0;
 
 if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
     
@@ -26,7 +27,7 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
     $fecha_vencimiento = $_POST['fecha_vencimiento'];
     $id_asesora = $_POST['asesora_comercial'];
     $nombre_asesora = $pedidos->get_nombre_asesora($id_asesora);
-    if ($pedidos->crear_pedido($fecha_vencimiento, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora)) {
+    if ($id = $pedidos->crear_pedido($fecha_vencimiento, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora)) {
         $php_estado = true;
     } else {
         $log = 'No Guardo Correctamente';
@@ -35,6 +36,7 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
 $datos = array(
     'estado' => $php_estado,
     'errores' => $php_error,
+    'id' => $id,
     'result' => $resultado,
 );
 

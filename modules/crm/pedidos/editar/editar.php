@@ -37,6 +37,15 @@
             <div class="card-body">
                 <div id="contenido">
                     <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#cargar_precios">
+                                    CARGAR PRECIOS
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-9 col-sm-12">
                             <div class="form-group">
                                 <label>PRODUCTOS</label>
@@ -110,7 +119,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="cantidad">Cantidad m3</label>
-                                            <input type="number" name="cantidad" id="cantidad" class="form-control" required="true" />
+                                            <input type="number" name="cantidad" id="cantidad" class="form-control" value="0" />
                                         </div>
                                     </div>
                                 </div>
@@ -176,7 +185,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="descuento">Tipo de bomba</label>
+                                            <label for="id_tipo_bomba">Tipo de bomba</label>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -190,7 +199,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="descuento">Rango M3</label>
+                                            <label for="rango">Rango M3</label>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -209,7 +218,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="descuento">Precio</label>
+                                            <label for="precio">Precio</label>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -278,7 +287,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="descuento">Tipo de servicio</label>
+                                            <label for="id_tipo_servicio">Tipo de servicio</label>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -314,6 +323,41 @@
                 </div>
                 <!-- /.modal-content -->
             </div>
+            <div class="modal fade" id="cargar_precios">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">CARGAR PRECIOS</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form name="form_cargar_precio_servicio" id="form_cargar_precio_servicio" method="post">
+                                <input type="hidden" name="id_pedido_cargar" id="id_pedido_cargar" value="<?= $id ?>">
+
+                                <div class="row">
+                                <div class="col">
+                                        <div class="form-group">
+                                            <label for="codigo_pedido_existente">Digite el Codigo del pedido existente para cargar los datos</label>
+                                            <input type="text" name="txt_cod_load" id="txt_cod_load" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
         </div>
     </section>
 </div>
@@ -326,6 +370,30 @@
     });
 
     $(document).ready(function() {
+         // Formulacio Cargar Precios
+        $("#form_cargar_precio_servicio").on('submit', (function(e) {
+            $('#cargar_precios').modal('toggle');
+            e.preventDefault();
+            $.ajax({
+                url: "php_cargar_precios_pedidos.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    if (data.estado) {
+                        toastr.success('Se ha Cargado los precios correctamente');
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
+        
         $("#form_crear_precio_producto").on('submit', (function(e) {
             $('#crear_precio_producto').modal('toggle');
             e.preventDefault();
@@ -405,9 +473,14 @@
 
     $(document).ready(function() {
         var n = 1;
+        var id_pedido = <?= $id ?>;
         var table = $('#table_precio_productos').DataTable({
             "ajax": {
                 "url": "data_table_productos.php",
+                'data': {
+                    'id_pedido': id_pedido,
+                },
+                'type': 'post',
                 "dataSrc": ""
             },
             "order": [
@@ -455,9 +528,14 @@
 
     $(document).ready(function() {
         var n = 1;
+        var id_pedido = <?= $id ?>;
         var table = $('#table_precio_bomba').DataTable({
             "ajax": {
                 "url": "data_table_bomba.php",
+                'data': {
+                    'id_pedido': id_pedido,
+                },
+                'type': 'post',
                 "dataSrc": ""
             },
             "order": [
@@ -505,9 +583,14 @@
 
     $(document).ready(function() {
         var n = 1;
+        var id_pedido = <?= $id ?>;
         var table = $('#table_precio_servicios').DataTable({
             "ajax": {
                 "url": "data_table_servicios.php",
+                'data': {
+                    'id_pedido': id_pedido,
+                },
+                'type': 'post',
                 "dataSrc": ""
             },
             "order": [
@@ -550,10 +633,23 @@
 
     $('#id_producto').change(function() {
         var subtotal = $("#subtotal").val();
-        var id = <?= $id ?>;
 
         $.ajax({
-            
-        })
+            url: "ajax_get_data_precios.php",
+            type: "POST",
+            data: {
+                task: 1,
+                id_producto: $('#id_producto').val(),
+            },
+            success: function(response) {
+                toastr.success('bien');
+                $("#subtotal").val(response.subtotal);
+
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+
+        });
     })
 </script>

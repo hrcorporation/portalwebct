@@ -25,12 +25,11 @@ if (isset($_POST['id_producto']) && !empty($_POST['id_producto'])) {
     $porcentaje = $_POST['descuento'];
     $id_precio_base = $pedidos->get_id_precio_base($id_producto);
     $precio_base = $pedidos->get_precio_base($id_producto);
-    $precio_m3 = 1000;
     $cantidad_m3 = $_POST['cantidad'];
-    $precio_total = $cantidad_m3 * $precio_base;
-    $subtotal = $precio_total * ($porcentaje);
-    $precio_total_pedido = $cantidad_m3 * $precio_base;
-    if ($pedidos->crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_m3, $cantidad_m3, $precio_total_pedido)) {
+    $subtotal = (doubleval($precio_base)) / (1 + (doubleval($porcentaje / 100)));
+    $precio_total_pedido = $subtotal * (doubleval($cantidad_m3));
+    $precio_m3 = $subtotal; // subtotal
+    if ($pedidos->crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $precio_total_pedido)) {
         $php_estado = true;
     } else {
         $log = 'No Guardo Correctamente';
