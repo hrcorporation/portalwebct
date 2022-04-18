@@ -616,7 +616,7 @@ class pedidos extends conexionPDO
 
     public function get_productos_precio($id_pedido)
     {
-        $sql = "SELECT `id`,`codigo_producto`, `porcentaje_descuento`, `cantidad_m3`, `precio_m3` FROM `ct65_pedidos_has_precio_productos` WHERE `id_pedido` =  :id_pedido";
+        $sql = "SELECT `id`,`status`,`codigo_producto`, `porcentaje_descuento`, `cantidad_m3`, `precio_m3` FROM `ct65_pedidos_has_precio_productos` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
@@ -627,6 +627,18 @@ class pedidos extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
+                    switch ($fila['status']) {
+                        case 1:
+                            $datos['status'] = " <span class='badge  badge-success > float-right'> Activo </span> ";
+                            break;
+                        case 2:
+                            $datos['status'] = " <span class='badge  badge-warning > float-right'> Deshabilitado </span> ";
+                            break;
+                        default:
+                            $datos['status'] = " <span class='badge  badge-info > float-right'>  </span> ";
+                            break;
+                    }
+
                     $datos['codigo_producto'] = $fila['codigo_producto'];
                     $datos['porcentaje_descuento'] = $fila['porcentaje_descuento'];
                     $datos['cantidad_m3'] = $fila['cantidad_m3'];
@@ -644,7 +656,7 @@ class pedidos extends conexionPDO
 
     public function get_bomba_precio($id_pedido)
     {
-        $sql = "SELECT `id`,`nombre_tipo_bomba`,`min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` WHERE `id_pedido` =  :id_pedido ";
+        $sql = "SELECT `id`,`status`,`nombre_tipo_bomba`,`min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
@@ -655,6 +667,17 @@ class pedidos extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
+                    switch ($fila['status']) {
+                        case 1:
+                            $datos['status'] = " <span class='badge  badge-success > float-right'> Activo </span> ";
+                            break;
+                        case 2:
+                            $datos['status'] = " <span class='badge  badge-warning > float-right'> Deshabilitado </span> ";
+                            break;
+                        default:
+                            $datos['status'] = " <span class='badge  badge-info > float-right'>  </span> ";
+                            break;
+                    }
                     $datos['nombre_tipo_bomba'] = $fila['nombre_tipo_bomba'];
                     $datos['min_m3'] = $fila['min_m3'];
                     $datos['max_m3'] = $fila['max_m3'];
@@ -672,7 +695,7 @@ class pedidos extends conexionPDO
 
     public function get_servicios_precio($id_pedido)
     {
-        $sql = "SELECT `id`, `nombre_tipo_servicio`, `precio` FROM `ct65_pedido_has_precio_servicio` WHERE `id_pedido` =  :id_pedido";
+        $sql = "SELECT `id`,`status`, `nombre_tipo_servicio`, `precio` FROM `ct65_pedido_has_precio_servicio` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
@@ -683,6 +706,17 @@ class pedidos extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
+                    switch ($fila['status']) {
+                        case 1:
+                            $datos['status'] = " <span class='badge  badge-success > float-right'> Activo </span> ";
+                        break;
+                        case 2:
+                            $datos['status'] = " <span class='badge  badge-warning > float-right'> Deshabilitado </span> ";
+                        break;
+                        default:
+                            $datos['status'] = " <span class='badge  badge-info > float-right'>  </span> ";
+                        break; 
+                    }
                     $datos['nombre_tipo_servicio'] = $fila['nombre_tipo_servicio'];
                     $datos['precio'] = $fila['precio'];
                     $datosf[] = $datos;
@@ -714,26 +748,25 @@ class pedidos extends conexionPDO
         }
     }
 
-    function insert_precio_productos($fecha_subida,$id_producto,$codigo_producto,$nombre_producto,$precio)
+    function insert_precio_productos($fecha_subida, $id_producto, $codigo_producto, $nombre_producto, $precio)
     {
-                $status = 1;
-                $sql =  "INSERT INTO `ct65_precio_base` (`status`, `fecha_subida`, `id_producto`, `codigo_producto`, `nombre_producto`, `precio`) VALUES   (:status, :fecha_subida, :id_producto, :codigo_producto, :nombre_producto, :precio)";
-                $stmt = $this->con->prepare($sql); // Preparar la conexion
-                $stmt->bindParam(':status', $status, PDO::PARAM_STR);
-                $stmt->bindParam(':fecha_subida', $fecha_subida, PDO::PARAM_STR);
-                $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
-                $stmt->bindParam(':codigo_producto', $codigo_producto, PDO::PARAM_STR);
-                $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
-                $stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
+        $status = 1;
+        $sql =  "INSERT INTO `ct65_precio_base` (`status`, `fecha_subida`, `id_producto`, `codigo_producto`, `nombre_producto`, `precio`) VALUES   (:status, :fecha_subida, :id_producto, :codigo_producto, :nombre_producto, :precio)";
+        $stmt = $this->con->prepare($sql); // Preparar la conexion
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_subida', $fecha_subida, PDO::PARAM_STR);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
+        $stmt->bindParam(':codigo_producto', $codigo_producto, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
+        $stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
 
-                if ($stmt->execute()) { // Ejecutar
-                    $php_result = true;
-                } else {
-                    $php_result = true;
-                }
-            
-            return $php_result;
-        
+        if ($stmt->execute()) { // Ejecutar
+            $php_result = true;
+        } else {
+            $php_result = true;
+        }
+
+        return $php_result;
     }
     function editar_status_productos()
     {
@@ -741,6 +774,66 @@ class pedidos extends conexionPDO
         $sql = "UPDATE `ct65_precio_base` SET `status`= :status";
 
         $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':status', $this->status, PDO::PARAM_INT);
+
+        // Ejecutar 
+        $result = $stmt->execute();
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $result;
+    }
+
+    function cambiar_status_producto($id)
+    {
+        $this->id = $id;
+        $this->status = 2;
+        $sql = "UPDATE `ct65_pedidos_has_precio_productos` SET `status`= :status WHERE `id` = :id";
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':status', $this->status, PDO::PARAM_INT);
+
+        // Ejecutar 
+        $result = $stmt->execute();
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $result;
+    }
+
+    function cambiar_status_bomba($id)
+    {
+        $this->id = $id;
+        $this->status = 2;
+        $sql = "UPDATE `ct65_pedido_has_precio_bomba` SET `status`= :status  WHERE `id` = :id";
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':status', $this->status, PDO::PARAM_INT);
+
+        // Ejecutar 
+        $result = $stmt->execute();
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $result;
+    }
+
+    function cambiar_status_servicio($id)
+    {
+        $this->id = $id;
+        $this->status = 2;
+        $sql = "UPDATE `ct65_pedido_has_precio_servicio` SET `status`= :status WHERE `id` = :id";
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
         $stmt->bindParam(':status', $this->status, PDO::PARAM_INT);
 
         // Ejecutar 

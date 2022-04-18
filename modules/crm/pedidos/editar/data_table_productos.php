@@ -9,10 +9,9 @@ require '../../../../vendor/autoload.php';
 
 $pedidos = new pedidos();
 
-if(isset($_POST['id_pedido']) && !empty($_POST['id_pedido'])){
+if (isset($_POST['id_pedido']) && !empty($_POST['id_pedido'])) {
     $data = $pedidos->get_productos_precio($_POST['id_pedido']);
-    
-}else{
+} else {
     $data = false;
 }
 

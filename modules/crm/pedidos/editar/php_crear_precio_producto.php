@@ -28,7 +28,7 @@ if (isset($_POST['id_producto']) && !empty($_POST['id_producto'])) {
     $cantidad_m3 = $_POST['cantidad'];
     $subtotal = (doubleval($precio_base)) / (1 + (doubleval($porcentaje / 100)));
     $precio_total_pedido = $subtotal * (doubleval($cantidad_m3));
-    $precio_m3 = $subtotal; // subtotal
+    $precio_m3 = $subtotal; // Subtotal
     if ($pedidos->crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $precio_total_pedido)) {
         $php_estado = true;
     } else {

@@ -81,8 +81,6 @@ if (is_array($array_reg)) {
     }
 }
 
-
-
 $datos = array(
     'estado' => $php_estado,
     'result' => $php_result,

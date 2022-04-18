@@ -7,7 +7,7 @@ require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 
-//Se crea un objeto de la clase php_clases
+//Se crea un objeto de la clase pedidos
 $pedidos = new pedidos();
 
 $log = false;
@@ -21,7 +21,7 @@ if (isset($_POST['task']) && !empty($_POST['task'])) {
     $php_msg = "Paso 1";
     if (intval($_POST['task'] == 1)) {
         $id_producto = $_POST['id_producto'];
-        if($precio_subtotal = $pedidos->get_precio_producto($id_producto)){
+        if ($precio_subtotal = (doubleval($pedidos->get_precio_producto($id_producto)) * (1 - doubleval($_POST['descuento']) / 100))) {
             $php_msg = "bien";
         }
     } else {

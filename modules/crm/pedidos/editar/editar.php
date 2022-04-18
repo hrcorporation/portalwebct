@@ -64,6 +64,7 @@
                     <thead>
                         <tr>
                             <th>N</th>
+                            <th>Status</th>
                             <th>Producto</th>
                             <th>%</th>
                             <th>Cantidad</th>
@@ -77,8 +78,8 @@
                 </table>
             </div>
             <!-- Default box -->
-            <div class="modal fade" id="crear_precio_producto">
-                <div class="modal-dialog">
+            <div class="modal fade " id="crear_precio_producto">
+                <div class="modal-dialog  modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">ADICIONAR PRECIO PRODUCTO</h4>
@@ -93,7 +94,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="id_producto">Producto</label>
-                                            <select class="select2 form-control" name="id_producto" id="id_producto">
+                                            <br>
+                                            <select class="form-control select2" style="width:100%" name="id_producto" id="id_producto">
                                                 <?= $pedidos->select_productos(); ?>
                                             </select>
                                         </div>
@@ -103,30 +105,31 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="descuento">Descuento</label>
-                                            <input type="number" name="descuento" id="descuento" class="form-control" required="true" />
+                                            <input type="number" name="descuento" id="descuento" class="form-control" required="true" maxlength="2"/>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="subtotal">Subtotal</label>
                                             <input type="number" name="subtotal" id="subtotal" class="form-control" required="true" disabled="true" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="cantidad">Cantidad m3</label>
-                                            <input type="number" name="cantidad" id="cantidad" class="form-control" value="0" />
+                                            <input type="number" name="cantidad" id="cantidad" class="form-control" required="true" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            <label for=""></label>
+                                        </div>
+                                    </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            <button type="submit" class="btn btn-success">Guardar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +150,7 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#crear_precio_bomba">
-                                    ADICIONAR PRECIO BOMBEO
+                                    ADICIONAR PRECIO BOMBA
                                 </button>
                             </div>
                         </div>
@@ -157,6 +160,7 @@
                     <thead>
                         <tr>
                             <th>N</th>
+                            <th>Status</th>
                             <th>Tipo de bomba</th>
                             <th>Cant. min</th>
                             <th>Cant. max</th>
@@ -171,7 +175,7 @@
             </div>
             <!-- Default box -->
             <div class="modal fade" id="crear_precio_bomba">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">ADICIONAR PRECIO BOMBA</h4>
@@ -186,51 +190,41 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="id_tipo_bomba">Tipo de bomba</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
                                             <select class="select2 form-control" name="id_tipo_bomba" id="id_tipo_bomba">
                                                 <?= $pedidos->select_bomba(); ?>
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="rango">Rango M3</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
                                             <label for="minimo">Minimo</label>
                                             <input type="number" name="minimo" id="minimo" class="form-control" required="true" />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
+                                            <label for="rango">Rango M3</label>
                                             <label for="maximo">Maximo</label>
                                             <input type="number" name="maximo" id="maximo" class="form-control" required="true" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="precio">Precio</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
                                             <input type="number" name="precio" id="precio" class="form-control" required="true" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            <label for=""></label>
+                                        </div>
+                                    </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            <button type="submit" class="btn btn-success">Guardar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +245,7 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#crear_precio_servicio_adicional">
-                                    ADICIONAR SERVICIO ADICIONAL
+                                    ADICIONAR SERVICIO
                                 </button>
                             </div>
                         </div>
@@ -261,6 +255,7 @@
                     <thead>
                         <tr>
                             <th>N</th>
+                            <th>Status</th>
                             <th>Servicio</th>
                             <th>Precio</th>
                             <th>Detalles</th>
@@ -273,10 +268,10 @@
             </div>
             <!-- Default box -->
             <div class="modal fade" id="crear_precio_servicio_adicional">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">ADICIONAR PRECIO SERVICIO ADICIONAL</h4>
+                            <h4 class="modal-title">ADICIONAR PRECIO SERVICIO</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -288,32 +283,28 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="id_tipo_servicio">Tipo de servicio</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <select class="select2 form-control" name="id_tipo_servicio" id="id_tipo_servicio">
-                                                <?= $pedidos->select_servicio() ?>
+                                            <br>
+                                            <select class="form-control" name="id_tipo_servicio" id="id_tipo_servicio">
+                                                <?= $pedidos->select_servicio(); ?>
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="precio">Precio</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
                                             <input type="number" name="precio" id="precio" class="form-control" required="true" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            <label for=""></label>
+                                        </div>
+                                    </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            <button type="submit" class="btn btn-success">Guardar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -324,7 +315,7 @@
                 <!-- /.modal-content -->
             </div>
             <div class="modal fade" id="cargar_precios">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">CARGAR PRECIOS</h4>
@@ -335,16 +326,14 @@
                         <div class="modal-body">
                             <form name="form_cargar_precio_servicio" id="form_cargar_precio_servicio" method="post">
                                 <input type="hidden" name="id_pedido_cargar" id="id_pedido_cargar" value="<?= $id ?>">
-
                                 <div class="row">
-                                <div class="col">
+                                    <div class="col">
                                         <div class="form-group">
                                             <label for="codigo_pedido_existente">Digite el Codigo del pedido existente para cargar los datos</label>
                                             <input type="text" name="txt_cod_load" id="txt_cod_load" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
@@ -370,7 +359,7 @@
     });
 
     $(document).ready(function() {
-         // Formulacio Cargar Precios
+        // Formulacio Cargar Precios
         $("#form_cargar_precio_servicio").on('submit', (function(e) {
             $('#cargar_precios').modal('toggle');
             e.preventDefault();
@@ -393,7 +382,7 @@
                 },
             });
         }));
-        
+
         $("#form_crear_precio_producto").on('submit', (function(e) {
             $('#crear_precio_producto').modal('toggle');
             e.preventDefault();
@@ -490,6 +479,9 @@
                     "data": "id"
                 },
                 {
+                    "data": "status"
+                },
+                {
                     "data": "codigo_producto"
                 },
                 {
@@ -503,7 +495,7 @@
                 },
                 {
                     "data": null,
-                    "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-edit'></i> </button>"
+                    "defaultContent": "<button class='btn btn-danger btn-sm' id = 'btn-eliminar'> <i class='fas fa-trash'></i> </button>"
                 }
             ],
             //"scrollX": true,
@@ -519,7 +511,41 @@
         $('#table_precio_productos tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data();
             var id = data['id'];
-            window.location = "update/editar.php?id=" + id;
+            Swal.fire({
+                title: '¿Esta Seguro(a) que desea eliminar el producto?', // mensaje de la alerta
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                cancelButtonText: 'No', // text boton
+                confirmButtonText: 'Si Eliminar'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "php_eliminar_producto.php",
+                        type: "POST",
+                        data: {
+                            task: 1,
+                            id: id,
+                        },
+                        success: function(response) {
+                            if (response.estado) {
+                                Swal.fire(
+                                    'El producto fue eliminado correctamente',
+                                    'success'
+                                )
+                                table.ajax.reload();
+                            } else {
+                                console.log("error");
+                            }
+                        },
+                        error: function(respuesta) {
+                            alert(JSON.stringify(respuesta));
+                        },
+                    });
+                }
+            })
         });
         setInterval(function() {
             table.ajax.reload(null, false);
@@ -545,6 +571,9 @@
                     "data": "id"
                 },
                 {
+                    "data": "status"
+                },
+                {
                     "data": "nombre_tipo_bomba"
                 },
                 {
@@ -558,7 +587,7 @@
                 },
                 {
                     "data": null,
-                    "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-edit'></i> </button>"
+                    "defaultContent": "<button class='btn btn-danger btn-sm' id = 'btn-eliminar'> <i class='fas fa-trash'></i> </button>"
                 }
             ],
             //"scrollX": true,
@@ -574,7 +603,42 @@
         $('#table_precio_bomba tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data();
             var id = data['id'];
-            window.location = "update/editar.php?id=" + id;
+            Swal.fire({
+                title: '¿Esta Seguro(a) que desea eliminar la bomba?', // mensaje de la alerta
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                cancelButtonText: 'No', // text boton
+                confirmButtonText: 'Si Eliminar'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "php_eliminar_bomba.php",
+                        type: "POST",
+                        data: {
+                            task: 1,
+                            id: id,
+                        },
+                        success: function(response) {
+                            if (response.estado) {
+                                Swal.fire(
+                                    'La bomba fue eliminada correctamente',
+                                    'success'
+                                )
+                                table.ajax.reload();
+                            } else {
+                                console.log("error");
+
+                            }
+                        },
+                        error: function(respuesta) {
+                            alert(JSON.stringify(respuesta));
+                        },
+                    });
+                }
+            })
         });
         setInterval(function() {
             table.ajax.reload(null, false);
@@ -600,6 +664,9 @@
                     "data": "id"
                 },
                 {
+                    "data": "status"
+                },
+                {
                     "data": "nombre_tipo_servicio"
                 },
                 {
@@ -607,7 +674,7 @@
                 },
                 {
                     "data": null,
-                    "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-edit'></i> </button>"
+                    "defaultContent": "<button class='btn btn-danger btn-sm' id = 'btn-eliminar'> <i class='fas fa-trash'></i> </button>"
                 }
             ],
             //"scrollX": true,
@@ -620,36 +687,85 @@
                 cell.innerHTML = i + 1;
             });
         }).draw();
-        $('#table_precio_bomba tbody').on('click', 'button', function() {
+        $('#table_precio_servicios tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data();
             var id = data['id'];
-            window.location = "update/editar.php?id=" + id;
+            Swal.fire({
+                title: '¿Esta Seguro(a) que desea eliminar el servicio?', // mensaje de la alerta
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                cancelButtonText: 'No', // text boton
+                confirmButtonText: 'Si Eliminar'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "php_eliminar_servicios.php",
+                        type: "POST",
+                        data: {
+                            task: 1,
+                            id: id,
+                        },
+                        success: function(response) {
+                            if (response.estado) {
+                                Swal.fire(
+                                    'El servicio fue eliminado correctamente',
+                                    'success'
+                                )
+                                table.ajax.reload();
+                            } else {
+                                console.log("error");
+                            }
+                        },
+                        error: function(respuesta) {
+                            alert(JSON.stringify(respuesta));
+                        },
+                    });
+                }
+            })
         });
         setInterval(function() {
             table.ajax.reload(null, false);
         }, 10000);
     })
 
-
     $('#id_producto').change(function() {
         var subtotal = $("#subtotal").val();
-
         $.ajax({
             url: "ajax_get_data_precios.php",
             type: "POST",
             data: {
                 task: 1,
                 id_producto: $('#id_producto').val(),
+                descuento: $('#descuento').val(),
             },
             success: function(response) {
-                toastr.success('bien');
                 $("#subtotal").val(response.subtotal);
-
             },
             error: function(respuesta) {
                 alert(JSON.stringify(respuesta));
             },
+        });
+    })
 
+    $('#descuento').change(function() {
+        var subtotal = $("#subtotal").val();
+        $.ajax({
+            url: "ajax_get_data_precios.php",
+            type: "POST",
+            data: {
+                task: 1,
+                id_producto: $('#id_producto').val(),
+                descuento: $('#descuento').val(),
+            },
+            success: function(response) {
+                $("#subtotal").val(response.subtotal);
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
         });
     })
 </script>

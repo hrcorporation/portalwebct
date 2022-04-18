@@ -14,13 +14,13 @@ $image = htmlspecialchars($_FILES['file_productos']['name']);
 $ruta = htmlspecialchars($_FILES['file_productos']['tmp_name']);
 
 $php_fileexten = strrchr($_FILES['file_productos']['name'], ".");
-$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_productos']['name'] . $php_fechatime),0, 40)) . $php_fileexten;
+$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_productos']['name'] . $php_fechatime), 0, 40)) . $php_fileexten;
 
 $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/load_data/';
 $php_tempfoto = ('/internal/load_data/' . $php_serial);
 $php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
 
-$inputFileName = $_SERVER['DOCUMENT_ROOT']. $php_tempfoto;
+$inputFileName = $_SERVER['DOCUMENT_ROOT'] . $php_tempfoto;
 
 $cls_importdata = new cls_importdata();
 $pedidos = new pedidos();
@@ -68,7 +68,8 @@ if (is_array($array_reg)) {
             $new_array['nombre_producto'] = $pedidos->get_nombre_producto_por_cod($row[0]);
             $nombre_producto = $pedidos->get_nombre_producto_por_cod($row[0]);
             $new_array['precio'] = $row[1];
-            $precio = $row[1]; $row[0];
+            $precio = $row[1];
+            $row[0];
             $codigo_producto = $row[0];
             $new_array['nombre_producto'] = $pedidos->get_nombre_producto_por_cod($row[0]);
             $nombre_producto = $pedidos->get_nombre_producto_por_cod($row[0]);
@@ -77,20 +78,14 @@ if (is_array($array_reg)) {
             /** variable final para guardar en la base de datos $new_array */
             $new_arrayf[] = $new_array;
 
-            
-                if($pedidos->validar_existencias_productos($pedidos->get_id_producto($row[0]))){
-                    if ($php_result = $pedidos->insert_precio_productos($fecha_subida,$id_producto,$codigo_producto,$nombre_producto,$precio)) {
-                        $php_estado = true;
-                    }
+            if ($pedidos->validar_existencias_productos($pedidos->get_id_producto($row[0]))) {
+                if ($php_result = $pedidos->insert_precio_productos($fecha_subida, $id_producto, $codigo_producto, $nombre_producto, $precio)) {
+                    $php_estado = true;
                 }
-            
-
-
+            }
         }
     }
 }
-
-
 
 $datos = array(
     'estado' => $php_estado,

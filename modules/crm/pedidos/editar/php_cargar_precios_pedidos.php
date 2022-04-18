@@ -7,8 +7,6 @@ require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 
-
-
 $firephp = FirePHP::getInstance(true);
 //Se crea un objeto de la clase php_clases
 $php_clases = new php_clases();
@@ -36,7 +34,6 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
         fb($precio_poductos , 'array_precios_productos', FirePHP::LOG);
     }
 
-
     // _Guarda bomba
     if($precio_bomba = $pedidos::cargar_precio_bomba_for_id_pedido($con,$id_pedido_load)){
         foreach ($precio_bomba as $key) {
@@ -56,7 +53,6 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
     }
 
 }
-
 
 $datos = array(
     'estado' => $php_estado,

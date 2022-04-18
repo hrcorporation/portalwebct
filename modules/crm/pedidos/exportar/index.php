@@ -1,5 +1,5 @@
-<?php include '../../../layout/validar_session3.php' ?>
-<?php include '../../../layout/head/head3.php'; ?>
+<?php include '../../../../layout/validar_session4.php' ?>
+<?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">                              
                 <div class="col-sm-6">
-                    <h1>Exportar Listado de salidas de EPP</h1>
+                    <h1>Exportar</h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -75,7 +75,7 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php include '../../../layout/footer/footer3.php' ?>
+<?php include '../../../../layout/footer/footer4.php' ?>
 
 </body>
 

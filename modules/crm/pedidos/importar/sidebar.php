@@ -5,7 +5,6 @@
          <img src="../../../../assets/images/logos/Logo-v8.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">CONCRETOL</span>
      </a>
-
      <!-- Sidebar -->
      <div class="sidebar">
          <!-- Sidebar Menu -->
@@ -44,6 +43,14 @@
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Importar precios productos
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-item has-treeview">
+                     <a href="../exportar/index.php" class="nav-link">
+                         <i class="nav-icon fas fa-copy"></i>
+                         <p>
+                             Exportar
                          </p>
                      </a>
                  </li>
