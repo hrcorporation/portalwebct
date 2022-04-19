@@ -42,7 +42,7 @@
                      <a href="index.php" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Importar precios productos
+                             Importar precios base
                          </p>
                      </a>
                  </li>

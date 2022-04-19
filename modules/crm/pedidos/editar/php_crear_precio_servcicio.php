@@ -17,7 +17,7 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
-if (isset($_POST['id']) && !empty($_POST['id'])) {
+if ($pedidos->validar_existencias_precio_servicio($_POST['id_tipo_servicio'], $_POST['id'])) {
     $id_pedido = $_POST['id'];
     $id_tipo_servicio = $_POST['id_tipo_servicio'];
     $nombre_tipo_servicio = $pedidos->get_nombre_servicio($id_tipo_servicio);

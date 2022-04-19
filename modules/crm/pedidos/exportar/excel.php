@@ -1,9 +1,9 @@
 <?php
 
-require '../../../vendor/autoload.php';
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 
 
 use PhpOffice\PhpSpreadsheet\Helper\Sample;
@@ -13,10 +13,12 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Style;
 
-$elementos = new elementos();
+$pedidos = new pedidos();
 
-$fecha_ini = '2022-04-01'; // GET dato de la fecha
-$fecha_fin = '2022-04-31';  // GET dato de la fecha
+$fecha_ini = $_GET['txt_fecha_ini'];
+$fecha_fin = $_GET['txt_fecha_fin'];
+$cliente = $pedidos->get_nombre_cliente($_GET['id_cliente']);
+$obra = $pedidos->get_nombre_obra($_GET['id_obra']);
 
 $abc1 = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
 
@@ -25,10 +27,9 @@ $abc2 = array('AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 
 
 
 if (isset($fecha_ini) && isset($fecha_fin)) {
-
-
+    
     // traemos los datos de la consulta
-    $datos = $elementos->excel_salidas_epp($fecha_ini, $fecha_fin);
+    $datos = $pedidos->excel_pedidos($cliente, $obra, $fecha_ini, $fecha_fin);
 
     // iniciamos la clase de excel
     $spreadsheet = new Spreadsheet();
@@ -36,40 +37,37 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
     // se define las Propiedades del documento
     $spreadsheet->getProperties()->setCreator('PORTAL CONCRETOL')
         ->setLastModifiedBy('PORTAL CONCRETOL')
-        ->setTitle('Informe de Salidas de EPP')
-        ->setSubject('Informe de Salidas de EPP')
-        ->setDescription('Informe de Salidas de EPP')
+        ->setTitle('Informe de productos')
+        ->setSubject('Informe de productos')
+        ->setDescription('Informe de productos')
         ->setKeywords('')
         ->setCategory('');
 
     // FILA 1 = NOMBRE DE COLUMNAS
     $spreadsheet->setActiveSheetIndex(0)
-        ->setCellValue('A1', 'CODIDO')
-        ->setCellValue('B1', 'FECHA')
-        ->setCellValue('C1', 'NOMBRE DEL EMPLEADO')
-        ->setCellValue('D1', 'CARGO DEL EMPLEADO')
-        ->setCellValue('E1', 'AREA DEL EMPLEADO')
-        ->setCellValue('F1', 'ELEMENTO EPP')
-        ->setCellValue('G1', 'CANTIDAD');
+        ->setCellValue('A1', 'NOMBRE CLIENTE')
+        ->setCellValue('B1', 'NOMBRE OBRA')
+        ->setCellValue('C1', 'CODIGO PRODUCTO')
+        ->setCellValue('D1', 'DESCRIPCION')
+        ->setCellValue('E1', 'PRECIO')
+        ->setCellValue('F1', 'CANTIDAD M3');
     $x = 2;
 
     if (is_array($datos)) {
         foreach ($datos as $fila) {
-            
             $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A' . $x, $fila['id'])
-                ->setCellValue('B' . $x, $fila['fecha'])
-                ->setCellValue('C' . $x, $fila['nombre_empleado'])
-                ->setCellValue('D' . $x, $fila['nombre_cargo'])
-                ->setCellValue('E' . $x, $fila['nombre_area'])
-                ->setCellValue('F' . $x, $fila['nombre_elemento_epp'])
-                ->setCellValue('G' . $x, $fila['cantidad']);
+                ->setCellValue('A' . $x, $fila['nombre_cliente'])
+                ->setCellValue('B' . $x, $fila['nombre_obra'])
+                ->setCellValue('C' . $x, $fila['codigo_producto'])
+                ->setCellValue('D' . $x, $fila['nombre_producto'])
+                ->setCellValue('E' . $x, $fila['precio_m3'])
+                ->setCellValue('F' . $x, $fila['cantidad_m3']);
             $x++;
         }
     }
     // Rename worksheet
 
-    $spreadsheet->getActiveSheet()->setTitle('Salida EPP');
+    $spreadsheet->getActiveSheet()->setTitle('Productos');
 
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('A')
@@ -90,59 +88,32 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
         ->getColumnDimension('F')
         ->setAutoSize(true);
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('G')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('H')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('I')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('J')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('K')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('L')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('M')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('N')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('O')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
 
         ->getColumnDimension('P')
@@ -292,7 +263,7 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
-    header('Content-Disposition: attachment;filename="SalidasEPP.xlsx"');
+    header('Content-Disposition: attachment;filename="Pedidos.xlsx"');
 
     header('Cache-Control: max-age=0');
 

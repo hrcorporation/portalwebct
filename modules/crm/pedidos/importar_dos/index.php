@@ -10,7 +10,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <!-- Titulo de pagina -->
-                    <h1>IMPORTAR PRECIOS BASE</h1>
+                    <h1>IMPORTAR PRECIOS DE LOS PRODUCTOS</h1>
                 </div>
                 <div class="col-sm-6">
                     <!--

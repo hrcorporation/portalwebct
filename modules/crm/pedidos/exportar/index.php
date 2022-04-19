@@ -1,13 +1,15 @@
 <?php include '../../../../layout/validar_session4.php' ?>
 <?php include '../../../../layout/head/head4.php'; ?>
-<?php include 'sidebar.php' ?>
+<?php include 'sidebar.php';
+$pedidos = new pedidos();
+?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">                              
+            <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Exportar</h1>
                 </div>
@@ -39,6 +41,29 @@
             <div class="card-body">
                 <form id="form-informe-op" name="form-informe-op" method="GET" action="excel.php">
                     <div id="contenido">
+                        <div class="row">
+                            <div class="col">
+                                <h5>Seleccionar el cliente y obra</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Nombre del cliente</label>
+                                    <select name="id_cliente" id="id_cliente" class="form-control select2 ">
+                                        <?= $pedidos->select_cliente(); ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Nombre de la obra</label>
+                                    <select name="id_obra" id="id_obra" class="form-control select2 ">
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <h5>Seleccionar Rango de Fecha</h5>
@@ -76,6 +101,33 @@
 <!-- /.content-wrapper -->
 
 <?php include '../../../../layout/footer/footer4.php' ?>
+
+<script>
+    $(function() {
+        $(".progress").hide();
+        $('.select2').select2();
+    });
+
+    $(document).ready(function() {
+        $("#id_cliente").change(function() {
+            $.ajax({
+                url: "../create/load_data.php",
+                type: "POST",
+                data: {
+                    'task': 1,
+                    'id_cliente': $('#id_cliente').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#id_obra').html(data.obras);
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+    })
+</script>
 
 </body>
 

@@ -17,7 +17,7 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
-if (isset($_POST['id']) && !empty($_POST['id'])) {
+if ($pedidos->validar_existencias_precio_bomba($_POST['id_tipo_bomba'], $_POST['id'])) {
     $id_pedido = $_POST['id'];
     $id_tipo_bomba = $_POST['id_tipo_bomba'];
     $nombre_tipo_bomba = $pedidos->get_nombre_bomba($id_tipo_bomba);

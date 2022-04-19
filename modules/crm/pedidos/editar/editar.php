@@ -1,13 +1,16 @@
 <?php include '../../../../layout/validar_session4.php' ?>
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
-
+<?php
+$pedidos = new pedidos();
+$id = $_GET['id'];
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>PEDIDOS</h1>
+                    <h1>PEDIDO # <b><?= $id ?></b></h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -21,13 +24,9 @@
         </div><!-- /.container-fluid -->
     </section>
     <section class="content">
-        <?php
-        $pedidos = new pedidos();
-        $id = $_GET['id'];
-        ?>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">PEDIDOS</h3>
+                <h3 class="card-title">PEDIDO</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -39,7 +38,7 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
-                                <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#cargar_precios">
+                                <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal_cargar">
                                     CARGAR PRECIOS
                                 </button>
                             </div>
@@ -105,7 +104,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="descuento">Descuento</label>
-                                            <input type="number" name="descuento" id="descuento" class="form-control" required="true" maxlength="2"/>
+                                            <input type="number" name="descuento" id="descuento" class="form-control validanumericos" required="true" />
                                         </div>
                                     </div>
                                     <div class="col">
@@ -117,7 +116,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="cantidad">Cantidad m3</label>
-                                            <input type="number" name="cantidad" id="cantidad" class="form-control" required="true" />
+                                            <input type="number" name="cantidad" id="cantidad" class="form-control validanumericos" required="true" />
                                         </div>
                                     </div>
                                 </div>
@@ -199,20 +198,20 @@
                                         <div class="form-group">
                                             <label for="rango">Rango M3</label>
                                             <label for="minimo">Minimo</label>
-                                            <input type="number" name="minimo" id="minimo" class="form-control" required="true" />
+                                            <input type="number" name="minimo" id="minimo" class="form-control validanumericos" required="true" />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="rango">Rango M3</label>
                                             <label for="maximo">Maximo</label>
-                                            <input type="number" name="maximo" id="maximo" class="form-control" required="true" />
+                                            <input type="number" name="maximo" id="maximo" class="form-control validanumericos" required="true" />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="precio">Precio</label>
-                                            <input type="number" name="precio" id="precio" class="form-control" required="true" />
+                                            <input type="number" name="precio" id="precio" class="form-control validanumericos" required="true" />
                                         </div>
                                     </div>
                                 </div>
@@ -292,7 +291,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="precio">Precio</label>
-                                            <input type="number" name="precio" id="precio" class="form-control" required="true" />
+                                            <input type="number" name="precio" id="precio" class="form-control validanumericos" required="true" />
                                         </div>
                                     </div>
                                 </div>
@@ -337,7 +336,88 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            <button type="submit" class="btn btn-success">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <div class="modal fade" id="modal_cargar">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">CARGAR PRECIOS</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1">
+                                        <label class="form-check-label" for="inlineRadio1" data-toggle="modal" data-target="#cargar_precios">
+                                            Cargar lista de precios existentes por codigo
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2">
+                                        <label class="form-check-label" for="inlineRadio2" data-toggle="modal" data-target="#cargar_excel">
+                                            Cargar lista de precios en un archivo excel
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <div class="modal fade" id="cargar_excel">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">CARGAR PRECIOS EXCEL</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form name="form_productos" id="form_productos" method="post">
+                                <input type="hidden" name="id" id="id" value="<?= $id ?>">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Seleccione una opcion</label>
+                                            <br>
+                                            <select class="select2 form-control" name="id_select_producto" id="id_select_producto" style="width:100%">
+                                                <option selected disabled value="">Seleccione</option>
+                                                <option value="1">Actualizar toda la lista</option>
+                                                <option value="2">Adicionar precios</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Seleccionar Archivo</label>
+                                            <!-- input para seleccionar el archivo -->
+                                            <input type="file" class="form-control" name="file_productos" id="file_productos" disabled="true" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <!-- boton para guardar el archivo -->
+                                            <button type="submit" class="btn btn-success" name="btn_subirarchivo" id="btn_subirarchivo" onclick="return confirm('¿Desea agregar los productos?')">
+                                                Subir
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +437,15 @@
         $(".progress").hide();
         $('.select2').select2();
     });
-
+    $(function() {
+        $('.validanumericos').keypress(function(e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            })
+            .on("cut copy paste", function(e) {
+                e.preventDefault();
+            });
+    });
     $(document).ready(function() {
         // Formulacio Cargar Precios
         $("#form_cargar_precio_servicio").on('submit', (function(e) {
@@ -768,4 +856,63 @@
             },
         });
     })
+
+    $("#id_select_producto").change(function() {
+        var producto = $("#id_select_producto").val();
+        console.log(producto);
+        if (producto == 1) {
+            $("#file_productos").attr('disabled', false);
+            $("#form_productos").on('submit', (function(e) {
+                $('#cargar_excel').modal('toggle');
+                e.preventDefault();
+                $.ajax({
+                    url: "../importar_dos/ajax_productos_uno.php",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        console.log(data);
+                        if (data.estado) {
+                            toastr.success('Guardado Correctamente');
+                        } else {
+                            toastr.info(data.result);
+                        }
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                        location.reload();
+                    }
+                });
+            }));
+        } else if (producto == 2) {
+            $("#file_productos").attr('disabled', false);
+            $("#form_productos").on('submit', (function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "../importar_dos/ajax_productos_dos.php",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        console.log(data);
+                        if (data.estado) {
+                            toastr.success('Guardado Correctamente');
+                        } else {
+                            toastr.info(data.result);
+                        }
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                        location.reload();
+                    }
+                });
+            }));
+        } else {
+            $("#file_productos").attr('disabled', true);
+        }
+    });
 </script>
