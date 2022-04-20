@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <label>Seleccionar Archivo</label>
                                 <!-- input para seleccionar el archivo -->
-                                <input type="file" class="form-control" name="file_productos" id="file_productos" disabled="true"/>
+                                <input type="file" class="form-control" name="file_productos" id="file_productos" disabled="true" />
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                     }
                 });
             }));
-        } else if(producto == 2){
+        } else if (producto == 2) {
             $("#file_productos").attr('disabled', false);
             $("#form_productos").on('submit', (function(e) {
                 e.preventDefault();
@@ -138,7 +138,7 @@
                     }
                 });
             }));
-        }else{
+        } else {
             $("#file_productos").attr('disabled', true);
         }
     });

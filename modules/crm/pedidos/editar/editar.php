@@ -2,8 +2,8 @@
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 <?php
-$pedidos = new pedidos();
-$id = $_GET['id'];
+    $pedidos = new pedidos();
+    $id = $_GET['id'];
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -313,6 +313,41 @@ $id = $_GET['id'];
                 </div>
                 <!-- /.modal-content -->
             </div>
+            <div class="modal fade" id="modal_cargar">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">CARGAR PRECIOS</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1">
+                                        <label class="form-check-label" for="inlineRadio1" data-toggle="modal" data-target="#cargar_precios">
+                                            Cargar lista de precios existentes por codigo
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2">
+                                        <label class="form-check-label" for="inlineRadio2" data-toggle="modal" data-target="#cargar_excel">
+                                            Cargar lista de precios en un archivo excel
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
             <div class="modal fade" id="cargar_precios">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -341,39 +376,6 @@ $id = $_GET['id'];
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <div class="modal fade" id="modal_cargar">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">CARGAR PRECIOS</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1">
-                                        <label class="form-check-label" for="inlineRadio1" data-toggle="modal" data-target="#cargar_precios">
-                                            Cargar lista de precios existentes por codigo
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2">
-                                        <label class="form-check-label" for="inlineRadio2" data-toggle="modal" data-target="#cargar_excel">
-                                            Cargar lista de precios en un archivo excel
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

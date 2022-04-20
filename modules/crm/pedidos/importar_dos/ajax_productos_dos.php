@@ -64,12 +64,11 @@ if (is_array($array_reg)) {
             $precio = $row[2];
             $cantidad = $row[3];
             
-            if($pedidos->validar_existencias_productos($pedidos->get_id_producto($row[0]))){
+            if($pedidos->validar_existencias_precio_producto($pedidos->get_id_producto($row[0]), $id_pedido)){
                 if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
                     $php_estado = true;
                 }
             }
-
         }
     }
 }

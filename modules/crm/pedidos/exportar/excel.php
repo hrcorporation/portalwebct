@@ -29,7 +29,7 @@ $abc2 = array('AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 
 if (isset($fecha_ini) && isset($fecha_fin)) {
     
     // traemos los datos de la consulta
-    $datos = $pedidos->excel_pedidos($cliente, $obra, $fecha_ini, $fecha_fin);
+    $datos = $pedidos->excel_productos($cliente, $obra, $fecha_ini, $fecha_fin);
 
     // iniciamos la clase de excel
     $spreadsheet = new Spreadsheet();
@@ -115,71 +115,38 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
         ->getColumnDimension('O')
         ->setAutoSize(true);
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('P')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('Q')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('R')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('S')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('T')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('U')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('V')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('W')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('X')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('Y')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('Z')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
 
         ->getColumnDimension('AA')
@@ -248,9 +215,7 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
             'endColor' => [
                 'argb' => 'DE9D24',
             ],
-
         ],
-
     ];
 
     $spreadsheet->getActiveSheet()->getStyle('A1:AJ1')->applyFromArray($styleArray);
@@ -262,9 +227,7 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
     // Redirect output to a client’s web browser (Xlsx)
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-
     header('Content-Disposition: attachment;filename="Pedidos.xlsx"');
-
     header('Cache-Control: max-age=0');
 
     // If you're serving to IE 9, then the following may be needed
@@ -276,9 +239,7 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
     // header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 
     header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
-
     header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-
     header('Pragma: public'); // HTTP/1.0
 
     $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');

@@ -55,7 +55,7 @@ $spreadsheet = $reader->load($inputFileName);
 $array_reg = $spreadsheet->getActiveSheet()->toArray();
 
 if (is_array($array_reg)) {
-    $php_result = $pedidos->editar_status_productos();
+    $php_result = $pedidos->editar_status_precio_base_productos();
     $id_pedido = $_POST['id'];
     foreach ($array_reg as $row) {
         if (!is_null($row[0])) {
@@ -66,7 +66,7 @@ if (is_array($array_reg)) {
             $cantidad = $row[3];
             /** variable final para guardar en la base de datos $new_array */
 
-            if ($pedidos->validar_existencias_productos($pedidos->get_id_producto($row[0]))) {
+            if ($pedidos->validar_existencias_precio_producto($pedidos->get_id_producto($row[0]), $id_pedido)) {
                 if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
                     $php_estado = true;
                 }
