@@ -1021,4 +1021,13 @@ class pedidos extends conexionPDO
             return false; // Error en la sentencia sql
         }
     }
+
+
+    public function calcularDescuento($precio_base, $porcentaje)
+    {
+        $resultado = 0;
+        $resultado = ($precio_base * (1 - ($porcentaje / 100)));
+
+        return $resultado;
+    }
 }

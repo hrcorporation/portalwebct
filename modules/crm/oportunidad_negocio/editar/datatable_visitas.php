@@ -10,9 +10,9 @@ require '../../../../vendor/autoload.php';
 $php_clases = new php_clases();
 $op = new oportunidad_negocio();
 
-$id_cliente = $_POST['id_cliente'];
+$id_oportunidad = $_POST['id_oportunidad'];
 
-$data = $op->datatable_visita($id_cliente);
+$data = $op->datatable_visita($id_oportunidad);
 
     
 

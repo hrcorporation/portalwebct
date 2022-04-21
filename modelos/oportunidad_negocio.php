@@ -205,7 +205,7 @@ class oportunidad_negocio extends conexionPDO
     public function get_cantidad_visitas($id)
     {
         $this->id = $id;
-        $sql = "SELECT COUNT(id) as cantidad_visitas FROM `cliente_has_visitas` WHERE `id_cliente` =  :id";
+        $sql = "SELECT COUNT(id) as cantidad_visitas FROM `cliente_has_visitas` WHERE `id_oportunidad` =  :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -265,7 +265,7 @@ class oportunidad_negocio extends conexionPDO
     {
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
-        $sql = "SELECT `id_cliente`,  cliente_has_visitas.fecha,ct63_oportuniodad_negocio.asesora_comercial, ct63_oportuniodad_negocio.nidentificacion, resultado_vista.descripcion, ct63_oportuniodad_negocio.razon_social,ct63_oportuniodad_negocio.telefono_cliente,`nombre_motivo`, `obs` FROM `cliente_has_visitas`INNER JOIN resultado_vista ON cliente_has_visitas.resultado = resultado_vista.id INNER JOIN ct63_oportuniodad_negocio ON cliente_has_visitas.id_cliente = ct63_oportuniodad_negocio.id WHERE cliente_has_visitas.fecha BETWEEN :fecha_ini AND :fecha_fin ORDER BY `fecha` DESC;";
+        $sql = "SELECT `id_oportunidad`,  cliente_has_visitas.fecha,ct63_oportuniodad_negocio.asesora_comercial, ct63_oportuniodad_negocio.nidentificacion, resultado_vista.descripcion, ct63_oportuniodad_negocio.razon_social,ct63_oportuniodad_negocio.telefono_cliente,`nombre_motivo`, `obs` FROM `cliente_has_visitas`INNER JOIN resultado_vista ON cliente_has_visitas.resultado = resultado_vista.id INNER JOIN ct63_oportuniodad_negocio ON cliente_has_visitas.id_oportunidad = ct63_oportuniodad_negocio.id WHERE cliente_has_visitas.fecha BETWEEN :fecha_ini AND :fecha_fin ORDER BY `fecha` DESC;";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -280,7 +280,7 @@ class oportunidad_negocio extends conexionPDO
             if ($num_reg > 0) {
                 // Recorrer limpieza de datos obtenidos en la consulta
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['id_cliente'] = $fila['id_cliente'];
+                    $data_array['id_oportunidad'] = $fila['id_oportunidad'];
                     $data_array['asesora_comercial'] = SELF::get_nombre_asesora($fila['asesora_comercial']);
                     $data_array['fecha'] = $fila['fecha'];
                     $data_array['nidentificacion'] = $fila['nidentificacion'];
@@ -970,12 +970,12 @@ class oportunidad_negocio extends conexionPDO
         }
     }
 
-    public function getdate_for_id($id_cliente)
+    public function getdate_for_id($id_oportunidad)
     {
-        $sql = "SELECT id, `fecha` FROM `cliente_has_visitas`  WHERE id_cliente = :id_cliente ORDER BY `cliente_has_visitas`.`fecha` DESC  LIMIT 1";
+        $sql = "SELECT id, `fecha` FROM `cliente_has_visitas`  WHERE id_oportunidad = :id_oportunidad ORDER BY `cliente_has_visitas`.`fecha` DESC  LIMIT 1";
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_oportunidad', $id_oportunidad, PDO::PARAM_INT);
 
         //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
         // Ejecuta SQL
@@ -1077,12 +1077,12 @@ class oportunidad_negocio extends conexionPDO
         }
     }
 
-    public function datatable_visita($id_cliente)
+    public function datatable_visita($id_oportunidad)
     {
-        $sql = "SELECT cliente_has_visitas.id, `id_cliente`, `fecha`, `resultado`, resultado_vista.descripcion as resultado_visita, `obs` FROM `cliente_has_visitas` INNER JOIN resultado_vista ON cliente_has_visitas.resultado = resultado_vista.id  WHERE id_cliente = :id_cliente";
+        $sql = "SELECT cliente_has_visitas.id, `id_oportunidad`, `fecha`, `resultado`, resultado_vista.descripcion as resultado_visita, `obs` FROM `cliente_has_visitas` INNER JOIN resultado_vista ON cliente_has_visitas.resultado = resultado_vista.id  WHERE id_oportunidad = :id_oportunidad";
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_oportunidad', $id_oportunidad, PDO::PARAM_INT);
 
         //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
         // Ejecuta SQL
@@ -1093,7 +1093,7 @@ class oportunidad_negocio extends conexionPDO
                 // Recorrer limpieza de datos obtenidos en la consulta
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $data_array['id'] = $fila['id'];
-                    $data_array['id_cliente'] = $fila['id_cliente'];
+                    $data_array['id_oportunidad'] = $fila['id_oportunidad'];
                     $data_array['fecha'] = $fila['fecha'];
                     $data_array['resultado'] = $fila['resultado_visita'];
                     $data_array['obs'] = $fila['obs'];
@@ -1108,13 +1108,13 @@ class oportunidad_negocio extends conexionPDO
         }
     }
 
-    public function crear_visita($id_cliente, $fecha, $resultado, $id_motivo, $nombre, $observacion)
+    public function crear_visita($id_oportunidad, $fecha, $resultado, $id_motivo, $nombre, $observacion)
     {
-        $sql = "INSERT INTO `cliente_has_visitas`(`id_cliente`, `fecha`, `resultado`, `id_motivo_perdida`, `nombre_motivo`, `obs`) VALUES (:id_cliente, :fecha, :resultado, :id_motivo_perdida, :nombre_motivo, :observacion)";
+        $sql = "INSERT INTO `cliente_has_visitas`(`id_oportunidad`, `fecha`, `resultado`, `id_motivo_perdida`, `nombre_motivo`, `obs`) VALUES (:id_oportunidad, :fecha, :resultado, :id_motivo_perdida, :nombre_motivo, :observacion)";
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
         // Marcadores
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_oportunidad', $id_oportunidad, PDO::PARAM_INT);
         $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
         $stmt->bindParam(':resultado', $resultado, PDO::PARAM_INT);
         $stmt->bindParam(':id_motivo_perdida', $id_motivo, PDO::PARAM_INT);

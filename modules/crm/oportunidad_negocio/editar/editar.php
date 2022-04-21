@@ -449,7 +449,7 @@
                     </div>
                     <div class="modal-body">
                         <form name="form_add_visita" id="form_add_visita" method="post">
-                            <input type="hidden" name="id_cliente" id="id_clente" value="<?php echo intval($_GET['id']) ?>">
+                            <input type="hidden" name="id_oportunidad" id="id_oportunidad" value="<?php echo intval($_GET['id']) ?>">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -518,7 +518,7 @@
                     <div class="modal-body">
                         <form name="form_edit_visita" id="form_edit_visita" method="post">
                             <input type="hidden" name="id_visita" id="id_visita" />
-                            <input type="hidden" name="id_clente_edit" id="id_clente_edit" value="<?php echo intval($_GET['id']) ?>">
+                            <input type="hidden" name="id_oportunidad_edit" id="id_oportunidad_edit" value="<?php echo intval($_GET['id']) ?>">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -734,7 +734,7 @@
         $("#fecha_vist").focus(function() {
             let formData = new FormData();
 
-            formData.append('id_cliente', <?php echo intval($_GET['id']); ?>);
+            formData.append('id_oportunidad', <?php echo intval($_GET['id']); ?>);
 
             $.ajax({
                 url: "fecha_min.php",
@@ -756,7 +756,7 @@
         });
 
 
-        function datatable_visitas(id_cliente) {
+        function datatable_visitas(id_oportunidad) {
             var table = $('#table_visitas').DataTable({
                 //"processing": true,
                 //"scrollX": true,
@@ -764,7 +764,7 @@
                 "ajax": {
                     "url": "datatable_visitas.php",
                     'data': {
-                        'id_cliente': id_cliente,
+                        'id_oportunidad': id_oportunidad,
                     },
                     'type': 'post',
                     "dataSrc": ""
@@ -815,8 +815,8 @@
             table_visitas = $('#table_visitas').DataTable();
             table_visitas.destroy();
         }
-        var id_cliente = <?php echo intval($_GET['id']); ?>;
-        table_visitas = datatable_visitas(id_cliente);
+        var id_oportunidad = <?php echo intval($_GET['id']); ?>;
+        table_visitas = datatable_visitas(id_oportunidad);
         setInterval(function() {
             table_visitas.ajax.reload(null, false);
         }, 5000);

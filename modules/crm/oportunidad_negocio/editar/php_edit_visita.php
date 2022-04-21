@@ -18,7 +18,7 @@ if (isset($_POST['id_visita']) && !empty($_POST['id_visita']) &&
     isset($_POST['edit_fecha_vist']) && !empty($_POST['edit_fecha_vist'])) {
     
     $id = $_POST['id_visita'];
-    $id_cliente = intval($_POST['id_clente_edit']);
+    $id_oportunidad = intval($_POST['id_oportunidad_edit']);
     $fecha = $_POST['edit_fecha_vist'];
     $resultado = $_POST['edit_result_visit'];
     if (!empty($_POST['edit_motivo_perdida'])) {
@@ -39,11 +39,11 @@ if (isset($_POST['id_visita']) && !empty($_POST['id_visita']) &&
      */
 
     if ($id_lastinsert = $op->edit_visita($id, $fecha, $resultado, $id_motivo_perdida, $nombre_motivo, $observacion)) {
-        if (is_array($arraydata = $op->getdate_for_id(intval($id_cliente)))) {
+        if (is_array($arraydata = $op->getdate_for_id(intval($id_oportunidad)))) {
             $php_estado = true;
             foreach ($arraydata as $key) {
                 if (intval($id) == intval($key['id'])) {
-                    $op->actualizar_resultado_op($id_cliente, $resultado);
+                    $op->actualizar_resultado_op($id_oportunidad, $resultado);
                 }
             }
         }
@@ -51,14 +51,14 @@ if (isset($_POST['id_visita']) && !empty($_POST['id_visita']) &&
     } else {
         $php_estado = false;
     }
-    $st = $op->get_id_status($id_cliente);
+    $st = $op->get_id_status($id_oportunidad);
 
     if($st == 3 || $st == 4){
         $resultado = 2;
-        $op->actualizar_resultado($id_cliente, $resultado);
+        $op->actualizar_resultado($id_oportunidad, $resultado);
     }else{
         $resultado = 1;
-        $op->actualizar_resultado($id_cliente, $resultado);
+        $op->actualizar_resultado($id_oportunidad, $resultado);
     }
 } else {
     $errores = "faltan campos requeridos";
