@@ -116,6 +116,7 @@ if(isset($_POST['usuario']) && !empty($_POST['usuario']) && isset($_POST['contra
             case 28:
             case 29:
             case 30:
+            case 32:
                 $php_codigo = "menu/dashboard.php";
                 $php_estado = true;
             break;

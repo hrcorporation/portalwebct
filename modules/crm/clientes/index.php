@@ -21,8 +21,7 @@ switch ($rol_user) {
     case 26:
     case 27:
     case 20:
-
-
+    case 32:
         $php_clases = new php_clases();
         $t1_terceros = new t1_terceros();
 

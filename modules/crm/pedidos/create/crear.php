@@ -74,9 +74,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-2">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-block btn-success">Guardar</button>
+                                    <button type="submit" class="btn btn-block btn-success"><i class="fas fa-save"></i> Guardar</button>
                                 </div>
                             </div>
                         </div>

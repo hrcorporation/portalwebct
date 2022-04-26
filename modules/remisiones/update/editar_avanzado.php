@@ -11,12 +11,14 @@ require '../../../vendor/autoload.php'; ?>
 switch ($rol_user) {
     case 1:
     case 8:
+    case 12:
     case 15:
     case 16:
     case 20:
     case 29:
     case 22:
     case 26:
+    case 32:
         $t1_terceros = new t1_terceros();
         $t4_productos = new t4_productos();
         $t5_obras = new t5_obras();
@@ -107,11 +109,13 @@ switch ($rol_user) {
                                 switch ($rol_user) {
                                     case 1:
                                         case 8:
+                                        case 12:
                                         case 15:
                                         case 16:
                                         case 20:
                                         case 29:
                                         case 22:
+                                        
                                         $permisos_hora = " ";
                                     break;
                                     default:
@@ -136,6 +140,7 @@ switch ($rol_user) {
                                 switch ($rol_user) {
                                     case 1:
                                         case 8:
+                                        case 12:
                                         case 15:
                                         case 16:
                                         case 20:
@@ -167,6 +172,7 @@ switch ($rol_user) {
                                 switch ($rol_user) {
                                     case 1:
                                         case 8:
+                                        case 12:
                                         case 15:
                                         case 16:
                                         case 20:
@@ -236,6 +242,7 @@ switch ($rol_user) {
                                     case 1:
                                     
                                             case 8:
+                                            case 12:
                                             case 15:
                                             case 16:
                                             case 20:
@@ -318,6 +325,7 @@ switch ($rol_user) {
                                 switch ($rol_user) {
                                     case 1:
                                         case 8:
+                                        case 12:
                                         case 15:
                                         case 16:
                                         case 20:
@@ -407,6 +415,7 @@ switch ($rol_user) {
                                 switch ($rol_user) {
                                     case 1:
                                         case 8:
+                                        case 12:
                                         case 15:
                                         case 16:
                                         case 20:
@@ -512,6 +521,7 @@ switch ($rol_user) {
                                 switch ($rol_user) {
                                     case 1:
                                         case 8:
+                                        case 12:
                                         case 15:
                                         case 16:
                                         case 20:
@@ -584,6 +594,7 @@ switch ($rol_user) {
                                 switch ($rol_user) {
                                     case 1:
                                         case 8:
+                                        case 12:
                                         case 15:
                                         case 16:
                                         case 20:
@@ -659,6 +670,7 @@ switch ($rol_user) {
                                 switch ($rol_user) {
                                     case 1:
                                         case 8:
+                                        case 12:
                                         case 15:
                                         case 16:
                                         case 20:

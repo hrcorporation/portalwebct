@@ -15,7 +15,7 @@ $id = $_POST['id'];
 
 $id_usuario = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
 
-if ($_SESSION['rol_funcionario'] == 1) {
+if ($_SESSION['rol_funcionario'] == 1 || $_SESSION['rol_funcionario'] == 32) {
     $data = $oportunidad_negocio->dt_oportunidad_negocio($id);
 } else if ($_SESSION['rol_funcionario'] == 12 || $_SESSION['rol_funcionario'] == 13) {
     $data = $oportunidad_negocio->dt_oportunidad_negocio_por_id($id_usuario, $id);

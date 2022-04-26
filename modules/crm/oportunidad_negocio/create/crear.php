@@ -58,8 +58,8 @@ $php_clases = new php_clases();
 
                                     <?php
                                     $id_usuario = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
-                                   
-                                    if (intval($_SESSION['rol_funcionario']) == 1) :
+
+                                    if (intval($_SESSION['rol_funcionario']) == 1 || $_SESSION['rol_funcionario'] == 32) :
                                     ?>
                                         <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
                                             <?php echo $oportunidad_negocio->select_comercial() ?>
@@ -93,7 +93,7 @@ $php_clases = new php_clases();
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Tipo Cliente</label>
-                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required = "true">
+                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_tipo_cliente() ?>
                                     </select>
                                 </div>
@@ -111,7 +111,7 @@ $php_clases = new php_clases();
                             <div class="col-2 col-sm-3">
                                 <div class="form-group">
                                     <label for="">Departamento</label>
-                                    <select name="departamento" id="departamento" class="form-control select2" required = "true">
+                                    <select name="departamento" id="departamento" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_departamento(null); ?>
                                     </select>
                                 </div>
@@ -119,7 +119,7 @@ $php_clases = new php_clases();
                             <div class="col-2 col-sm-3">
                                 <div class="form-group">
                                     <label for="municipio">Municipio</label>
-                                    <select name="municipio" id="municipio" class="form-control select2" required = "true">
+                                    <select name="municipio" id="municipio" class="form-control select2" required="true">
 
                                     </select>
                                 </div>
@@ -127,7 +127,7 @@ $php_clases = new php_clases();
                             <div class="col-4 col-sm-2">
                                 <div class="form-group">
                                     <label for="">Zona/Comuna</label>
-                                    <select name="comuna" id="comuna" class="form-control select2" required = "true">
+                                    <select name="comuna" id="comuna" class="form-control select2" required="true">
 
                                     </select>
                                 </div>
@@ -282,7 +282,6 @@ $php_clases = new php_clases();
                 $("#tipo_plan_maestro").attr('disabled', true);
             }
         });
-
 
         $("#municipio").change(function() {
             $.ajax({

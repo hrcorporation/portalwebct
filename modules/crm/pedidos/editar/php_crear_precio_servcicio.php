@@ -21,12 +21,14 @@ if ($pedidos->validar_existencias_precio_servicio($_POST['id_tipo_servicio'], $_
     $id_pedido = $_POST['id'];
     $id_tipo_servicio = $_POST['id_tipo_servicio'];
     $nombre_tipo_servicio = $pedidos->get_nombre_servicio($id_tipo_servicio);
-    $precio = $_POST['precio'];
+    $precio = str_replace(".","",htmlspecialchars($_POST['precio']));
     if ($pedidos->crear_precio_servicio($id_pedido, $id_tipo_servicio, $nombre_tipo_servicio, $precio)) {
         $php_estado = true;
     } else {
         $log = 'No Guardo Correctamente';
     }
+}else{
+    $php_error = "El servicio ya se encuentra guardado con este pedido";
 }
 $datos = array(
     'estado' => $php_estado,

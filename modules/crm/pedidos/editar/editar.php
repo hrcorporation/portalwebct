@@ -2,8 +2,8 @@
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 <?php
-    $pedidos = new pedidos();
-    $id = $_GET['id'];
+$pedidos = new pedidos();
+$id = $_GET['id'];
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -39,21 +39,21 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal_cargar">
-                                    CARGAR PRECIOS
+                                    <i class="fas fa-download"></i> CARGAR PRECIOS
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-9 col-sm-12">
+                        <div class="col-md-8 col-sm-12">
                             <div class="form-group">
                                 <label>PRODUCTOS</label>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             <div class="form-group">
                                 <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#crear_precio_producto">
-                                    ADICIONAR PRECIO PRODUCTO
+                                    <i class="fas fa-plus"></i> ADICIONAR PRECIO PRODUCTO
                                 </button>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-success">Guardar</button>
+                                            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#crear_precio_bomba">
-                                    ADICIONAR PRECIO BOMBA
+                                <i class="fas fa-plus"></i> ADICIONAR PRECIO BOMBA
                                 </button>
                             </div>
                         </div>
@@ -189,7 +189,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="id_tipo_bomba">Tipo de bomba</label>
-                                            <select class="select2 form-control" name="id_tipo_bomba" id="id_tipo_bomba">
+                                            <select class="form-control select2" name="id_tipo_bomba" id="id_tipo_bomba">
                                                 <?= $pedidos->select_bomba(); ?>
                                             </select>
                                         </div>
@@ -211,7 +211,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="precio">Precio</label>
-                                            <input type="number" name="precio" id="precio" class="form-control validanumericos" required="true" />
+                                            <input type="text" name="precio" id="precio" class="form-control" required="true" onkeyup="format(this)" />
                                         </div>
                                     </div>
                                 </div>
@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-success">Guardar</button>
+                                            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -244,7 +244,7 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#crear_precio_servicio_adicional">
-                                    ADICIONAR SERVICIO
+                                <i class="fas fa-plus"></i> ADICIONAR SERVICIO
                                 </button>
                             </div>
                         </div>
@@ -283,7 +283,7 @@
                                         <div class="form-group">
                                             <label for="id_tipo_servicio">Tipo de servicio</label>
                                             <br>
-                                            <select class="form-control" name="id_tipo_servicio" id="id_tipo_servicio">
+                                            <select class="form-control select2" name="id_tipo_servicio" id="id_tipo_servicio" style="width:100%">
                                                 <?= $pedidos->select_servicio(); ?>
                                             </select>
                                         </div>
@@ -291,7 +291,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="precio">Precio</label>
-                                            <input type="number" name="precio" id="precio" class="form-control validanumericos" required="true" />
+                                            <input type="text" name="precio" id="precio" class="form-control" required="true" onkeyup="format(this)" />
                                         </div>
                                     </div>
                                 </div>
@@ -303,7 +303,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-success">Guardar</button>
+                                            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -325,21 +325,15 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1">
-                                        <label class="form-check-label" for="inlineRadio1" data-toggle="modal" data-target="#cargar_precios">
-                                            Cargar lista de precios existentes por codigo
-                                        </label>
+                                    <div class="btn-group">
+                                        <input type="hidden" class="btn-check" name="options" id="option1" autocomplete="off" />
+                                        <label class="btn btn-primary" for="option1" data-toggle="modal" data-target="#cargar_precios">Cargar lista de precios existentes por codigo</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2">
-                                        <label class="form-check-label" for="inlineRadio2" data-toggle="modal" data-target="#cargar_excel">
-                                            Cargar lista de precios en un archivo excel
-                                        </label>
+                                    <div class="btn-group">
+                                        <input type="hidden" class="btn-check" name="options" id="option2" autocomplete="off" />
+                                        <label class="btn btn-primary" for="option2" data-toggle="modal" data-target="#cargar_excel">Cargar lista de precios en un archivo excel</label>
                                     </div>
                                 </div>
                             </div>
@@ -369,6 +363,11 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            <label for=""></label>
+                                        </div>
+                                    </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-success">Guardar</button>
@@ -414,6 +413,11 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            <label for=""></label>
+                                        </div>
+                                    </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <!-- boton para guardar el archivo -->
@@ -439,6 +443,7 @@
         $(".progress").hide();
         $('.select2').select2();
     });
+
     $(function() {
         $('.validanumericos').keypress(function(e) {
                 if (isNaN(this.value + String.fromCharCode(e.charCode)))
@@ -448,6 +453,7 @@
                 e.preventDefault();
             });
     });
+
     $(document).ready(function() {
         // Formulacio Cargar Precios
         $("#form_cargar_precio_servicio").on('submit', (function(e) {
@@ -462,7 +468,7 @@
                 processData: false,
                 success: function(data) {
                     if (data.estado) {
-                        toastr.success('Se ha Cargado los precios correctamente');
+                        toastr.success('Se ha cargado los precios correctamente');
                     } else {
                         toastr.warning(data.errores);
                     }
@@ -513,6 +519,7 @@
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
+                        table_bomba.ajax.reload();
                     } else {
                         toastr.warning(data.errores);
                     }
@@ -553,7 +560,7 @@
     $(document).ready(function() {
         var n = 1;
         var id_pedido = <?= $id ?>;
-        var table = $('#table_precio_productos').DataTable({
+        var table_producto = $('#table_precio_productos').DataTable({
             "ajax": {
                 "url": "data_table_productos.php",
                 'data': {
@@ -590,8 +597,9 @@
             ],
             //"scrollX": true,
         });
-        table.on('order.dt search.dt', function() {
-            table.column(0, {
+
+        table_producto.on('order.dt search.dt', function() {
+            table_producto.column(0, {
                 search: 'applied',
                 order: 'applied'
             }).nodes().each(function(cell, i) {
@@ -599,7 +607,7 @@
             });
         }).draw();
         $('#table_precio_productos tbody').on('click', 'button', function() {
-            var data = table.row($(this).parents('tr')).data();
+            var data = table_producto.row($(this).parents('tr')).data();
             var id = data['id'];
             Swal.fire({
                 title: '¿Esta Seguro(a) que desea eliminar el producto?', // mensaje de la alerta
@@ -623,9 +631,8 @@
                             if (response.estado) {
                                 Swal.fire(
                                     'El producto fue eliminado correctamente',
-                                    'success'
                                 )
-                                table.ajax.reload();
+                                table_producto.ajax.reload();
                             } else {
                                 console.log("error");
                             }
@@ -638,14 +645,14 @@
             })
         });
         setInterval(function() {
-            table.ajax.reload(null, false);
-        }, 10000);
+            table_producto.ajax.reload(null, false);
+        }, 5000);
     })
 
     $(document).ready(function() {
         var n = 1;
         var id_pedido = <?= $id ?>;
-        var table = $('#table_precio_bomba').DataTable({
+        var table_bomba = $('#table_precio_bomba').DataTable({
             "ajax": {
                 "url": "data_table_bomba.php",
                 'data': {
@@ -682,8 +689,8 @@
             ],
             //"scrollX": true,
         });
-        table.on('order.dt search.dt', function() {
-            table.column(0, {
+        table_bomba.on('order.dt search.dt', function() {
+            table_bomba.column(0, {
                 search: 'applied',
                 order: 'applied'
             }).nodes().each(function(cell, i) {
@@ -691,7 +698,7 @@
             });
         }).draw();
         $('#table_precio_bomba tbody').on('click', 'button', function() {
-            var data = table.row($(this).parents('tr')).data();
+            var data = table_bomba.row($(this).parents('tr')).data();
             var id = data['id'];
             Swal.fire({
                 title: '¿Esta Seguro(a) que desea eliminar la bomba?', // mensaje de la alerta
@@ -715,12 +722,10 @@
                             if (response.estado) {
                                 Swal.fire(
                                     'La bomba fue eliminada correctamente',
-                                    'success'
                                 )
-                                table.ajax.reload();
+                                table_bomba.ajax.reload();
                             } else {
                                 console.log("error");
-
                             }
                         },
                         error: function(respuesta) {
@@ -731,8 +736,8 @@
             })
         });
         setInterval(function() {
-            table.ajax.reload(null, false);
-        }, 10000);
+            table_bomba.ajax.reload(null, false);
+        }, 5000);
     })
 
     $(document).ready(function() {
@@ -802,7 +807,6 @@
                             if (response.estado) {
                                 Swal.fire(
                                     'El servicio fue eliminado correctamente',
-                                    'success'
                                 )
                                 table.ajax.reload();
                             } else {
@@ -818,7 +822,7 @@
         });
         setInterval(function() {
             table.ajax.reload(null, false);
-        }, 10000);
+        }, 5000);
     })
 
     $('#id_producto').change(function() {
@@ -884,7 +888,7 @@
                     },
                     error: function(respuesta) {
                         alert(JSON.stringify(respuesta));
-                        location.reload();
+                        //location.reload();
                     }
                 });
             }));
@@ -909,7 +913,7 @@
                     },
                     error: function(respuesta) {
                         alert(JSON.stringify(respuesta));
-                        location.reload();
+                        //location.reload();
                     }
                 });
             }));
@@ -917,4 +921,18 @@
             $("#file_productos").attr('disabled', true);
         }
     });
+
+
+    function format(input) {
+        var num = input.value.replace(/\./g, '');
+        if (!isNaN(num)) {
+            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+            num = num.split('').reverse().join('').replace(/^[\.]/, '');
+            input.value = num;
+
+        } else {
+
+            input.value = input.value.replace(/[^\d\.]*/g, '');
+        }
+    }
 </script>

@@ -25,15 +25,16 @@ if ($pedidos->validar_existencias_precio_producto($_POST['id_producto'], $_POST[
     $id_precio_base = $pedidos->get_id_precio_base($id_producto);
     $precio_base = $pedidos->get_precio_base($id_producto);
     $cantidad_m3 = $_POST['cantidad'];
-    // $subtotal = doubleval($precio_base) * (1 - (doubleval($porcentaje / 100)));
     $subtotal = $pedidos->calcularDescuento($precio_base,$porcentaje);
     $precio_total_pedido = $subtotal * (doubleval($cantidad_m3));
     $precio_m3 = $subtotal; // Subtotal
     if ($pedidos->crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $precio_total_pedido)) {
         $php_estado = true;
     } else {
-        $log = 'Producto ya agregado';
+        $php_error = 'Error inesperado';
     }
+}else{
+    $php_error = "El producto ya se encuentra guardado con este pedido";
 }
 $datos = array(
     'estado' => $php_estado,

@@ -436,8 +436,6 @@
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-
-
         <div class="modal fade" id="crear_visita">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -503,8 +501,6 @@
             </div>
             <!-- /.modal-content -->
         </div>
-
-
         <!--- Modal Editar Visita -->
         <div class="modal fade" id="edit_visita">
             <div class="modal-dialog">
@@ -533,9 +529,7 @@
                                         <label for="edit_result_visit">Resultado de la Visita</label>
                                         <select class="select2 form-control" name="edit_result_visit" id="edit_result_visit">
                                             <?php echo $op->select_resultado_visita($status_op) ?>
-
                                         </select>
-
                                     </div>
                                 </div>
                             </div>
@@ -546,7 +540,6 @@
                                         <select class="select2 form-control" name="edit_motivo_perdida" id="edit_motivo_perdida">
                                             <?php echo $op->select_motivo() ?>
                                         </select>
-
                                     </div>
                                 </div>
                             </div>
@@ -566,19 +559,15 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
             <!-- /.modal-content -->
         </div>
-
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-
 
 <!-- /.modal-dialog -->
 </div>
@@ -648,15 +637,16 @@
                 $("#tipo_plan_maestro").attr('disabled', false);
             }
         });
+
         $('#check_hab_fecha_contacto').click(function() {
             if (!$(this).is(':checked')) {
                 $("#fecha_contacto").attr('disabled', true);
 
             } else {
                 $("#fecha_contacto").attr('disabled', false);
-
             }
         });
+
         $('#check_hab_dpt_municipio').click(function() {
             if (!$(this).is(':checked')) {
                 $("#departamento").attr('disabled', true);
@@ -670,6 +660,7 @@
                 $("#barrio").attr('disabled', false);
             }
         });
+
         $('#check_hab_datos_cliente').click(function() {
             if (!$(this).is(':checked')) {
                 $("#nit").attr('disabled', true);
@@ -683,6 +674,7 @@
                 $("#telefono_cliente").attr('disabled', false);
             }
         });
+
         $('#check_hab_datos_obra').click(function() {
             if (!$(this).is(':checked')) {
                 $("#nombre_obra").attr('disabled', true);
@@ -692,6 +684,7 @@
                 $("#direccion_obra").attr('disabled', false);
             }
         });
+
         $('#check_hab_datos_maestro').click(function() {
             if (!$(this).is(':checked')) {
                 $("#nombre_maestro").attr('disabled', true);
@@ -701,6 +694,7 @@
                 $("#celular_maestro").attr('disabled', false);
             }
         });
+
         $('#check_hab_potencial').click(function() {
             if (!$(this).is(':checked')) {
                 $("#m3_potenciales").attr('disabled', true);
@@ -710,6 +704,7 @@
                 $("#fecha_posible_fundida").attr('disabled', false);
             }
         });
+
         $('#check_hab_resultado').click(function() {
             if (!$(this).is(':checked')) {
                 $("#resultado").attr('disabled', true);
@@ -717,6 +712,7 @@
                 $("#resultado").attr('disabled', false);
             }
         });
+
         $('#check_hab_contacto').click(function() {
             if (!$(this).is(':checked')) {
                 $("#contacto_cliente").attr('disabled', true);
@@ -724,18 +720,15 @@
                 $("#contacto_cliente").attr('disabled', false);
             }
         });
+
     });
 </script>
 
 <script>
     $(document).ready(function(e) {
-
-
         $("#fecha_vist").focus(function() {
             let formData = new FormData();
-
             formData.append('id_oportunidad', <?php echo intval($_GET['id']); ?>);
-
             $.ajax({
                 url: "fecha_min.php",
                 type: "POST",
@@ -754,7 +747,6 @@
                 },
             });
         });
-
 
         function datatable_visitas(id_oportunidad) {
             var table = $('#table_visitas').DataTable({
@@ -787,9 +779,8 @@
                     },
                     {
                         "data": null,
-                        "defaultContent": "<button class='btn btn-warning btn-sm' data-toggle='modal' data-target='#edit_visita'> Editar </button> "
+                        "defaultContent": "<button class='btn btn-warning btn-sm' data-toggle='modal' data-target='#edit_visita'> Editar </button>"
                     },
-
                 ],
                 'paging': false,
                 'searching': false
@@ -809,8 +800,6 @@
             return table;
         }
 
-
-
         if ($.fn.dataTable.isDataTable('#table_visitas')) {
             table_visitas = $('#table_visitas').DataTable();
             table_visitas.destroy();
@@ -821,7 +810,6 @@
             table_visitas.ajax.reload(null, false);
         }, 5000);
 
-
         $('#table_visitas tbody').on('click', 'button', function() {
             var data = table_visitas.row($(this).parents('tr')).data();
             var id = data['id'];
@@ -830,15 +818,13 @@
             $('#edit_fecha_vist').val(data['fecha']);
             //var resultado = data['resultado'];
 
-
             //$("#edit_result_visit option[value='']").prop("selected", 'selected');
             //$('#edit_result_visit').val(data['resultado']);
             $('#edit_obs_visit').val(data['obs']);
-
         });
 
-
-        $("#form_edit_visita").on('submit', (function(e) {
+        $("#form_edit_visita").on('submit', (function(e)
+        {
             e.preventDefault();
             $.ajax({
                 url: "php_edit_visita.php",
@@ -866,8 +852,8 @@
             });
         }));
 
-
-        $("#form_add_visita").on('submit', (function(e) {
+        $("#form_add_visita").on('submit', (function(e)
+        {
             e.preventDefault();
             $.ajax({
                 url: "php_addvisita.php",
@@ -882,6 +868,7 @@
                     console.log(datos_errores);
                     if (data.estado) {
                         toastr.success('visita creada exitosamente');
+                        $("#form_add_visita")[0].reset();
                     } else {
                         for (let index = 0; index < datos_errores.length; index++) {
                             toastr.warning(data.errores[index]);
@@ -895,7 +882,8 @@
             });
         }));
 
-        $("#form_edit_op").on('submit', (function(e) {
+        $("#form_edit_op").on('submit', (function(e)
+        {
             e.preventDefault();
             $.ajax({
                 url: "editar_oportunidad.php",

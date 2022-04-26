@@ -23,12 +23,14 @@ if ($pedidos->validar_existencias_precio_bomba($_POST['id_tipo_bomba'], $_POST['
     $nombre_tipo_bomba = $pedidos->get_nombre_bomba($id_tipo_bomba);
     $minimo = $_POST['minimo'];
     $maximo = $_POST['maximo'];
-    $precio = $_POST['precio'];
+    $precio = str_replace(".","",htmlspecialchars($_POST['precio']));
     if ($pedidos->crear_precio_bomba($id_pedido, $id_tipo_bomba, $nombre_tipo_bomba, $minimo, $maximo, $precio)) {
         $php_estado = true;
     } else {
         $log = 'No Guardo Correctamente';
     }
+}else{
+    $php_error = "El tipo de bomba ya se encuentra guardado con este pedido";
 }
 $datos = array(
     'estado' => $php_estado,

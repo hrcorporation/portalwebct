@@ -2,14 +2,15 @@
 //////////////////////////////////////////////////
 switch ($rol_user) {
     case 1:
-        case 7:
-        case 8:
-        case 12:
-        case 13:
-        case 14:
-        case 16:
-        case 20:
-case 29:
+    case 7:
+    case 8:
+    case 12:
+    case 13:
+    case 14:
+    case 16:
+    case 20:
+    case 32:
+    case 29:
         //case 20:
 
 ?>
@@ -188,7 +189,7 @@ switch ($rol_user) {
 switch ($rol_user) {
     case 1:
     case 15:
-    //case 16:
+        //case 16:
     case 22:
 ?>
         <div class="col-4" id="">
@@ -271,6 +272,7 @@ switch ($rol_user) {
     case 26:
     case 27:
     case 29:
+    case 32:
 ?>
         <div class="col-4" id="">
             <div class="small-box bg-info">
@@ -301,7 +303,7 @@ switch ($rol_user) {
     case 15:
     case 16:
     case 20:
-        case 19:
+    case 19:
 
 ?>
         <div class="col-4" id="">
@@ -421,4 +423,3 @@ switch ($rol_user) {
 }
 //////////////////////////////////////////////////
 ?>
-

@@ -27,9 +27,12 @@ $abc2 = array('AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 
 
 
 if (isset($fecha_ini) && isset($fecha_fin)) {
-    
+
     // traemos los datos de la consulta
     $datos = $pedidos->excel_productos($cliente, $obra, $fecha_ini, $fecha_fin);
+    $datos_pedidos = $pedidos->excel_pedidos($cliente, $obra, $fecha_ini, $fecha_fin);
+    $datos_bomba = $pedidos->excel_bomba($cliente, $obra, $fecha_ini, $fecha_fin);
+    $datos_servicio = $pedidos->excel_servicio($cliente, $obra, $fecha_ini, $fecha_fin);
 
     // iniciamos la clase de excel
     $spreadsheet = new Spreadsheet();
@@ -43,35 +46,183 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
         ->setKeywords('')
         ->setCategory('');
 
-    // FILA 1 = NOMBRE DE COLUMNAS
-    $spreadsheet->setActiveSheetIndex(0)
-        ->setCellValue('A1', 'NOMBRE CLIENTE')
-        ->setCellValue('B1', 'NOMBRE OBRA')
-        ->setCellValue('C1', 'CODIGO PRODUCTO')
-        ->setCellValue('D1', 'DESCRIPCION')
-        ->setCellValue('E1', 'PRECIO')
-        ->setCellValue('F1', 'CANTIDAD M3');
-    $x = 2;
 
+    $styleArray = [
+        'font' => [
+            'bold' => true,
+        ],
+
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => 'fdc82f', // encabezado Amarillo
+            ],
+
+            'endColor' => [
+                'argb' => 'fdc82f',
+            ],
+        ],
+    ];
+
+
+    $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+    $drawing->setName('Logo Concretol');
+    $drawing->setDescription('Logo Concretol');
+    $drawing->setPath('../../../../assets/images/logos/LogoConcretol.png'); /* put your path and image here */
+    $drawing->setCoordinates('A2');
+    $drawing->setOffsetX(110);
+    $drawing->setWidth(40);
+    $drawing->setHeight(100);
+    $drawing->getShadow()->setVisible(true);
+    $drawing->getShadow()->setDirection(45);
+    $drawing->setWorksheet($spreadsheet->getActiveSheet());
+
+
+    $styleArraybordes = [
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                'color' => ['argb' => '000'],
+            ],
+        ],
+    ];
+
+
+    // ENCABEZADO HOJA EXCEL
+    $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('C3', 'PEDIDOS')
+        ->setCellValue('C4', 'CODIGO')
+        ->setCellValue('C5', 'FECHA DE VENCIMIENTO')
+        ->setCellValue('C6', 'ASESORA COMERCIAL');
+    $spreadsheet->getActiveSheet()->mergeCells('C3:D3');
+    $spreadsheet->getActiveSheet()->getStyle('C3:D3')->applyFromArray($styleArray);
+    $spreadsheet->getActiveSheet()->getStyle('C3:D6')->applyFromArray($styleArraybordes);
+
+    $iz1 = 4;
+    $iz2 = 5;
+    $iz3 = 6;
+    if (is_array($datos_pedidos)) {
+        foreach ($datos_pedidos as $fila) {
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('D' . $iz1, $fila['id'])
+                ->setCellValue('D' . $iz2, $fila['fecha_vencimiento'])
+                ->setCellValue('D' . $iz3, $fila['nombre_asesora']);
+        }
+        $iz1++;
+        $iz2++;
+        $iz3++;
+    }
+
+    $x = 8;
+
+    // ENCABEZADO PRECIO PRODUCTO
+    $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('B8', 'PRECIO PRODUCTO');
+    $spreadsheet->getActiveSheet()->mergeCells('B8:G8');
+    $spreadsheet->getActiveSheet()->getStyle('B8:G8')->applyFromArray($styleArray);
+
+    $x1 = $x;
+
+    // FILA ENCABEZADO PRECIO PRODUCTOS
+    $x++;
+
+    $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('B' . $x, 'NOMBRE CLIENTE')
+        ->setCellValue('C' . $x, 'NOMBRE OBRA')
+        ->setCellValue('D' . $x, 'CODIGO PRODUCTO')
+        ->setCellValue('E' . $x, 'DESCRIPCION')
+        ->setCellValue('F' . $x, 'PRECIO')
+        ->setCellValue('G' . $x, 'CANTIDAD M3');
+    $spreadsheet->getActiveSheet()->getStyle('B' . $x . ':G' . $x)->applyFromArray($styleArray);
+
+    // IMPRIMIR DATOS PRECIOS PRODUCTO
     if (is_array($datos)) {
         foreach ($datos as $fila) {
-            $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A' . $x, $fila['nombre_cliente'])
-                ->setCellValue('B' . $x, $fila['nombre_obra'])
-                ->setCellValue('C' . $x, $fila['codigo_producto'])
-                ->setCellValue('D' . $x, $fila['nombre_producto'])
-                ->setCellValue('E' . $x, $fila['precio_m3'])
-                ->setCellValue('F' . $x, $fila['cantidad_m3']);
             $x++;
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('B' . $x, strtoupper($fila['nombre_cliente']))
+                ->setCellValue('C' . $x, $fila['nombre_obra'])
+                ->setCellValue('D' . $x, $fila['codigo_producto'])
+                ->setCellValue('E' . $x, $fila['nombre_producto'])
+                ->setCellValue('F' . $x, $fila['precio_m3'])
+                ->setCellValue('G' . $x, $fila['cantidad_m3']);
         }
     }
-    // Rename worksheet
+    $spreadsheet->getActiveSheet()->getStyle('B' . $x1 . ':G' . $x)->applyFromArray($styleArraybordes);
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ENCABEZADO PRECIO BOMBA
+    $x = $x + 2;
+    $x1 = $x;
+    $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('B' . $x, 'PRECIO BOMBEO');
+    $spreadsheet->getActiveSheet()->getStyle('B' . $x . ':G' . $x)->applyFromArray($styleArray);
+    $spreadsheet->getActiveSheet()->mergeCells('B' . $x . ':G' . $x);
+
+    // FILA ENCABEZADO PRECIO BOMBA
+    $x++;
+    $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('B' . $x, 'NOMBRE CLIENTE')
+        ->setCellValue('C' . $x, 'NOMBRE OBRA')
+        ->setCellValue('D' . $x, 'TIPO BOMBA')
+        ->setCellValue('E' . $x, 'CANTIDAD MIN')
+        ->setCellValue('F' . $x, 'CANTIDAD MAX')
+        ->setCellValue('G' . $x, 'PRECIO');
+    $spreadsheet->getActiveSheet()->getStyle('B' . $x . ':G' . $x)->applyFromArray($styleArray);
+
+    // IMPRIMIR DATOS PRECIOS BOMBA
+    if (is_array($datos_bomba)) {
+        foreach ($datos_bomba as $fila) {
+            $x++;
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('B' . $x, strtoupper($fila['nombre_cliente']))
+                ->setCellValue('C' . $x, $fila['nombre_obra'])
+                ->setCellValue('D' . $x, strtoupper($fila['nombre_tipo_bomba']))
+                ->setCellValue('E' . $x, $fila['min_m3'])
+                ->setCellValue('F' . $x, $fila['max_m3'])
+                ->setCellValue('G' . $x, $fila['precio']);
+        }
+    }
+    $spreadsheet->getActiveSheet()->getStyle('B' . $x1 . ':G' . $x)->applyFromArray($styleArraybordes);
+
+
+    // ENCABEZADO PRECIO SERVICIOS
+    $x = $x + 2;
+    $x1 = $x;
+
+    $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('B' . $x, 'PRECIO SERVICIOS');
+    $spreadsheet->getActiveSheet()->getStyle('B' . $x . ':G' . $x)->applyFromArray($styleArray);
+    $spreadsheet->getActiveSheet()->mergeCells('B' . $x . ':G' . $x);
+    // FILA ENCABEZADO PRECIO SERVICIOS
+    $x++;
+    $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('B' . $x, 'NOMBRE CLIENTE')
+        ->setCellValue('C' . $x, 'NOMBRE OBRA')
+        ->setCellValue('D' . $x, 'NOMBRE DEL SERVICIO')
+        ->setCellValue('E' . $x, 'PRECIO');
+
+    $spreadsheet->getActiveSheet()->getStyle('B' . $x . ':G' . $x)->applyFromArray($styleArray);
+    $spreadsheet->getActiveSheet()->mergeCells('E' . $x . ':G' . $x);
+    // IMPRIMIR DATOS PRECIOS SERVICIOS
+    if (is_array($datos_servicio)) {
+        foreach ($datos_servicio as $fila) {
+            $x++;
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('B' . $x, strtoupper($fila['nombre_cliente']))
+                ->setCellValue('C' . $x, $fila['nombre_obra'])
+                ->setCellValue('D' . $x, strtoupper($fila['nombre_tipo_servicio']))
+                ->setCellValue('E' . $x, $fila['precio']);
+            $spreadsheet->getActiveSheet()->mergeCells('E' . $x . ':G' . $x);
+        }
+    }
+    $spreadsheet->getActiveSheet()->getStyle('B' . $x1 . ':G' . $x)->applyFromArray($styleArraybordes);
+
+
+    // Rename worksheet
     $spreadsheet->getActiveSheet()->setTitle('Productos');
 
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('A')
-        ->setAutoSize(true);
+
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('B')
         ->setAutoSize(true);
@@ -90,135 +241,8 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('G')
         ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('H')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('I')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('J')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('K')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('L')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('M')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('N')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('O')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('P')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('Q')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('R')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('S')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('T')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('U')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('V')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('W')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('X')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('Y')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
-        ->getColumnDimension('Z')
-        ->setAutoSize(true);
-    $spreadsheet->getActiveSheet()
 
-        ->getColumnDimension('AA')
 
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AB')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AC')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AD')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AE')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AF')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AG')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AH')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AI')
-
-        ->setAutoSize(true);
-
-    $styleArray = [
-        'font' => [
-            'bold' => true,
-        ],
-
-        'fill' => [
-            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-            'startColor' => [
-                'argb' => 'DE9D24', // encabezado Amarillo
-            ],
-
-            'endColor' => [
-                'argb' => 'DE9D24',
-            ],
-        ],
-    ];
-
-    $spreadsheet->getActiveSheet()->getStyle('A1:AJ1')->applyFromArray($styleArray);
 
     // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 

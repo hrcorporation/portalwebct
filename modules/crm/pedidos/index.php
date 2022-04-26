@@ -43,13 +43,30 @@ $t1_terceros = new t1_terceros();
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+
                 </div>
             </div>
             <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <a href="create/crear.php" class="btn btn-block btn-success"><i class="fas fa-plus"></i> Crear pedido</a>
+                    </div>
+
+                    <div class="col-4">
+                        <a href="documentos/SUBIR.xlsx" download="Formato subir precios productos pedidos.xlsx" class="btn btn-block btn-primary"><i class="fas fa-download"></i> Descargar formato de subir productos</a>
+                    </div>
+
+                    <div class="col-5">
+                        <a href="documentos/Formato precios productos.xlsx" download="Formato precios productos.xlsx" class="btn btn-block btn-primary"><i class="fas fa-download"></i> Descargar formato de subir precios productos</a>
+                    </div>
+                </div>
+                <br>
                 <table id="table_pedidos" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>N</th>
+                            <th>Status</th>
+                            <th>Codigo pedido</th>
                             <th>Fecha vencimiento</th>
                             <th>Nombre del cliente</th>
                             <th>Nombre de la obra</th>
@@ -75,8 +92,8 @@ $t1_terceros = new t1_terceros();
 <?php include '../../../layout/footer/footer3.php' ?>
 
 <script>
-   $(document).ready(function(){
-    var n = 1;
+    $(document).ready(function() {
+        var n = 1;
         var table = $('#table_pedidos').DataTable({
             "ajax": {
                 "url": "data_table_salidas.php",
@@ -86,6 +103,12 @@ $t1_terceros = new t1_terceros();
                 [0, 'desc']
             ],
             "columns": [{
+                    "data": "id"
+                },
+                {
+                    "data": "status"
+                },
+                {
                     "data": "id"
                 },
                 {
@@ -124,7 +147,7 @@ $t1_terceros = new t1_terceros();
         setInterval(function() {
             table.ajax.reload(null, false);
         }, 10000);
-   })
+    })
 </script>
 
 </body>

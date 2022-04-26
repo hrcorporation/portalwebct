@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <!-- boton para guardar el archivo -->
                                 <button type="submit" class="btn btn-success" name="btn_subirarchivo" id="btn_subirarchivo" onclick="return confirm('¿Desea agregar los productos?')">
-                                    Subir
+                                <i class="fas fa-upload"></i> Subir
                                 </button>
                             </div>
                         </div>

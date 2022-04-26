@@ -13,7 +13,7 @@ require '../../vendor/autoload.php';
 switch($rol_user)
 {
     case 1:
-        case 12:
+    case 12:
     case 19:
     case 26:
     case 20:
