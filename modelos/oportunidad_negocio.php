@@ -1189,6 +1189,7 @@ class oportunidad_negocio extends conexionPDO
                     $datos['status_op'] = $fila['estado_op'];
                     $datos['observacion'] = $fila['observacion'];
                     $datos['resultado'] = $fila['estado'];
+                    $datos['editar'] = "<a class='btn btn-warning btn-sm' href='editar/editar.php?id=".$fila['id']."'> <i class='fas fa-eye'></i> </a>";
                     $datosf[] = $datos;
                 }
                 return $datosf;
@@ -1218,6 +1219,7 @@ class oportunidad_negocio extends conexionPDO
                     $datos['status_op'] = $fila['estado_op'];
                     $datos['observacion'] = $fila['observacion'];
                     $datos['resultado'] = $fila['estado'];
+                    $datos['editar'] = "<a class='btn btn-warning btn-sm' href='editar/editar.php?id=".$fila['id']."'> <i class='fas fa-eye'></i> </a>";
                     $datosf[] = $datos;
                 }
                 return $datosf;

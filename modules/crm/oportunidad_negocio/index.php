@@ -127,8 +127,7 @@ $t1_terceros = new t1_terceros();
                     "data": "razon_social"
                 },
                 {
-                    "data": null,
-                    "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-eye'></i> </button>"
+                    "data": "editar"
                 }
             ],
             //"scrollX": true,

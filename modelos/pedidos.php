@@ -107,7 +107,7 @@ class pedidos extends conexionPDO
 
     public function select_cliente($id = null)
     {
-        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione cliente</option>";
+        $option = "<option  selected = 'true' value='NULL' disabled='true'> Seleccione cliente </option>";
 
         $sql = "SELECT * FROM `ct3_clientes`";
         //Preparar Conexion
