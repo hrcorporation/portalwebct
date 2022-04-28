@@ -109,6 +109,10 @@ switch ($rol_user) {
 
 switch ($rol_user) {
     case 1:
+    case 8:
+    case 12:
+    case 13:
+    case 32:
 ?>
         <div class="col-4" id="">
             <div class="small-box bg-info">
@@ -116,7 +120,7 @@ switch ($rol_user) {
                     <h3>Pedidos</H3>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-building"></i>
+                    <i class="fas fa-box"></i>
                 </div>
                 <a class="small-box-footer" href="pedidos/">
                     Ir <i class="fas fa-arrow-circle-right"></i>

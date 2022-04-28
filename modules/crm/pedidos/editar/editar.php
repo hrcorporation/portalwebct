@@ -149,7 +149,7 @@ $id = $_GET['id'];
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#crear_precio_bomba">
-                                <i class="fas fa-plus"></i> ADICIONAR PRECIO BOMBA
+                                    <i class="fas fa-plus"></i> ADICIONAR PRECIO BOMBA
                                 </button>
                             </div>
                         </div>
@@ -244,7 +244,7 @@ $id = $_GET['id'];
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#crear_precio_servicio_adicional">
-                                <i class="fas fa-plus"></i> ADICIONAR SERVICIO
+                                    <i class="fas fa-plus"></i> ADICIONAR SERVICIO
                                 </button>
                             </div>
                         </div>
