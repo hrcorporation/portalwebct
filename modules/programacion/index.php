@@ -7,18 +7,7 @@ require '../../modelos/autoload.php';
 require '../../vendor/autoload.php'; ?>
 <!-- Content Wrapper. Contains page content -->
 
-
-<?php
-
-
-$t8_programacion = new t8_programacion();
-
-
-$last_id_programacion = $t8_programacion->generar_code_prog();
-
-
-
-?>
++
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
