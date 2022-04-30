@@ -112,7 +112,7 @@
                 },
             });
         });
-    })
+    });
     $(document).ready(function(e) {
         $("#form_crear_pedido").on('submit', (function(e) {
             e.preventDefault();

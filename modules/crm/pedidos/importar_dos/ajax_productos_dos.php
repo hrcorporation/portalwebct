@@ -14,13 +14,13 @@ $image = htmlspecialchars($_FILES['file_productos']['name']);
 $ruta = htmlspecialchars($_FILES['file_productos']['tmp_name']);
 
 $php_fileexten = strrchr($_FILES['file_productos']['name'], ".");
-$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_productos']['name'] . $php_fechatime),0, 40)) . $php_fileexten;
+$php_serial = strtoupper(substr(hash('sha1', $_FILES['file_productos']['name'] . $php_fechatime), 0, 40)) . $php_fileexten;
 
 $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/load_data/';
 $php_tempfoto = ('/internal/load_data/' . $php_serial);
 $php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
 
-$inputFileName = $_SERVER['DOCUMENT_ROOT']. $php_tempfoto;
+$inputFileName = $_SERVER['DOCUMENT_ROOT'] . $php_tempfoto;
 
 $cls_importdata = new cls_importdata();
 $pedidos = new pedidos();
@@ -63,10 +63,12 @@ if (is_array($array_reg)) {
             $nombre_producto = $row[1];
             $precio = $row[2];
             $cantidad = $row[3];
-            
-            if($pedidos->validar_existencias_precio_producto($pedidos->get_id_producto($row[0]), $id_pedido)){
-                if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
-                    $php_estado = true;
+
+            if ($pedidos->validar_existencias_precio_producto($pedidos->get_id_producto($row[0]), $id_pedido)) {
+                if ($pedidos->validar_producto($codigo_producto)) {
+                    if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
+                        $php_estado = true;
+                    }
                 }
             }
         }

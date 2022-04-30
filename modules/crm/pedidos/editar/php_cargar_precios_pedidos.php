@@ -29,10 +29,14 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
     // _Guarda
     if ($precio_poductos = $pedidos::cargar_precio_productos_for_id_pedido($con, $id_pedido_load)) {
         foreach ($precio_poductos as $key) {
-            if($pedidos->validar_existencias_precio_producto($key['id_producto'], $id_pedido)){
-                $pedidos->crear_precio_producto($id_pedido, $key['id_producto'], $key['codigo_producto'], $key['nombre_producto'], $key['porcentaje_descuento'], $key['id_precio_base'], $key['precio_base'], $key['precio_m3'], $key['cantidad_m3'], $key['precio_total_pedido']);
-                $php_estado = true;
-            }else{
+            if ($pedidos->validar_existencias_precio_producto($key['id_producto'], $id_pedido)) {
+                if ($pedidos->validar_producto($key['id_producto'])) {
+                    $pedidos->crear_precio_producto($id_pedido, $key['id_producto'], $key['codigo_producto'], $key['nombre_producto'], $key['porcentaje_descuento'], $key['id_precio_base'], $key['precio_base'], $key['precio_m3'], $key['cantidad_m3'], $key['precio_total_pedido'],  $key['observaciones']);
+                    $php_estado = true;
+                } else {
+                    $php_error = "Producto no existente en la base de datos";
+                }
+            } else {
                 $php_error = "producto ya agregado";
             }
         }
@@ -41,10 +45,10 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
     // _Guarda bomba
     if ($precio_bomba = $pedidos::cargar_precio_bomba_for_id_pedido($con, $id_pedido_load)) {
         foreach ($precio_bomba as $key) {
-            if($pedidos->validar_existencias_precio_bomba($key['id_tipo_bomba'], $id_pedido)){
-                $pedidos->crear_precio_bomba($id_pedido, $key['id_tipo_bomba'], $key['nombre_tipo_bomba'], $key['min_m3'], $key['max_m3'], $key['precio']);
+            if ($pedidos->validar_existencias_precio_bomba($key['min_m3'], $key['max_m3'], $id_pedido)) {
+                $pedidos->crear_precio_bomba($id_pedido, $key['id_tipo_bomba'], $key['nombre_tipo_bomba'], $key['min_m3'], $key['max_m3'], $key['precio'], $key['observaciones']);
                 $php_estado = true;
-            }else{
+            } else {
                 $php_error = "Bomba ya agregada";
             }
         }
@@ -53,11 +57,11 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
     // _Guarda servicios
     if ($precio_servicios = $pedidos::cargar_precio_servicios_for_id_pedido($con, $id_pedido_load)) {
         foreach ($precio_servicios as $key) {
-            if($pedidos->validar_existencias_precio_servicio($key['id_tipo_servicio'], $id_pedido)){
-                $pedidos->crear_precio_servicio($id_pedido, $key['id_tipo_servicio'], $key['nombre_tipo_servicio'], $key['precio']);
+            if ($pedidos->validar_existencias_precio_servicio($key['id_tipo_servicio'], $id_pedido)) {
+                $pedidos->crear_precio_servicio($id_pedido, $key['id_tipo_servicio'], $key['nombre_tipo_servicio'], $key['precio'], $key['observaciones']);
                 $php_estado = true;
-            }else{
-                $php_error = "Servcio ya agregado";
+            } else {
+                $php_error = "Servicio ya agregado";
             }
         }
     }

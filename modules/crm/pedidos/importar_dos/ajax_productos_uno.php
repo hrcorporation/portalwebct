@@ -67,8 +67,10 @@ if (is_array($array_reg)) {
             /** variable final para guardar en la base de datos $new_array */
 
             if ($pedidos->validar_existencias_precio_producto($pedidos->get_id_producto($row[0]), $id_pedido)) {
-                if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
-                    $php_estado = true;
+                if($pedidos->validar_producto($codigo_producto)){
+                    if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
+                        $php_estado = true;
+                    }
                 }
             }
         }
