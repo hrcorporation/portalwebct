@@ -68,8 +68,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
-
+    
     // Cargar Precios Producto por id_pedido
     public static function cargar_precio_productos_for_id_pedido($con, $id_pedido)
     {
@@ -124,6 +123,35 @@ class pedidos extends conexionPDO
                 $option .= '<option value="' . $fila['ct3_id_cliente'] . '" ' . $selection . ' >' . $fila['ct3_nombre_cliente'] . ' </option>';
             }
         }
+        return $option;
+    }
+
+    function option_cliente_edit($id_cliente = null)
+    {
+        $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
+        $sql = "SELECT ct1_IdTerceros , ct1_NumeroIdentificacion , ct1_RazonSocial FROM ct1_terceros WHERE ct1_TipoTercero = 1 AND ct1_Estado = 1";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Asignando Datos ARRAY => SQL
+        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $result = $stmt->execute();
+
+
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_cliente == $fila['ct1_IdTerceros']) {
+                $selection = " selected='true' ";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['ct1_IdTerceros'] . '" ' . $selection . ' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
         return $option;
     }
 
@@ -193,7 +221,7 @@ class pedidos extends conexionPDO
     public function get_nombre_cliente($id)
     {
         $this->id = $id;
-        $sql = "SELECT ct3_nombre_cliente FROM `ct3_clientes` WHERE `ct3_id_cliente` = :id";
+        $sql = "SELECT ct1_RazonSocial FROM `ct1_terceros` WHERE `ct1_IdTerceros` = :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -202,7 +230,7 @@ class pedidos extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    return $fila['ct3_nombre_cliente'];
+                    return $fila['ct1_RazonSocial'];
                 }
             } else {
                 return false;
@@ -738,6 +766,7 @@ class pedidos extends conexionPDO
                             $datos['status'] = " <span class='badge  badge-info > float-right'>  </span> ";
                             break;
                     }
+
                     $datos['nombre_tipo_bomba'] = $fila['nombre_tipo_bomba'];
                     $datos['min_m3'] = number_format($fila['min_m3'], 2);
                     $datos['max_m3'] = number_format($fila['max_m3'], 2);
@@ -868,11 +897,11 @@ class pedidos extends conexionPDO
 
     public function validar_existencias_precio_bomba($cant_min, $cant_max, $id_pedido)
     {
-        $sql = "SELECT id FROM ct65_pedido_has_precio_bomba WHERE status = 1 AND min_m3 = :min_m3 AND max_m3 = :max_m3 AND `id_pedido` = :id_pedido";
+        $sql = "SELECT id FROM ct65_pedido_has_precio_bomba WHERE status = 1 AND `min_m3` BETWEEN  :min_m3 AND `max_m3` BETWEEN :max_m3 AND `id_pedido` = :id_pedido";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
-        $stmt->bindParam(':min_m3', $cant_min, PDO::PARAM_INT);
-        $stmt->bindParam(':max_m3', $cant_max, PDO::PARAM_INT);
-        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_STR);
+        $stmt->bindParam(':min_m3', $cant_min, PDO::PARAM_STR);
+        $stmt->bindParam(':max_m3', $cant_max, PDO::PARAM_STR);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
         // Ejecutar 
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();

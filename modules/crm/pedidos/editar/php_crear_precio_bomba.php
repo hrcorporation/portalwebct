@@ -9,7 +9,6 @@ require '../../../../vendor/autoload.php';
 
 //Se crea un objeto de la clase php_clases
 $php_clases = new php_clases();
-
 $pedidos = new pedidos();
 
 $log = false;
@@ -18,19 +17,23 @@ $php_error[] = "";
 $resultado = "";
 
 if ($pedidos->validar_existencias_precio_bomba($_POST['minimo'], $_POST['maximo'], $_POST['id'])) {
-    $id_pedido = $_POST['id'];
-    $id_tipo_bomba = $_POST['id_tipo_bomba'];
-    $nombre_tipo_bomba = $pedidos->get_nombre_bomba($id_tipo_bomba);
-    $minimo = $_POST['minimo'];
-    $maximo = $_POST['maximo'];
-    $precio = str_replace(".","",htmlspecialchars($_POST['precio']));
-    $observaciones = $_POST['observaciones'];
-    if ($pedidos->crear_precio_bomba($id_pedido, $id_tipo_bomba, $nombre_tipo_bomba, $minimo, $maximo, $precio, $observaciones)) {
-        $php_estado = true;
-    } else {
-        $log = 'No Guardo Correctamente';
+    if ($_POST['minimo'] < $_POST['maximo']) {
+        $id_pedido = $_POST['id'];
+        $id_tipo_bomba = $_POST['id_tipo_bomba'];
+        $nombre_tipo_bomba = $pedidos->get_nombre_bomba($id_tipo_bomba);
+        $minimo = $_POST['minimo'];
+        $maximo = $_POST['maximo'];
+        $precio = str_replace(".", "", htmlspecialchars($_POST['precio']));
+        $observaciones = $_POST['observaciones'];
+        if ($pedidos->crear_precio_bomba($id_pedido, $id_tipo_bomba, $nombre_tipo_bomba, $minimo, $maximo, $precio, $observaciones)) {
+            $php_estado = true;
+        } else {
+            $php_error = 'No Guardo Correctamente';
+        }
+    }else {
+        $php_error = "La cantidad maxima debe ser mayor a la minima";
     }
-}else{
+} else {
     $php_error = "Ya hay una bomba con esa misma cantidad";
 }
 $datos = array(

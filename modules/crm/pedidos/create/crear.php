@@ -46,7 +46,7 @@
                                 <div class="form-group">
                                     <label>NOMBRE DEL CLIENTE</label>
                                     <select name="id_cliente" id="id_cliente" class="form-control select2 ">
-                                        <?= $pedidos->select_cliente(); ?>
+                                        <?= $pedidos->option_cliente_edit(); ?>
                                     </select>
                                 </div>
                             </div>

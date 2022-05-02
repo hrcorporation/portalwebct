@@ -974,9 +974,7 @@ foreach ($datos as $dato) {
             num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             num = num.split('').reverse().join('').replace(/^[\.]/, '');
             input.value = num;
-
         } else {
-
             input.value = input.value.replace(/[^\d\.]*/g, '');
         }
     }
