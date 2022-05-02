@@ -11,6 +11,7 @@ require '../../../vendor/autoload.php'; ?>
 switch ($rol_user) {
     case 1:
     case 8:
+    case 10:
     case 12:
     case 13:
     case 15:

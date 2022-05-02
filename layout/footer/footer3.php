@@ -33,4 +33,10 @@
 <script src="../../../plugins/toastr/toastr.min.js"></script>
 <!-- <script src="../../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script> -->
 <!-- <script src="../../../plugins/jquery-validation/dist/jquery.validate.min.js"></script> -->
-<--<script src="../../../plugins/jquery-validation/additional-methods.min.js"></script> -->
+<script type="text/javascript"  src="../../../plugins/fullcalendar/es.js"></script>
+
+
+<script type="text/javascript"  src="../../../plugins/moment/moment.min.js"></script>
+
+
+<script src="../../../plugins/jquery-ui/jquery-ui.min.js"></script>
