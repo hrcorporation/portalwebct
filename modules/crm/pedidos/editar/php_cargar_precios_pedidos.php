@@ -40,13 +40,13 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
             }
         }
     } else {
-        $php_error = "Pedido no existe";
+        $php_error = "Pedido no existe o no hay productos";
     }
 
     // Guarda bomba
     if ($precio_bomba = $pedidos::cargar_precio_bomba_for_id_pedido($con, $id_pedido_load)) {
         foreach ($precio_bomba as $key) {
-            if ($pedidos->validar_existencias_precio_bomba($key['min_m3'], $key['max_m3'], $id_pedido)) {
+            if ($pedidos->validar_bomba($key['min_m3'], $key['max_m3'], $id_pedido)) {
                 $pedidos->crear_precio_bomba($id_pedido, $key['id_tipo_bomba'], $key['nombre_tipo_bomba'], $key['min_m3'], $key['max_m3'], $key['precio'], $key['observaciones']);
                 $php_estado = true;
             } else {
@@ -54,7 +54,7 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
             }
         }
     } else {
-        $php_error = "Pedido no existe";
+        $php_error = "Pedido no existe o no hay bombas";
     }
 
     // Guarda servicio
@@ -68,7 +68,7 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
             }
         }
     } else {
-        $php_error = "Pedido no existe";
+        $php_error = "Pedido no existe o no hay servicios";
     }
 } else {
     $php_error = "Error inesperado";

@@ -68,7 +68,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-    
+
     // Cargar Precios Producto por id_pedido
     public static function cargar_precio_productos_for_id_pedido($con, $id_pedido)
     {
@@ -783,6 +783,31 @@ class pedidos extends conexionPDO
         }
     }
 
+    public function bomba_precio($id_pedido)
+    {
+        $sql = "SELECT `min_m3`,`max_m3` FROM `ct65_pedido_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['min_m3'] = number_format($fila['min_m3'], 2);
+                    $datos['max_m3'] = number_format($fila['max_m3'], 2);
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public function get_servicios_precio($id_pedido)
     {
         $sql = "SELECT `id`,`status`, `nombre_tipo_servicio`, `precio`, `observaciones` FROM `ct65_pedido_has_precio_servicio` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
@@ -895,9 +920,9 @@ class pedidos extends conexionPDO
         }
     }
 
-    public function validar_existencias_precio_bomba($cant_min, $cant_max, $id_pedido)
+    public function validar_bomba($cant_min, $cant_max, $id_pedido)
     {
-        $sql = "SELECT id FROM ct65_pedido_has_precio_bomba WHERE status = 1 AND `min_m3` BETWEEN  :min_m3 AND `max_m3` BETWEEN :max_m3 AND `id_pedido` = :id_pedido";
+        $sql = "SELECT id FROM ct65_pedido_has_precio_bomba WHERE status = 1 AND `min_m3` = :min_m3 AND `max_m3` = :max_m3 AND `id_pedido` = :id_pedido";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':min_m3', $cant_min, PDO::PARAM_STR);
         $stmt->bindParam(':max_m3', $cant_max, PDO::PARAM_STR);
