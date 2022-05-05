@@ -2,11 +2,13 @@
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 <?php
+// SE CREAN OBJETOS DE LA CLASE PEDIDOS
 $pedidos = new pedidos();
+// SE OBTIENE EL ID POR GET
 $id = $_GET['id'];
-
+// SE LLAMA UNA FUNCION PARA OBTENER EL CLIENTE Y LA OBRA DEL PEDIDO
 $datos = $pedidos->get_nombre_cliente_obra($id);
-
+// SE VA LISTANDO MEDIANTE UN FOREACH
 foreach ($datos as $dato) {
     $nombre_cliente = $dato['nombre_cliente'];
     $nombre_obra = $dato['nombre_obra'];
@@ -17,6 +19,7 @@ foreach ($datos as $dato) {
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
+                    <!-- SE MUESTRA EL ID DEL PEDIDO -->
                     <h5><b>PEDIDO:</b> #<?= $id ?></h5>
                 </div>
             </div>
@@ -37,11 +40,13 @@ foreach ($datos as $dato) {
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">
+                                <!-- SE MUESTRA EL NOMBRE DEL CLIENTE -->
                                 <h5><b>CLIENTE:</b> <?= $nombre_cliente ?></h5>
                             </div>
                         </div>
                         <div class="col-5">
                             <div class="form-group">
+                                <!-- SE MUESTRA EL NOMBRE DE LA OBRA -->
                                 <h5><b>OBRA:</b> <?= $nombre_obra ?></h5>
                             </div>
                         </div>
@@ -68,6 +73,7 @@ foreach ($datos as $dato) {
                         </div>
                     </div>
                 </div>
+                <!-- TABLA PRECIOS PRODUCTOS PEDIDOS -->
                 <table id="table_precio_productos" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -86,7 +92,7 @@ foreach ($datos as $dato) {
                     </tbody>
                 </table>
             </div>
-            <!-- Default box -->
+            <!-- MODAL PRECIOS PRODUCTOS PEDIDOS INICIO -->
             <div class="modal fade " id="crear_precio_producto">
                 <div class="modal-dialog  modal-lg">
                     <div class="modal-content">
@@ -155,7 +161,8 @@ foreach ($datos as $dato) {
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL PRECIOS PRODUCTOS PEDIDOS FIN -->
+            <!-- TABLA PRECIOS BOMBA PEDIDOS -->
             <div class="card-body">
                 <div id="contenido">
                     <div class="row">
@@ -191,7 +198,7 @@ foreach ($datos as $dato) {
                     </tbody>
                 </table>
             </div>
-            <!-- Default box -->
+            <!-- MODAL BOMABS PRODUCTOS PEDIDOS INICIO -->
             <div class="modal fade" id="crear_precio_bomba">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -259,7 +266,9 @@ foreach ($datos as $dato) {
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL BOMBA PRECIOS PEDIDOS FIN -->
+
+            <!-- TABLA PRECIOS SERVICIOS PEDIDOS -->
             <div class="card-body">
                 <div id="contenido">
                     <div class="row">
@@ -293,7 +302,7 @@ foreach ($datos as $dato) {
                     </tbody>
                 </table>
             </div>
-            <!-- Default box -->
+            <!-- MODAL PRECIOS SERVICIOS PEDIDOS INICIO -->
             <div class="modal fade" id="crear_precio_servicio_adicional">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -348,7 +357,9 @@ foreach ($datos as $dato) {
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL PRECIOS SERVICIOS PEDIDOS FIN -->
+
+            <!-- MODAL OPCIONES CARGAR PRECIOS INICIO -->
             <div class="modal fade" id="modal_cargar">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -377,7 +388,9 @@ foreach ($datos as $dato) {
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL OPCIONES CARGAR PRECIOS FIN -->
+
+            <!-- MODAL CARGAR PRECIOS MEDIANTE CODIGO DE PEDIDO INICIO -->
             <div class="modal fade" id="cargar_precios">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -415,7 +428,9 @@ foreach ($datos as $dato) {
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL CARGAR PRECIOS MEDIANTE CODIGO DE PEDIDO INICIO -->
+
+            <!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL INICIO -->
             <div class="modal fade" id="cargar_excel">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -468,7 +483,7 @@ foreach ($datos as $dato) {
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL FIN -->
         </div>
     </section>
 </div>
@@ -491,7 +506,7 @@ foreach ($datos as $dato) {
     });
 
     $(document).ready(function() {
-        // Formulacio Cargar Precios
+        // Formulario Cargar Precios
         $("#form_cargar_precio_servicio").on('submit', (function(e) {
             $('#cargar_precios').modal('toggle');
             e.preventDefault();

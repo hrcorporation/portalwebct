@@ -63,9 +63,11 @@ if (is_array($array_reg)) {
             $nombre_producto = $row[1];
             $precio = $row[2];
             $cantidad = $row[3];
-
+            //VERIFICA QUE EL PRODUCTO NO EXISTA
             if ($pedidos->validar_existencias_precio_producto($pedidos->get_id_producto($row[0]), $id_pedido)) {
+                 //VERIFICA QUE EL PRODUCTO EXISTA EN LA TABLA PRECIO PRODUCTO
                 if ($pedidos->validar_producto($codigo_producto)) {
+                     //GUARDA LOS DATOS YA VALIDADOS DEL ARCHIVO DE EXCEL
                     if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
                         $php_estado = true;
                     }

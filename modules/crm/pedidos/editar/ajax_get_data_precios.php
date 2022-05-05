@@ -21,7 +21,7 @@ if (isset($_POST['task']) && !empty($_POST['task'])) {
     $php_msg = "Paso 1";
     if (intval($_POST['task'] == 1)) {
         $id_producto = $_POST['id_producto'];
-        // $pedidos->calcularDescuento($precio_base, $porcentaje);
+        // CALCULAR EL DESCUENTO DEL VALOR DEL PRODUCTO
         if ($precio_subtotal = $pedidos->calcularDescuento(doubleval($pedidos->get_precio_producto($id_producto)), doubleval($_POST['descuento']))) {
             $php_msg = "bien";
         }

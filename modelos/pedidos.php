@@ -12,6 +12,20 @@ class pedidos extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
+    public function array_list_min_max($minimo, $maximo)
+    {
+        $array_list = array();
+        //$diferencia = $maximo - $minimo;
+        //$minimo_m3 = $minimo - 1;
+        $minimo = intval($minimo);
+        $maximo = intval($maximo);
+
+        for ($new_min = $minimo; $new_min <= $maximo; $new_min++) {
+            array_push($array_list, $new_min);
+        }
+        return $array_list;
+    }
+
     public static function cargar_precio_servicios_for_id_pedido($con, $id_pedido)
     {
         //  sql de consulta para cargar precios porductos
@@ -170,7 +184,7 @@ class pedidos extends conexionPDO
                 } else {
                     $selection = " ";
                 }
-                $option .= '<option value="' . $fila['ct4_Id_productos'] . '" ' . $selection . ' >' . $fila['ct4_Descripcion'] . ' </option>';
+                $option .= '<option value="' . $fila['ct4_Id_productos'] . '" ' . $selection . ' >' . $fila['ct4_CodigoSyscafe'] . " - " . $fila['ct4_Descripcion'] . ' </option>';
             }
         }
         return $option;
@@ -783,14 +797,15 @@ class pedidos extends conexionPDO
         }
     }
 
-    public function bomba_precio($id_pedido)
+    public function bomba_precio($id_pedido, $id_tipo_bomba)
     {
-        $sql = "SELECT `min_m3`,`max_m3` FROM `ct65_pedido_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
+        $sql = "SELECT `id_tipo_bomba`, `min_m3`,`max_m3` FROM `ct65_pedido_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `id_tipo_bomba` = :id_tipo_bomba AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+        $stmt->bindParam(':id_tipo_bomba', $id_tipo_bomba, PDO::PARAM_INT);
 
-        // Ejecutar 
+        // Ejecutar
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
@@ -865,13 +880,32 @@ class pedidos extends conexionPDO
             return false;
         }
     }
+
     public function validar_existencias_productos($id_producto)
     {
         $sql = "SELECT id FROM concr_bdportalconcretol.ct65_precio_base WHERE status = 1 AND id_producto = :id_producto";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
-        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
-        // Ejecutar 
-        if ($result = $stmt->execute()) {
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        // Ejecutar
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function validar_existencias_producto_principal($codigo)
+    {
+        $sql = "SELECT `ct4_CodigoSyscafe` FROM `ct4_productos` WHERE `ct4_CodigoSyscafe` = :codigo";
+        $stmt = $this->con->prepare($sql); // Preparar la conexion
+        $stmt->bindParam(':codigo', $codigo, PDO::PARAM_STR);
+        // Ejecutar
+        if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 return false;
@@ -1115,6 +1149,47 @@ class pedidos extends conexionPDO
         return $result;
     }
 
+    //Excel inicio
+    public function excel_pedidos($cliente, $obra, $fecha_ini, $fecha_fin)
+    {
+        $this->cliente = $cliente;
+        $this->obra = $obra;
+        $this->fecha_ini = $fecha_ini;
+        $this->fecha_fin = $fecha_fin;
+
+        $sql = "SELECT `id`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND `nombre_cliente` = :cliente AND `nombre_obra` = :obra AND ct65_pedidos.status = 1";
+
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
+
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['id'] = $fila['id'];
+                    $data_array['fecha_vencimiento'] = $fila['fecha_vencimiento'];
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['nombre_asesora'] = $fila['nombre_asesora'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0
+            }
+        } else {
+            return false; // Error en la sentencia sql
+        }
+    }
+
     public function excel_productos($cliente, $obra, $fecha_ini, $fecha_fin)
     {
         $this->cliente = $cliente;
@@ -1122,7 +1197,7 @@ class pedidos extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT ct65_pedidos.fecha_vencimiento, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.fecha_vencimiento BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_pedidos.fecha_vencimiento, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.fecha_creacion BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1157,46 +1232,6 @@ class pedidos extends conexionPDO
         }
     }
 
-    public function excel_pedidos($cliente, $obra, $fecha_ini, $fecha_fin)
-    {
-        $this->cliente = $cliente;
-        $this->obra = $obra;
-        $this->fecha_ini = $fecha_ini;
-        $this->fecha_fin = $fecha_fin;
-
-        $sql = "SELECT `id`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `fecha_vencimiento` BETWEEN :fecha_ini AND :fecha_fin AND `nombre_cliente` = :cliente AND `nombre_obra` = :obra AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
-        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['id'] = $fila['id'];
-                    $data_array['fecha_vencimiento'] = $fila['fecha_vencimiento'];
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['nombre_asesora'] = $fila['nombre_asesora'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-
     public function excel_bomba($cliente, $obra, $fecha_ini, $fecha_fin)
     {
         $this->cliente = $cliente;
@@ -1204,7 +1239,7 @@ class pedidos extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE `fecha_vencimiento` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1245,7 +1280,7 @@ class pedidos extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE `fecha_vencimiento` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1276,6 +1311,7 @@ class pedidos extends conexionPDO
             return false; // Error en la sentencia sql
         }
     }
+    //Excel fin
 
     function get_nombre_cliente_obra($id)
     {

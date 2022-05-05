@@ -1378,7 +1378,6 @@ class t1_terceros extends conexionPDO
 
     function select_clientes()
     {
-
         $sql = "SELECT * FROM ct1_terceros WHERE ct1_TipoTercero = 1 ORDER BY `ct1_terceros`.`ct1_IdTerceros` DESC";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);

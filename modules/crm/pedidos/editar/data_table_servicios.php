@@ -6,13 +6,14 @@ header('Content-Type: application/json');
 require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
-
+//SE CREA UN OBJETO DE LA CLASE PEDIDOS
 $pedidos = new pedidos();
-
-
+//SE HACE UNA VALIDACION DE QUE EL PEDIDO EXISTA
 if (isset($_POST['id_pedido']) && !empty($_POST['id_pedido'])) {
+    //TRAE TODOS LOS DATOS DE LOS SERVICIOS FILTRANDOLOS POR EL ID DEL PEDIDO
     $data = $pedidos->get_servicios_precio($_POST['id_pedido']);
 } else {
+    //DE LO CONTRARIO DEVUELVE UN FALSO
     $data = false;
 }
 

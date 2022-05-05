@@ -24,22 +24,21 @@ $t1_terceros = new t1_terceros();
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <?php
-            $t1_terceros = new t1_terceros();
-            $pedidos = new pedidos();
+        //SE CREAN DOS OBJETOS DE LAS CLASES T1_TERCEROS Y PEDIDOS
+        $t1_terceros = new t1_terceros();
+        $pedidos = new pedidos();
         ?>
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">TABLA DE PEDIDOS</h3>
                 <div class="card-tools">
-                    <button type="button" class = "btn btn-tool" data-card-widget = "collapse" data-toggle = "tooltip" title = "Collapse">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
-                    <button type="button" class = "btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                 </div>
             </div>
             <div class="card-body">
@@ -55,6 +54,7 @@ $t1_terceros = new t1_terceros();
                     </div>
                 </div>
                 <br>
+                <!-- INICIO DE TABLA DE PEDIDOS -->
                 <table id="table_pedidos" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -72,6 +72,7 @@ $t1_terceros = new t1_terceros();
 
                     </tbody>
                 </table>
+                <!-- FIN DE LA TABLA PEDIDOS -->
             </div>
             <!-- /.card-body -->
         </div>

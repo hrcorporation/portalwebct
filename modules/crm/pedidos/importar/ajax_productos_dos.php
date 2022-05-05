@@ -57,13 +57,19 @@ $array_reg = $spreadsheet->getActiveSheet()->toArray();
 if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
         if (!is_null($row[0])) {
+            $cantidad = strlen($row[0]);
+            if($cantidad > 10){
+                $codigo_producto = $row[0];
+            }else{
+                $codigo_producto = "0".$row[0];
+            }
             $new_array['status'] = 1;
             $new_array['fecha_subida'] = date('Y-m-d');
             $fecha_subida = date('Y-m-d');
             $new_array['id_producto'] = $pedidos->get_id_producto($row[0]);
             $id_producto = $pedidos->get_id_producto($row[0]);
             $new_array['codigo_producto'] = $row[0];
-            $codigo_producto = $row[0];
+            // $codigo_producto = $row[0];
             $new_array['nombre_producto'] = $pedidos->get_nombre_producto_por_cod($row[0]);
             $nombre_producto = $pedidos->get_nombre_producto_por_cod($row[0]);
             $new_array['precio'] = $row[1];
@@ -71,7 +77,7 @@ if (is_array($array_reg)) {
             /** variable final para guardar en la base de datos $new_array */
             $new_arrayf[] = $new_array;
 
-            if($pedidos->validar_existencias_productos($pedidos->get_id_producto($row[0]))){
+            if($pedidos->validar_existencias_productos($pedidos->get_id_producto($codigo_producto))){
                 if ($php_result = $pedidos->insert_precio_productos($fecha_subida,$id_producto,$codigo_producto,$nombre_producto,$precio)) {
                     $php_estado = true;
                 }

@@ -3,7 +3,6 @@
 <?php include 'sidebar.php';
 $pedidos = new pedidos();
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -24,10 +23,8 @@ $pedidos = new pedidos();
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -41,6 +38,15 @@ $pedidos = new pedidos();
             <div class="card-body">
                 <form id="form-informe-op" name="form-informe-op" method="GET" action="excel.php">
                     <div id="contenido">
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Codigo del pedido</label>
+                                    <input type="number" name="codigo" class="form-control" id="codigo">
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <h5>Seleccionar el cliente y obra</h5>
@@ -51,7 +57,7 @@ $pedidos = new pedidos();
                                 <div class="form-group">
                                     <label>Nombre del cliente</label>
                                     <select name="id_cliente" id="id_cliente" class="form-control select2 ">
-                                        <?= $pedidos->select_cliente(); ?>
+                                        <?= $pedidos->option_cliente_edit(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -72,11 +78,11 @@ $pedidos = new pedidos();
                         <div class="row">
                             <div class="col">
                                 <label>Fecha inicio: </label>
-                                <input type="date" class="form-control" name="txt_fecha_ini" id="txt_fecha_ini" required>
+                                <input type="date" class="form-control" name="txt_fecha_ini" id="txt_fecha_ini">
                             </div>
                             <div class="col">
                                 <label>Fecha Fin: </label>
-                                <input type="date" name="txt_fecha_fin" class="form-control" id="txt_fecha_fin" required>
+                                <input type="date" name="txt_fecha_fin" class="form-control" id="txt_fecha_fin">
                             </div>
                         </div>
                         <br>

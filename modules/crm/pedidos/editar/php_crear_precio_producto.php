@@ -32,7 +32,7 @@ if ($pedidos->validar_existencias_precio_producto($_POST['id_producto'], $_POST[
     }
     $subtotal = $pedidos->calcularDescuento($precio_base, $porcentaje);
     $precio_total_pedido = $subtotal * (doubleval($cantidad_m3));
-    $precio_m3 = $subtotal; // Subtotal
+    $precio_m3 = $subtotal; // Subtotal.
     $observaciones = $_POST['observaciones'];
     if ($pedidos->validar_producto($cod_producto)) {
         if ($pedidos->crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $precio_total_pedido, $observaciones)) {

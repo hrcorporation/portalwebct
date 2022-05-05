@@ -71,14 +71,8 @@ require '../../../../vendor/autoload.php'; ?>
                                     <label>Tipo Cliente (*)</label>
                                     <div class="form-group">
                                         <select class="form-control select2" style="width: 100%;" name="tbx_tipotercero" id="tbx_tipotercero">
-                                            <!-- <option disabled selected>Seleccionar </option>
-                                            <option value="1">Constructora</option>
-                                            <option value="2">Plan Maestro</option>
-                                            <option value="3">Institucional</option>
-                                            <option value="4">Publico </option> -->
                                             <?= $oportunidad_negocio->select_tipo_cliente() ?>
                                         </select>
-
                                     </div>
                                 </div>
                             </div>
@@ -91,8 +85,6 @@ require '../../../../vendor/autoload.php'; ?>
                                         <option value="2"> Pago Anticipado </option>
                                     </select>
                                 </div>
-
-
                             </div>
                             <div class="col">
                                 <div class="form-group" style=" text-align:center">
