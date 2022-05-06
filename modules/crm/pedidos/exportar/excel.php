@@ -24,8 +24,6 @@ $abc1 = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', '
 
 $abc2 = array('AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV', 'AW', 'AX', 'AY', 'AZ');
 
-
-
 if (isset($fecha_ini) && isset($fecha_fin)) {
 
     // traemos los datos de la consulta
@@ -64,7 +62,6 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
         ],
     ];
 
-
     $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
     $drawing->setName('Logo Concretol');
     $drawing->setDescription('Logo Concretol');
@@ -77,7 +74,6 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
     $drawing->getShadow()->setDirection(45);
     $drawing->setWorksheet($spreadsheet->getActiveSheet());
 
-
     $styleArraybordes = [
         'borders' => [
             'allBorders' => [
@@ -86,7 +82,6 @@ if (isset($fecha_ini) && isset($fecha_fin)) {
             ],
         ],
     ];
-
 
     // ENCABEZADO HOJA EXCEL
     $spreadsheet->setActiveSheetIndex(0)

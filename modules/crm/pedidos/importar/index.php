@@ -128,6 +128,7 @@
                         console.log(data);
                         if (data.estado) {
                             toastr.success('Guardado Correctamente');
+                            toastr.info(data.result);
                         } else {
                             toastr.info(data.result);
                         }

@@ -38,7 +38,6 @@ $pedidos = new pedidos();
             <div class="card-body">
                 <form id="form-informe-op" name="form-informe-op" method="GET" action="excel.php">
                     <div id="contenido">
-
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -96,7 +95,7 @@ $pedidos = new pedidos();
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-
+                
             </div>
             <!-- /.card-footer-->
         </div>
