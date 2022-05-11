@@ -42,7 +42,9 @@ $pedidos = new pedidos();
                             <div class="col">
                                 <div class="form-group">
                                     <label>Codigo del pedido</label>
-                                    <input type="number" name="codigo" class="form-control" id="codigo">
+                                    <select name="codigo" id="codigo" class="form-control select2 ">
+                                        <?= $pedidos->select_pedidos_id(); ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -69,21 +71,6 @@ $pedidos = new pedidos();
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <h5>Seleccionar Rango de Fecha</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label>Fecha inicio: </label>
-                                <input type="date" class="form-control" name="txt_fecha_ini" id="txt_fecha_ini">
-                            </div>
-                            <div class="col">
-                                <label>Fecha Fin: </label>
-                                <input type="date" name="txt_fecha_fin" class="form-control" id="txt_fecha_fin">
-                            </div>
-                        </div>
                         <br>
                         <div class="row">
                             <div class="col-2">
@@ -95,7 +82,7 @@ $pedidos = new pedidos();
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                
+
             </div>
             <!-- /.card-footer-->
         </div>
@@ -131,7 +118,29 @@ $pedidos = new pedidos();
                 },
             });
         });
-    })
+    });
+
+    $("#codigo").change(function() {
+        var producto = $("#codigo").val();
+        console.log(producto);
+        if (producto >= 1) {
+            $("#id_cliente").attr('disabled', true);
+            $("#id_obra").attr('disabled', true);
+        } else {
+            $("#id_cliente").attr('disabled', false);
+            $("#id_obra").attr('disabled', false);
+        }
+    });
+
+    $("#id_cliente").change(function() {
+        var cliente = $("#id_cliente").val();
+        console.log(cliente);
+        if (cliente >= 1) {
+            $("#codigo").attr('disabled', true);
+        } else {
+            $("#codigo").attr('disabled', false);
+        }
+    });
 </script>
 
 </body>

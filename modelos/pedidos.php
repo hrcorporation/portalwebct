@@ -4,14 +4,13 @@ class pedidos extends conexionPDO
 {
     protected $con;
 
-
     // Iniciar Conexion
     public function __construct()
     {
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
-
+    //Listar con un arreglo los valores de metros cubicos minimos.
     public function array_list_min_max($minimo, $maximo)
     {
         $array_list = array();
@@ -25,7 +24,7 @@ class pedidos extends conexionPDO
         }
         return $array_list;
     }
-
+    //Listar los precios de los servicios mediante el id del pedido.
     public static function cargar_precio_servicios_for_id_pedido($con, $id_pedido)
     {
         //  sql de consulta para cargar precios porductos
@@ -52,7 +51,6 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
     // Cargar Precios Bomba por id_pedido
     public static function cargar_precio_bomba_for_id_pedido($con, $id_pedido)
     {
@@ -82,7 +80,6 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
     // Cargar Precios Producto por id_pedido
     public static function cargar_precio_productos_for_id_pedido($con, $id_pedido)
     {
@@ -118,7 +115,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Select de los clientes
     public function select_cliente($id = null)
     {
         $option = "<option  selected = 'true' value='NULL' disabled='true'> Seleccione cliente </option>";
@@ -139,10 +136,10 @@ class pedidos extends conexionPDO
         }
         return $option;
     }
-
+    //Select de los clientes
     function option_cliente_edit($id_cliente = null)
     {
-        $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
+        $option = "<option  selected='true'> Seleccione un Cliente</option>";
         $sql = "SELECT ct1_IdTerceros , ct1_NumeroIdentificacion , ct1_RazonSocial FROM ct1_terceros WHERE ct1_TipoTercero = 1 AND ct1_Estado = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -168,7 +165,7 @@ class pedidos extends conexionPDO
         //resultado
         return $option;
     }
-
+    //Select de los productos
     public function select_productos($id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione producto</option>";
@@ -189,7 +186,7 @@ class pedidos extends conexionPDO
         }
         return $option;
     }
-
+    //Select de las bombas
     public function select_bomba($id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione la bomba</option>";
@@ -210,7 +207,7 @@ class pedidos extends conexionPDO
         }
         return $option;
     }
-
+    //Select de los servicios
     public function select_servicio($id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el servicio</option>";
@@ -231,7 +228,28 @@ class pedidos extends conexionPDO
         }
         return $option;
     }
+    //Select de los pedidos
+    public function select_pedidos_id($id = null)
+    {
+        $option = "<option  selected='true'> Seleccione el codigo del pedido </option>";
 
+        $sql = "SELECT * FROM `ct65_pedidos` WHERE `status` = 1";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        if ($stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['id']) {
+                    $selection = "selected='true'";
+                } else {
+                    $selection = " ";
+                }
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . $fila['nombre_cliente'] . ' - ' . $fila['nombre_obra'] . ' </option>';
+            }
+        }
+        return $option;
+    }
+    //Obtener el nombre del cliente mediante el id
     public function get_nombre_cliente($id)
     {
         $this->id = $id;
@@ -255,7 +273,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el cliente mediante el id
     public function get_cliente($id)
     {
         $this->id = $id;
@@ -279,7 +297,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el precio del producto mediante el id
     public function get_precio_producto($id)
     {
         $this->id = $id;
@@ -303,7 +321,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el nombre de la obra mediante el id
     public function get_nombre_obra($id)
     {
         $this->id = $id;
@@ -327,7 +345,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el nombre de la asesora mediante el id
     public function get_nombre_asesora($id)
     {
         $this->id = $id;
@@ -351,7 +369,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el nombre del producto mediante el id
     public function get_nombre_producto($id)
     {
         $this->id = $id;
@@ -375,7 +393,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el id del producto mediante el codigo del producto.
     public function get_id_producto($codigo)
     {
         $this->id = $codigo;
@@ -399,7 +417,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el nombre del producto por el codigo.
     public function get_nombre_producto_por_cod($codigo)
     {
         $this->codigo = $codigo;
@@ -423,7 +441,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el codigo del producto mediante el id.
     public function get_codigo_producto($id)
     {
         $this->id = $id;
@@ -447,7 +465,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el id del precio base mediante id del producto.
     public function get_id_precio_base($id)
     {
         $this->id = $id;
@@ -471,7 +489,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el precio base del producto mediante el id del producto.
     public function get_precio_base($id)
     {
         $this->id = $id;
@@ -495,7 +513,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el nombre de la bomba mediante el id.
     public function get_nombre_bomba($id)
     {
         $this->id = $id;
@@ -519,7 +537,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el nombre del servicio mediante el id.
     public function get_nombre_servicio($id)
     {
         $this->id = $id;
@@ -543,7 +561,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Crear el pedido
     public function crear_pedido($fecha, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora)
     {
         $this->status = 1;
@@ -575,7 +593,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Registrar el producto a un pedido.
     public function crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $precio_total_pedido, $observaciones)
     {
         $this->status = 1;
@@ -614,7 +632,7 @@ class pedidos extends conexionPDO
 
         return $result;
     }
-
+    //Registrar la bomba a un pedido.
     public function crear_precio_bomba($id_pedido, $id_tipo_bomba, $nombre_tipo_bomba, $min_m3, $max_m3, $precio, $observaciones)
     {
         $this->status = 1;
@@ -644,7 +662,7 @@ class pedidos extends conexionPDO
 
         return $result;
     }
-
+    //Registrar el servicio a un pedido.
     public function crear_precio_servicio($id_pedido, $id_tipo_servicio, $nombre_tipo_servicio, $precio, $observaciones)
     {
         $this->status = 1;
@@ -671,7 +689,7 @@ class pedidos extends conexionPDO
 
         return $result;
     }
-
+    //Listar todos los pedidos.
     public function get_pedidos()
     {
         $sql = "SELECT `id`, `status`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos`";
@@ -709,7 +727,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Obtener los precios de los productos mediante el id del pedido.
     public function get_productos_precio($id_pedido)
     {
         $sql = "SELECT `id`,`status`,`codigo_producto`, `porcentaje_descuento`, `cantidad_m3`, `precio_m3`, `observaciones` FROM `ct65_pedidos_has_precio_productos` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
@@ -754,7 +772,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Obtener los precios de la bomba mediante el id del pedido.
     public function get_bomba_precio($id_pedido)
     {
         $sql = "SELECT `id`,`status`,`nombre_tipo_bomba`,`min_m3`,`max_m3`,`precio`, `observaciones` FROM `ct65_pedido_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
@@ -795,7 +813,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Obtener el precio de la bomba mediante el id del pedido y el id del tipo de bomba
     public function bomba_precio($id_pedido, $id_tipo_bomba)
     {
         $sql = "SELECT `id_tipo_bomba`, `min_m3`,`max_m3` FROM `ct65_pedido_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `id_tipo_bomba` = :id_tipo_bomba AND `status` = 1";
@@ -821,7 +839,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Obtener el precio del servicio mediante el id del pedido.
     public function get_servicios_precio($id_pedido)
     {
         $sql = "SELECT `id`,`status`, `nombre_tipo_servicio`, `precio`, `observaciones` FROM `ct65_pedido_has_precio_servicio` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
@@ -859,7 +877,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Validar la existencia de algun pédido mediante el cliente y la obra.
     public function validar_existencias_pedido($cliente, $obra)
     {
         $sql = "SELECT id FROM ct65_pedidos WHERE status = 1 AND `id_cliente` = :cliente AND `id_obra` = :obra";
@@ -879,7 +897,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Validar la existencia de algun pédido mediante el codigo.
     public function validar_existencias_pedido_id($codigo)
     {
         $sql = "SELECT id FROM ct65_pedidos WHERE status = 1 AND id = :id";
@@ -898,7 +916,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Validar la existencia de algun producto mediante el id del producto.
     public function validar_existencias_productos($id_producto)
     {
         $sql = "SELECT id FROM concr_bdportalconcretol.ct65_precio_base WHERE status = 1 AND id_producto = :id_producto";
@@ -916,7 +934,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Validar la existencia de algun producto mediante el cliente y la obra.
     public function validar_existencias_producto_principal($codigo)
     {
         $sql = "SELECT `ct4_CodigoSyscafe` FROM `ct4_productos` WHERE `ct4_CodigoSyscafe` = :codigo";
@@ -934,7 +952,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Validar la existencia de algun producto mediante el id del producto y el id del pedido.
     public function validar_existencias_precio_producto($id_producto, $id_pedido)
     {
         $sql = "SELECT id FROM ct65_pedidos_has_precio_productos WHERE status = 1 AND id_producto = :id_producto AND `id_pedido` = :id_pedido";
@@ -953,7 +971,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Validar la existencia de algun precio del producto mediante el codigo.
     public function validar_producto($codigo)
     {
         $sql = "SELECT `id` FROM `ct65_precio_base` WHERE `codigo_producto` = :codigo_producto";
@@ -971,7 +989,25 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Validar la existencia de algun precio del producto mediante el codigo.
+    public function validar_producto_por_id($id)
+    {
+        $sql = "SELECT `id` FROM `ct65_precio_base` WHERE `id_producto` = :id";
+        $stmt = $this->con->prepare($sql); // Preparar la conexion
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    //Validar la existencia de alguna bomba mediante la cantidad maxima, cantidad minima y el id del pedido.
     public function validar_bomba($cant_min, $cant_max, $id_pedido)
     {
         $sql = "SELECT id FROM ct65_pedido_has_precio_bomba WHERE status = 1 AND `min_m3` = :min_m3 AND `max_m3` = :max_m3 AND `id_pedido` = :id_pedido";
@@ -991,10 +1027,10 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Validar la existencia de algun servicio del producto mediante el id del tipo de servicio y el id del pedido.
     public function validar_existencias_precio_servicio($id_tipo_servicio, $id_pedido)
     {
-        $sql = "SELECT id FROM ct65_pedido_has_precio_servicio WHERE status = 1 AND id_tipo_servicio = :id_tipo_servicio AND `id_pedido` = :id_pedido";
+        $sql = "SELECT id FROM ct65_pedido_has_precio_servicio WHERE 'status' = 1 AND id_tipo_servicio = :id_tipo_servicio AND `id_pedido` = :id_pedido";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':id_tipo_servicio', $id_tipo_servicio, PDO::PARAM_STR);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_STR);
@@ -1010,7 +1046,7 @@ class pedidos extends conexionPDO
             return false;
         }
     }
-
+    //Crear el precio del producto.
     function insert_precio_productos($fecha_subida, $id_producto, $codigo_producto, $nombre_producto, $precio)
     {
         $status = 1;
@@ -1030,7 +1066,7 @@ class pedidos extends conexionPDO
         }
         return $php_result;
     }
-
+    //Registrar el producto al pedido.
     function insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)
     {
         $status = 1;
@@ -1051,7 +1087,7 @@ class pedidos extends conexionPDO
         }
         return $php_result;
     }
-
+    //Cambiar el status del precio base del producto.
     function editar_status_precio_base_productos()
     {
         $this->status = 2;
@@ -1069,7 +1105,7 @@ class pedidos extends conexionPDO
         //resultado
         return $result;
     }
-
+    //Cambiar el status del pedido.
     function cambiar_status_pedido($fecha)
     {
         $this->fecha = $fecha;
@@ -1089,6 +1125,7 @@ class pedidos extends conexionPDO
         //resultado
         return $result;
     }
+    //Cambiar el status del pedido.
     function editar_status_productos()
     {
         $this->status = 2;
@@ -1106,7 +1143,7 @@ class pedidos extends conexionPDO
         //resultado
         return $result;
     }
-
+    //Cambiar el status del producto.
     function cambiar_status_producto($id)
     {
         $this->id = $id;
@@ -1126,7 +1163,7 @@ class pedidos extends conexionPDO
         //resultado
         return $result;
     }
-
+    //Cambiar el status de la bomba.
     function cambiar_status_bomba($id)
     {
         $this->id = $id;
@@ -1146,7 +1183,7 @@ class pedidos extends conexionPDO
         //resultado
         return $result;
     }
-
+    //Cambiar el status del servicio.
     function cambiar_status_servicio($id)
     {
         $this->id = $id;
@@ -1166,60 +1203,15 @@ class pedidos extends conexionPDO
         //resultado
         return $result;
     }
-
-    //Excel inicio
-    //Excel pedidos
-    public function excel_pedidos($cliente, $obra, $fecha_ini, $fecha_fin)
-    {
-        $this->cliente = $cliente;
-        $this->obra = $obra;
-        $this->fecha_ini = $fecha_ini;
-        $this->fecha_fin = $fecha_fin;
-
-        $sql = "SELECT `id`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND `nombre_cliente` = :cliente AND `nombre_obra` = :obra AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
-        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['id'] = $fila['id'];
-                    $data_array['fecha_vencimiento'] = $fila['fecha_vencimiento'];
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['nombre_asesora'] = $fila['nombre_asesora'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel pedidos codigo
+    //  EXCEL INICIO
+    //  Excel Pedidos codigo
     public function excel_pedidos_codigo($codigo)
     {
-        $this->codigo = $codigo;
-
-        $sql = "SELECT `id`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `id` = :id AND ct65_pedidos.status = 1";
+        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`, `nombre_cliente`, `nombre_obra`, `nombre_asesora` FROM `ct65_pedidos` WHERE `id` = :codigo AND ct65_pedidos.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id', $this->codigo, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        $stmt->bindParam(':codigo', $codigo, PDO::PARAM_INT);
         // Ejecuta SQL
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
@@ -1228,6 +1220,7 @@ class pedidos extends conexionPDO
                 // Recorrer limpieza de datos obtenidos en la consulta
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $data_array['id'] = $fila['id'];
+                    $data_array['fecha_creacion'] = $fila['fecha_creacion'];
                     $data_array['fecha_vencimiento'] = $fila['fecha_vencimiento'];
                     $data_array['nombre_cliente'] = $fila['nombre_cliente'];
                     $data_array['nombre_obra'] = $fila['nombre_obra'];
@@ -1242,13 +1235,113 @@ class pedidos extends conexionPDO
             return false; // Error en la sentencia sql
         }
     }
-    //Excel pedidos cliente obra
+    //  Excel Productos codigo
+    public function excel_productos_codigo($codigo)
+    {
+        $sql = "SELECT `id_pedido`, ct65_pedidos.fecha_vencimiento, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE `id_pedido` = :codigo AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
+
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':codigo', $codigo, PDO::PARAM_INT);
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['id_pedido'] = $fila['id_pedido'];
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['codigo_producto'] = $fila['codigo_producto'];
+                    $data_array['nombre_producto'] = $fila['nombre_producto'];
+                    $data_array['precio_m3'] = $fila['precio_m3'];
+                    $data_array['cantidad_m3'] = $fila['cantidad_m3'];
+                    $data_array['nombre_asesora'] = $fila['nombre_asesora'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0
+            }
+        } else {
+            return false; // Error en la sentencia sql
+        }
+    }
+    //  Excel Bombas codigo
+    public function excel_bomba_codigo($codigo)
+    {
+        $sql = "SELECT `id_pedido`, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE `id_pedido` = :codigo AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
+
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':codigo', $codigo, PDO::PARAM_INT);
+
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['id_pedido'] = $fila['id_pedido'];
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['nombre_tipo_bomba'] = $fila['nombre_tipo_bomba'];
+                    $data_array['min_m3'] = $fila['min_m3'];
+                    $data_array['max_m3'] = $fila['max_m3'];
+                    $data_array['precio'] = $fila['precio'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0
+            }
+        } else {
+            return false; // Error en la sentencia sql
+        }
+    }
+    //  Excel Servicios codigo
+    public function excel_servicio_codigo($codigo)
+    {
+        $sql = "SELECT `id_pedido`, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE `id_pedido` = :codigo AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
+
+        // Preparar la conexion del sentencia SQL.
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':codigo', $codigo, PDO::PARAM_INT);
+
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['id_pedido'] = $fila['id_pedido'];
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['nombre_tipo_servicio'] = $fila['nombre_tipo_servicio'];
+                    $data_array['precio'] = $fila['precio'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado.
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0.
+            }
+        } else {
+            return false; // Error en la sentencia sql.
+        }
+    }
+    //  Excel Pedidos cliente obra
     public function excel_pedidos_cliente_obra($cliente, $obra)
     {
         $this->cliente = $cliente;
         $this->obra = $obra;
 
-        $sql = "SELECT `id`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `nombre_cliente` = :cliente AND `nombre_obra` = :obra AND ct65_pedidos.status = 1";
+        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `nombre_cliente` = :cliente AND `nombre_obra` = :obra AND ct65_pedidos.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1264,6 +1357,7 @@ class pedidos extends conexionPDO
                 // Recorrer limpieza de datos obtenidos en la consulta
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $data_array['id'] = $fila['id'];
+                    $data_array['fecha_creacion'] = $fila['fecha_creacion'];
                     $data_array['fecha_vencimiento'] = $fila['fecha_vencimiento'];
                     $data_array['nombre_cliente'] = $fila['nombre_cliente'];
                     $data_array['nombre_obra'] = $fila['nombre_obra'];
@@ -1278,121 +1372,7 @@ class pedidos extends conexionPDO
             return false; // Error en la sentencia sql
         }
     }
-    //Excel pedidos fecha
-    public function excel_pedidos_fecha($fecha_ini, $fecha_fin)
-    {
-        $this->fecha_ini = $fecha_ini;
-        $this->fecha_fin = $fecha_fin;
-
-        $sql = "SELECT `id`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['id'] = $fila['id'];
-                    $data_array['fecha_vencimiento'] = $fila['fecha_vencimiento'];
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['nombre_asesora'] = $fila['nombre_asesora'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel productos
-    public function excel_productos($cliente, $obra, $fecha_ini, $fecha_fin)
-    {
-        $this->cliente = $cliente;
-        $this->obra = $obra;
-        $this->fecha_ini = $fecha_ini;
-        $this->fecha_fin = $fecha_fin;
-
-        $sql = "SELECT ct65_pedidos.fecha_vencimiento, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.fecha_creacion BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
-        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['codigo_producto'] = $fila['codigo_producto'];
-                    $data_array['nombre_producto'] = $fila['nombre_producto'];
-                    $data_array['precio_m3'] = $fila['precio_m3'];
-                    $data_array['cantidad_m3'] = $fila['cantidad_m3'];
-                    $data_array['nombre_asesora'] = $fila['nombre_asesora'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel productos codigo
-    public function excel_productos_codigo($codigo)
-    {
-        $this->codigo = $codigo;
-
-        $sql = "SELECT ct65_pedidos.id, ct65_pedidos.fecha_vencimiento, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.id = :id AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id', $this->codigo, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['codigo_producto'] = $fila['codigo_producto'];
-                    $data_array['nombre_producto'] = $fila['nombre_producto'];
-                    $data_array['precio_m3'] = $fila['precio_m3'];
-                    $data_array['cantidad_m3'] = $fila['cantidad_m3'];
-                    $data_array['nombre_asesora'] = $fila['nombre_asesora'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel productos cliente obra
+    //  Excel Productos cliente obra
     public function excel_productos_cliente_obra($cliente, $obra)
     {
         $this->cliente = $cliente;
@@ -1430,7 +1410,116 @@ class pedidos extends conexionPDO
             return false; // Error en la sentencia sql
         }
     }
-    //Excel productos fecha
+    //  Excel Bombas cliente y obra
+    public function excel_bomba_cliente_obra($cliente, $obra)
+    {
+        $this->cliente = $cliente;
+        $this->obra = $obra;
+
+        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
+
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
+
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['nombre_tipo_bomba'] = $fila['nombre_tipo_bomba'];
+                    $data_array['min_m3'] = $fila['min_m3'];
+                    $data_array['max_m3'] = $fila['max_m3'];
+                    $data_array['precio'] = $fila['precio'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0
+            }
+        } else {
+            return false; // Error en la sentencia sql
+        }
+    }
+    //  Excel Servicios cliente y obra
+    public function excel_servicio_cliente_obra($cliente, $obra)
+    {
+        $this->cliente = $cliente;
+        $this->obra = $obra;
+
+        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
+
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
+
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['nombre_tipo_servicio'] = $fila['nombre_tipo_servicio'];
+                    $data_array['precio'] = $fila['precio'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0
+            }
+        } else {
+            return false; // Error en la sentencia sql
+        }
+    }
+    //  Excel Pedidos fecha
+    public function excel_pedidos_fecha($fecha_ini, $fecha_fin)
+    {
+        $this->fecha_ini = $fecha_ini;
+        $this->fecha_fin = $fecha_fin;
+
+        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.status = 1";
+
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
+
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['id'] = $fila['id'];
+                    $data_array['fecha_creacion'] = $fila['fecha_creacion'];
+                    $data_array['fecha_vencimiento'] = $fila['fecha_vencimiento'];
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['nombre_asesora'] = $fila['nombre_asesora'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0
+            }
+        } else {
+            return false; // Error en la sentencia sql
+        }
+    }
+    //  Excel Productos fecha
     public function excel_productos_fecha($fecha_ini, $fecha_fin)
     {
         $this->fecha_ini = $fecha_ini;
@@ -1468,120 +1557,7 @@ class pedidos extends conexionPDO
             return false; // Error en la sentencia sql
         }
     }
-    //Excel bombas 
-    public function excel_bomba($cliente, $obra, $fecha_ini, $fecha_fin)
-    {
-        $this->cliente = $cliente;
-        $this->obra = $obra;
-        $this->fecha_ini = $fecha_ini;
-        $this->fecha_fin = $fecha_fin;
-
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
-        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['nombre_tipo_bomba'] = $fila['nombre_tipo_bomba'];
-                    $data_array['min_m3'] = $fila['min_m3'];
-                    $data_array['max_m3'] = $fila['max_m3'];
-                    $data_array['precio'] = $fila['precio'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel bombas codigo
-    public function excel_bomba_codigo($codigo)
-    {
-        $this->codigo = $codigo;
-
-        $sql = "SELECT ct65_pedidos.id, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.id = :id AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id', $this->codigo, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['nombre_tipo_bomba'] = $fila['nombre_tipo_bomba'];
-                    $data_array['min_m3'] = $fila['min_m3'];
-                    $data_array['max_m3'] = $fila['max_m3'];
-                    $data_array['precio'] = $fila['precio'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel bombas cliente y obra
-    public function excel_bomba_cliente_obra($cliente, $obra)
-    {
-        $this->cliente = $cliente;
-        $this->obra = $obra;
-
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
-        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['nombre_tipo_bomba'] = $fila['nombre_tipo_bomba'];
-                    $data_array['min_m3'] = $fila['min_m3'];
-                    $data_array['max_m3'] = $fila['max_m3'];
-                    $data_array['precio'] = $fila['precio'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel bombas fecha
+    //  Excel Bombas fecha
     public function excel_bomba_fecha($fecha_ini, $fecha_fin)
     {
         $this->fecha_ini = $fecha_ini;
@@ -1618,114 +1594,7 @@ class pedidos extends conexionPDO
             return false; // Error en la sentencia sql
         }
     }
-    //Excel servicios
-    public function excel_servicio($cliente, $obra, $fecha_ini, $fecha_fin)
-    {
-        $this->cliente = $cliente;
-        $this->obra = $obra;
-        $this->fecha_ini = $fecha_ini;
-        $this->fecha_fin = $fecha_fin;
-
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
-        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['nombre_tipo_servicio'] = $fila['nombre_tipo_servicio'];
-                    $data_array['precio'] = $fila['precio'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel servicios codigo
-    public function excel_servicio_codigo($codigo)
-    {
-        $this->codigo = $codigo;
-
-        $sql = "SELECT ct65_pedidos.id, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.id = :id AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id', $this->codigo, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['nombre_tipo_servicio'] = $fila['nombre_tipo_servicio'];
-                    $data_array['precio'] = $fila['precio'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel servicios cliente y obra
-    public function excel_servicio_cliente_obra($cliente, $obra)
-    {
-        $this->cliente = $cliente;
-        $this->obra = $obra;
-
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
-
-        // Preparar la conexion del sentencia SQL
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':cliente', $this->cliente, PDO::PARAM_STR);
-        $stmt->bindParam(':obra', $this->obra, PDO::PARAM_STR);
-
-        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
-        // Ejecuta SQL
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
-            // Valida si hay registros
-            if ($num_reg > 0) {
-                // Recorrer limpieza de datos obtenidos en la consulta
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['nombre_tipo_servicio'] = $fila['nombre_tipo_servicio'];
-                    $data_array['precio'] = $fila['precio'];
-                    $datosf[] = $data_array;
-                }
-                return $datosf; // Retorna el resultado
-            } else {
-                return false; // El resultado de la sentencia SQL es igual a 0
-            }
-        } else {
-            return false; // Error en la sentencia sql
-        }
-    }
-    //Excel servicios fecha
+    //  Excel Servicios fecha
     public function excel_servicio_fecha($fecha_ini, $fecha_fin)
     {
         $this->fecha_ini = $fecha_ini;
@@ -1760,8 +1629,8 @@ class pedidos extends conexionPDO
             return false; // Error en la sentencia sql
         }
     }
-    //Excel fin
-
+    //EXCEL FIN
+    //Obtener el nombre del cliente y obra mediante el id del pedido.
     function get_nombre_cliente_obra($id)
     {
         $this->id = $id;
@@ -1788,7 +1657,6 @@ class pedidos extends conexionPDO
             return false; // Error en la sentencia sql
         }
     }
-
     //Funcion para sacar el descuento se requiere como parametro el precio base y el porcentaje
     public function calcularDescuento($precio_base, $porcentaje)
     {
