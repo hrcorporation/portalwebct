@@ -11,10 +11,7 @@ require '../../vendor/autoload.php';
 $php_clases = new php_clases();
 $t26_remisiones = new t26_remisiones();
 
-$id_conductor = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
-$t26_remisiones->validar_falta_horas_remi_conductor_all();
 
-$t26_remisiones->validar_falta_horas_remi_conductor($id_conductor);
 
 switch (intval($_SESSION['rol_funcionario'])) {
     case 1:
@@ -76,17 +73,7 @@ switch (intval($_SESSION['rol_funcionario'])) {
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-3">
-                        <button type="button" data-toggle="modal" class="btn btn-block btn-info"
-                            data-target="#list_agente"> <i class="fas fa-info-circle"></i> Agentes Servicio
-                            Disponibles</button>
-                    </div>
-                    <div class="col-3">
-                        <button type="button" data-toggle="modal" class="btn btn-block btn-info"
-                            data-target="#list_obra"> <i class="fas fa-info-circle"></i> Obras Disponibles</button>
-                    </div>
-                </div>
+                
                 <br>
                 <?php
 
@@ -100,9 +87,11 @@ switch (intval($_SESSION['rol_funcionario'])) {
                             <tr>
                                 <th>N </th>
                                 <th>Fecha</th>
+                                <th>Planta</th>
                                 <th>Remision</th>
                                 <th>Cliente</th>
                                 <th>Obra </th>
+                                <th>Mixer </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -113,9 +102,11 @@ switch (intval($_SESSION['rol_funcionario'])) {
                             <tr>
                                 <th>N </th>
                                 <th>Fecha</th>
+                                <th>Planta</th>
                                 <th>Remision</th>
                                 <th>Cliente</th>
                                 <th>Obra </th>
+                                <th>Mixer </th>
                                 <th></th>
                             </tr>
                         </tfooter>
@@ -162,6 +153,9 @@ $(document).ready(function() {
                 "data": "ct29_Fecha"
             },
             {
+                "data": "ct29_IdPlanta"
+            },
+            {
                 "data": "ct29_Remision"
             },
             {
@@ -170,7 +164,9 @@ $(document).ready(function() {
             {
                 "data": "ct29_IdObra"
             },
-
+            {
+                "data": "ct29_IdMixer"
+            },
             {
                 "data": null,
                 "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-eye'></i> </button>"

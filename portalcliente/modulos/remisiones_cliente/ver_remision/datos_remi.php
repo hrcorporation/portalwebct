@@ -57,13 +57,14 @@ if (isset($datos_array)) {
         $hora_terminada = $datos['ct26_hora_terminada_descargue'];
 
 
+        $bomba = $datos['ct26_bomba'];
         
         $observaciones_cliente = $datos['ct26_observaciones_cli'];
         $observaciones_funcionario = $datos['ct26_observaciones'];
+        $observaciones_despachador = $datos['ct26_observaciones_desp'];
 
-        
+        $observaciones = $bomba ." ; ".$observaciones_cliente . " ; " . $observaciones_funcionario. " ; ".$observaciones_despachador;
 
-        $observaciones = $observaciones_cliente . " ; " . $observaciones_funcionario;
         
         $nombres_recibido = $datos['ct26_recibido'];
         //$ = $datos[''];

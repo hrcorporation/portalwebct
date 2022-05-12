@@ -190,6 +190,7 @@ foreach ($datos_remision as $fila_remi) {
                                         <option value="BOMBA4">Bomba 4</option>
                                         <option value="BOMBA5">Bomba 5</option>
                                         <option value="BOMBA6">Bomba 6</option>
+                                        <option value="BOMBA7">Bomba 7</option>
                                         <option value="AUTOBOMBA">AUTOBOMBA</option>
                                     </select>
                                 </div>
