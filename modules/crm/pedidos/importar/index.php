@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <!-- boton para guardar el archivo -->
                                 <button type="submit" class="btn btn-success" name="btn_subirarchivo" id="btn_subirarchivo" onclick="return confirm('¿Desea agregar los productos?')">
-                                <i class="fas fa-upload"></i> Subir
+                                    <i class="fas fa-upload"></i> Subir
                                 </button>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
         $('.select2').select2();
     });
 
-    // subir Archivo
+    // Subir Archivo
     $("#id_select_producto").change(function() {
         var producto = $("#id_select_producto").val();
         console.log(producto);

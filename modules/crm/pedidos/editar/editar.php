@@ -2,23 +2,25 @@
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 <?php
+// SE CREAN OBJETOS DE LA CLASE PEDIDOS
 $pedidos = new pedidos();
+// SE OBTIENE EL ID POR GET
 $id = $_GET['id'];
+// SE LLAMA UNA FUNCION PARA OBTENER EL CLIENTE Y LA OBRA DEL PEDIDO
+$datos = $pedidos->get_nombre_cliente_obra($id);
+// SE VA LISTANDO MEDIANTE UN FOREACH
+foreach ($datos as $dato) {
+    $nombre_cliente = $dato['nombre_cliente'];
+    $nombre_obra = $dato['nombre_obra'];
+}
 ?>
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>PEDIDO # <b><?= $id ?></b></h1>
-                </div>
-                <div class="col-sm-6">
-                    <!--
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                            <li class="breadcrumb-item active">Actual</li>
-                        </ol> 
-                    -->
+            <div class="row">
+                <div class="col">
+                    <!-- SE MUESTRA EL ID DEL PEDIDO -->
+                    <h5><b>PEDIDO:</b> #<?= $id ?></h5>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -36,6 +38,18 @@ $id = $_GET['id'];
             <div class="card-body">
                 <div id="contenido">
                     <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <!-- SE MUESTRA EL NOMBRE DEL CLIENTE -->
+                                <h5><b>CLIENTE:</b> <?= $nombre_cliente ?></h5>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-group">
+                                <!-- SE MUESTRA EL NOMBRE DE LA OBRA -->
+                                <h5><b>OBRA:</b> <?= $nombre_obra ?></h5>
+                            </div>
+                        </div>
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal_cargar">
@@ -59,6 +73,7 @@ $id = $_GET['id'];
                         </div>
                     </div>
                 </div>
+                <!-- TABLA PRECIOS PRODUCTOS PEDIDOS -->
                 <table id="table_precio_productos" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -68,6 +83,7 @@ $id = $_GET['id'];
                             <th>%</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
+                            <th>Observaciones</th>
                             <th>Detalles</th>
                         </tr>
                     </thead>
@@ -76,7 +92,7 @@ $id = $_GET['id'];
                     </tbody>
                 </table>
             </div>
-            <!-- Default box -->
+            <!-- MODAL PRECIOS PRODUCTOS PEDIDOS INICIO -->
             <div class="modal fade " id="crear_precio_producto">
                 <div class="modal-dialog  modal-lg">
                     <div class="modal-content">
@@ -116,7 +132,15 @@ $id = $_GET['id'];
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="cantidad">Cantidad m3</label>
-                                            <input type="number" name="cantidad" id="cantidad" class="form-control validanumericos" required="true" />
+                                            <input type="number" name="cantidad" id="cantidad" class="form-control validanumericos" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="descuento">Observaciones</label>
+                                            <input type="text" name="observaciones" id="observaciones" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +161,8 @@ $id = $_GET['id'];
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL PRECIOS PRODUCTOS PEDIDOS FIN -->
+            <!-- TABLA PRECIOS BOMBA PEDIDOS -->
             <div class="card-body">
                 <div id="contenido">
                     <div class="row">
@@ -164,6 +189,7 @@ $id = $_GET['id'];
                             <th>Cant. min</th>
                             <th>Cant. max</th>
                             <th>Precio</th>
+                            <th>Observaciones</th>
                             <th>Detalles</th>
                         </tr>
                     </thead>
@@ -172,7 +198,7 @@ $id = $_GET['id'];
                     </tbody>
                 </table>
             </div>
-            <!-- Default box -->
+            <!-- MODAL BOMABS PRODUCTOS PEDIDOS INICIO -->
             <div class="modal fade" id="crear_precio_bomba">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -189,7 +215,7 @@ $id = $_GET['id'];
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="id_tipo_bomba">Tipo de bomba</label>
-                                            <select class="form-control select2" name="id_tipo_bomba" id="id_tipo_bomba">
+                                            <select class="form-control select2" name="id_tipo_bomba" id="id_tipo_bomba" required="true">
                                                 <?= $pedidos->select_bomba(); ?>
                                             </select>
                                         </div>
@@ -198,20 +224,28 @@ $id = $_GET['id'];
                                         <div class="form-group">
                                             <label for="rango">Rango M3</label>
                                             <label for="minimo">Minimo</label>
-                                            <input type="number" name="minimo" id="minimo" class="form-control validanumericos" required="true" />
+                                            <input type="number" name="minimo" id="minimo" step="any" class="form-control validanumericos" required="true" />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="rango">Rango M3</label>
                                             <label for="maximo">Maximo</label>
-                                            <input type="number" name="maximo" id="maximo" class="form-control validanumericos" required="true" />
+                                            <input type="number" name="maximo" id="maximo" step="any" class="form-control validanumericos" required="true" />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="precio">Precio</label>
                                             <input type="text" name="precio" id="precio" class="form-control" required="true" onkeyup="format(this)" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="descuento">Observaciones</label>
+                                            <input type="text" name="observaciones" id="observaciones" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -232,7 +266,9 @@ $id = $_GET['id'];
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL BOMBA PRECIOS PEDIDOS FIN -->
+
+            <!-- TABLA PRECIOS SERVICIOS PEDIDOS -->
             <div class="card-body">
                 <div id="contenido">
                     <div class="row">
@@ -257,6 +293,7 @@ $id = $_GET['id'];
                             <th>Status</th>
                             <th>Servicio</th>
                             <th>Precio</th>
+                            <th>Observaciones</th>
                             <th>Detalles</th>
                         </tr>
                     </thead>
@@ -265,7 +302,7 @@ $id = $_GET['id'];
                     </tbody>
                 </table>
             </div>
-            <!-- Default box -->
+            <!-- MODAL PRECIOS SERVICIOS PEDIDOS INICIO -->
             <div class="modal fade" id="crear_precio_servicio_adicional">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -296,6 +333,14 @@ $id = $_GET['id'];
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="descuento">Observaciones</label>
+                                            <input type="text" name="observaciones" id="observaciones" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-10">
                                         <div class="form-group">
                                             <label for=""></label>
@@ -312,7 +357,9 @@ $id = $_GET['id'];
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL PRECIOS SERVICIOS PEDIDOS FIN -->
+
+            <!-- MODAL OPCIONES CARGAR PRECIOS INICIO -->
             <div class="modal fade" id="modal_cargar">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -341,7 +388,9 @@ $id = $_GET['id'];
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL OPCIONES CARGAR PRECIOS FIN -->
+
+            <!-- MODAL CARGAR PRECIOS MEDIANTE CODIGO DE PEDIDO INICIO -->
             <div class="modal fade" id="cargar_precios">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -379,7 +428,9 @@ $id = $_GET['id'];
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL CARGAR PRECIOS MEDIANTE CODIGO DE PEDIDO INICIO -->
+
+            <!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL INICIO -->
             <div class="modal fade" id="cargar_excel">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -432,7 +483,7 @@ $id = $_GET['id'];
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
+            </div><!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL FIN -->
         </div>
     </section>
 </div>
@@ -455,7 +506,7 @@ $id = $_GET['id'];
     });
 
     $(document).ready(function() {
-        // Formulacio Cargar Precios
+        // Formulario Cargar Precios
         $("#form_cargar_precio_servicio").on('submit', (function(e) {
             $('#cargar_precios').modal('toggle');
             e.preventDefault();
@@ -591,6 +642,9 @@ $id = $_GET['id'];
                     "data": "precio_m3"
                 },
                 {
+                    "data": "observaciones"
+                },
+                {
                     "data": null,
                     "defaultContent": "<button class='btn btn-danger btn-sm' id = 'btn-eliminar'> <i class='fas fa-trash'></i> </button>"
                 }
@@ -683,6 +737,9 @@ $id = $_GET['id'];
                     "data": "precio"
                 },
                 {
+                    "data": "observaciones"
+                },
+                {
                     "data": null,
                     "defaultContent": "<button class='btn btn-danger btn-sm' id = 'btn-eliminar'> <i class='fas fa-trash'></i> </button>"
                 }
@@ -766,6 +823,9 @@ $id = $_GET['id'];
                 },
                 {
                     "data": "precio"
+                },
+                {
+                    "data": "observaciones"
                 },
                 {
                     "data": null,
@@ -929,9 +989,7 @@ $id = $_GET['id'];
             num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             num = num.split('').reverse().join('').replace(/^[\.]/, '');
             input.value = num;
-
         } else {
-
             input.value = input.value.replace(/[^\d\.]*/g, '');
         }
     }

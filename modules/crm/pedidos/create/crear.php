@@ -22,6 +22,7 @@
     </section>
     <section class="content">
         <?php
+        //Se llaman los modelos de las clases de pedidos y oportunidad de negocio.
         $pedidos = new pedidos();
         $oportunidad_negocio = new oportunidad_negocio();
         ?>
@@ -40,13 +41,14 @@
                     </div>
                 </div>
                 <div id="contenido">
+                    <!-- INICIO DEL FORMULARIO -->
                     <form name="form_crear_pedido" id="form_crear_pedido" method="post" content="width=device-width, initial-scale=1">
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>NOMBRE DEL CLIENTE</label>
                                     <select name="id_cliente" id="id_cliente" class="form-control select2 ">
-                                        <?= $pedidos->select_cliente(); ?>
+                                        <?= $pedidos->option_cliente_edit(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -54,7 +56,7 @@
                                 <div class="form-group">
                                     <label>NOMBRE DE LA OBRA</label>
                                     <select name="id_obra" id="id_obra" class="form-control select2 ">
-                                        
+
                                     </select>
                                 </div>
                             </div>
@@ -80,7 +82,9 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- BOTON DE GUARDAR -->
                     </form>
+                    <!-- FIN DEL FORMULARIO -->
                 </div>
             </div>
         </div>
@@ -112,7 +116,7 @@
                 },
             });
         });
-    })
+    });
     $(document).ready(function(e) {
         $("#form_crear_pedido").on('submit', (function(e) {
             e.preventDefault();

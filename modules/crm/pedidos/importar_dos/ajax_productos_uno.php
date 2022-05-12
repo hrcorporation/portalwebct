@@ -55,8 +55,11 @@ $spreadsheet = $reader->load($inputFileName);
 $array_reg = $spreadsheet->getActiveSheet()->toArray();
 
 if (is_array($array_reg)) {
+    //CAMBIA EL ESTADO A LOS ANTIGUOS PRODUCTOS
     $php_result = $pedidos->editar_status_precio_base_productos();
+    //TOMA EL ID DEL PEDIDO
     $id_pedido = $_POST['id'];
+    //RECORRE TODOS LOS DATOS QUE ESTAN EN EL ARCHIVO DE EXCEL MEDIANTE EL FOREACH
     foreach ($array_reg as $row) {
         if (!is_null($row[0])) {
             $id_producto = $pedidos->get_id_producto($row[0]);
@@ -65,10 +68,14 @@ if (is_array($array_reg)) {
             $precio = $row[2];
             $cantidad = $row[3];
             /** variable final para guardar en la base de datos $new_array */
-
+            //VERIFICA QUE EL PRODUCTO NO EXISTA
             if ($pedidos->validar_existencias_precio_producto($pedidos->get_id_producto($row[0]), $id_pedido)) {
-                if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
-                    $php_estado = true;
+                //VERIFICA QUE EL PRODUCTO EXISTA EN LA TABLA PRECIO PRODUCTO
+                if($pedidos->validar_producto($codigo_producto)){
+                    //GUARDA LOS DATOS YA VALIDADOS DEL ARCHIVO DE EXCEL
+                    if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
+                        $php_estado = true;
+                    }
                 }
             }
         }

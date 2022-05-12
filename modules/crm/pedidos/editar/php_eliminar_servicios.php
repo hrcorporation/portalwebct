@@ -12,7 +12,7 @@ $pedidos = new pedidos();
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
-//Se hace un condicional que valida si la variable de los datos de la tabla color del concreto existe y tambien valida si ese dato esta vacio.
+//Se hace un condicional que valida si el id del precio del servicio existe.
 if (isset($_POST['id']) && !empty($_POST['id'])) {
     $id = $_POST['id'];
     if ($pedidos->cambiar_status_servicio($id)) {

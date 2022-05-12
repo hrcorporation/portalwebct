@@ -58,30 +58,28 @@ if (is_array($array_reg)) {
     $php_result = $pedidos->editar_status_productos();
     foreach ($array_reg as $row) {
         if (!is_null($row[0])) {
-            $new_array['status'] = 1;
-            $new_array['fecha_subida'] = date('Y-m-d');
+            $codigo_producto = preg_replace('/[ \.\;\%\$\%\&]+/', '', $row[0]);
             $fecha_subida = date('Y-m-d');
-            $new_array['id_producto'] = $pedidos->get_id_producto($row[0]);
-            $id_producto = $pedidos->get_id_producto($row[0]);
-            $new_array['codigo_producto'] = $row[0];
-            $codigo_producto = $row[0];
-            $new_array['nombre_producto'] = $pedidos->get_nombre_producto_por_cod($row[0]);
-            $nombre_producto = $pedidos->get_nombre_producto_por_cod($row[0]);
-            $new_array['precio'] = $row[1];
             $precio = $row[1];
-            $row[0];
-            $codigo_producto = $row[0];
-            $new_array['nombre_producto'] = $pedidos->get_nombre_producto_por_cod($row[0]);
-            $nombre_producto = $pedidos->get_nombre_producto_por_cod($row[0]);
-            $new_array['precio'] = $row[1];
-            $precio = $row[1];
-            /** variable final para guardar en la base de datos $new_array */
-            $new_arrayf[] = $new_array;
-
-            if ($pedidos->validar_existencias_productos($pedidos->get_id_producto($row[0]))) {
-                if ($php_result = $pedidos->insert_precio_productos($fecha_subida, $id_producto, $codigo_producto, $nombre_producto, $precio)) {
-                    $php_estado = true;
+            $cantidad = strlen($codigo_producto);
+            ////////////////////////////////////
+            if (!$pedidos->validar_existencias_producto_principal($codigo_producto)) {
+                $id_producto = $pedidos->get_id_producto($codigo_producto);
+                $nombre_producto = $pedidos->get_nombre_producto_por_cod($codigo_producto);
+                if ($pedidos->validar_existencias_productos($pedidos->get_id_producto($codigo_producto))) {
+                    if ($cantidad == 11) {
+                        $codigo_producto = $row[0];
+                        if ($php_result = $pedidos->insert_precio_productos($fecha_subida, $id_producto, $codigo_producto, $nombre_producto, $precio)) {
+                            $php_estado = true;
+                        }
+                    } else {
+                        $php_result = "Producto no fue importado" . $codigo_producto;
+                    }
+                } else {
+                    $php_result = "No se pudo subir este producto";
                 }
+            }else{
+                $php_result = "No existe ese producto Codigo: ". $codigo_producto;
             }
         }
     }
@@ -89,8 +87,7 @@ if (is_array($array_reg)) {
 
 $datos = array(
     'estado' => $php_estado,
-    'result' => $php_result,
-    'dataload' => $new_arrayf
+    'result' => $php_result
 );
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

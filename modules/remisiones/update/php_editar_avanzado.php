@@ -41,14 +41,14 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
         $hora_terminada_descargue = $dato['ct26_hora_terminada_descargue'];
         $hora_llegada_planta = $dato['ct26_hora_llegada_planta'];
     }
-    if (isset($datos_remision)) {
-        if ($t26_remisiones->agregar_copia($hora, $numero_remision, $id_cliente, $id_obra, $doc_remi, $id_vehiculo, $id_conductor, $metros, $id_producto, $asentamiento, $sello, $estado, $hora_salida_planta, $hora_llegada_obra, $hora_inicio_descargue, $hora_terminada_descargue, $hora_llegada_planta, $id_usuario, $nombre_usuario)) {
-            $php_estado = true;
-            $php_error[] = "Se guardo exitosamente";
-        } else {
-            $php_error[] = "Error";
-        }
-    }
+    // if (isset($datos_remision)) {
+    //     if ($t26_remisiones->agregar_copia($hora, $numero_remision, $id_cliente, $id_obra, $doc_remi, $id_vehiculo, $id_conductor, $metros, $id_producto, $asentamiento, $sello, $estado, $hora_salida_planta, $hora_llegada_obra, $hora_inicio_descargue, $hora_terminada_descargue, $hora_llegada_planta, $id_usuario, $nombre_usuario)) {
+    //         $php_estado = true;
+    //         $php_error[] = "Se guardo exitosamente";
+    //     } else {
+    //         $php_error[] = "Error";
+    //     }
+    // }
 }
 if (isset($_POST['id']) && !empty($_POST['id'])) {
     $id_remision = (int)htmlspecialchars($_POST['id']);

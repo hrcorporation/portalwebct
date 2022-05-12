@@ -71,7 +71,7 @@ switch ($rol_user) {
                 </div>
             </div>
             <div class="card-body">
-                
+
                 <div id="contenido">
                     <table id="t_remisiones" class="display" style="width:100%">
                         <thead>
@@ -132,14 +132,14 @@ switch ($rol_user) {
                 "url": "data_table_remisiones.php",
                 "dataSrc": ""
             },
-           
+
             "order": [
                 [0, 'desc']
             ],
             "columns": [
-                
+
                 {
-                    "data":"ct26_id_remision"
+                    "data": "ct26_id_remision"
                 },
                 {
                     "data": "ct26_codigo_remi"
@@ -166,11 +166,14 @@ switch ($rol_user) {
 
         });
 
-        table.on( 'order.dt search.dt', function () {
-            table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();
+        table.on('order.dt search.dt', function() {
+            table.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
 
         $('#t_remisiones tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data();

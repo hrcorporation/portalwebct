@@ -1378,7 +1378,6 @@ class t1_terceros extends conexionPDO
 
     function select_clientes()
     {
-
         $sql = "SELECT * FROM ct1_terceros WHERE ct1_TipoTercero = 1 ORDER BY `ct1_terceros`.`ct1_IdTerceros` DESC";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -1464,18 +1463,12 @@ class t1_terceros extends conexionPDO
         //resultado
         return $stmt;
     }
-
-
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function get_datos_terceros_user($id)
     {
-
         //asignacion Valores
         $this->vt1_id = (int)$id;
-
         //SQL
         $sql = "SELECT ";
         $sql .= $this->colt1_id; // Seleccion
@@ -1492,7 +1485,6 @@ class t1_terceros extends conexionPDO
         $sql .= ' WHERE ';
         $sql .= $this->colt1_id; // CONDUCION
         $sql .= ' = :id'; // CONDUCION
-
         // Fin SQL
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         // Asignando Datos  SQL
@@ -1517,11 +1509,9 @@ class t1_terceros extends conexionPDO
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function autenticacion_tercero_email($usuario, $pass)
     {
-
         //asignacion Valores
         $this->vt1_correo_electronico = $usuario;
         $this->vt1_pass = md5($pass);
-
         //SQL
         $sql = "SELECT ";
         $sql .= $this->colt1_id; // Seleccion
@@ -1561,7 +1551,6 @@ class t1_terceros extends conexionPDO
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function autenticacion_tercero($usuario, $pass)
     {
-
         //asignacion Valores
         $this->vt1_num_identificacionuario = (int)$usuario;
         $this->vt1_pass = md5($pass);
@@ -1601,7 +1590,4 @@ class t1_terceros extends conexionPDO
         $this->PDO->closePDO(); // Cerrar Conexion       
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 }

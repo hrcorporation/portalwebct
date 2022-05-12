@@ -3,7 +3,6 @@
 <?php include 'sidebar.php';
 $pedidos = new pedidos();
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -24,10 +23,8 @@ $pedidos = new pedidos();
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -43,6 +40,16 @@ $pedidos = new pedidos();
                     <div id="contenido">
                         <div class="row">
                             <div class="col">
+                                <div class="form-group">
+                                    <label>Codigo del pedido</label>
+                                    <select name="codigo" id="codigo" class="form-control select2 ">
+                                        <?= $pedidos->select_pedidos_id(); ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 <h5>Seleccionar el cliente y obra</h5>
                             </div>
                         </div>
@@ -51,7 +58,7 @@ $pedidos = new pedidos();
                                 <div class="form-group">
                                     <label>Nombre del cliente</label>
                                     <select name="id_cliente" id="id_cliente" class="form-control select2 ">
-                                        <?= $pedidos->select_cliente(); ?>
+                                        <?= $pedidos->option_cliente_edit(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -62,21 +69,6 @@ $pedidos = new pedidos();
 
                                     </select>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <h5>Seleccionar Rango de Fecha</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label>Fecha inicio: </label>
-                                <input type="date" class="form-control" name="txt_fecha_ini" id="txt_fecha_ini" required>
-                            </div>
-                            <div class="col">
-                                <label>Fecha Fin: </label>
-                                <input type="date" name="txt_fecha_fin" class="form-control" id="txt_fecha_fin" required>
                             </div>
                         </div>
                         <br>
@@ -126,7 +118,29 @@ $pedidos = new pedidos();
                 },
             });
         });
-    })
+    });
+
+    $("#codigo").change(function() {
+        var producto = $("#codigo").val();
+        console.log(producto);
+        if (producto >= 1) {
+            $("#id_cliente").attr('disabled', true);
+            $("#id_obra").attr('disabled', true);
+        } else {
+            $("#id_cliente").attr('disabled', false);
+            $("#id_obra").attr('disabled', false);
+        }
+    });
+
+    $("#id_cliente").change(function() {
+        var cliente = $("#id_cliente").val();
+        console.log(cliente);
+        if (cliente >= 1) {
+            $("#codigo").attr('disabled', true);
+        } else {
+            $("#codigo").attr('disabled', false);
+        }
+    });
 </script>
 
 </body>

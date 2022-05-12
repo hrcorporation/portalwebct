@@ -67,6 +67,7 @@
                         </div>
                     </div>
                 </form>
+                <!-- FIN DEL FORMULARIO -->
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

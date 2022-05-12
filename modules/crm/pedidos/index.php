@@ -24,14 +24,10 @@ $t1_terceros = new t1_terceros();
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <?php
-        /**
-         * Validacion de Usuario
-         */
+        //SE CREAN DOS OBJETOS DE LAS CLASES T1_TERCEROS Y PEDIDOS
         $t1_terceros = new t1_terceros();
         $pedidos = new pedidos();
         ?>
@@ -43,24 +39,22 @@ $t1_terceros = new t1_terceros();
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                 </div>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-2">
                         <a href="create/crear.php" class="btn btn-block btn-success"><i class="fas fa-plus"></i> Crear pedido</a>
                     </div>
-
-                    <div class="col-4">
-                        <a href="documentos/SUBIR.xlsx" download="Formato subir precios productos pedidos.xlsx" class="btn btn-block btn-primary"><i class="fas fa-download"></i> Descargar formato de subir productos</a>
+                    <div class="col-5">
+                        <a href="documentos/SUBIR.xlsx" download="Formato subir precios productos pedidos.xlsx" class="btn btn-block btn-primary"><i class="fas fa-download"></i> Descargar formato de subir productos al pedido</a>
                     </div>
-
                     <div class="col-5">
                         <a href="documentos/Formato precios productos.xlsx" download="Formato precios productos.xlsx" class="btn btn-block btn-primary"><i class="fas fa-download"></i> Descargar formato de subir precios productos</a>
                     </div>
                 </div>
                 <br>
+                <!-- INICIO DE TABLA DE PEDIDOS -->
                 <table id="table_pedidos" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -78,19 +72,16 @@ $t1_terceros = new t1_terceros();
 
                     </tbody>
                 </table>
+                <!-- FIN DE LA TABLA PEDIDOS -->
             </div>
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-
-
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
 <?php include '../../../layout/footer/footer3.php' ?>
-
 <script>
     $(document).ready(function() {
         var n = 1;

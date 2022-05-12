@@ -17,6 +17,7 @@ $php_error[] = "";
 $resultado = "";
 
 if ($pedidos->validar_existencias_precio_producto($_POST['id_producto'], $_POST['id'])) {
+
     $id_pedido = $_POST['id'];
     $id_producto = $_POST['id_producto'];
     $cod_producto = $pedidos->get_codigo_producto($id_producto);
@@ -24,16 +25,25 @@ if ($pedidos->validar_existencias_precio_producto($_POST['id_producto'], $_POST[
     $porcentaje = $_POST['descuento'];
     $id_precio_base = $pedidos->get_id_precio_base($id_producto);
     $precio_base = $pedidos->get_precio_base($id_producto);
-    $cantidad_m3 = $_POST['cantidad'];
-    $subtotal = $pedidos->calcularDescuento($precio_base,$porcentaje);
-    $precio_total_pedido = $subtotal * (doubleval($cantidad_m3));
-    $precio_m3 = $subtotal; // Subtotal
-    if ($pedidos->crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $precio_total_pedido)) {
-        $php_estado = true;
+    if (!is_null($_POST['cantidad'])) {
+        $cantidad_m3 = $_POST['cantidad'];
     } else {
-        $php_error = 'Error inesperado';
+        $cantidad_m3 = 0;
     }
-}else{
+    $subtotal = $pedidos->calcularDescuento($precio_base, $porcentaje);
+    $precio_total_pedido = $subtotal * (doubleval($cantidad_m3));
+    $precio_m3 = $subtotal; // Subtotal.
+    $observaciones = $_POST['observaciones'];
+    if ($pedidos->validar_producto($cod_producto)) {
+        if ($pedidos->crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $precio_total_pedido, $observaciones)) {
+            $php_estado = true;
+        } else {
+            $php_error = 'Error inesperado';
+        }
+    }else{
+        $php_error = 'Producto no existente en la base de datos';
+    }
+} else {
     $php_error = "El producto ya se encuentra guardado con este pedido";
 }
 $datos = array(
