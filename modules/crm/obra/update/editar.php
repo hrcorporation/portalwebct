@@ -107,36 +107,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                         <div class="form-group">
                                             <label>Segmento</label>
                                             <select class="js-example-basic-single select2 form-control" name="segmento" id="segmento">
-                                                <optgroup label="Vivienda">
-                                                    <option value="1">Vivienda de interés social (VIS) ( < 135 SMLMV ) </option>
-                                                    <option value="2">Vivienda diferente de interés social (NO VIS) - (
-                                                        > 135 SMLMV )</option>
-                                                </optgroup>
-                                                <optgroup label="Obras Civiles">
-                                                    <option value="10">530201 Carreteras, calles, vías férreas y pistas
-                                                        de aterrizaje, puentes, carreteras elevadas y túneles.</option>
-                                                    <option value="11">530202 Puertos, canales, presas, sistemas de
-                                                        riego y otras obras hidráulicas.</option>
-                                                    <option value="12">530203 Tuberías para la conducción de gas a larga
-                                                        distancia, líneas de comunicación y cables de poder, tuberías y
-                                                        cables locales y obras conexas.</option>
-                                                    <option value="13">530204 Construcciones en minas y plantas
-                                                        industriales</option>
-                                                    <option value="14">530205 Construcciones deportivas al aire libre,
-                                                        otras obras de ingeniería civil</option>
-                                                </optgroup>
-                                                <optgroup label="Edificaciones">
-                                                    <option value="20">EDIFICACIONES - bodegas, edificaciones
-                                                        comerciales, edificaciones industriales, oficinas, hoteles,
-                                                        edificaciones para administración pública, centros sociales y/o
-                                                        recreacionales, entre otros.</option>
-                                                </optgroup>
-                                                <optgroup label="Otros">
-                                                    <option value="30">OTROS - aquellos despachos de los cuales no es
-                                                        posible identificar su destino o uso. Entre ellos: mayoristas,
-                                                        intermediarios, comercializadores, distribuidores,
-                                                        transformadores (prefabricados), etc.</option>
-                                                </optgroup>
+                                                <?= $t5_obras->select_segmentacion($segmento) ?>
                                             </select>
                                         </div>
                                     </div>
@@ -145,7 +116,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Direccion</label>
-                                            <input name="direccion" id="direccion" type="text" class="form-control" placeholder="Digite el direccion">
+                                            <input name="direccion" id="direccion" type="text" class="form-control" value = "<?=$direccion_obra?> ">
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +141,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                         <div class="modal-header">
                             <h4 class="modal-title">CREAR PEDIDO</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span> 
                             </button>
                         </div>
                         <div class="modal-body">

@@ -20,22 +20,16 @@ switch ($rol_user) {
     case 29:
     case 20:
     case 32:
-
-
         $php_clases = new php_clases();
         $t5_obras = new t5_obras();
         $t1_terceros = new t1_terceros();
         $lib = new lib();
-
         break;
-
     default:
         print('<script> window.location = "../../../cerrar.php"</script>');
-
         break;
 }
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -47,11 +41,11 @@ switch ($rol_user) {
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -59,7 +53,6 @@ switch ($rol_user) {
 
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -74,7 +67,6 @@ switch ($rol_user) {
                 <div class="form-group">
                     <div class="row">
                         <?php
-
                         switch ($rol_user) {
                             case 1:
                             case 8:
@@ -86,14 +78,11 @@ switch ($rol_user) {
 
                         ?>
                                 <div class="col-3">
-                                    <a href="create/crear.php" class="btn btn-block btn-info" > Crear Obra</a>
+                                    <a href="create/crear.php" class="btn btn-block btn-info"> Crear Obra</a>
                                 </div>
                         <?php
                                 break;
-
                             default:
-
-
                                 break;
                         }
                         ?>
@@ -123,15 +112,10 @@ switch ($rol_user) {
                                     $nit = $filat['ct1_NumeroIdentificacion'];
                                     $razon_social = $filat['ct1_RazonSocial'];
                                 }
-
                                 $i++;
                                 $id = $fila['ct5_IdObras'];
                                 $ct5_EstadoObra = $fila['ct5_EstadoObra'];
                                 $ct5_NombreObra = $fila['ct5_NombreObra'];
-
-
-
-
                             ?>
                                 <tr>
                                     <td><?php echo $i;  ?></td>
@@ -139,23 +123,15 @@ switch ($rol_user) {
                                     <td><?php echo $razon_social; ?></td>
                                     <td><?php echo $ct5_NombreObra; ?></td>
                                     <td><?php
-
                                         echo  $lib->estado($ct5_EstadoObra);
-
                                         ?></td>
                                     <td class="project-actions">
                                         <a class="btn btn-info btn-sm" href=''><i class="far fa-eye"></i></a>
                                         <a class="btn btn-warning btn-sm" href="update/editar.php?id='<?php echo $php_clases->HR_Crypt($id, 1); ?>"><i class="fas fa-edit"></i></a>
                                     </td>
-
-
-
                                 </tr>
-
-
                             <?php
                             }
-
                             ?>
                         </tbody>
                         <tfooter>
@@ -190,7 +166,6 @@ switch ($rol_user) {
         $('#t_obra').DataTable({});
     });
 </script>
-
 </body>
 
 </html>
