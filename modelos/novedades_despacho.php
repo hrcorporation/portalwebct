@@ -629,7 +629,7 @@ class novedades_despacho extends conexionPDO
         }
     }
 
-    public static function contar_novedades_despacho_for_remi($con, $id_remision)
+    public static functdion contar_novedades_despacho_for_remi($con, $id_remision)
     {
         $sql = "SELECT COUNT(id) as numero_novedades FROM `novedades_por_remision` WHERE id_remision = :id_remision ";
         $stmt = $con->prepare($sql);

@@ -39,17 +39,78 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
         ->setCategory('');
     // FILA 1 = NOMBRE DE COLUMNAS
     $spreadsheet->setActiveSheetIndex(0)
-        ->setCellValue('A1', 'DESCRIPCION')
-        ->setCellValue('B1', 'METROS');
-    $x = 2;
-    if (is_array($datos)) {
-        foreach ($datos as $fila) {
+        ->setCellValue('A1', 'Metros cúbicos de mezcla de concreto')
+        ->setCellValue('A2', 'DEPARTAMENTO')
+        ->setCellValue('B2', 'VIVIENDA')
+        ->setCellValue('E2', 'OBRAS CIVILES')
+        ->setCellValue('L2', 'EDIFICACION')
+        ->setCellValue('M2', 'OTROS')
+        ->setCellValue('N2', 'TOTAL');
+
+       
+
+
+            // FILA 1 = NOMBRE DE COLUMNAS
+    $spreadsheet->setActiveSheetIndex(0)
+    ->setCellValue('B3', 'VIS')
+    ->setCellValue('C3', 'NO VIS')
+    ->setCellValue('D3', 'TOTAL')
+    ->setCellValue('E3', 'Grupo 530201')
+    ->setCellValue('F3', 'Grupo 530202')
+    ->setCellValue('G3', 'Grupo 530203')
+    ->setCellValue('H3', 'Grupo 530204')
+    ->setCellValue('I3', 'Grupo 530205')
+    ->setCellValue('J3', 'No identificado')
+    ->setCellValue('K3', 'TOTAL');
+
+    $spreadsheet->getActiveSheet()->mergeCells('A1:N1');
+    $spreadsheet->getActiveSheet()->mergeCells('A2:A3');
+    $spreadsheet->getActiveSheet()->mergeCells('B2:D2');
+    $spreadsheet->getActiveSheet()->mergeCells('E2:K2');
+    $spreadsheet->getActiveSheet()->mergeCells('L2:L3');
+    $spreadsheet->getActiveSheet()->mergeCells('M2:M3');
+    $spreadsheet->getActiveSheet()->mergeCells('N2:N3');
+    
+    $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('A4', 'TOLIMA');
+
+    $letras = ['B','C','D','F','G','H','I','J','K','L','M','N'];
+    $x=0;
+
+    foreach ($datos as $fila) {
+        $id_segmento = intval($fila['id_segmento']);
+        if($id_segmento == 1 ){ // Vivienda de interés social (VIS) ( < 135 SMLMV )
             $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A' . $x, $fila['descripcion'])
-                ->setCellValue('B' . $x, $fila['metros']);
-            $x++;
+            ->setCellValue('B4' , $fila['metros']);
+        }elseif($id_segmento == 2){ // Vivienda diferente de interés social (NO VIS) - ( > 135 SMLMV )
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('C4' , $fila['metros']);
+        }elseif($id_segmento == 10){ // 530201 Carreteras, calles, vías férreas y pistas de aterrizaje, 
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('E4' , $fila['metros']);
+        }elseif($id_segmento == 11){ // 530202 Puertos, canales, presas, sistemas de riego y otras obras 
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('F4' , $fila['metros']);
+        }elseif($id_segmento == 12){ // 530203 Tuberías para la conducción de gas a larga distancia, líneas de comunicación y cables de poder, tuberías y cables locales y obras conexas.
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('G4' , $fila['metros']);
+        }elseif($id_segmento == 13){  // 530204 Construcciones en minas y plantas industriales
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('H4' , $fila['metros']);
+        }elseif($id_segmento == 14){ // 530205 Construcciones deportivas al aire libre, otras obras de ingeniería civil
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('I4' , $fila['metros']);
+        }elseif($id_segmento == 20){ // EDIFICACIONES - bodegas, edificaciones comerciales, edificaciones industriales, oficinas, hoteles, edificaciones para administración pública, centros sociales y/o recreacionales, entre otros.
+            $spreadsheet->setActiveSheetIndex(0) 
+            ->setCellValue('L4' , $fila['metros']);
+        }elseif($id_segmento == 30){ // OTROS - aquellos despachos de los cuales no es posible identificar su destino o uso. Entre ellos: mayoristas, intermediarios, comercializadores, distribuidores, transformadores (prefabricados), etc.
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('M4' , $fila['metros']);
         }
+
     }
+
+
     // Rename worksheet
     $spreadsheet->getActiveSheet()->setTitle('Informe de obras');
     $spreadsheet->getActiveSheet()
@@ -71,196 +132,58 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
         ->getColumnDimension('F')
         ->setAutoSize(true);
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('G')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('H')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('I')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('J')
-
         ->setAutoSize(true);
-
     $spreadsheet->getActiveSheet()
-
         ->getColumnDimension('K')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('L')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('M')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('N')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('O')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('P')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('Q')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('R')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('S')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('T')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('U')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('V')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('W')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('X')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('Y')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('Z')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AA')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AB')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AC')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AD')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AE')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AF')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AG')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AH')
-
-        ->setAutoSize(true);
-
-    $spreadsheet->getActiveSheet()
-
-        ->getColumnDimension('AI')
-
         ->setAutoSize(true);
 
     $styleArray = [
         'font' => [
             'bold' => true,
         ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+        ],
         'fill' => [
             'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
             'startColor' => [
                 'argb' => 'DE9D24', // encabezado Amarillo
             ],
-
             'endColor' => [
                 'argb' => 'DE9D24',
             ],
         ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_MEDIUM,
+                'color' => ['argb' => '7B7B7B'],
+            ],
+        ]
+       
+    ];
+    $styleArray2 = [
+        
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+        ],
+       
     ];
 
-    $spreadsheet->getActiveSheet()->getStyle('A1:AJ1')->applyFromArray($styleArray);
+
+    $spreadsheet->getActiveSheet()->getStyle('A2:N3')->applyFromArray($styleArray);
+    $spreadsheet->getActiveSheet()->getStyle('A1:N4')->applyFromArray($styleArray2);
     // Set active sheet index to the first sheet, so Excel opens this as the first sheet
     $spreadsheet->setActiveSheetIndex(0);
     // Redirect output to a client’s web browser (Xlsx)
@@ -277,6 +200,9 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
     $writer->save('php://output');
     exit;
+
+
+    
 } else {
     header('location: index.php');
 }

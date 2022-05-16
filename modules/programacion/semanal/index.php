@@ -66,6 +66,29 @@
 <?php include '../../../layout/footer/footer3.php' ?>
 
 <script src="calendar.js"> </script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+            url: "load_select.php",
+            type: "POST",
+            data: {
+                task : 1,
+            },
+            success: function(response) {
+                console.log(response.estado);
+                if (response.estado) {
+                   
+                } else {
+                    toastr.warning("Error");
+                }
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+                
+            },
+        });
+});
+</script>
 </body>
 
 </html>

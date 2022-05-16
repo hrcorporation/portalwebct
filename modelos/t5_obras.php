@@ -379,7 +379,7 @@ class t5_obras extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT segmento.descripcion, SUM(ct26_remisiones.ct26_metros) as metros FROM `ct26_remisiones` INNER JOIN ct5_obras ON ct26_idObra = ct5_obras.ct5_IdObras INNER JOIN segmento ON ct5_obras.ct5_segmento = segmento.id_segmento WHERE ct26_fecha_remi BETWEEN :fecha_ini AND :fecha_fin AND (ct26_remisiones.ct26_estado != 5 AND ct26_remisiones.ct26_estado != 10) GROUP by segmento.descripcion;";
+        $sql = "SELECT segmento.id_segmento, segmento.descripcion, SUM(ct26_remisiones.ct26_metros) as metros FROM `ct26_remisiones` INNER JOIN ct5_obras ON ct26_idObra = ct5_obras.ct5_IdObras INNER JOIN segmento ON ct5_obras.ct5_segmento = segmento.id_segmento WHERE ct26_fecha_remi BETWEEN :fecha_ini AND :fecha_fin AND (ct26_remisiones.ct26_estado != 5 AND ct26_remisiones.ct26_estado != 10) GROUP by segmento.descripcion ORDER BY segmento.id_segmento ASC";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
