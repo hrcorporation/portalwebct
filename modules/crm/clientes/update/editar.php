@@ -63,10 +63,8 @@ foreach ($datos_cliente_int as $key) {
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -93,103 +91,25 @@ foreach ($datos_cliente_int as $key) {
                             <div class="col">
                                 <div class="form-group">
                                     <label> Forma de Pago</label>
-                                    <?php
-                                    switch ($forma_pago) {
-                                        case 1:
-                                            $op_forma_pago = "<option value='1' selected> Credito </option>";
-                                            break;
-                                        case 2:
-                                            $op_forma_pago = "<option value='2' selected> Anticipado</option>";
-                                            break;
-                                        default:
-                                            $op_forma_pago = "<option disabled selected> No se ha especificado la forma de pago </option>";
-                                            break;
-                                    }
-                                    ?>
                                     <select class="form-control select2" style="width: 100%;" name="txt_forma_pago" id="txt_forma_pago">
-                                        <?php print $op_forma_pago; ?>
-                                        <option value="1"> Credito </option>
-                                        <option value="2"> Pago Anticipado </option>
+                                        <?= $t1_terceros->select_forma_pago($forma_pago) ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group" style=" text-align:center">
-                                    <?php
-                                    switch ($naturaleza) {
-                                        case 'PN':
-                                    ?>
-                                            <label>Naturaleza (*)</label>
-                                            <div class="form-group clearfix">
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="r_PJ" value="PJ" name="r_naturaleza" value="PJ">
-                                                    <label for="r_PJ"> Persona Juridica </label>
-                                                </div>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="r_PN" value="PN" name="r_naturaleza" value="PN" checked="checked">
-                                                    <label for="r_PN"> Persona Natural </label>
-                                                </div>
-                                            </div>
-                                        <?php
-                                            break;
-                                        case 'PJ':
-                                        ?>
-                                            <label>Naturaleza (*)</label>
-                                            <div class="form-group clearfix">
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="r_PJ" value="PJ" name="r_naturaleza" value="PJ" checked="checked">
-                                                    <label for="r_PJ"> Persona Juridica </label>
-                                                </div>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="r_PN" value="PN" name="r_naturaleza" value="PN">
-                                                    <label for="r_PN"> Persona Natural </label>
-                                                </div>
-                                            </div>
-                                        <?php
-                                            break;
-                                        default:
-                                        ?>
-                                            <label>Naturaleza (*)</label>
-                                            <div class="form-group clearfix">
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="r_PJ" value="PJ" name="r_naturaleza">
-                                                    <label for="r_PJ"> Persona Juridica </label>
-                                                </div>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="radio" id="r_PN" value="PN" name="r_naturaleza">
-                                                    <label for="r_PN"> Persona Natural </label>
-                                                </div>
-                                            </div>
-                                    <?php
-                                            break;
-                                    }
-                                    ?>
+                                    <label>Naturaleza (*)</label>
+                                    <select class="form-control select2" style="width: 100%;" name="naturaleza" id="naturaleza">
+                                        <?= $t1_terceros->select_naturaleza($naturaleza) ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-3">
-                                <?php
-                                switch ($tipo_documento) {
-                                    case 1:
-                                        $op_tipo_doc = "<option value='1' selected> Nit </option>";
-                                        break;
-                                    case 2:
-                                        $op_tipo_doc = "<option value='2' selected> Cedula Ciudadania</option>";
-                                        break;
-                                    default:
-                                        $op_tipo_doc = "<option disabled selected> No se ha especificado Tipo Documento </option>";
-                                        break;
-                                }
-                                ?>
                                 <label> Tipo Documento (*)</label>
                                 <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required>
-
-                                    <?php print_r($op_tipo_doc); ?>
-                                    <option disabled>Seleccionar </option>
-
-                                    <option value="1">Nit</option>
-                                    <option value="2">Cedula Ciudadania</option>
+                                    <?= $t1_terceros->select_tipo_documento($tipo_documento) ?>
                                 </select>
                             </div>
                             <div class="col-5">
@@ -207,7 +127,7 @@ foreach ($datos_cliente_int as $key) {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div id="boxPJ2">
                             <div class="row">
                                 <div class="col">
@@ -653,32 +573,34 @@ foreach ($datos_cliente_int as $key) {
                 $("#blq_cupo").show();
             }
         });
-
-        $("#r_PN").change(function() {
-            $("#boxPJ2").hide();
-            $("#tbx_pnombre1").val();
-            $("#tbx_pnombre2").val();
-            $("#tbx_papellido1").val();
-            $("#tbx_papellido2").val();
-            $("#tbx_RazonSocial").val();
-            $("#boxPN1").show();
-            $("#boxPJ1").hide();
-        });
-
-        $("#r_PJ").change(function() {
-            $("#boxPN1").hide();
-            $("#boxPJ1").show();
-            var apellido1 = $("#tbx_papellido1").val();
-            var apellido2 = $("#tbx_papellido2").val();
-            var nombre1 = $("#tbx_pnombre1").val();
-            var nombre2 = $("#tbx_pnombre2").val();
-
-            $("#tbx_pnombre1").val();
-            $("#tbx_pnombre2").val();
-            $("#tbx_papellido1").val();
-            $("#tbx_papellido2").val();
-            $("#tbx_RazonSocial").val(apellido1 + ' ' + apellido2 + ' ' + nombre1 + ' ' + nombre2);
-            $("#boxPJ2").show();
+        $("#naturaleza").change(function() {
+            var naturaleza = $("#naturaleza").val();
+            if (naturaleza == "PJ") {
+                var apellido1 = $("#tbx_papellido1").val();
+                var apellido2 = $("#tbx_papellido2").val();
+                var nombre1 = $("#tbx_pnombre1").val();
+                var nombre2 = $("#tbx_pnombre2").val();
+                $("#tbx_pnombre1").val();
+                $("#tbx_pnombre2").val();
+                $("#tbx_papellido1").val();
+                $("#tbx_papellido2").val();
+                $("#tbx_RazonSocial").val(nombre1 + ' ' + nombre2 + ' ' + apellido1 + ' ' + apellido2);
+                $("#boxPN1").hide();
+                $("#boxPJ1").show();
+                $("#boxPJ2").show();
+            } else if (naturaleza == "PN") {
+                $("#tbx_pnombre1").val();
+                $("#tbx_pnombre2").val();
+                $("#tbx_papellido1").val();
+                $("#tbx_papellido2").val();
+                $("#tbx_RazonSocial").val();
+                $("#boxPN1").show();
+                $("#boxPJ1").hide();
+                $("#boxPJ2").hide();
+            } else {
+                $("#boxPN1").hide();
+                $("#boxPJ2").hide();
+            }
         });
     })
 </script>

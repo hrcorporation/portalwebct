@@ -25,7 +25,7 @@
                      <a href="../index.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Explorar
+                             Explorar entregas EPP
                          </p>
                      </a>
                  </li>
@@ -34,7 +34,16 @@
                      <a href="../create_epp/crear.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Crear elemento epp
+                             Crear elemento EPP
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-header">Funcionarios</li>
+                 <li class="nav-item has-treeview">
+                     <a href="../create_funcionario/crear.php" class="nav-link">
+                         <i class="nav-icon fas fa-copy"></i>
+                         <p>
+                             Explorar y crear funcionarios
                          </p>
                      </a>
                  </li>
@@ -43,7 +52,7 @@
                      <a href="../informe/index.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Exportar
+                             Exportar salidas EPP
                          </p>
                      </a>
                  </li>

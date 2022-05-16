@@ -2,7 +2,6 @@
 class elementos extends conexionPDO
 {
     protected $con;
-
     // Iniciar Conexion
     public function __construct()
     {
@@ -37,6 +36,48 @@ class elementos extends conexionPDO
         $option = "<option  selected='true' value='0'> Seleccione el EPP</option>";
 
         $sql = "SELECT `id`,`descripcion` FROM `ct64_epp`;";
+        $stmt = $this->con->prepare($sql);
+
+        if ($stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['id']) {
+                    $selection = "selected = 'true'";
+                } else {
+                    $selection = "";
+                }
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
+
+    function option_area($id = null)
+    {
+
+        $option = "<option  selected='true' value='0'> Seleccione el area</option>";
+
+        $sql = "SELECT * FROM `ct64_areas`";
+        $stmt = $this->con->prepare($sql);
+
+        if ($stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['id']) {
+                    $selection = "selected = 'true'";
+                } else {
+                    $selection = "";
+                }
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
+
+    function option_cargo($id = null)
+    {
+
+        $option = "<option  selected='true' value='0'> Seleccione el cargo</option>";
+
+        $sql = "SELECT * FROM `ct64_cargo`";
         $stmt = $this->con->prepare($sql);
 
         if ($stmt->execute()) {
@@ -143,9 +184,9 @@ class elementos extends conexionPDO
         $this->nombre_tipo_epp = $nombre_tipo;
         $this->nombre_tamano = $nombre_tamano;
         $this->nombre_color = $nombre_color;
-       
 
-        $this->descripcion = $this->nombre . " " . $this->nombre_tipo_epp ." ". $this->nombre_tamano .  $this->nombre_color;
+
+        $this->descripcion = $this->nombre . " " . $this->nombre_tipo_epp . " " . $this->nombre_tamano .  $this->nombre_color;
 
         $sql = "INSERT INTO `ct64_elementos_epp`(`descripcion`, `id_epp`, `nombre_epp`, `id_tipo_epp`, `nombre_tipo_epp`, `id_tamano`, `nombre_tamano`, `id_color`, `nombre_color`) VALUES   (:descripcion, :id_epp, :nombre_epp, :id_tipo_epp, :nombre_tipo_epp, :id_tamano, :nombre_tamano, :id_color, :nombre_color)";
         $stmt = $this->con->prepare($sql);
@@ -498,16 +539,44 @@ class elementos extends conexionPDO
         }
     }
 
-    public function excel_salidas_epp($fecha_ini, $fecha_fin){
+    public function get_database_funcionarios()
+    {
+        $sql = "SELECT ct64_funcionarios.id, `numero_identificacion`,`nombre_funcionario`, ct64_areas.descripcion as descripcion_area, ct64_cargo.descripcion as descripcion_cargo FROM `ct64_funcionarios` INNER JOIN ct64_cargo ON ct64_funcionarios.id_cargo = ct64_cargo.id INNER JOIN ct64_areas ON ct64_funcionarios.id_area = ct64_areas.id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Ejecutar 
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['id'];
+                    $datos['numero_identificacion'] = $fila['numero_identificacion'];
+                    $datos['nombre_funcionario'] = $fila['nombre_funcionario'];
+                    $datos['descripcion_area'] = $fila['descripcion_area'];
+                    $datos['descripcion_cargo'] = $fila['descripcion_cargo'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function excel_salidas_epp($fecha_ini, $fecha_fin)
+    {
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
         $sql = "SELECT `id`,`fecha`,`nombre_empleado`,`nombre_cargo`,`nombre_area`,`nombre_elemento_epp`,`cantidad` FROM `ct64_salida_epp` WHERE fecha BETWEEN :fecha_ini AND :fecha_fin ORDER BY `fecha` DESC";
 
-         // Preparar la conexion del sentencia SQL
-         $stmt = $this->con->prepare($sql);
-         $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
-         $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
 
         //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
         // Ejecuta SQL
@@ -564,6 +633,34 @@ class elementos extends conexionPDO
         $this->PDO->closePDO();
     }
 
+    public function get_funcionarios_id($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT * FROM `ct64_funcionarios` WHERE `id` = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+        // Ejecutar 
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
 
     public function get_salida_epp_id($id)
     {
@@ -594,7 +691,8 @@ class elementos extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    public function editar_elemento_epp($id, $id_epp, $nombre_epp, $id_tipo_epp, $nombre_tipo, $id_tamano, $nombre_tamano, $id_color, $nombre_color){
+    public function editar_elemento_epp($id, $id_epp, $nombre_epp, $id_tipo_epp, $nombre_tipo, $id_tamano, $nombre_tamano, $id_color, $nombre_color)
+    {
         $this->id = $id;
         $this->id_epp = $id_epp;
         $this->nombre = $nombre_epp;
@@ -605,7 +703,7 @@ class elementos extends conexionPDO
         $this->id_color = $id_color;
         $this->nombre_color = $nombre_color;
 
-        $this->descripcion = $this->nombre. " " .$this->nombre_tipo_epp." ".$this->nombre_tamano." ".$this->nombre_color;
+        $this->descripcion = $this->nombre . " " . $this->nombre_tipo_epp . " " . $this->nombre_tamano . " " . $this->nombre_color;
 
         $sql = "UPDATE `ct64_elementos_epp` SET `descripcion` = :descripcion, `id_epp` = :id_epp, `nombre_epp` = :nombre_epp, `id_tipo_epp` = :id_tipo_epp, `nombre_tipo_epp` = :nombre_tipo_epp, `id_tamano` = :id_tamano, `nombre_tamano` = :nombre_tamano, `id_color` = :id_color, `nombre_color` = :nombre_color WHERE `id` = :id";
 
@@ -634,7 +732,37 @@ class elementos extends conexionPDO
         return $result;
     }
 
-    public function editar_salida_epp($id, $fecha, $id_empleado, $nombre_empleado, $id_cargo, $nombre_cargo, $id_area, $nombre_area, $id_elemento_epp, $nombre_epp, $cantidad){
+    public function editar_funcionario($id, $numero_identificacion, $nombre_funcionario, $id_cargo, $id_area)
+    {
+        $this->id = $id;
+        $this->numero_identificacion = $numero_identificacion;
+        $this->nombre_funcionario = $nombre_funcionario;
+        $this->id_cargo = $id_cargo;
+        $this->id_area = $id_area;
+
+        $sql = "UPDATE `ct64_funcionarios` SET `id`='[value-1]',`numero_identificacion`= :numero_identificacion ,`nombre_funcionario`= :nombre_funcionario, `id_cargo`= :id_cargo,`id_area`= :id_area WHERE `id` = :id";
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_STR);
+        $stmt->bindParam(':numero_identificacion', $this->numero_identificacion, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_funcionario', $this->nombre_funcionario, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cargo', $this->id_cargo, PDO::PARAM_STR);
+        $stmt->bindParam(':id_area', $this->id_area, PDO::PARAM_INT);
+
+        // Ejecutar 
+        $result = $stmt->execute();
+
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $result;
+    }
+
+    public function editar_salida_epp($id, $fecha, $id_empleado, $nombre_empleado, $id_cargo, $nombre_cargo, $id_area, $nombre_area, $id_elemento_epp, $nombre_epp, $cantidad)
+    {
         $this->id = $id;
         $this->fecha = $fecha;
         $this->id_empleado = $id_empleado;
@@ -689,6 +817,25 @@ class elementos extends conexionPDO
         $this->PDO->closePDO();
     }
 
+    function eliminar_funcionario($id)
+    {
+        $this->id = $id;
+        $sql = "DELETE FROM `ct64_funcionarios` WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+        // Devolver el ultimo Registro insertado
+        //$id_insert = $this->con->lastInsertId();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
     function eliminar_salida($id)
     {
         $this->id = $id;
@@ -706,5 +853,52 @@ class elementos extends conexionPDO
         //$id_insert = $this->con->lastInsertId();
         //Cerrar Conexion
         $this->PDO->closePDO();
+    }
+
+    function crear_funcionario($numero_identificacion, $nombre_funcionario, $id_area, $id_cargo)
+    {
+        $this->numero_identificacion = $numero_identificacion;
+        $this->nombre_funcionario = $nombre_funcionario;
+        $this->id_cargo = $id_cargo;
+        $this->id_area = $id_area;
+
+        $sql = "INSERT INTO `ct64_funcionarios`(`numero_identificacion`, `nombre_funcionario`, `id_area`, `id_cargo`) VALUES(:numero_identificacion, :nombre_funcionario, :id_area, :id_cargo)";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':numero_identificacion', $this->numero_identificacion, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_funcionario', $this->nombre_funcionario, PDO::PARAM_STR);
+        $stmt->bindParam(':id_area', $this->id_area, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cargo', $this->id_cargo, PDO::PARAM_STR);
+
+        $result = $stmt->execute();
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        return $result;
+    }
+
+    function option_cargos($id_area, $id_cargo = null)
+    {
+        $this->id = $id_area;
+        $option = "<option  selected='true' disabled='disabled'> Seleccione el cargo</option>";
+        $sql = "SELECT * FROM `ct64_cargo` WHERE `id_area` = :id_area";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id_area', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_cargo == $fila['id']) {
+                $selection = "selected='true'";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion']  . ' </option>';
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
     }
 }

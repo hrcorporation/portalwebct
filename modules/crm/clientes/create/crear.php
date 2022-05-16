@@ -37,12 +37,10 @@ require '../../../../vendor/autoload.php'; ?>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">CREAR CLIENTE</h3>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                 </div>
             </div>
             <div class="card-body">
@@ -62,7 +60,6 @@ require '../../../../vendor/autoload.php'; ?>
                     </div>
                 </div>
                 <hr>
-
                 <div id="contenido">
                     <form method="POST" name="F_crear" id="F_crear">
                         <div class="row">
@@ -80,37 +77,24 @@ require '../../../../vendor/autoload.php'; ?>
                                 <div class="form-group">
                                     <label> Forma de Pago</label>
                                     <select class="form-control select2" style="width: 100%;" name="txt_forma_pago" id="txt_forma_pago">
-                                        <option disabled selected>Seleccionar </option>
-                                        <option value="1"> Credito </option>
-                                        <option value="2"> Pago Anticipado </option>
+                                        <?= $t1_terceros->select_forma_pago() ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group" style=" text-align:center">
+                                <div class="form-group">
                                     <label>Naturaleza (*)</label>
-                                    <div class="form-group clearfix">
-                                        <div class="icheck-primary d-inline">
-                                            <input type="radio" id="r_PN" name="r_naturaleza" value="PJ" checked="checked">
-                                            <label for="r_PN"> Persona Juridica
-                                            </label>
-                                        </div>
-                                        <div class="icheck-primary d-inline">
-                                            <input type="radio" id="r_PJ" name="r_naturaleza" value="PN">
-                                            <label for="r_PJ"> Persona Natural
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <select class="form-control select2" style="width: 100%;" name="naturaleza" id="naturaleza">
+                                        <?= $t1_terceros->select_naturaleza() ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-5">
                                 <label> Tipo Documento (*)</label>
                                 <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required>
-                                    <option disabled selected>Seleccionar </option>
-                                    <option value="1">Nit</option>
-                                    <option value="2">Cedula Ciudadania</option>
+                                    <?= $t1_terceros->select_tipo_documento() ?>
                                 </select>
                             </div>
                             <div class="col-5">
@@ -119,16 +103,13 @@ require '../../../../vendor/autoload.php'; ?>
                                     <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="">
                                 </div>
                             </div>
-                            <div id="boxPJ1">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>dv </label>
-                                        <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="9" placeholder="">
-                                    </div>
+                            <div id="boxPJ1" class="col-2">
+                                <div class="form-group">
+                                    <label>dv </label>
+                                    <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="9" placeholder="">
                                 </div>
                             </div>
                         </div>
-
                         <div id="boxPJ2">
                             <div class="row">
                                 <div class="col">
@@ -139,7 +120,6 @@ require '../../../../vendor/autoload.php'; ?>
                                 </div>
                             </div>
                         </div>
-
                         <div id="boxPN1">
                             <div class="row">
                                 <div class="col">
@@ -220,11 +200,14 @@ require '../../../../vendor/autoload.php'; ?>
 
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
+    $(function() {
+        $(".progress").hide();
+        $('.select2').select2();
+    });
     $(document).ready(function() {
         $("#boxPN1").hide();
         $("#boxPJ2").show();
         $("#boxPJ1").show();
-
         // boton Cargar datos del cliente de la oportunidad de negocio
         $("#btn_cargar_data").click(function() {
             // traemos los datos del campo codigo de la oportunidad de negocio
@@ -247,7 +230,7 @@ require '../../../../vendor/autoload.php'; ?>
                         $("#tbx_tipotercero").val(data.tipo_cliente);
                         $("#tbx_RazonSocial").val(data.nombrescompletos + " " + data.apellidoscompletos);
                         $("#tbx_celular").val(data.telefono_cliente);
-                        toastr.success('exitoso');
+                        toastr.success('Exitoso');
                     } else {
                         toastr.warning(data.errores);
                     }
@@ -268,33 +251,36 @@ require '../../../../vendor/autoload.php'; ?>
                 $("#blq_cupo").show();
             }
         });
-        $("#r_PN").change(function() {
 
-            $("#boxPJ2").hide();
-            $("#tbx_pnombre1").val();
-            $("#tbx_pnombre2").val();
-            $("#tbx_papellido1").val();
-            $("#tbx_papellido2").val();
-            $("#tbx_RazonSocial").val();
-            $("#boxPN1").show();
-            $("#boxPJ1").hide();
-        });
-
-        $("#r_PJ").change(function() {
-            $("#boxPN1").hide();
-            $("#boxPJ1").show();
-            var apellido1 = $("#tbx_papellido1").val();
-            var apellido2 = $("#tbx_papellido2").val();
-            var nombre1 = $("#tbx_pnombre1").val();
-            var nombre2 = $("#tbx_pnombre2").val();
-
-            $("#tbx_pnombre1").val();
-            $("#tbx_pnombre2").val();
-            $("#tbx_papellido1").val();
-            $("#tbx_papellido2").val();
-
-            $("#tbx_RazonSocial").val(nombre1 + ' ' + nombre2 + ' ' + apellido1 + ' ' + apellido2);
-            $("#boxPJ2").show();
+        $("#naturaleza").change(function() {
+            var naturaleza = $("#naturaleza").val();
+            if (naturaleza == "PJ") {
+                $("#boxPN1").hide();
+                $("#boxPJ1").show();
+                $("#boxPJ2").show();
+                var apellido1 = $("#tbx_papellido1").val();
+                var apellido2 = $("#tbx_papellido2").val();
+                var nombre1 = $("#tbx_pnombre1").val();
+                var nombre2 = $("#tbx_pnombre2").val();
+                $("#tbx_pnombre1").val();
+                $("#tbx_pnombre2").val();
+                $("#tbx_papellido1").val();
+                $("#tbx_papellido2").val();
+                $("#tbx_RazonSocial").val(nombre1 + ' ' + nombre2 + ' ' + apellido1 + ' ' + apellido2);
+            } else if (naturaleza == "PN") {
+                $("#boxPN1").show();
+                $("#boxPJ1").hide();
+                $("#boxPJ2").hide();
+                $("#tbx_pnombre1").val();
+                $("#tbx_pnombre2").val();
+                $("#tbx_papellido1").val();
+                $("#tbx_papellido2").val();
+                $("#tbx_RazonSocial").val();
+            } else {
+                $("#boxPN1").hide();
+                $("#boxPJ2").hide();
+                $("#boxPJ1").hide();
+            }
         });
     })
 </script>
@@ -308,7 +294,6 @@ require '../../../../vendor/autoload.php'; ?>
             input.value = num;
             document.getElementById("h2valor").innerHTML = "$ " + num;
         } else {
-
             input.value = input.value.replace(/[^\d\.]*/g, '');
         }
     }

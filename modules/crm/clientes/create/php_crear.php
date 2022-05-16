@@ -34,11 +34,8 @@ if (
 
     $validarExistencias = $general_modelos->existencia('ct1_terceros', 'ct1_NumeroIdentificacion', $C_NumeroID);
     $x = false;
-
     if ($validarExistencias) {
-
         $resultado = $t1_terceros->insertar_cliente($C_NumeroID, $razonSocial);
-
         if ($resultado) {
             $php_estado = true;
         } else {

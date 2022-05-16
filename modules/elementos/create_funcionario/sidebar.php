@@ -10,8 +10,7 @@
      <div class="sidebar">
          <!-- Sidebar Menu -->
          <nav class="mt-2">
-             <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu"
-                 data-accordion="false">
+             <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                  <li class="nav-item ">
@@ -42,7 +41,7 @@
                  </li>
                  <li class="nav-header">Funcionarios</li>
                  <li class="nav-item has-treeview">
-                     <a href="../create_funcionario/crear.php" class="nav-link">
+                     <a href="crear.php" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar y crear funcionarios
@@ -51,10 +50,10 @@
                  </li>
                  <li class="nav-header">Exportar datos salidas EPP</li>
                  <li class="nav-item has-treeview">
-                     <a href="index.php" class="nav-link active">
+                     <a href="../informe/index.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                         Explorar y crear funcionarios
+                         Exportar salidas EPP
                          </p>
                      </a>
                  </li>
