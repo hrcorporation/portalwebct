@@ -196,7 +196,7 @@ $t5_obra = new t5_obras();
                     <?php 
                     $id_obra = (int)$_SESSION['id_obra'];
                    
-                        $t26_remisiones->validar_falta_firma_por_obra_all();
+                        //$t26_remisiones->validar_falta_firma_por_obra_all();
                         $estado_obra2  = (int)$t26_remisiones->validar_estado_obra($id_obra);
                         $estado_obra2  = 1;
 

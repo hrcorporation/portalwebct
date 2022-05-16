@@ -11,7 +11,7 @@ $php_clases = new php_clases();
 $t29_batch = new t29_batch();
 
 
-$data = $t29_batch->select_batch();
+$data = $t29_batch->datatable_batch();
 
     
 

@@ -11,6 +11,7 @@ require '../../../vendor/autoload.php'; ?>
 switch ($rol_user) {
     case 1:
     case 8:
+    case 10:
     case 12:
     case 13:
     case 15:
@@ -551,33 +552,30 @@ while ($fila_remi = $datos_remision->fetch(PDO::FETCH_ASSOC)) {
         });
         $("#btn-anular").click(function() {
 
-            var id_remi = "<?php echo $_GET['id'] ?>";
-            var rz_anular = $('#C_IdTerceros').val();
-            //var url = "../index.php";
-            $.ajax({
-                url: "php_anular.php",
-                type: "POST",
-                data: {
-                    id_remi: id_remi,
-                    rz_anular: rz_anular,
+//var url = "../index.php";
+$.ajax({
+    url: "php_anular.php",
+    type: "POST",
+    data: {
+        'id_remi': <?php echo $_GET['id'] ?>,
+        'rz_anular': $('#txt_rz_anular').val()
+    },
+    success: function(response) {
+        if (response.estado) {
+            toastr.success("Anulo Exitosamente la remision");
+            location.reload();
 
-                },
-                success: function(response) {
-                    if (response.estado) {
-                        toastr.success("Anulo Exitosamente la remision");
-                        location.reload();
+        } else {
+            toastr.warning("Error al anular la remision");
+            toastr.warning("Contactar con el Administrador");
+        }
+    },
+    error: function(respuesta) {
+        alert(JSON.stringify(respuesta));
+    },
 
-                    } else {
-                        toastr.warning("Error al anular la remision");
-                        toastr.warning("Contactar con el Administrador");
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-
-            });
-        });
+});
+});
 
         $('#C_IdTerceros').on('change', function() {
             $.ajax({

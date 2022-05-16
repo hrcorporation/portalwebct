@@ -19,10 +19,7 @@ require '../../../vendor/autoload.php';
 $php_clases = new php_clases();
 $t26_remisiones = new t26_remisiones();
 
-$id_conductor = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
 
-
-$t26_remisiones->validar_falta_horas_remi_conductor($id_conductor);
 
 switch ($rol_user) {
     case 1:
@@ -33,8 +30,6 @@ switch ($rol_user) {
     case 22:
 
     case '1':
-
-
         $t29_batch = new t29_batch();
         $php_clases = new php_clases();
         $t5_obras = new t5_obras();
