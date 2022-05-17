@@ -15,9 +15,5 @@ if(isset($_POST['id'])){
     $data = false;
 }
 
-
-    
-
-
 //print json_encode($datos, JSON_FORCE_OBJECT);
 print json_encode($data, JSON_UNESCAPED_UNICODE);

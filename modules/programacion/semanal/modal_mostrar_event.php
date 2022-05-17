@@ -36,10 +36,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btn_guardar" class="btn btn-success">Guardar</button>

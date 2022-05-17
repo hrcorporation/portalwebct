@@ -346,4 +346,81 @@ class t8_programacion extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+
+    //Select de los clientes
+    function option_cliente_edit($id_cliente = null)
+    {
+        $option = "<option  selected='true'> Seleccione un Cliente</option>";
+        $sql = "SELECT ct1_IdTerceros , ct1_NumeroIdentificacion , ct1_RazonSocial FROM ct1_terceros WHERE ct1_TipoTercero = 1 AND ct1_Estado = 1";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Asignando Datos ARRAY => SQL
+        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $result = $stmt->execute();
+
+
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_cliente == $fila['ct1_IdTerceros']) {
+                $selection = " selected='true' ";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['ct1_IdTerceros'] . '" ' . $selection . ' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $option;
+    }
+
+    function option_obra($id_cliente, $id_obra = null)
+    {
+        $this->id = $id_cliente;
+        $option = "<option  selected='true' disabled='disabled'> Seleccione una Obra</option>";
+        $sql = "SELECT * FROM `ct5_obras` WHERE `ct5_IdTerceros` = :id_cliente";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $result = $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_obra == $fila['ct5_IdObras']) {
+                $selection = "selected='true'";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['ct5_IdObras'] . '" ' . $selection . ' >' . $fila['ct5_NombreObra']  . ' </option>';
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
+    }
+
+    //Select de los productos
+    public function select_productos($id = null)
+    {
+        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione producto</option>";
+
+        $sql = "SELECT * FROM `ct4_productos`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        if ($stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['ct4_Id_productos']) {
+                    $selection = "selected='true'";
+                } else {
+                    $selection = " ";
+                }
+                $option .= '<option value="' . $fila['ct4_Id_productos'] . '" ' . $selection . ' >' . $fila['ct4_CodigoSyscafe'] . " - " . $fila['ct4_Descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
 }
