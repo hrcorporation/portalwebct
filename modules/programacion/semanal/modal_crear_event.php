@@ -9,15 +9,6 @@
             </div>
             <form id="form_crear_event" name="form_crear_event" method="post">
                 <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="titulo_event" class=" control-label">Titulo del Evento</label>
-                                <input type="text" name="titulo_event" id="titulo_event" class="form-control" placeholder="titulo_event">
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">

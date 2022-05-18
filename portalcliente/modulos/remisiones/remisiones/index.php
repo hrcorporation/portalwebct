@@ -162,7 +162,7 @@ $t5_obra = new t5_obras();
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1> <strong> <?php echo $nombre_usuario; ?> </strong> Bienvenido a <strong style="color:#ac4661"> REMIWEB CONCRETOL </strong> </h1>
-                            <?php echo $_SESSION['id_usuario'] ?>
+
                         </div>
                         <div class="col-sm-6">
                             <!--
@@ -250,22 +250,17 @@ $t5_obra = new t5_obras();
                                         $i = 1;
                                         $id_cliente =   $_SESSION['id_cliente1'];
 
-                                        if($_SESSION['id_usuario'] == 477){
-                                            $datosTabla = $t26_remisiones->remisiones_cliente_torreon();
-                                        }else{
-                                            switch ($id_cliente) {
-                                                case 252:
-                                                //case 21:
-                                                    $datosTabla = $t26_remisiones->remision_cliente($id_cliente);
-                                                    break;
-    
-                                                default:
-                                                    $id_obra =   $_SESSION['id_obra'];
-                                                    $datosTabla = $t26_remisiones->remision_cliente($id_cliente, $id_obra);
-                                                    break;
-                                            }
+                                        switch ($id_cliente) {
+                                            case 252:
+                                            //case 21:
+                                                $datosTabla = $t26_remisiones->remision_cliente($id_cliente);
+                                                break;
+
+                                            default:
+                                                $id_obra =   $_SESSION['id_obra'];
+                                                $datosTabla = $t26_remisiones->remision_cliente($id_cliente, $id_obra);
+                                                break;
                                         }
-                                        
 
                                         if ($datosTabla) :
 
