@@ -3,8 +3,6 @@
 <?php include 'sidebar.php' ?>
 
 <!-- Content Wrapper. Contains page content -->
-
-+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -12,15 +10,14 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>PROGRAMACION SEMANAL</h1>
-
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -48,8 +45,6 @@
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-
-
     </section>
     <!-- /.content -->
 </div>
@@ -61,33 +56,31 @@
 
 <!-- /.modal-dialog -->
 
-
-
 <?php include '../../../layout/footer/footer3.php' ?>
 
 <script src="calendar.js"> </script>
 <script>
-$(document).ready(function() {
-    $.ajax({
+    $(document).ready(function() {
+        $.ajax({
             url: "load_select.php",
             type: "POST",
             data: {
-                task : 1,
+                task: 1,
             },
             success: function(response) {
                 console.log(response.estado);
                 if (response.estado) {
-                   
+                    toastr.success('Exito');
                 } else {
                     toastr.warning("Error");
                 }
             },
             error: function(respuesta) {
                 alert(JSON.stringify(respuesta));
-                
+
             },
         });
-});
+    });
 </script>
 </body>
 

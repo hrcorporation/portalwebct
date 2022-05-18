@@ -201,7 +201,6 @@ class t5_obras extends conexionPDO
     }
 
     function option_obra($id_cliente, $id_obra = null)
-
     {
         $this->id = $id_cliente;
         $option = "<option  selected='true' disabled='disabled'> Seleccione una Obra</option>";

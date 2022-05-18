@@ -303,7 +303,7 @@ class oportunidad_negocio extends conexionPDO
     function get_datos_cliente_id($id)
     {
         $this->id = $id;
-        $sql = "SELECT `id`, `tipo_cliente`, `nidentificacion`, `nombrescompletos`, `apellidoscompletos`, `telefono_cliente` FROM `ct63_oportuniodad_negocio` WHERE `id` = :id";
+        $sql = "SELECT `id`, `tipo_cliente`, `departamento`, `municipio`, `nidentificacion`, `nombrescompletos`, `apellidoscompletos`, `telefono_cliente` FROM `ct63_oportuniodad_negocio` WHERE `id` = :id";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -1189,7 +1189,7 @@ class oportunidad_negocio extends conexionPDO
                     $datos['status_op'] = $fila['estado_op'];
                     $datos['observacion'] = $fila['observacion'];
                     $datos['resultado'] = $fila['estado'];
-                    $datos['editar'] = "<a class='btn btn-warning btn-sm' href='editar/editar.php?id=".$fila['id']."'> <i class='fas fa-eye'></i> </a>";
+                    $datos['editar'] = "<a class='btn btn-warning btn-sm' href='editar/editar.php?id=" . $fila['id'] . "'> <i class='fas fa-eye'></i> </a>";
                     $datosf[] = $datos;
                 }
                 return $datosf;
@@ -1219,7 +1219,7 @@ class oportunidad_negocio extends conexionPDO
                     $datos['status_op'] = $fila['estado_op'];
                     $datos['observacion'] = $fila['observacion'];
                     $datos['resultado'] = $fila['estado'];
-                    $datos['editar'] = "<a class='btn btn-warning btn-sm' href='editar/editar.php?id=".$fila['id']."'> <i class='fas fa-eye'></i> </a>";
+                    $datos['editar'] = "<a class='btn btn-warning btn-sm' href='editar/editar.php?id=" . $fila['id'] . "'> <i class='fas fa-eye'></i> </a>";
                     $datosf[] = $datos;
                 }
                 return $datosf;

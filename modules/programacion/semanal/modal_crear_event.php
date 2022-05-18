@@ -1,3 +1,6 @@
+<?php
+$programacion = new t8_programacion();
+?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -14,6 +17,7 @@
                             <div class="form-group">
                                 <label for="txt_cliente" class=" control-label">Cliente</label>
                                 <select name="txt_cliente" id="txt_cliente" class="form-control select2" style="width: 100%;">
+                                    <?= $programacion->option_cliente_edit() ?>
                                 </select>
                             </div>
                         </div>
@@ -26,7 +30,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-2">
                             <br>
                             <div class="form-group" style="text-align:center;display: flex;justify-content: center;">
                                 <h5>PEDIDO 5</h5>
@@ -35,19 +39,20 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label for="txt_cant" class="col-sm-2 control-label">Cant</label>
-                                <input name="txt_cant" id="txt_cant" class="form-control select2" style="width: 100%;" />
+                                <input name="txt_cant" id="txt_cant" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-6">
                             <div class="form-group">
                                 <label for="txt_producto" class=" control-label">Producto</label>
                                 <select name="txt_producto" id="txt_producto" class="form-control select2" style="width: 100%;">
+                                    <?= $programacion->select_productos() ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-2">
                             <br>
-                            <div class="form-group"  style="text-align:center;display: flex;justify-content: center;">
+                            <div class="form-group" style="text-align:center;display: flex;justify-content: center;">
                                 <button type="button" class="btn btn-warning">Verificar</button>
                             </div>
                         </div>
@@ -61,15 +66,11 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="end" class=control-label">Fecha Final</label>
+                                <label for="end" class="control-label">Fecha Final</label>
                                 <input type="text" name="end" class="form-control" id="end">
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btn_crear" class="btn btn-success">Guardar</button>
@@ -82,3 +83,54 @@
     </div>
     <!-- /.modal-content -->
 </div>
+
+<script>
+    $(function() {
+        $('.select2').select2();
+    });
+
+    $(document).ready(function() {
+        $("#txt_cliente").change(function() {
+            $.ajax({
+                url: "load_data.php",
+                type: "POST",
+                data: {
+                    'task': 1,
+                    'txt_cliente': $('#txt_cliente').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#txt_obra').html(data.obras);
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+    });
+
+    $(document).ready(function(e) {
+        $("#form_crear_event").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_crear_prog_semanal.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente');
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
+    });
+</script>

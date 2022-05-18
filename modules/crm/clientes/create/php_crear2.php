@@ -10,6 +10,7 @@ require '../../../../vendor/autoload.php';
 
 $general_modelos = new general_modelos();
 $t1_terceros = new t1_terceros();
+$cls_oportunidad_negocio  = new oportunidad_negocio();
 
 
 $php_estado = false;
@@ -17,34 +18,46 @@ $errores = "";
 $resultado = "";
 
 
-if (isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) && isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) && isset($_POST['r_naturaleza']) && !empty($_POST['r_naturaleza']) && isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) && isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento'])) 
-{
+if (isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) && isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) && isset($_POST['naturaleza']) && !empty($_POST['naturaleza']) && isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) && isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento'])) {
 
     $tipo_tercero = htmlspecialchars($_POST['tbx_tipotercero']);
     $formapago = htmlspecialchars($_POST['txt_forma_pago']);
-    $naturaleza = htmlspecialchars($_POST['r_naturaleza']);
+    $naturaleza = htmlspecialchars($_POST['naturaleza']);
     $tipo_documento = htmlspecialchars($_POST['tbx_tipoDocumento']);
     $numero_documento = htmlspecialchars($_POST['tbx_NumeroDocumento']);
     $dv = htmlspecialchars($_POST['tbx_dv']);
-    $razon_social = htmlspecialchars($_POST['tbx_RazonSocial']);
     $nombre1 = htmlspecialchars($_POST['tbx_pnombre1']);
     $nombre2 = htmlspecialchars($_POST['tbx_pnombre2']);
     $apellido1 = htmlspecialchars($_POST['tbx_papellido1']);
     $apellido2 = htmlspecialchars($_POST['tbx_papellido2']);
+    if ($naturaleza == "PJ") {
+        $razon_social = htmlspecialchars($_POST['tbx_RazonSocial']);
+    } else if ($naturaleza == "PN") {
+        $razon_social = $nombre1 . " " . $nombre2 . " " . $apellido1 . " " . $apellido2;
+    }
+    $oportunidad = $_POST['id_oportunidad'];
+    if (is_array($data = $cls_oportunidad_negocio->get_datos_cliente_id($oportunidad))) {
+        foreach ($data as $key) {
+            $departamento = $key['departamento'];
+            $municipio = $key['municipio'];
+        }
+        $php_estado = true;
+    } else {
+        $departamento = null;
+        $municipio = null;
+    }
     $genero = null;
     $fecha_naci = null;
-    $departamento = null;
-    $municipio = null;
     $direccion = null;
     $email = htmlspecialchars($_POST['tbx_email']);
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);
-    
+
     switch ($formapago) {
         case 1:
             $cupo_cliente = htmlspecialchars($_POST['txt_cupo']);
             $cupo_cliente = str_replace('.', '', $cupo_cliente);
-            $saldo_cartera  = $cupo_cliente; 
+            $saldo_cartera  = $cupo_cliente;
             break;
         case 2:
             $cupo_cliente = 0;
@@ -65,7 +78,7 @@ if (isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) && iss
     $TipoTercero = 1;
 
     $validarExistencias = $general_modelos->existencia('ct1_terceros', 'ct1_NumeroIdentificacion', $numero_documento);
-    
+
     $x = false;
 
     if ($validarExistencias) {

@@ -6,9 +6,6 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 ?>
-
-
-
 <?php
 switch ($rol_user) {
     case 1:
@@ -24,16 +21,12 @@ switch ($rol_user) {
     case 32:
         $php_clases = new php_clases();
         $t1_terceros = new t1_terceros();
-
         break;
-
     default:
         print('<script> window.location = "../../../cerrar.php"</script>');
-
         break;
 }
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -45,19 +38,17 @@ switch ($rol_user) {
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -77,8 +68,6 @@ switch ($rol_user) {
                     </div>
                 </div>
                 <div id="contenido">
-
-
                     <table id="t_cliente" class="display" style="width:100%">
                         <thead>
                             <tr>
@@ -116,7 +105,6 @@ switch ($rol_user) {
                                     $s_clase = " badge-danger";
                                     $status = "Desabilitado";
                                 }
-
                             ?>
                                 <tr>
                                     <td><?php echo $i;  ?></td>
@@ -126,15 +114,9 @@ switch ($rol_user) {
                                     <td class="project-actions"><a class="btn btn-info btn-sm" href=''><i class="far fa-eye"></i></a>
                                         <a class="btn btn-warning btn-sm" href="update/editar.php?id='<?php echo $php_clases->HR_Crypt($id, 1); ?>"><i class="fas fa-edit"></i></a>
                                     </td>
-
-
-
                                 </tr>
-
-
                             <?php
                             }
-
                             ?>
                         </tbody>
                         <tfooter>

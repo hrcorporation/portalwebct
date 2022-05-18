@@ -17,12 +17,12 @@ $errores = "";
 $resultado = "";
 
 
-if (isset($_POST['tipo_cliente']) && !empty($_POST['tipo_cliente']) && isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) && isset($_POST['r_naturaleza']) && !empty($_POST['r_naturaleza']) && isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) && isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento'])) {
+if (isset($_POST['tipo_cliente']) && !empty($_POST['tipo_cliente']) && isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) && isset($_POST['naturaleza']) && !empty($_POST['naturaleza']) && isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) && isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento'])) {
 
     $id_cliente = (int)htmlspecialchars($_POST['id_cliente']);
     $tipo_tercero = 1;
     $formapago = htmlspecialchars($_POST['txt_forma_pago']);
-    $naturaleza = htmlspecialchars($_POST['r_naturaleza']);
+    $naturaleza = htmlspecialchars($_POST['naturaleza']);
     $tipo_documento = htmlspecialchars($_POST['tbx_tipoDocumento']);
     $numero_documento = htmlspecialchars($_POST['tbx_NumeroDocumento']);
     $dv = htmlspecialchars($_POST['tbx_dv']);

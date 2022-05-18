@@ -85,7 +85,6 @@ class t1_terceros extends conexionPDO
 
                     return  $fila['ct1_RazonSocial'];
                 }
-
             } else {
                 return false;
             }
@@ -140,31 +139,31 @@ class t1_terceros extends conexionPDO
 
 
 
-                            
-                                switch ($fila['ct1_estado2']) {
-                                    case 1:
-                                            $fila['ct1_estado2'] = "<span class='badge badge-success float-right'> Activo </span>";
-                                            
-                                        break;
-                                        case 2:
-                                            $fila['ct1_estado2'] = "<span class='badge badge-warning float-right'> Bloqueado </span>";
-                                        break;
-                                    default:
-                                        # code...
-                                        break;
-                                }
+
+                            switch ($fila['ct1_estado2']) {
+                                case 1:
+                                    $fila['ct1_estado2'] = "<span class='badge badge-success float-right'> Activo </span>";
+
+                                    break;
+                                case 2:
+                                    $fila['ct1_estado2'] = "<span class='badge badge-warning float-right'> Bloqueado </span>";
+                                    break;
+                                default:
+                                    # code...
+                                    break;
+                            }
 
                             break;
-                        
+
                         default:
-                            
+
                             break;
                     }
 
                     $datos[] = $fila;
                 }
 
-                
+
 
                 return $datos;
             } else {
@@ -423,7 +422,7 @@ class t1_terceros extends conexionPDO
 
 
         if ($naturaleza == "PN") {
-            $this->razon_social =  $this->nombre1 ." ". $this->nombre2  ." ". $this->apellido1  ." ". $this->apellido2;
+            $this->razon_social =  $this->nombre1 . " " . $this->nombre2  . " " . $this->apellido1  . " " . $this->apellido2;
         }
 
         $sql = "UPDATE `ct1_terceros` SET  `ct1_naturaleza` = :naturaleza, `ct1_TipoTercero` = :tipo_tercero, `ct1_TipoIdentificacion` = :tipo_identificacion, `ct1_NumeroIdentificacion` = :numero_identificacion,  `ct1_dv` = :dv, `ct1_RazonSocial` = :razon_social,  `ct1_Nombre1` = :nombre1,  `ct1_Nombre2` = :nombre2,  `ct1_Apellido1` = :apellido1,  `ct1_Apellido2` = :apellido2, `ct1_usuario` = :usuario, `ct1_pass` = :pass, `ct1_rol` = :rol,  `ct1_FechaNacimiento` = :fecha_nacimiento, `ct1_Telefono` = :telefono,  `ct1_Celular` = :cel,  `ct1_CorreoElectronico` = :email,  `ct1_Departamento` = :departamento, `ct1_Ciudad` =  :ciudad, `ct1_Direccion`= :direccion WHERE `ct1_IdTerceros` = :id_cliente";
@@ -1285,8 +1284,8 @@ class t1_terceros extends conexionPDO
                     }else{
                         $desabilitar = " ";
                     }
-                    */
-                    $option .= '<option value="' . $fila['ct1_IdTerceros'] . '"   ' . $selection .  $desabilitar .' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
+                     */
+                    $option .= '<option value="' . $fila['ct1_IdTerceros'] . '"   ' . $selection .  $desabilitar . ' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
                 }
             } else {
                 $option = "<option  selected='true' disabled='disabled'> Error al cargar Conductor</option>";
@@ -1447,7 +1446,7 @@ class t1_terceros extends conexionPDO
     {
         $this->id = $id;
 
-        $sql = "SELECT *  FROM ct1_terceros WHERE  ct1_IdTerceros = :id_tercero ";
+        $sql = "SELECT * FROM ct1_terceros WHERE  ct1_IdTerceros = :id_tercero ";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -1590,4 +1589,60 @@ class t1_terceros extends conexionPDO
         $this->PDO->closePDO(); // Cerrar Conexion       
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function select_tipo_documento($id = null)
+    {
+        $option = "<option  selected = 'true' value='NULL' disabled='true'> Seleccione... </option>";
+        $sql = "SELECT * FROM `ct1_tipo_documento`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['id']) {
+                    $selection = "selected='true'";
+                } else {
+                    $selection = " ";
+                }
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
+
+    public function select_forma_pago($id = null)
+    {
+        $option = "<option  selected = 'true' value='NULL' disabled='true'> Seleccione... </option>";
+        $sql = "SELECT * FROM `ct1_forma_pago`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['id']) {
+                    $selection = "selected='true'";
+                } else {
+                    $selection = " ";
+                }
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
+
+    public function select_naturaleza($id = null)
+    {
+        $option = "<option  selected = 'true' value = '0' disabled='true'> Seleccione... </option>";
+        $sql = "SELECT * FROM `ct1_naturaleza`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($id == $fila['nombre']) {
+                    $selection = "selected='true'";
+                } else {
+                    $selection = " ";
+                }
+                $option .= '<option value="' . $fila['nombre'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+            }
+        }
+        return $option;
+    }
 }
