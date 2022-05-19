@@ -10,8 +10,10 @@ class parametrizar extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
-    public function buscar_rol(){
-        $sql = "SELECT `ct1_IdTerceros`, `ct1_id_cliente1`,`ct1_obra_id` FROM `ct1_terceros` WHERE `ct1_rol` BETWEEN 102 AND 103";
+    //Buscar roles 102 y 103
+    public function buscar_rol()
+    {
+        $sql = "SELECT `ct1_IdTerceros`, `ct1_id_cliente1`, `ct1_obra_id` FROM `ct1_terceros` WHERE `ct1_rol` BETWEEN 102 AND 103";
         $stmt = $this->con->prepare($sql);
 
         if ($stmt->execute()) {
@@ -32,8 +34,20 @@ class parametrizar extends conexionPDO
         }
     }
 
-    public function insert_gestion_acceso($id_tercero, $id_cliente, $id_obra){
-        $sql =_ "";
+    //Guardar los clientes y obras
+    public function insert_gestion_acceso($id_tercero, $id_cliente, $id_obra)
+    {
+        $sql = "INSERT INTO `ct1_gestion_acceso`(`id_residente`, `id_cliente`, `id_obra`) VALUES (:id_residente, :id_cliente, :id_obra)";
+        $stmt = $this->con->prepare($sql); // Preparar la conexion
+        $stmt->bindParam(':id_residente', $id_tercero, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
+
+        if ($stmt->execute()) { // Ejecutar
+            $php_result = true;
+        } else {
+            $php_result = false;
+        }
+        return $php_result;
     }
-    
 }
