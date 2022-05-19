@@ -10,6 +10,16 @@ class parametrizar extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
+
+    public static function select_remi(){
+        $sql="";
+        $stmt = $con->prepare($sql);
+
+        if($stmt->excecute()){
+            
+        }
+    }
+
     public function buscar_rol(){
         $sql = "SELECT `ct1_IdTerceros`, `ct1_id_cliente1`,`ct1_obra_id` FROM `ct1_terceros` WHERE `ct1_rol` BETWEEN 102 AND 103";
         $stmt = $this->con->prepare($sql);
@@ -33,7 +43,7 @@ class parametrizar extends conexionPDO
     }
 
     public function insert_gestion_acceso($id_tercero, $id_cliente, $id_obra){
-        $sql =_ "";
+        $sql ="";
     }
     
 }
