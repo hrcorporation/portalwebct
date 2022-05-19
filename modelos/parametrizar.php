@@ -44,6 +44,20 @@ class parametrizar extends conexionPDO
 
     public function insert_gestion_acceso($id_tercero, $id_cliente, $id_obra){
         $sql ="";
+    //Guardar los clientes y obras
+    public function insert_gestion_acceso($id_tercero, $id_cliente, $id_obra)
+    {
+        $sql = "INSERT INTO `ct1_gestion_acceso`(`id_residente`, `id_cliente`, `id_obra`) VALUES (:id_residente, :id_cliente, :id_obra)";
+        $stmt = $this->con->prepare($sql); // Preparar la conexion
+        $stmt->bindParam(':id_residente', $id_tercero, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
+
+        if ($stmt->execute()) { // Ejecutar
+            $php_result = true;
+        } else {
+            $php_result = false;
+        }
+        return $php_result;
     }
-    
 }
