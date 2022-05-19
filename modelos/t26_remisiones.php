@@ -836,9 +836,30 @@ class t26_remisiones extends conexionPDO
     $stmt->bindParam(':id_remision', $this->id_remision, PDO::PARAM_INT);
   }
 
+  function remisiones_cliente_torreon()
+  {
+    
+    
+      $sql_cli = "SELECT `ct26_id_remision`, `ct26_codigo_remi`, `ct26_imagen_remi`, `ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra`, `ct26_fecha_remi`, `ct26_estado`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra`, `ct26_hora_inicio_descargue`, `ct26_hora_terminada_descargue` FROM `ct26_remisiones` WHERE `ct26_idObra` IN(202,1307,1266) ORDER BY `ct26_remisiones`.`ct26_fecha_remi` DESC LIMIT 100;"; //Select Cliente
+      $stmt_cli = $this->con->prepare($sql_cli);
+      if ($stmt_cli->execute()) {
+        $num_reg =  $stmt_cli->rowCount();
+        if ($num_reg > 0) {
+          while ($fila = $stmt_cli->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+            $datos[] = $fila;
+          }
+          return $datos;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+  }
+
+
   function remision_cliente($id_cliente, $id_obra = null)
   {
-
     $this->id_cliente = intval($id_cliente);
     if (is_null($id_obra)) {
       $sql_cli = "SELECT `ct26_id_remision`, `ct26_codigo_remi`, `ct26_imagen_remi`, `ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra`, `ct26_fecha_remi`, `ct26_estado`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra`, `ct26_hora_inicio_descargue`, `ct26_hora_terminada_descargue` FROM `ct26_remisiones` WHERE `ct26_idcliente` LIKE %id_cliente%  ORDER BY  `ct26_remisiones`.`ct26_fecha_remi` DESC"; //Select Cliente

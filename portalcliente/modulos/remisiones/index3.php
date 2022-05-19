@@ -133,22 +133,17 @@ $t5_obra = new t5_obras();
                                 </p>
                               </a>
                             </li>
-                        -->
+                            -->
+
                         <li class="nav-header">Entregas de Productos</li>
+
+
+
                         <li class="nav-item has-treeview">
                             <a href="index.php" class="nav-link active">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
                                     Explorar
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-header">Programacion</li>
-                        <li class="nav-item has-treeview">
-                            <a href="../programacion/programacion_semanal/index.php" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Explorar programaciones
                                 </p>
                             </a>
                         </li>
@@ -167,7 +162,7 @@ $t5_obra = new t5_obras();
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1> <strong> <?php echo $nombre_usuario; ?> </strong> Bienvenido a <strong style="color:#ac4661"> REMIWEB CONCRETOL </strong> </h1>
-                            <?php echo $_SESSION['id_usuario'] ?>
+
                         </div>
                         <div class="col-sm-6">
                             <!--
@@ -198,34 +193,34 @@ $t5_obra = new t5_obras();
                     </div>
                     <div class="card-body">
 
-                        <?php
-                        $id_obra = (int)$_SESSION['id_obra'];
-
-                        //$t26_remisiones->validar_falta_firma_por_obra_all();
+                    <?php 
+                    $id_obra = (int)$_SESSION['id_obra'];
+                   
+                        $t26_remisiones->validar_falta_firma_por_obra_all();
                         $estado_obra2  = (int)$t26_remisiones->validar_estado_obra($id_obra);
                         $estado_obra2  = 1;
 
 
-                        if ($estado_obra2 == 2) {
-                        ?>
-                            <span id="bloquealerta">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="alert alert-warning alert-dismissible">
-                                            <h5><i class="icon fas fa-ban"></i> INHABILITADO!</h5>
-                                        </div>
+                        if($estado_obra2 == 2){
+                            ?>
+                            <span id="bloquealerta" >
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-warning alert-dismissible">
+                                        <h5><i class="icon fas fa-ban"></i> INHABILITADO!</h5>
                                     </div>
                                 </div>
-                            </span>
+                            </div>
+                        </span>
                         <?php
+                   
+                    }
 
-                        }
+                    ?>
 
-                        ?>
-
-
-
-
+                           
+                       
+                       
 
 
                         <div id="contenido">
@@ -255,22 +250,17 @@ $t5_obra = new t5_obras();
                                         $i = 1;
                                         $id_cliente =   $_SESSION['id_cliente1'];
 
-                                        if($_SESSION['id_usuario'] == 477){
-                                            $datosTabla = $t26_remisiones->remisiones_cliente_torreon();
-                                        }else{
-                                            switch ($id_cliente) {
-                                                case 252:
-                                                //case 21:
-                                                    $datosTabla = $t26_remisiones->remision_cliente($id_cliente);
-                                                    break;
-    
-                                                default:
-                                                    $id_obra =   $_SESSION['id_obra'];
-                                                    $datosTabla = $t26_remisiones->remision_cliente($id_cliente, $id_obra);
-                                                    break;
-                                            }
+                                        switch ($id_cliente) {
+                                            case 252:
+                                            //case 21:
+                                                $datosTabla = $t26_remisiones->remision_cliente($id_cliente);
+                                                break;
+
+                                            default:
+                                                $id_obra =   $_SESSION['id_obra'];
+                                                $datosTabla = $t26_remisiones->remision_cliente($id_cliente, $id_obra);
+                                                break;
                                         }
-                                        
 
                                         if ($datosTabla) :
 
@@ -382,7 +372,7 @@ $t5_obra = new t5_obras();
     <script>
         $(document).ready(function() {
 
-
+      
 
 
             $('#t_remisiones').DataTable({

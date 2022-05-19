@@ -10,7 +10,7 @@ $php_clases = new php_clases();
 //require_once 'estructura_remi.php';
 
 if(isset($_GET['id'])){
-    $id_remision = $_GET['id'];            
+    $id_remision = $php_clases->HR_Crypt($_GET['id'],2);            
     //$id_batch = $php_clases->HR_Crypt($_GET['id'],2);            
 }
 require_once 'datos_remi.php';

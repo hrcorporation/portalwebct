@@ -15,7 +15,7 @@ $programacion = new programacion();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="txt_cliente" class="form-label">Cliente</label>
+                                <label for="txt_cliente" class=" control-label">Cliente</label>
                                 <select name="txt_cliente" id="txt_cliente" class="form-control select2" style="width: 100%;">
                                     <?= $programacion->option_cliente_edit() ?>
                                 </select>
