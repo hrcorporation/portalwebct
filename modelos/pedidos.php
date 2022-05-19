@@ -255,7 +255,6 @@ class pedidos extends conexionPDO
         $this->id = $id;
         $sql = "SELECT ct1_RazonSocial FROM `ct1_terceros` WHERE `ct1_IdTerceros` = :id";
         $stmt = $this->con->prepare($sql);
-
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
         // Ejecutar 
         if ($stmt->execute()) {

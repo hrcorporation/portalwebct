@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         custom_param1: "something",
       },
       failure: function () {
-        alert("Error al Cargar los Eventos");
+        alert("Error al Cargar las programaciones");
       },
       //color: 'yellow',   // a non-ajax option
       //textColor: 'black' // a non-ajax option

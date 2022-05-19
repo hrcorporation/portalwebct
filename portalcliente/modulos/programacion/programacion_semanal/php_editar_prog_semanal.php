@@ -2,9 +2,9 @@
 
 header('Content-Type: application/json');
 
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 
 $eventos = new eventos();
 $programacion = new programacion();

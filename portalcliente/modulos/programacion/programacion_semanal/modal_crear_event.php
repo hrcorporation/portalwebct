@@ -1,5 +1,5 @@
 <?php
-$programacion = new programacion();
+    $programacion = new programacion();
 ?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-lg">

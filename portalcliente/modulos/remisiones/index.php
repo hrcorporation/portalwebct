@@ -133,17 +133,22 @@ $t5_obra = new t5_obras();
                                 </p>
                               </a>
                             </li>
-                            -->
-
+                        -->
                         <li class="nav-header">Entregas de Productos</li>
-
-
-
                         <li class="nav-item has-treeview">
                             <a href="index.php" class="nav-link active">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
                                     Explorar
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-header">Programacion</li>
+                        <li class="nav-item has-treeview">
+                            <a href="../programacion/programacion_semanal/index.php" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Explorar programaciones
                                 </p>
                             </a>
                         </li>
@@ -193,34 +198,34 @@ $t5_obra = new t5_obras();
                     </div>
                     <div class="card-body">
 
-                    <?php 
-                    $id_obra = (int)$_SESSION['id_obra'];
-                   
+                        <?php
+                        $id_obra = (int)$_SESSION['id_obra'];
+
                         //$t26_remisiones->validar_falta_firma_por_obra_all();
                         $estado_obra2  = (int)$t26_remisiones->validar_estado_obra($id_obra);
                         $estado_obra2  = 1;
 
 
-                        if($estado_obra2 == 2){
-                            ?>
-                            <span id="bloquealerta" >
-                            <div class="row">
-                                <div class="col">
-                                    <div class="alert alert-warning alert-dismissible">
-                                        <h5><i class="icon fas fa-ban"></i> INHABILITADO!</h5>
+                        if ($estado_obra2 == 2) {
+                        ?>
+                            <span id="bloquealerta">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="alert alert-warning alert-dismissible">
+                                            <h5><i class="icon fas fa-ban"></i> INHABILITADO!</h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </span>
+                            </span>
                         <?php
-                   
-                    }
 
-                    ?>
+                        }
 
-                           
-                       
-                       
+                        ?>
+
+
+
+
 
 
                         <div id="contenido">
@@ -372,7 +377,7 @@ $t5_obra = new t5_obras();
     <script>
         $(document).ready(function() {
 
-      
+
 
 
             $('#t_remisiones').DataTable({

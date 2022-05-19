@@ -3,9 +3,9 @@
 session_start();
 header('Content-Type: application/json');
 
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 
 $eventos = new eventos();
 $programacion = new programacion();
@@ -15,9 +15,6 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
-date_default_timezone_set('America/Bogota');
-setlocale(LC_ALL, 'es_ES');
-setlocale(LC_TIME, 'es_ES');
 $hora_actual = new DateTime();
 $hoy = $hora_actual->format("H:i:s");
 if ($hoy < "16:00:00") {

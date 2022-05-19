@@ -17,7 +17,7 @@ class eventos extends conexionPDO
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQ
         $stmt->bindParam(':id_evento', $id_evento, PDO::PARAM_INT);
-        if ($result = $stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
         return false;
@@ -25,14 +25,14 @@ class eventos extends conexionPDO
 
     function editar_event($id_evento, $start, $end)
     {
-        $sql = "UPDATE `eventos` SET `inicio`= :inicio,`fin`= :fin WHERE `id` = :id_evento";
+        $sql = "UPDATE `eventos` SET `inicio`= :inicio, `fin`= :fin WHERE `id` = :id_evento";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQ
         $stmt->bindParam(':inicio', $start, PDO::PARAM_STR);
         $stmt->bindParam(':fin', $end, PDO::PARAM_STR);
         $stmt->bindParam(':id_evento', $id_evento, PDO::PARAM_INT);
-        if ($result = $stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
         return false;
@@ -40,15 +40,15 @@ class eventos extends conexionPDO
 
     function editar_todo_event($id_evento, $titulo, $start, $end)
     {
-        $sql = "UPDATE `eventos` SET `titulo`= :titulo,`inicio`= :inicio,`fin`= :fin WHERE `id` = :id_evento";
+        $sql = "UPDATE `eventos` SET `titulo`= :titulo, `inicio`= :inicio, `fin`= :fin WHERE `id` = :id_evento";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-        // Asignando Datos ARRAY => SQ
+        // Asignando Datos ARRAY => SQL
         $stmt->bindParam(':titulo', $titulo, PDO::PARAM_STR);
         $stmt->bindParam(':inicio', $start, PDO::PARAM_STR);
         $stmt->bindParam(':fin', $end, PDO::PARAM_STR);
         $stmt->bindParam(':id_evento', $id_evento, PDO::PARAM_INT);
-        if ($result = $stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
         return false;
