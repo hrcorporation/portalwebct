@@ -42,8 +42,7 @@ class parametrizar extends conexionPDO
         }
     }
 
-    public function insert_gestion_acceso($id_tercero, $id_cliente, $id_obra){
-        $sql ="";
+
     //Guardar los clientes y obras
     public function insert_gestion_acceso($id_tercero, $id_cliente, $id_obra)
     {
