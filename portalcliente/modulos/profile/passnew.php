@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-require '../../../include/conexion.php';
-
-
-$conexion_bd = new conexion();
-$conexion_bd->connect();
 
 
 $tipoTercero = 3;

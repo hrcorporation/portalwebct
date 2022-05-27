@@ -5,10 +5,10 @@ header('Content-Type: application/json');
 
 $id_usuario = $_SESSION['id_usuario'];
 
-require '../../../include/conexion.php';
+require '../../../librerias/conexionPDO.php';
 //require '../../../../includes/LibreriasHR.php';
 
-$conexion_bd = new conexion();
+$conexion_bd = new conexionPDO();
 $conexion_bd->connect();
 
 
