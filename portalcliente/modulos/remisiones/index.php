@@ -13,8 +13,7 @@ require '../../../include/lib.php';
 
 $get_datos = new get_datos();
 $php_clases = new php_clases();
-$conexion_bd = new conexion();
-$conexion_bd->connect();
+
 $HR_librerias = new LibreriasHR();
 $t26_remisiones = new t26_remisiones();
 $t5_obra = new t5_obras();
