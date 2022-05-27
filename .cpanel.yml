@@ -1,0 +1,6 @@
+---
+deloyment:
+  task:
+    - export DEPLOYPATH=/home3/concr/
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp style.css $DEPLOYPATH
