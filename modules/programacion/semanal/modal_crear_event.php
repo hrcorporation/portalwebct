@@ -1,5 +1,5 @@
 <?php
-$programacion = new programacion();
+    $programacion = new programacion();
 ?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -17,7 +17,6 @@ $programacion = new programacion();
                             <div class="form-group">
                                 <label for="txt_cliente" class=" control-label">Cliente</label>
                                 <select name="txt_cliente" id="txt_cliente" class="form-control select2" style="width: 100%;">
-                                    <?= $programacion->option_cliente_edit() ?>
                                 </select>
                             </div>
                         </div>
@@ -69,54 +68,3 @@ $programacion = new programacion();
     </div>
     <!-- /.modal-content -->
 </div>
-
-<script>
-    $(function() {
-        $('.select2').select2();
-    });
-
-    $(document).ready(function() {
-        $("#txt_cliente").change(function() {
-            $.ajax({
-                url: "load_data.php",
-                type: "POST",
-                data: {
-                    'task': 1,
-                    'txt_cliente': $('#txt_cliente').val()
-                },
-                dataType: 'json',
-                success: function(data) {
-                    $('#txt_obra').html(data.obras);
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        });
-    });
-
-    $(document).ready(function(e) {
-        $("#form_crear_event").on('submit', (function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "php_crear_prog_semanal.php",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data);
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
-                    } else {
-                        toastr.warning(data.errores);
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        }));
-    });
-</script>

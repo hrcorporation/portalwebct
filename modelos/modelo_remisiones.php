@@ -13,36 +13,29 @@ class modelo_remisiones extends conexionPDO
         $this->con = $this->PDO->connect();
     }
 
-    public function datatable_remisiones_cliente($id_cliente, $id_obra)
+    public function remisiones_clientes($id_cliente, $id_obra)
     {
-        $this->id_cliente = intval($id_cliente);
-
-        if(is_null($id_obra)){
-            $sql = "SELECT `ct26_id_remision`,`ct26_estado`,ct26_fecha_remi, `ct26_codigo_remi`,`ct26_imagen_remi`,`ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra` FROM `ct26_remisiones` WHERE `ct26_idcliente` =  :id_cliente  ORDER BY `ct26_remisiones`.`ct26_fecha_remi` DESC";
-            $stmt = $this->con->prepare($sql);
-            $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
-        }else{
-            $this->id_obra = intval($id_obra);
-            $sql = "SELECT `ct26_id_remision`,`ct26_estado`,ct26_fecha_remi,`ct26_codigo_remi`,`ct26_imagen_remi`,`ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra` FROM `ct26_remisiones` WHERE `ct26_idcliente` =  :id_cliente AND `ct26_idObra` =  :id_obra  ORDER BY `ct26_remisiones`.`ct26_fecha_remi` DESC";
-            $stmt = $this->con->prepare($sql);
-            $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
-            $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_INT);
-        }
-        
+        $sql = "SELECT `ct26_id_remision`, `ct26_codigo_remi`, `ct26_imagen_remi`, `ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra`, `ct26_fecha_remi`, `ct26_estado`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra`, `ct26_hora_inicio_descargue`, `ct26_hora_terminada_descargue` FROM `ct26_remisiones` WHERE `ct26_idcliente` IN($id_cliente) AND `ct26_idObra` IN($id_obra) ORDER BY  `ct26_remisiones`.`ct26_fecha_remi` DESC";
+        $stmt = $this->con->prepare($sql);
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $datos['id'] = $fila['ct26_id_remision']; 
-                    $datos['check'] = "<input type='checkbox' value='".$fila['ct26_id_remision']."' name='check_id_remi[]'  >";  
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $datos['id'] = $fila['ct26_id_remision'];
+                    $datos['checkbox'] = "<div class='form-group clearfix'><div class='icheck-primary d-inline'><input type='checkbox' name='id_remi[]' value='" . $fila['ct26_id_remision'] . "'></div></div>";
                     $date = new DateTime($fila['ct26_fecha_remi']);
-                    $datos['fecha_remi'] = $date->format("d-m-Y");
-                    switch (intval($fila['ct26_estado'])) {
+                    $datos['fecha_remision'] = $date->format("d-m-Y");
+                    $datos['id_cliente'] = $fila['ct26_idcliente'];
+                    $datos['nombre_cliente'] = $fila['ct26_razon_social'];
+                    $datos['id_obra'] = $fila['ct26_idObra'];
+                    $datos['nombre_obra'] = $fila['ct26_nombre_obra'];
+                    $datos['numero_remision'] = $fila['ct26_codigo_remi'];
+                    switch ($fila['ct26_estado']) {
                         case 1:
-                            $datos['estado'] ='<small class="badge badge-success"> Facturada </small>';
+                            $datos['estado'] = '<small class="badge badge-success"> Facturada </small>';
                             break;
                         case 2:
-                            $datos['estado'] = '<small class="badge badge-info"> Pendiente de Facturacion </small>';
+                            $datos['estado'] = '<small class="badge badge-success"> Firmada </small>';
                             break;
             
                         case 3:
@@ -54,15 +47,11 @@ class modelo_remisiones extends conexionPDO
                             break;
             
                         default:
-                        $datos['estado'] ='<small class="badge badge-info">  </small>';
+                            $datos['estado'] = '<small class="badge badge-info">  </small>';
                             break;
                     }
-                    $datos['codigo_remi'] = $fila['ct26_codigo_remi'];
-                    $datos['nombre_cliente'] = $fila['ct26_razon_social'];
-                    $datos['nombre_obra'] = $fila['ct26_nombre_obra'];
-                    $datos['file_remiweb'] = $fila['ct26_imagen_remi'];
-                    $datos['botones' ] = '<a href="detalle_remision.php?id='.$fila['ct26_id_remision']. '&ob='.$fila['ct26_nombre_obra']. '" class="btn btn-block bg-gradient-info">Ver Remi </a>
-                                                    <a href="ver_remision/remision.php?id='.$fila['ct26_id_remision'].'"><i class="fas fa-eye fa-2x" style=""></i></a>';
+                    $datos['boton_ver'] = "<a href='detalle_remision.php?id=" . $fila['ct26_id_remision'] . "&ob=" . $fila['ct26_nombre_obra'] . "' class='btn btn-block bg-gradient-info'> <i class='fas fa-edit'></i> Ver </a>";
+                    $datos['boton_editar'] = "<a href='ver_remision/remision.php?id=" . $fila['ct26_id_remision'] . "'><i class='fas fa-eye fa-2x' style=''></i></a> ";
                     $datosf[] = $datos;
                 }
                 return $datosf;
@@ -72,10 +61,92 @@ class modelo_remisiones extends conexionPDO
         } else {
             return false;
         }
-        
-
     }
-    
+    public function get_clientes_obras($id)
+    {
+        $sql = "SELECT `id_cliente`, `id_obra` FROM ct1_gestion_acceso WHERE `id_residente` = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['cliente'] = $fila['id_cliente'];
+                    $datos['obra'] = $fila['id_obra'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    public function datatable_remisiones_cliente($id_cliente, $id_obra)
+    {
+        $this->id_cliente = intval($id_cliente);
+
+        if (is_null($id_obra)) {
+            $sql = "SELECT `ct26_id_remision`,`ct26_estado`,ct26_fecha_remi, `ct26_codigo_remi`,`ct26_imagen_remi`,`ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra` FROM `ct26_remisiones` WHERE `ct26_idcliente` =  :id_cliente  ORDER BY `ct26_remisiones`.`ct26_fecha_remi` DESC";
+            $stmt = $this->con->prepare($sql);
+            $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        } else {
+            $this->id_obra = intval($id_obra);
+            $sql = "SELECT `ct26_id_remision`,`ct26_estado`,ct26_fecha_remi,`ct26_codigo_remi`,`ct26_imagen_remi`,`ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra` FROM `ct26_remisiones` WHERE `ct26_idcliente` =  :id_cliente AND `ct26_idObra` =  :id_obra  ORDER BY `ct26_remisiones`.`ct26_fecha_remi` DESC";
+            $stmt = $this->con->prepare($sql);
+            $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+            $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_INT);
+        }
+
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['ct26_id_remision'];
+                    $datos['check'] = "<input type='checkbox' value='" . $fila['ct26_id_remision'] . "' name='check_id_remi[]'  >";
+                    $date = new DateTime($fila['ct26_fecha_remi']);
+                    $datos['fecha_remi'] = $date->format("d-m-Y");
+                    switch (intval($fila['ct26_estado'])) {
+                        case 1:
+                            $datos['estado'] = '<small class="badge badge-success"> Facturada </small>';
+                            break;
+                        case 2:
+                            $datos['estado'] = '<small class="badge badge-info"> Pendiente de Facturacion </small>';
+                            break;
+
+                        case 3:
+                            $datos['estado'] = '<small class="badge badge-warning"> Faltan Firma cliente </small>';
+                            break;
+
+                        case 4:
+                            $datos['estado'] = '<small class="badge badge-warning"> Falta Sincronizacion de datos </small>';
+                            break;
+
+                        default:
+                            $datos['estado'] = '<small class="badge badge-info">  </small>';
+                            break;
+                    }
+                    $datos['codigo_remi'] = $fila['ct26_codigo_remi'];
+                    $datos['nombre_cliente'] = $fila['ct26_razon_social'];
+                    $datos['nombre_obra'] = $fila['ct26_nombre_obra'];
+                    $datos['file_remiweb'] = $fila['ct26_imagen_remi'];
+                    $datos['botones'] = '<a href="detalle_remision.php?id=' . $fila['ct26_id_remision'] . '&ob=' . $fila['ct26_nombre_obra'] . '" class="btn btn-block bg-gradient-info">Ver Remi </a>
+                                                    <a href="ver_remision/remision.php?id=' . $fila['ct26_id_remision'] . '"><i class="fas fa-eye fa-2x" style=""></i></a>';
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     function data_muestras_for_id($id_muestra)
     {
         $this->id = intval($id_muestra);
@@ -162,7 +233,7 @@ class modelo_remisiones extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    
+
 
 
     function data_remision_for_id($id_remision)

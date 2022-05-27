@@ -17,7 +17,7 @@ class t8_programacion extends conexionPDO
 
     function get_data_table_prog()
     {
-        $sql="SELECT * FROM `ct8_programacion`";
+        $sql = "SELECT * FROM `ct8_programacion`";
         $stmt = $this->con->prepare($sql);
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -26,13 +26,12 @@ class t8_programacion extends conexionPDO
                     $datos[] = $fila;
                 }
                 return $datos;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
-
     }
 
     public function get_vehiculo($id_vehiculo)
@@ -48,10 +47,10 @@ class t8_programacion extends conexionPDO
                     $datos = $fila['ct10_Placa'];
                 }
                 return $datos;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -69,10 +68,10 @@ class t8_programacion extends conexionPDO
                     $datos = $fila['ct4_Descripcion'];
                 }
                 return $datos;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -90,10 +89,10 @@ class t8_programacion extends conexionPDO
                     $datos = $fila['ct5_NombreObra'];
                 }
                 return $datos;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -111,10 +110,10 @@ class t8_programacion extends conexionPDO
                     $datos = $fila['ct1_RazonSocial'];
                 }
                 return $datos;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -125,7 +124,7 @@ class t8_programacion extends conexionPDO
         $this->id_programacion = intval($id_programacion);
         #`ct9_IdDetalleProgramacion`, `ct9_FechaCreacion`, `ct9_estado`, `ct9_IdProgramacion`, `ct9_HoraCargue`, `ct9_HoraMixerObra`, `ct9_IdCliente`, `ct9_IdObra`, `ct9_IdProducto`, `ct9_Cantidad`, `ct9_TotalDespachado`, `ct9_IdBomba`, `ct9_IdVehiculo`, `ct9_idConductor`, `ct9_TipoObservacion`, `ct9_Observaciones`
         $sql = "SELECT * FROM `ct9_detalleprogramacion` WHERE `ct9_IdProgramacion` = :id_programacion";
-        
+
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_programacion', $this->id_programacion, PDO::PARAM_INT);
 
@@ -137,13 +136,12 @@ class t8_programacion extends conexionPDO
                     $datos[] = $fila;
                 }
                 return $datos;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
-
     }
 
 
@@ -181,7 +179,7 @@ class t8_programacion extends conexionPDO
     }
 
 
-    function detallevariableprog($hora_cargue,$hora_mixer,$id_vehiculo,$id_conductor, $observacion, $id_detalle_prog)
+    function detallevariableprog($hora_cargue, $hora_mixer, $id_vehiculo, $id_conductor, $observacion, $id_detalle_prog)
     {
 
         $this->hora_cargue =  $hora_cargue;
@@ -197,13 +195,13 @@ class t8_programacion extends conexionPDO
 
         $sql = "UPDATE `ct9_detalleprogramacion` SET `ct9_HoraCargue`=:hora_cargue,`ct9_HoraMixerObra`=:hora_mixer,`ct9_IdVehiculo`=:id_vehiculo,ct9_placa_mixer = :placa_mixer,`ct9_idConductor`=:id_conductor,ct9_nombre_conductor =:nombre_conductor,`ct9_Observaciones`=:observacion WHERE `ct9_IdDetalleProgramacion` = :id_detalle_prog";
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':hora_cargue',$this->hora_cargue, PDO::PARAM_STR);
-        $stmt->bindParam(':hora_mixer',$this->hora_mixer, PDO::PARAM_STR);
-        $stmt->bindParam(':id_vehiculo',$this->id_vehiculo, PDO::PARAM_STR);
-        $stmt->bindParam(':placa_mixer',$placa, PDO::PARAM_STR);
-        $stmt->bindParam(':id_conductor',$this->id_conductor, PDO::PARAM_STR);
-        $stmt->bindParam(':nombre_conductor',$nombre_conductor, PDO::PARAM_STR);
-        $stmt->bindParam(':observacion',$this->observacion, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_cargue', $this->hora_cargue, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_mixer', $this->hora_mixer, PDO::PARAM_STR);
+        $stmt->bindParam(':id_vehiculo', $this->id_vehiculo, PDO::PARAM_STR);
+        $stmt->bindParam(':placa_mixer', $placa, PDO::PARAM_STR);
+        $stmt->bindParam(':id_conductor', $this->id_conductor, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_conductor', $nombre_conductor, PDO::PARAM_STR);
+        $stmt->bindParam(':observacion', $this->observacion, PDO::PARAM_STR);
         $stmt->bindParam(':id_detalle_prog', $this->id_detalle_prog, PDO::PARAM_INT);
 
         if ($result = $stmt->execute()) {
@@ -237,10 +235,10 @@ class t8_programacion extends conexionPDO
         $nombre_cliente = self::get_cliente($this->id_cliente);
         $nombre_obra = self::get_obra($this->id_obra);
         $nombre_producto = self::get_producto($this->id_producto);
-        
-    
 
-        
+
+
+
 
         $sql = "INSERT INTO `ct9_detalleprogramacion`(`ct9_FechaCreacion`, `ct9_estado`, `ct9_IdProgramacion`, `ct9_HoraCargue`, `ct9_HoraMixerObra`, `ct9_IdCliente`,ct9_nombre_cliente ,`ct9_IdObra`,ct9_nombre_obra , `ct9_IdProducto`,ct9_nombre_producto, `ct9_Cantidad`, `ct9_TotalDespachado`) VALUES (:fecha_create,:estado,:id_programacion,:hora_cargue,:hora_mixer,:id_cliente,:nombre_cliente,:id_obra,:nombre_obra,:producto, :nombre_producto,:cantidad,:total_despachado)";
         $stmt = $this->con->prepare($sql);
@@ -347,35 +345,7 @@ class t8_programacion extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    //Select de los clientes
-    function option_cliente_edit($id_cliente = null)
-    {
-        $option = "<option  selected='true'> Seleccione un Cliente</option>";
-        $sql = "SELECT ct1_IdTerceros , ct1_NumeroIdentificacion , ct1_RazonSocial FROM ct1_terceros WHERE ct1_TipoTercero = 1 AND ct1_Estado = 1";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-
-        // Asignando Datos ARRAY => SQL
-        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
-        // Ejecutar 
-        $result = $stmt->execute();
-
-
-        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id_cliente == $fila['ct1_IdTerceros']) {
-                $selection = " selected='true' ";
-            } else {
-                $selection = "";
-            }
-            $option .= '<option value="' . $fila['ct1_IdTerceros'] . '" ' . $selection . ' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
-        }
-
-        //Cerrar Conexion
-        $this->PDO->closePDO();
-
-        //resultado
-        return $option;
-    }
+    
 
     function option_obra($id_cliente, $id_obra = null)
     {

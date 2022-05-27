@@ -9,8 +9,12 @@ require '../../../vendor/autoload.php';
 
 
 $eventos = new eventos();
+$programacion = new programacion();
 if(isset($_POST['id'])){
-    $data = $eventos->cargar_data_event($_POST['id']);
+    $data = $programacion->cargar_data_programacion($_POST['id']);
+    foreach ($data as $key ) {
+        $select_cliente  = $programacion->option_cliente_edit($key['']);
+    }
 }else{
     $data = false;
 }

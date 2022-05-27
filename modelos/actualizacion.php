@@ -16,7 +16,7 @@ class actualizacion extends conexionPDO
 
 }
 
-UPDATE `ct26_remisiones` SET `ct26_recibido` = ''  WHERE `ct26_codigo_remi` = 
+// UPDATE `ct26_remisiones` SET `ct26_recibido` = ''  WHERE `ct26_codigo_remi` = 
 
 // Amarilo CYMA
 

@@ -9,6 +9,7 @@ require '../../../vendor/autoload.php';
 
 $eventos = new eventos();
 $programacion = new programacion();
+$php_clases = new php_clases();
 
 $log = false;
 $php_estado = false;
@@ -20,9 +21,11 @@ setlocale(LC_ALL, 'es_ES');
 setlocale(LC_TIME, 'es_ES');
 $hora_actual = new DateTime();
 $hoy = $hora_actual->format("H:i:s");
-if ($hoy < "16:00:00") {
+if ($hoy < "16:00:00" || $_SESSION['rol_funcionario'] == 1) {
     if (isset($_POST['txt_cliente']) && !empty($_POST['txt_cliente'])) {
-        $estado = 1;
+        $id_usuario = $_SESSION['id_usuario'];
+        $nombre_usuario = $programacion->get_nombre_cliente($id_usuario);
+        $estado = 2;
         $id_cliente = $_POST['txt_cliente'];
         $nombre_cliente = $programacion->get_nombre_cliente($id_cliente);
         $id_obra = $_POST['txt_obra'];
@@ -33,7 +36,7 @@ if ($hoy < "16:00:00") {
         $cantidad = $_POST['txt_cant'];
         $inicio = $_POST['start'];
         $fin = $_POST['end'];
-        if ($programacion->crear_prog_semanal($estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_pedido, $id_producto, $nombre_producto, $cantidad, $inicio, $fin)) {
+        if ($programacion->crear_prog_semanal($estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_pedido, $id_producto, $nombre_producto, $cantidad, $inicio, $fin, $id_usuario, $nombre_usuario)) {
             $php_estado = true;
         } else {
             $php_error = 'No Guardo Correctamente';

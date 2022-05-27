@@ -10,7 +10,6 @@
     <!-- Icono del titulo del documento-->
     <link href="../../../assets/images/logos/LogoConcretol.png" rel="icon" type="image">
     <link rel="stylesheet" href="../../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -34,14 +33,14 @@
 
     <link href="../../../custom/remi.css" rel="stylesheet" />
     <link type="text/css" href="https://cdn.datatables.net/select/1.3.4/css/select.dataTables.min.css" rel="stylesheet" />
-
+    <!-- Calendario -->
     <link href='../../../plugins/fullcalendar/main.css' rel='stylesheet' />
 
-    <link href="../../../plugins/fullcalendar/main.min.css" rel='stylesheet'  />
-    <link href="../../../plugins/fullcalendar-timegrid/main.min.css" rel='stylesheet'  />
-    <link href="../../../plugins/fullcalendar-daygrid/main.min.css" rel='stylesheet'  />
+    <link href="../../../plugins/fullcalendar/main.min.css" rel='stylesheet' />
+    <link href="../../../plugins/fullcalendar-timegrid/main.min.css" rel='stylesheet' />
+    <link href="../../../plugins/fullcalendar-daygrid/main.min.css" rel='stylesheet' />
 
-    <script type="text/javascript"  src="../../../plugins/fullcalendar/main.js"></script>
+    <script type="text/javascript" src="../../../plugins/fullcalendar/main.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -59,12 +58,8 @@
                 </li>
 
             </ul>
-
-
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -90,10 +85,8 @@
                         <!-- User image -->
                         <li class="user-header bg-primary">
                             <img src="../../../assets/images/usuarios/images.png" class="img-circle elevation-2" alt="User Image">
-
                             <p>
                                 <?php echo $nombre_usuario; ?>
-
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -102,7 +95,6 @@
                                 <div class="col-12 text-center">
                                     <a href="#">Cambiar Contraseña</a>
                                 </div>
-
                             </div>
                             <!-- /.row -->
                         </li>
@@ -113,7 +105,8 @@
                         </li>
                     </ul>
                 </li>
-
             </ul>
         </nav>
         <!-- /.navbar -->
+    </div>
+</body>

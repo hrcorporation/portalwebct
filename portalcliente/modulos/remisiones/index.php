@@ -171,41 +171,33 @@ $t5_obra = new t5_obras();
                         </div>
                         <div class="col-sm-6">
                             <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                                    <li class="breadcrumb-item active">Actual</li>
+                                </ol> 
+                            -->
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-
             <!-- Main content -->
             <section class="content">
-
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Entregas de Productos</h3>
-
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                                 <i class="fas fa-minus"></i></button>
                             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                         </div>
                     </div>
                     <div class="card-body">
-
                         <?php
                         $id_obra = (int)$_SESSION['id_obra'];
-
                         //$t26_remisiones->validar_falta_firma_por_obra_all();
                         $estado_obra2  = (int)$t26_remisiones->validar_estado_obra($id_obra);
                         $estado_obra2  = 1;
-
-
                         if ($estado_obra2 == 2) {
                         ?>
                             <span id="bloquealerta">
@@ -218,16 +210,8 @@ $t5_obra = new t5_obras();
                                 </div>
                             </span>
                         <?php
-
                         }
-
                         ?>
-
-
-
-
-
-
                         <div id="contenido">
                             <form id="form_aceptar_remi" name="form_aceptar_remi">
                                 <div class="row">
@@ -242,92 +226,29 @@ $t5_obra = new t5_obras();
                                             <th>N</th>
                                             <th></th>
                                             <th>Fecha</th>
+                                            <th>Cliente</th>
                                             <th>Obra</th>
                                             <th>Remision</th>
                                             <th>Estado</th>
-                                            <th>Detalle</th>
-                                            <th></th>
+                                            <th>Editar</th>
+                                            <th>Ver</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        $i = 1;
-                                        $id_cliente =   $_SESSION['id_cliente1'];
-
-                                        if($_SESSION['id_usuario'] == 477){
-                                            $datosTabla = $t26_remisiones->remisiones_cliente_torreon();
-                                        }else{
-                                            switch ($id_cliente) {
-                                                case 252:
-                                                //case 21:
-                                                    $datosTabla = $t26_remisiones->remision_cliente($id_cliente);
-                                                    break;
-    
-                                                default:
-                                                    $id_obra =   $_SESSION['id_obra'];
-                                                    $datosTabla = $t26_remisiones->remision_cliente($id_cliente, $id_obra);
-                                                    break;
-                                            }
-                                        }
                                         
-
-                                        if ($datosTabla) :
-
-                                            foreach ($datosTabla as $fila) {
-                                                $id_remi = $fila['ct26_id_remision'];
-                                                $date = new DateTime($fila['ct26_fecha_remi']);
-                                                $datef = $date->format("d-m-Y");
-
-
-
-
-                                        ?>
-
-
-                                                <tr>
-                                                    <td> <?php echo $i++; ?> </td>
-                                                    <td>
-                                                        <div class="form-group clearfix">
-                                                            <div class="icheck-primary d-inline">
-                                                                <input type="checkbox" name="id_remi[]" value="<?php echo $id_remi ?>">
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td> <?php echo $datef ?></td>
-                                                    <td> <?php echo $fila['ct26_nombre_obra'] ?></td>
-                                                    <td> <?php echo $fila['ct26_codigo_remi'] ?></td>
-                                                    <td> <?php
-                                                            echo $php_clases->estado_remi($fila['ct26_estado'])
-
-                                                            ?></td>
-                                                    <td> <a href="detalle_remision.php?id='<?php echo $php_clases->HR_Crypt($id_remi, 1) ?>'&ob='<?php echo $HR_librerias->HR_Crypt($fila['ct26_nombre_obra'], 1) ?>' " class="btn btn-block bg-gradient-info"> <i class="fas fa-edit"></i> Ver </a>
-                                                    <td><a href="ver_remision/remision.php?id=<?php echo $php_clases->HR_Crypt($id_remi, 1); ?>"><i class="fas fa-eye fa-2x" style=""></i></a> </td>
-                                                    </td>
-
-                                                </tr>
-                                            <?php
-                                            }
-                                        else :
-                                            ?>
-                                            <tr>
-                                                <td colspan="6">Sin Datos</td>
-                                            </tr>
-                                        <?php
-                                        endif;
-                                        ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>N</th>
                                             <th></th>
                                             <th>Fecha</th>
+                                            <th>Cliente</th>
                                             <th>Obra</th>
                                             <th>Remision</th>
                                             <th>Estado</th>
-                                            <th>Detalle</th>
-                                            <th></th>
-
+                                            <th>Editar</th>
+                                            <th>Ver</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -381,15 +302,64 @@ $t5_obra = new t5_obras();
 
     <script>
         $(document).ready(function() {
+            $(document).ready(function() {
+                var n = 1;
+                var table = $('#t_remisiones').DataTable({
+                    "ajax": {
+                        "url": "load_data.php",
+                        "dataSrc": ""
+                    },
+                    "order": [
+                        [0, 'desc']
+                    ],
+                    "columns": [{
+                            "data": "id"
+                        },
+                        {
+                            "data": "checkbox"
+                        },
+                        {
+                            "data": "fecha_remision"
+                        },
+                        {
+                            "data": "nombre_cliente"
+                        },
+                        {
+                            "data": "nombre_obra"
+                        },
+                        {
+                            "data": "numero_remision"
+                        },
+                        {
+                            "data": "estado"
+                        },
+                        {
+                            "data": "boton_ver"
+                        },
+                        {
+                            "data": "boton_editar"
+                        }
+                    ],
+                    //"scrollX": true,
+                });
 
-
-
-
-            $('#t_remisiones').DataTable({
-
-            });
-
-
+                table.on('order.dt search.dt', function() {
+                    table.column(0, {
+                        search: 'applied',
+                        order: 'applied'
+                    }).nodes().each(function(cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
+                $('#t_remisiones tbody').on('click', 'button', function() {
+                    var data = table.row($(this).parents('tr')).data();
+                    var id = data['id'];
+                    window.location = "editar/editar.php?id=" + id;
+                });
+                setInterval(function() {
+                    table.ajax.reload(null, false);
+                }, 10000);
+            })
             $("#form_aceptar_remi").on('submit', (function(e) {
                 e.preventDefault();
                 Swal.fire({

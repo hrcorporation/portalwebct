@@ -6,7 +6,6 @@ require '../../../vendor/autoload.php'; ?>
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php' ?>
 
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -18,49 +17,31 @@ require '../../../vendor/autoload.php'; ?>
                 </div>
                 <div class="col-sm-6">
                     <!--
-                  <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                    <li class="breadcrumb-item active">Actual</li>
-                  </ol> 
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
                     -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Crear Usuario Cliente</h3>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                 </div>
             </div>
             <div class="card-body">
                 <div id="contenido">
                     <form name="F_crear" id="F_crear" method="POST">
-
-
-
-
-
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Numero de Cedula de ciudadania</label>
-                                    <input name="C_NumeroID" id="C_NumeroID" type="text" class="form-control" placeholder="Digite el numero de la Cedula">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
+                    <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label>Nombres Completos</label>
@@ -74,62 +55,42 @@ require '../../../vendor/autoload.php'; ?>
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Seleccionar cliente</label>
-                                    <select class="js-example-basic-single select2 form-control" id="C_IdTerceros" name="C_IdTerceros" required>
-                                        <?php echo $t1_terceros->option_cliente(); ?>
-                                    </select>
+                                    <label>Numero de Cedula de ciudadania</label>
+                                    <input name="C_NumeroID" id="C_NumeroID" type="text" class="form-control" placeholder="Digite el numero de la Cedula">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Selecccionar Obra</label>
-                                    <select class="js-example-basic-single select2 form-control" id="C_Obras" name="C_Obras">
-                                        <?php //var_dump($get_datos->Select_Cliente($conexion_bd)); 
-                                        ?>
+                                    <label> seleccione Rol</label>
+                                    <select class="js-example-basic-single select2 form-control" id="txt_rol" name="txt_rol">
+                                        <option value="102"> Arquitecto/Ingeniero Constructor</option>
+                                        <option value="103"> Almacenista -(Solo visualiza Remisiones) </option>
                                     </select>
                                 </div>
-                                
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col">
-                            <div class="form-group">
-                                <label> seleccione Rol</label>
-                                <select class="js-example-basic-single select2 form-control" id="txt_rol" name="txt_rol" > 
-                                <option value="102"> Arquitecto/Ingeniero Constructor</option>
-                                <option value="103"> Almacenista -(Solo visualiza Remisiones) </option>
-                                </select>
-                            </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-block btn-info">Guardar</button>
-                                    </div>
-                                
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block btn-info">Guardar</button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </section>
 </div>
 <!-- /.card-body -->
 <div class="card-footer">
-
 </div>
 <!-- /.card-footer-->
 </div>
 <!-- /.card -->
-
 </section>
 <!-- /.content -->
 </div>
@@ -137,18 +98,14 @@ require '../../../vendor/autoload.php'; ?>
 
 <?php include '../../../layout/footer/footer3.php' ?>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
-
 <script>
     $(document).ready(function() {
         $('.select2').select2();
-
     });
 </script>
-
 <script src="ajax_crear.js"> </script>
 <script>
     $(document).ready(function() {
-
         $('#C_IdTerceros').on('change', function() {
             $.ajax({
                 url: "get_data.php",
@@ -168,7 +125,5 @@ require '../../../vendor/autoload.php'; ?>
         });
     })
 </script>
-
 </body>
-
 </html>

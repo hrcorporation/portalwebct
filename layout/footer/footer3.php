@@ -34,8 +34,6 @@
 <!-- <script src="../../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script> -->
 <!-- <script src="../../../plugins/jquery-validation/dist/jquery.validate.min.js"></script> -->
 <script type="text/javascript"  src="../../../plugins/fullcalendar/es.js"></script>
-
-
 <script type="text/javascript"  src="../../../plugins/moment/moment.min.js"></script>
 
 

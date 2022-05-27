@@ -10,7 +10,6 @@ require '../../../vendor/autoload.php';
 
 $con = new conexionPDO();
 $php_clases = new php_clases();
-$t_nombretabla = new tabla();
 
 $php_estado = false;
 $errores[] = "";
