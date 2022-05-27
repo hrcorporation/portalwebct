@@ -15,7 +15,7 @@ include '../../../vendor/autoload.php';
 ?>
 <?php include 'sidebar.php' ?>
 <?php 
-switch($rol_user)
+switch($_SESSION['rol'])
 {
     case 101:
         $php_clases = new php_clases();

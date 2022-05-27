@@ -133,8 +133,6 @@ if(isset($_POST['usuario']) && !empty($_POST['usuario']) && isset($_POST['contra
                 $php_mensaje = "No tiene Permisos "; 
             break;
         }
-
-
     }else{
         $php_mensaje = "El usuario no tiene permisos";
     }
