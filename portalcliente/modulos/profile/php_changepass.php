@@ -8,8 +8,9 @@ $id_usuario = $_SESSION['id_usuario'];
 require '../../../librerias/conexionPDO.php';
 //require '../../../../includes/LibreriasHR.php';
 
-$conexion_bd = new conexionPDO();
-$conexion_bd->connect();
+
+$conexionPDO= new conexionPDO();
+$conexion_bd = $conexionPDO->connect();
 
 
 if (isset($_POST['C_Newpass1']) && isset($_POST['C_Newpass2'])) {
