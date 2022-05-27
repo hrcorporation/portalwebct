@@ -23,7 +23,7 @@ if (isset($_POST['C_Newpass1']) && isset($_POST['C_Newpass2'])) {
         $newPass = md5($C_Newpass1);
 
         $sql = "UPDATE `ct1_terceros` SET `ct1_pass`=  ? WHERE ct1_terceros.ct1_IdTerceros = ?";
-        $stmt = mysqli_prepare($conexion_bd->myconn, $sql);
+        $stmt = mysqli_prepare($conexion_bd, $sql);
         $stmt->bind_param("si", $newPass, $id_usuario);
 
         if ($stmt->execute()) {
