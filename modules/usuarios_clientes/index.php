@@ -81,8 +81,6 @@ switch ($rol_user) {
                                 <th>Cedula Ciudadania </th>
                                 <th>Nombre usuario </th>
                                 <th> Apellido Usuario </th>
-                                <th>Nit Cliente </th>
-                                <th>Razon Social cliente </th>
                                 <th>Detalle</th>
                             </tr>
                         </thead>
@@ -90,61 +88,26 @@ switch ($rol_user) {
                             <?php
                             $i = 0;
                             $datos = $t1_terceros->select_user_cliente2();
-
                             if ($datos) {
                                 foreach ($datos as $key1) {
-
                                     $i++;
                                     $id = $key1['ct1_IdTerceros'];
                                     $num = $key1['ct1_NumeroIdentificacion'];
-
                                     $nombre1 = $key1['ct1_Nombre1'];
                                     $apellido1 = $key1['ct1_Apellido1'];
                                     $id_cliente1 = $key1['ct1_id_cliente1'];
-
-                                    $datoscli = $t1_terceros->select_tercero_id2($id_cliente1);
-
-
-                                    foreach ($datoscli as $key2) {
-                                        $nit2 = $key2['ct1_NumeroIdentificacion'];
-                                        $razon_social2 = $key2['ct1_RazonSocial'];
-                                    }
-
-                            ?>
+                                    $datoscli = $t1_terceros->select_tercero_id2($id_cliente1);?>
                                     <tr>
                                         <td><?php echo $i;  ?></td>
                                         <td><?php echo $num; ?></td>
                                         <td><?php echo $nombre1; ?></td>
                                         <td><?php echo $apellido1; ?></td>
-                                        <td><?php echo $nit2; ?></td>
-                                        <td><?php echo $razon_social2; ?></td>
-                                        <td><a href="update/editar.php?id=<?php echo $php_clases->HR_Crypt($id, 1); ?>" class="btn btn-block btn-info">Editar</a></td>
+                                        <td><a href="update/editar.php?id=<?php echo $id; ?>" class="btn btn-block btn-info">Editar</a></td>
                                     </tr>
-
                             <?php
-
-
-
-
-
-
-
-
-
                                 }
                             }
-
-
-
-
-
-
-
-
                             ?>
-
-
-
                         </tbody>
                         <tfoot>
                             <tr>
@@ -152,8 +115,6 @@ switch ($rol_user) {
                                 <th>Cedula Ciudadania </th>
                                 <th>Nombre usuario </th>
                                 <th> Apellido Usuario </th>
-                                <th>Nit Cliente </th>
-                                <th>Razon Social cliente </th>
                                 <th>Detalle</th>
                             </tr>
                         </tfoot>

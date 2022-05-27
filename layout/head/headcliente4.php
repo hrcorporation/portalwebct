@@ -21,23 +21,19 @@
     <link href="../../../../plugins/toastr/toastr.css" rel="stylesheet" />
     <link href="../../../../plugins/select2/css/select2.css" rel="stylesheet" />
     <link href="../../../../plugins/datatables/datatables.css" rel="stylesheet" />
-
+    <link rel="stylesheet" type="text/css" href="../../../../plugins/datatables/datatables.min.css" />
+    <link href="../../../../custom/remi.css" rel="stylesheet" />
+    <link type="text/css" href="https://cdn.datatables.net/select/1.3.4/css/select.dataTables.min.css" rel="stylesheet" />
+    <!-- Calendario -->
     <link href='../../../../plugins/fullcalendar/main.css' rel='stylesheet' />
-
     <link href="../../../../plugins/fullcalendar/main.min.css" rel='stylesheet' />
     <link href="../../../../plugins/fullcalendar-timegrid/main.min.css" rel='stylesheet' />
     <link href="../../../../plugins/fullcalendar-daygrid/main.min.css" rel='stylesheet' />
-
     <script type="text/javascript" src="../../../../plugins/fullcalendar/main.js"></script>
-
-
-
-
-
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -53,14 +49,9 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="dashboard.php" class="nav-link">Inico</a>
                 </li>
-
             </ul>
-
-
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -86,10 +77,8 @@
                         <!-- User image -->
                         <li class="user-header bg-primary">
                             <img src="../../../../assets/images/usuarios/images.png" class="img-circle elevation-2" alt="User Image">
-
                             <p>
                                 <?php echo $nombre_usuario; ?>
-
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -98,7 +87,6 @@
                                 <div class="col-12 text-center">
                                     <a href="#">Cambiar Contraseña</a>
                                 </div>
-
                             </div>
                             <!-- /.row -->
                         </li>
@@ -109,7 +97,8 @@
                         </li>
                     </ul>
                 </li>
-
             </ul>
         </nav>
         <!-- /.navbar -->
+    </div>
+</body>

@@ -309,27 +309,20 @@ class t1_terceros extends conexionPDO
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function crear_usuario_cliente($numero_id, $nombres, $apellidos, $id_cliente1, $id_obra, $rol)
+    function crear_usuario_cliente($numero_id, $nombres, $apellidos,  $rol)
     {
-
         $this->estado = 1;
         $this->tipo_tercero = 3;
         $this->numero_id = $numero_id;
         $this->nombres = $nombres;
         $this->apellidos = $apellidos;
         $this->razon_social = $this->nombres . " " . $this->apellidos;
-        $this->id_cliente1 = $id_cliente1;
-        $this->id_obra = $id_obra;
         $this->usuario = $this->numero_id;
         $this->pass = md5($this->numero_id);
         $this->rol = $rol;
-
-
-        $sql = "INSERT INTO `ct1_terceros`( `ct1_Estado`, ct1_TipoTercero,`ct1_NumeroIdentificacion`, `ct1_RazonSocial`, `ct1_Nombre1`,  `ct1_Apellido1`, `ct1_id_cliente1`,  `ct1_obra_id`,`ct1_usuario`, `ct1_pass`, `ct1_rol`)  VALUES (:estado,:tipo_tercero,:numero_id,:razon_social,:nombres,:apellidos,:id_cliente1,:id_obra,:usuario,:pass,:rol)";
-
+        $sql = "INSERT INTO `ct1_terceros`( `ct1_Estado`, ct1_TipoTercero, `ct1_NumeroIdentificacion`, `ct1_RazonSocial`, `ct1_Nombre1`,  `ct1_Apellido1`, `ct1_usuario`, `ct1_pass`, `ct1_rol`)  VALUES (:estado, :tipo_tercero, :numero_id,:razon_social, :nombres, :apellidos, :usuario, :pass, :rol)";
 
         $stmt = $this->con->prepare($sql);
-
 
         $stmt->bindParam(':estado', $this->estado, PDO::PARAM_STR);
         $stmt->bindParam(':tipo_tercero', $this->tipo_tercero, PDO::PARAM_STR);
@@ -337,27 +330,16 @@ class t1_terceros extends conexionPDO
         $stmt->bindParam(':razon_social', $this->razon_social, PDO::PARAM_STR);
         $stmt->bindParam(':nombres', $this->nombres, PDO::PARAM_STR);
         $stmt->bindParam(':apellidos', $this->apellidos, PDO::PARAM_STR);
-        $stmt->bindParam(':id_cliente1', $this->id_cliente1, PDO::PARAM_STR);
-        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_STR);
         $stmt->bindParam(':usuario', $this->usuario, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $this->pass, PDO::PARAM_STR);
         $stmt->bindParam(':rol', $this->rol, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-
-            return true;
+            return $this->con->lastInsertId();
         } else {
             return false;
         }
     }
-
-
-
-
-
-
-
-
 
     function get_estado_cupo($id_cliente)
     {
@@ -926,7 +908,7 @@ class t1_terceros extends conexionPDO
     }
 
 
-    function editar_user_cliente($numero_identificacion, $nombre1, $apellido1, $id_cliente1, $id_obra, $id)
+    function editar_user_cliente($numero_identificacion, $nombre1, $apellido1, $id)
     {
         $this->id = $id;
 
@@ -936,42 +918,22 @@ class t1_terceros extends conexionPDO
         $this->tipo_identificacion = "CC";
         $this->numero_identificacion = $numero_identificacion;
         $this->nombre1 = $nombre1;
-        $this->id_cliente1 = $id_cliente1;
-        $this->id_obra = $id_obra;
         $this->apellido1 = $apellido1;
 
         $this->razon_social = $nombre1 . " " . $apellido1;
 
         $this->usuario = $numero_identificacion;
-
-
-
-
-        $sql = "UPDATE ct1_terceros SET ct1_NumeroIdentificacion= :numero_identificacion, ct1_RazonSocial= :razon_social, ct1_Nombre1= :nombre1, ct1_Apellido1= :apellido1, ct1_usuario= :usuario,  ct1_id_cliente1 = :id_cliente1 , ct1_obra_id = :id_obra  WHERE ct1_IdTerceros = :id";
-
-
+        $sql = "UPDATE ct1_terceros SET ct1_NumeroIdentificacion= :numero_identificacion, ct1_RazonSocial= :razon_social, ct1_Nombre1= :nombre1, ct1_Apellido1= :apellido1, ct1_usuario= :usuario   WHERE ct1_IdTerceros = :id";
         $stmt = $this->con->prepare($sql);
-
-
-
         $stmt->bindParam(':numero_identificacion', $this->numero_identificacion, PDO::PARAM_INT);
         $stmt->bindParam(':razon_social', $this->razon_social, PDO::PARAM_STR);
         $stmt->bindParam(':nombre1', $this->nombre1, PDO::PARAM_STR);
-
-
         $stmt->bindParam(':apellido1', $this->apellido1, PDO::PARAM_STR);
-
         $stmt->bindParam(':usuario', $this->usuario, PDO::PARAM_STR);
-
-        $stmt->bindParam(':id_cliente1', $this->id_cliente1, PDO::PARAM_STR);
-        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_STR);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
 
         $result = $stmt->execute();
-
-
         $this->PDO->closePDO();
-
         return $result;
     }
 

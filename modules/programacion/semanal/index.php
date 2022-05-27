@@ -22,14 +22,12 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">VER PROGRACIONES SEMANALES</h3>
+                <h3 class="card-title">VER PROGRAMACIONES SEMANALES</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -60,28 +58,100 @@
 
 <script src="calendar.js"> </script>
 <script>
-    $(document).ready(function() {
-        $.ajax({
-            url: "load_select.php",
-            type: "POST",
-            data: {
-                task: 1,
-            },
-            success: function(response) {
-                console.log(response.estado);
-                if (response.estado) {
-                    toastr.success('Exito');
-                } else {
-                    toastr.warning("Error");
-                }
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
+    $(function() {
+        $('.select2').select2();
+        $("#form_mostrar_event").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_editar_prog_semanal.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente');
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
 
-            },
+        $("#form_crear_event").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_crear_prog_semanal.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente');
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
+
+        $('#txt_cliente').on('change', function() {
+            //Ajax 
+            var formData = new FormData();
+            formData.append('task', 2);
+            formData.append('cliente', $("#txt_cliente").val());
+            $.ajax({
+                url: "load_data.php", // URL
+                type: "POST", // Metodo HTTP
+                //data: formData,
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    $("#txt_obra").html(data.select_obra)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+
+        $('#edit_txt_cliente').on('change', function() {
+            //Ajax 
+            var formData = new FormData();
+            formData.append('task', 2);
+            formData.append('cliente', $("#edit_txt_cliente").val());
+            $.ajax({
+                url: "load_data.php", // URL
+                type: "POST", // Metodo HTTP
+                //data: formData,
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    $("#edit_txt_obra").html(data.select_obra)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
         });
     });
 </script>
+
 </body>
 
 </html>

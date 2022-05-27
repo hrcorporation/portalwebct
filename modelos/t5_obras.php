@@ -16,6 +16,7 @@ class t5_obras extends conexionPDO
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
+    
     public function select_segmentacion($id = null)
     {
         $option = "<option  selected = 'true' value='NULL' disabled='true'> Seleccione... </option>";
@@ -57,6 +58,7 @@ class t5_obras extends conexionPDO
             return false;
         }
     }
+
     function estado2_obra($id_obra)
     {
         $this->id_obra = (int)$id_obra;
@@ -77,6 +79,7 @@ class t5_obras extends conexionPDO
             return false;
         }
     }
+
     function option_obras($id_cliente, $id_obra = null)
     {
         $this->id_obra = $id_obra;
@@ -343,8 +346,6 @@ class t5_obras extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
-
 
     function editar_obra($id_obra, $id_cliente, $nombre_obra, $direccion_obra, $segmento, $departamento, $ciudad)
     {

@@ -12,9 +12,10 @@ class programacion extends conexionPDO
     /**
      * Trae la programacion semanal
      */
+    //obtener todas las programaciones desde el usuario de un funcionario.Cambiar a cargar
     public function get_prog_semanal()
     {
-        $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin` FROM `ct66_prog_semanal`";
+        $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin` FROM `ct66_prog_semanal` WHERE `status` != 3";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -22,15 +23,99 @@ class programacion extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $events[] = [
-                        "id" => $fila['id'],
-                        'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . ' || ',
-                        'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
-                        'start' => $fila['fecha_ini'],
-                        'end' => $fila['fecha_fin'],
-                        'color' => 'orange',
-                        'textcolor' => 'black'
-                    ];
+                    if ($fila['status'] == 1) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 2) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'orange',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 3) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'red',
+                            'textcolor' => 'black'
+                        ];
+                    }
+                }
+                return $events;
+            }
+        }
+        return false;
+    }
+    /****
+     * Trae la programacion semanal
+     */
+    //obtener todas las programaciones desde el usuario de un cliente. Cambiar a cargar
+    public function get_prog_semanal_por_usuario($id_usuario)
+    {
+        // $this->id = $id_usuario;
+        $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin`,`id_usuario` FROM `ct66_prog_semanal` WHERE `status` != 3";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    if ($fila['status'] == 1 && $fila['id_usuario'] == $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 2 && $fila['id_usuario'] == $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'orange',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 3 && $fila['id_usuario'] == $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'red',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['id_usuario'] != $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => 'OCUPADO',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'grey',
+                            'textcolor' => 'black'
+                        ];
+                    }
                 }
                 return $events;
             }
@@ -71,7 +156,6 @@ class programacion extends conexionPDO
         //resultado
         return $option;
     }
-
     /**** OPTION SELECT OBRA ********/
     function option_obra_edit($id_cliente, $id_obra = null)
     {
@@ -97,8 +181,63 @@ class programacion extends conexionPDO
         //resultado
         return $option;
     }
-
+    function option_obra_edit_cliente($id_cliente, $id_usuario, $id_obra = null)
+    {
+        $this->id_cliente = $id_cliente;
+        $this->id_usuario = $id_usuario;
+        $option = "<option  selected='true' disabled='disabled'> Seleccione una Obra</option>";
+        $sql = "SELECT ct5_obras.ct5_IdObras, ct5_obras.ct5_NombreObra FROM ct1_gestion_acceso INNER JOIN ct5_obras ON ct1_gestion_acceso.id_obra = ct5_obras.ct5_IdObras WHERE ct5_obras.ct5_IdTerceros = :id_cliente AND id_residente = :id_usuario";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_usuario', $this->id_usuario, PDO::PARAM_INT);
+        // Ejecutar 
+        $result = $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_obra == $fila['ct5_IdObras']) {
+                $selection = "selected='true'";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['ct5_IdObras'] . '" ' . $selection . ' >' . $fila['ct5_NombreObra']  . ' </option>';
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
+    }
     /**** OPTION SELECT  CLIENTE********/
+    //Select de los clientes
+    function option_cliente_edit_cliente($id_usuario, $id_cliente = null)
+    {
+        $this->id = $id_usuario;
+        $option = "<option  selected='true'> Seleccione un Cliente</option>";
+        $sql = "SELECT ct1_terceros.ct1_IdTerceros, ct1_terceros.ct1_NumeroIdentificacion, ct1_terceros.ct1_RazonSocial FROM ct1_gestion_acceso INNER JOIN ct1_terceros ON ct1_gestion_acceso.id_cliente = ct1_terceros.ct1_IdTerceros WHERE id_residente = :id_usuario";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $result = $stmt->execute();
+
+
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_cliente == $fila['ct1_IdTerceros']) {
+                $selection = " selected='true' ";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['ct1_IdTerceros'] . '" ' . $selection . ' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $option;
+    }
     function option_cliente_edit($id_cliente = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
@@ -126,7 +265,8 @@ class programacion extends conexionPDO
         //resultado
         return $option;
     }
-    // Traer el nombre del producto
+
+    // Traer el nombre del producto.
     public function get_nombre_producto($id)
     {
         $this->id = $id;
@@ -150,7 +290,7 @@ class programacion extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    // Traer el nombre del cliente 
+    // Traer el nombre del cliente.
     public function get_nombre_cliente($id_cliente)
     {
         $this->id = $id_cliente;
@@ -173,7 +313,7 @@ class programacion extends conexionPDO
             return false;
         }
     }
-    // Traer el nombre del obra
+    // Traer el nombre del obra.
     public function get_nombre_obra($id)
     {
         $this->id = $id;
@@ -197,10 +337,9 @@ class programacion extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    // Crear programacion 
-    public function crear_prog_semanal($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $fecha_ini, $fecha_fin)
+    public function crear_prog_semanal($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $fecha_ini, $fecha_fin, $id_usuario, $nombre_usuario)
     {
-        $sql = "INSERT INTO `ct66_prog_semanal`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin`) VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :fecha_ini, :fecha_fin)";
+        $sql = "INSERT INTO `ct66_prog_semanal`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin`, `id_usuario`, `nombre_usuario`) VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :fecha_ini, :fecha_fin, :id_usuario, :nombre_usuario)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -212,69 +351,41 @@ class programacion extends conexionPDO
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
         $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
         $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
-        $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
+        $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_ini', $fecha_ini, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_fin', $fecha_fin, PDO::PARAM_STR);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
-    public function get_programacion_semanal($id)
+    public function get_id_usuario($id)
     {
-        $sql = "SELECT `id_cliente`, `id_obra`, `id_producto`, `cantidad`, `fecha_ini`, `fecha_fin` FROM `ct66_prog_semanal` WHERE `id` = :id";
+        $this->id = $id;
+        $sql = "SELECT `id_usuario` FROM `ct66_prog_semanal` WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
         // Ejecutar 
-        if ($result = $stmt->execute()) {
+        if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $datos['id_cliente'] = $fila['id_cliente'];
-                    $datos['id_obra'] = $fila['id_obra'];
-                    $datos['id_producto'] = $fila['id_producto'];
-                    $datos['cantidad'] = $fila['cantidad'];
-                    $datos['fecha_ini'] = $fila['fecha_ini'];
-                    $datos['fecha_fin'] = $fila['fecha_fin'];
-                    $datosf[] = $datos;
+                    return $fila['id_usuario'];
                 }
-                return $datosf;
             } else {
                 return false;
             }
         } else {
             return false;
         }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
     }
-    //Cargar programacion
-    function cargar_programacion()
-    {
-        $sql = "SELECT * FROM `ct66_prog_semanal`";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        // Asignando Datos ARRAY => SQ
-        //$stmt->bindParam(':id_remision', $this->id_remision, PDO::PARAM_INT);
-        if ($result = $stmt->execute()) {
-            $num_reg =  $stmt->rowCount();
-            if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $events[] = [
-                        "id" => $fila['id'],
-                        'cliente' => $fila['nombre_cliente'],
-                        'obra' => $fila['nombre_obra'],
-                        'producto' => $fila['nombre_producto'],
-                        'cantidad' => $fila['cantidad'],
-                        'color' => 'orange',
-                        'textcolor' => 'black'
-                    ];
-                }
-                return $events;
-            }
-        }
-        return false;
-    }
-    //Cargar datos de la programacion mediante su id
+    //Cargar datos de la programacion mediante su id.  get_prog_por_id
     function cargar_data_programacion($id_programacion)
     {
         $sql = "SELECT * FROM `ct66_prog_semanal` WHERE `id` = :id_programacion ";
@@ -287,38 +398,44 @@ class programacion extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
-                    $datos['cliente'] = $fila['nombre_cliente'];
-                    $datos['obra'] = $fila['nombre_obra'];
-                    $datos['producto'] = $fila['nombre_producto'];
+                    $datos['cliente'] = $fila['id_cliente'];
+                    $datos['obra'] = $fila['id_obra'];
+                    $datos['producto'] = $fila['id_producto'];
                     $datos['cantidad'] = $fila['cantidad'];
-                    $datos['ini'] = $fila['fecha_ini'];
+                    $datos['inicio'] = $fila['fecha_ini'];
                     $datos['fin'] = $fila['fecha_fin'];
                     $datos['color'] = 'orange';
                     $datos['textcolor'] = 'black';
+                    $datosf[] = $datos;
                 }
-                return $datos;
+                return $datosf;
             }
         }
         return false;
     }
-    function editar_programacion($id_programacion, $start, $end)
+    // Crear programacion.
+    //Editar programacion la fecha. editar_programacion_para_evento
+    function editar_programacion($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
     {
-        $sql = "UPDATE `ct66_prog_semanal` SET `fecha_ini`= :inicio ,`fecha_fin`= :fin WHERE `id` = :id_programacion";
+        $sql = "UPDATE `ct66_prog_semanal` SET `fecha_ini`= :inicio ,`fecha_fin`= :fin, `fecha_modificacion` = :fecha_modificacion, `id_usuario_edit` = :id_usuario, `nombre_usuario_edit` = :nombre_usuario WHERE `id` = :id_programacion";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQ
         $stmt->bindParam(':inicio', $start, PDO::PARAM_STR);
         $stmt->bindParam(':fin', $end, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_modificacion', $fecha_modificacion, PDO::PARAM_STR);
         $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         }
         return false;
     }
-
-    function editar_toda_prog_semanal($id_programacion, $estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_pedido, $id_producto, $nombre_producto, $cant, $start, $end)
+    //Editar toda la programacion
+    function editar_toda_prog_semanal($id_programacion, $estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_producto, $nombre_producto, $cant, $start, $end, $id_usuario, $nombre_usuario, $fecha_modificacion)
     {
-        $sql = "UPDATE `ct66_prog_semanal` SET `status`= :estado, `id_cliente`= :id_cliente, `nombre_cliente`= :nombre_cliente,`id_obra`= :id_obra,`nombre_obra`= :nombre_obra, `id_pedido`= :id_pedido, `id_producto`= :id_producto, `nombre_producto`= :nombre_producto,`cantidad`= :cantidad,`fecha_ini`= :inicio,`fecha_fin`= :fin WHERE `id` =  :id_programacion";
+        $sql = "UPDATE `ct66_prog_semanal` SET `status`= :estado, `id_cliente`= :id_cliente, `nombre_cliente`= :nombre_cliente,`id_obra`= :id_obra,`nombre_obra`= :nombre_obra, `id_producto`= :id_producto, `nombre_producto`= :nombre_producto, `cantidad`= :cantidad, `fecha_ini`= :inicio, `fecha_fin`= :fin, `id_usuario_edit`= :id_usuario_edit,`nombre_usuario_edit`= :nombre_usuario_edit, `fecha_modificacion`= :fecha_modificacion WHERE `id` =  :id_programacion";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQ
@@ -327,19 +444,23 @@ class programacion extends conexionPDO
         $stmt->bindParam(':nombre_cliente', $nombre_cliente, PDO::PARAM_STR);
         $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_STR);
         $stmt->bindParam(':nombre_obra', $nombre_obra, PDO::PARAM_STR);
-        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_STR);
+        // $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_STR);
         $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
         $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
         $stmt->bindParam(':cantidad', $cant, PDO::PARAM_STR);
         $stmt->bindParam(':inicio', $start, PDO::PARAM_STR);
         $stmt->bindParam(':fin', $end, PDO::PARAM_STR);
+
+        $stmt->bindParam(':id_usuario_edit', $id_usuario, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_usuario_edit', $nombre_usuario, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_modificacion', $fecha_modificacion, PDO::PARAM_STR);
         $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
         if ($stmt->execute()) {
             return true;
         }
         return false;
     }
-
+    //Eliminar una programacion. eliminar_programacion_semanal
     function eliminar_programacion($id_programacion)
     {
         $sql = "DELETE FROM `ct66_prog_semanal` WHERE `id` = :id_programacion";
@@ -347,6 +468,22 @@ class programacion extends conexionPDO
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQ
         $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Cambiar el status de la programacion
+    public function actualizar_estatus_programacion_semanal($id_programacion, $status)
+    {
+        $sql = "UPDATE `ct66_prog_semanal` SET `status`= :estado WHERE `id` = :id_programacion";
+
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQ
+        $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
+        $stmt->bindParam(':estado', $status, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         }
