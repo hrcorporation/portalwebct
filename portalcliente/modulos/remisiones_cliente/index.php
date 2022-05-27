@@ -5,7 +5,7 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
-require '../../../include/conexion.php';
+
 require '../../../include/LibreriasHR.php';
 require '../../../include/get_datos.php';
 require '../../../include/lib.php';
@@ -18,8 +18,7 @@ switch($_SESSION['rol'])
     case 103:
         $get_datos = new get_datos();
         $php_clases = new php_clases();
-        $conexion_bd = new conexion();
-        $conexion_bd->connect();
+      
         $HR_librerias = new LibreriasHR();
 
     break;

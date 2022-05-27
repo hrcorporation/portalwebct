@@ -5,7 +5,6 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
-require '../../../include/conexion.php';
 require '../../../include/LibreriasHR.php';
 require '../../../include/get_datos.php';
 require '../../../include/lib.php';
