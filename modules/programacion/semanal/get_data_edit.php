@@ -15,6 +15,7 @@ if (isset($_POST['id'])) {
             $cantidad = $key['cantidad'];
             $inicio = $key['inicio'];
             $fin = $key['fin'];
+            $select_estado = $programacion->option_estado_edit($key['estado']);
             $color = $key['color'];
             $textcolor = $key['textcolor'];
         }
@@ -31,6 +32,7 @@ $datos = array(
     'select_cliente' => $select_cliente,
     'select_obra' => $select_obra,
     'select_producto' => $select_producto,
+    'select_estado' => $select_estado,
     'cantidad' => $cantidad,
     'inicio' => $inicio,
     'fin' => $fin,

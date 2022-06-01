@@ -15,7 +15,7 @@ class programacion extends conexionPDO
     //obtener todas las programaciones desde el usuario de un funcionario.Cambiar a cargar
     public function get_prog_semanal()
     {
-        $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin` FROM `ct66_prog_semanal` WHERE `status` != 3";
+        $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin` FROM `ct66_prog_semanal`";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -181,6 +181,7 @@ class programacion extends conexionPDO
         //resultado
         return $option;
     }
+    /**** OPTION SELECT OBRA ********/
     function option_obra_edit_cliente($id_cliente, $id_usuario, $id_obra = null)
     {
         $this->id_cliente = $id_cliente;
@@ -238,6 +239,7 @@ class programacion extends conexionPDO
         //resultado
         return $option;
     }
+    /**** OPTION SELECT OBRA ********/
     function option_cliente_edit($id_cliente = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
@@ -262,6 +264,30 @@ class programacion extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
 
+        //resultado
+        return $option;
+    }
+
+    function option_estado_edit($id = null)
+    {
+        $option = "<option  selected='true' disabled='disabled'> Seleccione el estado</option>";
+        $sql = "SELECT `id`, `descripcion` FROM `ct66_estado`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id == $fila['id']) {
+                $selection = " selected='true' ";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
         //resultado
         return $option;
     }
@@ -398,6 +424,7 @@ class programacion extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
+                    $datos['estado'] = $fila['status'];
                     $datos['cliente'] = $fila['id_cliente'];
                     $datos['obra'] = $fila['id_obra'];
                     $datos['producto'] = $fila['id_producto'];
@@ -488,5 +515,43 @@ class programacion extends conexionPDO
             return true;
         }
         return false;
+    }
+    //Informe excel
+    public function informe_excel_programacion($fecha_ini, $fecha_fin)
+    {
+        $this->fecha_ini = $fecha_ini;
+        $this->fecha_fin = $fecha_fin;
+
+        $sql = "SELECT `id`, `nombre_cliente`, `nombre_obra`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin` FROM `ct66_prog_semanal` WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin ORDER BY `fecha_creacion` DESC";
+
+        // Preparar la conexion del sentencia SQL
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
+
+        //$stmt->bindParam(':var', $var, PDO::PARAM_STR);
+        // Ejecuta SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['id'] = $fila['id'];
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['nombre_producto'] = $fila['nombre_producto'];
+                    $data_array['cantidad'] = $fila['cantidad'];
+                    $data_array['fecha_ini'] = $fila['fecha_ini'];
+                    $data_array['fecha_fin'] = $fila['fecha_fin'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0
+            }
+        } else {
+            return false; // Error en la sentencia sql
+        }
     }
 }

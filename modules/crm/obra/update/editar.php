@@ -116,7 +116,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Direccion</label>
-                                            <input name="direccion" id="direccion" type="text" class="form-control" value = "<?=$direccion_obra?> ">
+                                            <input name="direccion" id="direccion" type="text" class="form-control" value="<?= $direccion_obra ?> ">
                                         </div>
                                     </div>
                                 </div>
@@ -131,6 +131,11 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                     <button type="submit" class="btn btn-block bg-gradient-orange" name="boton_guardar" id="boton_guardar"> Guardar </button>
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-block bg-gradient-red" name="btn-eliminar" id="btn-eliminar"> Eliminar </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -141,7 +146,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                         <div class="modal-header">
                             <h4 class="modal-title">CREAR PEDIDO</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span> 
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">

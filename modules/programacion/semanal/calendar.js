@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     themeSystem: "bootstrap", // Tema del Calendario
     locale: "es", // Lenguaje
     initialView: "timeGridWeek", // Vista Semanal
-    timeZone: 'America/New_York',
+    timeZone: "America/New_York",
     droppable: true,
     selectable: true,
     editable: true,
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#end").val(moment(event.endStr).format("YYYY-MM-DD HH:mm:ss"));
       //Ajax
       var formData = new FormData();
-      formData.append('task', 1);
+      formData.append("task", 1);
       $.ajax({
         url: "load_data.php", // URL
         type: "POST", // Metodo HTTP
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cache: false,
         processData: false,
         success: function (data) {
-          $("#txt_cliente").html(data.select_cliente)
+          $("#txt_cliente").html(data.select_cliente);
         },
         error: function (respuesta) {
           alert(JSON.stringify(respuesta));
@@ -74,14 +74,14 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         success: function (data) {
           form_show_event.id_prog_evento.value = info.event.id;
-          console.log(info.event)
+          console.log(info.event);
           $("#edit_txt_cliente").html(data.select_cliente);
           $("#edit_txt_obra").html(data.select_obra);
           $("#edit_txt_producto").html(data.select_producto);
           form_show_event.edit_txt_cant.value = data.cantidad;
-          //form_show_event.edit_txt_producto.value = data.producto;
           form_show_event.edit_start.value = data.inicio;
           form_show_event.edit_end.value = data.fin;
+          $("#edit_status").html(data.select_estado);
           $("#modal_show_evento").modal("show");
         },
         error: function (respuesta) {
@@ -95,8 +95,14 @@ document.addEventListener("DOMContentLoaded", function () {
       var form_editar = new FormData();
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
-      form_editar.append("start", moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss"));
-      form_editar.append("end", moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss"));
+      form_editar.append(
+        "start",
+        moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
+      );
+      form_editar.append(
+        "end",
+        moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
+      );
       editar_event(form_editar, calendar);
     },
     //=======================================================================================================================
@@ -105,39 +111,46 @@ document.addEventListener("DOMContentLoaded", function () {
       var form_editar = new FormData();
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
-      form_editar.append("start", moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss"));
-      form_editar.append("end", moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss"));
+      form_editar.append(
+        "start",
+        moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
+      );
+      form_editar.append(
+        "end",
+        moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
+      );
 
       console.log(form_editar);
       editar_event(form_editar, calendar);
-    }
+    },
   });
   calendar.render();
   // Boton Actualizar Evento
   // Boton Actualizar Evento
-  document.getElementById("btn_eliminar").addEventListener("click", function () {
-    const datos_form = new FormData(form_show_event);
-    var form_editar = new FormData();
-    Swal.fire({
-      title: 'Esta seguro que desea eliminar',
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Si eliminar',
-      denyButtonText: `No, Salir`,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        form_editar.append("task", 3); // eliminar
-        form_editar.append("id", form_show_event.id_prog_evento.value);
-        editar_event(form_editar, calendar);
-        $("#modal_show_evento").modal("hide");
-      } else if (result.isDenied) {
-
-      }
-    })
-  });
+  document
+    .getElementById("btn_eliminar")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(form_show_event);
+      var form_editar = new FormData();
+      Swal.fire({
+        title: "Esta seguro que desea eliminar",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si eliminar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 3); // eliminar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
+        }
+      });
+    });
 });
 
 function editar_event(form_editar, calendar) {
@@ -151,11 +164,11 @@ function editar_event(form_editar, calendar) {
     //processData: false,
     success: function (response) {
       calendar.refetchEvents();
-      if(response.task == 1){
+      if (response.task == 1) {
         toastr.success("Programacion Actualizada Satisfactoriamente");
-      }else if(response.task == 3){
+      } else if (response.task == 3) {
         toastr.success("Programacion eliminada Satisfactoriamente");
-      }else if(response.task == 2){
+      } else if (response.task == 2) {
         toastr.success("Programacion Actualizada Satisfactoriamente");
       }
     },
