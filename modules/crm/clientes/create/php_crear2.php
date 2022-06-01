@@ -18,14 +18,21 @@ $errores = "";
 $resultado = "";
 
 
-if (isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) && isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) && isset($_POST['naturaleza']) && !empty($_POST['naturaleza']) && isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) && isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento'])) {
+if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento'])) {
 
-    $tipo_tercero = htmlspecialchars($_POST['tbx_tipotercero']);
-    $formapago = htmlspecialchars($_POST['txt_forma_pago']);
+    $id_comercial = $_POST['asesora_comercial'];
+    $nombre_comercial = $cls_oportunidad_negocio->get_nombre_asesora($id_comercial);
+    $id_sede = $_POST['sede'];
+    $nombre_sede = $cls_oportunidad_negocio->get_nombre_sede($id_sede);
+    $id_tipo_cliente = $_POST['tipo_cliente'];
+    $nombre_tipo_cliente = $cls_oportunidad_negocio->get_nombre_tipo_cliente($id_tipo_cliente);
+    $id_tipo_plan_maestro = $_POST['tipo_plan_maestro'];
+    $forma_pago = $_POST['txt_forma_pago'];
     $naturaleza = htmlspecialchars($_POST['naturaleza']);
     $tipo_documento = htmlspecialchars($_POST['tbx_tipoDocumento']);
     $numero_documento = htmlspecialchars($_POST['tbx_NumeroDocumento']);
     $dv = htmlspecialchars($_POST['tbx_dv']);
+    $tipo_tercero = 1;
     $nombre1 = htmlspecialchars($_POST['tbx_pnombre1']);
     $nombre2 = htmlspecialchars($_POST['tbx_pnombre2']);
     $apellido1 = htmlspecialchars($_POST['tbx_papellido1']);
@@ -35,25 +42,10 @@ if (isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) && iss
     } else if ($naturaleza == "PN") {
         $razon_social = $nombre1 . " " . $nombre2 . " " . $apellido1 . " " . $apellido2;
     }
-    $oportunidad = $_POST['id_oportunidad'];
-    if (is_array($data = $cls_oportunidad_negocio->get_datos_cliente_id($oportunidad))) {
-        foreach ($data as $key) {
-            $departamento = $key['departamento'];
-            $municipio = $key['municipio'];
-        }
-        $php_estado = true;
-    } else {
-        $departamento = null;
-        $municipio = null;
-    }
-    $genero = null;
-    $fecha_naci = null;
-    $direccion = null;
     $email = htmlspecialchars($_POST['tbx_email']);
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);
-
-    switch ($formapago) {
+    switch ($forma_pago) {
         case 1:
             $cupo_cliente = htmlspecialchars($_POST['txt_cupo']);
             $cupo_cliente = str_replace('.', '', $cupo_cliente);
@@ -68,7 +60,11 @@ if (isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) && iss
             $saldo_cartera = 0;
             break;
     }
-
+    $departamento = null;
+    $municipio = null;
+    $genero = null;
+    $fecha_naci = null;
+    $direccion = null;
 
     $usuario = $numero_documento;
     $C_Pass = md5($numero_documento);
@@ -78,14 +74,9 @@ if (isset($_POST['tbx_tipotercero']) && !empty($_POST['tbx_tipotercero']) && iss
     $TipoTercero = 1;
 
     $validarExistencias = $general_modelos->existencia('ct1_terceros', 'ct1_NumeroIdentificacion', $numero_documento);
-
     $x = false;
-
     if ($validarExistencias) {
-
-        $resultado = $t1_terceros->crear_cliente($tipo_tercero, $formapago, $naturaleza, $tipo_documento, $numero_documento, $dv, $razon_social, $nombre1, $nombre2, $apellido1, $apellido2, $genero, $fecha_naci, $departamento, $municipio, $direccion, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera);
-
-        if ($resultado) {
+        if ($t1_terceros->crear_cliente($id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera)) {
             $php_estado = true;
         } else {
             $errores = "Hubo un error al guardar" .  $resultado;

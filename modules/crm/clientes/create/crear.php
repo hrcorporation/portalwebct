@@ -44,7 +44,6 @@ require '../../../../vendor/autoload.php'; ?>
                 </div>
             </div>
             <div class="card-body">
-                <hr>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
@@ -59,20 +58,42 @@ require '../../../../vendor/autoload.php'; ?>
                         </div>
                     </div>
                 </div>
-                <hr>
                 <div id="contenido">
                     <form method="POST" name="F_crear" id="F_crear">
                         <div class="row">
                             <div class="col">
+                                <label>Asesora comercial</label>
+                                <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
+                                    <?php echo $oportunidad_negocio->select_comercial() ?>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label>Sede</label>
+                                <select name="sede" id="sede" class="form-control select2" required>
+                                    <?php echo $oportunidad_negocio->select_sede() ?>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
                                 <div class="form-group">
-                                    <label>Tipo Cliente (*)</label>
-                                    <div class="form-group">
-                                        <select class="form-control select2" style="width: 100%;" name="tbx_tipotercero" id="tbx_tipotercero">
-                                            <?= $oportunidad_negocio->select_tipo_cliente() ?>
-                                        </select>
-                                    </div>
+                                    <label>Tipo Cliente</label>
+                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required="true">
+                                        <?php echo $oportunidad_negocio->select_tipo_cliente() ?>
+                                    </select>
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Tipo PLAN MAESTRO</label>
+                                    <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2">
+                                        <?php echo $oportunidad_negocio->select_tipo_plan_maestro() ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label> Forma de Pago</label>
@@ -91,19 +112,21 @@ require '../../../../vendor/autoload.php'; ?>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-5">
-                                <label> Tipo Documento (*)</label>
-                                <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required>
-                                    <?= $t1_terceros->select_tipo_documento() ?>
-                                </select>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label> Tipo Documento (*)</label>
+                                    <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required>
+                                        <?= $t1_terceros->select_tipo_documento() ?>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col">
                                 <div class="form-group">
                                     <label>Numero de documento (*)</label>
                                     <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="">
                                 </div>
                             </div>
-                            <div id="boxPJ1" class="col-2">
+                            <div id="boxPJ1" class="col">
                                 <div class="form-group">
                                     <label>dv </label>
                                     <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="9" placeholder="">
@@ -148,7 +171,6 @@ require '../../../../vendor/autoload.php'; ?>
                                 </div>
                             </div>
                         </div>
-                        <hr>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -169,7 +191,6 @@ require '../../../../vendor/autoload.php'; ?>
                                 </div>
                             </div>
                         </div>
-                        <hr>
                         <div class="row" id="blq_cupo">
                             <div class="col">
                                 <div class="form-group">
@@ -180,7 +201,7 @@ require '../../../../vendor/autoload.php'; ?>
                         </div>
                         <div class="row">
                             <div class="container">
-                                <div class="row ">
+                                <div class="col">
                                     <div class="col align-self-center">
                                         <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> CREAR CLIENTE </button>
                                     </div>
@@ -203,6 +224,15 @@ require '../../../../vendor/autoload.php'; ?>
     $(function() {
         $(".progress").hide();
         $('.select2').select2();
+    });
+    $("#tipo_cliente").change(function() {
+        var tipo_cliente = $("#tipo_cliente").val();
+        console.log(tipo_cliente);
+        if (tipo_cliente == 2) {
+            $("#tipo_plan_maestro").attr('disabled', false);
+        } else {
+            $("#tipo_plan_maestro").attr('disabled', true);
+        }
     });
     $(document).ready(function() {
         $("#boxPN1").hide();
