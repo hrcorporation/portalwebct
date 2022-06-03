@@ -2,16 +2,6 @@
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
 
-<?php
-require '../../../../librerias/autoload.php';
-require '../../../../modelos/autoload.php';
-require '../../../../vendor/autoload.php'; ?>
-<?php
-
-//$t10_vehiculo = new vehiculos_t10();
-$t26_remisiones = new t26_remisiones();
-$php_clases = new php_clases();
-?>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -21,23 +11,21 @@ $php_clases = new php_clases();
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Exportar Listado de Remisiones de excel</h1>
+                    <h1>Exportar programacion</h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -49,7 +37,7 @@ $php_clases = new php_clases();
                 </div>
             </div>
             <div class="card-body">
-                <form id="form-informe-remisiones" name="form-informe-remisiones" method="GET" action="excel.php">
+                <form id="form-informe-op" name="form-informe-op" method="GET" action="excel.php">
                 <div id="contenido">
                     
                     

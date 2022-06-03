@@ -62,6 +62,17 @@ $programacion = new programacion();
                                 <input type="text" name="edit_end" class="form-control" id="edit_end">
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="edit_status" class="control-label">Cambiar estado</label>
+                                <select name="edit_status" id="edit_status" class="form-control select2" style="width: 100%;">
+                                    <!-- <option selected>Seleccione el estado</option>
+                                    <option value="1">1. Aprobado</option>
+                                    <option value="2">2. Pendiente</option>
+                                    <option value="3">3. Cancelado</option> -->
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -328,6 +328,9 @@ class informes extends conexionPDO
                     } else {
                         $fila['nombre_conductor'] = $fila['ct26_nombre_conductor'];
                     }
+                    $fila['ct26_idcliente'] = $fila['ct26_idcliente'];
+                    $fila['ct26_idObra'] = $fila['ct26_idObra'];
+
                     $datos[] = $fila;
                 }
                 return $datos;
@@ -338,6 +341,100 @@ class informes extends conexionPDO
             return false;
         }
         $this->PDO->closePDO(); // Cerrar Conexion  
+    }
+
+    public function get_datos_clientes($id)
+    {
+        $this->id_cliente = $id;
+        $sql = "SELECT `ct1_nombre_asesora`,`ct1_nombre_sede`,`ct1_nombre_tipo_cliente`,`ct1_tipo_plan_maestro`,`ct1_TipoIdentificacion`,`ct1_NumeroIdentificacion` FROM `ct1_terceros` WHERE `ct1_IdTerceros` = :id_cliente";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_STR);
+        if ($stmt->execute()) { // Ejecutar
+            $num_reg =  $stmt->rowCount(); // Get Numero de Registros
+            if ($num_reg > 0) { // Validar el numero de Registros
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $data_array['ct1_nombre_asesora'] = $fila['ct1_nombre_asesora'];
+                    $data_array['ct1_nombre_sede'] = $fila['ct1_nombre_sede'];
+                    $data_array['ct1_nombre_tipo_cliente'] = $fila['ct1_nombre_tipo_cliente'];
+                    $data_array['ct1_tipo_plan_maestro'] = $fila['ct1_tipo_plan_maestro'];
+                    $data_array['ct1_TipoIdentificacion'] = $fila['ct1_TipoIdentificacion'];
+                    $data_array['ct1_NumeroIdentificacion'] = $fila['ct1_NumeroIdentificacion'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        $this->PDO->closePDO(); // Cerrar Conexion  
+    }
+
+    public function get_datos_obras($id)
+    {
+        $this->id_obra = $id;
+        $sql = "SELECT `ct5_NombreObra`,`ct5_nombre_departamento`,`ct5_nombre_ciudad`,`ct5_nombre_comuna`,`ct5_barrio`,`ct5_segmento`,`ct5_DireccionObra` FROM `ct5_obras` WHERE `ct5_IdObras` = :id_obra";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_STR);
+        if ($stmt->execute()) { // Ejecutar
+            $num_reg =  $stmt->rowCount(); // Get Numero de Registros
+            if ($num_reg > 0) { // Validar el numero de Registros
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $data_array['ct5_NombreObra'] = $fila['ct5_NombreObra'];
+                    $data_array['ct5_nombre_departamento'] = $fila['ct5_nombre_departamento'];
+                    $data_array['ct5_nombre_ciudad'] = $fila['ct5_nombre_ciudad'];
+                    $data_array['ct5_nombre_comuna'] = $fila['ct5_nombre_comuna'];
+                    $data_array['ct5_barrio'] = $fila['ct5_barrio'];
+                    $data_array['ct5_segmento'] = $fila['ct5_segmento'];
+                    $data_array['ct5_DireccionObra'] = $fila['ct5_DireccionObra'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        $this->PDO->closePDO(); // Cerrar Conexion  
+    }
+
+    public function get_nombre_segmento($id){
+        $this->id = $id;
+        $sql = "SELECT `descripcion` FROM `segmento` WHERE `id_segmento` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_STR);
+        if ($stmt->execute()) { // Ejecutar
+            $num_reg =  $stmt->rowCount(); // Get Numero de Registros
+            if ($num_reg > 0) { // Validar el numero de Registros
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['descripcion'];
+                }
+            }else{
+                return '';
+            }
+        }else{
+            return '';
+        }
+    }
+    public function get_nombre_tipo_plan_maestro($id){
+        $this->id = $id;
+        $sql = "SELECT `descripcion` FROM `tipo_plan_maestro` WHERE `id` =  :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_STR);
+        if ($stmt->execute()) { // Ejecutar
+            $num_reg =  $stmt->rowCount(); // Get Numero de Registros
+            if ($num_reg > 0) { // Validar el numero de Registros
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['descripcion'];
+                }
+            }else{
+                return '';
+            }
+        }else{
+            return '';
+        }
     }
 
     function informe_dasa($fecha_ini, $fecha_fin)

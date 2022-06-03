@@ -10,6 +10,7 @@ require '../../../../vendor/autoload.php';
 
 $general_modelos = new general_modelos();
 $t1_terceros = new t1_terceros();
+$cls_oportunidad_negocio = new oportunidad_negocio();
 
 
 $php_estado = false;
@@ -17,25 +18,37 @@ $errores = "";
 $resultado = "";
 
 
-if (isset($_POST['tipo_cliente']) && !empty($_POST['tipo_cliente']) && isset($_POST['txt_forma_pago']) && !empty($_POST['txt_forma_pago']) && isset($_POST['naturaleza']) && !empty($_POST['naturaleza']) && isset($_POST['tbx_tipoDocumento']) && !empty($_POST['tbx_tipoDocumento']) && isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento'])) {
+if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
 
     $id_cliente = (int)htmlspecialchars($_POST['id_cliente']);
-    $tipo_tercero = 1;
+    $id_comercial = $_POST['asesora_comercial'];
+    $nombre_comercial = $cls_oportunidad_negocio->get_nombre_asesora($id_comercial);
+    $id_sede = $_POST['sede'];
+    $nombre_sede = $cls_oportunidad_negocio->get_nombre_sede($id_sede);
+    $id_tipo_cliente = $_POST['tipo_cliente'];
+    $nombre_tipo_cliente = $cls_oportunidad_negocio->get_nombre_tipo_del_cliente($id_tipo_cliente);
+    if(isset($_POST['tipo_plan_maestro'])){
+        $id_tipo_plan_maestro = $_POST['tipo_plan_maestro'];
+    }else{
+        $id_tipo_plan_maestro = 3;
+    }
     $formapago = htmlspecialchars($_POST['txt_forma_pago']);
     $naturaleza = htmlspecialchars($_POST['naturaleza']);
     $tipo_documento = htmlspecialchars($_POST['tbx_tipoDocumento']);
     $numero_documento = htmlspecialchars($_POST['tbx_NumeroDocumento']);
     $dv = htmlspecialchars($_POST['tbx_dv']);
-    $razon_social = htmlspecialchars($_POST['tbx_RazonSocial']);
+    $tipo_tercero = 1;
     $nombre1 = htmlspecialchars($_POST['tbx_pnombre1']);
     $nombre2 = htmlspecialchars($_POST['tbx_pnombre2']);
     $apellido1 = htmlspecialchars($_POST['tbx_papellido1']);
     $apellido2 = htmlspecialchars($_POST['tbx_papellido2']);
-    $genero = null;
-    $fecha_naci = null;
-    $departamento = null;
-    $municipio = null;
-    $direccion = null;
+
+    if ($naturaleza == "PJ") {
+        $razon_social = htmlspecialchars($_POST['tbx_RazonSocial']);
+    } else if ($naturaleza == "PN") {
+        $razon_social = $nombre1 . " " . $nombre2 . " " . $apellido1 . " " . $apellido2;
+    }
+
     $email = htmlspecialchars($_POST['tbx_email']);
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);
@@ -70,13 +83,10 @@ if (isset($_POST['tipo_cliente']) && !empty($_POST['tipo_cliente']) && isset($_P
     $x = false;
 
     if ($validarExistencias) {
-
-        $resultado = $t1_terceros->editar_cliente($tipo_tercero, $formapago, $naturaleza, $tipo_documento, $numero_documento, $dv, $razon_social, $nombre1, $nombre2, $apellido1, $apellido2, $genero, $fecha_naci, $departamento, $municipio, $direccion, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera, $id_cliente);
-
-        if ($resultado) {
+        if($t1_terceros->editar_cliente($id_cliente, $TipoTercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $formapago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera)){
             $php_estado = true;
-        } else {
-            $errores = "Hubo un error al guardar" .  $resultado;
+        }else{
+            $errores = "Hubo un error al guardar";
         }
     } else {
         $errores = "Este Cliente ya existe en la base de datos";

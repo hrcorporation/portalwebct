@@ -20,6 +20,9 @@ $datos = $t1_terceros->search_tercero_custom_id($id);
 
 while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
     $nit = $fila['ct1_NumeroIdentificacion'];
+    $id_asesora = $fila['ct1_id_asesora'];
+    $id_sede = $fila['ct1_id_sede'];
+    $tipo_plan_maestro = $fila['ct1_tipo_plan_maestro'];
     $razon_social = $fila['ct1_RazonSocial'];
     $naturaleza = $fila['ct1_naturaleza'];
     $dv = $fila['ct1_dv'];
@@ -32,7 +35,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
     $celular = $fila['ct1_Celular'];
     $email = $fila['ct1_CorreoElectronico'];
 
-    $tipo_documento = $fila['ct1_TipoIdentificacion'];
+    // $tipo_documento = $fila['ct1_TipoIdentificacion'];
 }
 $datos_cliente_int = $t3_clientes->get_datos_cliente($id);
 
@@ -82,12 +85,40 @@ foreach ($datos_cliente_int as $key) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
+                                    <label>Asesora comercial</label>
+                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
+                                        <?php echo $op->select_comercial($id_asesora) ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Sede</label>
+                                    <select name="sede" id="sede" class="form-control select2" required>
+                                        <?php echo $op->select_sede($id_sede) ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
                                     <label>Tipo Cliente</label>
-                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2">
+                                    <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required="true">
                                         <?php echo $op->select_tipo_cliente($tipo_cliente) ?>
                                     </select>
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Tipo PLAN MAESTRO</label>
+                                    <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2">
+                                        <?php echo $op->select_tipo_plan_maestro($tipo_plan_maestro) ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label> Forma de Pago</label>
@@ -97,7 +128,7 @@ foreach ($datos_cliente_int as $key) {
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group" style=" text-align:center">
+                                <div class="form-group">
                                     <label>Naturaleza (*)</label>
                                     <select class="form-control select2" style="width: 100%;" name="naturaleza" id="naturaleza">
                                         <?= $t1_terceros->select_naturaleza($naturaleza) ?>
@@ -106,20 +137,22 @@ foreach ($datos_cliente_int as $key) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3">
-                                <label> Tipo Documento (*)</label>
-                                <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required>
-                                    <?= $t1_terceros->select_tipo_documento($tipo_documento) ?>
-                                </select>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label> Tipo Documento (*)</label>
+                                    <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required>
+                                        <?= $t1_terceros->select_tipo_documento($tipo_documento) ?>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col">
                                 <div class="form-group">
                                     <label>Numero de documento (*)</label>
                                     <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="" value="<?php print_r($nit); ?>" />
                                 </div>
                             </div>
                             <div id="boxPJ1">
-                                <div class="col-sm-4">
+                                <div class="col">
                                     <div class="form-group">
                                         <label>dv </label>
                                         <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="9" placeholder="" value="<?php print_r($dv); ?>" />
@@ -127,7 +160,6 @@ foreach ($datos_cliente_int as $key) {
                                 </div>
                             </div>
                         </div>
-
                         <div id="boxPJ2">
                             <div class="row">
                                 <div class="col">
@@ -166,7 +198,6 @@ foreach ($datos_cliente_int as $key) {
                                 </div>
                             </div>
                         </div>
-                        <hr>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -183,7 +214,7 @@ foreach ($datos_cliente_int as $key) {
                             <div class="col">
                                 <div class="form-group">
                                     <label> Celular </label>
-                                    <input type="text" name="tbx_celular" id="tbx_celular" class="form-control" data-inputmask="'alias': 'numeric', 'groupSeparator': ',' , 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'" data-mask>
+                                    <input type="text" name="tbx_celular" id="tbx_celular" class="form-control" data-inputmask="'alias': 'numeric', 'groupSeparator': ',' , 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'" data-mask value="<?php print_r($celular); ?>">
                                 </div>
                             </div>
                         </div>
@@ -197,16 +228,15 @@ foreach ($datos_cliente_int as $key) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="container">
-                                <div class="row ">
-                                    <div class="col align-self-center">
-                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ACTUALIZAR CLIENTE </button>
-                                    </div>
-                                    <div class="col align-self-center">
-                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ADICIONAR VISITAS CLIENTES </button>
-                                    </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ACTUALIZAR CLIENTE </button>
                                 </div>
-                                <br><br>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ADICIONAR VISITAS CLIENTES </button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -397,6 +427,19 @@ foreach ($datos_cliente_int as $key) {
 <?php include '../../../../layout/footer/footer4.php' ?>
 
 <script>
+    $(function() {
+        $(".progress").hide();
+        $('.select2').select2();
+    });
+    $("#tipo_cliente").change(function() {
+        var tipo_cliente = $("#tipo_cliente").val();
+        console.log(tipo_cliente);
+        if (tipo_cliente == 2) {
+            $("#tipo_plan_maestro").attr('disabled', false);
+        } else {
+            $("#tipo_plan_maestro").attr('disabled', true);
+        }
+    });
     $("#form_add_visita").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({

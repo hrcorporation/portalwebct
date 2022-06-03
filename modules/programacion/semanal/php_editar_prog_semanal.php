@@ -34,7 +34,7 @@ if (isset($_POST['task'])) {
     } elseif ($_POST['task'] == 2) {
         if ($id_rol == 1 || $id_rol == 15 || $id_rol == 16) {
             $id = $_POST['id_prog_evento'];
-            $estado = 1;
+            $estado = $_POST['edit_status'];
             $id_cliente = $_POST['edit_txt_cliente'];
             $nombre_cliente = $programacion->get_nombre_cliente($id_cliente);
             $id_obra = $_POST['edit_txt_obra'];

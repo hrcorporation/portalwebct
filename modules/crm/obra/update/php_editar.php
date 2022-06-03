@@ -10,20 +10,27 @@ require '../../../../vendor/autoload.php';
 // $con = new conexionPDO();
 
 $t5_obras = new t5_obras();
+$modelo_obras = new modelo_obras();
 
 $resultado = false;
 $php_estado = false;
 $php_error = false;
 
-if ( isset($_POST['cliente']) && !empty($_POST['cliente']) && isset($_POST['nombre_obra']) && !empty($_POST['nombre_obra'])) {
-    $id_cliente = (int)htmlspecialchars($_POST['cliente']);
+if ( isset($_POST['id_obra']) && !empty($_POST['id_obra'])) {
     $id_obra = htmlspecialchars($_POST['id_obra']);
+    $id_cliente = (int)htmlspecialchars($_POST['cliente']);
     $nombre_obra = htmlspecialchars($_POST['nombre_obra']);
     $id_departamento = htmlspecialchars($_POST['departamento']);
-    $id_ciudad = htmlspecialchars($_POST['ciudad']);
+    $nombre_departamento = $modelo_obras->get_nombre_departamento($id_departamento);
+    $id_ciudad = htmlspecialchars($_POST['municipio']);
+    $nombre_ciudad = $modelo_obras->get_nombre_ciudad($id_ciudad);
+    $id_comuna = htmlspecialchars($_POST['comuna']);
+    $nombre_comuna = $modelo_obras->get_nombre_comuna($id_comuna);
+    $barrio = htmlspecialchars($_POST['barrio']);
     $segmento = htmlspecialchars($_POST['segmento']);
     $direccion_obra = htmlspecialchars($_POST['direccion']);
-    $result = $t5_obras->editar_obra($id_obra, $id_cliente, $nombre_obra, $direccion_obra, $segmento, $id_departamento, $id_ciudad);
+    
+    $result = $t5_obras->editar_obra($id_obra, $id_cliente, $nombre_obra, $id_departamento, $nombre_departamento, $id_ciudad, $nombre_ciudad, $id_comuna, $nombre_comuna, $barrio, $segmento, $direccion_obra);
 
     if ($result) {
         $php_estado = true;

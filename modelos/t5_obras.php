@@ -165,7 +165,7 @@ class t5_obras extends conexionPDO
         $error =  '<option value="0">Error al cargar Obras</option>';
         $datos = "";
         $rowsArray_obra = "";
-        $sql = "SELECT `ct5_IdObras`, `ct5_EstadoObra`,`ct5_NombreObra` FROM `ct5_obras` WHERE ct5_obras.ct5_IdTerceros = :id_cliente";
+        $sql = "SELECT `ct5_IdObras`, `ct5_EstadoObra`,`ct5_NombreObra` FROM `ct5_obras` WHERE ct5_obras.ct5_IdTerceros = :id_cliente AND `ct5_EstadoObra` = 1";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
         // $stmt->bind_param("i", $id_cliente);
@@ -183,7 +183,7 @@ class t5_obras extends conexionPDO
     function option_obra_edit2($id_obra)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione una Obra</option>";
-        $sql = "SELECT * FROM `ct5_obras` ";
+        $sql = "SELECT * FROM `ct5_obras` WHERE `ct5_EstadoObra` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -207,7 +207,7 @@ class t5_obras extends conexionPDO
     {
         $this->id = $id_cliente;
         $option = "<option  selected='true' disabled='disabled'> Seleccione una Obra</option>";
-        $sql = "SELECT * FROM `ct5_obras` WHERE `ct5_IdTerceros` = :id_cliente";
+        $sql = "SELECT * FROM `ct5_obras` WHERE `ct5_IdTerceros` = :id_cliente  AND `ct5_EstadoObra` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -231,11 +231,9 @@ class t5_obras extends conexionPDO
     function eliminar_obra($id)
     {
         $this->id = $id;
-        $sql = "DELETE FROM `ct5_obras` WHERE `ct5_IdObras` = :id_obra";
-        //Preparar Conexion
+        $sql = "UPDATE `ct5_obras` SET `ct5_EstadoObra`= 2 WHERE  `ct5_IdObras` = :id";
         $stmt = $this->con->prepare($sql);
-        // Asignando Datos ARRAY => SQL
-        $stmt->bindParam(':id_obra', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
         // Ejecutar 
         $result = $stmt->execute();
         //Cerrar Conexion
@@ -248,7 +246,7 @@ class t5_obras extends conexionPDO
     {
         $this->id = $id_cliente;
         $option = "<option  selected='true' disabled='disabled'> Seleccione una Obra</option>";
-        $sql = "SELECT * FROM `ct5_obras` WHERE `ct5_IdTerceros` = :id_cliente";
+        $sql = "SELECT * FROM `ct5_obras` WHERE `ct5_IdTerceros` = :id_cliente AND `ct5_EstadoObra` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -272,7 +270,7 @@ class t5_obras extends conexionPDO
     function select_obras_id_for_table($id_obra)
     {
         $this->id = $id_obra;
-        $sql = "SELECT ct5_NombreObra, ct5_IdTerceros FROM `ct5_obras` WHERE `ct5_IdObras` = :id_obra";
+        $sql = "SELECT ct5_NombreObra, ct5_IdTerceros FROM `ct5_obras` WHERE `ct5_IdObras` = :id_obra  AND `ct5_EstadoObra` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -299,7 +297,7 @@ class t5_obras extends conexionPDO
     function select_obras_id($id_obra)
     {
         $this->id = $id_obra;
-        $sql = "SELECT * FROM `ct5_obras` WHERE `ct5_IdObras` = :id_obra";
+        $sql = "SELECT * FROM `ct5_obras` WHERE `ct5_IdObras` = :id_obra  AND `ct5_EstadoObra` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -314,7 +312,7 @@ class t5_obras extends conexionPDO
 
     function select_obras()
     {
-        $sql = "SELECT * FROM ct5_obras ORDER BY `ct5_IdObras` DESC";
+        $sql = "SELECT * FROM ct5_obras WHERE `ct5_EstadoObra` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -347,26 +345,38 @@ class t5_obras extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    function editar_obra($id_obra, $id_cliente, $nombre_obra, $direccion_obra, $segmento, $departamento, $ciudad)
+    function editar_obra($id_obra, $id_cliente, $nombre_obra, $id_departamento, $nombre_departamento, $id_ciudad, $nombre_ciudad, $id_comuna, $nombre_comuna, $barrio, $segmento, $direccion_obra)
     {
         $this->id_cliente = $id_cliente;
         $this->nombre_obra = $nombre_obra;
         $this->direccion_obra = $direccion_obra;
         $this->id = $id_obra;
         $this->segmento = $segmento;
-        $this->departamento = $departamento;
-        $this->ciudad = $ciudad;
-        $sql = "UPDATE `ct5_obras` SET `ct5_IdTerceros`= :id_cliente, `ct5_NombreObra`= :nombre_obra, `ct5_DireccionObra`= :direccion_obra, ct5_segmento = :segmento, ct5_id_departamento = :departamento , ct5_id_ciudad = :ciudad  WHERE `ct5_IdObras` = :id_obra";
+        $this->departamento = $id_departamento;
+        $this->nombre_departamento = $nombre_departamento;
+        $this->ciudad = $id_ciudad;
+        $this->nombre_municipio = $nombre_ciudad;
+        $this->comuna = $id_comuna;
+        $this->nombre_comuna = $nombre_comuna;
+        $this->barrio = $barrio;
+        $sql = "UPDATE `ct5_obras` SET `ct5_IdTerceros` = :id_cliente, `ct5_NombreObra` = :nombre_obra, `ct5_segmento` = :segmento, `ct5_DireccionObra` = :direccion_obra,`ct5_id_departamento` = :departamento, `ct5_nombre_departamento` = :nombre_departamento, `ct5_id_ciudad` = :ciudad, `ct5_nombre_ciudad` = :nombre_municipio, `ct5_id_comuna` = :comuna,`ct5_nombre_comuna` = :nombre_comuna,`ct5_barrio` = :barrio WHERE `ct5_IdObras` =  :id_obra";
 
         $stmt = $this->con->prepare($sql);
 
+        $stmt->bindParam(':id_obra',  $this->id, PDO::PARAM_INT);
         $stmt->bindParam(':id_cliente',  $this->id_cliente, PDO::PARAM_INT);
         $stmt->bindParam(':nombre_obra', $this->nombre_obra, PDO::PARAM_STR);
         $stmt->bindParam(':direccion_obra', $this->direccion_obra, PDO::PARAM_STR);
         $stmt->bindParam(':segmento', $this->segmento, PDO::PARAM_STR);
         $stmt->bindParam(':departamento', $this->departamento, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_departamento', $this->nombre_departamento, PDO::PARAM_STR);
         $stmt->bindParam(':ciudad', $this->ciudad, PDO::PARAM_STR);
-        $stmt->bindParam(':id_obra',  $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_municipio', $this->nombre_municipio, PDO::PARAM_STR);
+        $stmt->bindParam(':comuna', $this->comuna, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_comuna', $this->nombre_comuna, PDO::PARAM_STR);
+        $stmt->bindParam(':barrio', $this->barrio, PDO::PARAM_STR);
+
+       
         $result = $stmt->execute();
         //Cerrar Conexion
         $this->PDO->closePDO();
