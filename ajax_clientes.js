@@ -12,7 +12,9 @@ $(document).ready(function (e) {
             {
                 if(data.estado){
                     toastr.success('Inicio de sesion ha sido exitoso');
+                    //toastr.success(data.codigo);
                     window.location = data.codigo;
+                    console.log(data.codigo);
                 }else{
                     toastr.warning(data.errores);               
                 }
