@@ -1,7 +1,7 @@
 <?php 
 
-//require 'config-portal.php';
-require 'config.php';
+require 'config-portal.php';
+//require 'config.php';
 
 class conexionPDO{
 
