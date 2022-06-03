@@ -84,14 +84,7 @@ require '../../../../vendor/autoload.php'; ?>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label> Forma de Pago</label>
-                                    <select class="form-control select2" style="width: 100%;" name="txt_forma_pago" id="txt_forma_pago">
-                                        <?= $t1_terceros->select_forma_pago() ?>
-                                    </select>
-                                </div>
-                            </div>
+                            
                             <div class="col">
                                 <div class="form-group">
                                     <label>Naturaleza (*)</label>

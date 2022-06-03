@@ -32,7 +32,7 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
     }else{
         $id_tipo_plan_maestro = 3;
     }
-    $formapago = htmlspecialchars($_POST['txt_forma_pago']);
+    $formapago = null;
     $naturaleza = htmlspecialchars($_POST['naturaleza']);
     $tipo_documento = htmlspecialchars($_POST['tbx_tipoDocumento']);
     $numero_documento = htmlspecialchars($_POST['tbx_NumeroDocumento']);

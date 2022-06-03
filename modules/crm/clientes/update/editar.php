@@ -20,6 +20,8 @@ $datos = $t1_terceros->search_tercero_custom_id($id);
 
 while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
     $nit = $fila['ct1_NumeroIdentificacion'];
+    $tipo_cliente = $fila['ct1_tipo_cliente'];
+
     $id_asesora = $fila['ct1_id_asesora'];
     $id_sede = $fila['ct1_id_sede'];
     $tipo_plan_maestro = $fila['ct1_tipo_plan_maestro'];
@@ -96,6 +98,8 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
+                                
+
                                     <label>Tipo Cliente</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required="true">
                                         <?php echo $op->select_tipo_cliente($tipo_cliente) ?>
@@ -104,6 +108,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                             </div>
                             <div class="col">
                                 <div class="form-group">
+                                    
                                     <label>Tipo PLAN MAESTRO</label>
                                     <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2">
                                         <?php echo $op->select_tipo_plan_maestro($tipo_plan_maestro) ?>
@@ -112,14 +117,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label> Forma de Pago</label>
-                                    <select class="form-control select2" style="width: 100%;" name="txt_forma_pago" id="txt_forma_pago">
-                                        <?= $t1_terceros->select_forma_pago($forma_pago) ?>
-                                    </select>
-                                </div>
-                            </div>
+                            
                             <div class="col">
                                 <div class="form-group">
                                     <label>Naturaleza (*)</label>

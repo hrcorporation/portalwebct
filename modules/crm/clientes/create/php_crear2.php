@@ -32,7 +32,7 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
         $id_tipo_plan_maestro = "";
     }
     
-    $forma_pago = $_POST['txt_forma_pago'];
+    $forma_pago = null;
     $naturaleza = htmlspecialchars($_POST['naturaleza']);
     $tipo_documento = htmlspecialchars($_POST['tbx_tipoDocumento']);
     $numero_documento = htmlspecialchars($_POST['tbx_NumeroDocumento']);
