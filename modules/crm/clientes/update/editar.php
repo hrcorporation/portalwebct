@@ -37,14 +37,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
 
     // $tipo_documento = $fila['ct1_TipoIdentificacion'];
 }
-$datos_cliente_int = $t3_clientes->get_datos_cliente($id);
 
-foreach ($datos_cliente_int as $key) {
-    $forma_pago = $key['ct3_ModalidadPago'];
-    $cupo_cliente = $key['ct3_Cupo'];
-    $tipo_cliente = $key['ct3_TipoCliente'];
-    $saldo_cliente = $key['ct3_SaldoCartera'];
-}
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -223,7 +216,7 @@ foreach ($datos_cliente_int as $key) {
                             <div class="col">
                                 <div class="form-group">
                                     <label>Cupo Cliente</label>
-                                    <input type='text' class='form-control ' name='txt_cupo' onkeyup='format(this)' value="<?php print_r($cupo_cliente) ?>" />
+                                    <input type='text' class='form-control ' name='txt_cupo' onkeyup='format(this)' value="<?php //print_r($cupo_cliente) ?>" />
                                 </div>
                             </div>
                         </div>
