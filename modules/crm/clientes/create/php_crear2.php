@@ -25,8 +25,13 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
     $id_sede = $_POST['sede'];
     $nombre_sede = $cls_oportunidad_negocio->get_nombre_sede($id_sede);
     $id_tipo_cliente = $_POST['tipo_cliente'];
-    $nombre_tipo_cliente = $cls_oportunidad_negocio->get_nombre_tipo_cliente($id_tipo_cliente);
-    $id_tipo_plan_maestro = $_POST['tipo_plan_maestro'];
+    $nombre_tipo_cliente = $cls_oportunidad_negocio->get_nombre_tipo_del_cliente($id_tipo_cliente);
+    if(isset($_POST['tipo_plan_maestro'])){
+        $id_tipo_plan_maestro = $_POST['tipo_plan_maestro'];
+    }else{
+        $id_tipo_plan_maestro = "";
+    }
+    
     $forma_pago = $_POST['txt_forma_pago'];
     $naturaleza = htmlspecialchars($_POST['naturaleza']);
     $tipo_documento = htmlspecialchars($_POST['tbx_tipoDocumento']);
@@ -42,6 +47,7 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
     } else if ($naturaleza == "PN") {
         $razon_social = $nombre1 . " " . $nombre2 . " " . $apellido1 . " " . $apellido2;
     }
+
     $email = htmlspecialchars($_POST['tbx_email']);
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);

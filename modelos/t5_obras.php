@@ -345,26 +345,38 @@ class t5_obras extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    function editar_obra($id_obra, $id_cliente, $nombre_obra, $direccion_obra, $segmento, $departamento, $ciudad)
+    function editar_obra($id_obra, $id_cliente, $nombre_obra, $id_departamento, $nombre_departamento, $id_ciudad, $nombre_ciudad, $id_comuna, $nombre_comuna, $barrio, $segmento, $direccion_obra)
     {
         $this->id_cliente = $id_cliente;
         $this->nombre_obra = $nombre_obra;
         $this->direccion_obra = $direccion_obra;
         $this->id = $id_obra;
         $this->segmento = $segmento;
-        $this->departamento = $departamento;
-        $this->ciudad = $ciudad;
-        $sql = "UPDATE `ct5_obras` SET `ct5_IdTerceros`= :id_cliente, `ct5_NombreObra`= :nombre_obra, `ct5_DireccionObra`= :direccion_obra, ct5_segmento = :segmento, ct5_id_departamento = :departamento , ct5_id_ciudad = :ciudad  WHERE `ct5_IdObras` = :id_obra";
+        $this->departamento = $id_departamento;
+        $this->nombre_departamento = $nombre_departamento;
+        $this->ciudad = $id_ciudad;
+        $this->nombre_municipio = $nombre_ciudad;
+        $this->comuna = $id_comuna;
+        $this->nombre_comuna = $nombre_comuna;
+        $this->barrio = $barrio;
+        $sql = "UPDATE `ct5_obras` SET `ct5_IdTerceros` = :id_cliente, `ct5_NombreObra` = :nombre_obra, `ct5_segmento` = :segmento, `ct5_DireccionObra` = :direccion_obra,`ct5_id_departamento` = :departamento, `ct5_nombre_departamento` = :nombre_departamento, `ct5_id_ciudad` = :ciudad, `ct5_nombre_ciudad` = :nombre_municipio, `ct5_id_comuna` = :comuna,`ct5_nombre_comuna` = :nombre_comuna,`ct5_barrio` = :barrio WHERE `ct5_IdObras` =  :id_obra";
 
         $stmt = $this->con->prepare($sql);
 
+        $stmt->bindParam(':id_obra',  $this->id, PDO::PARAM_INT);
         $stmt->bindParam(':id_cliente',  $this->id_cliente, PDO::PARAM_INT);
         $stmt->bindParam(':nombre_obra', $this->nombre_obra, PDO::PARAM_STR);
         $stmt->bindParam(':direccion_obra', $this->direccion_obra, PDO::PARAM_STR);
         $stmt->bindParam(':segmento', $this->segmento, PDO::PARAM_STR);
         $stmt->bindParam(':departamento', $this->departamento, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_departamento', $this->nombre_departamento, PDO::PARAM_STR);
         $stmt->bindParam(':ciudad', $this->ciudad, PDO::PARAM_STR);
-        $stmt->bindParam(':id_obra',  $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_municipio', $this->nombre_municipio, PDO::PARAM_STR);
+        $stmt->bindParam(':comuna', $this->comuna, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_comuna', $this->nombre_comuna, PDO::PARAM_STR);
+        $stmt->bindParam(':barrio', $this->barrio, PDO::PARAM_STR);
+
+       
         $result = $stmt->execute();
         //Cerrar Conexion
         $this->PDO->closePDO();

@@ -62,19 +62,22 @@ require '../../../../vendor/autoload.php'; ?>
                     <form method="POST" name="F_crear" id="F_crear">
                         <div class="row">
                             <div class="col">
-                                <label>Asesora comercial</label>
-                                <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
-                                    <?php echo $oportunidad_negocio->select_comercial() ?>
-                                </select>
+                                <div class="form-group">
+                                    <label>Asesora comercial</label>
+                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
+                                        <?php echo $oportunidad_negocio->select_comercial() ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col">
-                                <label>Sede</label>
-                                <select name="sede" id="sede" class="form-control select2" required>
-                                    <?php echo $oportunidad_negocio->select_sede() ?>
-                                </select>
+                                <div class="form-group">
+                                    <label>Sede</label>
+                                    <select name="sede" id="sede" class="form-control select2" required>
+                                        <?php echo $oportunidad_negocio->select_sede() ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <hr>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -253,6 +256,9 @@ require '../../../../vendor/autoload.php'; ?>
                 success: function(data) {
                     // Restultado del ajax
                     if (data.estado) {
+                        $("#asesora_comercial").val(data.asesora_comercial);
+                        $("#sede").val(data.sede);
+                        $("#tipo_plan_maestro").val(data.plan_maestro);
                         $("#tbx_NumeroDocumento").val(data.nidentificacion);
                         $("#tbx_pnombre1").val(data.nombrescompletos);
                         $("#tbx_papellido1").val(data.apellidoscompletos);

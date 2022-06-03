@@ -98,10 +98,36 @@ class oportunidad_negocio extends conexionPDO
             return false;
         }
     }
+    //Obtener el tipo de plan maestro
     public function get_nombre_tipo_cliente($id)
     {
         $this->id = $id;
         $sql = "SELECT descripcion FROM `tipo_plan_maestro` WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['descripcion'];
+                }
+            } else {
+                return "NO APLICA";
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
+    //Obtener el nombre del tipo del cliente
+    public function get_nombre_tipo_del_cliente($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT `descripcion` FROM `tipo_cliente` WHERE `id_tipo_cliente` = :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -303,7 +329,7 @@ class oportunidad_negocio extends conexionPDO
     function get_datos_cliente_id($id)
     {
         $this->id = $id;
-        $sql = "SELECT `id`, `tipo_cliente`, `departamento`, `municipio`, `nidentificacion`, `nombrescompletos`, `apellidoscompletos`, `telefono_cliente` FROM `ct63_oportuniodad_negocio` WHERE `id` = :id";
+        $sql = "SELECT `id`, `asesora_comercial`, `id_sede`, `tipo_cliente`, `tipo_plan_maestro`, `nidentificacion`, `nombrescompletos`, `apellidoscompletos`, `telefono_cliente` FROM `ct63_oportuniodad_negocio` WHERE `id` = :id";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL

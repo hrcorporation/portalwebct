@@ -369,10 +369,10 @@ class t1_terceros extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    function editar_cliente($tipo_tercero, $formapago, $naturaleza, $tipo_documento, $numero_documento, $dv, $razon_social, $nombre1, $nombre2, $apellido1, $apellido2, $genero, $fecha_naci, $departamento, $municipio, $direccion, $email, $telefono, $celular, $cupo, $saldo_cartera, $id_cliente)
+    function editar_cliente($id_cliente, $tipo_tercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera)
     {
         $this->tipo_tercero = $tipo_tercero;
-        $this->formapago    = $formapago;
+        $this->formapago    = $forma_pago;
         $this->naturaleza = $naturaleza;
         $this->tipo_documento     = $tipo_documento;
         $this->numero_documento   = $numero_documento;
@@ -382,15 +382,10 @@ class t1_terceros extends conexionPDO
         $this->nombre2            = $nombre2;
         $this->apellido1          = $apellido1;
         $this->apellido2          = $apellido2;
-        $this->genero             = $genero;
-        $this->fecha_naci         = $fecha_naci;
-        $this->departamento       = $departamento;
-        $this->municipio          = $municipio;
-        $this->direccion          = $direccion;
         $this->email              = $email;
         $this->telefono           = $telefono;
         $this->celular            = $celular;
-        $this->cupo = $cupo;
+        $this->cupo = $cupo_cliente;
         $this->id_cliente = $id_cliente;
 
         $this->rol = 101; //cliente
@@ -407,14 +402,22 @@ class t1_terceros extends conexionPDO
             $this->razon_social =  $this->nombre1 . " " . $this->nombre2  . " " . $this->apellido1  . " " . $this->apellido2;
         }
 
-        $sql = "UPDATE `ct1_terceros` SET  `ct1_naturaleza` = :naturaleza, `ct1_TipoTercero` = :tipo_tercero, `ct1_TipoIdentificacion` = :tipo_identificacion, `ct1_NumeroIdentificacion` = :numero_identificacion,  `ct1_dv` = :dv, `ct1_RazonSocial` = :razon_social,  `ct1_Nombre1` = :nombre1,  `ct1_Nombre2` = :nombre2,  `ct1_Apellido1` = :apellido1,  `ct1_Apellido2` = :apellido2, `ct1_usuario` = :usuario, `ct1_pass` = :pass, `ct1_rol` = :rol,  `ct1_FechaNacimiento` = :fecha_nacimiento, `ct1_Telefono` = :telefono,  `ct1_Celular` = :cel,  `ct1_CorreoElectronico` = :email,  `ct1_Departamento` = :departamento, `ct1_Ciudad` =  :ciudad, `ct1_Direccion`= :direccion WHERE `ct1_IdTerceros` = :id_cliente";
+        $sql = "UPDATE `ct1_terceros` SET `ct1_id_asesora`= :id_asesora, `ct1_nombre_asesora`= :nombre_asesora, `ct1_id_sede`= :id_sede, `ct1_nombre_sede`= :nombre_sede,`ct1_naturaleza`= :naturaleza, `ct1_TipoTercero`= :tipo_tercero, `ct1_tipo_cliente`= :tipo_cliente, `ct1_nombre_tipo_cliente`= :nombre_tipo_cliente, `ct1_tipo_plan_maestro`= :tipo_plan_maestro,`ct1_TipoIdentificacion`= :tipo_identificacion, `ct1_NumeroIdentificacion`= :numero_identificacion, `ct1_dv`= :dv, `ct1_RazonSocial`= :razon_social, `ct1_Nombre1`= :nombre1,`ct1_Nombre2`= :nombre2, `ct1_Apellido1`= :apellido1, `ct1_Apellido2`= :apellido2, `ct1_usuario`= :usuario, `ct1_pass`= :pass, `ct1_Telefono`= :telefono, `ct1_Celular`= :cel, `ct1_CorreoElectronico`= :email  WHERE `ct1_IdTerceros` = :id_cliente";
 
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
         // $stmt->bindParam(':fecha_creacion', $this->sx, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_asesora', $id_comercial, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_asesora', $nombre_comercial, PDO::PARAM_STR);
+        $stmt->bindParam(':id_sede', $id_sede, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_sede', $nombre_sede, PDO::PARAM_STR);
         $stmt->bindParam(':naturaleza', $this->naturaleza, PDO::PARAM_STR);
         $stmt->bindParam(':tipo_tercero', $this->tipo_tercero, PDO::PARAM_STR);
+        $stmt->bindParam(':tipo_cliente', $id_tipo_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_tipo_cliente', $nombre_tipo_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':tipo_plan_maestro', $id_tipo_plan_maestro, PDO::PARAM_STR);
         $stmt->bindParam(':tipo_identificacion', $this->tipo_documento, PDO::PARAM_STR);
         $stmt->bindParam(':numero_identificacion', $this->numero_documento, PDO::PARAM_STR);
         $stmt->bindParam(':dv', $this->dv, PDO::PARAM_STR);
@@ -425,16 +428,9 @@ class t1_terceros extends conexionPDO
         $stmt->bindParam(':apellido2', $this->apellido2, PDO::PARAM_STR);
         $stmt->bindParam(':usuario', $this->numero_documento, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $this->pass, PDO::PARAM_STR);
-        $stmt->bindParam(':fecha_nacimiento', $this->fecha_naci, PDO::PARAM_STR);
-        $stmt->bindParam(':rol', $this->rol, PDO::PARAM_STR);
         $stmt->bindParam(':telefono', $this->telefono, PDO::PARAM_STR);
         $stmt->bindParam(':cel', $this->celular, PDO::PARAM_STR);
         $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
-        $stmt->bindParam(':departamento', $this->departamento, PDO::PARAM_STR);
-        $stmt->bindParam(':ciudad', $this->municipio, PDO::PARAM_STR);
-        $stmt->bindParam(':direccion', $this->direccion, PDO::PARAM_STR);
-        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
-
 
         if ($stmt->execute()) { // Ejecutar primera SQL
 
@@ -513,7 +509,7 @@ class t1_terceros extends conexionPDO
         }
 
 
-        $sql = "INSERT INTO `ct1_terceros`(`ct1_Estado`,`ct1_id_asesora`, `ct1_nombre_asesora`, `ct1_id_sede`, `ct1_nombre_sede`, `ct1_naturaleza`, `ct1_TipoTercero`, `ct1_tipo_cliente`, `ct1_nombre_tipo_cliente`, `ct1_tipo_plan_maestro`, `ct1_TipoIdentificacion`, `ct1_NumeroIdentificacion`, `ct1_dv`, `ct1_RazonSocial`, `ct1_Nombre1`, `ct1_Nombre2`, `ct1_Apellido1`, `ct1_Apellido2`, `ct1_usuario`, `ct1_pass`, `ct1_rol`,`ct1_Telefono`, `ct1_Celular`, `ct1_CorreoElectronico`, `ct1_Direccion` VALUES  (:estado, :id_asesora, :nombre_asesora, :id_sede, :nombre_sede, :naturaleza, :tipo_tercero, :tipo_cliente, :nombre_tipo_cliente, :tipo_plan_maestro, :tipo_identificacion, :numero_identificacion, :dv, :razon_social, :nombre1, :nombre2, :apellido1, :apellido2, :usuario, :pass, :rol, :telefono, :cel, :email, :direccion)";
+        $sql = "INSERT INTO `ct1_terceros`(`ct1_Estado`,`ct1_id_asesora`, `ct1_nombre_asesora`, `ct1_id_sede`, `ct1_nombre_sede`, `ct1_naturaleza`, `ct1_TipoTercero`, `ct1_tipo_cliente`, `ct1_nombre_tipo_cliente`, `ct1_tipo_plan_maestro`, `ct1_TipoIdentificacion`, `ct1_NumeroIdentificacion`, `ct1_dv`, `ct1_RazonSocial`, `ct1_Nombre1`, `ct1_Nombre2`, `ct1_Apellido1`, `ct1_Apellido2`, `ct1_usuario`, `ct1_pass`, `ct1_rol`,`ct1_Telefono`, `ct1_Celular`, `ct1_CorreoElectronico`, `ct1_Direccion`) VALUES  (:estado, :id_asesora, :nombre_asesora, :id_sede, :nombre_sede, :naturaleza, :tipo_tercero, :tipo_cliente, :nombre_tipo_cliente, :tipo_plan_maestro, :tipo_identificacion, :numero_identificacion, :dv, :razon_social, :nombre1, :nombre2, :apellido1, :apellido2, :usuario, :pass, :rol, :telefono, :cel, :email, :direccion)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -536,14 +532,14 @@ class t1_terceros extends conexionPDO
         $stmt->bindParam(':nombre2', $this->nombre2, PDO::PARAM_STR);
         $stmt->bindParam(':apellido1', $this->apellido1, PDO::PARAM_STR);
         $stmt->bindParam(':apellido2', $this->apellido2, PDO::PARAM_STR);
-        $stmt->bindParam(':usuario', $this->numero_documento, PDO::PARAM_STR);
+        $stmt->bindParam(':usuario', $this->usuario, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $this->pass, PDO::PARAM_STR);
         $stmt->bindParam(':rol', $this->rol, PDO::PARAM_STR);
         $stmt->bindParam(':telefono', $this->telefono, PDO::PARAM_STR);
         $stmt->bindParam(':cel', $this->celular, PDO::PARAM_STR);
         $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
         $stmt->bindParam(':direccion', $this->direccion, PDO::PARAM_STR);
-        
+
         if ($stmt->execute()) { // Ejecutar
             $id_insert = $this->con->lastInsertId();
             $sql2 = "INSERT INTO `ct3_clientes`(`ct3_IdTerceros`, `ct3_TipoCliente`, ct3_CupoEstado , `ct3_ModalidadPago`, ct3_Cupo, ct3_SaldoCartera) VALUES (:id_cliente, :Tipo_cliente , :cupo_estado , :Modalidad_pago, :cupo_cli, :saldo_cartera)";
@@ -1544,7 +1540,7 @@ class t1_terceros extends conexionPDO
         $this->PDO->closePDO(); // Cerrar Conexion       
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function select_tipo_documento($id = null)
+    public function select_tipo_documento($nombre = null)
     {
         $option = "<option  selected = 'true' value='NULL' disabled='true'> Seleccione... </option>";
         $sql = "SELECT * FROM `ct1_tipo_documento`";
@@ -1552,12 +1548,12 @@ class t1_terceros extends conexionPDO
         $stmt = $this->con->prepare($sql);
         if ($stmt->execute()) {
             while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if ($id == $fila['id']) {
+                if ($nombre == $fila['descripcion']) {
                     $selection = "selected='true'";
                 } else {
                     $selection = " ";
                 }
-                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+                $option .= '<option value="' . $fila['descripcion'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
             }
         }
         return $option;

@@ -25,6 +25,9 @@ if(isset($_POST['id_oportunidad']) && !empty($_POST['id_oportunidad']))
 {
     if(is_array($data = $cls_oportunidad_negocio->get_datos_cliente_id($_POST['id_oportunidad']))){
         foreach ($data as $key ) {
+            $asesora_comercial = $key['asesora_comercial'];
+            $sede = $key['id_sede'];
+            $plan_maestro = $key['tipo_plan_maestro'];
             $tipo_cliente = $key['tipo_cliente'];
             $nidentificacion = $key['nidentificacion'];
             $nombre = $key['nombrescompletos'];
@@ -42,6 +45,9 @@ if(isset($_POST['id_oportunidad']) && !empty($_POST['id_oportunidad']))
 $datos = array(
     'estado' => $php_estado,
     'datosop' => $data,
+    'asesora_comercial'=>$asesora_comercial,
+    'sede'=>$sede,
+    'plan_maestro'=>$plan_maestro,
     'tipo_cliente'=>$tipo_cliente,
     'nidentificacion'=>$nidentificacion,
     'nombrescompletos'=>$nombre,

@@ -42,27 +42,11 @@ $modelo_obras = new modelo_obras();
                 </div>
             </div>
             <div class="card-body">
-                <hr>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for=""> Cargar Datos de la Oportunidad Negocio </label>
-                            <input type="text" name="txt_op" id="txt_op" class="form-control" placeholder="Digite el codigo de la oportunidad de negocio a cargar">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <br>
-                            <button type="button" id="btn_cargar_data" class="btn btn-warning">Cargar Datos Cliente</button>
-                        </div>
-                    </div>
-                </div>
-                <hr>
                 <div id="contenido">
                     <form name="form_crear" id="form_crear" method="POST">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Datos del Proyecto</h3>
+                                <h3 class="card-title">Datos de la obra</h3>
                             </div>
                             <div class="card-body">
                                 <div class="progress">
@@ -77,14 +61,14 @@ $modelo_obras = new modelo_obras();
                                             </select>
                                         </div>
                                     </div>
-                                </div> <!-- Fin Row -->
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Nombre de la Obra</label>
                                             <input name="nombre_obra" id="nombre_obra" type="text" class="form-control" placeholder="Digite el nombre" required>
                                         </div>
                                     </div>
+                                </div> <!-- Fin Row -->
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Departamento</label>
@@ -95,8 +79,22 @@ $modelo_obras = new modelo_obras();
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Ciudad</label>
-                                            <select name="ciudad" id="ciudad" class="form-control select2" required>
+                                            <select name="municipio" id="municipio" class="form-control select2" required>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Zona/Comuna</label>
+                                            <select name="comuna" id="comuna" class="form-control select2" required="true">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Barrio</label>
+                                            <input type="text" name="barrio" id="barrio" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -109,8 +107,6 @@ $modelo_obras = new modelo_obras();
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Direccion</label>
@@ -187,18 +183,35 @@ $modelo_obras = new modelo_obras();
             },
         });
         // Departamento
-        $('#departamento').on('change', function() {
+        $("#departamento").change(function() {
             $.ajax({
-                url: "get_data.php",
+                url: "load_data.php",
                 type: "POST",
                 data: {
-                    id_departamento: ($('#departamento').val()),
-                    task: 2,
+                    'task': 1,
+                    'id_departamento': $('#departamento').val()
                 },
-                success: function(response) {
-                    $('#ciudad').html(response.ciudad);
+                dataType: 'json',
+                success: function(data) {
+                    $('#municipio').html(data.option_municipio);
                 },
-
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+        $("#municipio").change(function() {
+            $.ajax({
+                url: "load_data.php",
+                type: "POST",
+                data: {
+                    'task': 2,
+                    'id_municipio': $('#municipio').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#comuna').html(data.option_comuna);
+                },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },

@@ -47,10 +47,10 @@ $t1_terceros = new t1_terceros();
                         <a href="create/crear.php" class="btn btn-block btn-success"><i class="fas fa-plus"></i> Crear pedido</a>
                     </div>
                     <div class="col-5">
-                        <a href="documentos/SUBIR.xlsx" download="Formato subir precios productos pedidos.xlsx" class="btn btn-block btn-primary"><i class="fas fa-download"></i> Descargar formato de subir productos al pedido</a>
+                        <a href="documentos/SUBIR.xlsx" download="Formato subir productos al pedidos.xlsx" class="btn btn-block btn-primary"><i class="fas fa-download"></i> Descargar formato para subir productos al pedido</a>
                     </div>
                     <div class="col-5">
-                        <a href="documentos/Formato precios productos.xlsx" download="Formato precios productos.xlsx" class="btn btn-block btn-primary"><i class="fas fa-download"></i> Descargar formato de subir precios productos</a>
+                        <a href="documentos/Formato precios productos.xlsx" download="Formato precios base.xlsx" class="btn btn-block btn-primary"><i class="fas fa-download"></i> Descargar formato para subir precios base</a>
                     </div>
                 </div>
                 <br>

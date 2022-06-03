@@ -57,7 +57,9 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                             $direccion_obra = $fila_obra['ct5_DireccionObra'];
                             $id_departamento = $fila_obra['ct5_id_departamento'];
                             $id_municipio = $fila_obra['ct5_id_ciudad'];
+                            $id_comuna = $fila_obra['ct5_id_comuna'];
                             $segmento = $fila_obra['ct5_segmento'];
+                            $barrio = $fila_obra['ct5_barrio'];
                         }
                         ?>
                         <input type="hidden" value="<?php echo $id_obra ?>" name="id_obra" id="id_obra">
@@ -79,26 +81,42 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                             </select>
                                         </div>
                                     </div>
-                                </div> <!-- Fin Row -->
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Nombre de la Obra</label>
                                             <input name="nombre_obra" id="nombre_obra" type="text" class="form-control" placeholder="Digite el nombre" value="<?php echo $NombreObra ?>" required>
                                         </div>
                                     </div>
+                                </div> <!-- Fin Row -->
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Departamento</label>
                                             <select name="departamento" id="departamento" class="form-control select2">
+                                            <?php echo $oportunidad_negocio->select_departamento($id_departamento); ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Ciudad</label>
-                                            <select name="ciudad" id="ciudad" class="form-control select2">
+                                            <select name="municipio" id="municipio" class="form-control select2">
+                                            <?php echo  $oportunidad_negocio->select_municipio($id_departamento, $id_municipio) ?>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Zona/Comuna</label>
+                                            <select name="comuna" id="comuna" class="form-control select2" required="true">
+                                            <?php echo $oportunidad_negocio->select_comuna($id_municipio, $id_comuna) ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Barrio</label>
+                                            <input type="text" name="barrio" id="barrio" class="form-control" value = "<?=$barrio?>">
                                         </div>
                                     </div>
                                 </div>
@@ -222,16 +240,34 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
         });
 
         // Departamento
-        $('#departamento').on('change', function() {
+        $("#departamento").change(function() {
             $.ajax({
-                url: "get_data.php",
+                url: "load_data.php",
                 type: "POST",
                 data: {
-                    id_departamento: ($('#departamento').val()),
-                    task: 2,
+                    'task': 1,
+                    'id_departamento': $('#departamento').val()
                 },
-                success: function(response) {
-                    $('#ciudad').html(response.ciudad);
+                dataType: 'json',
+                success: function(data) {
+                    $('#municipio').html(data.option_municipio);
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+        $("#municipio").change(function() {
+            $.ajax({
+                url: "load_data.php",
+                type: "POST",
+                data: {
+                    'task': 2,
+                    'id_municipio': $('#municipio').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#comuna').html(data.option_comuna);
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
