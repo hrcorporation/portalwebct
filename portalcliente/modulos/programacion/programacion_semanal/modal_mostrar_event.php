@@ -36,15 +36,58 @@ $programacion = new programacion();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="edit_txt_cant" class="col-sm-2 form-label">Cantidad</label>
-                                <input name="edit_txt_cant" id="edit_txt_cant" class="form-control" style="width: 100%;" />
+                                <label for="txt_edit_pedidos" class="form-label">Pedidos</label>
+                                <select name="txt_edit_pedidos" id="txt_edit_pedidos" class="form-control select2" style="width: 100%;">
+                                    <?= $programacion->option_lista_pedidos() ?>
+                                </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="edit_txt_producto" class="control-label">Producto</label>
+                                <label for="edit_txt_producto" class="form-label">Productos</label>
                                 <select name="edit_txt_producto" id="edit_txt_producto" class="form-control select2" style="width: 100%;">
-
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="edit_txt_cant" class="form-label">Volumen</label>
+                                <input name="edit_txt_cant" id="edit_txt_cant" class="form-control" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="txt_edit_hora" class="form-label">Hora</label>
+                                <input name="txt_edit_hora" id="txt_edit_hora" class="form-control" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="txt_edit_min" class="form-label">Min</label>
+                                <input name="txt_edit_min" id="txt_edit_min" class="form-control" style="width: 100%;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="requiere_bomba" name="requiere_bomba">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Requiere bomba de concretolima
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="txt_edit_tipo_descargue" class="control-label">Tipo de descargue:</label>
+                                <select name="txt_edit_tipo_descargue" id="txt_edit_tipo_descargue" class="form-control select2" style="width: 100%;">
+                                    <?= $programacion->option_tipo_descargue(); ?>
                                 </select>
                             </div>
                         </div>
@@ -60,6 +103,20 @@ $programacion = new programacion();
                             <div class="form-group">
                                 <label for="edit_end" class="control-label">Fecha Final</label>
                                 <input type="text" name="edit_end" class="form-control" id="edit_end">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="txt_edit_elementos" class="form-label">Elementos a fundir</label>
+                                <input name="txt_edit_elementos" id="txt_edit_elementos" class="form-control" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="txt_edit_observaciones" class="form-label">Observaciones</label>
+                                <input name="txt_edit_observaciones" id="txt_edit_observaciones" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
                     </div>

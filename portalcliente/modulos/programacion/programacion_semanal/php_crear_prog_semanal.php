@@ -28,8 +28,8 @@ date_default_timezone_set('America/Bogota');
 setlocale(LC_ALL, 'es_ES');
 setlocale(LC_TIME, 'es_ES');
 $hora_actual = new DateTime();
-$hoy = $hora_actual->format("H:i:s");
-if ($hoy < "19:00:00") {
+$hora_hoy = $hora_actual->format("H:i:s");
+if ($hora_hoy < "16:00:00") {
     if (isset($_POST['txt_cliente']) && !empty($_POST['txt_cliente'])) 
     {
         $estado = 2;
@@ -37,7 +37,7 @@ if ($hoy < "19:00:00") {
         $nombre_cliente = $programacion->get_nombre_cliente($id_cliente);
         $id_obra = $_POST['txt_obra'];
         $nombre_obra = $programacion->get_nombre_obra($id_obra);
-        $id_pedido = 5;
+        $id_pedido = $_POST['txt_pedidos'];
         $id_producto = $_POST['txt_producto'];
         $nombre_producto = $programacion->get_nombre_producto($id_producto);
         $cantidad = $_POST['txt_cant'];

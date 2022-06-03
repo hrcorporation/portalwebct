@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>PROGRAMACION SEMANAL</h1>
+                    <h1> <strong> <?php echo $nombre_usuario; ?> </strong> Bienvenido a la <strong style="color:#ac4661">PROGRAMACION SEMANAL</strong> </h1>
                 </div>
                 <div class="col-sm-6">
                     <!--

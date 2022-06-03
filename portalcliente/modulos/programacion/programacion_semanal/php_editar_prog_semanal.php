@@ -39,7 +39,7 @@ if (isset($_POST['task'])) {
                 $php_estado = true;
             }
         }else{
-            $php_error = "No puede hacer eso joven";
+            $php_error = "ERROR";
         }
     } elseif ($_POST['task'] == 2) {
         $id_usuario_creacion = $programacion->get_id_usuario($_POST['id_prog_evento']);
