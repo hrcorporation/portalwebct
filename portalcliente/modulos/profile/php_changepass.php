@@ -5,11 +5,12 @@ header('Content-Type: application/json');
 
 $id_usuario = $_SESSION['id_usuario'];
 
-require '../../../include/conexion.php';
+require '../../../librerias/conexionPDO.php';
 //require '../../../../includes/LibreriasHR.php';
 
-$conexion_bd = new conexion();
-$conexion_bd->connect();
+
+$conexionPDO= new conexionPDO();
+$conexion_bd = $conexionPDO->connect();
 
 
 if (isset($_POST['C_Newpass1']) && isset($_POST['C_Newpass2'])) {
@@ -21,9 +22,9 @@ if (isset($_POST['C_Newpass1']) && isset($_POST['C_Newpass2'])) {
 
         $newPass = md5($C_Newpass1);
 
-        $sql = "UPDATE `ct1_terceros` SET `ct1_pass`=  ? WHERE ct1_terceros.ct1_IdTerceros = ?";
-        $stmt = mysqli_prepare($conexion_bd->myconn, $sql);
-        $stmt->bind_param("si", $newPass, $id_usuario);
+        $sql = "UPDATE `ct1_terceros` SET `ct1_pass`= '$newPass'  WHERE ct1_terceros.ct1_IdTerceros = '$id_usuario'";
+        $stmt = $conexion_bd->prepare($sql);
+       
 
         if ($stmt->execute()) {
             $php_estado = 1;

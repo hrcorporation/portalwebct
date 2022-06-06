@@ -40,7 +40,11 @@ if ($hora_hoy < "16:00:00") {
         $id_producto = $_POST['txt_producto'];
         $nombre_producto = $programacion->get_nombre_producto($id_producto);
         $cantidad = $_POST['txt_cant'];
-        if (isset($_POST['txt_hora'])) {
+
+        $cantidad_numeros = strlen($_POST['txt_hora']);
+        if (isset($_POST['txt_hora']) && $cantidad_numeros < 2) {
+            $hora = "0" . $_POST['txt_hora'];
+        } else if ($cantidad_numeros >= 2) {
             $hora = $_POST['txt_hora'];
         } else {
             $hora = "00";
@@ -53,11 +57,12 @@ if ($hora_hoy < "16:00:00") {
             $requiere_bomba = false;
         }
         $tipo_descargue = $_POST['txt_tipo_descargue'];
+        $nombre_tipo_descargue = $programacion->get_nombre_tipo_descargue($tipo_descargue);
         $inicio = $_POST['start'];
         $fin = $_POST['end'];
         $elementos = $_POST['txt_elementos'];
         $observaciones = $_POST['txt_observaciones'];
-        if ($programacion->crear_prog_semanal_v2($estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $inicio, $fin, $elementos, $observaciones, $id_usuario, $nombre_usuario)) {
+        if ($programacion->crear_prog_semanal_v2($estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $tipo_descargue, $nombre_tipo_descargue, $inicio, $fin, $elementos, $observaciones, $id_usuario, $nombre_usuario)) {
             $php_estado = true;
         } else {
             $php_error = 'No Guardo Correctamente';

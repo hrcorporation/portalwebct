@@ -1429,6 +1429,8 @@ class t1_terceros extends conexionPDO
         $sql .= " , ";
         $sql .= $this->colt1_razon_social; // Seleccion
         $sql .= " , ";
+        $sql .= $this->colt1_num_identificacion; // Seleccion
+        $sql .= " , ";
         $sql .= $this->colt1_rol; // Seleccion
         $sql .= " FROM ";
         $sql .= $this->table;

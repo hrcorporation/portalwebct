@@ -1,0 +1,6 @@
+[19-May-2022 11:51:06 America/Bogota] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%252%  ORDER BY  `ct26_remisiones`.`ct26_fecha_remi` DESC' at line 1 in /home3/concr/portal.concretol.co/modelos/t26_remisiones.php:868
+Stack trace:
+#0 /home3/concr/portal.concretol.co/modelos/t26_remisiones.php(868): PDOStatement->execute()
+#1 /home3/concr/portal.concretol.co/portalcliente/modulos/remisiones/index.php(259): t26_remisiones->remision_cliente(252)
+#2 {main}
+  thrown in /home3/concr/portal.concretol.co/modelos/t26_remisiones.php on line 868

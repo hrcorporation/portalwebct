@@ -5,7 +5,7 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
-require '../../../include/conexion.php';
+
 require '../../../include/LibreriasHR.php';
 require '../../../include/get_datos.php';
 require '../../../include/lib.php';
@@ -13,20 +13,18 @@ require '../../../include/lib.php';
 //$lib = new lib();
 
  
-switch($rol_user)
+switch($_SESSION['rol'])
 {
     case 103:
-     
         $get_datos = new get_datos();
         $php_clases = new php_clases();
-        $conexion_bd = new conexion();
-        $conexion_bd->connect();
+      
         $HR_librerias = new LibreriasHR();
 
     break;
 
     default:
-        print( '<script> window.location = "../../../cerrar.php"</script>');
+        //print( '<script> window.location = "../../../cerrar.php"</script>');
     
     break;
 }
@@ -173,7 +171,7 @@ switch($rol_user)
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1> <strong> <?php echo $nombre_usuario; ?> </strong> Bienvenido a <strong style="color:#ac4661"> REMIWEB CONCRETOL </strong> </h1>
+                            <h1> <strong> <?php echo $_SESSION['nombre_usuario']; ?> </strong> Bienvenido a <strong style="color:#ac4661"> REMIWEB CONCRETOL </strong> </h1>
 
                         </div>
                         <div class="col-sm-6">
@@ -212,63 +210,31 @@ switch($rol_user)
                                     <thead>
                                         <tr>
                                             <th>N</th>
+                                         
                                             <th>Fecha</th>
+                                            <th>Cliente</th>
                                             <th>Obra</th>
                                             <th>Remision</th>
                                             <th>Estado</th>
-                                            <th>Detalle</th>
-                                           
+                                          
+                                            <th>Ver</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        $i = 1;
-                                        $datosTabla = $get_datos->ct26_Remisiones2($conexion_bd,  $_SESSION['id_cliente1']);
-                                        if ($datosTabla) :
-                                            while ($fila = $datosTabla->fetch_assoc()) {
-                                                $id_remi = $fila['ct26_id_remision'];
-                                                $date = new DateTime($fila['ct26_fecha_remi']);
-                                                //$date = date(, "Y-m-d");
-
-                                                $datef = $date->format("d-m-Y");
-                                        ?>
-
-                                                <tr>
-                                                    <td> <?php echo $i++; ?> </td>
-                                                    
-                                                    <td> <?php echo $datef ?></td>
-                                                    <td> <?php echo $fila['ct26_nombre_obra'] ?></td>
-                                                    <td> <?php echo $fila['ct26_codigo_remi'] ?></td>
-                                                    <td> <?php
-                                                            echo $php_clases->estado_remi_cli($fila['ct26_estado'])
-
-                                                            ?></td>
-                                                    <td><a href="ver_remision/remision.php?id=<?php echo $php_clases->HR_Crypt($id_remi, 1); ?>"><i class="fas fa-eye fa-2x" style=""></i></a> </td>
-                                            </td>
-
-                                                </tr>
-                                            <?php
-                                            }
-                                        else :
-                                            ?>
-                                            <tr>
-                                                <td colspan="6">Sin Datos</td>
-                                            </tr>
-                                        <?php
-                                        endif;
-                                        ?>
+                                        
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>N</th>
+                                            
                                             <th>Fecha</th>
+                                            <th>Cliente</th>
                                             <th>Obra</th>
                                             <th>Remision</th>
                                             <th>Estado</th>
-                                            <th>Detalle</th>
-                                           
-
+                                            
+                                            <th>Ver</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -320,9 +286,116 @@ switch($rol_user)
 
     <script>
         $(document).ready(function() {
-            $('#t_remisiones').DataTable({
+            $(document).ready(function() {
+                var n = 1;
+                var table = $('#t_remisiones').DataTable({
+                    "ajax": {
+                        "url": "load_data.php",
+                        "dataSrc": ""
+                    },
+                    "order": [
+                        [0, 'desc']
+                    ],
+                    "columns": [{
+                            "data": "id"
+                        },
+                       
+                        {
+                            "data": "fecha_remision"
+                        },
+                        {
+                            "data": "nombre_cliente"
+                        },
+                        {
+                            "data": "nombre_obra"
+                        },
+                        {
+                            "data": "numero_remision"
+                        },
+                        {
+                            "data": "estado"
+                        },
+                        {
+                            "data": "boton_editar"
+                        }
+                        
+                    ],
+                    //"scrollX": true,
+                });
 
+                table.on('order.dt search.dt', function() {
+                    table.column(0, {
+                        search: 'applied',
+                        order: 'applied'
+                    }).nodes().each(function(cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
+                $('#t_remisiones tbody').on('click', 'button', function() {
+                    var data = table.row($(this).parents('tr')).data();
+                    var id = data['id'];
+                    window.location = "editar/editar.php?id=" + id;
+                });
+                setInterval(function() {
+                    table.ajax.reload(null, false);
+                }, 10000);
+            })
+            $("#form_aceptar_remi").on('submit', (function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: '',
+                    text: "",
+                    icon: 'info',
+                    html: "Desea firmar las remisiones seleccionadas ?",
+
+                    confirmButtonText: 'Aceptar',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    //CancelButtonText: 'salir'
+                    //confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: "ajax_detalle_Remi.php",
+                            type: "POST",
+                            data: new FormData(this),
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            success: function(data) {
+
+                                if (data.estado) {
+                                    //toastr.success('La remision fue guardada correctamente');
+                                    alert('La remision fue guardada correctamente');
+                                    console.log(data.result);
+                                    location.reload();
+                                } else {
+                                    alert(data.result);
+                                }
+                            },
+                            error: function(respuesta) {
+                                alert(JSON.stringify(respuesta));
+                            },
+                        });
+
+                    }
+                })
+
+            }));
+
+
+            /*
+            $('#formulario input[type=checkbox]').each(function() {
+                if (this.checked) {
+                    selected[] = $(this).val() ;
+
+                }
             });
+            */
+
+
+
 
         });
     </script>

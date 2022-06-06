@@ -1,0 +1,5 @@
+---
+deployment:
+  task:
+    - export DEPLOYPATH=/home3/concr/betaportal.concretol.co
+    - /bin/cp index.php $DEPLOYPATH

@@ -398,6 +398,30 @@ class programacion extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+    // Traer el nombre del tipo de descargue.
+    public function get_nombre_tipo_descargue($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT `descripcion` FROM `ct66_tipo_descargue` WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['descripcion'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
      // Crear programacion semanal
     public function crear_prog_semanal($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $fecha_ini, $fecha_fin, $id_usuario, $nombre_usuario)
     {
@@ -425,9 +449,9 @@ class programacion extends conexionPDO
         }
     }
      // Crear programacion semanal clientes
-     public function crear_prog_semanal_v2($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $fecha_ini, $fecha_fin, $elementos_fundir, $observaciones, $id_usuario, $nombre_usuario)
+     public function crear_prog_semanal_v2($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $id_tipo_descargue, $nombre_tipo_descargue, $fecha_ini, $fecha_fin, $elementos_fundir, $observaciones, $id_usuario, $nombre_usuario)
      {
-         $sql = "INSERT INTO `ct66_prog_semanal_clientes`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `frecuencia`, `requiere_bomba`, `fecha_ini`, `fecha_fin`, `elementos_fundir`, `observaciones`, `id_usuario`, `nombre_usuario`) VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :frecuencia, :requiere_bomba, :fecha_ini, :fecha_fin, :elementos_fundir, :observaciones, :id_usuario, :nombre_usuario)";
+         $sql = "INSERT INTO `ct66_prog_semanal_clientes`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `frecuencia`, `requiere_bomba`, `id_tipo_descargue`, `nombre_tipo_descargue`,`fecha_ini`, `fecha_fin`, `elementos_fundir`, `observaciones`, `id_usuario`, `nombre_usuario`) VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :frecuencia, :requiere_bomba, :id_tipo_descargue, :nombre_tipo_descargue, :fecha_ini, :fecha_fin, :elementos_fundir, :observaciones, :id_usuario, :nombre_usuario)";
          //Preparar Conexion
          $stmt = $this->con->prepare($sql);
          // Asignando Datos ARRAY => SQL
@@ -442,6 +466,8 @@ class programacion extends conexionPDO
          $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_STR);
          $stmt->bindParam(':frecuencia', $frecuencia, PDO::PARAM_STR);
          $stmt->bindParam(':requiere_bomba', $requiere_bomba, PDO::PARAM_STR);
+         $stmt->bindParam(':id_tipo_descargue', $id_tipo_descargue, PDO::PARAM_STR);
+         $stmt->bindParam(':nombre_tipo_descargue', $nombre_tipo_descargue, PDO::PARAM_STR);
          $stmt->bindParam(':fecha_ini', $fecha_ini, PDO::PARAM_STR);
          $stmt->bindParam(':fecha_fin', $fecha_fin, PDO::PARAM_STR);
          $stmt->bindParam(':elementos_fundir', $elementos_fundir, PDO::PARAM_STR);
@@ -498,6 +524,12 @@ class programacion extends conexionPDO
                     $datos['cantidad'] = $fila['cantidad'];
                     $datos['inicio'] = $fila['fecha_ini'];
                     $datos['fin'] = $fila['fecha_fin'];
+                    $datos['elementos_fundir'] = $fila['elementos_fundir'];
+                    $datos['requiere_bomba'] = $fila['requiere_bomba'];
+                    $datos['id_tipo_descargue'] = $fila['id_tipo_descargue'];
+                    $datos['id_pedido'] = $fila['id_pedido'];
+                    $datos['frecuencia'] = $fila['frecuencia'];
+                    $datos['observaciones'] = $fila['observaciones'];
                     $datos['color'] = 'orange';
                     $datos['textcolor'] = 'black';
                     $datosf[] = $datos;
@@ -549,6 +581,39 @@ class programacion extends conexionPDO
         $stmt->bindParam(':nombre_usuario_edit', $nombre_usuario, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_modificacion', $fecha_modificacion, PDO::PARAM_STR);
         $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+    //Editar toda la programacion
+    function editar_toda_prog_semanal_v2($id, $estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $tipo_descargue, $nombre_tipo_descargue, $inicio, $fin, $elementos, $observaciones, $id_usuario, $nombre_usuario, $hoy)
+    {
+        $sql = "UPDATE `ct66_prog_semanal_clientes` SET `status`= :estado, `id_cliente`= :id_cliente, `nombre_cliente`= :nombre_cliente,`id_obra`= :id_obra,`nombre_obra`= :nombre_obra, `id_pedido`= :id_pedido, `id_producto`= :id_producto, `nombre_producto`= :nombre_producto, `cantidad`= :cantidad, `frecuencia`= :frecuencia, `requiere_bomba`= :requiere_bomba,`id_tipo_descargue`= :tipo_descargue,`nombre_tipo_descargue`= :nombre_tipo_descargue, `fecha_ini`= :inicio, `fecha_fin`= :fin, `elementos_fundir`= :elementos, `observaciones`= :observaciones, `id_usuario_edit`= :id_usuario_edit,`nombre_usuario_edit`= :nombre_usuario_edit, `fecha_modificacion`= :fecha_modificacion WHERE `id` = :id_programacion";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQ
+        $stmt->bindParam(':id_programacion', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_cliente', $nombre_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_obra', $nombre_obra, PDO::PARAM_STR);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_STR);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
+        $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_STR);
+        $stmt->bindParam(':frecuencia', $frecuencia, PDO::PARAM_STR);
+        $stmt->bindParam(':requiere_bomba', $requiere_bomba, PDO::PARAM_STR);
+        $stmt->bindParam(':tipo_descargue', $tipo_descargue, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_tipo_descargue', $nombre_tipo_descargue, PDO::PARAM_STR);
+        $stmt->bindParam(':inicio', $inicio, PDO::PARAM_STR);
+        $stmt->bindParam(':fin', $fin, PDO::PARAM_STR);
+        $stmt->bindParam(':elementos', $elementos, PDO::PARAM_STR);
+        $stmt->bindParam(':observaciones', $observaciones, PDO::PARAM_STR);
+        $stmt->bindParam(':id_usuario_edit', $id_usuario, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_usuario_edit', $nombre_usuario, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_modificacion', $hoy, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         }

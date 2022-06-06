@@ -7,7 +7,7 @@ $programacion = new programacion();
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Editar Evento </h4>
+                <h4 class="modal-title">Editar Programacion </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -21,7 +21,6 @@ $programacion = new programacion();
                             <div class="form-group">
                                 <label for="edit_txt_cliente" class="control-label">Cliente</label>
                                 <select name="edit_txt_cliente" id="edit_txt_cliente" class="form-control select2" style="width: 100%;">
-
                                 </select>
                             </div>
                         </div>
@@ -38,7 +37,6 @@ $programacion = new programacion();
                             <div class="form-group">
                                 <label for="txt_edit_pedidos" class="form-label">Pedidos</label>
                                 <select name="txt_edit_pedidos" id="txt_edit_pedidos" class="form-control select2" style="width: 100%;">
-                                    <?= $programacion->option_lista_pedidos() ?>
                                 </select>
                             </div>
                         </div>
@@ -60,25 +58,19 @@ $programacion = new programacion();
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="txt_edit_hora" class="form-label">Hora</label>
-                                <input name="txt_edit_hora" id="txt_edit_hora" class="form-control" style="width: 100%;" />
+                                <input name="txt_edit_hora" id="txt_edit_hora" class="form-control" style="width: 100%;" maxlength="2"/>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="txt_edit_min" class="form-label">Min</label>
-                                <input name="txt_edit_min" id="txt_edit_min" class="form-control" style="width: 100%;" />
+                                <input name="txt_edit_min" id="txt_edit_min" class="form-control" style="width: 100%;" maxlength="2"/>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="requiere_bomba" name="requiere_bomba">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Requiere bomba de concretolima
-                                    </label>
-                                </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-check" id = "bomba">
                             </div>
                         </div>
                     </div>
@@ -87,7 +79,13 @@ $programacion = new programacion();
                             <div class="form-group">
                                 <label for="txt_edit_tipo_descargue" class="control-label">Tipo de descargue:</label>
                                 <select name="txt_edit_tipo_descargue" id="txt_edit_tipo_descargue" class="form-control select2" style="width: 100%;">
-                                    <?= $programacion->option_tipo_descargue(); ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="txt_edit_estado" class="control-label">Estado:</label>
+                                <select name="txt_edit_estado" id="txt_edit_estado" class="form-control select2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>

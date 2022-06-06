@@ -56,13 +56,13 @@ $programacion = new programacion();
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="txt_hora" class="form-label">Hora</label>
-                                <input name="txt_hora" id="txt_hora" class="form-control" style="width: 100%;" />
+                                <input name="txt_hora" id="txt_hora" class="form-control" maxlength="2"/>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="txt_min" class="form-label">Min</label>
-                                <input name="txt_min" id="txt_min" class="form-control" style="width: 100%;" />
+                                <input name="txt_min" id="txt_min" class="form-control" maxlength="2" />
                             </div>
                         </div>
                     </div>

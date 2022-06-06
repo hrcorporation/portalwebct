@@ -862,9 +862,9 @@ class t26_remisiones extends conexionPDO
   {
     $this->id_cliente = intval($id_cliente);
     if (is_null($id_obra)) {
-      $sql_cli = "SELECT `ct26_id_remision`, `ct26_codigo_remi`, `ct26_imagen_remi`, `ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra`, `ct26_fecha_remi`, `ct26_estado`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra`, `ct26_hora_inicio_descargue`, `ct26_hora_terminada_descargue` FROM `ct26_remisiones` WHERE `ct26_idcliente` LIKE %id_cliente%  ORDER BY  `ct26_remisiones`.`ct26_fecha_remi` DESC"; //Select Cliente
+      $sql_cli = "SELECT `ct26_id_remision`, `ct26_codigo_remi`, `ct26_imagen_remi`, `ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra`, `ct26_fecha_remi`, `ct26_estado`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra`, `ct26_hora_inicio_descargue`, `ct26_hora_terminada_descargue` FROM `ct26_remisiones` WHERE `ct26_idcliente` LIKE '%$id_cliente%'  ORDER BY  `ct26_remisiones`.`ct26_fecha_remi` DESC"; //Select Cliente
       $stmt_cli = $this->con->prepare($sql_cli);
-      $stmt_cli->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+      //$stmt_cli->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
       if ($stmt_cli->execute()) {
         $num_reg =  $stmt_cli->rowCount();
         if ($num_reg > 0) {
@@ -1572,7 +1572,7 @@ class t26_remisiones extends conexionPDO
   function select_remisiones_for_table()
   {
 
-    $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_social ,ct26_nombre_obra ,ct26_vehiculo, ct26_fecha_remi FROM `ct26_remisiones` ORDER BY `ct26_id_remision` DESC LIMIT 10000";
+    $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_social ,ct26_nombre_obra ,ct26_vehiculo, ct26_fecha_remi FROM `ct26_remisiones` ORDER BY `ct26_id_remision` DESC LIMIT 5000";
 
     //$sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_social ,ct26_nombre_obra ,ct26_vehiculo, ct26_fecha_remi FROM `ct26_remisiones` ORDER BY `ct26_id_remision` DESC ";
     //Preparar Conexion

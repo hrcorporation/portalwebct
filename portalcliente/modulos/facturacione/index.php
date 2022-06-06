@@ -11,7 +11,7 @@ include '../../../vendor/autoload.php';
 ?>
 
 <?php 
-switch($rol_user)
+switch($_SESSION['rol'])
 {
     case 101:
      
@@ -23,7 +23,7 @@ switch($rol_user)
     break;
 
     default:
-        print( '<script> window.location = "../../../cerrar.php"</script>');
+        //print( '<script> window.location = "../../../cerrar.php"</script>');
     
     break;
 }
@@ -40,7 +40,7 @@ switch($rol_user)
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Bienvenido  <strong> <?php echo $nombre_usuario; ?> </strong></h1>
+                                <h1>Bienvenido  <strong> <?php echo  $_SESSION['nombre_usuario']; ?> </strong></h1>
                             </div>
                             <div class="col-sm-6">
                                 <!--
@@ -89,7 +89,7 @@ switch($rol_user)
                                     
                                     $i = 0;
 
-                                        $datos_factura = $t27_factura->select_factura_cliente($_SESSION['id_cliente1']);
+                                        $datos_factura = $t27_factura->select_factura_cliente($_SESSION['id_usuario']);
                                         while($fila_factura = $datos_factura->fetch(PDO::FETCH_ASSOC)){
                                             $i++;
                                             $id = $fila_factura['ct27_id_factura'];
