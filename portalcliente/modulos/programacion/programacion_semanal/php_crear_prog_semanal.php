@@ -30,8 +30,7 @@ setlocale(LC_TIME, 'es_ES');
 $hora_actual = new DateTime();
 $hora_hoy = $hora_actual->format("H:i:s");
 if ($hora_hoy < "16:00:00") {
-    if (isset($_POST['txt_cliente']) && !empty($_POST['txt_cliente'])) 
-    {
+    if (isset($_POST['txt_cliente']) && !empty($_POST['txt_cliente'])) {
         $estado = 2;
         $id_cliente = $_POST['txt_cliente'];
         $nombre_cliente = $programacion->get_nombre_cliente($id_cliente);
@@ -41,20 +40,32 @@ if ($hora_hoy < "16:00:00") {
         $id_producto = $_POST['txt_producto'];
         $nombre_producto = $programacion->get_nombre_producto($id_producto);
         $cantidad = $_POST['txt_cant'];
+        if (isset($_POST['txt_hora'])) {
+            $hora = $_POST['txt_hora'];
+        } else {
+            $hora = "00";
+        }
+        $minutos = $_POST['txt_min'];
+        $frecuencia = $hora . ":" . $minutos;
+        if (isset($_POST['requiere_bomba'])) {
+            $requiere_bomba = true;
+        } else {
+            $requiere_bomba = false;
+        }
+        $tipo_descargue = $_POST['txt_tipo_descargue'];
         $inicio = $_POST['start'];
         $fin = $_POST['end'];
-        if ($programacion->crear_prog_semanal($estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_pedido, $id_producto, $nombre_producto, $cantidad, $inicio, $fin, $id_usuario, $nombre_usuario)) {
+        $elementos = $_POST['txt_elementos'];
+        $observaciones = $_POST['txt_observaciones'];
+        if ($programacion->crear_prog_semanal_v2($estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $inicio, $fin, $elementos, $observaciones, $id_usuario, $nombre_usuario)) {
             $php_estado = true;
-        } else 
-        {
+        } else {
             $php_error = 'No Guardo Correctamente';
         }
-    } else 
-    {
+    } else {
         $php_error = 'Se requieren los datos';
     }
-} else 
-{
+} else {
     $php_error = 'Fuera de la hora establecida';
 }
 

@@ -67,7 +67,7 @@ class programacion extends conexionPDO
     public function get_prog_semanal_por_usuario($id_usuario)
     {
         $this->id = $id_usuario;
-        $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin`,`id_usuario` FROM `ct66_prog_semanal` WHERE `id_usuario` = :id_usuario";
+        $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin`,`id_usuario` FROM `ct66_prog_semanal_clientes` WHERE `id_usuario` = :id_usuario";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
@@ -228,7 +228,7 @@ class programacion extends conexionPDO
         //resultado
         return $option;
     }
-    /**** OPTION SELECT OBRA ********/
+    /**** OPTION SELECT CLIENTE ********/
     function option_cliente_edit($id_cliente = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
@@ -424,11 +424,41 @@ class programacion extends conexionPDO
             return false;
         }
     }
+     // Crear programacion semanal clientes
+     public function crear_prog_semanal_v2($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $fecha_ini, $fecha_fin, $elementos_fundir, $observaciones, $id_usuario, $nombre_usuario)
+     {
+         $sql = "INSERT INTO `ct66_prog_semanal_clientes`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `frecuencia`, `requiere_bomba`, `fecha_ini`, `fecha_fin`, `elementos_fundir`, `observaciones`, `id_usuario`, `nombre_usuario`) VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :frecuencia, :requiere_bomba, :fecha_ini, :fecha_fin, :elementos_fundir, :observaciones, :id_usuario, :nombre_usuario)";
+         //Preparar Conexion
+         $stmt = $this->con->prepare($sql);
+         // Asignando Datos ARRAY => SQL
+         $stmt->bindParam(':status', $status, PDO::PARAM_INT);
+         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+         $stmt->bindParam(':nombre_cliente', $nombre_cliente, PDO::PARAM_STR);
+         $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
+         $stmt->bindParam(':nombre_obra', $nombre_obra, PDO::PARAM_STR);
+         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+         $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+         $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
+         $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_STR);
+         $stmt->bindParam(':frecuencia', $frecuencia, PDO::PARAM_STR);
+         $stmt->bindParam(':requiere_bomba', $requiere_bomba, PDO::PARAM_STR);
+         $stmt->bindParam(':fecha_ini', $fecha_ini, PDO::PARAM_STR);
+         $stmt->bindParam(':fecha_fin', $fecha_fin, PDO::PARAM_STR);
+         $stmt->bindParam(':elementos_fundir', $elementos_fundir, PDO::PARAM_STR);
+         $stmt->bindParam(':observaciones', $observaciones, PDO::PARAM_STR);
+         $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
+         $stmt->bindParam(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
+         if ($stmt->execute()) {
+             return true;
+         } else {
+             return false;
+         }
+     }
     //Obtener el id del usuario mediante el id de la programacion
     public function get_id_usuario($id)
     {
         $this->id = $id;
-        $sql = "SELECT `id_usuario` FROM `ct66_prog_semanal` WHERE `id` = :id";
+        $sql = "SELECT `id_usuario` FROM `ct66_prog_semanal_clientes` WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -451,7 +481,7 @@ class programacion extends conexionPDO
     //Cargar datos de la programacion mediante su id.  get_prog_por_id
     function cargar_data_programacion($id_programacion)
     {
-        $sql = "SELECT * FROM `ct66_prog_semanal` WHERE `id` = :id_programacion ";
+        $sql = "SELECT * FROM `ct66_prog_semanal_clientes` WHERE `id` = :id_programacion ";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQ
@@ -481,7 +511,7 @@ class programacion extends conexionPDO
     //Editar programacion la fecha. editar_programacion_para_evento
     function editar_programacion($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
     {
-        $sql = "UPDATE `ct66_prog_semanal` SET `fecha_ini`= :inicio ,`fecha_fin`= :fin, `fecha_modificacion` = :fecha_modificacion, `id_usuario_edit` = :id_usuario, `nombre_usuario_edit` = :nombre_usuario WHERE `id` = :id_programacion";
+        $sql = "UPDATE `ct66_prog_semanal_clientes` SET `fecha_ini`= :inicio ,`fecha_fin`= :fin, `fecha_modificacion` = :fecha_modificacion, `id_usuario_edit` = :id_usuario, `nombre_usuario_edit` = :nombre_usuario WHERE `id` = :id_programacion";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQ
@@ -527,7 +557,7 @@ class programacion extends conexionPDO
     //Eliminar una programacion. eliminar_programacion_semanal
     function eliminar_programacion($id_programacion)
     {
-        $sql = "DELETE FROM `ct66_prog_semanal` WHERE `id` = :id_programacion";
+        $sql = "DELETE FROM `ct66_prog_semanal_clientes` WHERE `id` = :id_programacion";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQ

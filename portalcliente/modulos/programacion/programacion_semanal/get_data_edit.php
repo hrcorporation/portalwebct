@@ -39,5 +39,3 @@ $datos = array(
 );
 
 echo json_encode($datos, JSON_FORCE_OBJECT);
-//print json_encode($datos, JSON_FORCE_OBJECT);
-//print json_encode($data, JSON_UNESCAPED_UNICODE);

@@ -1,7 +1,7 @@
 <?php
 $programacion = new programacion();
 ?>
-<div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="modal_crear_evento">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -70,7 +70,7 @@ $programacion = new programacion();
                         <div class="col">
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="requiere_bomba" name="requiere_bomba">
+                                    <input class="form-check-input" type="checkbox" value="1" id="requiere_bomba" name="requiere_bomba">
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Requiere bomba de Concre Tolima
                                     </label>
