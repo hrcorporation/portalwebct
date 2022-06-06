@@ -50,7 +50,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-header">Cupos Clientes</li>
+                        <li class="nav-header">VISITAS CLIENTES</li>
                         <li class="nav-item has-treeview">
                             <a href="informe_visitas/index.php" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>

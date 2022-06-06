@@ -1,0 +1,80 @@
+[03-Jun-2022 16:06:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:06:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:06:36 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:06:59 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:13:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:13:55 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:14:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:14:20 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:19:05 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:21:50 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:22:09 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:22:17 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:22:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:22:33 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:22:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:39:23 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:39:42 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:40:00 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:43:25 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
+[03-Jun-2022 16:43:37 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined method oportunidad_negocio::get_nombre_tipo_del_cliente() in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php:28
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/clientes/create/php_crear2.php on line 28
