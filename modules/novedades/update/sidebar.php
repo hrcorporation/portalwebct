@@ -15,10 +15,6 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                       
-                        
-                      
-                        
                         <li class="nav-header">Novedades</li>
                         <li class="nav-item has-treeview">
                             <a href="../index.php" class="nav-link">
@@ -36,16 +32,24 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-header">Exportar Novedades remision</li>
                         <li class="nav-item has-treeview">
-                            <a href="$" class="nav-link active">
+                            <a href="../informe_remisiones/index.php" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
-                                    Editar
+                                    Explorar
                                 </p>
                             </a>
                         </li>
-
-                        
+                        <li class="nav-header">Exportar Novedades generales</li>
+                        <li class="nav-item has-treeview">
+                            <a href="../informe_general/index.php" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Explorar
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

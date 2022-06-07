@@ -31,7 +31,7 @@
                      </a>
                  </li>
                  <li class="nav-item has-treeview">
-                     <a href="crear.php" class="nav-link active">
+                     <a href="../create/crear.php" class="nav-link ">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Crear
@@ -40,7 +40,7 @@
                  </li>
                  <li class="nav-header">Exportar Novedades remision</li>
                  <li class="nav-item has-treeview">
-                     <a href="../informe_remisiones/index.php" class="nav-link">
+                     <a href="index.php" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar
