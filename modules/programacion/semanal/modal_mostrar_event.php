@@ -1,7 +1,7 @@
 <?php
 $programacion = new programacion();
 
-// $id = $_GET['id_evento'];
+// $id = $_GET['id_prog_evento'];
 ?>
 <div class="modal fade" id="modal_show_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-lg">

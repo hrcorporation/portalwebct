@@ -31,7 +31,6 @@ if ($_POST['task'] == 1){
     $datos = array(
         'estado' => $php_estado,
         'select_obra' => $select_obras,
-    
     );
 }
 

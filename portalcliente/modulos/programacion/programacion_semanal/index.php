@@ -53,7 +53,6 @@
 <?php include 'modal_mostrar_event.php' ?>
 
 <!-- /.modal-dialog -->
-
 <?php include '../../../../layout/footer/footercliente4.php' ?>
 
 <script src="calendar.js"> </script>
