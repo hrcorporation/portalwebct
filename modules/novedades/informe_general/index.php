@@ -2,8 +2,6 @@
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php' ?>
 
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -24,10 +22,8 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -41,33 +37,36 @@
             <div class="card-body">
                 <form id="form-informe-op" name="form-informe-op" method="GET" action="excel.php">
                     <div id="contenido">
-
-
                         <div class="row">
                             <div class="col">
-                                <h5>Seleccionar Rango de Fecha</h5>
+                                <div class="form-group">
+                                    <h5>Seleccionar Rango de Fecha</h5>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-
                             <div class="col">
-                                <label>Fecha inicio: </label>
-                                <input type="date" class="form-control" name="txt_fecha_ini" id="txt_fecha_ini" required>
+                                <div class="form-group">
+                                    <label>Fecha inicio: </label>
+                                    <input type="date" class="form-control" name="txt_fecha_ini" id="txt_fecha_ini" required>
+                                </div>
                             </div>
                             <div class="col">
-                                <label>Fecha Fin: </label>
-                                <input type="date" name="txt_fecha_fin" class="form-control" id="txt_fecha_fin" required>
+                                <div class="form-group">
+                                    <label>Fecha Fin: </label>
+                                    <input type="date" name="txt_fecha_fin" class="form-control" id="txt_fecha_fin" required>
+                                </div>
                             </div>
                         </div>
-                        <hr>
                         <div class="row">
                             <div class="col-2">
-                                <button class="btn btn-block bg-gradient-success"> <i class="fas fa-file-excel"></i> Exportar </button>
+                                <div class="form-group">
+                                    <button class="btn btn-block bg-gradient-success"> <i class="fas fa-file-excel"></i> Exportar </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </form>
-
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
@@ -76,16 +75,12 @@
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
 <?php include '../../../layout/footer/footer3.php' ?>
-
-
-
 
 </body>
 

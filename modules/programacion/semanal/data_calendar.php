@@ -10,18 +10,14 @@ $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
-
+//se crea un objeto de la clase programacion
 $programacion = new programacion();
-$id_usuario = $_SESSION['id_usuario'];
-$id_rol = $_SESSION['rol_funcionario'];
+// $id_usuario = $_SESSION['id_usuario'];
+// $id_rol = $_SESSION['rol_funcionario'];
+//Se listan todas las programaciones
+$data = $programacion->get_prog_semanal();
+$php_estado = true;
 
-if ($id_rol != 1) {
-    $data = $programacion->get_prog_semanal_por_usuario($id_usuario);
-    $php_estado = true;
-} else {
-    $data = $programacion->get_prog_semanal();
-    $php_estado = true;
-}
 
 $datos = array(
     'estado' => $php_estado,

@@ -540,41 +540,41 @@ class programacion extends conexionPDO
         }
         return false;
     }
-     //Cargar datos de la programacion mediante su id.  get_prog_por_id
-     function cargar_data_programacion_v2($id_programacion)
-     {
-         $sql = "SELECT * FROM `ct66_prog_semanal_clientes` WHERE `id` = :id_programacion ";
-         //Preparar Conexion
-         $stmt = $this->con->prepare($sql);
-         // Asignando Datos ARRAY => SQ
-         $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
-         if ($result = $stmt->execute()) {
-             $num_reg =  $stmt->rowCount();
-             if ($num_reg > 0) {
-                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                     $datos['id'] = $fila['id'];
-                     $datos['estado'] = $fila['status'];
-                     $datos['cliente'] = $fila['id_cliente'];
-                     $datos['obra'] = $fila['id_obra'];
-                     $datos['producto'] = $fila['id_producto'];
-                     $datos['cantidad'] = $fila['cantidad'];
-                     $datos['inicio'] = $fila['fecha_ini'];
-                     $datos['fin'] = $fila['fecha_fin'];
-                     $datos['elementos_fundir'] = $fila['elementos_fundir'];
-                     $datos['requiere_bomba'] = $fila['requiere_bomba'];
-                     $datos['id_tipo_descargue'] = $fila['id_tipo_descargue'];
-                     $datos['id_pedido'] = $fila['id_pedido'];
-                     $datos['frecuencia'] = $fila['frecuencia'];
-                     $datos['observaciones'] = $fila['observaciones'];
-                     $datos['color'] = 'orange';
-                     $datos['textcolor'] = 'black';
-                     $datosf[] = $datos;
-                 }
-                 return $datosf;
-             }
-         }
-         return false;
-     }
+    //Cargar datos de la programacion mediante su id.  get_prog_por_id
+    function cargar_data_programacion_v2($id_programacion)
+    {
+        $sql = "SELECT * FROM `ct66_prog_semanal_clientes` WHERE `id` = :id_programacion ";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQ
+        $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['id'] = $fila['id'];
+                    $datos['estado'] = $fila['status'];
+                    $datos['cliente'] = $fila['id_cliente'];
+                    $datos['obra'] = $fila['id_obra'];
+                    $datos['producto'] = $fila['id_producto'];
+                    $datos['cantidad'] = $fila['cantidad'];
+                    $datos['inicio'] = $fila['fecha_ini'];
+                    $datos['fin'] = $fila['fecha_fin'];
+                    $datos['elementos_fundir'] = $fila['elementos_fundir'];
+                    $datos['requiere_bomba'] = $fila['requiere_bomba'];
+                    $datos['id_tipo_descargue'] = $fila['id_tipo_descargue'];
+                    $datos['id_pedido'] = $fila['id_pedido'];
+                    $datos['frecuencia'] = $fila['frecuencia'];
+                    $datos['observaciones'] = $fila['observaciones'];
+                    $datos['color'] = 'orange';
+                    $datos['textcolor'] = 'black';
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            }
+        }
+        return false;
+    }
     // Crear programacion.
     //Editar programacion la fecha. editar_programacion_para_evento
     function editar_programacion($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
@@ -687,20 +687,20 @@ class programacion extends conexionPDO
             return false;
         }
     }
-     //Eliminar una programacion. eliminar_programacion_semanal
-     function eliminar_programacion_v2($id_programacion)
-     {
-         $sql = "DELETE FROM `ct66_prog_semanal_clientes` WHERE `id` = :id_programacion";
-         //Preparar Conexion
-         $stmt = $this->con->prepare($sql);
-         // Asignando Datos ARRAY => SQ
-         $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
-         if ($stmt->execute()) {
-             return true;
-         } else {
-             return false;
-         }
-     }
+    //Eliminar una programacion. eliminar_programacion_semanal
+    function eliminar_programacion_v2($id_programacion)
+    {
+        $sql = "DELETE FROM `ct66_prog_semanal_clientes` WHERE `id` = :id_programacion";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQ
+        $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     //Cambiar el status de la programacion
     public function actualizar_estatus_programacion_semanal($id_programacion, $status)
     {

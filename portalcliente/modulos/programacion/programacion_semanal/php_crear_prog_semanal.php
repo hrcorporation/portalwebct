@@ -32,17 +32,17 @@ if ($hora_hoy < "16:00:00") {
     if (isset($_POST['txt_cliente']) && !empty($_POST['txt_cliente'])) {
         //Estado de la programacion
         $estado = 2;
-        // Id del cliente
+        // Id del cliente.
         $id_cliente = $_POST['txt_cliente'];
-        //Nombre del cliente mediante su Id
+        //Nombre del cliente mediante su Id.
         $nombre_cliente = $programacion->get_nombre_cliente($id_cliente);
-        // Id de la obra
+        // Id de la obra.
         $id_obra = $_POST['txt_obra'];
         //Nombre de la obra mediante su Id
         $nombre_obra = $programacion->get_nombre_obra($id_obra);
-        // Id del pedido
+        // Id del pedido.
         $id_pedido = $_POST['txt_pedidos'];
-        // Id del producto
+        // Id del producto.
         $id_producto = $_POST['txt_producto'];
         //Nombre del producto mediante su Id
         $nombre_producto = $programacion->get_nombre_producto($id_producto);
@@ -71,15 +71,15 @@ if ($hora_hoy < "16:00:00") {
         }
         //Id del tipo de descargue
         $tipo_descargue = $_POST['txt_tipo_descargue'];
-        //Nombre del tipo de descargue
+        //Nombre del tipo de descargue mediante el id del descargue.
         $nombre_tipo_descargue = $programacion->get_nombre_tipo_descargue($tipo_descargue);
-        //Fecha de inicio de programacion
+        //Fecha de inicio de programacion.
         $inicio = $_POST['start'];
-        //Fecha final de la programacion
+        //Fecha final de la programacion.
         $fin = $_POST['end'];
-        //Elementos
+        //Elementos.
         $elementos = $_POST['txt_elementos'];
-        //Observaciones
+        //Observaciones.
         $observaciones = $_POST['txt_observaciones'];
         //Validacion de que se guarde correctamente la programacion.
         if ($programacion->crear_prog_semanal_v2($estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $tipo_descargue, $nombre_tipo_descargue, $inicio, $fin, $elementos, $observaciones, $id_usuario, $nombre_usuario)) {

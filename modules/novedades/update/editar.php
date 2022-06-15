@@ -6,9 +6,11 @@
 $t1_terceros = new t1_terceros();
 $cls_novedades = new novedades_despacho();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
+    //Id de la novedad
     $id_novedad = intval($_GET['id']);
     if (is_array($data_novedades = $cls_novedades->select_novedad_despacho_for_id($id_novedad))) {
         foreach ($data_novedades as $key) {
+            //Fecha de la novedad.
             $fecha_novedad = $key['fecha'];
         }
     }
@@ -52,8 +54,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <h3><?php //echo $fecha_novedad; 
-                                ?></h3>
+                            <h3><?php //echo $fecha_novedad; ?></h3>
                         </div>
                     </div>
                 </div>

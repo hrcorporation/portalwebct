@@ -1,6 +1,5 @@
 <?php
 $programacion = new programacion();
-
 // $id = $_GET['id_prog_evento'];
 ?>
 <div class="modal fade" id="modal_show_evento" style="display: none;" aria-hidden="true">
@@ -80,9 +79,7 @@ $programacion = new programacion();
                     <button type="button" id="btn_eliminar" class="btn btn-danger">Eliminar</button>
                 </div>
             </form>
-
         </div>
-
     </div>
     <!-- /.modal-content -->
 </div>

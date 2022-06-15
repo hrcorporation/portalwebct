@@ -795,7 +795,7 @@ class t1_terceros extends conexionPDO
 
     function select_user_cliente()
     {
-        $sql = "SELECT ct1_IdTerceros,ct1_RazonSocial,ct1_usuario FROM ct1_terceros WHERE ct1_TipoTercero = 3 ORDER BY `ct1_terceros`.`ct1_IdTerceros` DESC";
+        $sql = "SELECT ct1_IdTerceros,ct1_RazonSocial, ct1_usuario FROM ct1_terceros WHERE ct1_TipoTercero = 3 ORDER BY `ct1_terceros`.`ct1_IdTerceros` DESC";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 

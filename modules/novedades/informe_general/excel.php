@@ -44,6 +44,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
         ->setCellValue('G1', 'NOMBRE OBRA')
         ->setCellValue('H1', 'OBSERVACION');
     $x = 2;
+    //DATOS DE LAS COLUMNAS
     if (is_array($datos)) {
         foreach ($datos as $fila) {
             $spreadsheet->setActiveSheetIndex(0)

@@ -2,6 +2,7 @@
 <?php require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php'; ?>
+<!-- se crea un objeto de la clase t1_terceros -->
 <?php $t1_terceros = new t1_terceros(); ?>
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php' ?>
@@ -105,6 +106,7 @@ require '../../../vendor/autoload.php'; ?>
 </script>
 <script src="ajax_crear.js"> </script>
 <script>
+    //permite seleccionar el cliente y listar las obras del cliente seleccionado mediante el archivo get_data.php
     $(document).ready(function() {
         $('#C_IdTerceros').on('change', function() {
             $.ajax({

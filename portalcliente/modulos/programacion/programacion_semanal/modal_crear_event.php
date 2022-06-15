@@ -47,22 +47,38 @@ $programacion = new programacion();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                    <div class="col">
+                            <div class="form-group">
+                                <label for="txt_pedidos" class="form-label">Pedidos</label>
+                                <select name="txt_pedidos" id="txt_pedidos" class="form-control select2" style="width: 100%;">
+                                    <?= $programacion->option_lista_pedidos() ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="txt_producto" class="form-label">Productos</label>
+                                <select name="txt_producto" id="txt_producto" class="form-control select2" style="width: 100%;">
+                                    <?= $programacion->option_producto_edit(); ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
                             <div class="form-group">
                                 <label for="txt_cant" class="form-label">Volumen</label>
                                 <input name="txt_cant" id="txt_cant" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="txt_hora" class="form-label">Hora</label>
                                 <input name="txt_hora" id="txt_hora" class="form-control" maxlength="2"/>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="txt_min" class="form-label">Min</label>
-                                <input name="txt_min" id="txt_min" class="form-control" maxlength="2" />
+                                <input type="text" name="txt_min" id="txt_min" class="form-control" maxlength="2" />
                             </div>
                         </div>
                     </div>

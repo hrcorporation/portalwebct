@@ -70,7 +70,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
         ->setCellValue('AG1', 'AUXILIAR BOMBA')
         ->setCellValue('AH1', 'OBSERVACIONES DE LA REMISION');
     $x = 2;
-
+    //DATOS DE LAS COLUMNAS
     if (is_array($datos)) {
         foreach ($datos as $fila) {
             if ($fila['ct26_fisica']) {
@@ -118,6 +118,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
         }
     }
     // Rename worksheet
+    //NOMBRE DE LA HOJA DE EXCEL
     $spreadsheet->getActiveSheet()->setTitle('Novedades Remisiones');
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('A')
@@ -221,6 +222,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('AH')
         ->setAutoSize(true);
+    //ESTILOS DE LAS HOJAS DE EXCEL
     $styleArray = [
         'font' => [
             'bold' => true,
@@ -236,6 +238,9 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
             ],
         ],
     ];
+    //APLICANDOLE ESTILOS A LOS TITULOS DE LAS COLUMNAS
+
+    
     $spreadsheet->getActiveSheet()->getStyle('A1:AH1')->applyFromArray($styleArray);
     // Set active sheet index to the first sheet, so Excel opens this as the first sheet
     $spreadsheet->setActiveSheetIndex(0);

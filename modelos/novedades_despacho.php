@@ -10,7 +10,7 @@ class novedades_despacho extends conexionPDO
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
-    //
+    //listado de novedades con los datos de los clientes y obras mediante el parametro del id de la novedad y el cliente y obra
     function select_novedades_cli_obra($id_novedad, $id_cliente, $id_obra)
     {
         $sql = "SELECT novedades_por_remision.id, novedades_por_remision.id_novedad,novedades_por_remision.id_remision, novedades_por_remision.cod_remision,  novedades_por_remision.id_tipo_novedad,novedades_por_remision.tipo_novedad, novedades_por_remision.area_afectada, novedades_por_remision.novedad,novedades_por_remision.observacion FROM `novedades_por_remision` INNER JOIN ct26_remisiones ON novedades_por_remision.id_remision = ct26_remisiones.ct26_id_remision WHERE novedades_por_remision.id_novedad  = :id_novedad AND ct26_remisiones.ct26_idcliente = :id_cliente AND ct26_remisiones.ct26_idObra = :id_obra ";
@@ -43,7 +43,7 @@ class novedades_despacho extends conexionPDO
             return false;
         }
     }
-    //
+    //listado de los datos de las novedades de remisiones mediante el parametro del id de la remision.
     function select_novedad_remisiones($id_remisiones)
     {
         $sql = "SELECT `id`, `id_novedad`, `id_remision`, `cod_remision`, `id_tipo_novedad`, `tipo_novedad`, `id_area_afectada`, `area_afectada`, `id_listado_novedad`, `novedad`, `observacion` FROM `novedades_por_remision` WHERE `id_remision` = :id  ";
@@ -74,7 +74,7 @@ class novedades_despacho extends conexionPDO
             return false;
         }
     }
-    //
+    //Crear las novedades de las remisiones con todos los parametros.
     function insert_novedad_remisiones($id_novedad, $id_remision, $cod_remision, $id_tipo_novedad, $tipo_novedad, $id_area_afectada, $area_afectada, $id_listado_novedad, $novedad, $observacion)
     {
         $this->id_novedad = $id_novedad;
@@ -107,7 +107,7 @@ class novedades_despacho extends conexionPDO
             return false;
         }
     }
-    //
+    //listado de los datos de las novedades generales mediante el id de la novedad
     function select_novedad_generales($id_novedad)
     {
         $sql = "SELECT `id`, `id_novedad`, `id_tipo_novedad`, `tipo_novedad`, `id_area_afectada`, `area_afectada`, `id_listado_novedad`, `novedad`, `observacion` FROM `novedades_generales` WHERE `id_novedad` = :id  ";
@@ -263,7 +263,7 @@ class novedades_despacho extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    //
+    //Select de las novedades
     function option_novedades($tipo_novedad, $subtipo_novedad, $id_novedades = null)
     {
         $option = "<option  selected='true' value='0'> Seleccione un tipo Novedades</option>";
@@ -292,7 +292,7 @@ class novedades_despacho extends conexionPDO
         //resultado
         return $option;
     }
-    //
+    //Select de los tipos de novedades
     function option_tipo_novedades($id_tipo_novedades = null)
     {
         $option = "<option  selected='true' value='0'> Seleccione un tipo Novedades</option>";
@@ -320,7 +320,7 @@ class novedades_despacho extends conexionPDO
         //resultado
         return $option;
     }
-    //
+    //Select de las areas novedades
     function option_areas_novedades($id_tipo_novedad, $id_subtipo_novedades = null)
     {
         $option = "<option  selected='true' value='0'> Seleccione un tipo Novedades</option>";
@@ -396,7 +396,7 @@ class novedades_despacho extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    //
+    //Crear novedad con el parametro de la fecha
     function insertar_novedad_despacho($fecha)
     {
         $this->fecha = $fecha;
@@ -411,7 +411,7 @@ class novedades_despacho extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    //
+    //listar las novedades por el parametro del id.
     function select_novedad_despacho_for_id($id)
     {
         $sql = "SELECT `id`, `fecha_novedad`, `estatus`, `observaciones` FROM `novedades_despacho` WHERE id = :id  ";
@@ -437,7 +437,7 @@ class novedades_despacho extends conexionPDO
             return false;
         }
     }
-    //
+    //listar todas las novedades.
     function select_novedad_despacho_index()
     {
         $sql = "SELECT `id`, `fecha_novedad`, `estatus`, `observaciones` FROM `novedades_despacho`  ";
@@ -462,7 +462,7 @@ class novedades_despacho extends conexionPDO
             return false;
         }
     }
-    //
+    //listar las novedades mediante el parametro de la fecha
     function select_novedad_despacho($fecha)
     {
         $sql = "SELECT `id`, `fecha_novedad`, `estatus`, `observaciones` FROM `novedades_despacho` WHERE fecha_novedad = :fecha_novedad  ";
@@ -488,7 +488,7 @@ class novedades_despacho extends conexionPDO
             return false;
         }
     }
-    //
+    //guardar datos en la tabla novedades_has_clientes
     function insert_datos_cliente($id_novedad, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra)
     {
         $this->id_novedad = $id_novedad;
@@ -511,7 +511,7 @@ class novedades_despacho extends conexionPDO
 
         return $result;
     }
-    //
+    //listar los clientes y la cantidad de novedades que tenga
     function select_datos_cliente($id_novedad)
     {
         $this->id_novedad = $id_novedad;
@@ -592,7 +592,7 @@ class novedades_despacho extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    //
+    //Contar las novedades de los clientes y obra
     public static function contar_novedades_despacho_for_cli_obra($con, $id_novedad, $id_cliente, $id_obra)
     {
         $sql = "SELECT  count(novedades_por_remision.id) as cantidad_novedades FROM `novedades_por_remision` INNER JOIN ct26_remisiones ON novedades_por_remision.id_remision = ct26_remisiones.ct26_id_remision WHERE novedades_por_remision.id_novedad  = :id_novedad AND ct26_remisiones.ct26_idcliente = :id_cliente AND ct26_remisiones.ct26_idObra = :id_obra ";
@@ -616,7 +616,7 @@ class novedades_despacho extends conexionPDO
             return 0;
         }
     }
-    //
+    //Contar las novedades de los clientes de las remisiones
     public static function contar_novedades_despacho_for_remi($con, $id_remision)
     {
         $sql = "SELECT COUNT(id) as numero_novedades FROM `novedades_por_remision` WHERE id_remision = :id_remision ";
@@ -635,6 +635,7 @@ class novedades_despacho extends conexionPDO
             return 0;
         }
     }
+    //listar los datos de las remisiones mediante los parametros de la fecha, el cliente y la obra.
     function select_datos_remisiones($fecha_remi, $id_clientes, $id_obras)
     {
         $sql = "SELECT ct26_id_remision, `ct26_codigo_remi`, `ct26_razon_social`, `ct26_nombre_obra`,  `ct26_vehiculo`, `ct26_hora_remi` ,ct26_codigo_producto, ct26_descripcion_producto FROM `ct26_remisiones`  WHERE  `ct26_fecha_remi` = :fecha_remi AND `ct26_idcliente` IN ($id_clientes)  AND `ct26_idObra` IN ($id_obras) ORDER BY `ct26_id_remision` DESC ";
