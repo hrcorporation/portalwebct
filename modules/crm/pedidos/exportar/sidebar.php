@@ -42,7 +42,7 @@
                      </a>
                  </li>
                  <li class="nav-item has-treeview">
-                     <a href="../importar/index.php" class="nav-link">
+                     <a href="../importar_precio_base/index.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Importar precios base
