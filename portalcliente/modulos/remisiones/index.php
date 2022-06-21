@@ -338,7 +338,7 @@ $t5_obra = new t5_obras();
                 });
                 setInterval(function() {
                     table.ajax.reload(null, false);
-                }, 10000);
+                }, 100000);
             })
             $("#form_aceptar_remi").on('submit', (function(e) {
                 e.preventDefault();
