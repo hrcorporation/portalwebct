@@ -1,5 +1,5 @@
 <?php
-    $ClsProgramacion = new ClsProgramacionSemanal();
+$ClsProgramacion = new ClsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -15,14 +15,14 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label  for="cbxCliente" class="form-label" >Cliente</label>
+                                <label for="cbxCliente" class="form-label">Cliente</label>
                                 <select name="cbxCliente" id="cbxCliente" class="form-control select2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label  for="cbxObra" class="form-label" >Obra</label>
+                                <label for="cbxObra" class="form-label">Obra</label>
                                 <select name="cbxObra" id="cbxObra" class="form-control select2" style="width: 100%;">
                                 </select>
                             </div>
@@ -118,8 +118,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="btnConfirmarProgramacion" data-toggle="modal" data-target="#modal_confirmar_programacion"> Confirmar </button>
                     <button type="submit" class="btn btn-primary" id="btnCrear"> Guardar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cerrar </button>
                 </div>
             </form>
         </div>

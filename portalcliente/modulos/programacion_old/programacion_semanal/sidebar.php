@@ -2,9 +2,10 @@
  <aside class="main-sidebar sidebar-light-orange elevation-4">
      <!-- Brand Logo -->
      <a href="#" class="brand-link">
-         <img src="../../../assets/images/logos/Logo-v8.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+         <img src="../../../../assets/images/logos/Logo-v8.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">CONCRETOL</span>
      </a>
+
      <!-- Sidebar -->
      <div class="sidebar">
          <!-- Sidebar Menu -->
@@ -20,15 +21,6 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-header">Programacion</li>
-                 <li class="nav-item has-treeview">
-                     <a href="../index.php" class="nav-link">
-                         <i class="nav-icon fas fa-copy"></i>
-                         <p>
-                             Explorar
-                         </p>
-                     </a>
-                 </li>
                  <li class="nav-header">Programacion Semanal</li>
                  <li class="nav-item has-treeview">
                      <a href="index.php" class="nav-link active">
@@ -40,7 +32,25 @@
                  </li>
                  <li class="nav-header">Programacion Diaria</li>
                  <li class="nav-item has-treeview">
-                     <a href="../diaria/index.php" class="nav-link">
+                     <a href="#" class="nav-link">
+                         <i class="nav-icon fas fa-copy"></i>
+                         <p>
+                             Explorar
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-header">Remi-web</li>
+                 <li class="nav-item has-treeview">
+                     <a href="../../remisiones/index.php" class="nav-link">
+                         <i class="nav-icon fas fa-copy"></i>
+                         <p>
+                             Explorar
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-header">Confirmacion diaria</li>
+                 <li class="nav-item has-treeview">
+                     <a href="#" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar

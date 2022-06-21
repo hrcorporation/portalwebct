@@ -8,6 +8,7 @@ require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacion
 $programacion = new ClsProgramacion();
+$clsProgramacionSemanal = new ClsProgramacionSemanal();
 
 $log = false;
 $php_estado = false;
@@ -17,7 +18,7 @@ $resultado = "";
 //Validar que el rol del funcionario sea el el administrador o los dos cargos de programacion(15 y 16)
 if ($_SESSION['rol_funcionario'] == 1 || $_SESSION['rol_funcionario'] == 15 || $_SESSION['rol_funcionario'] == 16) {
     //Validar que la variable de txt_cliente exista y no este vacia
-    if (isset($_POST['txt_cliente']) && !empty($_POST['txt_cliente'])) {
+    if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
         //id del usuario
         $intIdUsuario = $_SESSION['id_usuario'];
         //Nombre del usuario mediante el parametro del id del usuario
@@ -35,9 +36,9 @@ if ($_SESSION['rol_funcionario'] == 1 || $_SESSION['rol_funcionario'] == 15 || $
         //id del pedido
         $intPedido = $_POST['cbxPedido'];
         //id del producto.
-        $intIdPedido = $_POST['cbxProducto'];
+        $intIdProducto = $_POST['cbxProducto'];
         //Nombre del producto mediante el parametro del id del producto.
-        $StrNombreProducto = $programacion->get_nombre_producto($id_producto);
+        $StrNombreProducto = $programacion->get_nombre_producto($intIdProducto);
         //Cantidad
         $decCantidad = $_POST['txtCant'];
         //Frecuencia
@@ -59,7 +60,7 @@ if ($_SESSION['rol_funcionario'] == 1 || $_SESSION['rol_funcionario'] == 15 || $
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFin'];
         //Validar que tome bien los parametros y guarde correctamente la programacion
-        if ($programacion->crear_prog_semanal($estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_pedido, $id_producto, $nombre_producto, $cantidad, $inicio, $fin, $id_usuario, $nombre_usuario)) {
+        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
             //Si pasa la validacion se retorna verdadero(true)
             $php_estado = true;
         } else {

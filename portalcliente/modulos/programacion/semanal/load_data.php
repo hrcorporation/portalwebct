@@ -9,7 +9,7 @@ require '../../../../vendor/autoload.php';
 
 //Se crea un objeto de la clase php_clases y programacion.
 $php_clases = new php_clases();
-$programacion_funcionario = new programacion();
+$programacion_funcionario = new ClsProgramacion();
 
 $php_estado = false;
 $errores = "";

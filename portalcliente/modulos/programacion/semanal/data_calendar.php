@@ -11,7 +11,7 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase Programacion
-$programacion = new programacion();
+$programacion = new ClsProgramacion();
 //id del usuario que esta en sesion
 $id_usuario = $_SESSION['id_usuario'];
 //id del rol que esta en sesion

@@ -1,5 +1,5 @@
-<?php include '../../../layout/validar_session3.php' ?>
-<?php include '../../../layout/head/head3.php'; ?>
+<?php include '../../../../layout/validar_session_cliente4.php' ?>
+<?php include '../../../../layout/head/headcliente4.php' ?>
 <?php include 'sidebar.php' ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>PROGRAMACION SEMANAL</h1>
+                    <h1> <strong> <?php echo $_SESSION['nombre_usuario']; ?> </strong> Bienvenido a la <strong style="color:#ac4661">PROGRAMACION SEMANAL</strong> </h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -27,7 +27,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">VER PROGRAMACIONES SEMANALES</h3>
+                <h3 class="card-title">VER PROGRACIONES SEMANALES</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -35,13 +35,6 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="form-group">
-                    <span class="badge bg-secondary">0 - Sin Confirmar</span>
-                    <span class="badge bg-warning">0 - Por Cargar</span>
-                    <span class="badge bg-info">0 - Confirmadas</span>
-                    <span class="badge bg-success">0 - Ejecutadas</span>
-                    <button style="position: absolute; right: 75%; top: 12.2%" type="button" class="btn btn-success" id="btnConfirmarProgramacion" data-toggle="modal" data-target="#modal_cargar_programacion"> Confirmar </button>
-                </div>
                 <div id='calendar'></div>
             </div>
             <!-- /.card-body -->
@@ -58,13 +51,9 @@
 <!-- Modal -->
 <?php include 'modal_crear_programacion.php' ?>
 <?php include 'modal_editar_programacion.php' ?>
-<?php include 'modal_cargar_programacion.php'?>
-<?php include 'modal_confirmar_programacion.php'?>
-<?php include 'modal_informativo.php'?>
 
 <!-- /.modal-dialog -->
-
-<?php include '../../../layout/footer/footer3.php' ?>
+<?php include '../../../../layout/footer/footercliente4.php' ?>
 
 <script src="calendar.js"> </script>
 <script>
@@ -93,7 +82,6 @@
             });
         }));
 
-
         $("#form_crear_event").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -117,7 +105,6 @@
             });
         }));
 
-
         $('#cbxCliente').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -140,12 +127,11 @@
             });
         });
 
-
-        $('#cbxClienteEditar').on('change', function() {
+        $('#edit_txt_cliente').on('change', function() {
             //Ajax 
             var formData = new FormData();
             formData.append('task', 2);
-            formData.append('cliente', $("#cbxClienteEditar").val());
+            formData.append('cliente', $("#edit_txt_cliente").val());
             $.ajax({
                 url: "load_data.php", // URL
                 type: "POST", // Metodo HTTP
@@ -155,7 +141,7 @@
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    $("#cbxObraEditar").html(data.select_obra)
+                    $("#edit_txt_obra").html(data.select_obra)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
@@ -164,6 +150,7 @@
         });
     });
 </script>
+
 </body>
 
 </html>

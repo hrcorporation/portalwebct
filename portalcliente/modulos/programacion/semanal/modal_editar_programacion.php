@@ -71,8 +71,11 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <div class="form-check" id="bomba">
-
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBombaEditar" name="chkRequiereBombaEditar">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Requiere bomba de Concre Tolima
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -117,9 +120,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btnConfirmarProgramacion" class="btn btn-success" data-toggle="modal" data-target="#modal_confirmar_programacion">Confirmar</button>
-                    <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
-                    <button type="button" id="btnEliminar" class="btn btn-danger">Eliminar</button>
+                    <button type="submit" id="btnGuardar" class="btn btn-primary"> Guardar </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal"> Cerrar </button>
                 </div>
             </form>
         </div>
