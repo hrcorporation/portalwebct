@@ -10,12 +10,15 @@ $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
-//se crea un objeto de la clase programacion.
+//se crea un objeto de la clase programacion
 $programacion = new ClsProgramacion();
-//Se listan todas las programaciones.
+// $id_usuario = $_SESSION['id_usuario'];
+// $id_rol = $_SESSION['rol_funcionario'];
+//Se listan todas las programaciones
 $data = $programacion->get_prog_semanal();
 $php_estado = true;
-//Datos de los arreglos.
+
+
 $datos = array(
     'estado' => $php_estado,
     'errores' => $php_error,

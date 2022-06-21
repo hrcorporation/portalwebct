@@ -127,28 +127,30 @@ document.addEventListener("DOMContentLoaded", function () {
   calendar.render();
   // Boton Actualizar Evento
   // Boton Actualizar Evento
-  document.getElementById("btnEliminar").addEventListener("click", function () {
-    const datos_form = new FormData(form_show_event);
-    var form_editar = new FormData();
-    Swal.fire({
-      title: "Esta seguro que desea eliminar",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Si eliminar",
-      denyButtonText: `No, Salir`,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        form_editar.append("task", 3); // eliminar
-        form_editar.append("id", form_show_event.id_prog_evento.value);
-        editar_event(form_editar, calendar);
-        $("#modal_show_evento").modal("hide");
-      } else if (result.isDenied) {
-      }
+  document
+    .getElementById("btnEliminar")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(form_show_event);
+      var form_editar = new FormData();
+      Swal.fire({
+        title: "Esta seguro que desea eliminar",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si eliminar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 3); // eliminar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
+        }
+      });
     });
-  });
 });
 
 function editar_event(form_editar, calendar) {
@@ -175,3 +177,22 @@ function editar_event(form_editar, calendar) {
     },
   });
 }
+
+// function guardar_event(form_crear, calendar) {
+//   $.ajax({
+//     url: "php_crear_prog_semanal.php",
+//     type: "POST",
+//     data: form_crear,
+//     processData: false,
+//     contentType: false,
+//     dataType: "json",
+//     //processData: false,
+//     success: function (response) {
+//       calendar.refetchEvents();
+//       toastr.success("Programacion Creada Satisfactoriamente");
+//     },
+//     error: function (respuesta) {
+//       alert(JSON.stringify(respuesta));
+//     },
+//   });
+// }

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +25,7 @@
 
     <link href="../../../../../plugins/datatables/datatables.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../../../../plugins/ekko-lightbox/ekko-lightbox.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../plugins/datatables/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../plugins/datatables/datatables.min.css" />
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -34,6 +33,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
 
     <link href="../../../../custom/remi.css" rel="stylesheet" />
+    <!-- Calendario -->
+    <link href='../../../../../plugins/fullcalendar/main.css' rel='stylesheet' />
+
+    <link href="../../../../../plugins/fullcalendar/main.min.css" rel='stylesheet' />
+    <link href="../../../../../plugins/fullcalendar-timegrid/main.min.css" rel='stylesheet' />
+    <link href="../../../../../plugins/fullcalendar-daygrid/main.min.css" rel='stylesheet' />
+
+    <script type="text/javascript" src="../../../plugins/fullcalendar/main.js"></script>
 
 </head>
 
@@ -76,18 +83,16 @@
                 </li>
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="../../../../../assets/images/usuarios/images.png" class="user-image img-circle elevation-2"
-                            alt="User Image">
+                        <img src="../../../../../assets/images/usuarios/images.png" class="user-image img-circle elevation-2" alt="User Image">
                         <span class="d-none d-md-inline"><?php echo $nombre_usuario; ?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="../../../../assets/images/usuarios/images.png" class="img-circle elevation-2"
-                                alt="User Image">
+                            <img src="../../../../assets/images/usuarios/images.png" class="img-circle elevation-2" alt="User Image">
 
                             <p>
-                            <?php echo $nombre_usuario; ?>
+                                <?php echo $nombre_usuario; ?>
 
                             </p>
                         </li>

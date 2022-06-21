@@ -83,7 +83,6 @@
             });
         }));
 
-
         $("#form_crear_event").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -107,7 +106,6 @@
             });
         }));
 
-
         $('#cbxCliente').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -129,7 +127,6 @@
                 },
             });
         });
-
 
         $('#cbxClienteEditar').on('change', function() {
             //Ajax 

@@ -6,7 +6,7 @@ require '../../../vendor/autoload.php';
 
 // $eventos = new eventos();
 //se crea un objeto de la clase programacion
-$programacion = new programacion();
+$programacion = new ClsProgramacion();
 //Validar que el id de la programacion exista
 if (isset($_POST['id'])) {
     //listar los datos de la programacion mediante el parametro de el id de la programacion 

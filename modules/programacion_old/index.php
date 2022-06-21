@@ -1,6 +1,8 @@
 <?php include '../../layout/validar_session2.php' ?>
+
 <?php include '../../layout/head/head2.php'; ?>
 <?php include 'sidebar.php' ?>
+
 <?php require '../../librerias/autoload.php';
 require '../../modelos/autoload.php';
 require '../../vendor/autoload.php'; ?>
@@ -23,14 +25,19 @@ require '../../vendor/autoload.php'; ?>
             </div>
         </div><!-- /.container-fluid -->
     </section>
+
     <!-- Main content -->
     <section class="content">
+
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"> Modulo de Programación </h3>
+                <h3 class="card-title"> Modulo de Programación</h3>
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"> <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
                 </div>
             </div>
             <div class="card-body">
@@ -45,10 +52,14 @@ require '../../vendor/autoload.php'; ?>
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
+
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+
+
 <?php include '../../layout/footer/footer2.php' ?>
 </body>
 

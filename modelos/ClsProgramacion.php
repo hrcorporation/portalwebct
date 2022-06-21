@@ -1,6 +1,6 @@
 <?php
 
-class programacion extends conexionPDO
+class ClsProgramacion extends conexionPDO
 {
     protected $con;
     // Iniciar Conexion
