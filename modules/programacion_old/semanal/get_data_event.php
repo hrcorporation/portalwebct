@@ -9,7 +9,7 @@ require '../../../vendor/autoload.php';
 
 
 $eventos = new eventos();
-$programacion = new programacion();
+$programacion = new ClsProgramacion();
 if(isset($_POST['id'])){
     $data = $programacion->cargar_data_programacion($_POST['id']);
     foreach ($data as $key ) {

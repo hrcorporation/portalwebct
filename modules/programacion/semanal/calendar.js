@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         custom_param1: "something",
       },
       failure: function () {
-        alert("Error al Cargar los Eventos");
+        alert("Error al Cargar las programaciones");
       },
       //color: 'yellow',   // a non-ajax option
       //textColor: 'black' // a non-ajax option
@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
     select: function (event) {
       console.log("Crear Evento");
       form_crear_event.reset();
-      $("#start").val(moment(event.startStr).format("YYYY-MM-DD HH:mm:ss"));
-      $("#end").val(moment(event.endStr).format("YYYY-MM-DD HH:mm:ss"));
+      $("#txtInicio").val(moment(event.startStr).format("YYYY-MM-DD HH:mm:ss"));
+      $("#txtFin").val(moment(event.endStr).format("YYYY-MM-DD HH:mm:ss"));
       //Ajax
       var formData = new FormData();
       formData.append("task", 1);
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cache: false,
         processData: false,
         success: function (data) {
-          $("#txt_cliente").html(data.select_cliente);
+          $("#cbxCliente").html(data.select_cliente);
         },
         error: function (respuesta) {
           alert(JSON.stringify(respuesta));
@@ -127,30 +127,28 @@ document.addEventListener("DOMContentLoaded", function () {
   calendar.render();
   // Boton Actualizar Evento
   // Boton Actualizar Evento
-  document
-    .getElementById("btn_eliminar")
-    .addEventListener("click", function () {
-      const datos_form = new FormData(form_show_event);
-      var form_editar = new FormData();
-      Swal.fire({
-        title: "Esta seguro que desea eliminar",
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: "Si eliminar",
-        denyButtonText: `No, Salir`,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          form_editar.append("task", 3); // eliminar
-          form_editar.append("id", form_show_event.id_prog_evento.value);
-          editar_event(form_editar, calendar);
-          $("#modal_show_evento").modal("hide");
-        } else if (result.isDenied) {
-        }
-      });
+  document.getElementById("btnEliminar").addEventListener("click", function () {
+    const datos_form = new FormData(form_show_event);
+    var form_editar = new FormData();
+    Swal.fire({
+      title: "Esta seguro que desea eliminar",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Si eliminar",
+      denyButtonText: `No, Salir`,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        form_editar.append("task", 3); // eliminar
+        form_editar.append("id", form_show_event.id_prog_evento.value);
+        editar_event(form_editar, calendar);
+        $("#modal_show_evento").modal("hide");
+      } else if (result.isDenied) {
+      }
     });
+  });
 });
 
 function editar_event(form_editar, calendar) {
@@ -177,22 +175,3 @@ function editar_event(form_editar, calendar) {
     },
   });
 }
-
-// function guardar_event(form_crear, calendar) {
-//   $.ajax({
-//     url: "php_crear_prog_semanal.php",
-//     type: "POST",
-//     data: form_crear,
-//     processData: false,
-//     contentType: false,
-//     dataType: "json",
-//     //processData: false,
-//     success: function (response) {
-//       calendar.refetchEvents();
-//       toastr.success("Programacion Creada Satisfactoriamente");
-//     },
-//     error: function (respuesta) {
-//       alert(JSON.stringify(respuesta));
-//     },
-//   });
-// }

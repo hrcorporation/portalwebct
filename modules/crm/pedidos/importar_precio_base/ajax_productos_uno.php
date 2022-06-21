@@ -62,7 +62,7 @@ if (is_array($array_reg)) {
             $fecha_subida = date('Y-m-d');
             $precio = $row[1];
             $cantidad = strlen($codigo_producto);
-            ////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////
             if (!$pedidos->validar_existencias_producto_principal($codigo_producto)) {
                 $id_producto = $pedidos->get_id_producto($codigo_producto);
                 $nombre_producto = $pedidos->get_nombre_producto_por_cod($codigo_producto);
@@ -73,13 +73,13 @@ if (is_array($array_reg)) {
                             $php_estado = true;
                         }
                     } else {
-                        $php_result = "Producto no fue importado" . $codigo_producto;
+                        $php_result = "Producto no fue importado" .$codigo_producto;
                     }
                 } else {
                     $php_result = "No se pudo subir este producto";
                 }
             }else{
-                $php_result = "No existe ese producto Codigo: ". $codigo_producto;
+                $php_result = "No existe ese producto Codigo: ".$codigo_producto;
             }
         }
     }

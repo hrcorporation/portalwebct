@@ -113,6 +113,7 @@ switch ($rol_user) {
                                         case 15:
                                         case 16:
                                         case 20:
+                                        case 26:
                                         case 29:
                                         case 22:
                                         
@@ -144,6 +145,7 @@ switch ($rol_user) {
                                         case 15:
                                         case 16:
                                         case 20:
+                                        case 26:
                                         case 29:
                                         case 22:
                                         $permisos_num_hora = " ";
@@ -176,6 +178,7 @@ switch ($rol_user) {
                                         case 15:
                                         case 16:
                                         case 20:
+                                        case 26:
                                         case 29:
                                         case 22:
                                         $permisos_cli_obra = " ";
@@ -246,6 +249,7 @@ switch ($rol_user) {
                                             case 15:
                                             case 16:
                                             case 20:
+                                            case 26:
                                             case 29:
                                             case 22:
                                         $permisos_conductor_mix = " ";
@@ -329,6 +333,7 @@ switch ($rol_user) {
                                         case 15:
                                         case 16:
                                         case 20:
+                                        case 26:
                                         case 29:
                                         case 22:
                                         $permisos_producto = " ";
@@ -419,6 +424,7 @@ switch ($rol_user) {
                                         case 15:
                                         case 16:
                                         case 20:
+                                        case 26:
                                         case 29:
                                         case 22:
                                         $permisos_std = " ";
@@ -525,6 +531,7 @@ switch ($rol_user) {
                                         case 15:
                                         case 16:
                                         case 20:
+                                        case 26:
                                         case 29:
                                         case 22:
                                         $permisos_arch = " ";
@@ -601,8 +608,8 @@ switch ($rol_user) {
                                         case 29:
                                         case 22:
                                         case 20:
-                                            case 22:
-                                            case 26:
+                                        case 22:
+                                        case 26:
                                         $disabled_horas = " ";
                                     break;
                                     default:
@@ -676,6 +683,7 @@ switch ($rol_user) {
                                         case 20:
                                         case 29:
                                         case 22:
+                                        case 26:
                                         $permisos_btn = " ";
                                     break;
                                     default:

@@ -5,12 +5,17 @@
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php'; ?>
 <?php
+//se crea un objeto de la clase php_clases 
 $php_clases = new php_clases();
+//se crea un objeto de la clase t1_terceros
 $t1_terceros = new t1_terceros();
+//se crea un objeto de la clase t5_obras
 $t5_obras = new t5_obras();
+//se obtiene el id por get 
 $id = $_GET['id'];
+//Mediante el objeto creado anteriormente se usa una funcion llamada search_tercero_custom_id para obtener todos los datos del cliente mediante el parametro del id.
 $datos_tercero = $t1_terceros->search_tercero_custom_id($id);
-
+//se recorre el arreglo de datos que se saco anteriormente mediante el while
 while ($fila_t1 = $datos_tercero->fetch(PDO::FETCH_ASSOC)) {
     $numero_identificacion = $fila_t1['ct1_NumeroIdentificacion'];
     $nombre1 = $fila_t1['ct1_Nombre1'];

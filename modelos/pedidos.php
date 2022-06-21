@@ -729,11 +729,10 @@ class pedidos extends conexionPDO
     //Obtener los precios de los productos mediante el id del pedido.
     public function get_productos_precio($id_pedido)
     {
-        $sql = "SELECT `id`,`status`,`codigo_producto`, `porcentaje_descuento`, `cantidad_m3`, `precio_m3`, `observaciones` FROM `ct65_pedidos_has_precio_productos` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
+        $sql = "SELECT `id`, `status`, `codigo_producto`, `porcentaje_descuento`, `cantidad_m3`, `precio_m3`, `observaciones` FROM `ct65_pedidos_has_precio_productos` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
-
         // Ejecutar 
         if ($result = $stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -751,14 +750,14 @@ class pedidos extends conexionPDO
                             $datos['status'] = " <span class='badge  badge-info > float-right'>  </span> ";
                             break;
                     }
-
                     $datos['codigo_producto'] = $fila['codigo_producto'];
                     if (is_null($fila['porcentaje_descuento'])) {
-                        $datos['porcentaje_descuento'] = 0;
+                        $numero = 0;
+                        $datos['porcentaje_descuento'] = number_format($numero, 2);
                     } else {
-                        $datos['porcentaje_descuento'] = $fila['porcentaje_descuento'];
+                        $datos['porcentaje_descuento'] = number_format($fila['porcentaje_descuento'], 2);
                     }
-                    $datos['cantidad_m3'] = $fila['cantidad_m3'];
+                    $datos['cantidad_m3'] = number_format($fila['cantidad_m3'], 2);
                     $datos['precio_m3'] = " $ " . number_format($fila['precio_m3'], 2);
                     $datos['observaciones'] = $fila['observaciones'];
                     $datosf[] = $datos;
@@ -1091,16 +1090,12 @@ class pedidos extends conexionPDO
     {
         $this->status = 2;
         $sql = "UPDATE `ct65_pedidos_has_precio_productos` SET `status`= :status";
-
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':status', $this->status, PDO::PARAM_INT);
-
         // Ejecutar 
         $result = $stmt->execute();
-
         //Cerrar Conexion
         $this->PDO->closePDO();
-
         //resultado
         return $result;
     }
@@ -1121,7 +1116,7 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
 
-        //resultado
+        //Resultado
         return $result;
     }
     //Cambiar el status del pedido.

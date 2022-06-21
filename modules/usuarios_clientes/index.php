@@ -8,6 +8,7 @@ require '../../vendor/autoload.php'; ?>
 
 
 <?php
+//Roles permitidos para acceder a este modulo (Usuarios clientes)
 switch ($rol_user) {
     case 1:
     case 8:
@@ -18,16 +19,11 @@ switch ($rol_user) {
     case 14:
     case 26:
     case 27:
-
-
         $php_clases = new php_clases();
         $t1_terceros = new t1_terceros();
-
         break;
-
     default:
         print('<script> window.location = "../../../cerrar.php"</script>');
-
         break;
 }
 ?>
@@ -42,19 +38,17 @@ switch ($rol_user) {
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -87,6 +81,7 @@ switch ($rol_user) {
                         <tbody>
                             <?php
                             $i = 0;
+                            // lista los datos de los usuarios clientes
                             $datos = $t1_terceros->select_user_cliente2();
                             if ($datos) {
                                 foreach ($datos as $key1) {
@@ -96,12 +91,17 @@ switch ($rol_user) {
                                     $nombre1 = $key1['ct1_Nombre1'];
                                     $apellido1 = $key1['ct1_Apellido1'];
                                     $id_cliente1 = $key1['ct1_id_cliente1'];
-                                    $datoscli = $t1_terceros->select_tercero_id2($id_cliente1);?>
-                                    <tr>
+                                    //Lista los datos de los terceros mediante el id
+                                    $datoscli = $t1_terceros->select_tercero_id2($id_cliente1); ?>
+                                    <tr><!-- imprime el id en la tabla -->
                                         <td><?php echo $i;  ?></td>
+                                        <!-- imprime el numero de identificacion en la tabla -->
                                         <td><?php echo $num; ?></td>
+                                        <!-- imprime el nombre en la tabla -->
                                         <td><?php echo $nombre1; ?></td>
+                                        <!-- imprime el apellido en la tabla -->
                                         <td><?php echo $apellido1; ?></td>
+                                        <!-- muestra el boton de editar en la tabla -->
                                         <td><a href="update/editar.php?id=<?php echo $id; ?>" class="btn btn-block btn-info">Editar</a></td>
                                     </tr>
                             <?php

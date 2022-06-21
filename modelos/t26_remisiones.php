@@ -1572,7 +1572,7 @@ class t26_remisiones extends conexionPDO
   function select_remisiones_for_table()
   {
 
-    $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_social ,ct26_nombre_obra ,ct26_vehiculo, ct26_fecha_remi FROM `ct26_remisiones` ORDER BY `ct26_id_remision` DESC LIMIT 10000";
+    $sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_social ,ct26_nombre_obra ,ct26_vehiculo, ct26_fecha_remi FROM `ct26_remisiones` ORDER BY `ct26_id_remision` DESC LIMIT 5000";
 
     //$sql = "SELECT ct26_id_remision, ct26_imagen_remi, ct26_codigo_remi, ct26_razon_social ,ct26_nombre_obra ,ct26_vehiculo, ct26_fecha_remi FROM `ct26_remisiones` ORDER BY `ct26_id_remision` DESC ";
     //Preparar Conexion

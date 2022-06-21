@@ -38,13 +38,13 @@ foreach ($datos as $dato) {
             <div class="card-body">
                 <div id="contenido">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-5">
                             <div class="form-group">
                                 <!-- SE MUESTRA EL NOMBRE DEL CLIENTE -->
                                 <h5><b>CLIENTE:</b> <?= $nombre_cliente ?></h5>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-4">
                             <div class="form-group">
                                 <!-- SE MUESTRA EL NOMBRE DE LA OBRA -->
                                 <h5><b>OBRA:</b> <?= $nombre_obra ?></h5>
@@ -932,7 +932,7 @@ foreach ($datos as $dato) {
                 $('#cargar_excel').modal('toggle');
                 e.preventDefault();
                 $.ajax({
-                    url: "../importar_dos/ajax_productos_uno.php",
+                    url: "../importar_productos/ajax_productos_uno.php",
                     type: "POST",
                     data: new FormData(this),
                     contentType: false,
@@ -957,7 +957,7 @@ foreach ($datos as $dato) {
             $("#form_productos").on('submit', (function(e) {
                 e.preventDefault();
                 $.ajax({
-                    url: "../importar_dos/ajax_productos_dos.php",
+                    url: "../importar_productos/ajax_productos_dos.php",
                     type: "POST",
                     data: new FormData(this),
                     contentType: false,

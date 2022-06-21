@@ -17,7 +17,6 @@ $php_error[] = "";
 $resultado = "";
 
 if ($pedidos->validar_existencias_precio_producto($_POST['id_producto'], $_POST['id'])) {
-
     $id_pedido = $_POST['id'];
     $id_producto = $_POST['id_producto'];
     $cod_producto = $pedidos->get_codigo_producto($id_producto);

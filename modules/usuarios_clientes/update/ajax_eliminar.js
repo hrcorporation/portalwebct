@@ -1,7 +1,6 @@
 $(document).ready(function (e) {
   $("#btn-eliminar").click(function () {
     // var id = $("#id").val();
-
     Swal.fire({
       title: "Esta Seguro(a) de Eliminar este Usuario?",
       text: "",

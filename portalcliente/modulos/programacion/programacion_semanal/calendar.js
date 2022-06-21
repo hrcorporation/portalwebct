@@ -74,16 +74,23 @@ document.addEventListener("DOMContentLoaded", function () {
           id: info.event.id,
         },
         success: function (data) {
-         
           form_show_event.id_prog_evento.value = info.event.id;
           console.log(info.event)
           $("#edit_txt_cliente").html(data.select_cliente);
           $("#edit_txt_obra").html(data.select_obra);
           $("#edit_txt_producto").html(data.select_producto);
+          $("#txt_edit_tipo_descargue").html(data.tipo_descargue);
+          $("#txt_edit_pedidos").html(data.pedidos);
+          $("#txt_edit_estado").html(data.select_estado);
+          $("#bomba").html(data.check_bomba);
           form_show_event.edit_txt_cant.value = data.cantidad;
-          //form_show_event.edit_txt_producto.value = data.producto;
           form_show_event.edit_start.value = data.inicio;
           form_show_event.edit_end.value = data.fin;
+          form_show_event.txt_edit_elementos.value = data.elementos;
+          form_show_event.txt_edit_observaciones.value = data.observaciones;
+
+          form_show_event.txt_edit_hora.value = data.hora;
+          form_show_event.txt_edit_min.value = data.minutos;
           $("#modal_show_evento").modal("show");
         },
         error: function (respuesta) {

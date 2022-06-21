@@ -49,8 +49,8 @@
 <!-- /.content-wrapper -->
 
 <!-- Modal -->
-<?php include 'modal_crear_event.php' ?>
-<?php include 'modal_mostrar_event.php' ?>
+<?php include 'modal_crear_programacion.php' ?>
+<?php include 'modal_editar_programacion.php' ?>
 
 <!-- /.modal-dialog -->
 
@@ -83,6 +83,7 @@
             });
         }));
 
+
         $("#form_crear_event").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -106,11 +107,12 @@
             });
         }));
 
-        $('#txt_cliente').on('change', function() {
+
+        $('#cbxCliente').on('change', function() {
             //Ajax 
             var formData = new FormData();
             formData.append('task', 2);
-            formData.append('cliente', $("#txt_cliente").val());
+            formData.append('cliente', $("#cbxCliente").val());
             $.ajax({
                 url: "load_data.php", // URL
                 type: "POST", // Metodo HTTP
@@ -120,7 +122,7 @@
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    $("#txt_obra").html(data.select_obra)
+                    $("#cbxObra").html(data.select_obra)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
@@ -128,11 +130,12 @@
             });
         });
 
-        $('#edit_txt_cliente').on('change', function() {
+
+        $('#cbxClienteEditar').on('change', function() {
             //Ajax 
             var formData = new FormData();
             formData.append('task', 2);
-            formData.append('cliente', $("#edit_txt_cliente").val());
+            formData.append('cliente', $("#cbxClienteEditar").val());
             $.ajax({
                 url: "load_data.php", // URL
                 type: "POST", // Metodo HTTP
@@ -142,7 +145,7 @@
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    $("#edit_txt_obra").html(data.select_obra)
+                    $("#cbxObraEditar").html(data.select_obra)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
@@ -151,7 +154,6 @@
         });
     });
 </script>
-
 </body>
 
 </html>

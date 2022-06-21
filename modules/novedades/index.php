@@ -1,10 +1,8 @@
 <?php include '../../layout/validar_session2.php'; ?>
 <?php include '../../layout/head/head2.php'; ?>
 <?php include 'sidebar.php';
-
 $t1_terceros = new t1_terceros();
 $oportunidad_negocio = new oportunidad_negocio();
-
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -43,9 +41,9 @@ $oportunidad_negocio = new oportunidad_negocio();
             <div class="card-body">
                 <table id="table_novedades">
                     <thead>
-                        <th> N </th>
+                        <th>N</th>
                         <th>Fecha</th>
-                        <th> Codigo de la novedad </th>
+                        <th>Codigo de la novedad</th>
                         <th>Detalle</th>
                     </thead>
                     <tbody>
@@ -65,24 +63,23 @@ $oportunidad_negocio = new oportunidad_negocio();
 <?php include '../../layout/footer/footer2.php' ?>
 
 <script>
+    if ($.fn.dataTable.isDataTable('#table_novedades')) {
+        table_novedades = $('#table_novedades').DataTable();
+        table_novedades.destroy();
+    }
+    table_novedades = datatable_novedades();
+    setInterval(function() {
+        table_novedades.ajax.reload(null, false);
+    }, 5000);
 
-if ($.fn.dataTable.isDataTable('#table_novedades')) {
-            table_novedades = $('#table_novedades').DataTable();
-            table_novedades.destroy();
-        }
-        table_novedades = datatable_novedades();
-        setInterval(function() {
-            table_novedades.ajax.reload(null, false);
-        }, 5000);
+    $('#table_novedades tbody').on('click', 'button', function() {
+        var data = table_novedades.row($(this).parents('tr')).data();
+        var id_novedad = data['id'];
 
-        $('#table_novedades tbody').on('click', 'button', function() {
-            var data = table_novedades.row($(this).parents('tr')).data();
-            var id_novedad = data['id'];
+        window.location = "update/editar.php?id=" + id_novedad;
+    });
 
-            window.location = "update/editar.php?id=" + id_novedad;
-        });
-
-function datatable_novedades() {
+    function datatable_novedades() {
         var table_novedades = $('#table_novedades').DataTable({
             //"processing": true,
             //"scrollX": true,
@@ -90,7 +87,6 @@ function datatable_novedades() {
                 "url": "datatable_novedades.php",
                 'type': 'post',
                 "dataSrc": ""
-
             },
             "order": [
                 [0, 'desc']
@@ -123,7 +119,6 @@ function datatable_novedades() {
         table_novedades.ajax.reload();
         return table_novedades;
     } //  fin de la funcion
-
 </script>
 
 </body>

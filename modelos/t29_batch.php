@@ -460,7 +460,7 @@ function datatable_batch(){
 }
 
    function select_batch(){
-     $sql = "SELECT `ct29_Id`, `ct29_Remision`, `ct29_Fecha`, `ct29_Hora`,`ct29_CodigoFormula`, `ct29_NombreFormula`, `ct29_DescripcionFormula`,`ct29_MetrosCubicos`, `ct29_IdMixer`,`ct29_MixerDriver`,`ct29_IdCliente`,`ct29_NIT`,`ct29_DireccionCliente`,`ct29_IdObra`, `ct29_CodigoObra`,`ct29_DireccionObra`, `ct29_NumeroSello`,`ct29_OBSERVACIONES`,`ct29_IdPlanta`, `ct29_Asentamiento` FROM `ct29_batch`  ORDER BY `ct29_batch`.`ct29_Id` DESC LIMIT 1000";
+     $sql = "SELECT `ct29_Id`, `ct29_Remision`, `ct29_Fecha`, `ct29_Hora`,`ct29_CodigoFormula`, `ct29_NombreFormula`, `ct29_DescripcionFormula`,`ct29_MetrosCubicos`, `ct29_IdMixer`,`ct29_MixerDriver`,`ct29_IdCliente`,`ct29_NIT`,`ct29_DireccionCliente`,`ct29_IdObra`, `ct29_CodigoObra`,`ct29_DireccionObra`, `ct29_NumeroSello`,`ct29_OBSERVACIONES`,`ct29_IdPlanta`, `ct29_Asentamiento` FROM `ct29_batch`  ORDER BY `ct29_batch`.`ct29_Id` DESC LIMIT 5000";
      $stmt = $this->con->prepare($sql);
     //  $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
      if($result = $stmt->execute()){
