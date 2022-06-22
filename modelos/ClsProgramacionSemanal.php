@@ -57,7 +57,102 @@ class ClsProgramacionSemanal extends conexionPDO{
         }
         return false;
     }
-    //Listar el tipo de descargue
+    // Traer el nombre del cliente.
+    public function fntGetNombreCliente($id_cliente)
+    {
+        $this->id = $id_cliente;
+        // sentencia SQL
+        $sql = "SELECT ct1_RazonSocial FROM ct1_terceros WHERE ct1_IdTerceros = :id_cliente";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['ct1_RazonSocial'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    // Traer el nombre del obra.
+    public function fntGetNombreObra($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT ct5_NombreObra FROM `ct5_obras` WHERE `ct5_IdObras` = :id";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['ct5_NombreObra'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+    // Traer el nombre del producto.
+    public function fntGetNombreProducto($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT `ct4_Id_productos`, `ct4_Descripcion` FROM `ct4_productos` WHERE `ct4_Id_productos` = :id";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['ct4_Descripcion'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+    // Traer el nombre del tipo de descargue.
+    public function fntGetNombreTipoDescargue($id)
+    {
+        $this->id = $id;
+        $sql = "SELECT `descripcion` FROM `ct66_tipo_descargue` WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['descripcion'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+    // Listar el tipo de pedidos
     function fntOptionListaPedidosObj($id = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione el pedido</option>";
@@ -80,6 +175,56 @@ class ClsProgramacionSemanal extends conexionPDO{
         $this->PDO->closePDO();
         //resultado
         return $option;
+    }
+    // Obtener todas las programaciones desde el usuario de un cliente. Cambiar a cargar
+    function fntGetProgSemanalUsuarioObj($id_usuario)
+    {
+        $this->id = $id_usuario;
+        $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin`,`id_usuario` FROM `ct66_programacion_semanal` WHERE `id_usuario` = :id_usuario";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    if ($fila['status'] == 1 && $fila['id_usuario'] == $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 2 && $fila['id_usuario'] == $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'orange',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 3 && $fila['id_usuario'] == $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'red',
+                            'textcolor' => 'black'
+                        ];
+                    }
+                }
+                return $events;
+            }
+        }
+        return false;
     }
     // Listar el tipo de descargue
     function fntOptionTipoDescargueObj($id = null)
@@ -169,7 +314,7 @@ class ClsProgramacionSemanal extends conexionPDO{
             return false;
         }
     }
-    /**** OPTION SELECT CLIENTE ********/
+    // Select de los clientes
     function fntOptionClienteEditObj($id_cliente = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
@@ -197,7 +342,38 @@ class ClsProgramacionSemanal extends conexionPDO{
         //resultado
         return $option;
     }
-    /**** OPTION SELECT OBRA ********/
+    //Select de los clientes
+    function option_cliente_edit_cliente($id_usuario, $id_cliente = null)
+    {
+        $this->id = $id_usuario;
+        $option = "<option  selected='true'> Seleccione un Cliente</option>";
+        $sql = "SELECT ct1_terceros.ct1_IdTerceros, ct1_terceros.ct1_NumeroIdentificacion, ct1_terceros.ct1_RazonSocial 
+        FROM ct1_gestion_acceso 
+        INNER JOIN ct1_terceros ON ct1_gestion_acceso.id_cliente = ct1_terceros.ct1_IdTerceros 
+        WHERE id_residente = :id_usuario";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_cliente == $fila['ct1_IdTerceros']) {
+                $selection = " selected='true' ";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['ct1_IdTerceros'] . '" ' . $selection . ' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $option;
+    }
+    // Select de las obras
     function fntOptionObraEditObj($id_cliente, $id_obra = null)
     {
         $this->id = $id_cliente;
@@ -239,6 +415,7 @@ class ClsProgramacionSemanal extends conexionPDO{
                     $datos['cliente'] = $fila['id_cliente'];
                     $datos['obra'] = $fila['id_obra'];
                     $datos['id_pedido'] = $fila['id_pedido'];
+                    $datos['id_tipo_descargue'] = $fila['id_tipo_descargue'];
                     $datos['producto'] = $fila['id_producto'];
                     $datos['cantidad'] = $fila['cantidad'];
                     $datos['inicio'] = $fila['fecha_ini'];

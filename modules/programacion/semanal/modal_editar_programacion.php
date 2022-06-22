@@ -35,7 +35,6 @@
                             <div class="form-group">
                                 <label class=" control-label">Pedido</label>
                                 <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacion->option_lista_pedidos() ?>
                                 </select>
                             </div>
                         </div>
@@ -43,7 +42,6 @@
                             <div class="form-group">
                                 <label class="form-label">Producto</label>
                                 <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacion->option_producto_edit(); ?>
                                 </select>
                             </div>
                         </div>
@@ -82,7 +80,6 @@
                             <div class="form-group">
                                 <label class="form-label">Tipo de descargue:</label>
                                 <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacion->option_tipo_descargue(); ?>
                                 </select>
                             </div>
                         </div>

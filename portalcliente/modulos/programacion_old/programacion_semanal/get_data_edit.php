@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
@@ -6,44 +7,40 @@ require '../../../../vendor/autoload.php';
 //Se crea un objeto de la clase Eventos
 $eventos = new eventos();
 //Se crea un objeto de la clase Programacion
-$programacion = new programacion();
+$programacion = new ClsProgramacionSemanal();
+//id del usuario en sesion
+$id_usuario = $_SESSION['id_usuario'];
 //Validar que el id de la programacio exista
 if (isset($_POST['id'])) {
     //Cargar los datos de la programacion mediante su id
-    if (is_array($data = $programacion->cargar_data_programacion_v2($_POST['id']))) {
+    if (is_array($data = $programacion->fntCargarDataProgramacionObj($_POST['id']))) {
         //Se recorren los datos mediante el ciclo foreach
         foreach ($data as $key) {
-            //select de clientes mediante el id
-            $select_cliente  = $programacion->option_cliente_edit($key['cliente']);
-            //select de obras mediante el id
-            $select_obra  = $programacion->option_obra_edit($key['cliente'], $key['obra']);
-            //select de productos mediante el id
-            $select_producto  = $programacion->option_producto_edit($key['producto']);
-            //select de tipo de descargue mediante el id
-            $tipo_descargue = $programacion->option_tipo_descargue($key['id_tipo_descargue']);
-            //select de pedidos mediante el id
-            $pedidos = $programacion->option_lista_pedidos($key['id_pedido']);
-            //select de estados mediante el id
-            $select_estado = $programacion->option_estado_edit($key['estado']);
-            //frecuencia
-            $frecuencia = $key['frecuencia'];
-            //se sacan los dos primeros caracteres de frecuencia para obtener la hora aparte
-            $hora = substr($frecuencia, 0, 2);
-            //se sacan los dos ultimos caracteres de frecuencia para obtener los minutos aparte
-            $minutos = substr($frecuencia, 3, 5);
-            //volumen
-            $cantidad = $key['cantidad'];
-            //fecha inicio de la programacion
-            $inicio = $key['inicio'];
-            //fecha final de la programacion
-            $fin = $key['fin'];
-            //elementos
-            $elementos = $key['elementos_fundir'];
-            //observaciones
-            $observaciones = $key['observaciones'];
-            //si requiere o no bomba
+            //  select de clientes mediante el id
+            $objSelectCliente  = $programacion->option_cliente_edit_cliente($id_usuario, $key['cliente']);
+            //  select de obras mediante el id
+            $objSelectObra  = $programacion->fntOptionObraEditObj($key['cliente'], $key['obra']);
+            //  select de productos mediante el id
+            $objSelectProducto  = $programacion->fntOptionProductoEditObj($key['producto']);
+            //  select de tipo de descargue mediante el id
+            $objTipoDescargue = $programacion->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
+            //  select de pedidos mediante el id
+            $objPedidos = $programacion->fntOptionListaPedidosObj($key['id_pedido']);
+            //  frecuencia
+            $dtmFrecuencia = $key['frecuencia'];
+            //  volumen
+            $dblCantidad = $key['cantidad'];
+            //  fecha inicio de la programacion
+            $dtmInicio = $key['inicio'];
+            //  fecha final de la programacion
+            $dtmFin = $key['fin'];
+            //  elementos
+            $StrElementos = $key['elementos_fundir'];
+            //  observaciones
+            $StrObservaciones = $key['observaciones'];
+            //  si requiere o no bomba
             $requiere_bomba = $key['requiere_bomba'];
-            //si la variable de requiere bomba existe retorna un checkbox activado, de lo contrario aparecera desactivado.
+            //  si la variable de requiere bomba existe retorna un checkbox activado, de lo contrario aparecera desactivado.
             if ($requiere_bomba) {
                 $check_bomba = "<input class='form-check-input' type='checkbox' value='' id='requiere_bomba' name='requiere_bomba' checked>
                 <label class='form-check-label' for='flexCheckDefault'>
@@ -69,19 +66,16 @@ if (isset($_POST['id'])) {
 $datos = array(
     'post' => $_POST,
     'datos_consulta' => $data,
-    'select_cliente' => $select_cliente,
-    'select_obra' => $select_obra,
-    'select_producto' => $select_producto,
-    'tipo_descargue' => $tipo_descargue,
-    'pedidos' => $pedidos,
-    'select_estado' => $select_estado,
-    'cantidad' => $cantidad,
-    'frecuencia' => $frecuencia,
-    'hora' => $hora,
-    'minutos' => $minutos,
-    'inicio' => $inicio,
-    'fin' => $fin,
-    'elementos' => $elementos,
+    'select_cliente' => $objSelectCliente,
+    'select_obra' => $objSelectObra,
+    'select_producto' => $objSelectProducto,
+    'tipo_descargue' => $objTipoDescargue,
+    'pedidos' => $objPedidos,
+    'cantidad' => $dblCantidad,
+    'frecuencia' => $dtmFrecuencia,
+    'inicio' => $dtmInicio,
+    'fin' => $dtmFin,
+    'elementos' => $StrElementos,
     'observaciones' => $observaciones,
     'check_bomba' => $check_bomba,
     'color' => $color,

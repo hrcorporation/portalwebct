@@ -11,13 +11,13 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase Programacion
-$programacion = new ClsProgramacion();
+$programacion = new ClsProgramacionSemanal();
 //id del usuario que esta en sesion
 $id_usuario = $_SESSION['id_usuario'];
 //id del rol que esta en sesion
 $id_rol = $_SESSION['rol'];
 //Validar que la consulta salga exitosamente
-if ($data = $programacion->get_prog_semanal_por_usuario($id_usuario)) {
+if ($data = $programacion->fntGetProgSemanalUsuarioObj($id_usuario)) {
     $php_estado = true;
 }
 

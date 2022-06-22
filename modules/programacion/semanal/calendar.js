@@ -78,6 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
           $("#cbxClienteEditar").html(data.select_cliente);
           $("#cbxObraEditar").html(data.select_obra);
           $("#cbxProductoEditar").html(data.select_producto);
+          $("#cbxPedidoEditar").html(data.select_pedidos);
+          $("#cbxTipoDescargueEditar").html(data.select_tipo_descargue);
           form_show_event.txtCantEditar.value = data.cantidad;
           form_show_event.txtFrecuenciaEditar.value = data.frecuencia;
           form_show_event.txtElementosEditar.value = data.elementos;

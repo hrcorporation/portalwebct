@@ -1,11 +1,14 @@
 <?php
+session_start();
 header('Content-Type: application/json');
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 
 //se crea un objeto de la clase programacion
 $programacion = new ClsProgramacionSemanal();
+//Id del usuario en sesion
+$id_usuario = $_SESSION['id_usuario'];
 //Validar que el id de la programacion exista
 if (isset($_POST['id'])) {
     //listar los datos de la programacion mediante el parametro de el id de la programacion 
@@ -43,12 +46,12 @@ if (isset($_POST['id'])) {
             //Requiere bomba de concretolima (1. true, 0 false)
             $boolRequiereBomba = $key['requiere_bomba'];
             if ($boolRequiereBomba) {
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='' id='requiere_bomba' name='requiere_bomba' checked>
+                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='1' id='requiere_bomba' name='requiere_bomba' checked>
                 <label class='form-check-label' for='flexCheckDefault'>
                     Requiere bomba de concretolima
                 </label>";
             }else{
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='' id='requiere_bomba' name='requiere_bomba'> 
+                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='1' id='requiere_bomba' name='requiere_bomba'> 
                 <label class='form-check-label' for='flexCheckDefault'>
                     Requiere bomba de concretolima
                 </label>";
@@ -67,7 +70,7 @@ $datos = array(
     'select_cliente' => $objSelectCliente,
     'select_obra' => $objSelectObra,
     'select_producto' => $objSelectProducto,
-    'select_pedidos' => $objSelectPedidos,
+    'select_pedido' => $objSelectPedidos,
     'select_tipo_descargue' => $objSelectTipoDescargue,
     'cantidad' => $intCantidad,
     'inicio' => $dtmInicio,

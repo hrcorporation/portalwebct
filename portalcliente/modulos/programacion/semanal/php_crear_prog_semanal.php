@@ -3,46 +3,52 @@
 session_start();
 header('Content-Type: application/json');
 
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
-//Se crea un objeto de la clase programacion
-$programacion = new ClsProgramacionSemanal();
-// $clsProgramacionSemanal = new ClsProgramacionSemanal();
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
+
+$programacion = new ClsProgramacion();
+$clsProgramacionSemanal = new ClsProgramacionSemanal();
 
 $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
+date_default_timezone_set('America/Bogota');
+setlocale(LC_ALL, 'es_ES');
+setlocale(LC_TIME, 'es_ES');
+$hora_actual = new DateTime();
+$hora_hoy = $hora_actual->format("H:i:s");
+
 //Validar que el rol del funcionario sea el el administrador o los dos cargos de programacion(15 y 16)
-if ($_SESSION['rol_funcionario'] == 1 || $_SESSION['rol_funcionario'] == 15 || $_SESSION['rol_funcionario'] == 16) {
+if ($hora_hoy < "16:00:00") {
     //Validar que la variable de txt_cliente exista y no este vacia
     if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
         //id del usuario
         $intIdUsuario = $_SESSION['id_usuario'];
         //Nombre del usuario mediante el parametro del id del usuario
-        $StrNombreUsuario = $programacion->fntGetNombreCliente($intIdUsuario);
+        $StrNombreUsuario = $programacion->get_nombre_cliente($intIdUsuario);
         //Estado (1. Aprobado, 2. Pendiente, 3. Cancelado)
         $intEstado = 2;
         //id del cliente
         $intIdCliente = $_POST['cbxCliente'];
         //Nombre del cliente mediante el parametro del id del cliente
-        $StrNombreCliente = $programacion->fntGetNombreCliente($intIdCliente);
+        $StrNombreCliente = $programacion->get_nombre_cliente($intIdCliente);
         //id de la obra
         $intIdObra = $_POST['cbxObra'];
         //Nombre de la obra mediante el parametro del id de la obra.
-        $StrNombreObra = $programacion->fntGetNombreObra($intIdObra);
+        $StrNombreObra = $programacion->get_nombre_obra($intIdObra);
         //id del pedido
         $intPedido = $_POST['cbxPedido'];
         //id del producto.
         $intIdProducto = $_POST['cbxProducto'];
         //Nombre del producto mediante el parametro del id del producto.
-        $StrNombreProducto = $programacion->fntGetNombreProducto($intIdProducto);
+        $StrNombreProducto = $programacion->get_nombre_producto($intIdProducto);
         //Cantidad
         $decCantidad = $_POST['txtCant'];
         //Frecuencia
-        $dtmFrecuencia = $_POST['cbxFrecuencia'];
+        $dtmFrecuencia = $_POST['txtFrecuencia'];
         //Elementos a fundir
         $StrElementos = $_POST['txtElementos'];
         //Requiere bomba (si/no - true/false)
@@ -50,7 +56,7 @@ if ($_SESSION['rol_funcionario'] == 1 || $_SESSION['rol_funcionario'] == 15 || $
         //Tipo de descargue
         $intTipoDescargue = $_POST['cbxTipoDescargue'];
         //nombre del tipo de descargue
-        $StrNombreTipoDescargue = $programacion->fntGetNombreTipoDescargue($intTipoDescargue);
+        $StrNombreTipoDescargue = $programacion->get_nombre_tipo_descargue($intTipoDescargue);
         //metros de tuberia
         $decMetrosTuberia = $_POST['txtMetros'];
         //Observaciones

@@ -1,5 +1,5 @@
 <?php
-$ClsProgramacion = new ClsProgramacionSemanal();
+$ClsProgramacion = new ClsProgramacionDiaria();
 ?>
 <div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -15,70 +15,80 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxCliente" class="form-label">Cliente</label>
+                                <label for="cbxCliente" class="form-label">Cliente:</label>
                                 <select name="cbxCliente" id="cbxCliente" class="form-control select2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxObra" class="form-label">Obra</label>
+                                <label for="cbxObra" class="form-label">Obra:</label>
                                 <select name="cbxObra" id="cbxObra" class="form-control select2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-group">
-                                <label for="cbxPedido" class="form-label">Pedido</label>
+                                <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
                                     <?= $ClsProgramacion->fntOptionListaPedidosObj(); ?>
                                 </select>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <div class="form-group">
-                                <label for="cbxProducto" class="form-label">Producto</label>
+                                <label for="cbxProducto" class="form-label">Producto:</label>
                                 <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;">
                                     <?= $ClsProgramacion->fntOptionProductoEditObj(); ?>
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
+                        <div class="col-2">
                             <div class="form-group">
-                                <label for="txtCant" class="form-label">Volumen</label>
-                                <input name="txtCant" id="txtCant" class="form-control" style="width: 100%;" />
+                                <label for="txtCant" class="form-label">Volumen:</label>
+                                <input type="text" name="txtCant" id="txtCant" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
-                        <div class="col">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="txtFrecuencia" class="form-label">Frecuencia</label>
-                                <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
-                                    <option selected disabled value="">Seleccione...</option>
-                                    <option value="00:10:00">10 minutos</option>
-                                    <option value="00:20:00">20 minutos</option>
-                                    <option value="00:30:00">30 minutos</option>
-                                    <option value="00:40:00">40 minutos</option>
-                                    <option value="00:50:00">50 minutos</option>
-                                    <option value="01:00:00">1 hora</option>
-                                    <option value="01:10:00">1 hora y 10 minutos</option>
-                                    <option value="01:20:00">1 hora y 20 minutos</option>
-                                    <option value="01:30:00">1 hora y 30 minutos</option>
-                                    <option value="01:40:00">1 hora y 40 minutos</option>
-                                    <option value="01:50:00">1 hora y 50 minutos</option>
-                                    <option value="02:00:00">2 horas</option>
+                                <label class="form-label">Linea de despacho:</label>
+                                <select name="cbxLineaDespacho" id="cbxLineaDespacho" class="form-control select2" style="width: 100%;">
+                                    <?= $ClsProgramacion->fntOptionLineaDespachoObj()?>
                                 </select>
                             </div>
                         </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="txtHoraCargue" class="form-label">Hora de cargue:</label>
+                                <input type="time" name="txtHoraCargue" id="txtHoraCargue" class="form-control" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="txtHoraMixer" class="form-label">Hora en mixer en obra:</label>
+                                <input type="time" name="txtHoraMixer" id="txtHoraMixer" class="form-control" style="width: 100%;" />
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtElementos" class="form-label">Elementos a fundir</label>
-                                <input name="txtElementos" id="txtElementos" class="form-control" style="width: 100%;" />
+                                <label for="cbxMixer" class="form-label">Mixer:</label>
+                                <select name="cbxMixer" id="cbxMixer" class="form-control select2" style="width: 100%;">
+                                    <?= $ClsProgramacion->fntOptionVehiculoObj()?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="txtConductor" class="form-label">Conductor:</label>
+                                <select name="cbxConductor" id="cbxConductor" class="form-control select2" style="width: 100%;">
+                                    <?= $ClsProgramacion->fntOptionConductorObj()?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -105,15 +115,17 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtMetros" class="form-label">Metros de tuberia</label>
-                                <input name="txtMetros" id="txtMetros" class="form-control" style="width: 100%;" />
+                                <label for="cbxTipoBomba" class="form-label">Tipo de bomba:</label>
+                                <select name="cbxTipoBomba" id="cbxTipoBomba" class="form-control select2" style="width: 100%;">
+                                    <?= $ClsProgramacion->fntOptionTipoBombaObj()?>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtObservaciones" class="form-label">Observaciones</label>
+                                <label for="txtObservaciones" class="form-label">Observaciones:</label>
                                 <input name="txtObservaciones" id="txtObservaciones" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
@@ -121,13 +133,13 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtInicio" class="form-label">Fecha Inicial</label>
+                                <label for="txtInicio" class="form-label">Fecha Inicial:</label>
                                 <input type="text" name="txtInicio" id="txtInicio" class="form-control">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtFin" class="form-label">Fecha Final</label>
+                                <label for="txtFin" class="form-label">Fecha Final:</label>
                                 <input type="text" name="txtFin" id="txtFin" class="form-control">
                             </div>
                         </div>

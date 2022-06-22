@@ -1,7 +1,7 @@
 <?php
-$ClsProgramacion = new ClsProgramacionSemanal();
+    $ClsProgramacion = new ClsProgramacionDiaria();
 ?>
-<div class="modal fade" id="modal_cargar_programacion" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="modal_confirmar_programacion" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,12 +10,12 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_cargar_programacion" name="form_cargar_programacion" method="post">
+            <form id="form_confirmar_programacion" name="form_confirmar_programacion" method="post">
                 <div class="modal-body">
-                    <p>Da clic en el boton Aceptar para cargar todas las programaciones de la proxima semana.</p>
+                    <p>Da clic en el boton Confirmar para enviar y guardar la programación diaria.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnCargarProgramacion"> Aceptar </button>
+                    <button type="button" class="btn btn-primary" id="btnConfirmarProgramacion"> Si, confirmar </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
                 </div>
             </form>

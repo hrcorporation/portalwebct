@@ -38,7 +38,7 @@ switch ($rol_user) {
                 <div class="icon">
                     <i class="fas fa-calendar-day"></i>
                 </div>
-                <a class="small-box-footer" href="#">
+                <a class="small-box-footer" href="diaria/index.php">
                     Ir <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

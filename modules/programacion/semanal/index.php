@@ -94,7 +94,7 @@
         }));
 
 
-        $("#form_crear_event").on('submit', (function(e) {
+        $("#form_crear_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
                 url: "php_crear_prog_semanal.php",

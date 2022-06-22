@@ -1,5 +1,5 @@
 <?php
-$ClsProgramacion = new ClsProgramacionSemanal();
+    $ClsProgramacion = new ClsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -54,7 +54,7 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtFrecuencia" class="col-sm-2 form-label">Frecuencia</label>
-                                <input type="time" name="txtFrecuencia" id="txtFrecuencia" class="form-control" style="width: 100%;" />
+                                <input type="time" name="txtFrecuencia" id="txtFrecuencia" class="form-control" />
                             </div>
                         </div>
                     </div>

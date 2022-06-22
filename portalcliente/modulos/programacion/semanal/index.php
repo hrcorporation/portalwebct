@@ -35,6 +35,9 @@
                 </div>
             </div>
             <div class="card-body">
+                <button style="position: absolute; right: 71%; top: 9%" type="button" class="btn btn-success" id="btnAceptarProgramacion" data-toggle="modal" data-target="#modal_aceptar_programacion">
+                    Aceptar y enviar
+                </button>
                 <div id='calendar'></div>
             </div>
             <!-- /.card-body -->
@@ -51,6 +54,8 @@
 <!-- Modal -->
 <?php include 'modal_crear_programacion.php' ?>
 <?php include 'modal_editar_programacion.php' ?>
+<?php include 'modal_aceptar_programacion.php' ?>
+<?php include 'modal_alerta_cupo.php' ?>
 
 <!-- /.modal-dialog -->
 <?php include '../../../../layout/footer/footercliente4.php' ?>
@@ -59,7 +64,7 @@
 <script>
     $(function() {
         $('.select2').select2();
-        $("#form_mostrar_event").on('submit', (function(e) {
+        $("#form_mostrar_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
                 url: "php_editar_prog_semanal.php",
@@ -82,7 +87,7 @@
             });
         }));
 
-        $("#form_crear_event").on('submit', (function(e) {
+        $("#form_crear_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
                 url: "php_crear_prog_semanal.php",
@@ -127,11 +132,11 @@
             });
         });
 
-        $('#edit_txt_cliente').on('change', function() {
+        $('#cbxClienteEditar').on('change', function() {
             //Ajax 
             var formData = new FormData();
             formData.append('task', 2);
-            formData.append('cliente', $("#edit_txt_cliente").val());
+            formData.append('cliente', $("#cbxClienteEditar").val());
             $.ajax({
                 url: "load_data.php", // URL
                 type: "POST", // Metodo HTTP
@@ -141,7 +146,7 @@
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    $("#edit_txt_obra").html(data.select_obra)
+                    $("#cbxObraEditar").html(data.select_obra)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
