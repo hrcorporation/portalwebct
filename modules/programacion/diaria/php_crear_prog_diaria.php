@@ -8,7 +8,6 @@ require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacion
 $programacion = new ClsProgramacionDiaria();
-// $clsProgramacionSemanal = new ClsProgramacionSemanal();
 
 $log = false;
 $php_estado = false;

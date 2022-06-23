@@ -1,5 +1,5 @@
 <?php
-    $ClsProgramacion = new ClsProgramacionSemanal();
+$ClsProgramacion = new ClsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
@@ -37,7 +37,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="cbxProducto" class="form-label">Producto</label>
                                 <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;">
@@ -45,7 +45,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-2">
+                    </div>
+                    <div class="row">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="txtCant" class="form-label">Volumen</label>
                                 <input name="txtCant" id="txtCant" class="form-control" style="width: 100%;" />
@@ -53,8 +55,10 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtFrecuencia" class="col-sm-2 form-label">Frecuencia</label>
-                                <input type="time" name="txtFrecuencia" id="txtFrecuencia" class="form-control" />
+                                <label for="cbxFrecuencia" class="col-sm-2 form-label">Frecuencia</label>
+                                <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
+                                    <?= $ClsProgramacion->fntOptionFrecuenciaEditObj() ?>
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 <?php
-    $ClsProgramacion = new ClsProgramacionSemanal();
+    $ClsProgramacion = new ClsProgramacionDiaria();
 ?>
 <div class="modal fade" id="modal_informativo" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Informativo</h4>

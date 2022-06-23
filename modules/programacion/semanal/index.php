@@ -1,6 +1,12 @@
 <?php include '../../../layout/validar_session3.php' ?>
 <?php include '../../../layout/head/head3.php'; ?>
-<?php include 'sidebar.php' ?>
+<?php include 'sidebar.php'; ?>
+<?php $programacion = new ClsProgramacionSemanal(); ?>
+
+<?php $intCantidadProgramacionSinConfirmar = $programacion->fntContarProgramacionesSinConfirmarObj(); ?>
+<?php $intCantidadProgramacionPorCargar = $programacion->fntContarProgramacionesPorCargarObj(); ?>
+<?php $intCantidadProgramacionConfirmadas = $programacion->fntContarProgramacionesConfirmadasObj(); ?>
+<?php $intCantidadProgramacionEjecutadas = $programacion->fntContarProgramacionesEjecutadasObj(); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -36,10 +42,10 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <span class="badge bg-secondary">0 - Sin Confirmar</span>
-                    <span class="badge bg-warning">0 - Por Cargar</span>
-                    <span class="badge bg-info">0 - Confirmadas</span>
-                    <span class="badge bg-success">0 - Ejecutadas</span>
+                    <span class="badge bg-secondary"><?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar</span>
+                    <span class="badge bg-warning"><?= $intCantidadProgramacionPorCargar ?> - Por Cargar</span>
+                    <span class="badge bg-info"><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
+                    <span class="badge bg-success"><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
                     <button style="position: absolute; right: 75%; top: 12.2%" type="button" class="btn btn-success" id="btnConfirmarProgramacion" data-toggle="modal" data-target="#modal_cargar_programacion"> Confirmar </button>
                 </div>
                 <div id='calendar'></div>
@@ -58,9 +64,9 @@
 <!-- Modal -->
 <?php include 'modal_crear_programacion.php' ?>
 <?php include 'modal_editar_programacion.php' ?>
-<?php include 'modal_cargar_programacion.php'?>
-<?php include 'modal_confirmar_programacion.php'?>
-<?php include 'modal_informativo.php'?>
+<?php include 'modal_cargar_programacion.php' ?>
+<?php include 'modal_confirmar_programacion.php' ?>
+<?php include 'modal_informativo.php' ?>
 
 <!-- /.modal-dialog -->
 
@@ -68,8 +74,10 @@
 
 <script src="calendar.js"> </script>
 <script>
-    $(function() {
+    $(document).ready(function() {
         $('.select2').select2();
+    });
+    $(function() {
         $("#form_mostrar_event").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({

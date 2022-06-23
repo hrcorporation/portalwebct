@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       language: "es",
       left: "prev,next,today",
       center: "title",
-      right: "dayGridMonth,timeGridWeek,timeGridDay,",
+      right: "dayGridMonth,timeGridWeek,timeGridDay",
     },
     // Cargar Datos, los eventos del Calendario
     events: {
@@ -80,8 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
           $("#cbxProductoEditar").html(data.select_producto);
           $("#cbxPedidoEditar").html(data.select_pedidos);
           $("#cbxTipoDescargueEditar").html(data.select_tipo_descargue);
+          $("#cbxFrecuenciaEditar").html(data.select_frecuencia);
           form_show_event.txtCantEditar.value = data.cantidad;
-          form_show_event.txtFrecuenciaEditar.value = data.frecuencia;
           form_show_event.txtElementosEditar.value = data.elementos;
           form_show_event.txtInicioEditar.value = data.inicio;
           form_show_event.txtFinEditar.value = data.fin;
@@ -102,11 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
       form_editar.append(
-        "start",
+        "txtInicio",
         moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
       );
       form_editar.append(
-        "end",
+        "txtFin",
         moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
       );
       editar_event(form_editar, calendar);
@@ -118,11 +118,11 @@ document.addEventListener("DOMContentLoaded", function () {
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
       form_editar.append(
-        "start",
+        "txtInicio",
         moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
       );
       form_editar.append(
-        "end",
+        "txtFin",
         moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
       );
 

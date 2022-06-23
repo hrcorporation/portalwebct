@@ -1,7 +1,8 @@
 <?php
 
-class ClsProgramacionSemanal extends conexionPDO{
-    
+class ClsProgramacionSemanal extends conexionPDO
+{
+
     protected $con;
     // Iniciar Conexion
     public function __construct()
@@ -27,7 +28,7 @@ class ClsProgramacionSemanal extends conexionPDO{
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'green',
+                            'color' => 'gray',
                             'textcolor' => 'black'
                         ];
                     } else if ($fila['status'] == 2) {
@@ -47,7 +48,18 @@ class ClsProgramacionSemanal extends conexionPDO{
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'red',
+                            'color' => 'Light Blue',
+                            'textcolor' => 'black'
+                        ];
+                    }
+                    else if ($fila['status'] == 4) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
                             'textcolor' => 'black'
                         ];
                     }
@@ -152,6 +164,34 @@ class ClsProgramacionSemanal extends conexionPDO{
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+    // Select de los clientes
+    function fntOptionFrecuenciaEditObj($hora = null)
+    {
+        $option = "<option  selected='true' disabled='disabled'> Seleccione la frecuencia </option>";
+        $sql = "SELECT `id`,`hora`,`descripcion` FROM `ct66_frecuencia`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+
+        // Asignando Datos ARRAY => SQL
+        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $result = $stmt->execute();
+
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($hora == $fila['hora']) {
+                $selection = " selected='true' ";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['hora'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $option;
+    }
     // Listar el tipo de pedidos
     function fntOptionListaPedidosObj($id = null)
     {
@@ -169,7 +209,7 @@ class ClsProgramacionSemanal extends conexionPDO{
             } else {
                 $selection = "";
             }
-            $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' ." PEDIDO ". "(".$fila['fecha_vencimiento'].")" . ' </option>';
+            $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . " PEDIDO " . "(" . $fila['fecha_vencimiento'] . ")" . ' </option>';
         }
         //Cerrar Conexion
         $this->PDO->closePDO();
@@ -314,6 +354,24 @@ class ClsProgramacionSemanal extends conexionPDO{
             return false;
         }
     }
+    //Editar las fechas de la programacion semanal
+    function fntEditarProgramacionBool($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
+    {
+        $sql = "UPDATE `ct66_programacion_semanal` SET `fecha_ini`= :inicio ,`fecha_fin`= :fin, `fecha_modificacion` = :fecha_modificacion, `id_usuario_edit` = :id_usuario, `nombre_usuario_edit` = :nombre_usuario WHERE `id` = :id_programacion";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQ
+        $stmt->bindParam(':inicio', $start, PDO::PARAM_STR);
+        $stmt->bindParam(':fin', $end, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_modificacion', $fecha_modificacion, PDO::PARAM_STR);
+        $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
     // Select de los clientes
     function fntOptionClienteEditObj($id_cliente = null)
     {
@@ -343,7 +401,7 @@ class ClsProgramacionSemanal extends conexionPDO{
         return $option;
     }
     //Select de los clientes
-    function option_cliente_edit_cliente($id_usuario, $id_cliente = null)
+    function fntOptionClienteEditCliente($id_usuario, $id_cliente = null)
     {
         $this->id = $id_usuario;
         $option = "<option  selected='true'> Seleccione un Cliente</option>";
@@ -370,6 +428,37 @@ class ClsProgramacionSemanal extends conexionPDO{
         //Cerrar Conexion
         $this->PDO->closePDO();
 
+        //resultado
+        return $option;
+    }
+    //Select de las Obras
+    /**** OPTION SELECT OBRA ********/
+    function fntOptionObraEditCliente($id_cliente, $id_usuario, $id_obra = null)
+    {
+        $this->id_cliente = $id_cliente;
+        $this->id_usuario = $id_usuario;
+        $option = "<option  selected='true' disabled='disabled'> Seleccione una Obra</option>";
+        $sql = "SELECT ct5_obras.ct5_IdObras, ct5_obras.ct5_NombreObra 
+        FROM ct1_gestion_acceso 
+        INNER JOIN ct5_obras ON ct1_gestion_acceso.id_obra = ct5_obras.ct5_IdObras 
+        WHERE ct5_obras.ct5_IdTerceros = :id_cliente AND ct1_gestion_acceso.id_residente = :id_usuario";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_usuario', $this->id_usuario, PDO::PARAM_INT);
+        // Ejecutar 
+        $result = $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_obra == $fila['ct5_IdObras']) {
+                $selection = "selected='true'";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['ct5_IdObras'] . '" ' . $selection . ' >' . $fila['ct5_NombreObra']  . ' </option>';
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
         //resultado
         return $option;
     }
@@ -433,5 +522,77 @@ class ClsProgramacionSemanal extends conexionPDO{
             }
         }
         return false;
+    }
+    //Contar los datos de las programaciones semanales con estado de Sin confirmar
+    function fntContarProgramacionesSinConfirmarObj()
+    {
+        $sql = "SELECT COUNT(id) as cantidad FROM `ct66_programacion_semanal` WHERE `status` = 1";
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['cantidad'];
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+    //Contar los datos de las programaciones semanales con estado de Por cargar
+    function fntContarProgramacionesPorCargarObj()
+    {
+        $sql = "SELECT COUNT(id) as cantidad FROM `ct66_programacion_semanal` WHERE `status` = 2";
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['cantidad'];
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+    //Contar los datos de las programaciones semanales con estado de Confirmada
+    function fntContarProgramacionesConfirmadasObj()
+    {
+        $sql = "SELECT COUNT(id) as cantidad FROM `ct66_programacion_semanal` WHERE `status` = 3";
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['cantidad'];
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+    //Contar los datos de las programaciones semanales con estado de Por cargar
+    function fntContarProgramacionesEjecutadasObj()
+    {
+        $sql = "SELECT COUNT(id) as cantidad FROM `ct66_programacion_semanal` WHERE `status` = 4";
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['cantidad'];
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
     }
 }

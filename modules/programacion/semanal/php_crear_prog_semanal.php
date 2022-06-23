@@ -60,7 +60,7 @@ if ($_SESSION['rol_funcionario'] == 1 || $_SESSION['rol_funcionario'] == 15 || $
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFin'];
         //Validar que tome bien los parametros y guarde correctamente la programacion
-        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+        if ($programacion->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
             //Si pasa la validacion se retorna verdadero(true)
             $php_estado = true;
         } else {

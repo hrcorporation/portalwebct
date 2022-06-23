@@ -11,11 +11,11 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase programacion
-$programacion = new ClsProgramacionSemanal();
+$programacion = new ClsProgramacionDiaria();
 //id del usuario en sesion
 $id_usuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario
-$nombre_usuario = $programacion->fntGetNombreCliente($id_usuario);
+$nombre_usuario = $programacion->fntGetNombreClienteObj($id_usuario);
 //id del rol del usuario en sesion
 $id_rol = $_SESSION['rol_funcionario'];
 //Se crea un objeto de la clase Datetime

@@ -1,7 +1,7 @@
-<?php include '../../layout/validar_session2.php' ?>
+<?php include '../../layout/validar_session2.php'; ?>
 <?php include '../../layout/head/head2.php'; ?>
-<?php include 'sidebar.php' ?>
 <?php require '../../librerias/autoload.php';
+include 'sidebar.php';
 require '../../modelos/autoload.php';
 require '../../vendor/autoload.php'; ?>
 

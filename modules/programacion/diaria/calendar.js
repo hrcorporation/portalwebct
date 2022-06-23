@@ -80,13 +80,16 @@ document.addEventListener("DOMContentLoaded", function () {
             $("#cbxProductoEditar").html(data.select_producto);
             $("#cbxPedidoEditar").html(data.select_pedidos);
             $("#cbxTipoDescargueEditar").html(data.select_tipo_descargue);
+            $("#cbxLineaDespachoEditar").html(data.select_linea_produccion);
+            $("#cbxMixerEditar").html(data.select_mixer);
+            $("#cbxConductorEditar").html(data.select_conductor);
+            $("#cbxTipoBombaEditar").html(data.select_tipo_bomba);
+            form_show_event.txtHoraCargueEditar.value = data.hora_cargue;
+            form_show_event.txtHoraMixerEditar.value = data.hora_mixer_obra;
             form_show_event.txtCantEditar.value = data.cantidad;
-            form_show_event.txtFrecuenciaEditar.value = data.frecuencia;
-            form_show_event.txtElementosEditar.value = data.elementos;
             form_show_event.txtInicioEditar.value = data.inicio;
             form_show_event.txtFinEditar.value = data.fin;
             form_show_event.txtObservacionesEditar.value = data.observaciones;
-            form_show_event.txtMetrosEditar.value = data.metros;
             $("#bomba").html(data.check_bomba);
             $("#modal_show_evento").modal("show");
           },
@@ -102,11 +105,11 @@ document.addEventListener("DOMContentLoaded", function () {
         form_editar.append("task", 1);
         form_editar.append("id", info.event.id);
         form_editar.append(
-          "start",
+          "txtInicio",
           moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
         );
         form_editar.append(
-          "end",
+          "txtFin",
           moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
         );
         editar_event(form_editar, calendar);
@@ -118,11 +121,11 @@ document.addEventListener("DOMContentLoaded", function () {
         form_editar.append("task", 1);
         form_editar.append("id", info.event.id);
         form_editar.append(
-          "start",
+          "txtInicio",
           moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
         );
         form_editar.append(
-          "end",
+          "txtFin",
           moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
         );
   
@@ -159,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   function editar_event(form_editar, calendar) {
     $.ajax({
-      url: "php_editar_prog_semanal.php",
+      url: "php_editar_prog_diaria.php",
       type: "POST",
       data: form_editar,
       processData: false,

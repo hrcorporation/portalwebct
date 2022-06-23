@@ -48,7 +48,7 @@ if ($hora_hoy < "16:00:00") {
         //Cantidad
         $decCantidad = $_POST['txtCant'];
         //Frecuencia
-        $dtmFrecuencia = $_POST['txtFrecuencia'];
+        $dtmFrecuencia = $_POST['cbxFrecuencia'];
         //Elementos a fundir
         $StrElementos = $_POST['txtElementos'];
         //Requiere bomba (si/no - true/false)
