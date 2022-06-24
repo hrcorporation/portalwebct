@@ -1,12 +1,12 @@
 <?php include '../../../layout/validar_session3.php' ?>
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php'; ?>
-<?php $programacion = new ClsProgramacionSemanal(); ?>
+<?php $objProgramacionSemanal = new ClsProgramacionSemanal(); ?>
 
-<?php $intCantidadProgramacionSinConfirmar = $programacion->fntContarProgramacionesSinConfirmarObj(); ?>
-<?php $intCantidadProgramacionPorCargar = $programacion->fntContarProgramacionesPorCargarObj(); ?>
-<?php $intCantidadProgramacionConfirmadas = $programacion->fntContarProgramacionesConfirmadasObj(); ?>
-<?php $intCantidadProgramacionEjecutadas = $programacion->fntContarProgramacionesEjecutadasObj(); ?>
+<?php $intCantidadProgramacionSinConfirmar = $objProgramacionSemanal->fntContarProgramacionesSinConfirmarObj(); ?>
+<?php $intCantidadProgramacionPorCargar = $objProgramacionSemanal->fntContarProgramacionesPorCargarObj(); ?>
+<?php $intCantidadProgramacionConfirmadas = $objProgramacionSemanal->fntContarProgramacionesConfirmadasObj(); ?>
+<?php $intCantidadProgramacionEjecutadas = $objProgramacionSemanal->fntContarProgramacionesEjecutadasObj(); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

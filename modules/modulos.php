@@ -189,7 +189,7 @@ switch ($rol_user) {
 switch ($rol_user) {
     case 1:
     case 15:
-        //case 16:
+    case 16:
     case 22:
 ?>
         <div class="col-4" id="">
@@ -200,12 +200,44 @@ switch ($rol_user) {
                     </div>
                 </div>
                 <div class="inner">
-                    <h3>Programacion</H3>
+                    <h3>Programaciones</H3>
                 </div>
                 <div class="icon">
                     <i class="far fa-list-alt"></i>
                 </div>
                 <a class="small-box-footer" href="programacion/">
+                    Ir <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+<?php
+        break;
+}
+?>
+
+<?php
+
+switch ($rol_user) {
+    case 1:
+    case 15:
+    case 16:
+    case 22:
+?>
+        <div class="col-4" id="">
+            <div class="small-box bg-info">
+                <div class="ribbon-wrapper ribbon-lg">
+                    <div class="ribbon bg-warning">
+                        proximamente
+                    </div>
+                </div>
+                <div class="inner">
+                    <h3>Cartera</H3>
+                </div>
+                <div class="icon">
+                    <i class="far fa-list-alt"></i>
+                </div>
+                <a class="small-box-footer" href="consignaciones/">
                     Ir <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

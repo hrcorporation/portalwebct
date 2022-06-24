@@ -1,5 +1,5 @@
 <?php
-$ClsProgramacion = new ClsProgramacionSemanal();
+$ClsProgramacionSemanal = new ClsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -33,7 +33,7 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacion->fntOptionListaPedidosObj(); ?>
+                                    <?= $ClsProgramacionSemanal->fntOptionListaPedidosObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -41,7 +41,7 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="cbxProducto" class="form-label">Producto:</label>
                                 <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacion->fntOptionProductoEditObj(); ?>
+                                    <?= $ClsProgramacionSemanal->fntOptionProductoEditObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="txtFrecuencia" class="form-label">Frecuencia:</label>
                                 <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacion->fntOptionFrecuenciaEditObj()?>
+                                    <?= $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj()?>
                                 </select>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
                                 <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacion->fntOptionTipoDescargueObj(); ?>
+                                    <?= $ClsProgramacionSemanal->fntOptionTipoDescargueObj(); ?>
                                 </select>
                             </div>
                         </div>

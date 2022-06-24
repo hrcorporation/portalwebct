@@ -1,8 +1,8 @@
 <?php include '../../../layout/validar_session3.php'; ?>
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php'; ?>
-<?php $programacion = new ClsProgramacionDiaria(); //Se crea un objeto de la clase programacion 
-?>
+<?php $programacionDiaria = new ClsProgramacionDiaria(); //Se crea un objeto de la clase programacion ?>
+<?php $intCantidadProgramacionSinConfirmar = $programacionDiaria->fntContarProgramacionesSinConfirmarObj(); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -43,16 +43,14 @@
                 <div class="row">
                     <div class="col-2">
                         <div class="form-group">
-                            <button style="position: absolute; right: 20%; top: 40%" type="button" class="btn btn-secondary" id="btnConfirmarProgramacion" data-toggle="modal" data-target="#modal_informativo">
-                                Sin Confirmar
-                            </button>
+                        <span style="position: absolute; right: 20%; top: 40%" class="badge bg-secondary"><?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar</span>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group">
                             <label class="form-label">Linea de despacho</label>
                             <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
-                                <?= $programacion->fntOptionLineaDespachoObj() ?>
+                                <?= $programacionDiaria->fntOptionLineaDespachoObj() ?>
                             </select>
                         </div>
                     </div>

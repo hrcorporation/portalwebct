@@ -1,36 +1,27 @@
 <?php
-
 session_start();
 header('Content-Type: application/json');
-
 require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php'; 
-
+require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacionSemanal
-$programacion = new ClsProgramacionSemanal();
-
-$php_estado = false;
-$errores = "";
-$resultado = "";
-$select_obras ="";
-
-if ($_POST['task'] == 1){
-    $select_cliente  = $programacion->fntOptionClienteEditObj();
+$objProgramacionSemanal = new ClsProgramacionSemanal();
+$boolPhpEstado = false;
+$objSelectObras = "";
+if ($_POST['task'] == 1) {
+    $objSelectCliente  = $objProgramacionSemanal->fntOptionClienteEditObj();
     $datos = array(
-        'select_cliente' => $select_cliente,
+        'select_cliente' => $objSelectCliente,
     );
-
-}elseif($_POST['task'] == 2){
-    $id_cliente = $_POST['cliente'];
+} elseif ($_POST['task'] == 2) {
+    $intIdCliente = $_POST['cliente'];
     //Buscar el id de la obra filtrandola con el id del cliente.
-    $select_obras = $programacion->fntOptionObraEditObj($id_cliente);
-    $php_estado = true; 
+    $objSelectObras = $objProgramacionSemanal->fntOptionObraEditObj($intIdCliente);
+    $boolPhpEstado = true;
 
     $datos = array(
-        'estado' => $php_estado,
-        'select_obra' => $select_obras,
+        'estado' => $boolPhpEstado,
+        'select_obra' => $objSelectObras,
     );
 }
-
 echo json_encode($datos, JSON_FORCE_OBJECT);

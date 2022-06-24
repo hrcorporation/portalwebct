@@ -3,33 +3,32 @@ header('Content-Type: application/json');
 require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
-
 //se crea un objeto de la clase programacion
-$programacion = new ClsProgramacionDiaria();
+$ClsProgramacionSemanal = new ClsProgramacionDiaria();
 //Validar que el id de la programacion exista
 if (isset($_POST['id'])) {
     //listar los datos de la programacion mediante el parametro de el id de la programacion 
-    if (is_array($data = $programacion->fntCargarDataProgramacionDiariaObj($_POST['id']))) {
+    if (is_array($data = $ClsProgramacionSemanal->fntCargarDataProgramacionDiariaObj($_POST['id']))) {
         //Recorremos los datos mediante un foreach usando la variable key para cada dato
         foreach ($data as $key) {
             //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion
-            $objSelectCliente  = $programacion->fntOptionClienteEditObj($key['cliente']);
+            $objSelectCliente  = $ClsProgramacionSemanal->fntOptionClienteEditObj($key['cliente']);
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
-            $objSelectObra  = $programacion->fntOptionObraEditObj($key['cliente'], $key['obra']);
+            $objSelectObra  = $ClsProgramacionSemanal->fntOptionObraEditObj($key['cliente'], $key['obra']);
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
-            $objSelectProducto  = $programacion->fntOptionProductoEditObj($key['producto']);
+            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoEditObj($key['producto']);
             //mostrar el select de los pedidos
-            $objSelectPedidos = $programacion->fntOptionListaPedidosObj($key['id_pedido']);
+            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['id_pedido']);
             //mostrar el select del lineas de despacho
-            $objSelectLineasDespacho = $programacion->fntOptionLineaDespachoObj($key['id_linea_produccion']);
+            $objSelectLineasDespacho = $ClsProgramacionSemanal->fntOptionLineaDespachoObj($key['id_linea_produccion']);
             //mostrar el select de las mixer en obra
-            $objSelectMixer = $programacion->fntOptionVehiculoObj($key['id_mixer']);
+            $objSelectMixer = $ClsProgramacionSemanal->fntOptionVehiculoObj($key['id_mixer']);
             //mostrar el select de los conductores
-            $objSelectConductores = $programacion->fntOptionConductorObj($key['id_conductor']);
+            $objSelectConductores = $ClsProgramacionSemanal->fntOptionConductorObj($key['id_conductor']);
             //mostrar el select del tipo de descargue
-            $objSelectTipoDescargue = $programacion->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
+            $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             //mostrar el select del tipo de bomba
-            $objSelectTipoBomba = $programacion->fntOptionTipoBombaObj($key['id_tipo_bomba']);
+            $objSelectTipoBomba = $ClsProgramacionSemanal->fntOptionTipoBombaObj($key['id_tipo_bomba']);
             //Hora cargue
             $dtmHoraCargue = $key['hora_cargue'];
             //Hora mixer obra
@@ -51,21 +50,21 @@ if (isset($_POST['id'])) {
             if ($boolRequiereBomba) {
                 $objCheckBomba = "<input class='form-check-input' type='checkbox' value='' id='requiere_bomba' name='requiere_bomba' checked>
                 <label class='form-check-label' for='flexCheckDefault'>
-                    Requiere bomba de concretolima
+                    Requiere bomba de Concre Tolima
                 </label>";
             } else {
                 $objCheckBomba = "<input class='form-check-input' type='checkbox' value='' id='requiere_bomba' name='requiere_bomba'> 
                 <label class='form-check-label' for='flexCheckDefault'>
-                    Requiere bomba de concretolima
+                    Requiere bomba de Concre Tolima
                 </label>";
             }
         }
     } else {
+        $data = false;
     }
 } else {
     $data = false;
 }
-
 $datos = array(
     'post' => $_POST,
     'datos_consulta' => $data,
@@ -88,5 +87,4 @@ $datos = array(
     'color' => $StrColor,
     'textcolor' => $StrTextColor
 );
-
 echo json_encode($datos, JSON_FORCE_OBJECT);

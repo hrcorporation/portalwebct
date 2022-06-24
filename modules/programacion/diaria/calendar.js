@@ -32,12 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
         //color: 'yellow',   // a non-ajax option
         //textColor: 'black' // a non-ajax option
       },
-      // datos eventos
+      // datos Programacion
       //clik dia
       //=======================================================================================================================
-      // Crear Eventos
+      // Crear Programacion
       select: function (event) {
-        console.log("Crear Evento");
+        console.log("Crear Programacion");
         form_crear_programacion.reset();
         $("#txtInicio").val(moment(event.startStr).format("YYYY-MM-DD HH:mm:ss"));
         $("#txtFin").val(moment(event.endStr).format("YYYY-MM-DD HH:mm:ss"));
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#modal_crear_evento").modal("show");
       },
       //=======================================================================================================================
-      // Accion Click Encima del Evento
+      // Accion Click Encima de la Programacion
       eventClick: function (info) {
         console.log("Click Evento");
         $.ajax({
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       },
       //=======================================================================================================================
-      // Accion Mover el Evento
+      // Accion Mover la Programacion
       eventDrop: function (info) {
         var form_editar = new FormData();
         form_editar.append("task", 1);
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         editar_event(form_editar, calendar);
       },
       //=======================================================================================================================
-      // Accion cambiar el tamaño el Evento
+      // Accion cambiar el tamaño la Programacion
       eventResize: function (info) {
         var form_editar = new FormData();
         form_editar.append("task", 1);
@@ -134,8 +134,8 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
     calendar.render();
-    // Boton Actualizar Evento
-    // Boton Actualizar Evento
+    // Boton Actualizar Programacion
+    // Boton Actualizar Programacion
     document.getElementById("btnEliminar").addEventListener("click", function () {
       const datos_form = new FormData(form_show_event);
       var form_editar = new FormData();

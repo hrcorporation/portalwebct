@@ -5,25 +5,25 @@ require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
 //se crea un objeto de la clase programacion
-$programacion = new ClsProgramacionSemanal();
+$ClsProgramacionSemanal = new ClsProgramacionSemanal();
 //Validar que el id de la programacion exista
 if (isset($_POST['id'])) {
     //listar los datos de la programacion mediante el parametro de el id de la programacion 
-    if (is_array($data = $programacion->fntCargarDataProgramacionObj($_POST['id']))) {
+    if (is_array($data = $ClsProgramacionSemanal->fntCargarDataProgramacionObj($_POST['id']))) {
         //Recorremos los datos mediante un foreach usando la variable key para cada dato
         foreach ($data as $key) {
             //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion
-            $objSelectCliente  = $programacion->fntOptionClienteEditObj($key['cliente']);
+            $objSelectCliente  = $ClsProgramacionSemanal->fntOptionClienteEditObj($key['cliente']);
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
-            $objSelectObra  = $programacion->fntOptionObraEditObj($key['cliente'], $key['obra']);
+            $objSelectObra  = $ClsProgramacionSemanal->fntOptionObraEditObj($key['cliente'], $key['obra']);
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
-            $objSelectProducto  = $programacion->fntOptionProductoEditObj($key['producto']);
+            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoEditObj($key['producto']);
             //mostrar el select de los pedidos
-            $objSelectPedidos = $programacion->fntOptionListaPedidosObj($key['id_pedido']);
+            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['id_pedido']);
             //mostrar el select del tipo de descargue
-            $objSelectTipoDescargue = $programacion->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
+            $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             //mostrar el select del listado de las frecuencias
-            $objSelectFrecuencua = $programacion->fntOptionFrecuenciaEditObj($key['frecuencia']);
+            $objSelectFrecuencua = $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
             //Cantidad / Volumen
             $intCantidad = $key['cantidad'];
             //Fecha inicial de la programacion

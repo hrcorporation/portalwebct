@@ -16,8 +16,6 @@ $programacion = new ClsProgramacionDiaria();
 $id_usuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario
 $nombre_usuario = $programacion->fntGetNombreClienteObj($id_usuario);
-//id del rol del usuario en sesion
-$id_rol = $_SESSION['rol_funcionario'];
 //Se crea un objeto de la clase Datetime
 $fecha_actual = new DateTime();
 //Se obtiene la fecha actual con el formato completo
@@ -25,18 +23,15 @@ $hoy = $fecha_actual->format("Y-m-d H:i:s");
 if (isset($_POST['task'])) {
     //validar que la variable task tenga el valor de 1
     if ($_POST['task'] == 1) {
-        //Validacion de roles 
-        if ($id_rol == 1 || $id_rol == 15 || $id_rol == 16) {
-            //id de la programacion
-            $id = $_POST['id'];
-            //Fecha inicio de la programacion
-            $inicio = $_POST['txtInicio'];
-            //Fecha final de la programacion
-            $fin = $_POST['txtFin'];
-            //Validar que modifique correctamente la programacion (fechas)
-            if ($programacion->fntEditarProgramacionBool($id, $inicio, $fin, $hoy, $id_usuario, $nombre_usuario)) {
-                $php_estado = true;
-            }
+        //id de la programacion
+        $id = $_POST['id'];
+        //Fecha inicio de la programacion
+        $inicio = $_POST['txtInicio'];
+        //Fecha final de la programacion
+        $fin = $_POST['txtFin'];
+        //Validar que modifique correctamente la programacion (fechas)
+        if ($programacion->fntEditarProgramacionBool($id, $inicio, $fin, $hoy, $id_usuario, $nombre_usuario)) {
+            $php_estado = true;
         }
     }
 }

@@ -9,6 +9,24 @@ class ClsProgramacionDiaria extends conexionPDO
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
+    //Contar los datos de las programaciones diarias con estado de Sin confirmar
+    function fntContarProgramacionesSinConfirmarObj()
+    {
+        $sql = "SELECT COUNT(id) as cantidad FROM `ct66_progamacion_diaria` WHERE `status` = 1";
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['cantidad'];
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
     // Obtener todas las programaciones
     public function fntGetProgDiariaObj()
     {

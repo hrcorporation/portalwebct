@@ -11,9 +11,9 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //se crea un objeto de la clase programacion.
-$programacion = new ClsProgramacionDiaria();
+$ClsProgramacionSemanal = new ClsProgramacionDiaria();
 //Se listan todas las programaciones.
-$data = $programacion->fntGetProgDiariaObj();
+$data = $ClsProgramacionSemanal->fntGetProgDiariaObj();
 $php_estado = true;
 //Datos de los arreglos.
 $datos = array(
