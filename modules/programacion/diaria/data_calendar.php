@@ -7,19 +7,19 @@ require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
 $log = false;
-$php_estado = false;
-$php_error[] = "";
-$resultado = "";
+$boolPhpEstado = false;
+$arrayPhpError[] = "";
+$StrResultado = "";
 //se crea un objeto de la clase programacion.
 $ClsProgramacionSemanal = new ClsProgramacionDiaria();
 //Se listan todas las programaciones.
-$data = $ClsProgramacionSemanal->fntGetProgDiariaObj();
-$php_estado = true;
+$objData = $ClsProgramacionSemanal->fntGetProgDiariaObj();
+$boolPhpEstado = true;
 //Datos de los arreglos.
 $datos = array(
-    'estado' => $php_estado,
-    'errores' => $php_error,
-    'result' => $resultado,
+    'estado' => $boolPhpEstado,
+    'errores' => $arrayPhpError,
+    'result' => $StrResultado,
 );
 //print json_encode($datos, JSON_FORCE_OBJECT);
-print json_encode($data, JSON_UNESCAPED_UNICODE);
+print json_encode($objData, JSON_UNESCAPED_UNICODE);

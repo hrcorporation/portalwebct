@@ -51,8 +51,7 @@ class ClsProgramacionSemanal extends conexionPDO
                             'color' => 'Light Blue',
                             'textcolor' => 'black'
                         ];
-                    }
-                    else if ($fila['status'] == 4) {
+                    } else if ($fila['status'] == 4) {
                         $events[] = [
                             "id" => $fila['id'],
                             'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
@@ -70,7 +69,7 @@ class ClsProgramacionSemanal extends conexionPDO
         return false;
     }
     // Traer el nombre del cliente.
-    public function fntGetNombreCliente($id_cliente)
+    public function fntGetNombreClienteObj($id_cliente)
     {
         $this->id = $id_cliente;
         // sentencia SQL
@@ -401,7 +400,7 @@ class ClsProgramacionSemanal extends conexionPDO
         return $option;
     }
     //Select de los clientes
-    function fntOptionClienteEditCliente($id_usuario, $id_cliente = null)
+    function fntOptionClienteEditClienteObj($id_usuario, $id_cliente = null)
     {
         $this->id = $id_usuario;
         $option = "<option  selected='true'> Seleccione un Cliente</option>";
@@ -433,7 +432,7 @@ class ClsProgramacionSemanal extends conexionPDO
     }
     //Select de las Obras
     /**** OPTION SELECT OBRA ********/
-    function fntOptionObraEditCliente($id_cliente, $id_usuario, $id_obra = null)
+    function fntOptionObraEditClienteObj($id_cliente, $id_usuario, $id_obra = null)
     {
         $this->id_cliente = $id_cliente;
         $this->id_usuario = $id_usuario;

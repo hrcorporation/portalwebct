@@ -15,13 +15,13 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     //id del usuario
     $intIdUsuario = $_SESSION['id_usuario'];
     //Nombre del usuario mediante el parametro del id del usuario
-    $StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreCliente($intIdUsuario);
-    //Estado (1. Aprobado, 2. Pendiente, 3. Cancelado)
+    $StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
+    //Estado
     $intEstado = 2;
     //id del cliente
     $intIdCliente = $_POST['cbxCliente'];
     //Nombre del cliente mediante el parametro del id del cliente
-    $StrNombreCliente = $ClsProgramacionSemanal->fntGetNombreCliente($intIdCliente);
+    $StrNombreCliente = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
     //id de la obra
     $intIdObra = $_POST['cbxObra'];
     //Nombre de la obra mediante el parametro del id de la obra.
@@ -38,8 +38,12 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     $dtmFrecuencia = $_POST['cbxFrecuencia'];
     //Elementos a fundir
     $StrElementos = $_POST['txtElementos'];
-    //Requiere bomba (si/no - true/false)
-    $bolRequiereBomba = $_POST['chkRequiereBomba'];
+    //Validar que la variable exista, si cumple la variable se le asigna true, de lo contrario seria false.
+    if (isset($_POST['chkRequiereBomba'])) {
+        $bolRequiereBomba = true;
+    } else {
+        $bolRequiereBomba = false;
+    }
     //Tipo de descargue
     $intTipoDescargue = $_POST['cbxTipoDescargue'];
     //nombre del tipo de descargue

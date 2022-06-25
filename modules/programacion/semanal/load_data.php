@@ -13,7 +13,8 @@ if ($_POST['task'] == 1) {
     $datos = array(
         'select_cliente' => $objSelectCliente,
     );
-} elseif ($_POST['task'] == 2) {
+} 
+elseif ($_POST['task'] == 2) {
     $intIdCliente = $_POST['cliente'];
     //Buscar el id de la obra filtrandola con el id del cliente.
     $objSelectObras = $objProgramacionSemanal->fntOptionObraEditObj($intIdCliente);

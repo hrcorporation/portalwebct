@@ -13,7 +13,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
 //id del usuario en sesion
 $intIdUsuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario
-$StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreCliente($id_usuario);
+$StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
 //Se crea un objeto de la clase Datetime
 $dtmFechaActual = new DateTime();
 //Se obtiene la fecha actual con el formato completo

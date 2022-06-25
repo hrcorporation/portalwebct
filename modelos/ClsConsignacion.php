@@ -9,7 +9,8 @@ class ClsConsignacion extends conexionPDO
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
-    //Listar todos los pedidos.
+
+    // Listar todos los pedidos.
     public function get_consignaciones()
     {
         $sql = "SELECT `id`, `estado`, `fecha_consignacion`, `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones` FROM `ct66_consignacion`";
@@ -24,7 +25,7 @@ class ClsConsignacion extends conexionPDO
                     $datos['estado'] = SELF::fntGetEstadoObj($fila['estado']);
                     $datos['fecha_consignacion'] = $fila['fecha_consignacion'];
                     $datos['nombre_banco'] = $fila['nombre_banco'];
-                    $datos['valor'] = $fila['valor'];
+                    $datos['valor'] = " $ " . number_format($fila['valor'], 2);
                     $datos['nombre_cliente'] = $fila['nombre_cliente'];
                     $datos['observaciones'] = $fila['observaciones'];
                     $datosf[] = $datos;
@@ -37,6 +38,7 @@ class ClsConsignacion extends conexionPDO
             return false;
         }
     }
+
     // Traer el nombre del cliente.
     function fntGetNombreClienteObj($id_cliente)
     {
@@ -60,6 +62,7 @@ class ClsConsignacion extends conexionPDO
             return false;
         }
     }
+
     // Traer el nombre del cliente.
     function fntGetEstadoObj($id)
     {
@@ -83,6 +86,7 @@ class ClsConsignacion extends conexionPDO
             return false;
         }
     }
+
     // Traer el nombre del cliente.
     function fntGetBancoObj($id)
     {
@@ -106,6 +110,7 @@ class ClsConsignacion extends conexionPDO
             return false;
         }
     }
+
     // Listar los clientes
     function fntOptionClienteEditObj($id_cliente = null)
     {

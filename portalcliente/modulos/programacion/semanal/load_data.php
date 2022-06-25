@@ -18,14 +18,14 @@ $select_obras = "";
 $id_usuario = $_SESSION['id_usuario'];
 
 if ($_POST['task'] == 1) {
-    $select_cliente  = $programacion_funcionario->fntOptionClienteEditCliente($id_usuario);
+    $select_cliente  = $programacion_funcionario->fntOptionClienteEditClienteObj($id_usuario);
     $datos = array(
         'select_cliente' => $select_cliente,
     );
 } elseif ($_POST['task'] == 2) {
     $id_cliente = $_POST['cliente'];
     //Buscar el id de la obra filtrandola con el id del cliente.
-    $select_obras = $programacion_funcionario->fntOptionObraEditCliente($id_cliente, $id_usuario);
+    $select_obras = $programacion_funcionario->fntOptionObraEditClienteObj($id_cliente, $id_usuario);
     $php_estado = true;
 
     $datos = array(

@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         language: "es",
         left: "prev,next,today",
         center: "title",
+        // right: "dayGridMonth,timeGridWeek,timeGridDay",
         right: "timeGridDay",
       },
       // Cargar Datos, los eventos del Calendario
