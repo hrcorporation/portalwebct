@@ -147,31 +147,7 @@ class ClsProgramacion extends conexionPDO
         //resultado
         return $option;
     }
-    /**** OPTION SELECT OBRA ********/
-    function option_obra_edit($id_cliente, $id_obra = null)
-    {
-        $this->id = $id_cliente;
-        $option = "<option  selected='true' disabled='disabled'> Seleccione una Obra</option>";
-        $sql = "SELECT * FROM `ct5_obras` WHERE `ct5_IdTerceros` = :id_cliente";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        // Asignando Datos ARRAY => SQL
-        $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
-        // Ejecutar 
-        $result = $stmt->execute();
-        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id_obra == $fila['ct5_IdObras']) {
-                $selection = "selected='true'";
-            } else {
-                $selection = "";
-            }
-            $option .= '<option value="' . $fila['ct5_IdObras'] . '" ' . $selection . ' >' . $fila['ct5_NombreObra']  . ' </option>';
-        }
-        //Cerrar Conexion
-        $this->PDO->closePDO();
-        //resultado
-        return $option;
-    }
+
     /**** OPTION SELECT OBRA ********/
     function option_obra_edit_cliente($id_cliente, $id_usuario, $id_obra = null)
     {
@@ -202,38 +178,7 @@ class ClsProgramacion extends conexionPDO
         //resultado
         return $option;
     }
-    /**** OPTION SELECT  CLIENTE********/
-    //Select de los clientes
-    function option_cliente_edit_cliente($id_usuario, $id_cliente = null)
-    {
-        $this->id = $id_usuario;
-        $option = "<option  selected='true'> Seleccione un Cliente</option>";
-        $sql = "SELECT ct1_terceros.ct1_IdTerceros, ct1_terceros.ct1_NumeroIdentificacion, ct1_terceros.ct1_RazonSocial 
-        FROM ct1_gestion_acceso 
-        INNER JOIN ct1_terceros ON ct1_gestion_acceso.id_cliente = ct1_terceros.ct1_IdTerceros 
-        WHERE id_residente = :id_usuario";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
-        // Asignando Datos ARRAY => SQL
-        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
-        // Ejecutar 
-        $stmt->execute();
-        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id_cliente == $fila['ct1_IdTerceros']) {
-                $selection = " selected='true' ";
-            } else {
-                $selection = "";
-            }
-            $option .= '<option value="' . $fila['ct1_IdTerceros'] . '" ' . $selection . ' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
-        }
 
-        //Cerrar Conexion
-        $this->PDO->closePDO();
-
-        //resultado
-        return $option;
-    }
     /**** OPTION SELECT CLIENTE ********/
     function option_cliente_edit($id_cliente = null)
     {
@@ -357,29 +302,7 @@ class ClsProgramacion extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    // Traer el nombre del cliente.
-    public function get_nombre_cliente($id_cliente)
-    {
-        $this->id = $id_cliente;
-        // sentencia SQL
-        $sql = "SELECT ct1_RazonSocial FROM ct1_terceros WHERE ct1_IdTerceros = :id_cliente";
-        // Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
-        // ejecuta la sentencia SQL
-        if ($stmt->execute()) {
-            $num_reg = $stmt->rowCount();
-            if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    return $fila['ct1_RazonSocial'];
-                }
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+
     // Traer el nombre del obra.
     public function get_nombre_obra($id)
     {
@@ -760,5 +683,128 @@ class ClsProgramacion extends conexionPDO
         } else {
             return false; // Error en la sentencia sql
         }
+    }
+
+
+
+
+    // Traer el nombre del cliente.
+    public function get_nombre_cliente($id_usuario)
+    {
+        $this->id = $id_usuario;
+        // sentencia SQL
+        $sql = "SELECT ct1_terceros.ct1_RazonSocial FROM ct1_gestion_acceso INNER JOIN ct1_terceros ON ct1_gestion_acceso.id_cliente = ct1_terceros.ct1_IdTerceros WHERE `id_residente` = :id_usuario";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['ct1_RazonSocial'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    /**** OPTION SELECT  CLIENTE********/
+    //Select de los clientes
+    function option_cliente_edit_cliente($id_usuario, $id_cliente = null)
+    {
+        $this->id = $id_usuario;
+        $sql = "SELECT DISTINCT ct1_terceros.ct1_IdTerceros, ct1_terceros.ct1_NumeroIdentificacion, ct1_terceros.ct1_RazonSocial FROM ct1_gestion_acceso INNER JOIN ct1_terceros ON ct1_gestion_acceso.id_cliente = ct1_terceros.ct1_IdTerceros 
+        WHERE id_residente = :id_usuario";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg == 1) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return '<h5>' . $fila['ct1_RazonSocial'] . '</h5>';
+                }
+            } elseif ($num_reg > 1) {
+                $option = '<select name="txtCliente" id="txtCliente" class="form-control select2" style="width: 100%;">';
+                $option .= "<option  selected = 'true'> Seleccione un Cliente </option>";
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if ($id_cliente == $fila['ct1_IdTerceros']) {
+                        $selection = " selected='true' ";
+                    } else {
+                        $selection = "";
+                    }
+                    $option .= '<option value="' . $fila['ct1_IdTerceros'] . '" ' . $selection . ' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
+                }
+                $option .= '</select>';
+                return $option;
+            } elseif ($num_reg == 0) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+    }
+    /**** OPTION SELECT OBRA ********/
+    function option_obra_edit($id_usuario, $id_cliente = null)
+    {
+        $option = '<label for="txtObra" class="col-sm-2 form-label h4">Obra</label>';
+        $option .= "<br>";
+        $this->id_usuario = $id_usuario;
+        $this->id_cliente = $id_cliente;
+        $sql = "SELECT ct1_gestion_acceso.id_obra, ct5_obras.ct5_NombreObra
+         FROM ct1_gestion_acceso 
+         INNER JOIN ct5_obras ON ct1_gestion_acceso.id_obra = ct5_obras.ct5_IdObras 
+         WHERE id_residente = :id_usuario AND ct1_gestion_acceso.id_cliente = :id_cliente";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id_usuario', $this->id_usuario, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        // Ejecutar 
+        $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $option .= '<button type="button" class="btn btn-primary">' . $fila["ct5_NombreObra"] . '</button>';
+            $option .= " ";
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
+    }
+
+    /**** OPTION SELECT OBRA ********/
+    function option_obra_edit_uno($id_usuario)
+    {
+        $option = '<label for="txtObra" class="col-sm-2 form-label h4">Obra</label>';
+        $option .= "<br>";
+        $this->id_usuario = $id_usuario;
+        $sql = "SELECT ct1_gestion_acceso.id_obra, ct5_obras.ct5_NombreObra
+          FROM ct1_gestion_acceso 
+          INNER JOIN ct5_obras ON ct1_gestion_acceso.id_obra = ct5_obras.ct5_IdObras 
+          WHERE id_residente = :id_usuario";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id_usuario', $this->id_usuario, PDO::PARAM_INT);
+        // Ejecutar 
+        $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $option .= '<button type="button" class="btn btn-primary">' . $fila["ct5_NombreObra"] . '</button>';
+            $option .= " ";
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
     }
 }

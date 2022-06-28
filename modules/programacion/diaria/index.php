@@ -1,8 +1,9 @@
 <?php include '../../../layout/validar_session3.php'; ?>
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php'; ?>
-<?php $programacionDiaria = new ClsProgramacionDiaria(); //Se crea un objeto de la clase programacion ?>
-<?php $intCantidadProgramacionSinConfirmar = $programacionDiaria->fntContarProgramacionesSinConfirmarObj(); ?>
+<?php $programacionDiaria = new ClsProgramacionDiaria(); //Se crea un objeto de la clase programacion 
+?>
+<?php $intCantidadProgramacionSinConfirmar = $programacionDiaria->fntContarProgramacionesSinConfirmarFuncionarioObj(); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -43,7 +44,7 @@
                 <div class="row">
                     <div class="col-2">
                         <div class="form-group">
-                        <span style="position: absolute; right: 20%; top: 40%" class="badge bg-secondary"><?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar</span>
+                            <span style="position: absolute; right: 20%; top: 40%" class="badge bg-secondary"><?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar</span>
                         </div>
                     </div>
                     <div class="col-4">

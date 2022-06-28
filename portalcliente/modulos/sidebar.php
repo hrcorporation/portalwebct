@@ -32,7 +32,7 @@
                   </li>
                   <li class="nav-header">Programacion semanal</li>
                   <li class="nav-item has-treeview">
-                      <a href="programacion/programacion_semanal/index.php" class="nav-link">
+                      <a href="programacion/index.php" class="nav-link">
                           <i class="nav-icon fas fa-copy"></i>
                           <p>
                               Explorar

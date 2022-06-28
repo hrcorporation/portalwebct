@@ -48,6 +48,7 @@
                                         <th>Nombre del Cliente</th>
                                         <th>Observaciones</th>
                                         <th>Detalles</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,6 +79,7 @@
 <!-- Modal -->
 <?php include 'modal_crear_consignacion.php' ?>
 <?php include 'modal_importar_consignacion.php' ?>
+<?php include 'modal_eliminar_consignacion.php' ?>
 <!-- /.modal-dialog -->
 <?php include '../../layout/footer/footer2.php' ?>
 <script>
@@ -153,6 +155,10 @@
                 {
                     "data": null,
                     "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-edit'></i> </button>"
+                },
+                {
+                    "data": null,
+                    "defaultContent": "<a class='btn btn-danger btn-sm' data-toggle='modal' data-target='#modal_eliminar_programacion'> <i class='fas fa-trash'></i> </a>"
                 }
             ],
             //"scrollX": true,

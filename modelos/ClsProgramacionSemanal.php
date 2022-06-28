@@ -228,17 +228,17 @@ class ClsProgramacionSemanal extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    if ($fila['status'] == 1 && $fila['id_usuario'] == $id_usuario) {
+                    if ($fila['status'] == 1) {
                         $events[] = [
                             "id" => $fila['id'],
                             'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'green',
+                            'color' => 'gray',
                             'textcolor' => 'black'
                         ];
-                    } else if ($fila['status'] == 2 && $fila['id_usuario'] == $id_usuario) {
+                    } else if ($fila['status'] == 2) {
                         $events[] = [
                             "id" => $fila['id'],
                             'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
@@ -248,14 +248,25 @@ class ClsProgramacionSemanal extends conexionPDO
                             'color' => 'orange',
                             'textcolor' => 'black'
                         ];
-                    } else if ($fila['status'] == 3 && $fila['id_usuario'] == $id_usuario) {
+                    } else if ($fila['status'] == 3) {
                         $events[] = [
                             "id" => $fila['id'],
                             'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'red',
+                            'color' => 'Light Blue',
+                            'textcolor' => 'black'
+                        ];
+                    }
+                    else if ($fila['status'] == 4) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
                             'textcolor' => 'black'
                         ];
                     }

@@ -9,9 +9,8 @@ class ClsProgramacionDiaria extends conexionPDO
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
-
-    //Contar los datos de las programaciones diarias con estado de Sin confirmar
-    function fntContarProgramacionesSinConfirmarObj()
+    //Contar los datos de las programaciones diarias con estado de Sin confirmar (FUNCIONARIO)
+    function fntContarProgramacionesSinConfirmarFuncionarioObj()
     {
         $sql = "SELECT COUNT(id) as cantidad FROM `ct66_programacion_diaria` WHERE `status` = 1";
         $stmt = $this->con->prepare($sql);
@@ -28,9 +27,28 @@ class ClsProgramacionDiaria extends conexionPDO
             return 0;
         }
     }
-
+    //Contar los datos de las programaciones diarias con estado de Sin confirmar (CLIENTE)
+    function fntContarProgramacionesSinConfirmarClienteObj($id_usuario)
+    {
+        $this->id = $id_usuario;
+        $sql = "SELECT COUNT(id) as cantidad FROM `ct66_programacion_diaria` WHERE `status` = 1 AND `id_usuario` = :id_usuario";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['cantidad'];
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
     // Obtener todas las programaciones
-    public function fntGetProgDiariaObj()
+    public function fntGetProgDiariaFuncionarioObj()
     {
         $sql = "SELECT * FROM `ct66_programacion_diaria`";
         //Preparar Conexion
@@ -70,8 +88,7 @@ class ClsProgramacionDiaria extends conexionPDO
                             'color' => 'Light Blue',
                             'textcolor' => 'black'
                         ];
-                    }
-                    else if ($fila['status'] == 4) {
+                    } else if ($fila['status'] == 4) {
                         $events[] = [
                             "id" => $fila['id'],
                             'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
@@ -88,7 +105,56 @@ class ClsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
-
+    // Obtener todas las programaciones desde el usuario de un cliente. Cambiar a cargar
+    function fntGetProgDiariaClienteObj($id_usuario)
+    {
+        $this->id = $id_usuario;
+        $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin`,`id_usuario` FROM `ct66_programacion_diaria` WHERE `id_usuario` = :id_usuario";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    if ($fila['status'] == 1 && $fila['id_usuario'] == $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 2 && $fila['id_usuario'] == $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'orange',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 3 && $fila['id_usuario'] == $id_usuario) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'red',
+                            'textcolor' => 'black'
+                        ];
+                    }
+                }
+                return $events;
+            }
+        }
+        return false;
+    }
     // Traer el nombre del cliente.
     public function fntGetNombreClienteObj($id_cliente)
     {
@@ -112,7 +178,6 @@ class ClsProgramacionDiaria extends conexionPDO
             return false;
         }
     }
-
     // Traer el nombre del obra.
     public function fntGetNombreObraObj($id)
     {
@@ -137,7 +202,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
     // Traer el nombre del producto.
     public function fntGetNombreProductoObj($id)
     {
@@ -162,7 +226,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
     // Traer el nombre del tipo de descargue.
     public function fntGetNombreTipoDescargueObj($id)
     {
@@ -187,7 +250,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
     // Traer el nombre del tipo de descargue.
     public function fntGetNombreLineaDespachoObj($id)
     {
@@ -212,7 +274,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
     // Traer el nombre del tipo de descargue.
     public function fntGetPlacaMixerObj($id)
     {
@@ -237,7 +298,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
     // Traer el nombre del tipo de bomba
     public function fntGetNombreTipoBombaObj($id)
     {
@@ -262,7 +322,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
     // Listar el tipo de pedidos
     function fntOptionListaPedidosObj($id = null)
     {
@@ -287,7 +346,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-
     // Listar los productos
     function fntOptionProductoEditObj($id = null)
     {
@@ -319,7 +377,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-
     // Listar el tipo de descargue
     function fntOptionTipoDescargueObj($id = null)
     {
@@ -344,7 +401,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-
     // Listar los vehiculos(mixer)
     function fntOptionVehiculoObj($id = null)
     {
@@ -371,7 +427,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-
     // Listar los conductores
     function fntOptionConductorObj($id = null)
     {
@@ -406,7 +461,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-
     // Listar los conductores
     function fntOptionTipoBombaObj($id = null)
     {
@@ -441,7 +495,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-
     // Listar los conductores
     function fntOptionLineaDespachoObj($id = null)
     {
@@ -474,7 +527,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-
     // Listar los clientes
     function fntOptionClienteEditObj($id_cliente = null)
     {
@@ -503,7 +555,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-
     // Listar las obras
     function fntOptionObraEditObj($id_cliente, $id_obra = null)
     {
@@ -529,7 +580,6 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-
     // Cargar datos de la programacion mediante el id de la programacion.
     function fntCargarDataProgramacionDiariaObj($id_programacion)
     {
@@ -571,7 +621,6 @@ class ClsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
-
     // Crear programacion diaria
     function fntCrearProgDiariaBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $dtmFechaInicio, $dtmFechaFin, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
     {
@@ -614,7 +663,6 @@ class ClsProgramacionDiaria extends conexionPDO
             return false;
         }
     }
-    
     //Editar las fechas de la programacion diaria
     function fntEditarProgramacionBool($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
     {
@@ -633,4 +681,5 @@ class ClsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
+    
 }
