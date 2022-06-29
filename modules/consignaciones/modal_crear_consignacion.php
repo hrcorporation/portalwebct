@@ -32,7 +32,7 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label for="txtValor" class="form-label">Valor:</label>
-                                <input name="txtValor" id="txtValor" class="form-control" style="width: 100%;" onkeyup="format(this)"/>
+                                <input name="txtValor" id="txtValor" class="form-control" style="width: 100%;" onkeyup="format(this)" />
                             </div>
                         </div>
                         <div class="col-5">
@@ -47,7 +47,7 @@
                             <div class="form-group">
                                 <label for="cbxCliente" class="form-label">Cliente:</label>
                                 <select name="cbxCliente" id="cbxCliente" class="form-control select2" style="width: 100%;">
-                                <?= $ClsConsignacion->fntOptionClienteEditObj() ?>
+                                    <?= $ClsConsignacion->fntOptionClienteEditObj() ?>
                                 </select>
                             </div>
                         </div>

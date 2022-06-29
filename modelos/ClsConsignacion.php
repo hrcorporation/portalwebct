@@ -11,9 +11,10 @@ class ClsConsignacion extends conexionPDO
     }
 
     // Listar todos los pedidos.
-    public function get_consignaciones()
+    public function fntGetConsignacionesObj()
     {
-        $sql = "SELECT `id`, `estado`, `fecha_consignacion`, `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones` FROM `ct66_consignacion`";
+        $sql = "SELECT `id`, `estado`, `fecha_consignacion`, `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones` 
+        FROM `ct66_consignacion`";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Ejecutar 
@@ -25,7 +26,7 @@ class ClsConsignacion extends conexionPDO
                     $datos['estado'] = SELF::fntGetEstadoObj($fila['estado']);
                     $datos['fecha_consignacion'] = $fila['fecha_consignacion'];
                     $datos['nombre_banco'] = $fila['nombre_banco'];
-                    $datos['valor'] = " $ " . number_format($fila['valor'], 2);
+                    $datos['valor'] = number_format($fila['valor'], 2);
                     $datos['nombre_cliente'] = $fila['nombre_cliente'];
                     $datos['observaciones'] = $fila['observaciones'];
                     $datosf[] = $datos;
@@ -44,7 +45,9 @@ class ClsConsignacion extends conexionPDO
     {
         $this->id = $id_cliente;
         // sentencia SQL
-        $sql = "SELECT ct1_RazonSocial FROM ct1_terceros WHERE ct1_IdTerceros = :id_cliente";
+        $sql = "SELECT ct1_RazonSocial 
+        FROM ct1_terceros 
+        WHERE ct1_IdTerceros = :id_cliente";
         // Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
@@ -68,7 +71,9 @@ class ClsConsignacion extends conexionPDO
     {
         $this->id = $id;
         // sentencia SQL
-        $sql = "SELECT `id`,`descripcion` FROM `ct66_estado_consignacion` WHERE `id` = :id";
+        $sql = "SELECT `id`,`descripcion` 
+        FROM `ct66_estado_consignacion` 
+        WHERE `id` = :id";
         // Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -92,7 +97,9 @@ class ClsConsignacion extends conexionPDO
     {
         $this->id = $id;
         // sentencia SQL
-        $sql = "SELECT `id`,`descripcion` FROM `ct66_bancos` WHERE `id` = :id";
+        $sql = "SELECT `id`,`descripcion` 
+        FROM `ct66_bancos` 
+        WHERE `id` = :id";
         // Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -115,7 +122,9 @@ class ClsConsignacion extends conexionPDO
     function fntOptionClienteEditObj($id_cliente = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
-        $sql = "SELECT ct1_IdTerceros , ct1_NumeroIdentificacion , ct1_RazonSocial FROM ct1_terceros WHERE ct1_TipoTercero = 1 AND ct1_Estado = 1";
+        $sql = "SELECT ct1_IdTerceros , ct1_NumeroIdentificacion , ct1_RazonSocial 
+        FROM ct1_terceros 
+        WHERE ct1_TipoTercero = 1 AND ct1_Estado = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -144,7 +153,7 @@ class ClsConsignacion extends conexionPDO
     function fntOptionBancosObj($id = null)
     {
         $this->id = $id;
-        $option = "<option> Seleccione el banco</option>";
+        $option = "<option> Seleccione el banco </option>";
         $sql = "SELECT * FROM `ct66_bancos`";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -213,7 +222,8 @@ class ClsConsignacion extends conexionPDO
     // Crear programacion semanal.
     function fntCrearConsignacionObj($dtmFechaConsignacion, $intIdBanco, $StrBanco, $dblValorConsignacion, $intIdEstado,  $intIdCliente, $StrNombreCliente, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
     {
-        $sql = "INSERT INTO `ct66_consignacion`(`estado`, `fecha_consignacion`, `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones`, `id_usuario`, `nombre_usuario`) VALUES (:estado, :fecha_consignacion, :id_banco, :nombre_banco, :valor, :id_cliente, :nombre_cliente, :observaciones, :id_usuario, :nombre_usuario)";
+        $sql = "INSERT INTO `ct66_consignacion`(`estado`, `fecha_consignacion`, `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones`, `id_usuario`, `nombre_usuario`) 
+        VALUES (:estado, :fecha_consignacion, :id_banco, :nombre_banco, :valor, :id_cliente, :nombre_cliente, :observaciones, :id_usuario, :nombre_usuario)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL

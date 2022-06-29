@@ -11,7 +11,7 @@ $boolPhpEstado = false;
 $php_error[] = "";
 $resultado = "";
 // Validar que la variable de txtFechaConsignacion exista y no este vacia
-if (isset($_POST['txtFechaConsignacion']) && !empty($_POST['txtFechaConsignacion'])) {
+if (isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])) {
     //id del usuario en sesion
     $intIdUsuario = $_SESSION['id_usuario'];
     //Nombre del usuario en sesion

@@ -56,7 +56,7 @@
                     <div class="col">
                         <div class="form-group">
                             <div id="txtObra">
-                                <?php echo $ClsProgramacion->option_obra_edit_uno($intIdUsuario)?>
+                                <?php echo $ClsProgramacion->option_obra_edit_uno($intIdUsuario) ?>
                             </div>
                         </div>
                     </div>
@@ -64,6 +64,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
+
             </div>
             <!-- /.card-footer-->
         </div>
@@ -76,15 +77,18 @@
 <!-- Modal -->
 <!-- /.modal-dialog -->
 <?php include '../../../layout/footer/footercliente3.php' ?>
-
 <script>
     $(function() {
         $('.select2').select2();
+        var cliente = $("#txtCliente").val();
+        if (cliente != null) {
+            $("#txtObra").hide();
+        }
     });
-
     $(document).ready(function() {
         $("#txtCliente").change(function() {
             $("#txtObra").hide();
+            // $("#id_obra").show();
             $.ajax({
                 url: "load_data.php",
                 type: "POST",

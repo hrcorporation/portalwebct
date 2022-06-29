@@ -1,9 +1,9 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacion
 $ClsProgramacionDiaria = new ClsProgramacionDiaria();
 $log = false;
@@ -11,21 +11,21 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Validar que la variable de txt_cliente exista y no este vacia
-if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
+if (isset($_POST['cbxPedido']) && !empty($_POST['cbxPedido'])) {
     //id del usuario
     $intIdUsuario = $_SESSION['id_usuario'];
     //Nombre del usuario mediante el parametro del id del usuario
     $StrNombreUsuario = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdUsuario);
-    //Estado (1. Aprobado, 2. Pendiente, 3. Cancelado)
+    //Estado
     $intEstado = 2;
     //id del cliente
-    $intIdCliente = $_POST['cbxCliente'];
-    //Nombre del cliente mediante el parametro del id del cliente
-    $StrNombreCliente = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdCliente);
+    //////////////////////////
+    $intIdCliente = 1;
+    $intIdObra = 1;
+    /////////////////////////
+    $StrNombreCliente = $_POST['txtCliente'];
     //id de la obra
-    $intIdObra = $_POST['cbxObra'];
-    //Nombre de la obra mediante el parametro del id de la obra.
-    $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
+    $StrNombreObra = $_POST['txtObra'];
     //id del pedido
     $intPedido = $_POST['cbxPedido'];
     //id del producto.
@@ -71,7 +71,7 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     //Fecha final de la programacion
     $dtmFechaFin = $_POST['txtFin'];
     //Validar que tome bien los parametros y guarde correctamente la programacion
-    if ($ClsProgramacionDiaria->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $dtmFechaInicio, $dtmFechaFin, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+    if ($ClsProgramacionDiaria->fntCrearProgDiariaClienteBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $dtmFechaInicio, $dtmFechaFin, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
         //Si pasa la validacion se retorna verdadero(true)
         $php_estado = true;
     } else {

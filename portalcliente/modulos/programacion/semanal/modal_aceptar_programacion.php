@@ -2,7 +2,7 @@
     $ClsProgramacion = new ClsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_aceptar_programacion" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">¿Esta seguro?</h4>

@@ -40,7 +40,7 @@
                             <table id="table_consignaciones" class="display" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>N</th>
+                                        <th>N°</th>
                                         <th>Estado</th>
                                         <th>Fecha consignacion</th>
                                         <th>Nombre del banco</th>
@@ -52,7 +52,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                             </table>
                         </div>
@@ -64,7 +63,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-
+                            
                         </div>
                     </div>
                 </div>
@@ -83,6 +82,10 @@
 <!-- /.modal-dialog -->
 <?php include '../../layout/footer/footer2.php' ?>
 <script>
+     $(document).ready(function() {
+        $('.select2').select2();
+    });
+
     $("#form_crear_consignacion").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({
@@ -105,10 +108,6 @@
             },
         });
     }));
-
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
 
     function format(input) {
         var num = input.value.replace(/\./g, '');

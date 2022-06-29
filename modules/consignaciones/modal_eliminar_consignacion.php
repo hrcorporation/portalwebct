@@ -12,7 +12,7 @@
             </div>
             <form id="form_eliminar_programacion" name="form_eliminar_programacion" method="post">
                 <div class="modal-body">
-                    <p>Desea eliminar la consignacion.</p>
+                    <p>Desea eliminar la consignacion</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" id="btnEliminarConsignacion"> Si, eliminar </button>

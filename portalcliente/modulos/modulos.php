@@ -19,7 +19,7 @@
         <div class="icon">
             <i class="fas fa-truck-moving"></i>
         </div>
-        <a class="small-box-footer" href="programacion/semanal/index.php">
+        <a class="small-box-footer" href="programacion/index.php">
             Ir <i class="fas fa-arrow-circle-right"></i>
         </a>
     </div>

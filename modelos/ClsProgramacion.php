@@ -12,7 +12,7 @@ class ClsProgramacion extends conexionPDO
     /**
      * Trae la programacion semanal
      */
-    //obtener todas las programaciones desde el usuario de un funcionario.Cambiar a cargar
+    //obtener todas las programaciones desde el usuario de un funcionario. Cambiar a cargar
     public function get_prog_semanal()
     {
         $sql = "SELECT * FROM `ct66_programacion_semanal`";
@@ -207,6 +207,7 @@ class ClsProgramacion extends conexionPDO
         //resultado
         return $option;
     }
+
     function option_estado_edit($id = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione el estado</option>";
@@ -230,6 +231,7 @@ class ClsProgramacion extends conexionPDO
         //resultado
         return $option;
     }
+
     //Listar el tipo de descargue
     function option_tipo_descargue($id = null)
     {
@@ -254,6 +256,7 @@ class ClsProgramacion extends conexionPDO
         //resultado
         return $option;
     }
+
     //Listar el tipo de descargue
     function option_lista_pedidos($id = null)
     {
@@ -278,6 +281,7 @@ class ClsProgramacion extends conexionPDO
         //resultado
         return $option;
     }
+
     // Traer el nombre del producto.
     public function get_nombre_producto($id)
     {
@@ -327,6 +331,7 @@ class ClsProgramacion extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+
     // Traer el nombre del tipo de descargue.
     public function get_nombre_tipo_descargue($id)
     {
@@ -351,6 +356,7 @@ class ClsProgramacion extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+
     // Crear programacion semanal
     public function crear_prog_semanal($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $id_tipo_descargue, $nombre_tipo_descargue, $metros_tuberia, $fecha_ini, $fecha_fin, $elementos_fundir, $observaciones, $id_usuario, $nombre_usuario)
     {
@@ -384,6 +390,7 @@ class ClsProgramacion extends conexionPDO
             return false;
         }
     }
+
     // Crear programacion semanal clientes
     public function crear_prog_semanal_v2($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $id_tipo_descargue, $nombre_tipo_descargue, $fecha_ini, $fecha_fin, $elementos_fundir, $observaciones, $id_usuario, $nombre_usuario)
     {
@@ -416,6 +423,7 @@ class ClsProgramacion extends conexionPDO
             return false;
         }
     }
+
     //Obtener el id del usuario mediante el id de la programacion
     public function get_id_usuario($id)
     {
@@ -440,6 +448,7 @@ class ClsProgramacion extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+
     //Cargar datos de la programacion mediante su id.  get_prog_por_id
     function cargar_data_programacion($id_programacion)
     {
@@ -470,6 +479,7 @@ class ClsProgramacion extends conexionPDO
         }
         return false;
     }
+
     //Cargar datos de la programacion mediante su id.  get_prog_por_id
     function cargar_data_programacion_v2($id_programacion)
     {
@@ -505,6 +515,7 @@ class ClsProgramacion extends conexionPDO
         }
         return false;
     }
+
     // Crear programacion.
     //Editar programacion la fecha. editar_programacion_para_evento
     function editar_programacion($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
@@ -524,6 +535,7 @@ class ClsProgramacion extends conexionPDO
         }
         return false;
     }
+
     //Editar programacion la fecha. editar_programacion_para_evento
     function editar_programacion_v2($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
     {
@@ -542,6 +554,7 @@ class ClsProgramacion extends conexionPDO
         }
         return false;
     }
+
     //Editar toda la programacion
     function editar_toda_prog_semanal($id_programacion, $estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_producto, $nombre_producto, $cant, $start, $end, $id_usuario, $nombre_usuario, $fecha_modificacion)
     {
@@ -570,6 +583,7 @@ class ClsProgramacion extends conexionPDO
         }
         return false;
     }
+
     //Editar toda la programacion
     function editar_toda_prog_semanal_v2($id, $estado, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $tipo_descargue, $nombre_tipo_descargue, $inicio, $fin, $elementos, $observaciones, $id_usuario, $nombre_usuario, $hoy)
     {
@@ -603,6 +617,7 @@ class ClsProgramacion extends conexionPDO
         }
         return false;
     }
+
     //Eliminar una programacion. eliminar_programacion_semanal
     function eliminar_programacion($id_programacion)
     {
@@ -617,6 +632,7 @@ class ClsProgramacion extends conexionPDO
             return false;
         }
     }
+
     //Eliminar una programacion. eliminar_programacion_semanal
     function eliminar_programacion_v2($id_programacion)
     {
@@ -631,6 +647,7 @@ class ClsProgramacion extends conexionPDO
             return false;
         }
     }
+
     //Cambiar el status de la programacion
     public function actualizar_estatus_programacion_semanal($id_programacion, $status)
     {
@@ -646,6 +663,7 @@ class ClsProgramacion extends conexionPDO
         }
         return false;
     }
+
     //Informe excel
     public function informe_excel_programacion($fecha_ini, $fecha_fin)
     {
@@ -686,7 +704,9 @@ class ClsProgramacion extends conexionPDO
     }
 
 
-
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
     // Traer el nombre del cliente.
     public function get_nombre_cliente($id_usuario)
@@ -773,7 +793,7 @@ class ClsProgramacion extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $option .= '<button type="button" class="btn btn-primary">' . $fila["ct5_NombreObra"] . '</button>';
+            $option .= '<a type="button" class = "btn btn-primary" href="#">' . $fila["ct5_NombreObra"] . '</a>';
             $option .= " ";
         }
         //Cerrar Conexion
@@ -799,7 +819,7 @@ class ClsProgramacion extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $option .= '<button type="button" class="btn btn-primary">' . $fila["ct5_NombreObra"] . '</button>';
+            $option .= '<a type="button" class="btn btn-primary" href="#">' . $fila["ct5_NombreObra"] . '</a>';
             $option .= " ";
         }
         //Cerrar Conexion

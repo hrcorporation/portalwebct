@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Configuracion
     themeSystem: "bootstrap", // Tema del Calendario
     locale: "es", // Lenguaje
-    initialView: "timeGridDay", // Vista diaria
+    initialView: "timeGridDay", // Vista Diaria
     timeZone: "America/New_York",
     droppable: true,
     selectable: true,
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       language: "es",
       left: "prev,next,today",
       center: "title",
+      // right: "dayGridMonth,timeGridWeek,timeGridDay",
       right: "timeGridDay",
     },
     // Cargar Datos, los eventos del Calendario
@@ -32,12 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
       //color: 'yellow',   // a non-ajax option
       //textColor: 'black' // a non-ajax option
     },
-    // datos eventos
+    // datos Programacion
     //clik dia
     //=======================================================================================================================
-    // Crear Eventos
+    // Crear Programacion
     select: function (event) {
-      console.log("Crear Evento");
+      console.log("Crear Programacion");
       form_crear_programacion.reset();
       $("#txtInicio").val(moment(event.startStr).format("YYYY-MM-DD HH:mm:ss"));
       $("#txtFin").val(moment(event.endStr).format("YYYY-MM-DD HH:mm:ss"));
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#modal_crear_evento").modal("show");
     },
     //=======================================================================================================================
-    // Accion Click Encima del Evento
+    // Accion Click Encima de la Programacion
     eventClick: function (info) {
       console.log("Click Evento");
       $.ajax({
@@ -75,18 +76,23 @@ document.addEventListener("DOMContentLoaded", function () {
         success: function (data) {
           form_show_event.id_prog_evento.value = info.event.id;
           console.log(info.event);
-          $("#cbxClienteEditar").html(data.select_cliente);
-          $("#cbxObraEditar").html(data.select_obra);
+          form_show_event.txtClienteEditar.value = data.select_cliente;
+          form_show_event.txtObraEditar.value = data.select_obra;
+          // $("#cbxClienteEditar").html(data.select_cliente);
+          // $("#cbxObraEditar").html(data.select_obra);
           $("#cbxProductoEditar").html(data.select_producto);
-          $("#cbxPedidoEditar").html(data.select_pedido);
+          $("#cbxPedidoEditar").html(data.select_pedidos);
           $("#cbxTipoDescargueEditar").html(data.select_tipo_descargue);
+          $("#cbxLineaDespachoEditar").html(data.select_linea_produccion);
+          $("#cbxMixerEditar").html(data.select_mixer);
+          $("#cbxConductorEditar").html(data.select_conductor);
+          $("#cbxTipoBombaEditar").html(data.select_tipo_bomba);
+          form_show_event.txtHoraCargueEditar.value = data.hora_cargue;
+          form_show_event.txtHoraMixerEditar.value = data.hora_mixer_obra;
           form_show_event.txtCantEditar.value = data.cantidad;
-          form_show_event.txtFrecuenciaEditar.value = data.frecuencia;
-          form_show_event.txtElementosEditar.value = data.elementos;
           form_show_event.txtInicioEditar.value = data.inicio;
           form_show_event.txtFinEditar.value = data.fin;
           form_show_event.txtObservacionesEditar.value = data.observaciones;
-          form_show_event.txtMetrosEditar.value = data.metros;
           $("#bomba").html(data.check_bomba);
           $("#modal_show_evento").modal("show");
         },
@@ -96,33 +102,33 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     },
     //=======================================================================================================================
-    // Accion Mover el Evento
+    // Accion Mover la Programacion
     eventDrop: function (info) {
       var form_editar = new FormData();
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
       form_editar.append(
-        "start",
+        "txtInicio",
         moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
       );
       form_editar.append(
-        "end",
+        "txtFin",
         moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
       );
       editar_event(form_editar, calendar);
     },
     //=======================================================================================================================
-    // Accion cambiar el tamaño el Evento
+    // Accion cambiar el tamaño la Programacion
     eventResize: function (info) {
       var form_editar = new FormData();
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
       form_editar.append(
-        "start",
+        "txtInicio",
         moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
       );
       form_editar.append(
-        "end",
+        "txtFin",
         moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
       );
 
@@ -131,8 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
   calendar.render();
-  // Boton Actualizar Evento
-  // Boton Actualizar Evento
+  // Boton Actualizar Programacion
+  // Boton Actualizar Programacion
   document.getElementById("btnEliminar").addEventListener("click", function () {
     const datos_form = new FormData(form_show_event);
     var form_editar = new FormData();
@@ -159,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function editar_event(form_editar, calendar) {
   $.ajax({
-    url: "php_editar_prog_semanal.php",
+    url: "php_editar_prog_diaria.php",
     type: "POST",
     data: form_editar,
     processData: false,

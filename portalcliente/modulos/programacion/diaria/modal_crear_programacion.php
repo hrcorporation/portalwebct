@@ -1,5 +1,5 @@
 <?php
-$ClsProgramacionDiaria = new ClsProgramacionDiaria();
+    $ClsProgramacionDiaria = new ClsProgramacionDiaria();
 ?>
 <div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -15,16 +15,14 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxCliente" class="form-label">Cliente:</label>
-                                <select name="cbxCliente" id="cbxCliente" class="form-control select2" style="width: 100%;">
-                                </select>
+                                <label for="txtCliente" class="form-label">Cliente:</label>
+                                <input type="text" name="txtCliente" id="txtCliente" class="form-control" style="width: 100%;"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxObra" class="form-label">Obra:</label>
-                                <select name="cbxObra" id="cbxObra" class="form-control select2" style="width: 100%;">
-                                </select>
+                                <label for="txtObra" class="form-label">Obra:</label>
+                                <input type="text" name="txtObra" id="txtObra" class="form-control" style="width: 100%;"/>
                             </div>
                         </div>
                     </div>

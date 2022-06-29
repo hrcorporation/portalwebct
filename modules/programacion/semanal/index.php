@@ -52,6 +52,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
+                
             </div>
             <!-- /.card-footer-->
         </div>
@@ -78,6 +79,10 @@
         $('.select2').select2();
     });
     $(function() {
+        $('#chkRequiereBomba').on('change', function() {
+            
+        });
+        
         $("#form_mostrar_event").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -148,7 +153,6 @@
             });
         });
 
-
         $('#cbxClienteEditar').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -170,6 +174,7 @@
                 },
             });
         });
+        
     });
 </script>
 </body>

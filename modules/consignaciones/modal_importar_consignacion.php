@@ -1,5 +1,5 @@
 <?php
-$ClsConsignacion = new ClsConsignacion();
+    $ClsConsignacion = new ClsConsignacion();
 ?>
 <div class="modal fade" id="modal_importar_consignacion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -17,7 +17,7 @@ $ClsConsignacion = new ClsConsignacion();
                             <div class="form-group">
                                 <label>Seleccionar Archivo</label>
                                 <!-- input para seleccionar el archivo -->
-                                <input type="file" class="form-control" name="file_productos" id="file_productos"/>
+                                <input type="file" class="form-control" name="importar_consignaciones" id="importar_consignaciones"/>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ $StrResultado = "";
 //se crea un objeto de la clase programacion.
 $programacion = new ClsProgramacionSemanal();
 //Se listan todas las programaciones.
-$objData = $programacion->fntGetProgSemanalObj();
+$objData = $programacion->fntGetProgSemanalFuncionarioObj();
 $boolPhpEstado = true;
 //Datos de los arreglos.
 $datos = array(

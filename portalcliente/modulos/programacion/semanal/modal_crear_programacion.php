@@ -2,7 +2,7 @@
 $ClsProgramacion = new ClsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Agregar programacion semanal</h4>

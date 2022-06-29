@@ -12,7 +12,7 @@ $id_usuario = $_SESSION['id_usuario'];
 //Validar que el id de la programacion exista
 if (isset($_POST['id'])) {
     //listar los datos de la programacion mediante el parametro de el id de la programacion 
-    if (is_array($data = $programacion->fntCargarDataProgramacionObj($_POST['id']))) {
+    if (is_array($data = $programacion->fntCargarDataProgramacionClienteObj($_POST['id']))) {
         //Recorremos los datos mediante un foreach usando la variable key para cada dato
         foreach ($data as $key) {
             //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion

@@ -9,7 +9,9 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1> <strong> <?php echo $_SESSION['nombre_usuario']; ?> </strong> Bienvenido a l<strong style="color:#ac4661">PORTAL DE CLIENTES</strong> </h1>
+                    <h1>
+                        <strong> <?php echo $_SESSION['nombre_usuario']; ?> </strong> Bienvenido al <strong style="color:#ac4661">PORTAL DE CLIENTES</strong>
+                    </h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -30,12 +32,15 @@
                 <h3 class="card-title">VER PROGRACIONES SEMANALES</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                        <i class="fas fa-expand"></i>
+                    </button>
                 </div>
             </div>
             <div class="card-body">
-                <button style="position: absolute; right: 71%; top: 9%" type="button" class="btn btn-success" id="btnAceptarProgramacion" data-toggle="modal" data-target="#modal_aceptar_programacion">
+                <button style="position: absolute; right: 71%; top: 9%" type = "button" class = "btn btn-success" id = "btnAceptarProgramacion" data-toggle="modal" data-target="#modal_aceptar_programacion">
                     Aceptar y enviar
                 </button>
                 <div id='calendar'></div>

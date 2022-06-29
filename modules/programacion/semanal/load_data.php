@@ -9,7 +9,7 @@ $objProgramacionSemanal = new ClsProgramacionSemanal();
 $boolPhpEstado = false;
 $objSelectObras = "";
 if ($_POST['task'] == 1) {
-    $objSelectCliente  = $objProgramacionSemanal->fntOptionClienteEditObj();
+    $objSelectCliente  = $objProgramacionSemanal->fntOptionClienteEditFuncionarioObj();
     $datos = array(
         'select_cliente' => $objSelectCliente,
     );
@@ -17,7 +17,7 @@ if ($_POST['task'] == 1) {
 elseif ($_POST['task'] == 2) {
     $intIdCliente = $_POST['cliente'];
     //Buscar el id de la obra filtrandola con el id del cliente.
-    $objSelectObras = $objProgramacionSemanal->fntOptionObraEditObj($intIdCliente);
+    $objSelectObras = $objProgramacionSemanal->fntOptionObraEditFuncionarioObj($intIdCliente);
     $boolPhpEstado = true;
 
     $datos = array(
