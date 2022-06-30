@@ -91,6 +91,58 @@
     $(document).ready(function() {
         $('.select2').select2();
     });
+    $('#chkRequiereBomba').on('click', function() {
+        //Ajax 
+        var formData = new FormData();
+        if ($(this).is(':checked')) {
+            $.ajax({
+                url: "load_tipo.php", // URL
+                type: "POST", // Metodo HTTP
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    $("#cbxTipoDescargue").html(data.select_tipo_uno)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        } else {
+            $.ajax({
+                url: "load_tipo.php", // URL
+                type: "POST", // Metodo HTTP
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    $("#cbxTipoDescargue").html(data.select_tipo_dos)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }
+    });
+    $('#cbxPedido').on('change', function() {
+        $.ajax({
+            url: "load_data_pedido.php", // URL
+            type: "POST", // Metodo HTTP
+            data: {
+                'task': 1,
+                'id_pedido': $('#cbxPedido').val()
+            },
+            dataType: 'json',
+            success: function(data) {
+                $("#cbxProducto").html(data.select_producto)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
     $('#cbxCliente').on('change', function() {
         //Ajax 
         var formData = new FormData();
@@ -112,7 +164,6 @@
             },
         });
     });
-
     $('#cbxClienteEditar').on('change', function() {
         //Ajax 
         var formData = new FormData();
@@ -134,7 +185,6 @@
             },
         });
     });
-
     $("#form_crear_programacion").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({
@@ -157,7 +207,6 @@
             },
         });
     }));
-
     $("#form_mostrar_programacion").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({

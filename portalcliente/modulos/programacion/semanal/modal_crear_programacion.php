@@ -5,7 +5,7 @@ $ClsProgramacion = new ClsProgramacionSemanal();
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Agregar programacion semanal</h4>
+                <h4 class="modal-title">Agregar programación semanal</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,23 +15,21 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxCliente" class="form-label">Cliente</label>
-                                <select name="cbxCliente" id="cbxCliente" class="form-control select2" style="width: 100%;">
-                                </select>
+                                <label for="txtCliente" class="form-label">Cliente:</label>
+                                <input type="text" name="txtCliente" id="txtCliente" class="form-control" style="width: 100%;"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxObra" class="form-label">Obra</label>
-                                <select name="cbxObra" id="cbxObra" class="form-control select2" style="width: 100%;">
-                                </select>
+                                <label for="txtObra" class="form-label">Obra:</label>
+                                <input type="text" name="txtObra" id="txtObra" class="form-control" style="width: 100%;"/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxPedido" class="form-label">Pedido</label>
+                                <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
                                     <?= $ClsProgramacion->fntOptionListaPedidosObj(); ?>
                                 </select>
@@ -39,7 +37,7 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxProducto" class="form-label">Producto</label>
+                                <label for="cbxProducto" class="form-label">Producto:</label>
                                 <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;">
                                     <?= $ClsProgramacion->fntOptionProductoEditObj(); ?>
                                 </select>
@@ -49,13 +47,13 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtCant" class="form-label">Volumen</label>
+                                <label for="txtCant" class="form-label">Volumen:</label>
                                 <input name="txtCant" id="txtCant" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxFrecuencia" class="col-sm-2 form-label">Frecuencia</label>
+                                <label for="cbxFrecuencia" class="col-sm-2 form-label">Frecuencia:</label>
                                 <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
                                     <?= $ClsProgramacion->fntOptionFrecuenciaEditObj() ?>
                                 </select>
@@ -65,7 +63,7 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtElementos" class="form-label">Elementos a fundir</label>
+                                <label for="txtElementos" class="form-label">Elementos a fundir:</label>
                                 <input name="txtElementos" id="txtElementos" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
@@ -87,13 +85,13 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
                                 <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacion->fntOptionTipoDescargueObj(); ?>
+                                    <?= $ClsProgramacion->fntOptionTipoDescargueDosObj(); ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtMetros" class="form-label">Metros de tuberia</label>
+                                <label for="txtMetros" class="form-label">Metros de tuberia:</label>
                                 <input name="txtMetros" id="txtMetros" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
@@ -101,7 +99,7 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtObservaciones" class="form-label">Observaciones</label>
+                                <label for="txtObservaciones" class="form-label">Observaciones:</label>
                                 <input name="txtObservaciones" id="txtObservaciones" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
@@ -109,13 +107,13 @@ $ClsProgramacion = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtInicio" class="form-label">Fecha Inicial</label>
+                                <label for="txtInicio" class="form-label">Fecha Inicial:</label>
                                 <input type="text" name="txtInicio" id="txtInicio" class="form-control">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtFin" class="form-label">Fecha Final</label>
+                                <label for="txtFin" class="form-label">Fecha Final:</label>
                                 <input type="text" name="txtFin" id="txtFin" class="form-control">
                             </div>
                         </div>

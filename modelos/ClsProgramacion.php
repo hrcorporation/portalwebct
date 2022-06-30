@@ -707,6 +707,7 @@ class ClsProgramacion extends conexionPDO
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
     // Traer el nombre del cliente.
     public function get_nombre_cliente($id_usuario)
@@ -793,7 +794,7 @@ class ClsProgramacion extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $option .= '<a type="button" class = "btn btn-primary" href="#">' . $fila["ct5_NombreObra"] . '</a>';
+            $option .= '<a type="button" class = "btn btn-primary" href="semanal/index.php">' . $fila["ct5_NombreObra"] . '</a>';
             $option .= " ";
         }
         //Cerrar Conexion
@@ -819,7 +820,7 @@ class ClsProgramacion extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $option .= '<a type="button" class="btn btn-primary" href="#">' . $fila["ct5_NombreObra"] . '</a>';
+            $option .= '<a type="button" class="btn btn-primary" href="semanal/index.php">' . $fila["ct5_NombreObra"] . '</a>';
             $option .= " ";
         }
         //Cerrar Conexion

@@ -1,5 +1,5 @@
 <?php
-    $ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$ClsProgramacionSemanal = new ClsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -41,7 +41,6 @@
                             <div class="form-group">
                                 <label for="cbxProducto" class="form-label">Producto:</label>
                                 <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionProductoEditObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -57,7 +56,7 @@
                             <div class="form-group">
                                 <label for="txtFrecuencia" class="form-label">Frecuencia:</label>
                                 <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj()?>
+                                    <?= $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -87,7 +86,7 @@
                             <div class="form-group">
                                 <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
                                 <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionTipoDescargueObj(); ?>
+                                    <?= $ClsProgramacionSemanal->fntOptionTipoDescargueDosObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -131,7 +130,7 @@
     <!-- /.modal-content -->
 </div>
 <script>
-     $(document).ready(function() {
+    $(document).ready(function() {
         $('.select2').select2();
     });
 </script>

@@ -2,12 +2,10 @@
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php'; ?>
 <?php $objProgramacionSemanal = new ClsProgramacionSemanal(); ?>
-
 <?php $intCantidadProgramacionSinConfirmar = $objProgramacionSemanal->fntContarProgramacionesSinConfirmarObj(); ?>
 <?php $intCantidadProgramacionPorCargar = $objProgramacionSemanal->fntContarProgramacionesPorCargarObj(); ?>
 <?php $intCantidadProgramacionConfirmadas = $objProgramacionSemanal->fntContarProgramacionesConfirmadasObj(); ?>
 <?php $intCantidadProgramacionEjecutadas = $objProgramacionSemanal->fntContarProgramacionesEjecutadasObj(); ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -36,8 +34,11 @@
                 <h3 class="card-title">VER PROGRAMACIONES SEMANALES</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                        <i class="fas fa-expand"></i>
+                    </button>
                 </div>
             </div>
             <div class="card-body">
@@ -52,7 +53,6 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                
             </div>
             <!-- /.card-footer-->
         </div>
@@ -61,28 +61,92 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
 <!-- Modal -->
 <?php include 'modal_crear_programacion.php' ?>
 <?php include 'modal_editar_programacion.php' ?>
 <?php include 'modal_cargar_programacion.php' ?>
 <?php include 'modal_confirmar_programacion.php' ?>
 <?php include 'modal_informativo.php' ?>
-
 <!-- /.modal-dialog -->
-
 <?php include '../../../layout/footer/footer3.php' ?>
-
 <script src="calendar.js"> </script>
 <script>
     $(document).ready(function() {
         $('.select2').select2();
     });
     $(function() {
-        $('#chkRequiereBomba').on('change', function() {
-            
+        $('#chkRequiereBomba').on('click', function() {
+            //Ajax 
+            var formData = new FormData();
+            if ($(this).is(':checked')) {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        $("#cbxTipoDescargue").html(data.select_tipo_uno)
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            } else {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        $("#cbxTipoDescargue").html(data.select_tipo_dos)
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            }
         });
-        
+
+        $('#bomba').on('click', function() {
+            //Ajax 
+            var formData = new FormData();
+            if ($(this).is(':checked')) {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_uno)
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            } else {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_dos)
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            }
+        });
+
         $("#form_mostrar_event").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -105,7 +169,6 @@
                 },
             });
         }));
-
 
         $("#form_crear_programacion").on('submit', (function(e) {
             e.preventDefault();
@@ -130,7 +193,24 @@
             });
         }));
 
-
+        $('#cbxPedido').on('change', function() {
+            $.ajax({
+                url: "load_data_pedido.php", // URL
+                type: "POST", // Metodo HTTP
+                data: {
+                    'task': 1,
+                    'id_pedido': $('#cbxPedido').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $("#cbxProducto").html(data.select_producto)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+        
         $('#cbxCliente').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -174,7 +254,6 @@
                 },
             });
         });
-        
     });
 </script>
 </body>

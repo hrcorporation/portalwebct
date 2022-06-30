@@ -113,8 +113,7 @@ class ClsProgramacionSemanal extends conexionPDO
                             'color' => 'Light Blue',
                             'textcolor' => 'black'
                         ];
-                    }
-                    else if ($fila['status'] == 4) {
+                    } else if ($fila['status'] == 4) {
                         $events[] = [
                             "id" => $fila['id'],
                             'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
@@ -362,13 +361,48 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
-    
+
+    /**** OPTION SELECT PRODUCTO ********/
+    public function fntOptionProductoFuncionarioObj($id_pedido, $id_producto = null)
+    {
+        $option = "<option  selected='true' disabled='disabled'> Seleccione una Producto</option>";
+        $sql = "SELECT `id`, `codigo_producto`, `nombre_producto` 
+        FROM `ct65_pedidos_has_precio_productos` 
+        WHERE `id_pedido` = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id_pedido, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($result = $stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if ($id_producto == $fila['id']) {
+                        $selection = "selected='true'";
+                    } else {
+                        $selection = "";
+                    }
+                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
+                }
+            } else {
+                $option = "<option  selected='true' disabled='disabled'> Error al cargar Productos H2" . $num_reg . "</option>";
+            }
+        } else {
+            $option = "<option  selected='true' disabled='disabled'> Error al cargar Productos H1</option>";
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
+    }
+
     // Listar el tipo de descargue
-    public function fntOptionTipoDescargueObj($id = null)
+    public function fntOptionTipoDescargueUnoObj($id = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione tipo de descargue</option>";
         $sql = "SELECT `id`, `descripcion` 
-        FROM `ct66_tipo_descargue`";
+        FROM `ct66_tipo_descargue`
+        WHERE `id` = 3 OR `id` = 4";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -388,6 +422,33 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
+
+    // Listar el tipo de descargue
+    public function fntOptionTipoDescargueDosObj($id = null)
+    {
+        $option = "<option  selected='true' disabled='disabled'> Seleccione tipo de descargue</option>";
+        $sql = "SELECT `id`, `descripcion` 
+         FROM `ct66_tipo_descargue`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id == $fila['id']) {
+                $selection = " selected='true' ";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
+    }
+
 
     /**** OPTION SELECT PRODUCTO ********/
     public function fntOptionProductoEditObj($id_producto = null)

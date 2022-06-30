@@ -20,8 +20,6 @@ if (isset($_POST['id'])) {
             $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoEditObj($key['producto']);
             //mostrar el select de los pedidos
             $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['id_pedido']);
-            //mostrar el select del tipo de descargue
-            $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             //mostrar el select del listado de las frecuencias
             $objSelectFrecuencua = $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
             //Cantidad / Volumen
@@ -43,16 +41,18 @@ if (isset($_POST['id'])) {
             //Requiere bomba de concretolima (1. true, 0 false)
             $boolRequiereBomba = $key['requiere_bomba'];
             if ($boolRequiereBomba) {
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='' id='requiere_bomba' name='requiere_bomba' checked>
+                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='1' id='requiere_bomba' name='requiere_bomba' checked>
                 <label class='form-check-label' for='flexCheckDefault'>
                     Requiere bomba de concretolima
                 </label>";
-            }else{
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='' id='requiere_bomba' name='requiere_bomba'> 
+            } else {
+                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='1' id='requiere_bomba' name='requiere_bomba'> 
                 <label class='form-check-label' for='flexCheckDefault'>
                     Requiere bomba de concretolima
                 </label>";
             }
+            //mostrar el select del tipo de descargue
+            $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueUnoObj($key['id_tipo_descargue']);
         }
     } else {
         $data = false;

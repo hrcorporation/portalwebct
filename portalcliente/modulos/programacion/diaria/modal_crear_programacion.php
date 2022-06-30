@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
                                 <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionTipoDescargueObj(); ?>
+                                    <?= $ClsProgramacionDiaria->fntOptionTipoDescargueDosObj(); ?>
                                 </select>
                             </div>
                         </div>

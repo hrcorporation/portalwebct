@@ -1,11 +1,9 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-
 require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
-
 $log = false;
 $boolPhpEstado = false;
 $arrayPhpError[] = "";
@@ -21,5 +19,4 @@ $datos = array(
     'errores' => $arrayPhpError,
     'result' => $StrResultado,
 );
-//print json_encode($datos, JSON_FORCE_OBJECT);
 print json_encode($objData, JSON_UNESCAPED_UNICODE);

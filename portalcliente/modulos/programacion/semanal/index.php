@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <button style="position: absolute; right: 71%; top: 9%" type = "button" class = "btn btn-success" id = "btnAceptarProgramacion" data-toggle="modal" data-target="#modal_aceptar_programacion">
+                <button style="position: absolute; right: 71%; top: 9%" type="button" class="btn btn-success" id="btnAceptarProgramacion" data-toggle="modal" data-target="#modal_aceptar_programacion">
                     Aceptar y enviar
                 </button>
                 <div id='calendar'></div>
@@ -115,48 +115,40 @@
             });
         }));
 
-        $('#cbxCliente').on('change', function() {
+        $('#chkRequiereBomba').on('click', function() {
             //Ajax 
             var formData = new FormData();
-            formData.append('task', 2);
-            formData.append('cliente', $("#cbxCliente").val());
-            $.ajax({
-                url: "load_data.php", // URL
-                type: "POST", // Metodo HTTP
-                //data: formData,
-                data: formData,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    $("#cbxObra").html(data.select_obra)
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        });
-
-        $('#cbxClienteEditar').on('change', function() {
-            //Ajax 
-            var formData = new FormData();
-            formData.append('task', 2);
-            formData.append('cliente', $("#cbxClienteEditar").val());
-            $.ajax({
-                url: "load_data.php", // URL
-                type: "POST", // Metodo HTTP
-                //data: formData,
-                data: formData,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    $("#cbxObraEditar").html(data.select_obra)
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
+            if ($(this).is(':checked')) {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        $("#cbxTipoDescargue").html(data.select_tipo_uno)
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            } else {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        $("#cbxTipoDescargue").html(data.select_tipo_dos)
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            }
         });
     });
 </script>

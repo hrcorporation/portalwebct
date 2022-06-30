@@ -107,7 +107,42 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
         //         },
         //     });
         // }));
-
+        $('#chkRequiereBomba').on('click', function() {
+            //Ajax 
+            var formData = new FormData();
+            if ($(this).is(':checked')) {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        $("#cbxTipoDescargue").html(data.select_tipo_uno)
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            } else {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        $("#cbxTipoDescargue").html(data.select_tipo_dos)
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            }
+        });
+        
         $("#form_crear_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
