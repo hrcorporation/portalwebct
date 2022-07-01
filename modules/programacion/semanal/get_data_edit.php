@@ -19,7 +19,7 @@ if (isset($_POST['id'])) {
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
             $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoEditObj($key['producto']);
             //mostrar el select de los pedidos
-            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['id_pedido']);
+            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['cliente'], $key['id_pedido']);
             //mostrar el select del listado de las frecuencias
             $objSelectFrecuencua = $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
             //Cantidad / Volumen
@@ -52,7 +52,7 @@ if (isset($_POST['id'])) {
                 </label>";
             }
             //mostrar el select del tipo de descargue
-            $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueUnoObj($key['id_tipo_descargue']);
+            $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
         }
     } else {
         $data = false;

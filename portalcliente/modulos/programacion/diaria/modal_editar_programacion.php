@@ -1,5 +1,5 @@
 <?php
-    $ClsProgramacionDiaria = new ClsProgramacionDiaria();
+$ClsProgramacionDiaria = new ClsProgramacionDiaria();
 ?>
 <div class="modal fade" id="modal_show_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -15,16 +15,16 @@
                     <input type="hidden" value="" id="id_prog_evento" name="id_prog_evento" />
                     <input type="hidden" value="2" id="task" name="task" />
                     <div class="row">
-                    <div class="col">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="txtClienteEditar" class="form-label">Cliente:</label>
-                                <input type="text" name="txtClienteEditar" id="txtClienteEditar" class="form-control" style="width: 100%;"/>
+                                <input type="text" name="txtClienteEditar" id="txtClienteEditar" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtObraEditar" class="form-label">Obra:</label>
-                                <input type="text" name="txtObraEditar" id="txtObraEditar" class="form-control" style="width: 100%;"/>
+                                <input type="text" name="txtObraEditar" id="txtObraEditar" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="form-label">Observaciones</label>
+                                <label class="form-label">Observaciones:</label>
                                 <input name="txtObservacionesEditar" id="txtObservacionesEditar" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
@@ -120,13 +120,13 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="form-label">Fecha Inicial</label>
+                                <label class="form-label">Fecha Inicial:</label>
                                 <input type="text" name="txtInicioEditar" id="txtInicioEditar" class="form-control">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="control-label">Fecha Final</label>
+                                <label class="control-label">Fecha Final:</label>
                                 <input type="text" name="txtFinEditar" id="txtFinEditar" class="form-control">
                             </div>
                         </div>

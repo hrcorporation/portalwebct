@@ -11,7 +11,7 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase programacion
-$programacion = new ClsProgramacion();
+$ClsProgramacionSemanal = new ClsProgramacionSemanal();
 
 $datos = array(
     'POST' => $_POST,

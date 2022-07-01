@@ -11,11 +11,11 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase programacion
-$programacion = new ClsProgramacionDiaria();
+$ClsProgramacionDiaria = new ClsProgramacionDiaria();
 //id del usuario en sesion
 $id_usuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario
-$nombre_usuario = $programacion->fntGetNombreClienteObj($id_usuario);
+$nombre_usuario = $ClsProgramacionDiaria->fntGetNombreClienteObj($id_usuario);
 //Se crea un objeto de la clase Datetime
 $fecha_actual = new DateTime();
 //Se obtiene la fecha actual con el formato completo
@@ -30,7 +30,15 @@ if (isset($_POST['task'])) {
         //Fecha final de la programacion
         $fin = $_POST['txtFin'];
         //Validar que modifique correctamente la programacion (fechas)
-        if ($programacion->fntEditarProgramacionBool($id, $inicio, $fin, $hoy, $id_usuario, $nombre_usuario)) {
+        if ($ClsProgramacionDiaria->fntEditarProgramacionBool($id, $inicio, $fin, $hoy, $id_usuario, $nombre_usuario)) {
+            $php_estado = true;
+        }
+    }elseif ($_POST['task'] == 3) {
+        //Validacion de roles 
+        //id de la programacion
+        $id = $_POST['id'];
+        //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
+        if ($ClsProgramacionDiaria->fntEliminarProgramacionDiariaObj($id)) {
             $php_estado = true;
         }
     }

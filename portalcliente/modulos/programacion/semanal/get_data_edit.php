@@ -16,9 +16,9 @@ if (isset($_POST['id'])) {
         //Recorremos los datos mediante un foreach usando la variable key para cada dato
         foreach ($data as $key) {
             //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion
-            $objSelectCliente  = $programacion->fntOptionClienteEditObj($key['cliente']);
+            $objSelectCliente  = $programacion->fntOptionClienteEditFuncionarioObj($key['cliente']);
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
-            $objSelectObra  = $programacion->fntOptionObraEditObj($key['cliente'], $key['obra']);
+            $objSelectObra  = $programacion->fntOptionObraEditFuncionarioObj($key['cliente'], $key['obra']);
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
             $objSelectProducto  = $programacion->fntOptionProductoEditObj($key['producto']);
             //mostrar el select de los pedidos

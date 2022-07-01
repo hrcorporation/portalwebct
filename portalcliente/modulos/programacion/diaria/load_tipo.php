@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
-//Se crea un objeto de la clase programacionSemanal
+//Se crea un objeto de la clase programacion Diaria
 $objProgramacionDiaria = new ClsProgramacionDiaria();
 $boolPhpEstado = false;
 if ($objSelectTipoUno = $objProgramacionDiaria->fntOptionTipoDescargueUnoObj()) {

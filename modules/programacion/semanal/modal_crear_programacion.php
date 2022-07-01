@@ -33,7 +33,6 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionListaPedidosObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -86,7 +85,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
                                 <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionTipoDescargueDosObj(); ?>
+                                    <?= $ClsProgramacionSemanal->fntOptionTipoDescargueObj(); ?>
                                 </select>
                             </div>
                         </div>

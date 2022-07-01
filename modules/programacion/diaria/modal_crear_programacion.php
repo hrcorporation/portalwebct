@@ -33,7 +33,6 @@
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionListaPedidosObj(); ?>
                                 </select>
                             </div>
                         </div>

@@ -31,6 +31,14 @@ if (isset($_POST['task'])) {
         if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
             $php_estado = true;
         }
+    } elseif ($_POST['task'] == 3) {
+        //Validacion de roles 
+        //id de la programacion
+        $id = $_POST['id'];
+        //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
+        if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($id)) {
+            $php_estado = true;
+        }
     }
 }
 $datos = array(

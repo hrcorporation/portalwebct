@@ -4,11 +4,11 @@ require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 //se crea un objeto de la clase programacion
-$ClsProgramacionSemanal = new ClsProgramacionDiaria();
+$ClsProgramacionDiaria = new ClsProgramacionDiaria();
 //Validar que el id de la programacion exista
 if (isset($_POST['id'])) {
     //listar los datos de la programacion mediante el parametro de el id de la programacion 
-    if (is_array($data = $ClsProgramacionSemanal->fntCargarDataProgramacionDiariaObj($_POST['id']))) {
+    if (is_array($data = $ClsProgramacionDiaria->fntCargarDataProgramacionDiariaObj($_POST['id']))) {
         //Recorremos los datos mediante un foreach usando la variable key para cada dato
         foreach ($data as $key) {
             //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion
@@ -16,19 +16,19 @@ if (isset($_POST['id'])) {
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
             $objSelectObra  = $key['nombre_obra'];
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
-            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoEditObj($key['producto']);
+            $objSelectProducto  = $ClsProgramacionDiaria->fntOptionProductoEditObj($key['producto']);
             //mostrar el select de los pedidos
-            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['id_pedido']);
+            $objSelectPedidos = $ClsProgramacionDiaria->fntOptionListaPedidosObj($key['id_pedido']);
             //mostrar el select del lineas de despacho
-            $objSelectLineasDespacho = $ClsProgramacionSemanal->fntOptionLineaDespachoObj($key['id_linea_produccion']);
+            $objSelectLineasDespacho = $ClsProgramacionDiaria->fntOptionLineaDespachoObj($key['id_linea_produccion']);
             //mostrar el select de las mixer en obra
-            $objSelectMixer = $ClsProgramacionSemanal->fntOptionVehiculoObj($key['id_mixer']);
+            $objSelectMixer = $ClsProgramacionDiaria->fntOptionVehiculoObj($key['id_mixer']);
             //mostrar el select de los conductores
-            $objSelectConductores = $ClsProgramacionSemanal->fntOptionConductorObj($key['id_conductor']);
+            $objSelectConductores = $ClsProgramacionDiaria->fntOptionConductorObj($key['id_conductor']);
             //mostrar el select del tipo de descargue
-            $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueDosObj($key['id_tipo_descargue']);
+            $objSelectTipoDescargue = $ClsProgramacionDiaria->fntOptionTipoDescargueDosObj($key['id_tipo_descargue']);
             //mostrar el select del tipo de bomba
-            $objSelectTipoBomba = $ClsProgramacionSemanal->fntOptionTipoBombaObj($key['id_tipo_bomba']);
+            $objSelectTipoBomba = $ClsProgramacionDiaria->fntOptionTipoBombaObj($key['id_tipo_bomba']);
             //Hora cargue
             $dtmHoraCargue = $key['hora_cargue'];
             //Hora mixer obra

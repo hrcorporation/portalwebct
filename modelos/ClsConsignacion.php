@@ -9,64 +9,10 @@ class ClsConsignacion extends conexionPDO
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
-
-    // Listar todos los pedidos.
-    public function fntGetConsignacionesObj()
-    {
-        $sql = "SELECT `id`, `estado`, `fecha_consignacion`, `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones` 
-        FROM `ct66_consignacion`";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        // Ejecutar 
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount();
-            if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $datos['id'] = $fila['id'];
-                    $datos['estado'] = SELF::fntGetEstadoObj($fila['estado']);
-                    $datos['fecha_consignacion'] = $fila['fecha_consignacion'];
-                    $datos['nombre_banco'] = $fila['nombre_banco'];
-                    $datos['valor'] = number_format($fila['valor'], 2);
-                    $datos['nombre_cliente'] = $fila['nombre_cliente'];
-                    $datos['observaciones'] = $fila['observaciones'];
-                    $datosf[] = $datos;
-                }
-                return $datosf;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    // Traer el nombre del cliente.
-    function fntGetNombreClienteObj($id_cliente)
-    {
-        $this->id = $id_cliente;
-        // sentencia SQL
-        $sql = "SELECT ct1_RazonSocial 
-        FROM ct1_terceros 
-        WHERE ct1_IdTerceros = :id_cliente";
-        // Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
-        // ejecuta la sentencia SQL
-        if ($stmt->execute()) {
-            $num_reg = $stmt->rowCount();
-            if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    return $fila['ct1_RazonSocial'];
-                }
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    // Traer el nombre del cliente.
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////SELECT - OBTENER NOMBRE////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Traer el nombre del estado de la consignacion mediante el "id" de la consignacion.
     function fntGetEstadoObj($id)
     {
         $this->id = $id;
@@ -91,8 +37,32 @@ class ClsConsignacion extends conexionPDO
             return false;
         }
     }
-
-    // Traer el nombre del cliente.
+    // Traer el nombre del cliente mediante el "ct1_IdTerceros" del Cliente(Tercero).
+    function fntGetNombreClienteObj($id_cliente)
+    {
+        $this->id = $id_cliente;
+        // sentencia SQL
+        $sql = "SELECT ct1_RazonSocial 
+        FROM ct1_terceros 
+        WHERE ct1_IdTerceros = :id_cliente";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['ct1_RazonSocial'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    // Traer el nombre del banco.
     function fntGetBancoObj($id)
     {
         $this->id = $id;
@@ -117,22 +87,22 @@ class ClsConsignacion extends conexionPDO
             return false;
         }
     }
-
-    // Listar los clientes
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////SELECT - LISTAR DATOS REQUERIDOS PARA CREAR UNA CONSIGNACION///////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Listar mediante un select los clientes(Terceros).
     function fntOptionClienteEditObj($id_cliente = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
+        //Consulta SQL
         $sql = "SELECT ct1_IdTerceros , ct1_NumeroIdentificacion , ct1_RazonSocial 
         FROM ct1_terceros 
         WHERE ct1_TipoTercero = 1 AND ct1_Estado = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-
         // Asignando Datos ARRAY => SQL
-        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
         // Ejecutar 
-        $result = $stmt->execute();
-
+        $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if ($id_cliente == $fila['ct1_IdTerceros']) {
                 $selection = " selected='true' ";
@@ -148,20 +118,18 @@ class ClsConsignacion extends conexionPDO
         //resultado
         return $option;
     }
-
-    // Listar los bancos
+    // Listar mediante un select los bancos.
     function fntOptionBancosObj($id = null)
     {
         $this->id = $id;
         $option = "<option> Seleccione el banco </option>";
+        //Consulta SQL
         $sql = "SELECT * FROM `ct66_bancos`";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
-
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     if ($this->id == $fila['id']) {
                         $selection = "selected='true'";
@@ -183,8 +151,7 @@ class ClsConsignacion extends conexionPDO
         //resultado
         return $option;
     }
-
-    // Listar los estados de la consignacion
+    // Listar mediante un select los estados.
     function fntOptionEstadosObj($id = null)
     {
         $this->id = $id;
@@ -218,8 +185,44 @@ class ClsConsignacion extends conexionPDO
         //resultado
         return $option;
     }
-
-    // Crear programacion semanal.
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////SELECT - OBTENER CONSIGNACIONES////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Listar todas las consignaciones.
+    public function fntGetConsignacionesObj()
+    {
+        //Consulta SQL
+        $sql = "SELECT `id`, `estado`, `fecha_consignacion`, `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones` 
+        FROM `ct66_consignacion`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                // Obtener los datos de los valores
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $datos['id'] = $fila['id'];
+                    $datos['estado'] = SELF::fntGetEstadoObj($fila['estado']);
+                    $datos['fecha_consignacion'] = $fila['fecha_consignacion'];
+                    $datos['nombre_banco'] = $fila['nombre_banco'];
+                    $datos['valor'] = number_format($fila['valor'], 2);
+                    $datos['nombre_cliente'] = $fila['nombre_cliente'];
+                    $datos['observaciones'] = $fila['observaciones'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////CREATE - CREAR CONSIGNACION////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Crear una consignacion.
     function fntCrearConsignacionObj($dtmFechaConsignacion, $intIdBanco, $StrBanco, $dblValorConsignacion, $intIdEstado,  $intIdCliente, $StrNombreCliente, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
     {
         $sql = "INSERT INTO `ct66_consignacion`(`estado`, `fecha_consignacion`, `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones`, `id_usuario`, `nombre_usuario`) 

@@ -67,7 +67,6 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
 } else {
     $php_error = 'Se requieren los datos';
 }
-
 $datos = array(
     'estado' => $php_estado,
     'errores' => $php_error,

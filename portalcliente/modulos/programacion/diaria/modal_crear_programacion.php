@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionListaPedidosObj(); ?>
+                                    <?= $ClsProgramacionDiaria->fntOptionListaPedidosClienteObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                             <div class="form-group">
                                 <label for="cbxTipoBomba" class="form-label">Tipo de bomba:</label>
                                 <select name="cbxTipoBomba" id="cbxTipoBomba" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionTipoBombaObj() ?>
+                                    <?= $ClsProgramacionDiaria->fntOptionTipoBombaObj(); ?>
                                 </select>
                             </div>
                         </div>

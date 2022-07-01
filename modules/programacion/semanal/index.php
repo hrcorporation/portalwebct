@@ -1,6 +1,7 @@
 <?php include '../../../layout/validar_session3.php' ?>
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php'; ?>
+
 <?php $objProgramacionSemanal = new ClsProgramacionSemanal(); ?>
 <?php $intCantidadProgramacionSinConfirmar = $objProgramacionSemanal->fntContarProgramacionesSinConfirmarObj(); ?>
 <?php $intCantidadProgramacionPorCargar = $objProgramacionSemanal->fntContarProgramacionesPorCargarObj(); ?>
@@ -226,6 +227,7 @@
                 processData: false,
                 success: function(data) {
                     $("#cbxObra").html(data.select_obra)
+                    $("#cbxPedido").html(data.select_pedidos)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
