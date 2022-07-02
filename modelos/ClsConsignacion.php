@@ -246,4 +246,21 @@ class ClsConsignacion extends conexionPDO
             return false;
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////DELETE - ELIMINAR CONSIGNACION/////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Eliminar una programacion. eliminar_programacion_semanal
+    function fntEliminarConsignacionObj($id_consignacion)
+    {
+        $sql = "DELETE FROM `ct66_consignacion` WHERE `id` = :id_consignacion";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id_consignacion', $id_consignacion, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

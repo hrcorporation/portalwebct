@@ -3,7 +3,7 @@
 class ClsProgramacionSemanal extends conexionPDO
 {
     protected $con;
-    // Iniciar Conexion
+    // CONEXION
     public function __construct()
     {
         $this->PDO = new conexionPDO();
@@ -89,7 +89,7 @@ class ClsProgramacionSemanal extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - LISTAR DATOS REQUERIDOS PARA CREAR PROGRAMACION///////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Listado de los clientes(Terceros) para los FUNCIONARIOS
+    // Listado de los clientes(Terceros) para los (FUNCIONARIOS).
     public function fntOptionClienteEditFuncionarioObj($id_cliente = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
@@ -119,7 +119,7 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
-    // Listado de los clientes(Terceros) para los USUARIOS.
+    // Listado de los clientes(Terceros) para los (CLIENTE).
     public function fntOptionClienteEditClienteObj($id_usuario, $id_cliente = null)
     {
         $this->id = $id_usuario;
@@ -150,7 +150,7 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
-    // Listado de las obras para los FUNCIONARIOS.
+    // Listado de las obras para los (FUNCIONARIOS).
     public function fntOptionObraEditFuncionarioObj($id_cliente, $id_obra = null)
     {
         $this->id = $id_cliente;
@@ -176,7 +176,7 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
-    // Listado de las obras para los USUARIOS.
+    // Listado de las obras para los (CLIENTE).
     public function fntOptionObraEditClienteObj($id_cliente, $id_usuario, $id_obra = null)
     {
         $this->id_cliente = $id_cliente;

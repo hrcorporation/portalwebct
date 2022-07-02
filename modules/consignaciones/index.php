@@ -157,7 +157,7 @@
                 },
                 {
                     "data": null,
-                    "defaultContent": "<a class='btn btn-danger btn-sm' data-toggle='modal' data-target='#modal_eliminar_programacion'> <i class='fas fa-trash'></i> </a>"
+                    "defaultContent": "<a class='btn btn-danger btn-sm'> <i class='fas fa-trash'></i> </a>"
                 }
             ],
             //"scrollX": true,
@@ -175,6 +175,44 @@
             var data = table.row($(this).parents('tr')).data();
             var id = data['id'];
             window.location = "editar/editar.php?id=" + id;
+        });
+        $('#table_consignaciones tbody').on('click', 'a', function() {
+            var data = table.row($(this).parents('tr')).data();
+            var id = data['id'];
+            Swal.fire({
+                title: '¿Esta Seguro(a) que desea eliminar la consignacion?', // mensaje de la alerta
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                cancelButtonText: 'No', // text boton
+                confirmButtonText: 'Si Eliminar'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "php_eliminar_consignacion.php",
+                        type: "POST",
+                        data: {
+                            task: 1,
+                            id: id,
+                        },
+                        success: function(response) {
+                            if (response.estado) {
+                                Swal.fire(
+                                    'La consignacion fue eliminado correctamente',
+                                )
+                                table.ajax.reload();
+                            } else {
+                                console.log("error");
+                            }
+                        },
+                        error: function(respuesta) {
+                            alert(JSON.stringify(respuesta));
+                        },
+                    });
+                }
+            })
         });
         setInterval(function() {
             table.ajax.reload(null, false);

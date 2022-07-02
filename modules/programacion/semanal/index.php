@@ -3,6 +3,7 @@
 <?php include 'sidebar.php'; ?>
 
 <?php $objProgramacionSemanal = new ClsProgramacionSemanal(); ?>
+
 <?php $intCantidadProgramacionSinConfirmar = $objProgramacionSemanal->fntContarProgramacionesSinConfirmarObj(); ?>
 <?php $intCantidadProgramacionPorCargar = $objProgramacionSemanal->fntContarProgramacionesPorCargarObj(); ?>
 <?php $intCantidadProgramacionConfirmadas = $objProgramacionSemanal->fntContarProgramacionesConfirmadasObj(); ?>

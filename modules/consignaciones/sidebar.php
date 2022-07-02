@@ -32,7 +32,7 @@
                       </a>
                   </li>
                   <li class="nav-item has-treeview">
-                      <a class="nav-link" data-toggle="modal" data-target="#modal_importar_consignacion">
+                      <a class="nav-link" data-toggle="modal" data-target="#modal_crear_consignacion">
                           <i class="nav-icon fas fa-copy"></i>
                           <p>
                               Ajuste de cartera

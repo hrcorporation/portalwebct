@@ -34,9 +34,9 @@ if (isset($_POST['task'])) {
     } elseif ($_POST['task'] == 3) {
         //Validacion de roles 
         //id de la programacion
-        $id = $_POST['id'];
+        $intId = $_POST['id'];
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
-        if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($id)) {
+        if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
             $php_estado = true;
         }
     }

@@ -7,10 +7,10 @@ require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacionSemanal
 $objProgramacionDiaria = new ClsProgramacionDiaria();
 $boolPhpEstado = false;
-if ($objSelectTipoUno = $objProgramacionDiaria->fntOptionTipoDescargueUnoObj()) {
+if ($objSelectTipoUno = $objProgramacionDiaria->fntOptionTipoDescargueConcretolObj()) {
     $boolPhpEstado = true;
 }
-if ($objSelectTipoDos = $objProgramacionDiaria->fntOptionTipoDescargueDosObj()) {
+if ($objSelectTipoDos = $objProgramacionDiaria->fntOptionTipoDescargueObj()) {
     $boolPhpEstado = true;
 }
 $datos = array(

@@ -3,7 +3,7 @@
 class ClsProgramacionDiaria extends conexionPDO
 {
     protected $con;
-    // Iniciar Conexion
+    // CONEXION
     public function __construct()
     {
         $this->PDO = new conexionPDO();
@@ -12,7 +12,7 @@ class ClsProgramacionDiaria extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - OBTENER PROGRAMACIONES///////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Obtener todas las programaciones.
+    // Obtener todas las programaciones (FUNCIONARIOS).
     public function fntGetProgDiariaFuncionarioObj()
     {
         $sql = "SELECT * FROM `ct66_programacion_diaria`";
@@ -70,7 +70,7 @@ class ClsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
-    // Obtener todas las programaciones desde el usuario de un cliente.
+    // Obtener todas las programaciones (CLIENTES).
     public function fntGetProgDiariaClienteObj($id_usuario)
     {
         $this->id = $id_usuario;
@@ -123,7 +123,7 @@ class ClsProgramacionDiaria extends conexionPDO
         return false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////SELECT - CARGAR PROGRAMACION///////////////////////////////////////
+    //////////////////////////////////SELECT - CARGAR PROGRAMACIONES/////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // Cargar datos de la programacion mediante el id de la programacion.
     public function fntCargarDataProgramacionDiariaObj($id_programacion)
@@ -202,7 +202,7 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-    //Listado de los clientes(Terceros) para los USUARIOS.
+    //Listado de los clientes(Terceros) - (CLIENTE)
     public function fntOptionClienteEditClienteObj($id_usuario, $id_cliente = null)
     {
         $this->id = $id_usuario;
@@ -259,7 +259,7 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-    //Listado de las obras para los USUARIOS.
+    //Listado de las obras (CLIENTE).
     public function fntOptionObraEditClienteObj($id_cliente, $id_usuario, $id_obra = null)
     {
         $this->id_cliente = $id_cliente;
@@ -289,7 +289,7 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-    // // Listado del tipo de pedidos.
+    // // Listado del tipo de pedidos (CLIENTE).
     public function fntOptionListaPedidosClienteObj($id = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione el pedido</option>";
@@ -415,7 +415,7 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // Listado del tipo de descargue (CONCRE TOLIMA).
-    public function fntOptionTipoDescargueUnoObj($id = null)
+    public function fntOptionTipoDescargueConcretolObj($id = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione tipo de descargue</option>";
         $sql = "SELECT `id`, `descripcion` 
@@ -441,7 +441,7 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // Listado del tipo de descargue (TODOS).
-    public function fntOptionTipoDescargueDosObj($id = null)
+    public function fntOptionTipoDescargueObj($id = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione tipo de descargue</option>";
         $sql = "SELECT `id`, `descripcion` 
@@ -599,8 +599,8 @@ class ClsProgramacionDiaria extends conexionPDO
     //Contar los datos de las programaciones diarias con estado de Sin confirmar (FUNCIONARIO)
     public function fntContarProgramacionesSinConfirmarFuncionarioObj()
     {
-        $sql = "SELECT COUNT(id) as cantidad 
-        FROM `ct66_programacion_diaria` 
+        $sql = "SELECT COUNT(id) as cantidad
+        FROM `ct66_programacion_diaria`
         WHERE `status` = 1";
         $stmt = $this->con->prepare($sql);
         if ($stmt->execute()) {
@@ -737,7 +737,7 @@ class ClsProgramacionDiaria extends conexionPDO
          WHERE `id` = :id_programacion";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-        // Asignando Datos ARRAY => SQ
+        // Asignando Datos ARRAY => SQL
         $stmt->bindParam(':inicio', $start, PDO::PARAM_STR);
         $stmt->bindParam(':fin', $end, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_modificacion', $fecha_modificacion, PDO::PARAM_STR);
