@@ -330,7 +330,7 @@ class ClsProgramacionSemanal extends conexionPDO
     // Listado de los productos para los FUNCIONARIOS.
     public function fntOptionProductoFuncionarioObj($id_pedido, $id_producto = null)
     {
-        $option = "<option  selected='true' disabled='disabled'> Seleccione una Producto</option>";
+        $option = "<option  selected='true' disabled='disabled'> Seleccione un Producto</option>";
         $sql = "SELECT `id`, `codigo_producto`, `nombre_producto` 
         FROM `ct65_pedidos_has_precio_productos` 
         WHERE `id_pedido` = :id AND `status` = 1";

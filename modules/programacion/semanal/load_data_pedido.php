@@ -10,12 +10,11 @@ $objProgramacionSemanal = new ClsProgramacionSemanal();
 $php_estado = false;
 $errores = "";
 $resultado = "";
-$select_obras ="";
 
 if ($_POST['task'] == 1){
     $intIdPedido = $_POST['id_pedido'];
     //Buscar el id de la obra filtrandola con el id del cliente.
-    $select_productos = $objProgramacionSemanal->fntOptionProductoFuncionarioObj($intIdPedido);
+    $objSelectProductos = $objProgramacionSemanal->fntOptionProductoFuncionarioObj($intIdPedido);
     $php_estado = true; 
 }
 
@@ -23,7 +22,7 @@ $datos = array(
     'estado' => $php_estado,
     'errores' => $errores,
     'result' => $resultado,
-    'select_producto' => $select_productos
+    'select_producto' => $objSelectProductos
 );
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

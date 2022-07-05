@@ -41,18 +41,12 @@ if (isset($_POST['id'])) {
             //Requiere bomba de concretolima (1. true, 0 false)
             $boolRequiereBomba = $key['requiere_bomba'];
             if ($boolRequiereBomba) {
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='1' id='requiere_bomba' name='requiere_bomba' checked>
-                <label class='form-check-label' for='flexCheckDefault'>
-                    Requiere bomba de concretolima
-                </label>";
+                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='2' id='chkRequiereBombaEditar' name='chkRequiereBombaEditar' checked ><label class='form-check-label' for='flexCheckDefault'>  Requiere bomba de concretolima </label>";
+                $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
             } else {
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='1' id='requiere_bomba' name='requiere_bomba'> 
-                <label class='form-check-label' for='flexCheckDefault'>
-                    Requiere bomba de concretolima
-                </label>";
+                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='4' id='chkRequiereBombaEditar' name='chkRequiereBombaEditar'> <label class='form-check-label' for='flexCheckDefault'> Requiere bomba de concretolima </label>";
+                $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             }
-            //mostrar el select del tipo de descargue
-            $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
         }
     } else {
         $data = false;

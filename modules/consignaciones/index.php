@@ -77,8 +77,8 @@
 <!-- /.content-wrapper -->
 <!-- Modal -->
 <?php include 'modal_crear_consignacion.php' ?>
+<?php include 'modal_editar_consignacion.php' ?>
 <?php include 'modal_importar_consignacion.php' ?>
-<?php include 'modal_eliminar_consignacion.php' ?>
 <!-- /.modal-dialog -->
 <?php include '../../layout/footer/footer2.php' ?>
 <script>
@@ -217,7 +217,33 @@
         setInterval(function() {
             table.ajax.reload(null, false);
         }, 10000);
-    })
+    });
+
+    $("#importar_consignaciones").change(function() {
+        $("#form_importar_consignacion").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "importar/ajax_consignacion.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Guardado Correctamente');
+                    } else {
+                        toastr.info(data.result);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                    location.reload();
+                }
+            });
+        }));
+    });
 </script>
 </body>
 

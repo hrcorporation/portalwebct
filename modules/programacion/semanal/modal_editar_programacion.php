@@ -5,7 +5,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Editar Programacion semanal </h4>
+                <h4 class="modal-title"> Editar Programacion semanal </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -72,7 +72,11 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <div class="form-check" id="bomba">
+                                <div class="form-check" id="group_check">
+                                    <input class='form-check-input' type='checkbox' value='1' id='chkRequiereBombaEditar' name='chkRequiereBombaEditar'>
+                                    <label class='form-check-label' for='flexCheckDefault'>
+                                        Requiere bomba de Concre Tolima
+                                    </label>
                                 </div>
                             </div>
                         </div>

@@ -26,7 +26,7 @@ if (isset($_POST['id'])) {
             //mostrar el select de los conductores
             $objSelectConductores = $ClsProgramacionDiaria->fntOptionConductorObj($key['id_conductor']);
             //mostrar el select del tipo de descargue
-            $objSelectTipoDescargue = $ClsProgramacionDiaria->fntOptionTipoDescargueDosObj($key['id_tipo_descargue']);
+            $objSelectTipoDescargue = $ClsProgramacionDiaria->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             //mostrar el select del tipo de bomba
             $objSelectTipoBomba = $ClsProgramacionDiaria->fntOptionTipoBombaObj($key['id_tipo_bomba']);
             //Hora cargue

@@ -81,13 +81,15 @@ document.addEventListener("DOMContentLoaded", function () {
           $("#cbxPedidoEditar").html(data.select_pedidos);
           $("#cbxTipoDescargueEditar").html(data.select_tipo_descargue);
           $("#cbxFrecuenciaEditar").html(data.select_frecuencia);
+
           form_show_event.txtCantEditar.value = data.cantidad;
           form_show_event.txtElementosEditar.value = data.elementos;
           form_show_event.txtInicioEditar.value = data.inicio;
           form_show_event.txtFinEditar.value = data.fin;
           form_show_event.txtObservacionesEditar.value = data.observaciones;
           form_show_event.txtMetrosEditar.value = data.metros;
-          $("#bomba").html(data.check_bomba);
+          $("#group_check").html(data.check_bomba);
+          //$("#group_check").prop("checked", true);
           $("#modal_show_evento").modal("show");
         },
         error: function (respuesta) {
