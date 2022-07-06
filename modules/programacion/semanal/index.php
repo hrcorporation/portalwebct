@@ -122,7 +122,6 @@
                     url: "load_tipo.php", // URL
                     type: "POST", // Metodo HTTP
                     data: formData,
-
                     success: function(data) {
                         $("#cbxTipoDescargueEditar").html(data.select_tipo_uno)
                         console.log(data);
@@ -137,7 +136,6 @@
                     url: "load_tipo.php", // URL
                     type: "POST", // Metodo HTTP
                     data: formData,
-
                     success: function(data) {
                         $("#cbxTipoDescargueEditar").html(data.select_tipo_dos)
                         console.log(data);
@@ -162,6 +160,7 @@
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
+                        $('#modal_crear_evento').modal('hide');
                     } else {
                         toastr.warning(data.errores);
                     }
@@ -220,6 +219,7 @@
             var formData = new FormData();
             formData.append('task', 2);
             formData.append('cliente', $("#cbxClienteEditar").val());
+            formData.append('pedido', $("#cbxPedidoEditar").val());
             $.ajax({
                 url: "load_data.php", // URL
                 type: "POST", // Metodo HTTP
@@ -230,6 +230,8 @@
                 processData: false,
                 success: function(data) {
                     $("#cbxObraEditar").html(data.select_obra)
+                    $("#cbxPedidoEditar").html(data.select_pedidos)
+                    $("#cbxProductoEditar").html(data.select_producto)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));

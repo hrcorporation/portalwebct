@@ -72,6 +72,8 @@ if ($hora_hoy < "16:00:00") {
     } else {
         $php_error = 'Se requieren los datos';
     }
+}else{
+    $php_error = 'FUERA DE LA HORA DE PROGRAMACION, INTENTE MAS TARDE';
 }
 $datos = array(
     'estado' => $php_estado,

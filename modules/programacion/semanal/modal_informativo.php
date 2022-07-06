@@ -10,7 +10,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form_confirmar_programacion" name="form_confirmar_programacion" method="post">
+            <form id="form_informativo" name="form_confirmar_programacion" method="post">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-6">

@@ -15,15 +15,15 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>Seleccionar Archivo</label>
+                                <label>Seleccionar Archivo:</label>
                                 <!-- input para seleccionar el archivo -->
-                                <input type="file" class="form-control" name="importar_consignaciones" id="importar_consignaciones"/>
+                                <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="form-control" name="importar_consignaciones" id="importar_consignaciones"/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btnCrear"> Guardar </button>
+                    <button type="submit" class="btn btn-primary" id="btnImportar" disabled = "true"> Guardar </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
                 </div>
             </form>

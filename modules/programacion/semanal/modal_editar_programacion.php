@@ -75,7 +75,7 @@
                                 <div class="form-check" id="group_check">
                                     <input class='form-check-input' type='checkbox' value='1' id='chkRequiereBombaEditar' name='chkRequiereBombaEditar'>
                                     <label class='form-check-label' for='flexCheckDefault'>
-                                        Requiere bomba de Concre Tolima
+                                        <b>¿Requiere bomba de Concre Tolima?</b>
                                     </label>
                                 </div>
                             </div>

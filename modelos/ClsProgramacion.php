@@ -531,10 +531,12 @@ class ClsProgramacion extends conexionPDO
     }
     /**** OPTION SELECT  CLIENTE********/
     //Select de los clientes
-    function option_cliente_edit_cliente($id_usuario, $id_cliente = null)
+    public function option_cliente_edit_cliente($id_usuario, $id_cliente = null)
     {
         $this->id = $id_usuario;
-        $sql = "SELECT DISTINCT ct1_terceros.ct1_IdTerceros, ct1_terceros.ct1_NumeroIdentificacion, ct1_terceros.ct1_RazonSocial FROM ct1_gestion_acceso INNER JOIN ct1_terceros ON ct1_gestion_acceso.id_cliente = ct1_terceros.ct1_IdTerceros 
+        $sql = "SELECT DISTINCT ct1_terceros.ct1_IdTerceros, ct1_terceros.ct1_NumeroIdentificacion, ct1_terceros.ct1_RazonSocial 
+        FROM ct1_gestion_acceso 
+        INNER JOIN ct1_terceros ON ct1_gestion_acceso.id_cliente = ct1_terceros.ct1_IdTerceros 
         WHERE id_residente = :id_usuario";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);

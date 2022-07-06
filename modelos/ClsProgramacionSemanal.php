@@ -411,6 +411,38 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
+    // Listado de las lineas de despacho.
+    public function fntOptionLineaDespachoObj($id = null)
+    {
+        $this->id = $id;
+        $option = "<option> Seleccione la linea de despacho </option>";
+        $sql = "SELECT * FROM `ct66_linea_despacho` ";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if ($this->id == $fila['id']) {
+                        $selection = "selected='true'";
+                    } else {
+                        $selection = "";
+                    }
+                    $option .= '<option value="' . $fila['id'] . '"   ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+                }
+            } else {
+                $option = "<option  selected='true' disabled='disabled'> Error al cargar datos</option>";
+            }
+        } else {
+            $option = "<option  selected='true' disabled='disabled'> Error al cargar datos</option>";
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $option;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - CONTAR PROGRAMACIONES CON X ESTADO////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -549,6 +581,21 @@ class ClsProgramacionSemanal extends conexionPDO
         $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_INT);
         $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
         $stmt->bindParam(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+    // Cambiar estado de la programacion semanales
+    public function fntCambiarEstadoProgramacionSemanal($id_usuario)
+    {
+        $estado = 3;
+        $sql = "UPDATE `ct66_programacion_semanal`
+        SET `status` = :estado 
+        WHERE `id_usuario` = :id_usuario";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         }
@@ -778,6 +825,28 @@ class ClsProgramacionSemanal extends conexionPDO
                     }
                 }
                 return $events;
+            }
+        }
+        return false;
+    }
+    // Obtener todos los estados de las programaciones (CLIENTE)
+    public function fntGetEstadosProgramacionClienteObj($id_usuario)
+    {
+        $sql = "SELECT `status` 
+            FROM `ct66_programacion_semanal` 
+            WHERE `id_usuario` = :id_usuario";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQ
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['status'] = $fila['status'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
             }
         }
         return false;

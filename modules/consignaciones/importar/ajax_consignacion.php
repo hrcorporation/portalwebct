@@ -60,7 +60,7 @@ if (is_array($array_reg)) {
             if ($php_result = $ClsConsignacion->fntCrearConsignacionPorImportarObj($intEstado, $dtmFecha, $intIdBanco, $strNombreBanco, $dblValor, $intIdCliente, $strNombreCliente, $strObservacion, $intIdUsuario, $strNombreUsuario)) {
                 $php_estado = true;
             }else{
-                $php_result = "ERROR";
+                $php_result = "El formato ingresado no es el correcto";
             }
         }
     }

@@ -1,5 +1,5 @@
 <?php
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+    $ClsProgramacionSemanal = new ClsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -74,7 +74,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBomba" name="chkRequiereBomba">
                                     <label for="chkRequiereBomba" class="form-check-label" for="flexCheckDefault">
-                                        <b>Requiere bomba de Concre Tolima</b>
+                                        <b>¿Requiere bomba de Concre Tolima?</b>
                                     </label>
                                 </div>
                             </div>
@@ -128,8 +128,3 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
     </div>
     <!-- /.modal-content -->
 </div>
-<script>
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
-</script>

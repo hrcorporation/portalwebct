@@ -15,7 +15,7 @@
                     <p>Da clic en el boton Aceptar para enviar las programaciones semanales al area de logistica de Concretol</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnConfirmarProgramacion"> Aceptar </button>
+                    <button type="submit" class="btn btn-primary" id="btnConfirmarProgramacion"> Aceptar </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
                 </div>
             </form>

@@ -63,7 +63,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -77,15 +77,14 @@
 <!-- /.content-wrapper -->
 <!-- Modal -->
 <?php include 'modal_crear_consignacion.php' ?>
-<?php include 'modal_editar_consignacion.php' ?>
 <?php include 'modal_importar_consignacion.php' ?>
 <!-- /.modal-dialog -->
 <?php include '../../layout/footer/footer2.php' ?>
 <script>
-     $(document).ready(function() {
+    $(document).ready(function() {
         $('.select2').select2();
     });
-
+    ///////////////////////////////////////////////////////////////
     $("#form_crear_consignacion").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({
@@ -108,7 +107,7 @@
             },
         });
     }));
-
+    /////////////////////////////////////////////////////////////////////////////
     function format(input) {
         var num = input.value.replace(/\./g, '');
         if (!isNaN(num)) {
@@ -119,7 +118,7 @@
             input.value = input.value.replace(/[^\d\.]*/g, '');
         }
     }
-
+    ////////////////////////////////////////////////////////////////////////////
     $(document).ready(function() {
         var n = 1;
         var table = $('#table_consignaciones').DataTable({
@@ -162,7 +161,6 @@
             ],
             //"scrollX": true,
         });
-
         table.on('order.dt search.dt', function() {
             table.column(0, {
                 search: 'applied',
@@ -218,8 +216,9 @@
             table.ajax.reload(null, false);
         }, 10000);
     });
-
+    ///////////////////////////////////////////////////////////
     $("#importar_consignaciones").change(function() {
+        $("#btnImportar").attr('disabled', false);
         $("#form_importar_consignacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -233,6 +232,7 @@
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Guardado Correctamente');
+                        $('#modal_importar_consignacion').modal('hide')
                     } else {
                         toastr.info(data.result);
                     }

@@ -90,7 +90,6 @@
     $(document).ready(function() {
         $("#txtCliente").change(function() {
             $("#txtObra").hide();
-            // $("#id_obra").show();
             $.ajax({
                 url: "load_data.php",
                 type: "POST",

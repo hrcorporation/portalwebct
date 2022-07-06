@@ -4,6 +4,7 @@
 <?php
 // SE CREAN OBJETOS DE LA CLASE PEDIDOS
 $pedidos = new pedidos();
+$ClsProgramacionSemanal = new ClsProgramacionSemanal();
 // SE OBTIENE EL ID POR GET
 $id = $_GET['id'];
 // SE LLAMA UNA FUNCION PARA OBTENER EL CLIENTE Y LA OBRA DEL PEDIDO
@@ -85,6 +86,7 @@ foreach ($datos as $dato) {
                             <th>Precio</th>
                             <th>Observaciones</th>
                             <th>Detalles</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -466,7 +468,7 @@ foreach ($datos as $dato) {
                                 <div class="row">
                                     <div class="col-10">
                                         <div class="form-group">
-                                            <label for=""></label>
+                                            <label></label>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -477,6 +479,140 @@ foreach ($datos as $dato) {
                                             </button>
                                         </div>
                                     </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div><!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL FIN -->
+            <!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL INICIO -->
+            <div class="modal fade" id="modal_cargar_programacion">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">CARGAR</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form name="form_productos" id="form_productos" method="post">
+                                <!-- <input type="hidden" name="id" id="id" value="<?= $id ?>"> -->
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Cliente:</label>
+                                            <br>
+                                            <b><?= $nombre_cliente ?></b>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Obra:</label>
+                                            <br>
+                                            <b><?= $nombre_obra ?></b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="txtElementos" class="form-label">Fecha fundida:</label>
+                                            <input type="date" name="txtFechaFundida" id="txtFechaFundida" class="form-control" style="width: 100%;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label for="txtElementos" class="form-label">Cantidad metros cubicos:</label>
+                                            <input type="number" name="txtFechaFundida" id="txtFechaFundida" class="form-control" style="width: 100%;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <label for="txtFrecuencia" class="form-label">Frecuencia:</label>
+                                            <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
+                                                <?= $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj(); ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <label class="form-label"></label>
+                                                <br>
+                                                <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBomba" name="chkRequiereBomba">
+                                                <label for="chkRequiereBomba" class="form-check-label" for="flexCheckDefault">
+                                                    <b>Requiere bomba de Concre Tolima</b>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="txtHoraBomba" class="form-label">Hora bomba sugerida por el cliente:</label>
+                                            <input type="time" name="txtHoraBomba" id="txtHoraBomba" class="form-control" style="width: 100%;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <label class="form-label"></label>
+                                                <br>
+                                                <input class="form-check-input" type="checkbox" value="1" id="chkRequiereAjuste" name="chkRequiereAjuste">
+                                                <label for="chkRequiereAjuste" class="form-check-label" for="flexCheckDefault">
+                                                    <b>Requiere ajuste</b>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="txtEspesorPlaca" class="form-label">Espesor de la placa:</label>
+                                            <input type="number" name="txtEspesorPlaca" id="txtEspesorPlaca" class="form-control" style="width: 100%;" />
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <label class="form-label"></label>
+                                                <br>
+                                                <input class="form-check-input" type="checkbox" value="1" id="chkRequiereSiso" name="chkRequiereSiso">
+                                                <label for="chkRequiereSiso" class="form-check-label" for="flexCheckDefault">
+                                                    <b>Requiere SISO</b>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Linea de despacho:</label>
+                                            <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
+                                                <?= $ClsProgramacionSemanal->fntOptionLineaDespachoObj() ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="txtHoraCargue" class="form-label">Hora de cargue:</label>
+                                            <input type="time" name="txtHoraCargue" id="txtHoraCargue" class="form-control" style="width: 100%;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="txtObservaciones" class="form-label">Observaciones:</label>
+                                            <input type="text" name="txtObservaciones" id="txtObservaciones" class="form-control" style="width: 100%;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" id="btnCrear"> Guardar </button>
                                 </div>
                             </form>
                         </div>
@@ -647,7 +783,11 @@ foreach ($datos as $dato) {
                 {
                     "data": null,
                     "defaultContent": "<button class='btn btn-danger btn-sm' id = 'btn-eliminar'> <i class='fas fa-trash'></i> </button>"
-                }
+                },
+                {
+                    "data": null,
+                    "defaultContent": "<a class='btn btn-primary btn-sm' id = 'btn-cargar' data-toggle='modal' data-target='#modal_cargar_programacion'> Cargar </a>"
+                },
             ],
             //"scrollX": true,
         });
