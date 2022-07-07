@@ -1,5 +1,5 @@
 <?php
-    $ClsConsignacion = new ClsConsignacion();
+$ClsConsignacion = new ClsConsignacion();
 ?>
 <div class="modal fade" id="modal_importar_consignacion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -17,14 +17,14 @@
                             <div class="form-group">
                                 <label>Seleccionar Archivo:</label>
                                 <!-- input para seleccionar el archivo -->
-                                <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="form-control" name="importar_consignaciones" id="importar_consignaciones"/>
+                                <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="form-control" name="importar_consignaciones" id="importar_consignaciones" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btnImportar" disabled = "true"> Guardar </button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
+                    <button type="submit" class="btn btn-primary" id="btnImportar" disabled="true" title='Importar consignacion'> Guardar </button>
+                    <button type="button" class="btn btn-secondary" title='Cancelar importacion de la consignacion' data-dismiss="modal"> No </button>
                 </div>
             </form>
         </div>

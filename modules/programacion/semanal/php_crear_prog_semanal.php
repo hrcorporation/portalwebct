@@ -12,13 +12,13 @@ $php_error[] = "";
 $resultado = "";
 //Validar que la variable de txt_cliente exista y no este vacia
 if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
-    //id del usuario
+    //Id del usuario
     $intIdUsuario = $_SESSION['id_usuario'];
     //Nombre del usuario mediante el parametro del id del usuario
     $StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
     //Estado
-    $intEstado = 2;
-    //id del cliente
+    $intEstado = 1;
+    //Id del cliente
     $intIdCliente = $_POST['cbxCliente'];
     //Nombre del cliente mediante el parametro del id del cliente
     $StrNombreCliente = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
@@ -26,9 +26,9 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     $intIdObra = $_POST['cbxObra'];
     //Nombre de la obra mediante el parametro del id de la obra.
     $StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
-    //id del pedido
+    //Id del pedido
     $intPedido = $_POST['cbxPedido'];
-    //id del producto.
+    //Id del producto.
     $intIdProducto = $_POST['cbxProducto'];
     //Nombre del producto mediante el parametro del id del producto.
     $StrNombreProducto = $ClsProgramacionSemanal->fntGetNombreProducto($intIdProducto);
@@ -46,9 +46,9 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     }
     //Tipo de descargue
     $intTipoDescargue = $_POST['cbxTipoDescargue'];
-    //nombre del tipo de descargue
+    //Nombre del tipo de descargue
     $StrNombreTipoDescargue = $ClsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
-    //metros de tuberia
+    //Metros de tuberia
     $decMetrosTuberia = $_POST['txtMetros'];
     //Observaciones
     $StrObservaciones = $_POST['txtObservaciones'];

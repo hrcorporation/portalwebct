@@ -15,7 +15,7 @@ setlocale(LC_ALL, 'es_ES');
 setlocale(LC_TIME, 'es_ES');
 $hora_actual = new DateTime();
 $hora_hoy = $hora_actual->format("H:i:s");
-//Validar que el rol del funcionario sea el el administrador o los dos cargos de programacion(15 y 16)
+// Crear la programacion hasta las 04 pm
 if ($hora_hoy < "16:00:00") {
     //Validar que la variable de txt_cliente exista y no este vacia
     if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
@@ -24,17 +24,15 @@ if ($hora_hoy < "16:00:00") {
         //Nombre del usuario mediante el parametro del id del usuario
         $StrNombreUsuario = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
         //Estado
-        $intEstado = 2;
+        $intEstado = 1;
         //id del cliente
-        $StrNombreCliente = $_POST['txtCliente'];
+        $intIdCliente = $_POST['txtCliente'];
         //Nombre del cliente mediante el parametro del id del cliente
-        // $StrNombreCliente = $programacion->get_nombre_cliente($intIdCliente);
-        $intIdCliente = 1;
+        $StrNombreCliente = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
         //id de la obra
-        $StrNombreObra = $_POST['txtObra'];
+        $intIdObra = $_POST['txtObra'];
         //Nombre de la obra mediante el parametro del id de la obra.
-        // $StrNombreObra = $programacion->get_nombre_obra($intIdObra);
-        $intIdObra = 5;
+        $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
         //id del pedido
         $intPedido = $_POST['cbxPedido'];
         //id del producto.

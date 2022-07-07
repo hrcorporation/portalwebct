@@ -4,9 +4,11 @@ header('Content-Type: application/json');
 require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
+
 $php_estado = false;
 $php_result = "saludo desde el servidor";
 $php_fechatime = "" . date("Y-m-d H:i:s");
+
 $image = htmlspecialchars($_FILES['importar_consignaciones']['name']);
 $ruta = htmlspecialchars($_FILES['importar_consignaciones']['tmp_name']);
 $php_fileexten = strrchr($_FILES['importar_consignaciones']['name'], ".");
@@ -28,9 +30,7 @@ class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
         return false;
     }
 }
-
 //$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-
 /**  identifica el tipo de archivo $inputFileName  **/
 $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
 /**  Crear un nuevo lector $reader para el tipo de archivo  **/
@@ -56,10 +56,10 @@ if (is_array($array_reg)) {
             $strNombreCliente = $row[3];
             $intIdCliente = $ClsConsignacion->fntGetIdClienteObj($strNombreCliente);
             $strObservacion = $row[4];
-            /////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             if ($php_result = $ClsConsignacion->fntCrearConsignacionPorImportarObj($intEstado, $dtmFecha, $intIdBanco, $strNombreBanco, $dblValor, $intIdCliente, $strNombreCliente, $strObservacion, $intIdUsuario, $strNombreUsuario)) {
                 $php_estado = true;
-            }else{
+            } else {
                 $php_result = "El formato ingresado no es el correcto";
             }
         }

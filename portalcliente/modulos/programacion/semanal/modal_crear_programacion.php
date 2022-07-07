@@ -1,5 +1,9 @@
 <?php
 $ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$intIdCliente = $_GET['id_cliente'];
+$StrNombreCliente = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
+$intIdObra = $_GET['id_obra'];
+$StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
 ?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -16,13 +20,15 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtCliente" class="form-label">Cliente:</label>
-                                <input type="text" name="txtCliente" id="txtCliente" class="form-control" style="width: 100%;"/>
+                                <input type="hidden" name="txtCliente" id="txtCliente" class="form-control" style="width: 100%;" value="<?= $intIdCliente ?>" />
+                                <p><?= $StrNombreCliente ?></p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtObra" class="form-label">Obra:</label>
-                                <input type="text" name="txtObra" id="txtObra" class="form-control" style="width: 100%;"/>
+                                <input type="hidden" name="txtObra" id="txtObra" class="form-control" style="width: 100%;" value="<?= $intIdObra ?>"/>
+                                <p><?= $StrNombreObra ?></p>
                             </div>
                         </div>
                     </div>
@@ -31,7 +37,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionListaPedidosClienteObj(); ?>
+                                    <?= $ClsProgramacionSemanal->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra); ?>
                                 </select>
                             </div>
                         </div>
@@ -39,7 +45,6 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="cbxProducto" class="form-label">Producto:</label>
                                 <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionProductoEditObj(); ?>
                                 </select>
                             </div>
                         </div>

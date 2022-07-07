@@ -98,6 +98,7 @@
                 console.log(data);
                 if (data.estado) {
                     toastr.success('Se ha guardado correctamente');
+                    $('#modal_crear_consignacion').modal('hide');
                 } else {
                     toastr.warning(data.errores);
                 }
@@ -152,11 +153,11 @@
                 },
                 {
                     "data": null,
-                    "defaultContent": "<button class='btn btn-warning btn-sm'> <i class='fas fa-edit'></i> </button>"
+                    "defaultContent": "<button class='btn btn-warning btn-sm' title='Modificar consignacion'> <i class='fas fa-edit'></i> </button>"
                 },
                 {
                     "data": null,
-                    "defaultContent": "<a class='btn btn-danger btn-sm'> <i class='fas fa-trash'></i> </a>"
+                    "defaultContent": "<a class='btn btn-danger btn-sm' title='Eliminar consignacion'> <i class='fas fa-trash'></i> </a>"
                 }
             ],
             //"scrollX": true,
@@ -232,7 +233,7 @@
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Guardado Correctamente');
-                        $('#modal_importar_consignacion').modal('hide')
+                        $('#modal_importar_consignacion').modal('hide');
                     } else {
                         toastr.info(data.result);
                     }

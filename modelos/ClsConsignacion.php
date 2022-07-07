@@ -10,7 +10,7 @@ class ClsConsignacion extends conexionPDO
         $this->con = $this->PDO->connect();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////SELECT - OBTENER NOMBRE////////////////////////////////////////////
+    //////////////////////////////////SELECT - OBTENER NOMBRES////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // Traer el nombre del estado de la consignacion mediante el "id" de la consignacion.
     function fntGetEstadoObj($id)
@@ -67,10 +67,12 @@ class ClsConsignacion extends conexionPDO
     {
         $this->id = $nombre_cliente;
         // sentencia SQL
-        $sql = "SELECT `ct1_IdTerceros` FROM `ct1_terceros` WHERE `ct1_RazonSocial` =  :nombre";
+        $sql = "SELECT `ct1_IdTerceros` 
+        FROM `ct1_terceros` 
+        WHERE `ct1_RazonSocial` =  :nombre";
         // Preparar Conexion
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':nombre', $this->id, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre', $this->id, PDO::PARAM_INT);
         // ejecuta la sentencia SQL
         if ($stmt->execute()) {
             $num_reg = $stmt->rowCount();
@@ -187,10 +189,10 @@ class ClsConsignacion extends conexionPDO
                     $option .= '<option value="' . $fila['id'] . '"   ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
                 }
             } else {
-                $option = "<option  selected='true' disabled='disabled'> Error al cargar datos</option>";
+                $option = "<option  selected='true' disabled='disabled'> Error al cargar los bancos </option>";
             }
         } else {
-            $option = "<option  selected='true' disabled='disabled'> Error al cargar datos</option>";
+            $option = "<option  selected='true' disabled='disabled'> Error al cargar datos </option>";
         }
 
         //Cerrar Conexion
@@ -300,7 +302,7 @@ class ClsConsignacion extends conexionPDO
     //////////////////////////////////CREATE - CREAR CONSIGNACION////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // Crear una consignacion.
-    function fntCrearConsignacionObj($dtmFechaConsignacion, $intIdBanco, $StrBanco, $dblValorConsignacion, $intIdEstado,  $intIdCliente, $StrNombreCliente, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
+    public function fntCrearConsignacionObj($dtmFechaConsignacion, $intIdBanco, $StrBanco, $dblValorConsignacion, $intIdEstado,  $intIdCliente, $StrNombreCliente, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
     {
         $sql = "INSERT INTO `ct66_consignacion`(`estado`, `fecha_consignacion`, `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones`, `id_usuario`, `nombre_usuario`) 
         VALUES (:estado, :fecha_consignacion, :id_banco, :nombre_banco, :valor, :id_cliente, :nombre_cliente, :observaciones, :id_usuario, :nombre_usuario)";
@@ -324,7 +326,7 @@ class ClsConsignacion extends conexionPDO
         }
     }
     // Crear una consignacion.
-    function fntCrearConsignacionPorImportarObj($intIdEstado, $dtmFechaConsignacion, $intIdBanco, $StrBanco, $dblValorConsignacion, $intIdCliente, $StrNombreCliente, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
+    public function fntCrearConsignacionPorImportarObj($intIdEstado, $dtmFechaConsignacion, $intIdBanco, $StrBanco, $dblValorConsignacion, $intIdCliente, $StrNombreCliente, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
     {
         $sql = "INSERT INTO `ct66_consignacion`(`estado`, `fecha_consignacion`,  `id_banco`, `nombre_banco`, `valor`, `id_cliente`, `nombre_cliente`, `observaciones`, `id_usuario`, `nombre_usuario`) 
         VALUES (:estado, :fecha_consignacion, :id_banco, :nombre_banco, :valor, :id_cliente, :nombre_cliente, :observaciones, :id_usuario, :nombre_usuario)";
@@ -351,7 +353,7 @@ class ClsConsignacion extends conexionPDO
     //////////////////////////////////DELETE - ELIMINAR CONSIGNACION/////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // Eliminar una programacion. eliminar_programacion_semanal
-    function fntEliminarConsignacionObj($id_consignacion)
+    public function fntEliminarConsignacionObj($id_consignacion)
     {
         $sql = "DELETE FROM `ct66_consignacion` WHERE `id` = :id_consignacion";
         //Preparar Conexion

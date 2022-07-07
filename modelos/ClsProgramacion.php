@@ -575,7 +575,7 @@ class ClsProgramacion extends conexionPDO
         //resultado
     }
     /**** OPTION SELECT OBRA ********/
-    function option_obra_edit($id_usuario, $id_cliente = null)
+    function option_obra_edit($id_usuario, $id_cliente = null, $id_obra = null)
     {
         $option = '<label for="txtObra" class="col-sm-2 form-label h4">Obra</label>';
         $option .= "<br>";
@@ -593,7 +593,8 @@ class ClsProgramacion extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $option .= '<a type="button" class = "btn btn-primary" href="semanal/index.php">' . $fila["ct5_NombreObra"] . '</a>';
+            $url = "semanal/index.php?id_cliente=".$id_cliente."&id_obra=".$fila['id_obra'];
+            $option .= '<a  class = "btn btn-primary" href="'.$url.'">' . $fila["ct5_NombreObra"] . '</a>';
             $option .= " ";
         }
         //Cerrar Conexion
@@ -608,7 +609,7 @@ class ClsProgramacion extends conexionPDO
         $option = '<label for="txtObra" class="col-sm-2 form-label h4">Obra</label>';
         $option .= "<br>";
         $this->id_usuario = $id_usuario;
-        $sql = "SELECT ct1_gestion_acceso.id_obra, ct5_obras.ct5_NombreObra
+        $sql = "SELECT ct1_gestion_acceso.id_cliente, ct1_gestion_acceso.id_obra, ct5_obras.ct5_NombreObra
           FROM ct1_gestion_acceso 
           INNER JOIN ct5_obras ON ct1_gestion_acceso.id_obra = ct5_obras.ct5_IdObras 
           WHERE id_residente = :id_usuario";
@@ -619,7 +620,8 @@ class ClsProgramacion extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $option .= '<a type="button" class="btn btn-primary" href="semanal/index.php">' . $fila["ct5_NombreObra"] . '</a>';
+            $url = "semanal/index.php?id_cliente=".$fila['id_cliente']."&id_obra=".$fila['id_obra'];
+            $option .= '<a  class = "btn btn-primary" href="'.$url.'">' . $fila["ct5_NombreObra"] . '</a>';
             $option .= " ";
         }
         //Cerrar Conexion

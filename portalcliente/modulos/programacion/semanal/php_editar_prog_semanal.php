@@ -12,6 +12,14 @@ $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase programacion
 $ClsProgramacionSemanal = new ClsProgramacionSemanal();
+//id del usuario en sesion
+$intIdUsuario = $_SESSION['id_usuario'];
+//Nombre del usuario en sesion mediante el parametro del id del usuario
+$StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
+//Se crea un objeto de la clase Datetime
+$dtmFechaActual = new DateTime();
+//Se obtiene la fecha actual con el formato completo
+$dtmHoy = $dtmFechaActual->format("Y-m-d H:i:s");
 if (isset($_POST['task'])) {
     //validar que la variable task tenga el valor de 1
     if ($_POST['task'] == 1) {

@@ -32,7 +32,7 @@ if (isset($_POST['id'])) {
             //Fecha final de la programacion
             $dtmFin = $key['fin'];
             //Frecuencia
-            $dtmFrecuencia = $key['frecuencia'];
+            $dtmFrecuencia = $programacion->fntOptionFrecuenciaEditObj($key['frecuencia']);
             //Elementos a fundir
             $StrElementos = $key['elementos'];
             //Observaciones

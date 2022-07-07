@@ -1,7 +1,6 @@
 <?php include '../../../../layout/validar_session_cliente4.php' ?>
 <?php include '../../../../layout/head/headcliente4.php' ?>
 <?php include 'sidebar.php' ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -128,8 +127,10 @@
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
+                        $('#modal_aceptar_programacion').modal('hide');
                     } else {
                         toastr.warning(data.errores);
+                        $('#modal_aceptar_programacion').modal('hide');
                     }
                 },
                 error: function(respuesta) {
@@ -172,6 +173,26 @@
                     },
                 });
             }
+        });
+
+        $('#cbxPedido').on('change', function() {
+            $.ajax({
+                url: "load_data_pedido.php", // URL
+                type: "POST", // Metodo HTTP
+                data: {
+                    'task': 1,
+                    'id_cliente': $('#txtCliente').val(),
+                    'id_obra': $('#txtObra').val(),
+                    'id_pedido': $('#cbxPedido').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $("#cbxProducto").html(data.select_producto)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
         });
     });
 </script>

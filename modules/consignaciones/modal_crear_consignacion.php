@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label for="cbxBanco" class="form-label">Banco:</label>
                                 <select name="cbxBanco" id="cbxBanco" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsConsignacion->fntOptionBancosObj() ?>
+                                    <?= $ClsConsignacion->fntOptionBancosObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <label for="cbxEstado" class="form-label">Estado:</label>
                                 <select name="cbxEstado" id="cbxEstado" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsConsignacion->fntOptionEstadosObj() ?>
+                                    <?= $ClsConsignacion->fntOptionEstadosObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <div class="form-group">
                                 <label for="cbxCliente" class="form-label">Cliente:</label>
                                 <select name="cbxCliente" id="cbxCliente" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsConsignacion->fntOptionClienteEditObj() ?>
+                                    <?= $ClsConsignacion->fntOptionClienteEditObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -62,8 +62,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btnCrear"> Guardar </button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear" title='Guardar consignacion'> Guardar </button>
+                    <button type="button" class="btn btn-secondary" title='Cancelar' data-dismiss="modal"> No </button>
                 </div>
             </form>
         </div>

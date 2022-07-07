@@ -1,8 +1,8 @@
 <?php include '../../../layout/validar_session_cliente3.php' ?>
 <?php include '../../../layout/head/headcliente3.php' ?>
 <?php include 'sidebar.php' ?>
-<?php $ClsProgramacion = new ClsProgramacion() ?>
-<?php $intIdUsuario = $_SESSION['id_usuario'] ?>
+<?php $ClsProgramacion = new ClsProgramacion(); ?>
+<?php $intIdUsuario = $_SESSION['id_usuario']; ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -66,7 +66,6 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-
             </div>
             <!-- /.card-footer-->
         </div>

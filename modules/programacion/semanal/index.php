@@ -45,11 +45,11 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <span class="badge bg-secondary"><?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar</span>
-                    <span class="badge bg-warning"><?= $intCantidadProgramacionPorCargar ?> - Por Cargar</span>
-                    <span class="badge bg-info"><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
-                    <span class="badge bg-success"><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
-                    <button style="position: absolute; right: 75%; top: 12.2%" type="button" class="btn btn-success" id="btnConfirmarProgramacion" data-toggle="modal" data-target="#modal_cargar_programacion"> Confirmar </button>
+                    <span class="badge bg-secondary" title='Programaciones sin Confirmar, cuando el cliente registra en la Base de datos.'><?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar</span>
+                    <span class="badge bg-warning" title='Programaciones por cargar, cuando el cliente confirma y envia al area de programacion.'><?= $intCantidadProgramacionPorCargar ?> - Por Cargar</span>
+                    <span class="badge bg-info" title='Programaciones confirmadas por el area de programacion.'><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
+                    <span class="badge bg-success" title='Programaciones ejecutadas y anexadas a la programacion diaria.'><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
+                    <button style="position: absolute; right: 69%; top: 12.2%" type="button" class="btn btn-success" id="btnConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_cargar_programacion"> Cargar programación </button>
                 </div>
                 <div id='calendar'></div>
             </div>
@@ -77,6 +77,36 @@
         $('.select2').select2();
     });
     $(function() {
+        $('#form_confirmar_programacion').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+
+            });
+        });
+        $("#form_cargar_programacion").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_cambiar_estado.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente');
+                        $('#modal_cargar_programacion').modal('hide');
+                    } else {
+                        toastr.warning(data.errores);
+                        $('#modal_cargar_programacion').modal('hide');
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
+
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
             var formData = new FormData();
