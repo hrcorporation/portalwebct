@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let form_crear_programacion = document.querySelector("#form_crear_programacion");
+  let form_crear_programacion = document.querySelector(
+    "#form_crear_programacion"
+  );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
@@ -76,10 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
         success: function (data) {
           form_show_event.id_prog_evento.value = info.event.id;
           console.log(info.event);
-          form_show_event.txtClienteEditar.value = data.select_cliente;
-          form_show_event.txtObraEditar.value = data.select_obra;
-          // $("#cbxClienteEditar").html(data.select_cliente);
-          // $("#cbxObraEditar").html(data.select_obra);
+          $("#cliente").html(data.select_cliente);
+          $("#obra").html(data.select_obra);
           $("#cbxProductoEditar").html(data.select_producto);
           $("#cbxPedidoEditar").html(data.select_pedidos);
           $("#cbxTipoDescargueEditar").html(data.select_tipo_descargue);

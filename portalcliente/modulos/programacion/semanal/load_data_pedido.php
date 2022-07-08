@@ -16,7 +16,7 @@ if ($_POST['task'] == 1){
     $intIdObra = $_POST['id_obra'];
     $intIdPedido = $_POST['id_pedido'];
     //Buscar el id de la obra filtrandola con el id del cliente.
-    $objSelectProductos = $objProgramacionSemanal->fntOptionProductoFuncionarioObj($intIdPedido, $intIdCliente, $intIdObra);
+    $objSelectProductos = $objProgramacionSemanal->fntOptionProductoClienteObj($intIdPedido, $intIdCliente, $intIdObra);
     $php_estado = true; 
 }
 

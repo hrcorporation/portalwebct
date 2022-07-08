@@ -16,15 +16,11 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                     <input type="hidden" value="2" id="task" name="task" />
                     <div class="row">
                         <div class="col">
-                            <div class="form-group">
-                                <label for="txtClienteEditar" class="form-label">Cliente:</label>
-                                <input type="text" name="txtClienteEditar" id="txtClienteEditar" class="form-control" style="width: 100%;" />
+                            <div class="form-group" id="cliente">
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
-                                <label for="txtObraEditar" class="form-label">Obra:</label>
-                                <input type="text" name="txtObraEditar" id="txtObraEditar" class="form-control" style="width: 100%;" />
+                            <div class="form-group" id="obra">
                             </div>
                         </div>
                     </div>

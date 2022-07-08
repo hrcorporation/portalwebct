@@ -77,7 +77,8 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
 
 <!-- Modal -->
 <?php include 'modal_crear_programacion.php' ?>
-<?php include 'modal_editar_programacion.php'?>
+<?php include 'modal_editar_programacion.php' ?>
+<?php include 'modal_confirmar_programacion.php' ?>
 <!-- /.modal-dialog -->
 <?php include '../../../../layout/footer/footercliente4.php' ?>
 

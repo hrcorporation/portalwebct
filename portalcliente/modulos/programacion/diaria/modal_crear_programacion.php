@@ -1,5 +1,9 @@
 <?php
-    $ClsProgramacionDiaria = new ClsProgramacionDiaria();
+$ClsProgramacionDiaria = new ClsProgramacionDiaria();
+$intIdCliente = $_GET['id_cliente'];
+$StrNombreCliente = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdCliente);
+$intIdObra = $_GET['id_obra'];
+$StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
 ?>
 <div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -16,13 +20,15 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtCliente" class="form-label">Cliente:</label>
-                                <input type="text" name="txtCliente" id="txtCliente" class="form-control" style="width: 100%;"/>
+                                <input type="hidden" name="txtCliente" id="txtCliente" class="form-control" style="width: 100%;" value="<?= $intIdCliente ?>" />
+                                <p><?= $StrNombreCliente ?></p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtObra" class="form-label">Obra:</label>
-                                <input type="text" name="txtObra" id="txtObra" class="form-control" style="width: 100%;"/>
+                                <input type="hidden" name="txtObra" id="txtObra" class="form-control" style="width: 100%;" value="<?= $intIdObra ?>" />
+                                <p><?= $StrNombreObra ?></p>
                             </div>
                         </div>
                     </div>
@@ -124,7 +130,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtObservaciones" class="form-label">Observaciones:</label>
-                                <input name="txtObservaciones" id="txtObservaciones" class="form-control" style="width: 100%;" />
+                                <input name="txtObservaciones" id="txtObservaciones" class="form-control" style="width: 100%;"/>
                             </div>
                         </div>
                     </div>

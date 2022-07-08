@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
         success: function (data) {
           form_show_event.id_prog_evento.value = info.event.id;
           console.log(info.event);
-          $("#cbxClienteEditar").html(data.select_cliente);
-          $("#cbxObraEditar").html(data.select_obra);
+          $("#cliente").html(data.select_cliente);
+          $("#obra").html(data.select_obra);
           $("#cbxProductoEditar").html(data.select_producto);
           $("#cbxPedidoEditar").html(data.select_pedido);
           $("#cbxTipoDescargueEditar").html(data.select_tipo_descargue);

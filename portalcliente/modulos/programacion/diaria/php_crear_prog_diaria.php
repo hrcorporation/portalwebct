@@ -17,15 +17,15 @@ if (isset($_POST['cbxPedido']) && !empty($_POST['cbxPedido'])) {
     //Nombre del usuario mediante el parametro del id del usuario
     $StrNombreUsuario = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdUsuario);
     //Estado
-    $intEstado = 2;
+    $intEstado = 1;
     //id del cliente
-    //////////////////////////
-    $intIdCliente = 1;
-    $intIdObra = 1;
-    /////////////////////////
-    $StrNombreCliente = $_POST['txtCliente'];
+    $intIdCliente = $_POST['txtCliente'];
+    //Nombre del cliente mediante el parametro del id del cliente
+    $StrNombreCliente = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdCliente);
     //id de la obra
-    $StrNombreObra = $_POST['txtObra'];
+    $intIdObra = $_POST['txtObra'];
+    //Nombre de la obra mediante el parametro del id de la obra.
+    $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
     //id del pedido
     $intPedido = $_POST['cbxPedido'];
     //id del producto.

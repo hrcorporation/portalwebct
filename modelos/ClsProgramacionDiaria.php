@@ -85,17 +85,17 @@ class ClsProgramacionDiaria extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    if ($fila['status'] == 1 && $fila['id_usuario'] == $id_usuario) {
+                    if ($fila['status'] == 1) {
                         $events[] = [
                             "id" => $fila['id'],
                             'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'green',
+                            'color' => 'gray',
                             'textcolor' => 'black'
                         ];
-                    } else if ($fila['status'] == 2 && $fila['id_usuario'] == $id_usuario) {
+                    } else if ($fila['status'] == 2) {
                         $events[] = [
                             "id" => $fila['id'],
                             'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
@@ -105,14 +105,24 @@ class ClsProgramacionDiaria extends conexionPDO
                             'color' => 'orange',
                             'textcolor' => 'black'
                         ];
-                    } else if ($fila['status'] == 3 && $fila['id_usuario'] == $id_usuario) {
+                    } else if ($fila['status'] == 3) {
                         $events[] = [
                             "id" => $fila['id'],
                             'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'red',
+                            'color' => 'Light Blue',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 4) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
                             'textcolor' => 'black'
                         ];
                     }
@@ -350,25 +360,27 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // Listado de los productos.
-    public function fntOptionProductoEditObj($id = null)
+    public function fntOptionProductoClienteObj($id_pedido, $id = null)
     {
         $this->id = $id;
         $option = "<option  selected='true' disabled='disabled'> Seleccione una Producto</option>";
-        $sql = "SELECT ct4_Id_productos , ct4_CodigoSyscafe , ct4_Descripcion 
-        FROM `ct4_productos`";
+        $sql = "SELECT `id`, `codigo_producto`, `nombre_producto` 
+        FROM `ct65_pedidos_has_precio_productos` 
+        WHERE `id_pedido` = :id AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id_pedido, PDO::PARAM_INT);
         // Ejecutar 
-        if ($result = $stmt->execute()) {
+        if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($this->id == $fila['ct4_Id_productos']) {
+                    if ($this->id == $fila['id']) {
                         $selection = "selected='true'";
                     } else {
                         $selection = "";
                     }
-                    $option .= '<option value="' . $fila['ct4_Id_productos'] . '" ' . $selection . ' >' . $fila['ct4_CodigoSyscafe']  . ' - ' . $fila['ct4_Descripcion']  . ' </option>';
+                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
                 }
             } else {
                 $option = "<option  selected='true' disabled='disabled'> Error al cargar Productos H2" . $num_reg . "</option>";

@@ -575,7 +575,7 @@ class ClsProgramacion extends conexionPDO
         //resultado
     }
     /**** OPTION SELECT OBRA ********/
-    function option_obra_edit($id_usuario, $id_cliente = null, $id_obra = null)
+    function option_obra_edit($id_usuario, $nombre, $id_cliente = null)
     {
         $option = '<label for="txtObra" class="col-sm-2 form-label h4">Obra</label>';
         $option .= "<br>";
@@ -593,7 +593,7 @@ class ClsProgramacion extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $url = "semanal/index.php?id_cliente=".$id_cliente."&id_obra=".$fila['id_obra'];
+            $url = $nombre."/index.php?id_cliente=".$id_cliente."&id_obra=".$fila['id_obra'];
             $option .= '<a  class = "btn btn-primary" href="'.$url.'">' . $fila["ct5_NombreObra"] . '</a>';
             $option .= " ";
         }
@@ -604,8 +604,14 @@ class ClsProgramacion extends conexionPDO
     }
 
     /**** OPTION SELECT OBRA ********/
-    function option_obra_edit_uno($id_usuario)
+    function option_obra_edit_uno($id_usuario, $id)
     {
+        $nombre = "";
+        if($id == 1){
+            $nombre = "semanal";
+        }else{
+            $nombre = "diaria";
+        }
         $option = '<label for="txtObra" class="col-sm-2 form-label h4">Obra</label>';
         $option .= "<br>";
         $this->id_usuario = $id_usuario;
@@ -620,7 +626,7 @@ class ClsProgramacion extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $url = "semanal/index.php?id_cliente=".$fila['id_cliente']."&id_obra=".$fila['id_obra'];
+            $url = $nombre."/index.php?id_cliente=".$fila['id_cliente']."&id_obra=".$fila['id_obra'];
             $option .= '<a  class = "btn btn-primary" href="'.$url.'">' . $fila["ct5_NombreObra"] . '</a>';
             $option .= " ";
         }

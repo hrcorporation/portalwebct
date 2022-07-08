@@ -1,9 +1,5 @@
 <?php
 $ClsProgramacionSemanal = new ClsProgramacionSemanal();
-$intIdCliente = $_GET['id_cliente'];
-$StrNombreCliente = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
-$intIdObra = $_GET['id_obra'];
-$StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
 ?>
 <div class="modal fade" id="modal_show_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -20,23 +16,18 @@ $StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
                     <input type="hidden" value="2" id="task" name="task" />
                     <div class="row">
                         <div class="col">
-                            <div class="form-group">
-                                <label for="txtCliente" class="form-label">Cliente:</label>
-                                <input type="hidden" name="txtCliente" id="txtCliente" class="form-control" style="width: 100%;" value="<?= $intIdCliente ?>" />
-                                <p><?= $StrNombreCliente ?></p>
+                            <div class="form-group" id="cliente">
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
-                                <label for="txtObra" class="form-label">Obra:</label>
-                                <input type="hidden" name="txtObra" id="txtObra" class="form-control" style="width: 100%;" value="<?= $intIdObra ?>" disabled="true" />
-                                <p><?= $StrNombreObra ?></p>
+                            <div class="form-group" id="obra">
+                                <label class="form-label">Obra:</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group" id="obra">
                                 <label class=" control-label">Pedido</label>
                                 <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select2" style="width: 100%;">
                                 </select>
@@ -124,6 +115,7 @@ $StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" id="btnConfirmar" class="btn btn-success" data-toggle="modal" data-target="#modal_aceptar_programacion"> Confirmar </button>
                     <button type="submit" id="btnGuardar" class="btn btn-primary"> Guardar </button>
                     <button type="button" id="btnEliminar" class="btn btn-danger"> Eliminar </button>
                     <button type="button" class="btn btn-info" data-dismiss="modal"> Cerrar </button>

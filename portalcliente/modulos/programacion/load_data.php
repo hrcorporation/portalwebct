@@ -15,10 +15,17 @@ $errores = "";
 $resultado = "";
 $select_obras ="";
 
+$programacion = $_POST['nombre'];
+if($programacion == 1){
+    $nombre = "semanal";
+}elseif($programacion == 2){
+    $nombre = "diaria";
+}
+
 if ($_POST['task'] == 1){
     $id_cliente = $_POST['id_cliente'];
     //Buscar el id de la obra filtrandola con el id del cliente.
-    $select_obras = $ClsProgramacion->option_obra_edit($intIdUsuario, $id_cliente);
+    $select_obras = $ClsProgramacion->option_obra_edit($intIdUsuario, $nombre, $id_cliente);
     $php_estado = true; 
 }
 

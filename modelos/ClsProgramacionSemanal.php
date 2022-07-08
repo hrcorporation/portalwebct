@@ -236,16 +236,17 @@ class ClsProgramacionSemanal extends conexionPDO
         return $option;
     }
     // Listado de los pedidos.
-    public function fntOptionListaPedidosObj($id_cliente, $id = null)
+    public function fntOptionListaPedidosObj($id_cliente, $id_obra, $id = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione el pedido</option>";
         $sql = "SELECT `id`, `fecha_vencimiento`, `nombre_cliente`, `nombre_obra` 
         FROM `ct65_pedidos` 
-        WHERE `status` = 1 AND `id_cliente` = :id_cliente";
+        WHERE `status` = 1 AND `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
         // Ejecutar 
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -337,7 +338,41 @@ class ClsProgramacionSemanal extends conexionPDO
         return $option;
     }
     // Listado de los productos para los FUNCIONARIOS.
-    public function fntOptionProductoFuncionarioObj($id_pedido, $id_cliente, $id_obra, $id_producto = null)
+    public function fntOptionProductoFuncionarioObj($id_pedido, $id_producto = null)
+    {
+        $option = "<option  selected='true' disabled='disabled'> Seleccione un Producto</option>";
+        $sql = "SELECT ct65_pedidos_has_precio_productos.id, `codigo_producto`, `nombre_producto` 
+        FROM `ct65_pedidos_has_precio_productos`
+        INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id 
+        WHERE `id_pedido` = :id  AND ct65_pedidos_has_precio_productos.status = 1";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id_pedido, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if ($id_producto == $fila['id']) {
+                        $selection = "selected='true'";
+                    } else {
+                        $selection = "";
+                    }
+                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
+                }
+            } else {
+                $option = "<option  selected='true' disabled='disabled'> No hay productos asociados al pedido </option>";
+            }
+        } else {
+            $option = "<option  selected='true' disabled='disabled'> Error al cargar Productos H1</option>";
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
+    }
+    // Listado de los productos para los FUNCIONARIOS.
+    public function fntOptionProductoClienteObj($id_pedido, $id_cliente, $id_obra, $id_producto = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Producto</option>";
         $sql = "SELECT ct65_pedidos_has_precio_productos.id, `codigo_producto`, `nombre_producto` 
@@ -788,13 +823,14 @@ class ClsProgramacionSemanal extends conexionPDO
     public function fntGetProgSemanalFuncionarioObj()
     {
         $sql = "SELECT * FROM `ct66_programacion_semanal`";
-        //Preparar Conexion
+        // Preparar Conexion.
         $stmt = $this->con->prepare($sql);
-        // Asignando Datos ARRAY => SQL
+        // Asignando Datos ARRAY => SQL.
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+                    // Obtener los datos de los valores.
                     if ($fila['status'] == 1) {
                         $events[] = [
                             "id" => $fila['id'],

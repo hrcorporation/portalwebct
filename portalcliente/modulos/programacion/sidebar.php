@@ -23,7 +23,7 @@
                  </li>
                  <li class="nav-header">Programacion Semanal</li>
                  <li class="nav-item has-treeview">
-                     <a href="index.php" class="nav-link">
+                     <a href="index.php?programacion=1" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar
@@ -32,7 +32,7 @@
                  </li>
                  <li class="nav-header">Programacion Diaria</li>
                  <li class="nav-item has-treeview">
-                     <a href="diaria/index.php" class="nav-link">
+                     <a href="index.php?programacion=2" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar

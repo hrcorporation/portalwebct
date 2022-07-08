@@ -3,6 +3,7 @@
 <?php include 'sidebar.php' ?>
 <?php $ClsProgramacion = new ClsProgramacion(); ?>
 <?php $intIdUsuario = $_SESSION['id_usuario']; ?>
+<?php $id = $_GET['programacion']?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -27,6 +28,7 @@
     </section>
     <!-- Main content -->
     <section class="content">
+    <input type="hidden" name="txtNombre" id="txtNombre" class="form-control" style="width: 100%;" value="<?= $id ?>" />
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -58,7 +60,7 @@
                     <div class="col">
                         <div class="form-group">
                             <div id="txtObra">
-                                <?php echo $ClsProgramacion->option_obra_edit_uno($intIdUsuario) ?>
+                                <?php echo $ClsProgramacion->option_obra_edit_uno($intIdUsuario, $id) ?>
                             </div>
                         </div>
                     </div>
@@ -94,7 +96,8 @@
                 type: "POST",
                 data: {
                     'task': 1,
-                    'id_cliente': $('#txtCliente').val()
+                    'id_cliente': $('#txtCliente').val(),
+                    'nombre': $('#txtNombre').val()
                 },
                 dataType: 'json',
                 success: function(data) {
