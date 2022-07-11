@@ -9,6 +9,7 @@ $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
+
 $objEstados = $clsProgramacionSemanal->fntGetEstadosProgramacionFuncionarioObj();
 if (is_array($objEstados)) {
     foreach ($objEstados as $estado) {

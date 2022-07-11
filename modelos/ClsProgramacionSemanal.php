@@ -12,7 +12,7 @@ class ClsProgramacionSemanal extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - CARGAR PROGRAMACIONES/////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Cargar datos de la programacion (FUNCIONARIO)
+    // Cargar datos de la programacion (FUNCIONARIO).
     public function fntCargarDataProgramacionFuncionarioObj($id_programacion)
     {
         $sql = "SELECT * FROM `ct66_programacion_semanal` 
@@ -49,7 +49,7 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-    // Cargar datos de la programacion (CLIENTE)
+    // Cargar datos de la programacion (CLIENTE).
     public function fntCargarDataProgramacionClienteObj($id_programacion)
     {
         $sql = "SELECT * FROM `ct66_programacion_semanal` 
@@ -305,38 +305,6 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
-    // Listar mediante un select los productos
-    public function fntOptionProductoEditObj($id_producto = null)
-    {
-        $this->id = $id_producto;
-        $option = "<option  selected='true' disabled='disabled'> Seleccione una Producto</option>";
-        $sql = "SELECT ct4_Id_productos , ct4_CodigoSyscafe , ct4_Descripcion 
-          FROM `ct4_productos`";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        // Ejecutar 
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount();
-            if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($id_producto == $fila['ct4_Id_productos']) {
-                        $selection = "selected='true'";
-                    } else {
-                        $selection = "";
-                    }
-                    $option .= '<option value="' . $fila['ct4_Id_productos'] . '" ' . $selection . ' >' . $fila['ct4_CodigoSyscafe']  . ' - ' . $fila['ct4_Descripcion']  . ' </option>';
-                }
-            } else {
-                $option = "<option  selected='true' disabled='disabled'> Error al cargar Productos H2" . $num_reg . "</option>";
-            }
-        } else {
-            $option = "<option  selected='true' disabled='disabled'> Error al cargar Productos H1</option>";
-        }
-        //Cerrar Conexion
-        $this->PDO->closePDO();
-        //resultado
-        return $option;
-    }
     // Listado de los productos para los FUNCIONARIOS.
     public function fntOptionProductoFuncionarioObj($id_pedido, $id_producto = null)
     {
@@ -372,18 +340,16 @@ class ClsProgramacionSemanal extends conexionPDO
         return $option;
     }
     // Listado de los productos para los FUNCIONARIOS.
-    public function fntOptionProductoClienteObj($id_pedido, $id_cliente, $id_obra, $id_producto = null)
+    public function fntOptionProductoClienteObj($id_pedido, $id_producto = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Producto</option>";
         $sql = "SELECT ct65_pedidos_has_precio_productos.id, `codigo_producto`, `nombre_producto` 
         FROM `ct65_pedidos_has_precio_productos`
         INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id 
-        WHERE `id_pedido` = :id AND ct65_pedidos.id_cliente = :id_cliente AND ct65_pedidos.id_obra = :id_obra AND ct65_pedidos_has_precio_productos.status = 1";
+        WHERE `id_pedido` = :id AND ct65_pedidos_has_precio_productos.status = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $id_pedido, PDO::PARAM_INT);
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
-        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
         // Ejecutar 
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -407,8 +373,8 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
-    // Listado de los tipos de descargue (CONCRE TOLIMA)
-    public function fntOptionTipoDescargueConcretolObj($id = null)
+    // Listado de los tipos de descargue (CONCRE TOLIMA).
+    public function fntOptionTipoDescargueConcretolObj($id_tipo_descargue = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione tipo de descargue </option>";
         $sql = "SELECT `id`, `descripcion` 
@@ -421,7 +387,7 @@ class ClsProgramacionSemanal extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id == $fila['id']) {
+            if ($id_tipo_descargue == $fila['id']) {
                 $selection = " selected='true' ";
             } else {
                 $selection = "";
@@ -433,8 +399,8 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
-    // Listado de los tipos de descargue (TODOS)
-    public function fntOptionTipoDescargueObj($id = null)
+    // Listado de los tipos de descargue (TODOS).
+    public function fntOptionTipoDescargueObj($id_tipo_descargue = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione tipo de descargue </option>";
         $sql = "SELECT `id`, `descripcion` 
@@ -446,7 +412,7 @@ class ClsProgramacionSemanal extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id == $fila['id']) {
+            if ($id_tipo_descargue == $fila['id']) {
                 $selection = " selected='true' ";
             } else {
                 $selection = "";
@@ -458,10 +424,10 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
-    // Listado de las lineas de despacho.
-    public function fntOptionLineaDespachoObj($id = null)
+    // Listado de las lineas de despacho. (TODOS).
+    public function fntOptionLineaDespachoObj($id_linea_despacho = null)
     {
-        $this->id = $id;
+        $this->id = $id_linea_despacho;
         $option = "<option> Seleccione la linea de despacho </option>";
         $sql = "SELECT * FROM `ct66_linea_despacho` ";
         //Preparar Conexion
@@ -493,7 +459,7 @@ class ClsProgramacionSemanal extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - CONTAR PROGRAMACIONES CON X ESTADO////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Contar los datos de las programaciones semanales con estado de Sin confirmar
+    // Contar los datos de las programaciones semanales con estado de Sin confirmar.
     public function fntContarProgramacionesSinConfirmarObj()
     {
         $sql = "SELECT COUNT(id) as cantidad 
@@ -513,7 +479,7 @@ class ClsProgramacionSemanal extends conexionPDO
             return 0;
         }
     }
-    // Contar los datos de las programaciones semanales con estado de Por cargar
+    // Contar los datos de las programaciones semanales con estado de Por cargar.
     public function fntContarProgramacionesPorCargarObj()
     {
         $sql = "SELECT COUNT(id) as cantidad 
@@ -533,7 +499,7 @@ class ClsProgramacionSemanal extends conexionPDO
             return 0;
         }
     }
-    // Contar los datos de las programaciones semanales con estado de Confirmada
+    // Contar los datos de las programaciones semanales con estado de Confirmada.
     public function fntContarProgramacionesConfirmadasObj()
     {
         $sql = "SELECT COUNT(id) as cantidad 
@@ -553,7 +519,7 @@ class ClsProgramacionSemanal extends conexionPDO
             return 0;
         }
     }
-    // Contar los datos de las programaciones semanales con estado de Por cargar
+    // Contar los datos de las programaciones semanales con estado de Por cargar.
     public function fntContarProgramacionesEjecutadasObj()
     {
         $sql = "SELECT COUNT(id) as cantidad 
@@ -613,7 +579,7 @@ class ClsProgramacionSemanal extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////UPDATE - EDITAR PROGRAMACION///////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Editar las fechas de la programacion semanal
+    // Editar las fechas de la programacion semanal.
     public function fntEditarProgramacionBool($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
     {
         $sql = "UPDATE `ct66_programacion_semanal` 
@@ -633,7 +599,7 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-    // Cambiar estado de la programacion semanales (CLIENTE)
+    // Cambiar estado de la programacion semanales (CLIENTE).
     public function fntCambiarEstadoProgramacionSemanal($id_usuario)
     {
         $estado = 2;
@@ -648,7 +614,7 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-    // Cambiar estado de la programacion semanales (FUNCIONARIO)
+    // Cambiar estado de la programacion semanales (FUNCIONARIO).
     public function fntCambiarEstadoProgramacionSemanalFuncionario()
     {
         $estado = 3;
@@ -689,7 +655,7 @@ class ClsProgramacionSemanal extends conexionPDO
             return false;
         }
     }
-    // Traer el id del cliente mediante el nombre
+    // Traer el id del cliente mediante el nombre.
     function fntGetIdClienteObj($nombre_cliente)
     {
         $this->id = $nombre_cliente;
@@ -715,9 +681,9 @@ class ClsProgramacionSemanal extends conexionPDO
         }
     }
     // Traer el nombre del obra.
-    public function fntGetNombreObra($id)
+    public function fntGetNombreObra($id_obra)
     {
-        $this->id = $id;
+        $this->id = $id_obra;
         $sql = "SELECT ct5_NombreObra 
         FROM `ct5_obras` 
         WHERE `ct5_IdObras` = :id";
@@ -740,7 +706,7 @@ class ClsProgramacionSemanal extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-    // Traer el id del cliente mediante el nombre
+    // Traer el id del cliente mediante el nombre.
     function fntGetIdObraObj($nombre_obra)
     {
         $this->id = $nombre_obra;
@@ -766,9 +732,9 @@ class ClsProgramacionSemanal extends conexionPDO
         }
     }
     // Traer el nombre del producto.
-    public function fntGetNombreProducto($id)
+    public function fntGetNombreProducto($id_producto)
     {
-        $this->id = $id;
+        $this->id = $id_producto;
         $sql = "SELECT `ct4_Id_productos`, `ct4_Descripcion` 
         FROM `ct4_productos` 
         WHERE `ct4_Id_productos` = :id";
@@ -792,9 +758,9 @@ class ClsProgramacionSemanal extends conexionPDO
         $this->PDO->closePDO();
     }
     // Traer el nombre del tipo de descargue.
-    public function fntGetNombreTipoDescargue($id)
+    public function fntGetNombreTipoDescargue($id_tipo_descargue)
     {
-        $this->id = $id;
+        $this->id = $id_tipo_descargue;
         $sql = "SELECT `descripcion` 
         FROM `ct66_tipo_descargue` 
         WHERE `id` = :id";
@@ -819,7 +785,7 @@ class ClsProgramacionSemanal extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////GET - OBTENER PROGRAMACIONES///////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Obtener todas las programaciones (FUNCIONARIO)
+    // Obtener todas las programaciones (FUNCIONARIO).
     public function fntGetProgSemanalFuncionarioObj()
     {
         $sql = "SELECT * FROM `ct66_programacion_semanal`";
@@ -829,7 +795,7 @@ class ClsProgramacionSemanal extends conexionPDO
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     // Obtener los datos de los valores.
                     if ($fila['status'] == 1) {
                         $events[] = [
@@ -878,7 +844,7 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-    // Obtener todas las programaciones (CLIENTE)
+    // Obtener todas las programaciones (CLIENTE).
     public function fntGetProgSemanalClienteObj($id_usuario)
     {
         $this->id = $id_usuario;
@@ -940,7 +906,7 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-    // Obtener todos los estados de las programaciones (CLIENTE)
+    // Obtener todos los estados de las programaciones (CLIENTE).
     public function fntGetEstadosProgramacionClienteObj($id_usuario)
     {
         $sql = "SELECT `status` 
@@ -962,7 +928,7 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-    // Obtener todos los estados de las programaciones (FUNCIONARIO)
+    // Obtener todos los estados de las programaciones (FUNCIONARIO).
     public function fntGetEstadosProgramacionFuncionarioObj()
     {
         $sql = "SELECT `status` 

@@ -1,5 +1,5 @@
 <?php
-    $ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$ClsProgramacionSemanal = new ClsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_cargar_programacion" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

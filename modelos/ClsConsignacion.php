@@ -13,9 +13,9 @@ class ClsConsignacion extends conexionPDO
     //////////////////////////////////SELECT - OBTENER NOMBRES////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // Traer el nombre del estado de la consignacion mediante el "id" de la consignacion.
-    function fntGetEstadoObj($id)
+    function fntGetEstadoObj($id_estado)
     {
-        $this->id = $id;
+        $this->id = $id_estado;
         // sentencia SQL
         $sql = "SELECT `id`,`descripcion` 
         FROM `ct66_estado_consignacion` 
@@ -88,9 +88,9 @@ class ClsConsignacion extends conexionPDO
         }
     }
     // Traer el nombre del banco.
-    function fntGetBancoObj($id)
+    function fntGetBancoObj($id_banco)
     {
-        $this->id = $id;
+        $this->id = $id_banco;
         // sentencia SQL
         $sql = "SELECT `id`,`descripcion` 
         FROM `ct66_bancos` 
@@ -169,9 +169,9 @@ class ClsConsignacion extends conexionPDO
         return $option;
     }
     // Listar mediante un select los bancos.
-    function fntOptionBancosObj($id = null)
+    function fntOptionBancosObj($id_banco = null)
     {
-        $this->id = $id;
+        $this->id = $id_banco;
         $option = "<option> Seleccione el banco </option>";
         //Consulta SQL
         $sql = "SELECT * FROM `ct66_bancos`";
@@ -202,9 +202,9 @@ class ClsConsignacion extends conexionPDO
         return $option;
     }
     // Listar mediante un select los estados.
-    function fntOptionEstadosObj($id = null)
+    function fntOptionEstadosObj($id_estado = null)
     {
-        $this->id = $id;
+        $this->id = $id_estado;
         $option = "<option> Seleccione el estado</option>";
         $sql = "SELECT * FROM `ct66_estado_consignacion`";
         //Preparar Conexion
@@ -253,7 +253,17 @@ class ClsConsignacion extends conexionPDO
                 // Obtener los datos de los valores
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $datos['id'] = $fila['id'];
-                    $datos['estado'] = SELF::fntGetEstadoObj($fila['estado']);
+                    switch ($fila['estado']) {
+                        case 1:
+                            $datos['estado'] = " <span class='badge  badge-warning > float-right'> SIN CONFIRMAR </span> ";
+                            break;
+                        case 2:
+                            $datos['estado'] = " <span class='badge  badge-success > float-right'> CONFIRMADO </span> ";
+                            break;
+                        default:
+                            $datos['estado'] = " <span class='badge  badge-info > float-right'>  </span> ";
+                            break;
+                    }
                     $datos['fecha_consignacion'] = $fila['fecha_consignacion'];
                     $datos['nombre_banco'] = $fila['nombre_banco'];
                     $datos['valor'] = number_format($fila['valor'], 2);
@@ -270,11 +280,11 @@ class ClsConsignacion extends conexionPDO
         }
     }
     // Listar todos los datos de la consignacion mediante el id
-    public function fntGetConsignacionesPorid($id)
+    public function fntGetConsignacionesPorid($id_consignacion)
     {
         $sql = "SELECT * FROM `ct66_consignacion` WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id_consignacion, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -343,6 +353,31 @@ class ClsConsignacion extends conexionPDO
         $stmt->bindParam(':observaciones', $StrObservaciones, PDO::PARAM_STR);
         $stmt->bindParam(':id_usuario', $intIdUsuario, PDO::PARAM_STR);
         $stmt->bindParam(':nombre_usuario', $StrNombreUsuario, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    } /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////UPDATE - EDITAR CONSIGNACION/////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function fntEditarConsignacionObj($intId, $intIdEstado, $dtmFechaConsignacion, $intIdBanco, $StrBanco, $dblValorConsignacion, $intIdCliente, $StrNombreCliente, $StrObservaciones, $intIdUsuario, $StrNombreUsuario, $dtmFecha)
+    {
+        $sql = "UPDATE `ct66_consignacion` SET `estado`= :estado, `fecha_consignacion`= :fecha_consignacion, `id_banco`= :id_banco, `nombre_banco`= :nombre_banco, `valor`= :valor, `id_cliente`= :id_cliente, `nombre_cliente`= :nombre_cliente, `observaciones`= :observaciones, `id_usuario_edit`= :id_usuario, `nombre_usuario_edit`= :nombre_usuario,`fecha_modificacion`= :fecha_modificacion WHERE `id` = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $intId, PDO::PARAM_INT);
+        $stmt->bindParam(':estado', $intIdEstado, PDO::PARAM_INT);
+        $stmt->bindParam(':fecha_consignacion', $dtmFechaConsignacion, PDO::PARAM_STR);
+        $stmt->bindParam(':id_banco', $intIdBanco, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_banco', $StrBanco, PDO::PARAM_STR);
+        $stmt->bindParam(':valor', $dblValorConsignacion, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $intIdCliente, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_cliente', $StrNombreCliente, PDO::PARAM_STR);
+        $stmt->bindParam(':observaciones', $StrObservaciones, PDO::PARAM_STR);
+        $stmt->bindParam(':id_usuario', $intIdUsuario, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_usuario', $StrNombreUsuario, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_modificacion', $dtmFecha, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         } else {

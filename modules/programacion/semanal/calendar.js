@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   let form_crear_programacion = document.querySelector("#form_crear_programacion");
-  let form_show_event = document.querySelector("#form_mostrar_programacion");
+  let  = document.querySelector("#form_mostrarform_show_event_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {

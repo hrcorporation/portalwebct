@@ -44,7 +44,6 @@ $array_reg = $spreadsheet->getActiveSheet()->toArray();
 if (is_array($array_reg)) {
     foreach ($array_reg as $row) {
         if (!is_null($row[0])) {
-            $intEstado = 1;
             //id del usuario
             $intIdUsuario = $_SESSION['id_usuario'];
             //Nombre del usuario mediante el parametro del id del usuario
@@ -54,7 +53,13 @@ if (is_array($array_reg)) {
             $intIdBanco = $ClsConsignacion->fntGetIdBancoObj($strNombreBanco);
             $dblValor = $row[2];
             $strNombreCliente = $row[3];
-            $intIdCliente = $ClsConsignacion->fntGetIdClienteObj($strNombreCliente);
+            if (isset($strNombreCliente)) {
+                $intIdCliente = $ClsConsignacion->fntGetIdClienteObj($strNombreCliente);
+                $intEstado = 2;
+            } else {
+                $intEstado = 1;
+                $intIdCliente = 0;
+            }
             $strObservacion = $row[4];
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             if ($php_result = $ClsConsignacion->fntCrearConsignacionPorImportarObj($intEstado, $dtmFecha, $intIdBanco, $strNombreBanco, $dblValor, $intIdCliente, $strNombreCliente, $strObservacion, $intIdUsuario, $strNombreUsuario)) {

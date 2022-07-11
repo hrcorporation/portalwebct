@@ -17,9 +17,9 @@ if (isset($_POST['id'])) {
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
             $objSelectObra  = $ClsProgramacionSemanal->fntOptionObraEditFuncionarioObj($key['cliente'], $key['obra']);
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
-            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoEditObj($key['producto']);
+            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoFuncionarioObj($key['id_pedido'], $key['producto']);
             //mostrar el select de los pedidos
-            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['cliente'], $key['id_pedido']);
+            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['cliente'], $key['obra'], $key['id_pedido']);
             //mostrar el select del listado de las frecuencias
             $objSelectFrecuencua = $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
             //Cantidad / Volumen

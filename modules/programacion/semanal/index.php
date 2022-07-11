@@ -80,7 +80,24 @@
         $('#form_confirmar_programacion').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
-
+                url: "php_cambiar_estado.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente');
+                        $('#modal_cargar_programacion').modal('hide');
+                    } else {
+                        toastr.warning(data.errores);
+                        $('#modal_cargar_programacion').modal('hide');
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
             });
         });
 
@@ -151,31 +168,6 @@
         });
 
         /////////////////////////////////////////////////////
-
-        $("#form_cargar_programacion").on('submit', (function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "php_cambiar_estado.php",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
-                        $('#modal_cargar_programacion').modal('hide');
-                    } else {
-                        toastr.warning(data.errores);
-                        $('#modal_cargar_programacion').modal('hide');
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        }));
-
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
             var formData = new FormData();

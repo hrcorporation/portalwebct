@@ -212,7 +212,7 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-    //Listado de los clientes(Terceros) - (CLIENTE)
+    //Listado de los clientes (Terceros) - (CLIENTE).
     public function fntOptionClienteEditClienteObj($id_usuario, $id_cliente = null)
     {
         $this->id = $id_usuario;
@@ -300,58 +300,33 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // // Listado del tipo de pedidos (CLIENTE).
-    public function fntOptionListaPedidosClienteObj($id = null)
+    public function fntOptionListaPedidosClienteObj($id_cliente, $id_obra, $id_pedido = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione el pedido</option>";
         $sql = "SELECT `id`, `fecha_vencimiento`, `nombre_cliente`, `nombre_obra` 
         FROM `ct65_pedidos` 
-        WHERE `status` = 1";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        // Asignando Datos ARRAY => SQL
-        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
-        // Ejecutar 
-        $stmt->execute();
-        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id == $fila['id']) {
-                $selection = " selected='true' ";
-            } else {
-                $selection = "";
-            }
-            $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . " PEDIDO " . "(" . $fila['fecha_vencimiento'] . ")" . ' </option>';
-        }
-        //Cerrar Conexion
-        $this->PDO->closePDO();
-        //resultado
-        return $option;
-    }
-    // Listado de los pedidos.
-    public function fntOptionListaPedidosObj($id_cliente, $id = null)
-    {
-        $option = "<option  selected='true' disabled='disabled'> Seleccione el pedido</option>";
-        $sql = "SELECT `id`, `fecha_vencimiento`, `nombre_cliente`, `nombre_obra` 
-        FROM `ct65_pedidos` 
-        WHERE `status` = 1 AND `id_cliente` = :id_cliente";
+        WHERE `status` = 1 AND `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
         // Ejecutar 
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($id == $fila['id']) {
+                    if ($id_pedido == $fila['id']) {
                         $selection = " selected='true' ";
                     } else {
                         $selection = "";
                     }
                     $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . " PEDIDO " . "(" . $fila['fecha_vencimiento'] . ")" . ' </option>';
                 }
-            }else{
+            } else {
                 $option = "<option  selected='true' disabled='disabled'> No hay pedidos asociados con el cliente </option>";
             }
-        }else{
+        } else {
             $option = "<option  selected='true' disabled='disabled'> Error al cargar los datos :(</option>";
         }
         //Cerrar Conexion
@@ -360,9 +335,9 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // Listado de los productos.
-    public function fntOptionProductoClienteObj($id_pedido, $id = null)
+    public function fntOptionProductoClienteObj($id_pedido, $id_producto = null)
     {
-        $this->id = $id;
+        $this->id = $id_producto;
         $option = "<option  selected='true' disabled='disabled'> Seleccione una Producto</option>";
         $sql = "SELECT `id`, `codigo_producto`, `nombre_producto` 
         FROM `ct65_pedidos_has_precio_productos` 
@@ -404,7 +379,7 @@ class ClsProgramacionDiaria extends conexionPDO
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $id_pedido, PDO::PARAM_INT);
         // Ejecutar 
-        if ($result = $stmt->execute()) {
+        if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -427,7 +402,7 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // Listado del tipo de descargue (CONCRE TOLIMA).
-    public function fntOptionTipoDescargueConcretolObj($id = null)
+    public function fntOptionTipoDescargueConcretolObj($id_tipo_descargue = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione tipo de descargue</option>";
         $sql = "SELECT `id`, `descripcion` 
@@ -440,7 +415,7 @@ class ClsProgramacionDiaria extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id == $fila['id']) {
+            if ($id_tipo_descargue == $fila['id']) {
                 $selection = " selected='true' ";
             } else {
                 $selection = "";
@@ -453,7 +428,7 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // Listado del tipo de descargue (TODOS).
-    public function fntOptionTipoDescargueObj($id = null)
+    public function fntOptionTipoDescargueObj($id_tipo_descargue = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione tipo de descargue</option>";
         $sql = "SELECT `id`, `descripcion` 
@@ -465,7 +440,7 @@ class ClsProgramacionDiaria extends conexionPDO
         // Ejecutar 
         $stmt->execute();
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id == $fila['id']) {
+            if ($id_tipo_descargue == $fila['id']) {
                 $selection = " selected='true' ";
             } else {
                 $selection = "";
@@ -477,8 +452,8 @@ class ClsProgramacionDiaria extends conexionPDO
         //resultado
         return $option;
     }
-    // Listado de los vehiculos(mixer).
-    public function fntOptionVehiculoObj($id = null)
+    // Listado de los vehiculos (MIXER).
+    public function fntOptionVehiculoObj($id_vehiculo = null)
     {
         $option = "<option> Seleccione un Vehiculo</option>";
         $sql = "SELECT * FROM `ct10_vehiculo` 
@@ -492,7 +467,7 @@ class ClsProgramacionDiaria extends conexionPDO
         $stmt->execute();
 
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id == $fila['ct10_IdVehiculo']) {
+            if ($id_vehiculo == $fila['ct10_IdVehiculo']) {
                 $selection = " selected='true' ";
             } else {
                 $selection = "";
@@ -505,9 +480,9 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // Listado de los conductores.
-    public function fntOptionConductorObj($id = null)
+    public function fntOptionConductorObj($id_conductor = null)
     {
-        $this->id = $id;
+        $this->id = $id_conductor;
         $option = "<option> Seleccione un Conductor</option>";
         $sql = "SELECT * FROM ct1_terceros 
         WHERE ct1_TipoTercero = 10 AND  `ct1_rol` IN (25,29) AND ct1_Estado = 1";
@@ -540,9 +515,9 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // Listado de los tipos de bomba.
-    public function fntOptionTipoBombaObj($id = null)
+    public function fntOptionTipoBombaObj($id_tipo_bomba = null)
     {
-        $this->id = $id;
+        $this->id = $id_tipo_bomba;
         $option = "<option> Seleccione el tipo de bomba</option>";
         $sql = "SELECT * FROM `ct50_tipo_bomba`";
         //Preparar Conexion
@@ -574,9 +549,9 @@ class ClsProgramacionDiaria extends conexionPDO
         return $option;
     }
     // Listado de las lineas de despacho.
-    public function fntOptionLineaDespachoObj($id = null)
+    public function fntOptionLineaDespachoObj($id_linea_despacho = null)
     {
-        $this->id = $id;
+        $this->id = $id_linea_despacho;
         $option = "<option> Seleccione la linea de despacho </option>";
         $sql = "SELECT * FROM `ct66_linea_despacho` ";
         //Preparar Conexion
@@ -790,9 +765,9 @@ class ClsProgramacionDiaria extends conexionPDO
         }
     }
     // Traer el nombre del obra.
-    public function fntGetNombreObraObj($id)
+    public function fntGetNombreObraObj($id_obra)
     {
-        $this->id = $id;
+        $this->id = $id_obra;
         $sql = "SELECT ct5_NombreObra 
         FROM `ct5_obras` 
         WHERE `ct5_IdObras` = :id";
@@ -816,9 +791,9 @@ class ClsProgramacionDiaria extends conexionPDO
         $this->PDO->closePDO();
     }
     // Traer el nombre del producto.
-    public function fntGetNombreProductoObj($id)
+    public function fntGetNombreProductoObj($id_producto)
     {
-        $this->id = $id;
+        $this->id = $id_producto;
         $sql = "SELECT `ct4_Id_productos`, `ct4_Descripcion` 
         FROM `ct4_productos` 
         WHERE `ct4_Id_productos` = :id";
@@ -842,9 +817,9 @@ class ClsProgramacionDiaria extends conexionPDO
         $this->PDO->closePDO();
     }
     // Traer el nombre del tipo de descargue.
-    public function fntGetNombreTipoDescargueObj($id)
+    public function fntGetNombreTipoDescargueObj($id_tipo_descargue)
     {
-        $this->id = $id;
+        $this->id = $id_tipo_descargue;
         $sql = "SELECT `descripcion` 
         FROM `ct66_tipo_descargue` 
         WHERE `id` = :id";
@@ -868,9 +843,9 @@ class ClsProgramacionDiaria extends conexionPDO
         $this->PDO->closePDO();
     }
     // Traer el nombre del tipo de descargue.
-    public function fntGetNombreLineaDespachoObj($id)
+    public function fntGetNombreLineaDespachoObj($id_tipo_despacho)
     {
-        $this->id = $id;
+        $this->id = $id_tipo_despacho;
         $sql = "SELECT `id`, `descripcion` 
         FROM `ct66_linea_despacho` 
         WHERE `id` = :id";
@@ -894,9 +869,9 @@ class ClsProgramacionDiaria extends conexionPDO
         $this->PDO->closePDO();
     }
     // Traer el nombre del tipo de descargue.
-    public function fntGetPlacaMixerObj($id)
+    public function fntGetPlacaMixerObj($id_mixer)
     {
-        $this->id = $id;
+        $this->id = $id_mixer;
         $sql = "SELECT `ct10_Placa` 
         FROM `ct10_vehiculo` 
         WHERE `ct10_IdVehiculo` =  :id";
@@ -920,9 +895,9 @@ class ClsProgramacionDiaria extends conexionPDO
         $this->PDO->closePDO();
     }
     // Traer el nombre del tipo de bomba.
-    public function fntGetNombreTipoBombaObj($id)
+    public function fntGetNombreTipoBombaObj($id_tipo_bomba)
     {
-        $this->id = $id;
+        $this->id = $id_tipo_bomba;
         $sql = "SELECT `ct50_id_tipo_bomba`,`ct50_nombre_tipo_bomba` 
         FROM `ct50_tipo_bomba` 
         WHERE `ct50_id_tipo_bomba` =  :id";

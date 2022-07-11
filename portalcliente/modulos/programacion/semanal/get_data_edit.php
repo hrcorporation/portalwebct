@@ -22,7 +22,7 @@ if (isset($_POST['id'])) {
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
             $objSelectObra  = "<label class='form-label'>Obra:</label><input type='hidden' name='txtObra' id='txtObra' class='form-control' style='width: 100%;' value='" . $key['obra'] . "' /><p>" . $strNombreObra . "</p>";
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
-            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoEditObj($key['producto']);
+            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoClienteObj($key['id_pedido'], $key['producto']);
             //mostrar el select de los pedidos
             $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosClienteObj($key['cliente'], $key['obra'], $key['id_pedido']);
             //mostrar el select del tipo de descargue

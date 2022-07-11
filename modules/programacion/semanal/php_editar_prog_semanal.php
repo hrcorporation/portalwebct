@@ -1,9 +1,11 @@
 <?php
 session_start();
 header('Content-Type: application/json');
+
 require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
+
 $log = false;
 $php_estado = false;
 $php_error[] = "";
@@ -32,7 +34,6 @@ if (isset($_POST['task'])) {
             $php_estado = true;
         }
     } elseif ($_POST['task'] == 3) {
-        //Validacion de roles 
         //id de la programacion
         $intId = $_POST['id'];
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion

@@ -11,14 +11,14 @@ if (isset($_POST['id'])) {
     if (is_array($data = $ClsProgramacionSemanal->fntCargarDataProgramacionDiariaObj($_POST['id']))) {
         //Recorremos los datos mediante un foreach usando la variable key para cada dato
         foreach ($data as $key) {
-            //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion
+            //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion.
             $objSelectCliente  = $ClsProgramacionSemanal->fntOptionClienteEditObj($key['cliente']);
-            //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
+            //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion.
             $objSelectObra  = $ClsProgramacionSemanal->fntOptionObraEditObj($key['cliente'], $key['obra']);
-            //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
-            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoEditObj($key['producto']);
+            //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion.
+            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoFuncionarioObj($key['id_pedido'], $key['producto']);
             //mostrar el select de los pedidos
-            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['id_pedido']);
+            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosClienteObj($key['cliente'], $key['obra'], $key['id_pedido']);
             //mostrar el select del lineas de despacho
             $objSelectLineasDespacho = $ClsProgramacionSemanal->fntOptionLineaDespachoObj($key['id_linea_produccion']);
             //mostrar el select de las mixer en obra

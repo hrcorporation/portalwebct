@@ -9,7 +9,7 @@ $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Agregar programación diaria</h4>
+                <h4 class="modal-title"> Agregar programación diaria </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -37,7 +37,7 @@ $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionListaPedidosClienteObj(); ?>
+                                    <?= $ClsProgramacionDiaria->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra); ?>
                                 </select>
                             </div>
                         </div>
@@ -45,7 +45,6 @@ $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
                             <div class="form-group">
                                 <label for="cbxProducto" class="form-label">Producto:</label>
                                 <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionProductoEditObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -130,7 +129,7 @@ $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtObservaciones" class="form-label">Observaciones:</label>
-                                <input name="txtObservaciones" id="txtObservaciones" class="form-control" style="width: 100%;"/>
+                                <input name="txtObservaciones" id="txtObservaciones" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
                     </div>

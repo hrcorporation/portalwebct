@@ -50,12 +50,12 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="form-label">Linea de despacho</label>
                             <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
                                 <?= $programacionDiaria->fntOptionLineaDespachoObj(); ?>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-6">
                         <div class="form-group">
@@ -108,6 +108,7 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
         //         },
         //     });
         // }));
+
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
             var formData = new FormData();
@@ -144,6 +145,26 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
             }
         });
         
+        $('#cbxPedido').on('change', function() {
+            $.ajax({
+                url: "load_data_pedido.php", // URL
+                type: "POST", // Metodo HTTP
+                data: {
+                    'task': 1,
+                    'id_cliente': $('#txtCliente').val(),
+                    'id_obra': $('#txtObra').val(),
+                    'id_pedido': $('#cbxPedido').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $("#cbxProducto").html(data.select_producto)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+
         $("#form_crear_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({

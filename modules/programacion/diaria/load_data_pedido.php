@@ -10,20 +10,27 @@ $objProgramacionDiaria = new ClsProgramacionDiaria();
 $php_estado = false;
 $errores = "";
 $resultado = "";
-$select_obras ="";
 
-if ($_POST['task'] == 1){
-    $intIdPedido = $_POST['id_pedido'];
+if ($_POST['task'] == 1) {
+    $intIdCliente = $_POST['cliente'];
+    $intIdObra = $_POST['obra'];
     //Buscar el id de la obra filtrandola con el id del cliente.
-    $select_productos = $objProgramacionDiaria->fntOptionProductoFuncionarioObj($intIdPedido);
-    $php_estado = true; 
+    $objSelectPedidos = $objProgramacionDiaria->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra);
+    $php_estado = true;
+    $datos = array(
+        'estado' => $php_estado,
+        'errores' => $errores,
+        'result' => $resultado,
+        'select_pedidos' => $objSelectPedidos
+    );
+} elseif ($_POST['task'] == 2) {
+    $intIdPedido = $_POST['pedido'];
+    $objSelectProductos = $objProgramacionDiaria->fntOptionProductoFuncionarioObj($intIdPedido);
+    $datos = array(
+        'estado' => $php_estado,
+        'errores' => $errores,
+        'result' => $resultado,
+        'select_productos' => $objSelectProductos
+    );
 }
-
-$datos = array(
-    'estado' => $php_estado,
-    'errores' => $errores,
-    'result' => $resultado,
-    'select_producto' => $select_productos,
-
-);
 echo json_encode($datos, JSON_FORCE_OBJECT);
