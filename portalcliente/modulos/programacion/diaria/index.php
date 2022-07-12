@@ -86,28 +86,7 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
 <script>
     $(function() {
         $('.select2').select2();
-        // $("#form_mostrar_programacion").on('submit', (function(e) {
-        //     e.preventDefault();
-        //     $.ajax({
-        //         url: "php_editar_prog_semanal.php",
-        //         type: "POST",
-        //         data: new FormData(this),
-        //         contentType: false,
-        //         cache: false,
-        //         processData: false,
-        //         success: function(data) {
-        //             console.log(data);
-        //             if (data.estado) {
-        //                 toastr.success('Se ha guardado correctamente');
-        //             } else {
-        //                 toastr.warning(data.errores);
-        //             }
-        //         },
-        //         error: function(respuesta) {
-        //             alert(JSON.stringify(respuesta));
-        //         },
-        //     });
-        // }));
+        $("#volumen").hide();
 
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
@@ -144,6 +123,38 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                 });
             }
         });
+
+        $('#chkRequiereBombaEditar').on('click', function() {
+            //Ajax 
+            var formData = 'null';
+            if ($(this).is(':checked')) {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_uno)
+                        console.log(data);
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            } else {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_dos)
+                        console.log(data);
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            }
+        });
         
         $('#cbxPedido').on('change', function() {
             $.ajax({
@@ -163,6 +174,28 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                     alert(JSON.stringify(respuesta));
                 },
             });
+        });
+
+        $('#cbxPedidoEditar').on('change', function() {
+            $.ajax({
+                url: "load_data_pedido.php", // URL
+                type: "POST", // Metodo HTTP
+                data: {
+                    'task': 1,
+                    'id_pedido': $('#cbxPedidoEditar').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $("#cbxProductoEditar").html(data.select_producto)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+        
+        $('#cbxProducto').on('change', function(){
+            $("#volumen").show();
         });
 
         $("#form_crear_programacion").on('submit', (function(e) {

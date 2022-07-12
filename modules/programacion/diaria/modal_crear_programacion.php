@@ -1,5 +1,5 @@
 <?php
-    $ClsProgramacionDiaria = new ClsProgramacionDiaria();
+$ClsProgramacionDiaria = new ClsProgramacionDiaria();
 ?>
 <div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -43,7 +43,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2" id="volumen">
                             <div class="form-group">
                                 <label for="txtCant" class="form-label">Volumen:</label>
                                 <input type="text" name="txtCant" id="txtCant" class="form-control" style="width: 100%;" />
@@ -96,7 +96,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBomba" name="chkRequiereBomba">
                                     <label for="chkRequiereBomba" class="form-check-label" for="flexCheckDefault">
-                                        <b>Requiere bomba de Concre Tolima</b>
+                                        <b>¿Requiere bomba de Concre Tolima?</b>
                                     </label>
                                 </div>
                             </div>

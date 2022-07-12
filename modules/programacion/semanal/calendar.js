@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
           form_show_event.txtFinEditar.value = data.fin;
           form_show_event.txtObservacionesEditar.value = data.observaciones;
           form_show_event.txtMetrosEditar.value = data.metros;
-          if(data.requiere_bomba ==1){
+          if(data.requiere_bomba == 1){
             $("#chkRequiereBombaEditar").prop("checked", true);
           }
           $("#modal_show_evento").modal("show");

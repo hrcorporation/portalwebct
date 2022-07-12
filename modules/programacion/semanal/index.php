@@ -77,6 +77,8 @@
         $('.select2').select2();
     });
     $(function() {
+        $("#volumen").hide();
+
         $('#form_confirmar_programacion').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
@@ -116,6 +118,32 @@
                 processData: false,
                 success: function(data) {
                     $("#cbxObra").html(data.select_obra)
+                    $("#cbxPedido").html(data.select_pedidos)
+                    $("#cbxProducto").html(data.select_productos)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+
+        $('#cbxClienteEditar').on('change', function() {
+            //Ajax 
+            var formData = new FormData();
+            formData.append('task', 2);
+            formData.append('cliente', $("#cbxClienteEditar").val());
+            $.ajax({
+                url: "load_data.php", // URL
+                type: "POST", // Metodo HTTP
+                //data: formData,
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    $("#cbxObraEditar").html(data.select_obra)
+                    $("#cbxPedidoEditar").html(data.select_pedidos)
+                    $("#cbxProductoEditar").html(data.select_productos)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
@@ -139,6 +167,31 @@
                 processData: false,
                 success: function(data) {
                     $("#cbxPedido").html(data.select_pedidos)
+                    $("#cbxProducto").html(data.select_productos)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+
+        $('#cbxObraEditar').on('change', function() {
+            //Ajax 
+            var formData = new FormData();
+            formData.append('task', 1);
+            formData.append('cliente', $("#cbxClienteEditar").val());
+            formData.append('obra', $("#cbxObraEditar").val());
+            $.ajax({
+                url: "load_data_pedido.php", // URL
+                type: "POST", // Metodo HTTP
+                //data: formData,
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    $("#cbxPedidoEditar").html(data.select_pedidos)
+                    $("#cbxProductoEditar").html(data.select_productos)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
@@ -167,6 +220,31 @@
             });
         });
 
+        $('#cbxPedidoEditar').on('change', function() {
+            //Ajax 
+            var formData = new FormData();
+            formData.append('task', 2);
+            formData.append('pedido', $("#cbxPedidoEditar").val());
+            $.ajax({
+                url: "load_data_pedido.php", // URL
+                type: "POST", // Metodo HTTP
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    $("#cbxProductoEditar").html(data.select_productos)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+
+        $('#cbxProducto').on('change', function(){
+            $("#volumen").show();
+        });
+        /////////////////////////////////////////////////////
         /////////////////////////////////////////////////////
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
@@ -254,31 +332,6 @@
                 },
             });
         }));
-
-        $('#cbxClienteEditar').on('change', function() {
-            //Ajax 
-            var formData = new FormData();
-            formData.append('task', 2);
-            formData.append('cliente', $("#cbxClienteEditar").val());
-            formData.append('pedido', $("#cbxPedidoEditar").val());
-            $.ajax({
-                url: "load_data.php", // URL
-                type: "POST", // Metodo HTTP
-                //data: formData,
-                data: formData,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    $("#cbxObraEditar").html(data.select_obra)
-                    $("#cbxPedidoEditar").html(data.select_pedidos)
-                    $("#cbxProductoEditar").html(data.select_producto)
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        });
 
         $('#txtCant').on('change', function() {
             $('#modal_informativo').modal('show');

@@ -49,7 +49,7 @@ $StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id = "volumen">
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtCant" class="form-label">Volumen:</label>

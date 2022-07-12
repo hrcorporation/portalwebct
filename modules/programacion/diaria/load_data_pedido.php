@@ -16,12 +16,14 @@ if ($_POST['task'] == 1) {
     $intIdObra = $_POST['obra'];
     //Buscar el id de la obra filtrandola con el id del cliente.
     $objSelectPedidos = $objProgramacionDiaria->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra);
+    $objSelectProductos = "";
     $php_estado = true;
     $datos = array(
         'estado' => $php_estado,
         'errores' => $errores,
         'result' => $resultado,
-        'select_pedidos' => $objSelectPedidos
+        'select_pedidos' => $objSelectPedidos,
+        'select_productos' => $objSelectProductos
     );
 } elseif ($_POST['task'] == 2) {
     $intIdPedido = $_POST['pedido'];

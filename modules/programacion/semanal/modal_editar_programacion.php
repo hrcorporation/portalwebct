@@ -73,8 +73,8 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class='form-check-input' type='checkbox' value='1' id='chkRequiereBombaEditar' name='chkRequiereBombaEditar'>
-                                    <label class='form-check-label' for='flexCheckDefault'>
+                                    <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBombaEditar" name="chkRequiereBombaEditar">
+                                    <label for="chkRequiereBombaEditar" class="form-check-label" for="flexCheckDefault">
                                         <b>¿Requiere bomba de Concre Tolima?</b>
                                     </label>
                                 </div>

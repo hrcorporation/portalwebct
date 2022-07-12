@@ -5,12 +5,14 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 $clsProgramacionSemanal = new ClsProgramacionSemanal();
+
 $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
 $objEstados = $clsProgramacionSemanal->fntGetEstadosProgramacionFuncionarioObj();
+
 if (is_array($objEstados)) {
     foreach ($objEstados as $estado) {
         $intEstadoProgramacion = $estado['status'];
@@ -26,7 +28,7 @@ if (is_array($objEstados)) {
             $php_error = 'No tiene programaciones pendientes por confirmar';
         }
     }
-}else{
+} else {
     $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
 }
 $datos = array(

@@ -88,7 +88,7 @@ class ClsProgramacionDiaria extends conexionPDO
                     if ($fila['status'] == 1) {
                         $events[] = [
                             "id" => $fila['id'],
-                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] .' ' .'/-/'.' '. $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
@@ -98,7 +98,7 @@ class ClsProgramacionDiaria extends conexionPDO
                     } else if ($fila['status'] == 2) {
                         $events[] = [
                             "id" => $fila['id'],
-                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] .' ' .'/-/'.' '. $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
@@ -108,7 +108,7 @@ class ClsProgramacionDiaria extends conexionPDO
                     } else if ($fila['status'] == 3) {
                         $events[] = [
                             "id" => $fila['id'],
-                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] .' ' .'/-/'.' '. $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
@@ -118,7 +118,7 @@ class ClsProgramacionDiaria extends conexionPDO
                     } else if ($fila['status'] == 4) {
                         $events[] = [
                             "id" => $fila['id'],
-                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] .' ' .'/-/'.' '. $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
@@ -132,6 +132,28 @@ class ClsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
+     // Obtener todos los estados de las programaciones (CLIENTE).
+     public function fntGetEstadosProgramacionCliente2Obj($id_programacion)
+     {
+         $sql = "SELECT `status` 
+             FROM `ct66_programacion_diaria` 
+             WHERE `id` = :id";
+         //Preparar Conexion
+         $stmt = $this->con->prepare($sql);
+         // Asignando Datos ARRAY => SQ
+         $stmt->bindParam(':id', $id_programacion, PDO::PARAM_INT);
+         if ($stmt->execute()) {
+             $num_reg =  $stmt->rowCount();
+             if ($num_reg > 0) {
+                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                     $datos['status'] = $fila['status'];
+                     $datosf[] = $datos;
+                 }
+                 return $datosf;
+             }
+         }
+         return false;
+     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - CARGAR PROGRAMACIONES/////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////

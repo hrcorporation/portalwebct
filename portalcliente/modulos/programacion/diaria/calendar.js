@@ -93,7 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
           form_show_event.txtInicioEditar.value = data.inicio;
           form_show_event.txtFinEditar.value = data.fin;
           form_show_event.txtObservacionesEditar.value = data.observaciones;
-          $("#bomba").html(data.check_bomba);
+          if (data.requiere_bomba == 1) {
+            $("#chkRequiereBombaEditar").prop("checked", true);
+          }
           $("#modal_show_evento").modal("show");
         },
         error: function (respuesta) {
@@ -174,12 +176,14 @@ function editar_event(form_editar, calendar) {
     //processData: false,
     success: function (response) {
       calendar.refetchEvents();
-      if (response.task == 1) {
+      if (response.task == 1 && response.estado) {
         toastr.success("Programacion Actualizada Satisfactoriamente");
-      } else if (response.task == 3) {
+      } else if (response.task == 3 && response.estado) {
         toastr.success("Programacion eliminada Satisfactoriamente");
-      } else if (response.task == 2) {
+      } else if (response.task == 2 && response.estado) {
         toastr.success("Programacion Actualizada Satisfactoriamente");
+      } else {
+        toastr.warning(response.errores);
       }
     },
     error: function (respuesta) {

@@ -68,6 +68,8 @@
 <script>
     $(function() {
         $('.select2').select2();
+        $("#volumen").hide();
+
         $("#form_mostrar_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -175,14 +177,44 @@
             }
         });
 
+        $('#chkRequiereBombaEditar').on('click', function() {
+            //Ajax 
+            var formData = 'null';
+            if ($(this).is(':checked')) {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_uno)
+                        console.log(data);
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            } else {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_dos)
+                        console.log(data);
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            }
+        });
+
         $('#cbxPedido').on('change', function() {
             $.ajax({
                 url: "load_data_pedido.php", // URL
                 type: "POST", // Metodo HTTP
                 data: {
                     'task': 1,
-                    'id_cliente': $('#txtCliente').val(),
-                    'id_obra': $('#txtObra').val(),
                     'id_pedido': $('#cbxPedido').val()
                 },
                 dataType: 'json',
@@ -193,6 +225,28 @@
                     alert(JSON.stringify(respuesta));
                 },
             });
+        });
+
+        $('#cbxPedidoEditar').on('change', function() {
+            $.ajax({
+                url: "load_data_pedido.php", // URL
+                type: "POST", // Metodo HTTP
+                data: {
+                    'task': 1,
+                    'id_pedido': $('#cbxPedidoEditar').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $("#cbxProductoEditar").html(data.select_producto)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+
+        $('#cbxProducto').on('change', function(){
+            $("#volumen").show();
         });
     });
 </script>
