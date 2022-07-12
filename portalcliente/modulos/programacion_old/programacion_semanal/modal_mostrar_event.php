@@ -1,5 +1,5 @@
 <?php
-$programacion = new programacion();
+$programacion = new ClsProgramacion();
 
 // $id = $_GET['id_evento'];
 ?>

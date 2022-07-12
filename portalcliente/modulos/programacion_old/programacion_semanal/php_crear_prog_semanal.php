@@ -9,7 +9,7 @@ require '../../../../vendor/autoload.php';
 //Se crea un objeto de la clase Eventos
 $eventos = new eventos();
 //Se crea un objeto de la clase Programacion
-$programacion = new programacion();
+$programacion = new ClsProgramacion();
 //Se crea un objeto de la clase Php_Clases
 $php_clases = new php_clases();
 //Inicializar algunas variables para su uso

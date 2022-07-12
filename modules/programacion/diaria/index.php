@@ -1,7 +1,9 @@
-<?php include '../../../layout/validar_session3.php' ?>
+<?php include '../../../layout/validar_session3.php'; ?>
 <?php include '../../../layout/head/head3.php'; ?>
-<?php include 'sidebar.php' ?>
-
+<?php include 'sidebar.php'; ?>
+<?php $programacionDiaria = new ClsProgramacionDiaria(); //Se crea un objeto de la clase programacion 
+?>
+<?php $intCantidadProgramacionSinConfirmar = $programacionDiaria->fntContarProgramacionesSinConfirmarFuncionarioObj(); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -27,7 +29,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">VER PROGRAMACION DIARIA</h3>
+                <h3 class="card-title">VER PROGRAMACIONES DIARIAS</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -35,6 +37,31 @@
                 </div>
             </div>
             <div class="card-body">
+                <div class="col-1">
+                    <div class="form-group">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                            <span style="position: absolute; right: 20%; top: 40%" class="badge bg-secondary">
+                                <?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label">Linea de despacho</label>
+                            <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
+                                <?= $programacionDiaria->fntOptionLineaDespachoObj() ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                </div>
                 <div id='calendar'></div>
             </div>
             <!-- /.card-body -->
@@ -51,108 +78,189 @@
 <!-- Modal -->
 <?php include 'modal_crear_programacion.php' ?>
 <?php include 'modal_editar_programacion.php' ?>
+<?php include 'modal_confirmar_programacion.php' ?>
+<?php include 'modal_informativo.php' ?>
 
 <!-- /.modal-dialog -->
 
 <?php include '../../../layout/footer/footer3.php' ?>
 
-<script src="calendar.js"> </script>
+<script src="calendar.js">
+</script>
 <script>
-    $(function() {
+    $(document).ready(function() {
         $('.select2').select2();
-        $("#form_mostrar_event").on('submit', (function(e) {
-            e.preventDefault();
+    });
+    $('#chkRequiereBomba').on('click', function() {
+        //Ajax 
+        var formData = new FormData();
+        if ($(this).is(':checked')) {
             $.ajax({
-                url: "php_editar_prog_semanal.php",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data);
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
-                    } else {
-                        toastr.warning(data.errores);
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        }));
-
-
-        $("#form_crear_event").on('submit', (function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "php_crear_prog_semanal.php",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data);
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
-                    } else {
-                        toastr.warning(data.errores);
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        }));
-
-
-        $('#cbxCliente').on('change', function() {
-            //Ajax 
-            var formData = new FormData();
-            formData.append('task', 2);
-            formData.append('cliente', $("#cbxCliente").val());
-            $.ajax({
-                url: "load_data.php", // URL
+                url: "load_tipo.php", // URL
                 type: "POST", // Metodo HTTP
-                //data: formData,
                 data: formData,
                 contentType: false,
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    $("#cbxObra").html(data.select_obra)
+                    $("#cbxTipoDescargue").html(data.select_tipo_uno)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
             });
-        });
-
-
-        $('#cbxClienteEditar').on('change', function() {
-            //Ajax 
-            var formData = new FormData();
-            formData.append('task', 2);
-            formData.append('cliente', $("#cbxClienteEditar").val());
+        } else {
             $.ajax({
-                url: "load_data.php", // URL
+                url: "load_tipo.php", // URL
                 type: "POST", // Metodo HTTP
-                //data: formData,
                 data: formData,
                 contentType: false,
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    $("#cbxObraEditar").html(data.select_obra)
+                    $("#cbxTipoDescargue").html(data.select_tipo_dos)
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
             });
+        }
+    });
+
+    $('#cbxCliente').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 2);
+        formData.append('cliente', $("#cbxCliente").val());
+        $.ajax({
+            url: "load_data.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxObra").html(data.select_obra)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
         });
     });
+
+    $('#cbxObra').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 1);
+        formData.append('cliente', $("#cbxCliente").val());
+        formData.append('obra', $("#cbxObra").val());
+        $.ajax({
+            url: "load_data_pedido.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxPedido").html(data.select_pedidos)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
+    $('#cbxPedido').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 2);
+        formData.append('pedido', $("#cbxPedido").val());
+        $.ajax({
+            url: "load_data_pedido.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxProducto").html(data.select_productos)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
+    $('#cbxClienteEditar').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 2);
+        formData.append('cliente', $("#cbxClienteEditar").val());
+        $.ajax({
+            url: "load_data.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxObraEditar").html(data.select_obra)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
+    $("#form_crear_programacion").on('submit', (function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "php_crear_prog_diaria.php",
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                console.log(data);
+                if (data.estado) {
+                    toastr.success('Se ha guardado correctamente');
+                } else {
+                    toastr.warning(data.errores);
+                }
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    }));
+    
+    $("#form_mostrar_programacion").on('submit', (function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "php_editar_prog_diaria.php",
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                console.log(data);
+                if (data.estado) {
+                    toastr.success('Se ha guardado correctamente');
+                } else {
+                    toastr.warning(data.errores);
+                }
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    }));
 </script>
 </body>
 

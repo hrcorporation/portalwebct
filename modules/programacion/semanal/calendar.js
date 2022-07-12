@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let form_crear_event = document.querySelector("#form_crear_event");
-  let form_show_event = document.querySelector("#form_mostrar_event");
+  let form_crear_programacion = document.querySelector("#form_crear_programacion");
+  let form_show_event = document.querySelector("#form_mostrar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       language: "es",
       left: "prev,next,today",
       center: "title",
-      right: "dayGridMonth,timeGridWeek,timeGridDay,",
+      right: "dayGridMonth,timeGridWeek,timeGridDay",
     },
     // Cargar Datos, los eventos del Calendario
     events: {
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Crear Eventos
     select: function (event) {
       console.log("Crear Evento");
-      form_crear_event.reset();
+      form_crear_programacion.reset();
       $("#txtInicio").val(moment(event.startStr).format("YYYY-MM-DD HH:mm:ss"));
       $("#txtFin").val(moment(event.endStr).format("YYYY-MM-DD HH:mm:ss"));
       //Ajax
@@ -75,13 +75,21 @@ document.addEventListener("DOMContentLoaded", function () {
         success: function (data) {
           form_show_event.id_prog_evento.value = info.event.id;
           console.log(info.event);
-          $("#edit_txt_cliente").html(data.select_cliente);
-          $("#edit_txt_obra").html(data.select_obra);
-          $("#edit_txt_producto").html(data.select_producto);
-          form_show_event.edit_txt_cant.value = data.cantidad;
-          form_show_event.edit_start.value = data.inicio;
-          form_show_event.edit_end.value = data.fin;
-          $("#edit_status").html(data.select_estado);
+          $("#cbxClienteEditar").html(data.select_cliente);
+          $("#cbxObraEditar").html(data.select_obra);
+          $("#cbxProductoEditar").html(data.select_producto);
+          $("#cbxPedidoEditar").html(data.select_pedidos);
+          $("#cbxTipoDescargueEditar").html(data.select_tipo_descargue);
+          $("#cbxFrecuenciaEditar").html(data.select_frecuencia);
+          form_show_event.txtCantEditar.value = data.cantidad;
+          form_show_event.txtElementosEditar.value = data.elementos;
+          form_show_event.txtInicioEditar.value = data.inicio;
+          form_show_event.txtFinEditar.value = data.fin;
+          form_show_event.txtObservacionesEditar.value = data.observaciones;
+          form_show_event.txtMetrosEditar.value = data.metros;
+          if(data.requiere_bomba ==1){
+            $("#chkRequiereBombaEditar").prop("checked", true);
+          }
           $("#modal_show_evento").modal("show");
         },
         error: function (respuesta) {
@@ -96,11 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
       form_editar.append(
-        "start",
+        "txtInicio",
         moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
       );
       form_editar.append(
-        "end",
+        "txtFin",
         moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
       );
       editar_event(form_editar, calendar);
@@ -112,11 +120,11 @@ document.addEventListener("DOMContentLoaded", function () {
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
       form_editar.append(
-        "start",
+        "txtInicio",
         moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
       );
       form_editar.append(
-        "end",
+        "txtFin",
         moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
       );
 

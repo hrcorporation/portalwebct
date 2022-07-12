@@ -1,10 +1,9 @@
-<?php include '../../layout/validar_session2.php' ?>
+<?php include '../../layout/validar_session2.php'; ?>
 <?php include '../../layout/head/head2.php'; ?>
-<?php include 'sidebar.php' ?>
 <?php require '../../librerias/autoload.php';
+include 'sidebar.php';
 require '../../modelos/autoload.php';
 require '../../vendor/autoload.php'; ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -40,7 +39,6 @@ require '../../vendor/autoload.php'; ?>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-
             </div>
             <!-- /.card-footer-->
         </div>
@@ -51,5 +49,4 @@ require '../../vendor/autoload.php'; ?>
 <!-- /.content-wrapper -->
 <?php include '../../layout/footer/footer2.php' ?>
 </body>
-
 </html>

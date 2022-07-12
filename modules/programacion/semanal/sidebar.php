@@ -38,36 +38,12 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-item has-treeview">
-                     <a href="create/crear.php" class="nav-link ">
-                         <i class="nav-icon fas fa-copy"></i>
-                         <p>
-                             Crear
-                         </p>
-                     </a>
-                 </li>
-                 <li class="nav-item has-treeview">
-                     <a href="informe/index.php" class="nav-link ">
-                         <i class="nav-icon fas fa-copy"></i>
-                         <p>
-                             Exportar programacion semanal
-                         </p>
-                     </a>
-                 </li>
                  <li class="nav-header">Programacion Diaria</li>
                  <li class="nav-item has-treeview">
                      <a href="../diaria/index.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar
-                         </p>
-                     </a>
-                 </li>
-                 <li class="nav-item has-treeview">
-                     <a href="../diaria/create/crear.php" class="nav-link ">
-                         <i class="nav-icon fas fa-copy"></i>
-                         <p>
-                             Crear
                          </p>
                      </a>
                  </li>

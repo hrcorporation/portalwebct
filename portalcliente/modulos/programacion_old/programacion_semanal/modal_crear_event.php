@@ -1,5 +1,5 @@
 <?php
-$programacion = new ClsProgramacion();
+    $programacion = new ClsProgramacion();
 ?>
 <div class="modal fade" id="modal_crear_evento">
     <div class="modal-dialog modal-lg">
