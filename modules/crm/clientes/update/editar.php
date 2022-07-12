@@ -36,6 +36,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
     $telefono = $fila['ct1_Telefono'];
     $celular = $fila['ct1_Celular'];
     $email = $fila['ct1_CorreoElectronico'];
+    $direccion = $fila['ct1_Direccion'];
 
     // $tipo_documento = $fila['ct1_TipoIdentificacion'];
 }
@@ -206,6 +207,14 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                                 <div class="form-group">
                                     <label> Celular </label>
                                     <input type="text" name="tbx_celular" id="tbx_celular" class="form-control" data-inputmask="'alias': 'numeric', 'groupSeparator': ',' , 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'" data-mask value="<?php print_r($celular); ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Direccion</label>
+                                    <input type='text' class='form-control ' name='txt_direccion' id="txt_direccion" value="<?php echo $direccion; ?>" required />
                                 </div>
                             </div>
                         </div>

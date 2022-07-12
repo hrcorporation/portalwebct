@@ -369,7 +369,7 @@ class t1_terceros extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    function editar_cliente($id_cliente, $tipo_tercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera)
+    function editar_cliente($id_cliente, $tipo_tercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera,$direccion)
     {
         $this->tipo_tercero = $tipo_tercero;
         $this->formapago    = $forma_pago;
@@ -387,6 +387,7 @@ class t1_terceros extends conexionPDO
         $this->celular            = $celular;
         $this->cupo = $cupo_cliente;
         $this->id_cliente = $id_cliente;
+        $this->direccion = $direccion;
 
         $this->rol = 101; //cliente
         //$this->tipo_tercero = 1 ; // 1 Cliente   -> 10 Funcionario
@@ -402,7 +403,7 @@ class t1_terceros extends conexionPDO
             $this->razon_social =  $this->nombre1 . " " . $this->nombre2  . " " . $this->apellido1  . " " . $this->apellido2;
         }
 
-        $sql = "UPDATE `ct1_terceros` SET `ct1_id_asesora`= :id_asesora, `ct1_nombre_asesora`= :nombre_asesora, `ct1_id_sede`= :id_sede, `ct1_nombre_sede`= :nombre_sede,`ct1_naturaleza`= :naturaleza, `ct1_TipoTercero`= :tipo_tercero, `ct1_tipo_cliente`= :tipo_cliente, `ct1_nombre_tipo_cliente`= :nombre_tipo_cliente, `ct1_tipo_plan_maestro`= :tipo_plan_maestro,`ct1_TipoIdentificacion`= :tipo_identificacion, `ct1_NumeroIdentificacion`= :numero_identificacion, `ct1_dv`= :dv, `ct1_RazonSocial`= :razon_social, `ct1_Nombre1`= :nombre1,`ct1_Nombre2`= :nombre2, `ct1_Apellido1`= :apellido1, `ct1_Apellido2`= :apellido2, `ct1_usuario`= :usuario, `ct1_pass`= :pass, `ct1_Telefono`= :telefono, `ct1_Celular`= :cel, `ct1_CorreoElectronico`= :email  WHERE `ct1_IdTerceros` = :id_cliente";
+        $sql = "UPDATE `ct1_terceros` SET `ct1_id_asesora`= :id_asesora, `ct1_nombre_asesora`= :nombre_asesora, `ct1_id_sede`= :id_sede, `ct1_nombre_sede`= :nombre_sede,`ct1_naturaleza`= :naturaleza, `ct1_TipoTercero`= :tipo_tercero, `ct1_tipo_cliente`= :tipo_cliente, `ct1_nombre_tipo_cliente`= :nombre_tipo_cliente, `ct1_tipo_plan_maestro`= :tipo_plan_maestro,`ct1_TipoIdentificacion`= :tipo_identificacion, `ct1_NumeroIdentificacion`= :numero_identificacion, `ct1_dv`= :dv, `ct1_RazonSocial`= :razon_social, `ct1_Nombre1`= :nombre1,`ct1_Nombre2`= :nombre2, `ct1_Apellido1`= :apellido1, `ct1_Apellido2`= :apellido2, `ct1_usuario`= :usuario, `ct1_pass`= :pass, `ct1_Telefono`= :telefono, `ct1_Celular`= :cel, `ct1_CorreoElectronico`= :email, ct1_Direccion = :direccion WHERE `ct1_IdTerceros` = :id_cliente";
 
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -431,6 +432,7 @@ class t1_terceros extends conexionPDO
         $stmt->bindParam(':telefono', $this->telefono, PDO::PARAM_STR);
         $stmt->bindParam(':cel', $this->celular, PDO::PARAM_STR);
         $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
+        $stmt->bindParam(':direccion', $this->direccion, PDO::PARAM_STR);
 
         if ($stmt->execute()) { // Ejecutar primera SQL
 
@@ -476,7 +478,7 @@ class t1_terceros extends conexionPDO
     }
 
 
-    function crear_cliente($id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera)
+    function crear_cliente($id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera,$direccion)
     {
         $this->tipo_cliente       = $id_tipo_cliente;
         $this->formapago          = $forma_pago;
@@ -493,6 +495,7 @@ class t1_terceros extends conexionPDO
         $this->telefono           = $telefono;
         $this->celular            = $celular;
         $this->cupo               = $cupo_cliente;
+        $this->direccion               = $direccion;
 
         $this->rol = 101; //cliente
         $this->tipo_tercero = 1; // 1 Cliente   -> 10 Funcionario
