@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   let form_crear_programacion = document.querySelector("#form_crear_programacion");
-  let  = document.querySelector("#form_mostrarform_show_event_programacion");
+  let form_show_event = document.querySelector("#form_mostrar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -87,8 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
           form_show_event.txtFinEditar.value = data.fin;
           form_show_event.txtObservacionesEditar.value = data.observaciones;
           form_show_event.txtMetrosEditar.value = data.metros;
-          $("#group_check").html(data.check_bomba);
-          //$("#group_check").prop("checked", true);
+          if(data.requiere_bomba ==1){
+            $("#chkRequiereBombaEditar").prop("checked", true);
+          }
           $("#modal_show_evento").modal("show");
         },
         error: function (respuesta) {

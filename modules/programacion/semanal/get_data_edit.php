@@ -21,7 +21,7 @@ if (isset($_POST['id'])) {
             //mostrar el select de los pedidos
             $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['cliente'], $key['obra'], $key['id_pedido']);
             //mostrar el select del listado de las frecuencias
-            $objSelectFrecuencua = $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
+            $objSelectFrecuencia = $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
             //Cantidad / Volumen
             $intCantidad = $key['cantidad'];
             //Fecha inicial de la programacion
@@ -41,10 +41,8 @@ if (isset($_POST['id'])) {
             //Requiere bomba de concretolima (1. true, 0 false)
             $boolRequiereBomba = $key['requiere_bomba'];
             if ($boolRequiereBomba) {
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='2' id='chkRequiereBombaEditar' name='chkRequiereBombaEditar' checked ><label class='form-check-label' for='flexCheckDefault'>  <b>Requiere bomba de concretolima</b> </label>";
                 $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
             } else {
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='4' id='chkRequiereBombaEditar' name='chkRequiereBombaEditar'> <label class='form-check-label' for='flexCheckDefault'> <b>Requiere bomba de concretolima</b> </label>";
                 $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             }
         }
@@ -62,15 +60,15 @@ $datos = array(
     'select_obra' => $objSelectObra,
     'select_producto' => $objSelectProducto,
     'select_pedidos' => $objSelectPedidos,
+    'select_frecuencia' => $objSelectFrecuencia,
     'select_tipo_descargue' => $objSelectTipoDescargue,
+    'requiere_bomba' => $boolRequiereBomba,
     'cantidad' => $intCantidad,
     'inicio' => $dtmInicio,
-    'select_frecuencia' => $objSelectFrecuencua,
     'fin' => $dtmFin,
     'observaciones' => $StrObservaciones,
     'metros' => $dblMetros,
     'elementos' => $StrElementos,
-    'check_bomba' => $objCheckBomba,
     'color' => $StrColor,
     'textcolor' => $StrTextColor
 );

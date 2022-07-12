@@ -49,13 +49,13 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="col-sm-2 form-label">Volumen:</label>
+                                <label class="form-label">Volumen:</label>
                                 <input type="text" name="txtCantEditar" id="txtCantEditar" class="form-control" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="txtFrecuencia" class="form-label">Frecuencia:</label>
+                                <label class="form-label">Frecuencia:</label>
                                 <select name="cbxFrecuenciaEditar" id="cbxFrecuenciaEditar" class="form-control select2" style="width: 100%;">
                                 </select>
                             </div>
@@ -72,7 +72,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <div class="form-check" id="group_check">
+                                <div class="form-check">
                                     <input class='form-check-input' type='checkbox' value='1' id='chkRequiereBombaEditar' name='chkRequiereBombaEditar'>
                                     <label class='form-check-label' for='flexCheckDefault'>
                                         <b>¿Requiere bomba de Concre Tolima?</b>

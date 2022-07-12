@@ -25,21 +25,35 @@ if (isset($_POST['task'])) {
     if ($_POST['task'] == 1) {
         //id de la programacion
         $intId = $_POST['id'];
+        //estado de la programacion
+        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
         //Fecha inicio de la programacion
         $dtmFechaInicio = $_POST['txtInicio'];
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFin'];
-        //Validar que modifique correctamente la programacion (fechas)
-        if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
-            $php_estado = true;
+        //Validar que modifique correctamente la programacion (Fechas)
+        if ($intEstado == 1) {
+            if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                $php_estado = true;
+            } else {
+                $php_error = 'ERROR';
+            }
+        } else {
+            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
         }
     } elseif ($_POST['task'] == 3) {
-        //Validacion de roles 
         //id de la programacion
         $intId = $_POST['id'];
+        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
-        if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
-            $php_estado = true;
+        if ($intEstado == 1) {
+            if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
+                $php_estado = true;
+            } else {
+                $php_error = 'ERROR';
+            }
+        } else {
+            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede eliminar';
         }
     }
 }

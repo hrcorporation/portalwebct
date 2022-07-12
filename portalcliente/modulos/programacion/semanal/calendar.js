@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let form_crear_programacion = document.querySelector("#form_crear_programacion");
+  let form_crear_programacion = document.querySelector(
+    "#form_crear_programacion"
+  );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
@@ -166,15 +168,17 @@ function editar_event(form_editar, calendar) {
     processData: false,
     contentType: false,
     dataType: "json",
-    //processData: false,
+    processData: false,
     success: function (response) {
       calendar.refetchEvents();
-      if (response.task == 1) {
+      if (response.task == 1 && response.estado) {
         toastr.success("Programacion Actualizada Satisfactoriamente");
-      } else if (response.task == 3) {
+      } else if (response.task == 3 && response.estado) {
         toastr.success("Programacion eliminada Satisfactoriamente");
-      } else if (response.task == 2) {
+      } else if (response.task == 2 && response.estado) {
         toastr.success("Programacion Actualizada Satisfactoriamente");
+      } else {
+        toastr.warning(response.errores);
       }
     },
     error: function (respuesta) {

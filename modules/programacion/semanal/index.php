@@ -170,9 +170,8 @@
         /////////////////////////////////////////////////////
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
-            var formData = new FormData();
+            var formData = 'null';
             if ($(this).is(':checked')) {
-                alert("seleccionado");
                 $.ajax({
                     url: "load_tipo.php", // URL
                     type: "POST", // Metodo HTTP
@@ -186,14 +185,10 @@
                     },
                 });
             } else {
-
-                alert("no select");
-
                 $.ajax({
                     url: "load_tipo.php", // URL
                     type: "POST", // Metodo HTTP
                     data: formData,
-
                     success: function(data) {
                         $("#cbxTipoDescargue").html(data.select_tipo_dos)
                     },
@@ -208,7 +203,6 @@
             //Ajax 
             var formData = 'null';
             if ($(this).is(':checked')) {
-                alert("seleccionado");
                 $.ajax({
                     url: "load_tipo.php", // URL
                     type: "POST", // Metodo HTTP
@@ -222,7 +216,6 @@
                     },
                 });
             } else {
-                alert("No seleccionado");
                 $.ajax({
                     url: "load_tipo.php", // URL
                     type: "POST", // Metodo HTTP

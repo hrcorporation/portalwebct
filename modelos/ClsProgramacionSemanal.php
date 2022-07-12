@@ -928,6 +928,28 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
+    // Obtener todos los estados de las programaciones (CLIENTE).
+    public function fntGetEstadosProgramacionCliente2Obj($id_programacion)
+    {
+        $sql = "SELECT `status` 
+            FROM `ct66_programacion_semanal` 
+            WHERE `id` = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQ
+        $stmt->bindParam(':id', $id_programacion, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['status'] = $fila['status'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            }
+        }
+        return false;
+    }
     // Obtener todos los estados de las programaciones (FUNCIONARIO).
     public function fntGetEstadosProgramacionFuncionarioObj()
     {
