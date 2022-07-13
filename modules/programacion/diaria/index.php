@@ -158,6 +158,7 @@
             processData: false,
             success: function(data) {
                 $("#cbxPedido").html(data.select_pedidos)
+                $("#cbxProducto").html(data.select_productos)
             },
             error: function(respuesta) {
                 alert(JSON.stringify(respuesta));

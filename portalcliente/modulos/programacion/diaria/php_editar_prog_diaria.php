@@ -32,7 +32,7 @@ if (isset($_POST['task'])) {
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFin'];
         //Validar que modifique correctamente la programacion (Fechas)
-        if ($intEstado != 1) {
+        if ($intEstado == 1) {
             if ($ClsProgramacionDiaria->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
                 $php_estado = true;
             } else {

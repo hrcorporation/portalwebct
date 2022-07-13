@@ -12,7 +12,6 @@ $php_error[] = "";
 $resultado = "";
 
 $objEstados = $clsProgramacionSemanal->fntGetEstadosProgramacionFuncionarioObj();
-
 if (is_array($objEstados)) {
     foreach ($objEstados as $estado) {
         $intEstadoProgramacion = $estado['status'];
@@ -22,7 +21,7 @@ if (is_array($objEstados)) {
                 $php_estado = true;
             } else {
                 //De lo contrario mostrara un mensaje mostrando que no se guardo
-                $php_error = 'No Guardo Correctamente';
+                $php_error = 'No guardo correctamente';
             }
         } else {
             $php_error = 'No tiene programaciones pendientes por confirmar';

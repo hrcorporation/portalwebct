@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
           form_show_event.txtFinEditar.value = data.fin;
           form_show_event.txtObservacionesEditar.value = data.observaciones;
           form_show_event.txtMetrosEditar.value = data.metros;
-          if(data.requiere_bomba == 1){
+          if (data.requiere_bomba == 1) {
             $("#chkRequiereBombaEditar").prop("checked", true);
           }
           $("#modal_show_evento").modal("show");
@@ -136,7 +136,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   calendar.render();
   // Boton Actualizar Evento
-  // Boton Actualizar Evento
   document.getElementById("btnEliminar").addEventListener("click", function () {
     const datos_form = new FormData(form_show_event);
     var form_editar = new FormData();
@@ -156,34 +155,35 @@ document.addEventListener("DOMContentLoaded", function () {
         editar_event(form_editar, calendar);
         $("#modal_show_evento").modal("hide");
       } else if (result.isDenied) {
+        
       }
     });
   });
-});
 
-function editar_event(form_editar, calendar) {
-  $.ajax({
-    url: "php_editar_prog_semanal.php",
-    type: "POST",
-    data: form_editar,
-    processData: false,
-    contentType: false,
-    dataType: "json",
-    processData: false,
-    success: function (response) {
-      calendar.refetchEvents();
-      if (response.task == 1 && response.estado) {
-        toastr.success("Programacion Actualizada Satisfactoriamente");
-      } else if (response.task == 3 && response.estado) {
-        toastr.success("Programacion eliminada Satisfactoriamente");
-      } else if (response.task == 2 && response.estado) {
-        toastr.success("Programacion Actualizada Satisfactoriamente");
-      } else {
-        toastr.warning(response.errores);
-      }
-    },
-    error: function (respuesta) {
-      alert(JSON.stringify(respuesta));
-    },
-  });
-}
+  function editar_event(form_editar, calendar) {
+    $.ajax({
+      url: "php_editar_prog_semanal.php",
+      type: "POST",
+      data: form_editar,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      processData: false,
+      success: function (response) {
+        calendar.refetchEvents();
+        if (response.task == 1 && response.estado) {
+          toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else if (response.task == 3 && response.estado) {
+          toastr.success("Programacion eliminada Satisfactoriamente");
+        } else if (response.task == 2 && response.estado) {
+          toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else {
+          toastr.warning(response.errores);
+        }
+      },
+      error: function (respuesta) {
+        alert(JSON.stringify(respuesta));
+      },
+    });
+  }
+});

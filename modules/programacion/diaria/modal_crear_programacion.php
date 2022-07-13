@@ -29,21 +29,21 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="cbxProducto" class="form-label">Producto:</label>
                                 <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
-                        <div class="col-2" id="volumen">
+                        <div class="col" id="volumen">
                             <div class="form-group">
                                 <label for="txtCant" class="form-label">Volumen:</label>
                                 <input type="text" name="txtCant" id="txtCant" class="form-control" style="width: 100%;" />

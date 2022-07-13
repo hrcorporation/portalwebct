@@ -211,6 +211,7 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
+                        $('#modal_crear_evento').modal('hide');
                     } else {
                         toastr.warning(data.errores);
                     }

@@ -33,7 +33,7 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     //Nombre del producto mediante el parametro del id del producto.
     $StrNombreProducto = $ClsProgramacionDiaria->fntGetNombreProductoObj($intIdProducto);
     //id de la linea de despacho.
-    $intIdLineaDespacho = $_POST['cbxProducto'];
+    $intIdLineaDespacho = $_POST['cbxLineaDespacho'];
     //Nombre de la linea de despacho mediante el parametro del id del producto.
     $StrNombreLineaDespacho = $ClsProgramacionDiaria->fntGetNombreLineaDespachoObj($intIdLineaDespacho);
     //hora de cargue

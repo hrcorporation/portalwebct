@@ -79,7 +79,7 @@
     $(function() {
         $("#volumen").hide();
 
-        $('#form_confirmar_programacion').on('submit', function(e) {
+        $('#form_confirmar_programacion').on('submit', function(e) {                                                    
             e.preventDefault();
             $.ajax({
                 url: "php_cambiar_estado.php",
@@ -91,10 +91,10 @@
                 success: function(data) {
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
-                        $('#modal_cargar_programacion').modal('hide');
+                        $('#modal_confirmar_programacion').modal('hide');
                     } else {
                         toastr.warning(data.errores);
-                        $('#modal_cargar_programacion').modal('hide');
+                        $('#modal_confirmar_programacion').modal('hide');
                     }
                 },
                 error: function(respuesta) {
@@ -241,7 +241,7 @@
             });
         });
 
-        $('#cbxProducto').on('change', function(){
+        $('#cbxProducto').on('change', function() {
             $("#volumen").show();
         });
         /////////////////////////////////////////////////////
