@@ -70,7 +70,7 @@ class ClsProgramacion extends conexionPDO
                 $option .= '</select>';
                 return $option;
             } elseif ($num_reg == 0) {
-                return false;
+                return '<h5> No hay clientes asignados </h5>';
             }
         } else {
             return false;

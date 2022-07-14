@@ -135,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   calendar.render();
   // Boton Actualizar Evento
-  // Boton Actualizar Evento
   document.getElementById("btnEliminar").addEventListener("click", function () {
     const datos_form = new FormData(form_show_event);
     var form_editar = new FormData();

@@ -49,7 +49,7 @@
                     <span class="badge bg-warning" title='Programaciones por cargar, cuando el cliente confirma y envia al area de programacion.'><?= $intCantidadProgramacionPorCargar ?> - Por Cargar</span>
                     <span class="badge bg-info" title='Programaciones confirmadas por el area de programacion.'><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
                     <span class="badge bg-success" title='Programaciones ejecutadas y anexadas a la programacion diaria.'><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
-                    <button style="position: absolute; right: 69%; top: 12.2%" type="button" class="btn btn-success" id="btnConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_cargar_programacion"> Cargar programación </button>
+                    <button style="position: absolute; right: 69%; top: 12.2%" type="button" class="btn btn-success" id="btnConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_confirmar_programacion"> Cargar programación </button>
                 </div>
                 <div id='calendar'></div>
             </div>
@@ -82,7 +82,7 @@
         $('#form_confirmar_programacion').on('submit', function(e) {                                                    
             e.preventDefault();
             $.ajax({
-                url: "php_cambiar_estado.php",
+                url: "php_cargar_programacion.php",
                 type: "POST",
                 data: new FormData(this),
                 contentType: false,
@@ -244,7 +244,6 @@
         $('#cbxProducto').on('change', function() {
             $("#volumen").show();
         });
-        /////////////////////////////////////////////////////
         /////////////////////////////////////////////////////
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
