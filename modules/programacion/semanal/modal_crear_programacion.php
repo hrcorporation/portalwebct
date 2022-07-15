@@ -120,7 +120,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="btnConfirmarProgramacion" data-toggle="modal" data-target="#modal_confirmar_programacion"> Confirmar </button>
                     <button type="submit" class="btn btn-primary" id="btnCrear"> Guardar </button>
                 </div>
             </form>

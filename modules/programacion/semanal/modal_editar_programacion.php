@@ -120,7 +120,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btnConfirmarProgramacion" class="btn btn-success" title='Confirmar programacion diaria' data-toggle="modal" data-target="#modal_confirmar_programacion"> Confirmar </button>
+                    <button type="button"  class="btn btn-success" title='Confirmar programacion diaria' data-toggle="modal" data-target="#modal_confirmar_programacion"> Confirmar </button>
                     <button type="submit" id="btnGuardar" class="btn btn-primary" title='Guardar datos modificados'> Guardar </button>
                     <button type="button" id="btnEliminar" class="btn btn-danger" title='Eliminar programacion semanal'> Eliminar </button>
                 </div>

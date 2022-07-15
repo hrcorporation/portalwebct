@@ -15,7 +15,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                     <p>Da clic en el boton Confirmar para enviar y guardar la programación diaria.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btnConfirmarProgramacion"> Si, confirmar </button>
+                    <button type="button" class="btn btn-primary" id="btnConfirmarProgramacion"> Si, confirmar </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
                 </div>
             </form>

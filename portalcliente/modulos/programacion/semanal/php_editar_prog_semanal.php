@@ -58,11 +58,13 @@ if (isset($_POST['task'])) {
                 $php_error = 'Fuera del horario establecido para modificar la programación';
             }
         } else {
-            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
+            $php_error = 'La programacion ya fue enviada al area de logistica de Concre Tolima y no se puede hacer modificaciones';
         }
     } else if ($_POST['task'] == 2) {
         //id de la programacion
         $intId = $_POST['id_prog_evento'];
+        // id del estado
+        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
         //id del pedido
         $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
@@ -94,10 +96,14 @@ if (isset($_POST['task'])) {
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
         //Editar programacion
-        if ($ClsProgramacionSemanal->fntEditarProgramacionTodoBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
-            $php_estado = true;
+        if ($intEstado == 1) {
+            if ($ClsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
+                $php_estado = true;
+            } else {
+                $php_error = 'ERROR';
+            }
         } else {
-            $php_error = 'ERROR';
+            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
         }
     } elseif ($_POST['task'] == 3) {
         //id de la programacion
@@ -112,6 +118,27 @@ if (isset($_POST['task'])) {
             }
         } else {
             $php_error = 'La programacion ya fue enviada al area de logistica y no se puede eliminar';
+        }
+    } else if ($_POST['task'] == 4) {
+        $intId = $_POST['id'];
+        $objEstados = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteObj($intId);
+        if (is_array($objEstados)) {
+            foreach ($objEstados as $estado) {
+                $intEstadoProgramacion = $estado['status'];
+                if ($intEstadoProgramacion == 1) {
+                    if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanal($intId)) {
+                        //Si pasa la validacion se retorna verdadero(true)
+                        $php_estado = true;
+                    } else {
+                        //De lo contrario mostrara un mensaje mostrando que no se guardo
+                        $php_error = 'No Guardo Correctamente';
+                    }
+                } else {
+                    $php_error = 'La programacion ya fue enviada al area de logistica de Concre Tolima';
+                }
+            }
+        } else {
+            $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
         }
     }
 }

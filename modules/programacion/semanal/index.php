@@ -49,7 +49,7 @@
                     <span class="badge bg-warning" title='Programaciones por cargar, cuando el cliente confirma y envia al area de programacion.'><?= $intCantidadProgramacionPorCargar ?> - Por Cargar</span>
                     <span class="badge bg-info" title='Programaciones confirmadas por el area de programacion.'><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
                     <span class="badge bg-success" title='Programaciones ejecutadas y anexadas a la programacion diaria.'><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
-                    <button style="position: absolute; right: 69%; top: 12.2%" type="button" class="btn btn-success" id="btnConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_confirmar_programacion"> Cargar programación </button>
+                    <button style="position: absolute; right: 69%; top: 12.2%" type="button" class="btn btn-success" id="btnModalConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_confirmar_programacion"> Cargar programación </button>
                 </div>
                 <div id='calendar'></div>
             </div>
@@ -79,29 +79,29 @@
     $(function() {
         $("#volumen").hide();
 
-        $('#form_confirmar_programacion').on('submit', function(e) {                                                    
-            e.preventDefault();
-            $.ajax({
-                url: "php_cargar_programacion.php",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
-                        $('#modal_confirmar_programacion').modal('hide');
-                    } else {
-                        toastr.warning(data.errores);
-                        $('#modal_confirmar_programacion').modal('hide');
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        });
+        // $('#form_confirmar_programacion').on('submit', function(e) {                                                    
+        //     e.preventDefault();
+        //     $.ajax({
+        //         url: "php_cargar_programacion.php",
+        //         type: "POST",
+        //         data: new FormData(this),
+        //         contentType: false,
+        //         cache: false,
+        //         processData: false,
+        //         success: function(data) {
+        //             if (data.estado) {
+        //                 toastr.success('Se ha guardado correctamente');
+        //                 $('#modal_confirmar_programacion').modal('hide');
+        //             } else {
+        //                 toastr.warning(data.errores);
+        //                 $('#modal_confirmar_programacion').modal('hide');
+        //             }
+        //         },
+        //         error: function(respuesta) {
+        //             alert(JSON.stringify(respuesta));
+        //         },
+        //     });
+        // });
 
         $('#cbxCliente').on('change', function() {
             //Ajax 
@@ -322,6 +322,30 @@
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
                         $('#modal_crear_evento').modal('hide');
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
+
+        $("#form_mostrar_programacion").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_editar_prog_semanal.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente');
+                        $('#modal_show_evento').modal('hide');
                     } else {
                         toastr.warning(data.errores);
                     }

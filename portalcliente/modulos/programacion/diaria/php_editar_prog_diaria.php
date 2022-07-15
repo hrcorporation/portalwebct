@@ -47,6 +47,8 @@ if (isset($_POST['task'])) {
     } else if ($_POST['task'] == 2) {
         //id de la programacion
         $intId = $_POST['id_prog_evento'];
+        //estado de la programacion
+        $intEstado = $ClsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
         //id del pedido
         $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
@@ -90,10 +92,14 @@ if (isset($_POST['task'])) {
         $dtmFechaInicio = $_POST['txtInicioEditar'];
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
-        if ($ClsProgramacionDiaria->fntEditarProgramacionTodoBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
-            $php_estado = true;
-        } else {
-            $php_error = 'ERROR';
+        if ($intEstado == 2) {
+            if ($ClsProgramacionDiaria->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                $php_estado = true;
+            } else {
+                $php_error = 'ERROR';
+            }
+        }else{
+            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
         }
         //Validar que la variable exista, si cumple la variable se le asigna true, de lo contrario seria false.
     } else if ($_POST['task'] == 3) {

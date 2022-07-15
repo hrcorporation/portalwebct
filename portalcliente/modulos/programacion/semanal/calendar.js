@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "#form_crear_programacion"
   );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
+  let aceptar_programacion = document.querySelector(
+    "#form_aceptar_programacion"
+  );
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -155,10 +158,38 @@ document.addEventListener("DOMContentLoaded", function () {
         editar_event(form_editar, calendar);
         $("#modal_show_evento").modal("hide");
       } else if (result.isDenied) {
-        
       }
     });
   });
+
+  calendar.render();
+  // Boton Actualizar Evento
+  document
+    .getElementById("btnConfirmarProgramacion")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(aceptar_programacion);
+      var form_editar = new FormData();
+      Swal.fire({
+        title: "¿Esta seguro que desea enviar la programacion al area de logistica de Concre Tolima?",
+        text: "NO PODRA HACER MODIFICACIONES DESPUES DE ENVIAR LA PROGRAMACION",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si enviar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#298a00",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 4); // eliminar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
+
+        }
+      });
+    });
 
   function editar_event(form_editar, calendar) {
     $.ajax({
@@ -177,8 +208,12 @@ document.addEventListener("DOMContentLoaded", function () {
           toastr.success("Programacion eliminada Satisfactoriamente");
         } else if (response.task == 2 && response.estado) {
           toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else if (response.task == 4 && response.estado) {
+          toastr.success("Programacion enviada correctamente al area de logistica");
+          $("#modal_aceptar_programacion").modal("hide");
         } else {
           toastr.warning(response.errores);
+          $("#modal_aceptar_programacion").modal("hide");
         }
       },
       error: function (respuesta) {
