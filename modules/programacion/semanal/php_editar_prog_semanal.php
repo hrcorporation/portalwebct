@@ -74,7 +74,6 @@ if (isset($_POST['task'])) {
         $dtmFechaInicio = $_POST['txtInicioEditar'];
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
-
         if ($ClsProgramacionSemanal->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
             $php_estado = true;
         } else {
@@ -89,33 +88,34 @@ if (isset($_POST['task'])) {
         }
     } else if ($_POST['task'] == 4) {
         $intId = $_POST['id'];
-        $objProgramacionesSemanales = $ClsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoObj($intId);
-        if (is_array($objProgramacionesSemanales)) {
-            foreach ($objProgramacionesSemanales as $estado) {
-                $intEstado = $estado['status'];
-                $intIdCliente = $estado['id_cliente'];
-                $strNombreCliente = $estado['nombre_cliente'];
-                $intIdObra = $estado['id_obra'];
-                $strNombreObra = $estado['nombre_obra'];
-                $intIdPedido = $estado['id_pedido'];
-                $intIdProducto = $estado['id_producto'];
-                $strNombreProducto = $estado['nombre_producto'];
-                $intCantidad = $estado['cantidad'];
-                $intValorProgramacion = $estado['valor_programacion'];
-                $dtmFrecuencia = $estado['frecuencia'];
-                $boolRequiereBomba = $estado['requiere_bomba'];
-                $intIdTipoDescargue = $estado['id_tipo_descargue'];
-                $strNombreTipoDescargue = $estado['nombre_tipo_descargue'];
-                $dblMetrosTuberia = $estado['metros_tuberia'];
-                $dtmFechaInicial = $estado['fecha_ini'];
-                $dtmFechaFinal = $estado['fecha_fin'];
-                $strElementosFundir = $estado['elementos_fundir'];
-                $strObservaciones = $estado['observaciones'];
-                $intIdUsuario = $estado['id_usuario'];
-                $strNombreUsuario = $estado['nombre_usuario'];
-                $numeroViajes = $intCantidad / 7;
-                $numeroViajesAp = ceil($numeroViajes);
-                if ($intEstado == 2) {
+        $intIdEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
+        if ($intIdEstado == 2) {
+            $objProgramacionesSemanales = $ClsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoObj($intId);
+            if (is_array($objProgramacionesSemanales)) {
+                foreach ($objProgramacionesSemanales as $estado) {
+                    $intEstado = $estado['status'];
+                    $intIdCliente = $estado['id_cliente'];
+                    $strNombreCliente = $estado['nombre_cliente'];
+                    $intIdObra = $estado['id_obra'];
+                    $strNombreObra = $estado['nombre_obra'];
+                    $intIdPedido = $estado['id_pedido'];
+                    $intIdProducto = $estado['id_producto'];
+                    $strNombreProducto = $estado['nombre_producto'];
+                    $intCantidad = $estado['cantidad'];
+                    $intValorProgramacion = $estado['valor_programacion'];
+                    $dtmFrecuencia = $estado['frecuencia'];
+                    $boolRequiereBomba = $estado['requiere_bomba'];
+                    $intIdTipoDescargue = $estado['id_tipo_descargue'];
+                    $strNombreTipoDescargue = $estado['nombre_tipo_descargue'];
+                    $dblMetrosTuberia = $estado['metros_tuberia'];
+                    $dtmFechaInicial = $estado['fecha_ini'];
+                    $dtmFechaFinal = $estado['fecha_fin'];
+                    $strElementosFundir = $estado['elementos_fundir'];
+                    $strObservaciones = $estado['observaciones'];
+                    $intIdUsuario = $estado['id_usuario'];
+                    $strNombreUsuario = $estado['nombre_usuario'];
+                    $numeroViajes = $intCantidad / 7;
+                    $numeroViajesAp = ceil($numeroViajes);
                     if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $intCantidad, $numeroViajesAp, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmFechaFinal, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
                         //Si pasa la validacion se retorna verdadero(true)
                         $php_estado = true;
@@ -129,15 +129,18 @@ if (isset($_POST['task'])) {
                         //De lo contrario mostrara un mensaje mostrando que no se guardo
                         $php_error = 'No guardo correctamente';
                     }
-                } else {
-                    $php_error = 'No tiene programaciones pendientes por confirmar';
                 }
+            }else{
+                $php_error = "ERROR";
             }
         } else {
-            $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
+            $php_error = 'Hay que esperar la confirmacion del cliente';
         }
+    } else {
+        $php_error = 'No tiene programaciones pendientes por confirmar';
     }
 }
+
 $datos = array(
     'POST' => $_POST,
     'estado' => $php_estado,

@@ -119,6 +119,33 @@ class ClsProgramacionSemanal extends conexionPDO
         //resultado
         return $option;
     }
+    // Listado de los clientes(Terceros) para los (FUNCIONARIOS).
+    public function fntOptionUsuariosObj($id_cliente = null)
+    {
+        $option = "<option  selected='true' > Seleccione un usuario </option>";
+        $sql = "SELECT ct1_IdTerceros , ct1_NumeroIdentificacion , ct1_RazonSocial 
+        FROM ct1_terceros 
+        WHERE ct1_TipoTercero = 3 AND ct1_Estado = 1 AND `ct1_rol` = 102";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        // Ejecutar 
+        $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_cliente == $fila['ct1_IdTerceros']) {
+                $selection = " selected='true' ";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['ct1_IdTerceros'] . '" ' . $selection . ' >' . $fila['ct1_NumeroIdentificacion'] . ' - ' . $fila['ct1_RazonSocial'] . ' </option>';
+        }
+
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+
+        //resultado
+        return $option;
+    }
     // Listado de los clientes(Terceros) para los (CLIENTE).
     public function fntOptionClienteEditClienteObj($id_usuario, $id_cliente = null)
     {
@@ -643,41 +670,41 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-     // Editar las fechas de la programacion semanal.
-     public function fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)
-     {
-         $sql = "UPDATE `ct66_programacion_semanal` 
+    // Editar las fechas de la programacion semanal.
+    public function fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)
+    {
+        $sql = "UPDATE `ct66_programacion_semanal` 
          SET `id_pedido`= :id_pedido, `id_cliente`= :id_cliente, `nombre_cliente`= :nombre_cliente, `id_obra`= :id_obra, `nombre_obra`= :nombre_obra, `id_producto`= :id_producto, `nombre_producto`= :nombre_producto, `cantidad`= :cantidad, `frecuencia`= :frecuencia, `requiere_bomba`= :requiere_bomba, `id_tipo_descargue`= :id_tipo_descargue, `nombre_tipo_descargue`= :nombre_tipo_descargue, `metros_tuberia`= :metros_tuberia, `elementos_fundir`= :elementos, `observaciones`= :observaciones, `fecha_ini`= :inicio ,`fecha_fin`= :fin, `fecha_modificacion` = :fecha_modificacion, `id_usuario_edit` = :id_usuario, `nombre_usuario_edit` = :nombre_usuario 
          WHERE `id` = :id_programacion";
-         //Preparar Conexion
-         $stmt = $this->con->prepare($sql);
-         // Asignando Datos ARRAY => SQL
-         $stmt->bindParam(':id_pedido', $intIdPedido, PDO::PARAM_STR);
-         $stmt->bindParam(':id_cliente', $intIdCliente, PDO::PARAM_STR);
-         $stmt->bindParam(':nombre_cliente', $strNombreCliente, PDO::PARAM_STR);
-         $stmt->bindParam(':id_obra', $intIdObra, PDO::PARAM_STR);
-         $stmt->bindParam(':nombre_obra', $StrNombreObra, PDO::PARAM_STR);
-         $stmt->bindParam(':id_producto', $intIdProducto, PDO::PARAM_STR);
-         $stmt->bindParam(':nombre_producto', $strNombreProducto, PDO::PARAM_STR);
-         $stmt->bindParam(':cantidad', $dblCantidad, PDO::PARAM_STR);
-         $stmt->bindParam(':frecuencia', $dtmFrecuencia, PDO::PARAM_STR);
-         $stmt->bindParam(':elementos', $strElementos, PDO::PARAM_STR);
-         $stmt->bindParam(':requiere_bomba', $bolRequiereBomba, PDO::PARAM_STR);
-         $stmt->bindParam(':id_tipo_descargue', $intTipoDescargue, PDO::PARAM_STR);
-         $stmt->bindParam(':nombre_tipo_descargue', $StrNombreTipoDescargue, PDO::PARAM_STR);
-         $stmt->bindParam(':metros_tuberia', $decMetrosTuberia, PDO::PARAM_STR);
-         $stmt->bindParam(':observaciones', $StrObservaciones, PDO::PARAM_STR);
-         $stmt->bindParam(':inicio', $dtmFechaInicio, PDO::PARAM_STR);
-         $stmt->bindParam(':fin', $dtmFechaFin, PDO::PARAM_STR);
-         $stmt->bindParam(':fecha_modificacion', $dtmHoy, PDO::PARAM_STR);
-         $stmt->bindParam(':id_programacion', $intId, PDO::PARAM_INT);
-         $stmt->bindParam(':id_usuario', $intIdUsuario, PDO::PARAM_STR);
-         $stmt->bindParam(':nombre_usuario', $StrNombreUsuario, PDO::PARAM_STR);
-         if ($stmt->execute()) {
-             return true;
-         }
-         return false;
-     }
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id_pedido', $intIdPedido, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $intIdCliente, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_cliente', $strNombreCliente, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $intIdObra, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_obra', $StrNombreObra, PDO::PARAM_STR);
+        $stmt->bindParam(':id_producto', $intIdProducto, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_producto', $strNombreProducto, PDO::PARAM_STR);
+        $stmt->bindParam(':cantidad', $dblCantidad, PDO::PARAM_STR);
+        $stmt->bindParam(':frecuencia', $dtmFrecuencia, PDO::PARAM_STR);
+        $stmt->bindParam(':elementos', $strElementos, PDO::PARAM_STR);
+        $stmt->bindParam(':requiere_bomba', $bolRequiereBomba, PDO::PARAM_STR);
+        $stmt->bindParam(':id_tipo_descargue', $intTipoDescargue, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_tipo_descargue', $StrNombreTipoDescargue, PDO::PARAM_STR);
+        $stmt->bindParam(':metros_tuberia', $decMetrosTuberia, PDO::PARAM_STR);
+        $stmt->bindParam(':observaciones', $StrObservaciones, PDO::PARAM_STR);
+        $stmt->bindParam(':inicio', $dtmFechaInicio, PDO::PARAM_STR);
+        $stmt->bindParam(':fin', $dtmFechaFin, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_modificacion', $dtmHoy, PDO::PARAM_STR);
+        $stmt->bindParam(':id_programacion', $intId, PDO::PARAM_INT);
+        $stmt->bindParam(':id_usuario', $intIdUsuario, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_usuario', $StrNombreUsuario, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
     // Editar las fechas de la programacion semanal.
     public function fntEditarProgramacionBool($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
     {
@@ -1130,5 +1157,66 @@ class ClsProgramacionSemanal extends conexionPDO
         } else {
             return false;
         }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////FUNCIONES ADICIONALES//////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public function fntCambiarHoraObj($hora, $id_usuario)
+    {
+        $sql = "UPDATE `ct66_horario`
+        SET `descripcion`= :hora, `id_usuario`= :id_usuario";
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':hora', $hora, PDO::PARAM_STR);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function fntGetHoraObj()
+    {
+        $sql = "SELECT `descripcion` FROM `ct66_horario` ";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQ
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['descripcion'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
+
+    public function validacionHora($id_usuario)
+    {
+        $sql = "SELECT `descripcion` FROM `ct66_horario` WHERE `id_usuario` = :id_usuario";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['descripcion'];
+                }
+            } else {
+                return "06:00:00";
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
     }
 }

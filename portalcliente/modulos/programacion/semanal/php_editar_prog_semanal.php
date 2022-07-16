@@ -20,9 +20,10 @@ $StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuari
 $dtmFechaActual = new DateTime();
 //Se obtiene la fecha actual con el formato completo
 $dtmHoy = $dtmFechaActual->format("Y-m-d H:i:s");
-$diassemana = array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado");
-$dia = $diassemana[date('w')];
-$hora_hoy = $dtmFechaActual->format("H:i:s");
+$dtmDiaSemana = array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado");
+$dtmDia = $dtmDiaSemana[date('w')];
+$dtmHoraHoy = $dtmFechaActual->format("H:i:s");
+$dtmHoraValidacion = $ClsProgramacionSemanal->validacionHora($intIdUsuario);
 if (isset($_POST['task'])) {
     //validar que la variable task tenga el valor de 1
     if ($_POST['task'] == 1) {
@@ -36,19 +37,13 @@ if (isset($_POST['task'])) {
         $dtmFechaFin = $_POST['txtFin'];
         //Validar que modifique correctamente la programacion (Fechas)
         if ($intEstado == 1) {
-            if ($dia == "Sabado" && $hora_hoy <= "06:00:00") {
+            if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
                 if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
                     $php_estado = true;
                 } else {
                     $php_error = 'ERROR';
                 }
-            } else if ($dia != "Sabado" && $dia != "Domingo" && $dia != "Lunes") {
-                if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
-                    $php_estado = true;
-                } else {
-                    $php_error = 'ERROR';
-                }
-            } else if ($dia == "Lunes" && $hora_hoy >= "06:00:00") {
+            } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
                 if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
                     $php_estado = true;
                 } else {
@@ -97,10 +92,20 @@ if (isset($_POST['task'])) {
         $dtmFechaFin = $_POST['txtFinEditar'];
         //Editar programacion
         if ($intEstado == 1) {
-            if ($ClsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
-                $php_estado = true;
+            if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
+                if ($ClsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
+                    $php_estado = true;
+                } else {
+                    $php_error = 'ERROR';
+                }
+            } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
+                if ($ClsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
+                    $php_estado = true;
+                } else {
+                    $php_error = 'ERROR';
+                }
             } else {
-                $php_error = 'ERROR';
+                $php_error = 'Fuera del horario establecido para modificar la programación';
             }
         } else {
             $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
@@ -111,10 +116,20 @@ if (isset($_POST['task'])) {
         $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
         if ($intEstado == 1) {
-            if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
-                $php_estado = true;
+            if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
+                if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
+                    $php_estado = true;
+                } else {
+                    $php_error = 'ERROR';
+                }
+            } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
+                if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
+                    $php_estado = true;
+                } else {
+                    $php_error = 'ERROR';
+                }
             } else {
-                $php_error = 'ERROR';
+                $php_error = 'Fuera del horario establecido para cancelar la programación';
             }
         } else {
             $php_error = 'La programacion ya fue enviada al area de logistica y no se puede eliminar';

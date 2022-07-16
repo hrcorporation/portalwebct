@@ -50,6 +50,7 @@
                     <span class="badge bg-info" title='Programaciones confirmadas por el area de programacion.'><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
                     <span class="badge bg-success" title='Programaciones ejecutadas y anexadas a la programacion diaria.'><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
                     <button style="position: absolute; right: 69%; top: 12.2%" type="button" class="btn btn-success" id="btnModalConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_confirmar_programacion"> Cargar programación </button>
+                    <button style="position: absolute; right: 25%; top: 12.2%" type="button" class="btn btn-success" id="btnModalConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_cambiar_hora"> Cambiar hora limite </button>
                 </div>
                 <div id='calendar'></div>
             </div>
@@ -69,6 +70,7 @@
 <?php include 'modal_cargar_programacion.php' ?>
 <?php include 'modal_confirmar_programacion.php' ?>
 <?php include 'modal_informativo.php' ?>
+<?php include 'modal_cambiar_hora.php' ?>
 <!-- /.modal-dialog -->
 <?php include '../../../layout/footer/footer3.php' ?>
 <script src="calendar.js"> </script>
@@ -78,30 +80,6 @@
     });
     $(function() {
         $("#volumen").hide();
-
-        // $('#form_confirmar_programacion').on('submit', function(e) {                                                    
-        //     e.preventDefault();
-        //     $.ajax({
-        //         url: "php_cargar_programacion.php",
-        //         type: "POST",
-        //         data: new FormData(this),
-        //         contentType: false,
-        //         cache: false,
-        //         processData: false,
-        //         success: function(data) {
-        //             if (data.estado) {
-        //                 toastr.success('Se ha guardado correctamente');
-        //                 $('#modal_confirmar_programacion').modal('hide');
-        //             } else {
-        //                 toastr.warning(data.errores);
-        //                 $('#modal_confirmar_programacion').modal('hide');
-        //             }
-        //         },
-        //         error: function(respuesta) {
-        //             alert(JSON.stringify(respuesta));
-        //         },
-        //     });
-        // });
 
         $('#cbxCliente').on('change', function() {
             //Ajax 
@@ -363,6 +341,31 @@
         $('#txtCantEditar').on('change', function() {
             $('#modal_informativo').modal('show');
         });
+
+        $("#form_cambiar_hora").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_cambiar_hora.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente');
+                        $('#modal_cambiar_hora').modal('hide');
+                    } else {
+                        toastr.warning(data.errores);
+                        $('#modal_cambiar_hora').modal('hide');
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
     });
 </script>
 </body>

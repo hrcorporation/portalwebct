@@ -15,7 +15,7 @@ setlocale(LC_ALL, "es_ES");
 setlocale(LC_TIME, 'es_ES');
 $hora_actual = new DateTime();
 $hora_hoy = $hora_actual->format("H:i:s");
-$diassemana = array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado");
+$diassemana = array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado");
 $dia = $diassemana[date('w')];
 // Crear la programacion hasta las 04 pm
 //Validar que la variable de txt_cliente exista y no este vacia

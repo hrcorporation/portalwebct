@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       //color: 'yellow',   // a non-ajax option
       //textColor: 'black' // a non-ajax option
     },
+
     // datos eventos
     //clik dia
     //=======================================================================================================================
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alert(JSON.stringify(respuesta));
         },
       });
-      //==================================================================
+      //====================================================================================================================
       $("#modal_crear_evento").modal("show");
     },
     //=======================================================================================================================
@@ -102,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
     },
+
     //=======================================================================================================================
     //=======================================================================================================================
     // Accion Mover el Evento
@@ -119,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       editar_event(form_editar, calendar);
     },
+
     //=======================================================================================================================
     // Accion cambiar el tamaño el Evento
     eventResize: function (info) {
@@ -138,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
       editar_event(form_editar, calendar);
     },
   });
+
   calendar.render();
   // Boton Actualizar Evento
   document.getElementById("btnEliminar").addEventListener("click", function () {
@@ -171,7 +175,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const datos_form = new FormData(aceptar_programacion);
       var form_editar = new FormData();
       Swal.fire({
-        title: "¿Esta seguro que desea confirmar la programacion y cargar la programacion diaria?",
+        title:
+          "¿Esta seguro que desea confirmar y cargar la programacion diaria?",
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Si enviar",
@@ -189,6 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
+
   function editar_event(form_editar, calendar) {
     $.ajax({
       url: "php_editar_prog_semanal.php",
@@ -206,11 +212,12 @@ document.addEventListener("DOMContentLoaded", function () {
           toastr.success("Programacion eliminada Satisfactoriamente");
         } else if (response.task == 2) {
           toastr.success("Programacion Actualizada Satisfactoriamente");
-        } else if (response.task == 4) {
+        } else if (response.task == 4 && response.estado) {
           toastr.success("Programacion confirmada correctamente");
           $("#modal_confirmar_programacion").modal("hide");
         } else {
           toastr.warning(response.errores);
+          $("#modal_confirmar_programacion").modal("hide");
         }
       },
       error: function (respuesta) {

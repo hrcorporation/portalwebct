@@ -51,7 +51,7 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Linea de despacho:</label>
                                 <select name="cbxLineaDespacho" id="cbxLineaDespacho" class="form-control select2" style="width: 100%;">
@@ -59,13 +59,13 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                                 </select>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="txtHoraCargue" class="form-label">Hora de cargue:</label>
                                 <input type="time" name="txtHoraCargue" id="txtHoraCargue" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="txtHoraMixer" class="form-label">Hora en mixer en obra:</label>
                                 <input type="time" name="txtHoraMixer" id="txtHoraMixer" class="form-control" style="width: 100%;" />
