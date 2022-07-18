@@ -15,21 +15,13 @@
                   data-accordion="false">
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                  <li class="nav-item ">
-                      <a href="../menu/dashboard.php" class="nav-link">
-                          <i class="nav-icon fas fa-tachometer-alt"></i>
-                          <p>
-                              Dashboard
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-header">Modulos</li>
+                  
+                  <li class="nav-header"></li>
                   <li class="nav-item has-treeview">
                       <a href="../index.php" class="nav-link">
-                          <i class="nav-icon fas fa-edit"></i>
+                          <i class="nav-icon fas fa-arrow-left"></i>
                           <p>
                               Modulos
-                              <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
                   </li>
