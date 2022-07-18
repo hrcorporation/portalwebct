@@ -12,11 +12,9 @@ $errores = "";
 $resultado = "";
 
 if ($_POST['task'] == 1){
-    $intIdCliente = $_POST['id_cliente'];
-    $intIdObra = $_POST['id_obra'];
     $intIdPedido = $_POST['id_pedido'];
     //Buscar el id de la obra filtrandola con el id del cliente.
-    $objSelectProductos = $objProgramacionSemanal->fntOptionProductoClienteObj($intIdPedido, $intIdCliente, $intIdObra);
+    $objSelectProductos = $objProgramacionSemanal->fntOptionProductoClienteObj($intIdPedido);
     $php_estado = true; 
 }
 

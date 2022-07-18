@@ -18,10 +18,15 @@ if ($_POST['task'] == 1) {
     $intIdCliente = $_POST['cliente'];
     //Buscar el id de la obra filtrandola con el id del cliente.
     $objSelectObras = $objProgramacionSemanal->fntOptionObraEditFuncionarioObj($intIdCliente);
+    $objSelectPedidos = "";
+    $objSelectProductos = "";
+
     $boolPhpEstado = true;
     $datos = array(
         'estado' => $boolPhpEstado,
-        'select_obra' => $objSelectObras
+        'select_obra' => $objSelectObras,
+        'select_pedidos' => $objSelectPedidos,
+        'select_productos' => $objSelectProductos
     );
 }
 echo json_encode($datos, JSON_FORCE_OBJECT);

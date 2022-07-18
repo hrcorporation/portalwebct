@@ -73,8 +73,8 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class='form-check-input' type='checkbox' value='1' id='chkRequiereBombaEditar' name='chkRequiereBombaEditar'>
-                                    <label class='form-check-label' for='flexCheckDefault'>
+                                    <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBombaEditar" name="chkRequiereBombaEditar">
+                                    <label for="chkRequiereBombaEditar" class="form-check-label" for="flexCheckDefault">
                                         <b>¿Requiere bomba de Concre Tolima?</b>
                                     </label>
                                 </div>
@@ -120,7 +120,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btnConfirmarProgramacion" class="btn btn-success" title='Confirmar programacion diaria' data-toggle="modal" data-target="#modal_confirmar_programacion"> Confirmar </button>
+                    <button type="button"  class="btn btn-success" title='Confirmar programacion diaria' data-toggle="modal" data-target="#modal_confirmar_programacion"> Confirmar </button>
                     <button type="submit" id="btnGuardar" class="btn btn-primary" title='Guardar datos modificados'> Guardar </button>
                     <button type="button" id="btnEliminar" class="btn btn-danger" title='Eliminar programacion semanal'> Eliminar </button>
                 </div>

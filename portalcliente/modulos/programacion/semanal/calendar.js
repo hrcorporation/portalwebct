@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "#form_crear_programacion"
   );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
+  let aceptar_programacion = document.querySelector(
+    "#form_aceptar_programacion"
+  );
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -84,13 +87,14 @@ document.addEventListener("DOMContentLoaded", function () {
           $("#cbxTipoDescargueEditar").html(data.select_tipo_descargue);
           $("#cbxFrecuenciaEditar").html(data.frecuencia);
           form_show_event.txtCantEditar.value = data.cantidad;
-          // form_show_event.txtFrecuenciaEditar.value = data.frecuencia;
           form_show_event.txtElementosEditar.value = data.elementos;
           form_show_event.txtInicioEditar.value = data.inicio;
           form_show_event.txtFinEditar.value = data.fin;
           form_show_event.txtObservacionesEditar.value = data.observaciones;
           form_show_event.txtMetrosEditar.value = data.metros;
-          $("#bomba").html(data.check_bomba);
+          if (data.requiere_bomba == 1) {
+            $("#chkRequiereBombaEditar").prop("checked", true);
+          }
           $("#modal_show_evento").modal("show");
         },
         error: function (respuesta) {
@@ -135,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   calendar.render();
   // Boton Actualizar Evento
-  // Boton Actualizar Evento
   document.getElementById("btnEliminar").addEventListener("click", function () {
     const datos_form = new FormData(form_show_event);
     var form_editar = new FormData();
@@ -158,31 +161,64 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-});
 
-function editar_event(form_editar, calendar) {
-  $.ajax({
-    url: "php_editar_prog_semanal.php",
-    type: "POST",
-    data: form_editar,
-    processData: false,
-    contentType: false,
-    dataType: "json",
-    processData: false,
-    success: function (response) {
-      calendar.refetchEvents();
-      if (response.task == 1 && response.estado) {
-        toastr.success("Programacion Actualizada Satisfactoriamente");
-      } else if (response.task == 3 && response.estado) {
-        toastr.success("Programacion eliminada Satisfactoriamente");
-      } else if (response.task == 2 && response.estado) {
-        toastr.success("Programacion Actualizada Satisfactoriamente");
-      } else {
-        toastr.warning(response.errores);
-      }
-    },
-    error: function (respuesta) {
-      alert(JSON.stringify(respuesta));
-    },
-  });
-}
+  calendar.render();
+  // Boton Actualizar Evento
+  document
+    .getElementById("btnConfirmarProgramacion")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(aceptar_programacion);
+      var form_editar = new FormData();
+      Swal.fire({
+        title: "¿Esta seguro que desea enviar la programacion al area de logistica de Concre Tolima?",
+        text: "NO PODRA HACER MODIFICACIONES DESPUES DE ENVIAR LA PROGRAMACION",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si enviar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#298a00",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 4); // eliminar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
+
+        }
+      });
+    });
+
+  function editar_event(form_editar, calendar) {
+    $.ajax({
+      url: "php_editar_prog_semanal.php",
+      type: "POST",
+      data: form_editar,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      processData: false,
+      success: function (response) {
+        calendar.refetchEvents();
+        if (response.task == 1 && response.estado) {
+          toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else if (response.task == 3 && response.estado) {
+          toastr.success("Programacion eliminada Satisfactoriamente");
+        } else if (response.task == 2 && response.estado) {
+          toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else if (response.task == 4 && response.estado) {
+          toastr.success("Programacion enviada correctamente al area de logistica");
+          $("#modal_aceptar_programacion").modal("hide");
+        } else {
+          toastr.warning(response.errores);
+          $("#modal_aceptar_programacion").modal("hide");
+        }
+      },
+      error: function (respuesta) {
+        alert(JSON.stringify(respuesta));
+      },
+    });
+  }
+});

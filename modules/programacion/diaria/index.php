@@ -91,6 +91,153 @@
     $(document).ready(function() {
         $('.select2').select2();
     });
+
+    $("#volumen").hide();
+
+    $('#cbxCliente').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 2);
+        formData.append('cliente', $("#cbxCliente").val());
+        $.ajax({
+            url: "load_data.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxObra").html(data.select_obra)
+                $("#cbxPedido").html(data.select_pedidos)
+                $("#cbxProducto").html(data.select_productos)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
+    $('#cbxClienteEditar').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 2);
+        formData.append('cliente', $("#cbxClienteEditar").val());
+        $.ajax({
+            url: "load_data.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxObraEditar").html(data.select_obra)
+                $("#cbxPedidoEditar").html(data.select_pedidos)
+                $("#cbxProductoEditar").html(data.select_productos)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
+    $('#cbxObra').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 1);
+        formData.append('cliente', $("#cbxCliente").val());
+        formData.append('obra', $("#cbxObra").val());
+        $.ajax({
+            url: "load_data_pedido.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxPedido").html(data.select_pedidos)
+                $("#cbxProducto").html(data.select_productos)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
+    $('#cbxObraEditar').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 1);
+        formData.append('cliente', $("#cbxClienteEditar").val());
+        formData.append('obra', $("#cbxObraEditar").val());
+        $.ajax({
+            url: "load_data_pedido.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxPedidoEditar").html(data.select_pedidos)
+                $("#cbxProductoEditar").html(data.select_productos)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
+    $('#cbxPedido').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 2);
+        formData.append('pedido', $("#cbxPedido").val());
+        $.ajax({
+            url: "load_data_pedido.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxProducto").html(data.select_productos)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
+    $('#cbxPedidoEditar').on('change', function() {
+        //Ajax 
+        var formData = new FormData();
+        formData.append('task', 2);
+        formData.append('pedido', $("#cbxPedidoEditar").val());
+        $.ajax({
+            url: "load_data_pedido.php", // URL
+            type: "POST", // Metodo HTTP
+            //data: formData,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $("#cbxProductoEditar").html(data.select_productos)
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    });
+
+    $('#cbxProducto').on('change', function() {
+        $("#volumen").show();
+    });
+
     $('#chkRequiereBomba').on('click', function() {
         //Ajax 
         var formData = new FormData();
@@ -127,96 +274,40 @@
         }
     });
 
-    $('#cbxCliente').on('change', function() {
-        //Ajax 
-        var formData = new FormData();
-        formData.append('task', 2);
-        formData.append('cliente', $("#cbxCliente").val());
-        $.ajax({
-            url: "load_data.php", // URL
-            type: "POST", // Metodo HTTP
-            //data: formData,
-            data: formData,
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(data) {
-                $("#cbxObra").html(data.select_obra)
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
-            },
+    $('#chkRequiereBombaEditar').on('click', function() {
+            //Ajax 
+            var formData = 'null';
+            if ($(this).is(':checked')) {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_uno)
+                        console.log(data);
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            } else {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_dos)
+                        console.log(data);
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            }
         });
-    });
 
-    $('#cbxObra').on('change', function() {
-        //Ajax 
-        var formData = new FormData();
-        formData.append('task', 1);
-        formData.append('cliente', $("#cbxCliente").val());
-        formData.append('obra', $("#cbxObra").val());
-        $.ajax({
-            url: "load_data_pedido.php", // URL
-            type: "POST", // Metodo HTTP
-            //data: formData,
-            data: formData,
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(data) {
-                $("#cbxPedido").html(data.select_pedidos)
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
-            },
-        });
-    });
-
-    $('#cbxPedido').on('change', function() {
-        //Ajax 
-        var formData = new FormData();
-        formData.append('task', 2);
-        formData.append('pedido', $("#cbxPedido").val());
-        $.ajax({
-            url: "load_data_pedido.php", // URL
-            type: "POST", // Metodo HTTP
-            //data: formData,
-            data: formData,
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(data) {
-                $("#cbxProducto").html(data.select_productos)
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
-            },
-        });
-    });
-
-    $('#cbxClienteEditar').on('change', function() {
-        //Ajax 
-        var formData = new FormData();
-        formData.append('task', 2);
-        formData.append('cliente', $("#cbxClienteEditar").val());
-        $.ajax({
-            url: "load_data.php", // URL
-            type: "POST", // Metodo HTTP
-            //data: formData,
-            data: formData,
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(data) {
-                $("#cbxObraEditar").html(data.select_obra)
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
-            },
-        });
-    });
-
-    $("#form_crear_programacion").on('submit', (function(e) {
+    
+        $("#form_crear_programacion").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({
             url: "php_crear_prog_diaria.php",
@@ -238,7 +329,7 @@
             },
         });
     }));
-    
+
     $("#form_mostrar_programacion").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({

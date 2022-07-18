@@ -2,9 +2,9 @@
 session_start();
 header('Content-Type: application/json');
 
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 
 $log = false;
 $php_estado = false;
@@ -13,37 +13,42 @@ $resultado = "";
 //Se crea un objeto de la clase programacion
 $ClsProgramacionDiaria = new ClsProgramacionDiaria();
 //id del usuario en sesion
-$id_usuario = $_SESSION['id_usuario'];
+$intIdUsuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario
-$nombre_usuario = $ClsProgramacionDiaria->fntGetNombreClienteObj($id_usuario);
+$StrNombreUsuario = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdUsuario);
 //Se crea un objeto de la clase Datetime
-$fecha_actual = new DateTime();
+$dtmFechaActual = new DateTime();
 //Se obtiene la fecha actual con el formato completo
-$hoy = $fecha_actual->format("Y-m-d H:i:s");
+$dtmHoy = $dtmFechaActual->format("Y-m-d H:i:s");
+$diassemana = array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado");
+$dia = $diassemana[date('w')];
+$hora_hoy = $dtmFechaActual->format("H:i:s");
 if (isset($_POST['task'])) {
     //validar que la variable task tenga el valor de 1
     if ($_POST['task'] == 1) {
         //id de la programacion
-        $id = $_POST['id'];
+        $intId = $_POST['id'];
+        //estado de la programacion
+        $intEstado = $ClsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
         //Fecha inicio de la programacion
-        $inicio = $_POST['txtInicio'];
+        $dtmFechaInicio = $_POST['txtInicio'];
         //Fecha final de la programacion
-        $fin = $_POST['txtFin'];
-        //Validar que modifique correctamente la programacion (fechas)
-        if ($ClsProgramacionDiaria->fntEditarProgramacionBool($id, $inicio, $fin, $hoy, $id_usuario, $nombre_usuario)) {
-            $php_estado = true;
+        $dtmFechaFin = $_POST['txtFin'];
+        //Validar que modifique correctamente la programacion (Fechas)
+        if ($intEstado == 1) {
+            if ($ClsProgramacionDiaria->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                $php_estado = true;
+            } else {
+                $php_error = 'ERROR';
+            }
+        } else {
+            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
         }
     } else if ($_POST['task'] == 2) {
         //id de la programacion
         $intId = $_POST['id_prog_evento'];
-        //id cliente
-        $intIdCliente = $_POST['cbxClienteEditar'];
-        //nombre cliente
-        $strNombreCliente = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdCliente);
-        //id de la obra.
-        $intIdObra = $_POST['cbxObraEditar'];
-        //Nombre de la obra mediante el parametro del id de la obra.
-        $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
+        //estado de la programacion
+        $intEstado = $ClsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
         //id del pedido
         $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
@@ -87,19 +92,29 @@ if (isset($_POST['task'])) {
         $dtmFechaInicio = $_POST['txtInicioEditar'];
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
-
-        if ($ClsProgramacionDiaria->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $hoy, $id_usuario, $nombre_usuario)) {
-            $php_estado = true;
-        } else {
-            $php_error = 'ERROR';
+        if ($intEstado == 2) {
+            if ($ClsProgramacionDiaria->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                $php_estado = true;
+            } else {
+                $php_error = 'ERROR';
+            }
+        }else{
+            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
         }
         //Validar que la variable exista, si cumple la variable se le asigna true, de lo contrario seria false.
-    } elseif ($_POST['task'] == 3) {
+    } else if ($_POST['task'] == 3) {
         //id de la programacion
-        $id = $_POST['id'];
+        $intId = $_POST['id'];
+        $intEstado = $ClsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
-        if ($ClsProgramacionDiaria->fntEliminarProgramacionDiariaObj($id)) {
-            $php_estado = true;
+        if ($intEstado == 1) {
+            if ($ClsProgramacionDiaria->fntEliminarProgramacionDiariaObj($intId)) {
+                $php_estado = true;
+            } else {
+                $php_error = 'ERROR';
+            }
+        } else {
+            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede eliminar';
         }
     }
 }

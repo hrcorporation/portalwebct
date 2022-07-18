@@ -5,57 +5,62 @@
          <img src="../../../../assets/images/logos/Logo-v8.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">CONCRETOL</span>
      </a>
+
      <!-- Sidebar -->
      <div class="sidebar">
          <!-- Sidebar Menu -->
          <nav class="mt-2">
-             <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
+             <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu"
+                 data-accordion="false">
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                  <li class="nav-item ">
-                     <a href="../../index.php" class="nav-link ">
+                     <a href="../index.php" class="nav-link ">
                          <i class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
                              Modulos
                          </p>
                      </a>
                  </li>
-                 <li class="nav-header">Programacion Semanal</li>
+                 
+                 <li class="nav-header">Oportunidad de Negocio</li>
                  <li class="nav-item has-treeview">
-                     <a href="../index.php?programacion=1" class="nav-link active">
+                     <a href="../index.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar
                          </p>
                      </a>
                  </li>
-                 <li class="nav-header">Programacion Diaria</li>
                  <li class="nav-item has-treeview">
-                     <a href="../index.php?programacion=2" class="nav-link">
+                     <a href="../create/crear.php" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Explorar
+                             Crear
                          </p>
                      </a>
                  </li>
-                 <li class="nav-header">Remi-web</li>
+                 <li class="nav-header">Exportar</li>
                  <li class="nav-item has-treeview">
-                     <a href="../../remisiones/index.php" class="nav-link">
+                     <a href="index.php" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Explorar
+                             Exportar informe oportunidad negocio
                          </p>
                      </a>
                  </li>
-                 <li class="nav-header">Confirmacion diaria</li>
+                 <li class="nav-header">Exportar</li>
                  <li class="nav-item has-treeview">
-                     <a href="#" class="nav-link">
+                     <a href="../informe_visitas/index.php" class="nav-link ">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Explorar
+                             Exportar informe visitas
                          </p>
                      </a>
                  </li>
+             
+
+
              </ul>
          </nav>
          <!-- /.sidebar-menu -->

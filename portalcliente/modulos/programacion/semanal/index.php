@@ -68,6 +68,8 @@
 <script>
     $(function() {
         $('.select2').select2();
+        $("#volumen").hide();
+
         $("#form_mostrar_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -81,6 +83,7 @@
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
+                        $('#modal_show_evento').modal('hide');
                     } else {
                         toastr.warning(data.errores);
                     }
@@ -104,6 +107,7 @@
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
+                        $('#modal_crear_evento').modal('hide');
                     } else {
                         toastr.warning(data.errores);
                     }
@@ -114,30 +118,30 @@
             });
         }));
 
-        $("#form_aceptar_programacion").on('submit', (function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "php_cambiar_estado.php",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data);
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
-                        $('#modal_aceptar_programacion').modal('hide');
-                    } else {
-                        toastr.warning(data.errores);
-                        $('#modal_aceptar_programacion').modal('hide');
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        }));
+        // $("#form_aceptar_programacion").on('submit', (function(e) {
+        //     e.preventDefault();
+        //     $.ajax({
+        //         url: "php_cambiar_estado.php",
+        //         type: "POST",
+        //         data: new FormData(this),
+        //         contentType: false,
+        //         cache: false,
+        //         processData: false,
+        //         success: function(data) {
+        //             console.log(data);
+        //             if (data.estado) {
+        //                 toastr.success('Se ha guardado correctamente');
+        //                 $('#modal_aceptar_programacion').modal('hide');
+        //             } else {
+        //                 toastr.warning(data.errores);
+        //                 $('#modal_aceptar_programacion').modal('hide');
+        //             }
+        //         },
+        //         error: function(respuesta) {
+        //             alert(JSON.stringify(respuesta));
+        //         },
+        //     });
+        // }));
 
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
@@ -175,14 +179,44 @@
             }
         });
 
+        $('#chkRequiereBombaEditar').on('click', function() {
+            //Ajax 
+            var formData = 'null';
+            if ($(this).is(':checked')) {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_uno)
+                        console.log(data);
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            } else {
+                $.ajax({
+                    url: "load_tipo.php", // URL
+                    type: "POST", // Metodo HTTP
+                    data: formData,
+                    success: function(data) {
+                        $("#cbxTipoDescargueEditar").html(data.select_tipo_dos)
+                        console.log(data);
+                    },
+                    error: function(respuesta) {
+                        alert(JSON.stringify(respuesta));
+                    },
+                });
+            }
+        });
+
         $('#cbxPedido').on('change', function() {
             $.ajax({
                 url: "load_data_pedido.php", // URL
                 type: "POST", // Metodo HTTP
                 data: {
                     'task': 1,
-                    'id_cliente': $('#txtCliente').val(),
-                    'id_obra': $('#txtObra').val(),
                     'id_pedido': $('#cbxPedido').val()
                 },
                 dataType: 'json',
@@ -193,6 +227,28 @@
                     alert(JSON.stringify(respuesta));
                 },
             });
+        });
+
+        $('#cbxPedidoEditar').on('change', function() {
+            $.ajax({
+                url: "load_data_pedido.php", // URL
+                type: "POST", // Metodo HTTP
+                data: {
+                    'task': 1,
+                    'id_pedido': $('#cbxPedidoEditar').val()
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $("#cbxProductoEditar").html(data.select_producto)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+
+        $('#cbxProducto').on('change', function(){
+            $("#volumen").show();
         });
     });
 </script>

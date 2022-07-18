@@ -44,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id = "volumen">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="txtCant" class="form-label">Volumen:</label>
@@ -120,7 +120,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="btnConfirmarProgramacion" data-toggle="modal" data-target="#modal_confirmar_programacion"> Confirmar </button>
                     <button type="submit" class="btn btn-primary" id="btnCrear"> Guardar </button>
                 </div>
             </form>

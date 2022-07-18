@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let form_crear_programacion = document.querySelector("#form_crear_programacion");
+  let form_crear_programacion = document.querySelector(
+    "#form_crear_programacion"
+  );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
+  let aceptar_programacion = document.querySelector(
+    "#form_confirmar_programacion"
+  );
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -32,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       //color: 'yellow',   // a non-ajax option
       //textColor: 'black' // a non-ajax option
     },
+
     // datos eventos
     //clik dia
     //=======================================================================================================================
@@ -59,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alert(JSON.stringify(respuesta));
         },
       });
-      //==================================================================
+      //====================================================================================================================
       $("#modal_crear_evento").modal("show");
     },
     //=======================================================================================================================
@@ -87,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
           form_show_event.txtFinEditar.value = data.fin;
           form_show_event.txtObservacionesEditar.value = data.observaciones;
           form_show_event.txtMetrosEditar.value = data.metros;
-          if(data.requiere_bomba ==1){
+          if (data.requiere_bomba == 1) {
             $("#chkRequiereBombaEditar").prop("checked", true);
           }
           $("#modal_show_evento").modal("show");
@@ -97,6 +103,8 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
     },
+
+    //=======================================================================================================================
     //=======================================================================================================================
     // Accion Mover el Evento
     eventDrop: function (info) {
@@ -113,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       editar_event(form_editar, calendar);
     },
+
     //=======================================================================================================================
     // Accion cambiar el tamaño el Evento
     eventResize: function (info) {
@@ -132,8 +141,8 @@ document.addEventListener("DOMContentLoaded", function () {
       editar_event(form_editar, calendar);
     },
   });
+
   calendar.render();
-  // Boton Actualizar Evento
   // Boton Actualizar Evento
   document.getElementById("btnEliminar").addEventListener("click", function () {
     const datos_form = new FormData(form_show_event);
@@ -157,29 +166,63 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-});
 
-function editar_event(form_editar, calendar) {
-  $.ajax({
-    url: "php_editar_prog_semanal.php",
-    type: "POST",
-    data: form_editar,
-    processData: false,
-    contentType: false,
-    dataType: "json",
-    //processData: false,
-    success: function (response) {
-      calendar.refetchEvents();
-      if (response.task == 1) {
-        toastr.success("Programacion Actualizada Satisfactoriamente");
-      } else if (response.task == 3) {
-        toastr.success("Programacion eliminada Satisfactoriamente");
-      } else if (response.task == 2) {
-        toastr.success("Programacion Actualizada Satisfactoriamente");
-      }
-    },
-    error: function (respuesta) {
-      alert(JSON.stringify(respuesta));
-    },
-  });
-}
+  calendar.render();
+  // Boton Actualizar Evento
+  document
+    .getElementById("btnConfirmarProgramacion")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(aceptar_programacion);
+      var form_editar = new FormData();
+      Swal.fire({
+        title:
+          "¿Esta seguro que desea confirmar y cargar la programacion diaria?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si enviar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#298a00",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 4); // actualizar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
+        }
+      });
+    });
+
+  function editar_event(form_editar, calendar) {
+    $.ajax({
+      url: "php_editar_prog_semanal.php",
+      type: "POST",
+      data: form_editar,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      //processData: false,
+      success: function (response) {
+        calendar.refetchEvents();
+        if (response.task == 1) {
+          toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else if (response.task == 3) {
+          toastr.success("Programacion eliminada Satisfactoriamente");
+        } else if (response.task == 2) {
+          toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else if (response.task == 4 && response.estado) {
+          toastr.success("Programacion confirmada correctamente");
+          $("#modal_confirmar_programacion").modal("hide");
+        } else {
+          toastr.warning(response.errores);
+          $("#modal_confirmar_programacion").modal("hide");
+        }
+      },
+      error: function (respuesta) {
+        alert(JSON.stringify(respuesta));
+      },
+    });
+  }
+});

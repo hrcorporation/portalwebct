@@ -18,7 +18,7 @@ if (isset($_POST['id'])) {
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
             $objSelectObra  = "<label class='form-label'>Obra:</label><input type='hidden' name='txtObra' id='txtObra' class='form-control' style='width: 100%;' value='" . $key['obra'] . "' /><p>" . $strNombreObra . "</p>";
             //mostrar el select de los pedidos
-            $objSelectPedidos = $ClsProgramacionDiaria->fntOptionListaPedidosClienteObj($key['id_pedido']);
+            $objSelectPedidos = $ClsProgramacionDiaria->fntOptionListaPedidosClienteObj($key['cliente'], $key['obra'], $key['id_pedido']);
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
             $objSelectProducto  = $ClsProgramacionDiaria->fntOptionProductoClienteObj($key['id_pedido'], $key['producto']);
             //mostrar el select del lineas de despacho
@@ -27,8 +27,6 @@ if (isset($_POST['id'])) {
             $objSelectMixer = $ClsProgramacionDiaria->fntOptionVehiculoObj($key['id_mixer']);
             //mostrar el select de los conductores
             $objSelectConductores = $ClsProgramacionDiaria->fntOptionConductorObj($key['id_conductor']);
-            //mostrar el select del tipo de descargue
-            $objSelectTipoDescargue = $ClsProgramacionDiaria->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             //mostrar el select del tipo de bomba
             $objSelectTipoBomba = $ClsProgramacionDiaria->fntOptionTipoBombaObj($key['id_tipo_bomba']);
             //Hora cargue
@@ -50,15 +48,11 @@ if (isset($_POST['id'])) {
             //Requiere bomba de concretolima (1. true, 0 false)
             $boolRequiereBomba = $key['requiere_bomba'];
             if ($boolRequiereBomba) {
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='' id='requiere_bomba' name='requiere_bomba' checked>
-                <label class='form-check-label' for='flexCheckDefault'>
-                    Requiere bomba de Concre Tolima
-                </label>";
+                //mostrar el select del tipo de descargue
+                $objSelectTipoDescargue = $ClsProgramacionDiaria->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
             } else {
-                $objCheckBomba = "<input class='form-check-input' type='checkbox' value='' id='requiere_bomba' name='requiere_bomba'> 
-                <label class='form-check-label' for='flexCheckDefault'>
-                    Requiere bomba de Concre Tolima
-                </label>";
+                //mostrar el select del tipo de descargue
+                $objSelectTipoDescargue = $ClsProgramacionDiaria->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             }
         }
     } else {
@@ -85,7 +79,7 @@ $datos = array(
     'inicio' => $dtmInicio,
     'fin' => $dtmFin,
     'observaciones' => $StrObservaciones,
-    'check_bomba' => $objCheckBomba,
+    'requiere_bomba' => $boolRequiereBomba,
     'color' => $StrColor,
     'textcolor' => $StrTextColor
 );
