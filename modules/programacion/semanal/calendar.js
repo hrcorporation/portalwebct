@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //=======================================================================================================================
     // Crear Eventos
     select: function (event) {
-      console.log("Crear Evento");
+      console.log("Crear programacion");
       form_crear_programacion.reset();
       $("#txtInicio").val(moment(event.startStr).format("YYYY-MM-DD HH:mm:ss"));
       $("#txtFin").val(moment(event.endStr).format("YYYY-MM-DD HH:mm:ss"));
@@ -136,7 +136,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "txtFin",
         moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
       );
-
       console.log(form_editar);
       editar_event(form_editar, calendar);
     },
@@ -168,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   calendar.render();
-  // Boton Actualizar Evento
+  // Boton Actualizar Evento btnCargarProgramacion
   document
     .getElementById("btnConfirmarProgramacion")
     .addEventListener("click", function () {
@@ -194,6 +193,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
+    
+  calendar.render();
+  // Boton Actualizar Evento
+  document
+    .getElementById("btnHabilitarCliente")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(aceptar_programacion);
+      var form_editar = new FormData();
+      Swal.fire({
+        title:
+          "¿Esta seguro que desea habilitar al cliente para modificar la programacion?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si enviar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#298a00",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 5); // actualizar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
+        }
+      });
+    });
 
   function editar_event(form_editar, calendar) {
     $.ajax({
@@ -208,13 +235,15 @@ document.addEventListener("DOMContentLoaded", function () {
         calendar.refetchEvents();
         if (response.task == 1) {
           toastr.success("Programacion Actualizada Satisfactoriamente");
-        } else if (response.task == 3) {
-          toastr.success("Programacion eliminada Satisfactoriamente");
         } else if (response.task == 2) {
           toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else if (response.task == 3) {
+          toastr.success("Programacion eliminada Satisfactoriamente");
         } else if (response.task == 4 && response.estado) {
           toastr.success("Programacion confirmada correctamente");
           $("#modal_confirmar_programacion").modal("hide");
+        } else if (response.task == 5 && response.estado) {
+          toastr.success("El cliente ya puede modificar la programacion");
         } else {
           toastr.warning(response.errores);
           $("#modal_confirmar_programacion").modal("hide");

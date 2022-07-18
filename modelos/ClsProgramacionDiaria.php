@@ -840,6 +840,52 @@ class ClsProgramacionDiaria extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - OBTENER NOMBRES///////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Traer el nombre del estado
+    public function fntGetNombreEstadoObj($id_estado)
+    {
+        $this->id = $id_estado;
+        // sentencia SQL
+        $sql = "SELECT * FROM `ct66_estado_programacion` WHERE `id` =  :id_estado";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_estado', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['descripcion'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    // Traer el nombre del estado
+    public function fntGetFechaVencimientoPedidoObj($id_pedido)
+    {
+        $this->id = $id_pedido;
+        // sentencia SQL
+        $sql = "SELECT `fecha_vencimiento` FROM `ct65_pedidos` WHERE `id` = :id_pedido";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_pedido', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['fecha_vencimiento'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     // Traer el nombre del cliente.
     public function fntGetNombreClienteObj($id_cliente)
     {
@@ -1037,5 +1083,61 @@ class ClsProgramacionDiaria extends conexionPDO
         } else {
             return false;
         }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////SELECT - INFORME EXCEL/////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Obtener todas las programaciones (FUNCIONARIO).
+    public function fntGetProgDiariaInformeObj($fecha_ini, $fecha_fin)
+    {
+        $this->fecha_ini = $fecha_ini;
+        $this->fecha_fin = $fecha_fin;
+
+        $sql = "SELECT * FROM `ct66_programacion_diaria` WHERE `fecha_ini` BETWEEN :fecha_ini AND :fecha_fin";
+        // Preparar Conexion.
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
+        // Asignando Datos ARRAY => SQL.
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    // Obtener los datos de los valores.
+                    $datos['id'] = $fila['id'];
+                    $datos['status'] = SELF::fntGetNombreEstadoObj($fila['status']);
+                    $datos['nombre_cliente'] = $fila['nombre_cliente'];
+                    $datos['nombre_obra'] = $fila['nombre_obra'];
+                    $datos['fecha_pedido'] = SELF::fntGetFechaVencimientoPedidoObj($fila['id_pedido']);
+                    $datos['nombre_producto'] = $fila['nombre_producto'];
+                    $datos['cantidad'] = $fila['cantidad'];
+                    $datos['valor_programacion'] = $fila['valor_programacion'];
+                    $datos['nombre_linea_produccion'] = $fila['nombre_linea_produccion'];
+                    $datos['hora_cargue'] = $fila['hora_cargue'];
+                    $datos['hora_mixer_obra'] = $fila['hora_mixer_obra'];
+                    $datos['mixer'] = $fila['mixer'];
+                    $datos['nombre_conductor'] = $fila['nombre_conductor'];
+                    if ($fila['requiere_bomba']) {
+                        $datos['requiere_bomba'] = "Si requiere";
+                    } else {
+                        $datos['requiere_bomba'] = "No requiere";
+                    }
+                    $datos['id_tipo_descargue'] = $fila['id_tipo_descargue'];
+                    $datos['nombre_tipo_descargue'] = $fila['nombre_tipo_descargue'];
+                    $datos['tipo_bomba'] = $fila['tipo_bomba'];
+                    $datos['metros_tuberia'] = $fila['metros_tuberia'];
+                    $datos['fecha_ini'] = $fila['fecha_ini'];
+                    $datos['fecha_fin'] = $fila['fecha_fin'];
+                    $datos['elementos_fundir'] = $fila['elementos_fundir'];
+                    $datos['observaciones'] = $fila['observaciones'];
+                    $datos['id_usuario'] = $fila['id_usuario'];
+                    $datos['nombre_usuario'] = $fila['nombre_usuario'];
+                    $datos['fecha_creacion'] = $fila['fecha_creacion'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            }
+        }
+        return false;
     }
 }

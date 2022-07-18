@@ -2,6 +2,7 @@
 <?php include '../../../layout/head/headcliente3.php' ?>
 <?php include 'sidebar.php' ?>
 <?php $ClsProgramacion = new ClsProgramacion(); ?>
+
 <?php $intIdUsuario = $_SESSION['id_usuario']; ?>
 <?php $id = $_GET['programacion']?>
 <!-- Content Wrapper. Contains page content -->

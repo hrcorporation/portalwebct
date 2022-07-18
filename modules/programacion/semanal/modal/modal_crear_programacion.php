@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxCliente" class="form-label">Cliente:</label>
+                                <label class="form-label">Cliente:</label>
                                 <select name="cbxCliente" id="cbxCliente" class="form-control select2" style="width: 100%;">
                                 </select>
                             </div>

@@ -49,8 +49,8 @@
                     <span class="badge bg-warning" title='Programaciones por cargar, cuando el cliente confirma y envia al area de programacion.'><?= $intCantidadProgramacionPorCargar ?> - Por Cargar</span>
                     <span class="badge bg-info" title='Programaciones confirmadas por el area de programacion.'><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
                     <span class="badge bg-success" title='Programaciones ejecutadas y anexadas a la programacion diaria.'><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
-                    <button style="position: absolute; right: 69%; top: 12.2%" type="button" class="btn btn-success" id="btnModalConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_confirmar_programacion"> Cargar programación </button>
-                    <button style="position: absolute; right: 25%; top: 12.2%" type="button" class="btn btn-success" id="btnModalConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_cambiar_hora"> Cambiar hora limite </button>
+                    <button style="position: absolute; right: 69%; top: 12.2%" type="button" class="btn btn-success" id="btnModalConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_cargar_programacion"> Cargar programación </button>
+                    <button style="position: absolute; right: 25%; top: 12.2%" type="button" class="btn btn-warning" id="btnModalCambiarHoraLimite" title='Cambiar la hora limite para modificar la programacion el dia sabado' data-toggle="modal" data-target="#modal_cambiar_hora"> Cambiar hora limite </button>
                 </div>
                 <div id='calendar'></div>
             </div>
@@ -65,12 +65,12 @@
 </div>
 <!-- /.content-wrapper -->
 <!-- Modal -->
-<?php include 'modal_crear_programacion.php' ?>
-<?php include 'modal_editar_programacion.php' ?>
-<?php include 'modal_cargar_programacion.php' ?>
-<?php include 'modal_confirmar_programacion.php' ?>
-<?php include 'modal_informativo.php' ?>
-<?php include 'modal_cambiar_hora.php' ?>
+<?php include 'modal/modal_crear_programacion.php' ?>
+<?php include 'modal/modal_editar_programacion.php' ?>
+<?php include 'modal/modal_cargar_programacion.php' ?>
+<?php include 'modal/modal_confirmar_programacion.php' ?>
+<?php include 'modal/modal_informativo.php' ?>
+<?php include 'modal/modal_cambiar_hora.php' ?>
 <!-- /.modal-dialog -->
 <?php include '../../../layout/footer/footer3.php' ?>
 <script src="calendar.js"> </script>

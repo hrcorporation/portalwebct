@@ -130,11 +130,25 @@ if (isset($_POST['task'])) {
                         $php_error = 'No guardo correctamente';
                     }
                 }
-            }else{
+            } else {
                 $php_error = "ERROR";
             }
         } else {
             $php_error = 'Hay que esperar la confirmacion del cliente';
+        }
+    } else if ($_POST['task'] == 5) {
+        $intId = $_POST['id'];
+        $intEstadoProgramacion = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
+        if ($intEstadoProgramacion == 2) {
+            if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalHabilitar($intId)) {
+                $php_estado = true;
+            } else {
+                $php_error = "ERROR";
+            }
+        } else if ($intEstadoProgramacion == 1) {
+            $php_error = "El cliente ya esta habilitado para modificar esta programacion";
+        } else {
+            $php_error = "Esta programacion no se le puede habilitar al cliente para hacer modificaciones";
         }
     } else {
         $php_error = 'No tiene programaciones pendientes por confirmar';

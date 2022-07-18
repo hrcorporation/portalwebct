@@ -13,7 +13,7 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Style;
 
-$oportunidad_negocio = new oportunidad_negocio();
+$ClsProgramacionSemanal = new ClsProgramacionSemanal();
 
 //$fecha_ini = '2020-12-01'; // GET dato de la fecha
 //$fecha_fin = '2020-12-31';  // GET dato de la fecha
@@ -31,7 +31,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     $fecha_fin = $_GET['txt_fecha_fin'];
 
     // traemos los datos de la consulta
-    $datos = $oportunidad_negocio->informe_excel($fecha_ini, $fecha_fin);
+    $datos = $ClsProgramacionSemanal->fntGetProgSemanalInformeObj($fecha_ini, $fecha_fin);
 
     // iniciamos la clase de excel
     $spreadsheet = new Spreadsheet();
@@ -39,39 +39,31 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     // se define las Propiedades del documento
     $spreadsheet->getProperties()->setCreator('PORTAL CONCRETOL')
         ->setLastModifiedBy('PORTAL CONCRETOL')
-        ->setTitle('Informe de Oportunidades de negocio')
-        ->setSubject('Informe de Oportunidades de negocio')
-        ->setDescription('Informe de Oportunidades de negocio')
+        ->setTitle('Informe de Programacion semanal')
+        ->setSubject('Informe de Programacion semanal')
+        ->setDescription('Informe de Programacion semanal')
         ->setKeywords('')
         ->setCategory('');
 
     // FILA 1 = NOMBRE DE COLUMNAS
     $spreadsheet->setActiveSheetIndex(0)
-        ->setCellValue('A1', 'CODIGO DE LA OPORTUNIDAD')
-        ->setCellValue('B1', 'FECHA CONTACTO')
-        ->setCellValue('C1', 'ASESORA COMERCIAL')
-        ->setCellValue('D1', 'NOMBRE SEDE')
-        ->setCellValue('E1', 'TIPO CLIENTE')
-        ->setCellValue('F1', 'TIPO PLAN MAESTRO')
-        ->setCellValue('G1', 'DEPARTAMENTO')
-        ->setCellValue('H1', 'MUNICIPIO')
-        ->setCellValue('I1', 'COMUNA')
-        ->setCellValue('J1', 'BARRIO')
-        ->setCellValue('K1', 'NUMERO IDENTIFICACION')
-        ->setCellValue('L1', 'NOMBRES COMPLETOS')
-        ->setCellValue('M1', 'NOMBRE')
-        ->setCellValue('N1', 'APELLIDO')
-        ->setCellValue('O1', 'TELEFONO DEL CLIENTE')
-        ->setCellValue('P1', 'NOMBRE OBRA')
-        ->setCellValue('Q1', 'DIRECCION OBRA')
-        ->setCellValue('R1', 'NOMBRE MAESTRO')
-        ->setCellValue('S1', 'CELULAR MAESTRO')
-        ->setCellValue('T1', 'M3 POTENCIALES')
-        ->setCellValue('U1', 'FECHA POSIBLE FUNDIDA')
-        ->setCellValue('V1', 'ESTADO')
-        ->setCellValue('W1', 'CONTACTO CLIENTE')
-        ->setCellValue('X1', 'OBSERVACION')
-        ->setCellValue('Y1', 'CANTIDAD DE VISITAS');
+        ->setCellValue('A1', 'CODIGO DE LA PROGRAMACION')
+        ->setCellValue('B1', 'ESTADO')
+        ->setCellValue('C1', 'NOMBRE CLIENTE')
+        ->setCellValue('D1', 'NOMBRE OBRA')
+        ->setCellValue('E1', 'FECHA DEL PEDIDO')
+        ->setCellValue('F1', 'NOMBRE DEL PRODUCTO')
+        ->setCellValue('G1', 'CANTIDAD')
+        ->setCellValue('H1', 'FRECUENCIA')
+        ->setCellValue('I1', 'REQUIERE BOMBA CONCRE TOLIMA')
+        ->setCellValue('J1', 'TIPO DE DESCARGUE')
+        ->setCellValue('K1', 'METROS TUBERIA')
+        ->setCellValue('L1', 'FECHA INICIAL')
+        ->setCellValue('M1', 'FECHA FINAL')
+        ->setCellValue('N1', 'ELEMENTOS A FUNDIR')
+        ->setCellValue('O1', 'OBSERVACIONES')
+        ->setCellValue('P1', 'NOMBRE USUARIO CREACION')
+        ->setCellValue('Q1', 'FECHA CREACION');
     $x = 2;
 
     if (is_array($datos)) {
@@ -79,36 +71,28 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
             
             $spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $x, $fila['id'])
-                ->setCellValue('B' . $x, $fila['fecha_contacto'])
-                ->setCellValue('C' . $x, $fila['asesora_comercial'])
-                ->setCellValue('D' . $x, $fila['nombre_sede'])
-                ->setCellValue('E' . $x, $fila['tipo_cliente'])
-                ->setCellValue('F' . $x, $fila['tipo_plan_maestro'])
-                ->setCellValue('G' . $x, $fila['departamento'])
-                ->setCellValue('H' . $x, $fila['municipio'])
-                ->setCellValue('I' . $x, $fila['nombre_comuna'])
-                ->setCellValue('J' . $x, $fila['barrio'])
-                ->setCellValue('K' . $x, $fila['nidentificacion'])
-                ->setCellValue('L' . $x, $fila['razon_social'])
-                ->setCellValue('M' . $x, $fila['nombrescompletos'])
-                ->setCellValue('N' . $x, $fila['apellidoscompletos'])
-                ->setCellValue('O' . $x, $fila['telefono_cliente'])
-                ->setCellValue('P' . $x, $fila['nombre_obra'])
-                ->setCellValue('Q' . $x, $fila['direccion_obra'])
-                ->setCellValue('R' . $x, $fila['nombre_maestro'])
-                ->setCellValue('S' . $x, $fila['celular_maestro'])
-                ->setCellValue('T' . $x, $fila['m3_potenciales'])
-                ->setCellValue('U' . $x, $fila['fecha_posible_fundida'])
-                ->setCellValue('V' . $x, $fila['resultado'])
-                ->setCellValue('W' . $x, $fila['contacto_cliente'])
-                ->setCellValue('X' . $x, $fila['observacion'])
-                ->setCellValue('Y' . $x, $fila['cantidad']);
+                ->setCellValue('B' . $x, $fila['status'])
+                ->setCellValue('C' . $x, $fila['nombre_cliente'])
+                ->setCellValue('D' . $x, $fila['nombre_obra'])
+                ->setCellValue('E' . $x, $fila['fecha_pedido'])
+                ->setCellValue('F' . $x, $fila['nombre_producto'])
+                ->setCellValue('G' . $x, $fila['cantidad'])
+                ->setCellValue('H' . $x, $fila['frecuencia'])
+                ->setCellValue('I' . $x, $fila['requiere_bomba'])
+                ->setCellValue('J' . $x, $fila['nombre_tipo_descargue'])
+                ->setCellValue('K' . $x, $fila['metros_tuberia'])
+                ->setCellValue('L' . $x, $fila['fecha_ini'])
+                ->setCellValue('M' . $x, $fila['fecha_fin'])
+                ->setCellValue('N' . $x, $fila['elementos_fundir'])
+                ->setCellValue('O' . $x, $fila['observaciones'])
+                ->setCellValue('P' . $x, $fila['nombre_usuario'])
+                ->setCellValue('Q' . $x, $fila['fecha_creacion']);
             $x++;
         }
     }
     // Rename worksheet
 
-    $spreadsheet->getActiveSheet()->setTitle('Oportunidad de negocio');
+    $spreadsheet->getActiveSheet()->setTitle('Programacion semanal');
 
     $spreadsheet->getActiveSheet()
         ->getColumnDimension('A')
@@ -331,7 +315,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
-    header('Content-Disposition: attachment;filename="OportunidadNegocio.xlsx"');
+    header('Content-Disposition: attachment;filename="ProgramacionSemanal.xlsx"');
 
     header('Cache-Control: max-age=0');
 

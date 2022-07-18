@@ -12,21 +12,21 @@
               <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                  <li class="nav-item ">
-                      <a href="../menu/dashboard.php" class="nav-link">
-                          <i class="nav-icon fas fa-tachometer-alt"></i>
-                          <p>
-                              Dashboard
-                          </p>
-                      </a>
-                  </li>
                   <li class="nav-header">Modulos</li>
                   <li class="nav-item has-treeview">
                       <a href="../index.php" class="nav-link">
-                          <i class="nav-icon fas fa-edit"></i>
+                          <i class="nav-icon fas fa-copy"></i>
                           <p>
-                              Modulos
-                              <i class="fas fa-angle-left right"></i>
+                              Explorar
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-header">Programacion</li>
+                  <li class="nav-item has-treeview">
+                      <a href="index.php" class="nav-link active">
+                          <i class="nav-icon fas fa-copy"></i>
+                          <p>
+                              Explorar
                           </p>
                       </a>
                   </li>
@@ -42,6 +42,15 @@
                   <li class="nav-header">Programacion Diaria</li>
                   <li class="nav-item has-treeview">
                       <a href="diaria/index.php" class="nav-link">
+                          <i class="nav-icon fas fa-copy"></i>
+                          <p>
+                              Explorar
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-header">Informe programacion</li>
+                  <li class="nav-item has-treeview">
+                      <a href="informe/index.php" class="nav-link">
                           <i class="nav-icon fas fa-copy"></i>
                           <p>
                               Explorar

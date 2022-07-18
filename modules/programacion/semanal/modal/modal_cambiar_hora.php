@@ -1,5 +1,8 @@
 <?php
 $ClsProgramacionSemanal = new ClsProgramacionSemanal();
+
+$dtmHora = $ClsProgramacionSemanal->fntGetHoraObj();
+$intIdUsuario = $ClsProgramacionSemanal->fntGetIdUsuarioObj();
 ?>
 <div class="modal fade" id="modal_cambiar_hora" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -16,7 +19,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Hora:</label>
-                                <input type="time" name="dtmHora" id="dtmHora" class="form-control" style="width: 100%;" />
+                                <input type="time" name="dtmHora" id="dtmHora" class="form-control" style="width: 100%;" value="<?= $dtmHora ?>" />
                             </div>
                         </div>
                     </div>
@@ -25,7 +28,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label class="form-label">Usuario:</label>
                                 <select name="cbxUsuario" id="cbxUsuario" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionUsuariosObj() ?>
+                                    <?= $ClsProgramacionSemanal->fntOptionUsuariosObj($intIdUsuario) ?>
                                 </select>
                             </div>
                         </div>

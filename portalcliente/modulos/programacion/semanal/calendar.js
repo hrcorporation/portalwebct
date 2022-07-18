@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var formData = new FormData();
       formData.append("task", 1);
       $.ajax({
-        url: "load_data.php", // URL
+        url: "", // URL
         type: "POST", // Metodo HTTP
         //data: formData,
         data: formData,
