@@ -1,0 +1,10 @@
+UPDATE `ct1_terceros` SET `ct1_RazonSocial` = 'PAULA GOMEZ' WHERE `ct1_terceros`.`ct1_IdTerceros` = 508; 
+UPDATE `ct1_terceros` SET `ct1_RazonSocial` = 'SIRLEY ACEVEDO' WHERE `ct1_terceros`.`ct1_IdTerceros` = 510; 
+UPDATE `ct1_terceros` SET `ct1_RazonSocial` = 'ANGIE MONDRAGON' WHERE `ct1_terceros`.`ct1_IdTerceros` = 543; 
+UPDATE `ct1_terceros` SET `ct1_RazonSocial` = 'ANDRES MAECHA' WHERE `ct1_terceros`.`ct1_IdTerceros` = 629; 
+UPDATE `ct1_terceros` SET `ct1_RazonSocial` = 'LEIDY ACERO' WHERE `ct1_terceros`.`ct1_IdTerceros` = 728; 
+UPDATE `ct1_terceros` SET `ct1_RazonSocial` = 'CLAUDIA RODRIGUEZ' WHERE `ct1_terceros`.`ct1_IdTerceros` = 1133; 
+
+UPDATE `ct1_terceros` SET `ct1_Estado` = '2' WHERE `ct1_terceros`.`ct1_IdTerceros` = 630; 
+UPDATE `ct1_terceros` SET `ct1_Estado` = '2' WHERE `ct1_terceros`.`ct1_IdTerceros` = 779; 
+
