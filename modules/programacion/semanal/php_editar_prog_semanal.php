@@ -10,35 +10,35 @@ $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
-//Se crea un objeto de la clase programacion
+//Se crea un objeto de la clase programacion.
 $ClsProgramacionSemanal = new ClsProgramacionSemanal();
-//id del usuario en sesion
+//id del usuario en sesion.
 $intIdUsuario = $_SESSION['id_usuario'];
-//Nombre del usuario en sesion mediante el parametro del id del usuario
+//Nombre del usuario en sesion mediante el parametro del id del usuario.
 $StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
-//Se crea un objeto de la clase Datetime
+//Se crea un objeto de la clase Datetime.
 $dtmFechaActual = new DateTime();
-//Se obtiene la fecha actual con el formato completo
+//Se obtiene la fecha actual con el formato completo.
 $dtmHoy = $dtmFechaActual->format("Y-m-d H:i:s");
 if (isset($_POST['task'])) {
-    //validar que la variable task tenga el valor de 1
+    //validar que la variable task tenga el valor de 1.
     if ($_POST['task'] == 1) {
-        //id de la programacion
+        //id de la programacion.
         $intId = $_POST['id'];
-        //Fecha inicio de la programacion
+        //Fecha inicio de la programacion.
         $dtmFechaInicio = $_POST['txtInicio'];
-        //Fecha final de la programacion
+        //Fecha final de la programacion.
         $dtmFechaFin = $_POST['txtFin'];
-        //Validar que modifique correctamente la programacion (fechas)
+        //Validar que modifique correctamente la programacion (fechas).
         if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
             $php_estado = true;
         }
     } else if ($_POST['task'] == 2) {
-        //id de la programacion
+        //id de la programacion.
         $intId = $_POST['id_prog_evento'];
-        //id cliente
+        //id cliente.
         $intIdCliente = $_POST['cbxClienteEditar'];
-        //nombre cliente
+        //nombre cliente.
         $strNombreCliente = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
         //id de la obra.
         $intIdObra = $_POST['cbxObraEditar'];

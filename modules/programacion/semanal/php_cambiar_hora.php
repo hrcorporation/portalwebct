@@ -10,7 +10,7 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
-if (is_null($_POST['dtmHora'])) {
+if (empty($_POST['dtmHora'])) {
     $hora = "06:00:00";
 } else {
     $hora = $_POST['dtmHora'];
