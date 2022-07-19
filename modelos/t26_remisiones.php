@@ -1069,9 +1069,10 @@ class t26_remisiones extends conexionPDO
     $this->fisica = 0;
     $php_fechatime = date("Y-m-d H:i:s");
     $date = "" . date('Y/m/d h:i:s', time());
+    $this->consolidado_remi = $this->id_planta. ' - '.$this->codigo_remi;
 
-    $sql = "INSERT INTO `ct26_remisiones`(ct26_date_create, `ct26_codigo_remi`, `ct26_idplanta`, `ct26_fecha_remi` , `ct26_idcliente`,`ct26_nitcliente` ,`ct26_razon_social`, `ct26_idObra`, `ct26_nombre_obra`, `ct26_metros` ,`ct26_id_producto`, `ct26_codigo_producto`, `ct26_descripcion_producto`,`ct26_id_vehiculo`, `ct26_vehiculo`,`ct26_conductor`, `ct26_nombre_conductor` , `ct26_estado`, `ct26_hora_remi`, `ct26_sello`, `ct26_asentamiento`, `ct26_despachador`,`ct26_notificacion`,  ct26_fisica ) VALUES";
-    $sql .= " (:datetime_remi, :codigo_remi, :id_planta , :fecha , :id_cliente , :nit, :razon_social, :id_obra, :nombre_obra, :metros ,:id_producto , :codigo_producto, :descripcion_producto , :id_vehiculo, :placa, :id_conductor, :nombre_conductor, :estado, :hora_remi, :sello , :asentamiento, :despachador, :notificacion , :fisica)";
+    $sql = "INSERT INTO `ct26_remisiones`(ct26_date_create, `ct26_codigo_remi`, `ct26_idplanta`, `ct26_fecha_remi` , `ct26_idcliente`,`ct26_nitcliente` ,`ct26_razon_social`, `ct26_idObra`, `ct26_nombre_obra`, `ct26_metros` ,`ct26_id_producto`, `ct26_codigo_producto`, `ct26_descripcion_producto`,`ct26_id_vehiculo`, `ct26_vehiculo`,`ct26_conductor`, `ct26_nombre_conductor` , `ct26_estado`, `ct26_hora_remi`, `ct26_sello`, `ct26_asentamiento`, `ct26_despachador`,`ct26_notificacion`,  ct26_fisica, consolidado_remi) VALUES";
+    $sql .= " (:datetime_remi, :codigo_remi, :id_planta , :fecha , :id_cliente , :nit, :razon_social, :id_obra, :nombre_obra, :metros ,:id_producto , :codigo_producto, :descripcion_producto , :id_vehiculo, :placa, :id_conductor, :nombre_conductor, :estado, :hora_remi, :sello , :asentamiento, :despachador, :notificacion , :fisica,:consolidado_remi)";
 
     $stmt = $this->con->prepare($sql);
 
@@ -1100,6 +1101,7 @@ class t26_remisiones extends conexionPDO
     $stmt->bindParam(':despachador', $this->despachador, PDO::PARAM_STR);
     $stmt->bindParam(':notificacion', $this->notificacion, PDO::PARAM_STR);
     $stmt->bindParam(':fisica', $this->fisica, PDO::PARAM_INT);
+    $stmt->bindParam(':consolidado_remi', $this->consolidado_remi, PDO::PARAM_STR);
 
 
 

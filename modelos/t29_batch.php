@@ -250,6 +250,20 @@ return $stmt;
 
 }
 
+function crear_consolidado_remision_para_batches($id_batch, $consolidado_remi){
+  $sql = "UPDATE `ct29_batch` SET `consolidado_remi`= :consolidado_remi WHERE `ct29_Id` = :id_batch";
+  $stmt = $this->con->prepare($sql);
+  $stmt->bindParam(':consolidado_remi', $consolidado_remi, PDO::PARAM_STR);
+  $stmt->bindParam(':id_batch',$id_batch, PDO::PARAM_INT);
+  if($stmt->execute()){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+
+
 function select_batch_remi($remision){
 
   $this->id = intval($remision);

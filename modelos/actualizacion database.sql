@@ -9,3 +9,8 @@ UPDATE `ct1_terceros` SET `ct1_Estado` = '2' WHERE `ct1_terceros`.`ct1_IdTercero
 UPDATE `ct1_terceros` SET `ct1_Estado` = '2' WHERE `ct1_terceros`.`ct1_IdTerceros` = 779; 
 
 ALTER TABLE `ct5_obras`  ADD `longitud` DOUBLE(11,8) NULL DEFAULT NULL  AFTER `ct5_barrio`,  ADD `latitud` DOUBLE(11,8) NULL DEFAULT NULL  AFTER `longitud`;
+
+
+ALTER TABLE `ct29_batch` ADD `consolidado_remi` VARCHAR(100) NULL DEFAULT NULL AFTER `ct29_TAguaxM3`;
+
+ALTER TABLE `ct26_remisiones`  ADD `consolidado_remi` VARCHAR(100) NULL DEFAULT NULL  AFTER `ct26_codigo_remi`;
