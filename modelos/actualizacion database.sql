@@ -8,3 +8,4 @@ UPDATE `ct1_terceros` SET `ct1_RazonSocial` = 'CLAUDIA RODRIGUEZ' WHERE `ct1_ter
 UPDATE `ct1_terceros` SET `ct1_Estado` = '2' WHERE `ct1_terceros`.`ct1_IdTerceros` = 630; 
 UPDATE `ct1_terceros` SET `ct1_Estado` = '2' WHERE `ct1_terceros`.`ct1_IdTerceros` = 779; 
 
+ALTER TABLE `ct5_obras`  ADD `longitud` DOUBLE(11,8) NULL DEFAULT NULL  AFTER `ct5_barrio`,  ADD `latitud` DOUBLE(11,8) NULL DEFAULT NULL  AFTER `longitud`;

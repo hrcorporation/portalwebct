@@ -27,11 +27,17 @@ if (isset($_POST['cliente']) && !empty($_POST['cliente']) && isset($_POST['nombr
     $segmento = htmlspecialchars($_POST['segmento']);
     $direccion = htmlspecialchars($_POST['direccion']);
 
+    $longitud = htmlspecialchars($_POST['txt_longitud']);
+    $latitud = htmlspecialchars($_POST['txt_latitud']);
+  
+
+
     $validar_existencia = $modelo_obras->validar_obra($id_cliente, $nombre_obra);
     if ($validar_existencia) {
         $id_obra = $modelo_obras->crear_obra($id_cliente, $nombre_obra, $id_departamento, $nombre_departamento, $id_ciudad, $nombre_ciudad, $id_comuna, $nombre_comuna, $barrio, $segmento, $direccion);
         if ($id_obra) {
             $modelo_obras->update_ciudad_departamento($id_obra, $id_departamento, $id_ciudad);
+            $modelo_obras->update_latitud_longitud($id_obra, $latitud, $longitud);
             $php_estado = true;
         } else {
             $php_estado = false;

@@ -29,10 +29,15 @@ if ( isset($_POST['id_obra']) && !empty($_POST['id_obra'])) {
     $barrio = htmlspecialchars($_POST['barrio']);
     $segmento = htmlspecialchars($_POST['segmento']);
     $direccion_obra = htmlspecialchars($_POST['direccion']);
+
+    $longitud = htmlspecialchars($_POST['txt_longitud']);
+    $latitud = htmlspecialchars($_POST['txt_latitud']);
     
     $result = $t5_obras->editar_obra($id_obra, $id_cliente, $nombre_obra, $id_departamento, $nombre_departamento, $id_ciudad, $nombre_ciudad, $id_comuna, $nombre_comuna, $barrio, $segmento, $direccion_obra);
 
     if ($result) {
+        $modelo_obras->update_latitud_longitud($id_obra, $latitud, $longitud);
+        
         $php_estado = true;
     } else {
         $php_estado = false;
