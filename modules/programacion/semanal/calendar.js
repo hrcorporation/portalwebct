@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
-    
+
   calendar.render();
   // Boton Actualizar Evento
   document
@@ -214,6 +214,34 @@ document.addEventListener("DOMContentLoaded", function () {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           form_editar.append("task", 5); // actualizar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
+        }
+      });
+    });
+
+  calendar.render();
+  // Boton Actualizar Evento btnCargarProgramacion
+  document
+    .getElementById("btnCargarTodaProgramacion")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(aceptar_programacion);
+      var form_editar = new FormData();
+      Swal.fire({
+        title:
+          "¿Esta seguro que desea confirmar y cargar todas las programaciones diarias?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si enviar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#298a00",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 6); // actualizar
           form_editar.append("id", form_show_event.id_prog_evento.value);
           editar_event(form_editar, calendar);
           $("#modal_show_evento").modal("hide");
@@ -244,6 +272,11 @@ document.addEventListener("DOMContentLoaded", function () {
           $("#modal_confirmar_programacion").modal("hide");
         } else if (response.task == 5 && response.estado) {
           toastr.success("El cliente ya puede modificar la programacion");
+        } else if (response.task == 6 && response.estado) {
+          toastr.success(
+            "Programaciones confirmadas y enviadas a la programacion diaria"
+          );
+          $("#modal_cargar_programacion").modal("hide");
         } else {
           toastr.warning(response.errores);
           $("#modal_confirmar_programacion").modal("hide");

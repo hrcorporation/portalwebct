@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Esta seguro que desea eliminar",
       showDenyButton: true,
       showCancelButton: true,
-      confirmButtonText: "Si eliminar",
+      confirmButtonText: "Si eliminar", 
       denyButtonText: `No, Salir`,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
@@ -181,12 +181,41 @@ document.addEventListener("DOMContentLoaded", function () {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          form_editar.append("task", 4); // eliminar
+          form_editar.append("task", 4); // enviar programacio 
           form_editar.append("id", form_show_event.id_prog_evento.value);
           editar_event(form_editar, calendar);
           $("#modal_show_evento").modal("hide");
         } else if (result.isDenied) {
 
+        }
+      });
+    });
+
+    calendar.render();
+  // Boton Actualizar Evento btnCargarProgramacion
+  document
+    .getElementById("btnConfirmarTodaProgramacion")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(aceptar_programacion);
+      var form_editar = new FormData();
+      Swal.fire({
+        title:
+          "¿Esta seguro que desea enviar todas las programaciones al area de logistica de Concre Tolima?",
+        text: "NO PODRA HACER MODIFICACIONES DESPUES DE ENVIAR LA PROGRAMACION",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si enviar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#298a00",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 5); // actualizar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
         }
       });
     });
@@ -211,9 +240,13 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (response.task == 4 && response.estado) {
           toastr.success("Programacion enviada correctamente al area de logistica");
           $("#modal_aceptar_programacion").modal("hide");
-        } else {
+        } else if(response.task == 5 && response.estado){
+          toastr.success("Programaciones enviadas correctamente al area de logistica de Concre Tolima");
+          $('#modal_aceptar_toda_programacion').modal("hide"); 
+        }else {
           toastr.warning(response.errores);
           $("#modal_aceptar_programacion").modal("hide");
+          $("#modal_aceptar_toda_programacion").modal("hide");
         }
       },
       error: function (respuesta) {

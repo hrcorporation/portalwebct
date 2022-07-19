@@ -741,22 +741,36 @@ class ClsProgramacionSemanal extends conexionPDO
         return false;
     }
     // Cambiar estado de la programacion semanales (CLIENTE).
-    public function fntCambiarEstadoProgramacionSemanal($id_programacion)
+    public function fntCambiarEstadoProgramacionSemanalClienteUnoObj($id_programacion)
     {
         $estado = 2;
         $sql = "UPDATE `ct66_programacion_semanal`
         SET `status` = :estado 
-        WHERE `id` = :id AND `status` = 1";
+        WHERE id = :id";
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_STR);
         $stmt->bindParam(':id', $id_programacion, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         }
         return false;
     }
+    // Cambiar estado de la programacion semanales (CLIENTE).
+    public function fntCambiarEstadoProgramacionSemanalClienteDosObj()
+    {
+        $estado = 2;
+        $sql = "UPDATE `ct66_programacion_semanal`
+        SET `status` = :estado
+        WHERE `status` = 1";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
     // Cambiar estado de la programacion semanales (FUNCIONARIO).
-    public function fntCambiarEstadoProgramacionSemanalFuncionario($id_programacion)
+    public function fntCambiarEstadoProgramacionSemanalFuncionarioUnoObj($id_programacion)
     {
         $estado = 3;
         $sql = "UPDATE `ct66_programacion_semanal`
@@ -765,6 +779,21 @@ class ClsProgramacionSemanal extends conexionPDO
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
         $stmt->bindParam(':id', $id_programacion, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    // Cambiar estado de la programacion semanales (FUNCIONARIO).
+    public function fntCambiarEstadoProgramacionSemanalFuncionarioDosObj()
+    {
+        $estado = 3;
+        $sql = "UPDATE `ct66_programacion_semanal`
+        SET `status` = :estado
+        WHERE `status` = 2";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
         if ($stmt->execute()) {
             return true;
         }
@@ -1034,13 +1063,53 @@ class ClsProgramacionSemanal extends conexionPDO
         return false;
     }
     // Obtener todas las programaciones (FUNCIONARIO).
-    public function fntGetProgSemanalFuncionarioEstadoObj($id_programacion)
+    public function fntGetProgSemanalFuncionarioEstadoUnoObj($id_programacion)
     {
         $sql = "SELECT * FROM `ct66_programacion_semanal` WHERE `id` = :id";
         // Preparar Conexion.
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL.
         $stmt->bindParam(':id', $id_programacion, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    // Obtener los datos de los valores.
+                    $datos['status'] = $fila['status'];
+                    $datos['id_cliente'] = $fila['id_cliente'];
+                    $datos['nombre_cliente'] = $fila['nombre_cliente'];
+                    $datos['id_obra'] = $fila['id_obra'];
+                    $datos['nombre_obra'] = $fila['nombre_obra'];
+                    $datos['id_pedido'] = $fila['id_pedido'];
+                    $datos['id_producto'] = $fila['id_producto'];
+                    $datos['nombre_producto'] = $fila['nombre_producto'];
+                    $datos['cantidad'] = $fila['cantidad'];
+                    $datos['valor_programacion'] = $fila['valor_programacion'];
+                    $datos['frecuencia'] = $fila['frecuencia'];
+                    $datos['requiere_bomba'] = $fila['requiere_bomba'];
+                    $datos['id_tipo_descargue'] = $fila['id_tipo_descargue'];
+                    $datos['nombre_tipo_descargue'] = $fila['nombre_tipo_descargue'];
+                    $datos['metros_tuberia'] = $fila['metros_tuberia'];
+                    $datos['fecha_ini'] = $fila['fecha_ini'];
+                    $datos['fecha_fin'] = $fila['fecha_fin'];
+                    $datos['elementos_fundir'] = $fila['elementos_fundir'];
+                    $datos['observaciones'] = $fila['observaciones'];
+                    $datos['id_usuario'] = $fila['id_usuario'];
+                    $datos['nombre_usuario'] = $fila['nombre_usuario'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            }
+        }
+        return false;
+    }
+    // Obtener todas las programaciones (FUNCIONARIO).
+    public function fntGetProgSemanalFuncionarioEstadoDosObj()
+    {
+        $sql = "SELECT * FROM `ct66_programacion_semanal`";
+        // Preparar Conexion.
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL.
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
@@ -1135,17 +1204,17 @@ class ClsProgramacionSemanal extends conexionPDO
             }
         }
         return false;
-    }
+    } 
     // Obtener todos los estados de las programaciones (CLIENTE).
-    public function fntGetEstadosProgramacionClienteObj($id_programacion)
+    public function fntGetEstadosProgramacionClienteUnoObj($id_usuario)
     {
-        $sql = "SELECT `status` 
+        $sql = "SELECT `status`
             FROM `ct66_programacion_semanal` 
-            WHERE `id` = :id";
+            WHERE `id_usuario` = :id";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-        // Asignando Datos ARRAY => SQ
-        $stmt->bindParam(':id', $id_programacion, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id', $id_usuario, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
@@ -1158,11 +1227,31 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-    // Obtener el estado de una programacion (CLIENTE).
-    public function fntGetEstadosProgramacionCliente2Obj($id_programacion)
+    // Obtener todos los estados de las programaciones (CLIENTE).
+    public function fntGetEstadosProgramacionClienteDosObj($id_programacion)
+    {
+        $sql = "SELECT `status`
+            FROM `ct66_programacion_semanal` 
+            WHERE `id` = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id', $id_programacion, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['status'];
+                }
+            }
+        }
+        return false;
+    }
+    // Obtener el estado de una programacion (FUNCIONARIO).
+    public function fntGetEstadosProgramacionFuncionarioDosObj($id_programacion)
     {
         $this->id = $id_programacion;
-        $sql = "SELECT `status` 
+        $sql = "SELECT `id`, `status` 
         FROM `ct66_programacion_semanal`
         WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
@@ -1184,7 +1273,7 @@ class ClsProgramacionSemanal extends conexionPDO
         $this->PDO->closePDO();
     }
     // Obtener todos los estados de las programaciones (FUNCIONARIO).
-    public function fntGetEstadosProgramacionFuncionarioObj()
+    public function fntGetEstadosProgramacionFuncionarioUnoObj()
     {
         $sql = "SELECT `status` 
             FROM `ct66_programacion_semanal` ";

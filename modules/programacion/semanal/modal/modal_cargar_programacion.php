@@ -15,7 +15,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                     <p>Da clic en el boton Aceptar para cargar todas las programaciones de la proxima semana.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btnCargarProgramacion"> Aceptar </button>
+                    <button type="button" class="btn btn-primary" id="btnCargarTodaProgramacion"> Aceptar </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
                 </div>
             </form>

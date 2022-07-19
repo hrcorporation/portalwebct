@@ -30,7 +30,7 @@ if (isset($_POST['task'])) {
         //id de la programacion
         $intId = $_POST['id'];
         //estado de la programacion
-        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
+        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
         //Fecha inicio de la programacion
         $dtmFechaInicio = $_POST['txtInicio'];
         //Fecha final de la programacion
@@ -59,7 +59,7 @@ if (isset($_POST['task'])) {
         //id de la programacion
         $intId = $_POST['id_prog_evento'];
         // id del estado
-        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
+        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
         //id del pedido
         $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
@@ -113,7 +113,7 @@ if (isset($_POST['task'])) {
     } elseif ($_POST['task'] == 3) {
         //id de la programacion
         $intId = $_POST['id'];
-        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
+        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
         if ($intEstado == 1) {
             if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
@@ -136,12 +136,25 @@ if (isset($_POST['task'])) {
         }
     } else if ($_POST['task'] == 4) {
         $intId = $_POST['id'];
-        $objEstados = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteObj($intId);
+        $intEstadoProgramacion = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
+        if ($intEstadoProgramacion == 1) {
+            if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalClienteUnoObj($intId)) {
+                //Si pasa la validacion se retorna verdadero(true)
+                $php_estado = true;
+            } else {
+                //De lo contrario mostrara un mensaje mostrando que no se guardo
+                $php_error = 'No Guardo Correctamente';
+            }
+        } else {
+            $php_error = 'La programacion ya fue enviada al area de logistica de Concre Tolima';
+        }
+    } else if ($_POST['task'] == 5) {
+        $objEstados = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteUnoObj($intIdUsuario);
         if (is_array($objEstados)) {
             foreach ($objEstados as $estado) {
                 $intEstadoProgramacion = $estado['status'];
                 if ($intEstadoProgramacion == 1) {
-                    if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanal($intId)) {
+                    if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalClienteDosObj()) {
                         //Si pasa la validacion se retorna verdadero(true)
                         $php_estado = true;
                     } else {
@@ -149,7 +162,7 @@ if (isset($_POST['task'])) {
                         $php_error = 'No Guardo Correctamente';
                     }
                 } else {
-                    $php_error = 'La programacion ya fue enviada al area de logistica de Concre Tolima';
+                    $php_error = 'No tiene programaciones pendientes por cargar';
                 }
             }
         } else {

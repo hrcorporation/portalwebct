@@ -8,7 +8,7 @@ $intIdUsuario = $ClsProgramacionSemanal->fntGetIdUsuarioObj();
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">¿Esta seguro?</h4>
+                <h4 class="modal-title">¿Esta seguro de actualizar la hora limite para crear/editar programacion?</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

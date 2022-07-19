@@ -88,9 +88,9 @@ if (isset($_POST['task'])) {
         }
     } else if ($_POST['task'] == 4) {
         $intId = $_POST['id'];
-        $intIdEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
+        $intIdEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionFuncionarioDosObj($intId);
         if ($intIdEstado == 2) {
-            $objProgramacionesSemanales = $ClsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoObj($intId);
+            $objProgramacionesSemanales = $ClsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoUnoObj($intId);
             if (is_array($objProgramacionesSemanales)) {
                 foreach ($objProgramacionesSemanales as $estado) {
                     $intEstado = $estado['status'];
@@ -114,15 +114,27 @@ if (isset($_POST['task'])) {
                     $strObservaciones = $estado['observaciones'];
                     $intIdUsuario = $estado['id_usuario'];
                     $strNombreUsuario = $estado['nombre_usuario'];
-                    $numeroViajes = $intCantidad / 7;
-                    $numeroViajesAp = ceil($numeroViajes);
+                    if ($intCantidad >= 7) {
+                        $numeroViajes = ($intCantidad / 7);
+                        $numeroViajesAp = ceil($numeroViajes);
+                    } else {
+                        $numeroViajes = 1;
+                        $numeroViajesAp = 1;
+                    }
+                    
+                    $metrosCubicos = ($intCantidad / $numeroViajesAp);
+                    $nuevaFechaFin = 0;
+                    for ($i = 1; $i <= $numeroViajesAp; $i++) {
+                        //$nuevaFechaFin = date("Y-m-d H:i:s",strtotime($dtmFechaInicial)) + date("Y-m-d H:i:s",strtotime( $dtmFrecuencia));
+                        $nuevaFechaFin = $dtmFechaInicial->modify('+'.$dtmFrecuencia.'minutos');
+                    }
                     if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $intCantidad, $numeroViajesAp, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmFechaFinal, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
                         //Si pasa la validacion se retorna verdadero(true)
                         $php_estado = true;
                     } else {
                         $php_error = 'No guardo correctamente';
                     }
-                    if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionario($intId)) {
+                    if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioUnoObj($intId)) {
                         //Si pasa la validacion se retorna verdadero(true)
                         $php_estado = true;
                     } else {
@@ -138,7 +150,7 @@ if (isset($_POST['task'])) {
         }
     } else if ($_POST['task'] == 5) {
         $intId = $_POST['id'];
-        $intEstadoProgramacion = $ClsProgramacionSemanal->fntGetEstadosProgramacionCliente2Obj($intId);
+        $intEstadoProgramacion = $ClsProgramacionSemanal->fntGetEstadosProgramacionFuncionarioDosObj($intId);
         if ($intEstadoProgramacion == 2) {
             if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalHabilitar($intId)) {
                 $php_estado = true;
@@ -149,6 +161,58 @@ if (isset($_POST['task'])) {
             $php_error = "El cliente ya esta habilitado para modificar esta programacion";
         } else {
             $php_error = "Esta programacion no se le puede habilitar al cliente para hacer modificaciones";
+        }
+    } else if ($_POST['task'] == 6) {
+        $objProgramacionesSemanales = $ClsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoDosObj();
+        if (is_array($objProgramacionesSemanales)) {
+            foreach ($objProgramacionesSemanales as $estado) {
+                $intEstado = 4;
+                $intEstadoProgramacion  = $estado['status'];
+                $intIdCliente = $estado['id_cliente'];
+                $strNombreCliente = $estado['nombre_cliente'];
+                $intIdObra = $estado['id_obra'];
+                $strNombreObra = $estado['nombre_obra'];
+                $intIdPedido = $estado['id_pedido'];
+                $intIdProducto = $estado['id_producto'];
+                $strNombreProducto = $estado['nombre_producto'];
+                $intCantidad = $estado['cantidad'];
+                $intValorProgramacion = $estado['valor_programacion'];
+                $dtmFrecuencia = $estado['frecuencia'];
+                $boolRequiereBomba = $estado['requiere_bomba'];
+                $intIdTipoDescargue = $estado['id_tipo_descargue'];
+                $strNombreTipoDescargue = $estado['nombre_tipo_descargue'];
+                $dblMetrosTuberia = $estado['metros_tuberia'];
+                $dtmFechaInicial = $estado['fecha_ini'];
+                $dtmFechaFinal = $estado['fecha_fin'];
+                $strElementosFundir = $estado['elementos_fundir'];
+                $strObservaciones = $estado['observaciones'];
+                $intIdUsuario = $estado['id_usuario'];
+                $strNombreUsuario = $estado['nombre_usuario'];
+
+                $numeroViajes = ($intCantidad / 7);
+                $numeroViajesAp = ceil($numeroViajes);
+                $metrosCubicos = ($intCantidad / $numeroViajes);
+
+                if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $intCantidad, $numeroViajesAp, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmFechaFinal, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
+                    //Si pasa la validacion se retorna verdadero(true)
+                    $php_estado = true;
+                } else {
+                    $php_error = 'No guardo correctamente';
+                }
+                if ($intEstadoProgramacion == 2) {
+                    if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj()) {
+                        //Si pasa la validacion se retorna verdadero(true)
+                        $php_estado = true;
+                    } else {
+                        //De lo contrario mostrara un mensaje mostrando que no se guardo
+                        $php_error = 'No Guardo Correctamente';
+                    }
+                } else {
+                    $php_error = 'No tiene programaciones pendientes por cargar';
+                }
+            }
+        } else {
+            $php_error = "ERROR";
         }
     } else {
         $php_error = 'No tiene programaciones pendientes por confirmar';
