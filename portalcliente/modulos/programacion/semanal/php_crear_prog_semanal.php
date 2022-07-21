@@ -65,24 +65,27 @@ if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
     //Fecha final de la programacionNancy
     $dtmFechaFin = $_POST['txtFin'];
     //Validar que tome bien los parametros y guarde correctamente la programacion
-    if ($dia == "Sabado" && $hora_hoy <= "06:00:00") {
-        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+    if ($decCantidad > 7) {
+        $numeroViajes = ($decCantidad / 7);
+        $numeroViajesAp = intval(ceil($numeroViajes));
+    } else {
+        $numeroViajesAp = 1;
+    }
+
+    $metrosCubicos = ($decCantidad / $numeroViajesAp);
+    $dtmFrecuenciaNueva = $clsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
+    $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmFechaInicio, $dtmFrecuenciaNueva);
+
+    if ($dia == "Sabado" && $hora_hoy <= "06:00:00" || $dia == "Lunes" && $hora_hoy >= "06:00:00") {
+        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
             //Si pasa la validacion se retorna verdadero(true)
             $php_estado = true;
         } else {
             //De lo contrario mostrara un mensaje mostrando que no se guardo
             $php_error = 'No Guardo Correctamente';
         }
-    } else if ($dia != "Sabado" && $dia != "Domingo" && $dia != "Lunes" ) {
-        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
-            //Si pasa la validacion se retorna verdadero(true)
-            $php_estado = true;
-        } else {
-            //De lo contrario mostrara un mensaje mostrando que no se guardo
-            $php_error = 'No Guardo Correctamente';
-        }
-    } else if ($dia == "Lunes" && $hora_hoy >= "06:00:00") {
-        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+    } else if ($dia != "Sabado" && $dia != "Domingo" && $dia != "Lunes") {
+        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
             //Si pasa la validacion se retorna verdadero(true)
             $php_estado = true;
         } else {

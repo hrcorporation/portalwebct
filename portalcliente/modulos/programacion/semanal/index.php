@@ -56,11 +56,11 @@
 <!-- /.content-wrapper -->
 
 <!-- Modal -->
-<?php include 'modal_crear_programacion.php' ?>
-<?php include 'modal_editar_programacion.php' ?>
-<?php include 'modal_aceptar_programacion.php' ?>
-<?php include 'modal_aceptar_toda_programacion.php' ?>
-<?php include 'modal_alerta_cupo.php' ?>
+<?php include 'modal/modal_crear_programacion.php' ?>
+<?php include 'modal/modal_editar_programacion.php' ?>
+<?php include 'modal/modal_aceptar_programacion.php' ?>
+<?php include 'modal/modal_aceptar_toda_programacion.php' ?>
+<?php include 'modal/modal_alerta_cupo.php' ?>
 
 <!-- /.modal-dialog -->
 <?php include '../../../../layout/footer/footercliente4.php' ?>

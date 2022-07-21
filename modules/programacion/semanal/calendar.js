@@ -1,11 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let form_crear_programacion = document.querySelector(
-    "#form_crear_programacion"
-  );
+  let form_crear_programacion = document.querySelector("#form_crear_programacion");
   let form_show_event = document.querySelector("#form_mostrar_programacion");
-  let aceptar_programacion = document.querySelector(
-    "#form_confirmar_programacion"
-  );
+  let aceptar_programacion = document.querySelector("#form_confirmar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -13,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     themeSystem: "bootstrap", // Tema del Calendario
     locale: "es", // Lenguaje
     initialView: "timeGridWeek", // Vista Semanal
-    timeZone: "America/New_York",
+    timeZone: "America/Bogota",
     droppable: true,
     selectable: true,
     editable: true,
@@ -111,14 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
       var form_editar = new FormData();
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
-      form_editar.append(
-        "txtInicio",
-        moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
-      );
-      form_editar.append(
-        "txtFin",
-        moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
-      );
+      form_editar.append("txtInicio", moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss"));
+      form_editar.append("txtFin", moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss"));
       editar_event(form_editar, calendar);
     },
 
@@ -128,14 +118,8 @@ document.addEventListener("DOMContentLoaded", function () {
       var form_editar = new FormData();
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
-      form_editar.append(
-        "txtInicio",
-        moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
-      );
-      form_editar.append(
-        "txtFin",
-        moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
-      );
+      form_editar.append("txtInicio", moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss"));
+      form_editar.append("txtFin", moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss"));
       console.log(form_editar);
       editar_event(form_editar, calendar);
     },
@@ -230,8 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const datos_form = new FormData(aceptar_programacion);
       var form_editar = new FormData();
       Swal.fire({
-        title:
-          "¿Esta seguro que desea confirmar y cargar todas las programaciones diarias?",
+        title: "¿Esta seguro que desea confirmar y cargar todas las programaciones diarias?",
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Si enviar",
