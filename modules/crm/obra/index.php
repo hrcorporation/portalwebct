@@ -126,7 +126,7 @@ switch ($rol_user) {
                                         echo  $lib->estado($ct5_EstadoObra);
                                         ?></td>
                                     <td class="project-actions">
-                                        <a class="btn btn-info btn-sm" href=''><i class="far fa-eye"></i></a>
+                                        
                                         <a class="btn btn-warning btn-sm" href="update/editar.php?id='<?php echo $php_clases->HR_Crypt($id, 1); ?>"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>

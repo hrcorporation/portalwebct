@@ -1,0 +1,10 @@
+[28-Apr-2022 08:29:18 America/Bogota] PHP Warning:  move_uploaded_file(/home3/concr/portal.concretol.co/internal/load_data/4EC4F89730481F5A4E777137A076FC28573E2822.xlsx): failed to open stream: No such file or directory in /home3/concr/portal.concretol.co/modules/crm/pedidos/importar_dos/ajax_productos_dos.php on line 21
+[28-Apr-2022 08:29:18 America/Bogota] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php3kiCSX' to '/home3/concr/portal.concretol.co/internal/load_data/4EC4F89730481F5A4E777137A076FC28573E2822.xlsx' in /home3/concr/portal.concretol.co/modules/crm/pedidos/importar_dos/ajax_productos_dos.php on line 21
+[28-Apr-2022 08:29:18 America/Bogota] PHP Fatal error:  Uncaught Error: Class 'cls_importdata' not found in /home3/concr/portal.concretol.co/modules/crm/pedidos/importar_dos/ajax_productos_dos.php:25
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/pedidos/importar_dos/ajax_productos_dos.php on line 25
+[28-Apr-2022 14:23:07 America/Bogota] PHP Fatal error:  Uncaught Error: Class 'cls_importdata' not found in /home3/concr/portal.concretol.co/modules/crm/pedidos/importar_dos/ajax_productos_dos.php:25
+Stack trace:
+#0 {main}
+  thrown in /home3/concr/portal.concretol.co/modules/crm/pedidos/importar_dos/ajax_productos_dos.php on line 25

@@ -91,7 +91,7 @@ switch ($rol_user) {
 
                                 if ($Estado == 1) {
                                     $s_clase = " badge-success ";
-                                    $status = "Aprobado";
+                                    $status = "ACTIVO";
                                 }
                                 if ($Estado == 0) {
                                     $s_clase = " badge-info ";
@@ -111,7 +111,7 @@ switch ($rol_user) {
                                     <td><?php echo $nit; ?></td>
                                     <td><?php echo $razon_social; ?></td>
                                     <td><span class='badge <?php echo $s_clase; ?> float-right'><?php echo $status ?></span></td>
-                                    <td class="project-actions"><a class="btn btn-info btn-sm" href=''><i class="far fa-eye"></i></a>
+                                    <td class="project-actions">
                                         <a class="btn btn-warning btn-sm" href="update/editar.php?id='<?php echo $php_clases->HR_Crypt($id, 1); ?>"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>

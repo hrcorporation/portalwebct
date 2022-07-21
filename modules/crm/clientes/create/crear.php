@@ -178,18 +178,11 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Direccion</label>
-                                    <input type='text' class='form-control ' name='txt_direccion' id="txt_direccion" required />
+                                    <input type='text' class='form-control ' name='txt_direccion' id="txt_direccion"  />
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="blq_cupo">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Cupo Cliente</label>
-                                    <input type='text' class='form-control ' name='txt_cupo' onkeyup='format(this)' value="0"  />
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="row">
                             <div class="container">
                                 <div class="col">

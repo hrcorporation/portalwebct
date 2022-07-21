@@ -18,7 +18,7 @@
                      <i class="nav-icon fas fa-arrow-left"></i>
 
                          <p>
-                             Modulos
+                             CRM
                          </p>
                      </a>
                  </li>
