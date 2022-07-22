@@ -40,6 +40,7 @@ if (isset($_POST['id'])) {
             $StrTextColor = $key['textcolor'];
             //Requiere bomba de concretolima (1. true, 0 false)
             $boolRequiereBomba = $key['requiere_bomba'];
+            //Validar que si requiere o no la bomba de concretolima
             if ($boolRequiereBomba) {
                 $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
             } else {

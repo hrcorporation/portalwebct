@@ -101,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
     //=======================================================================================================================
-    //=======================================================================================================================
     // Accion Mover el Evento
     eventDrop: function (info) {
       var form_editar = new FormData();
@@ -158,8 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const datos_form = new FormData(aceptar_programacion);
       var form_editar = new FormData();
       Swal.fire({
-        title:
-          "¿Esta seguro que desea confirmar y cargar la programacion diaria?",
+        title: "¿Esta seguro que desea confirmar y cargar la programacion diaria?",
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Si enviar",
