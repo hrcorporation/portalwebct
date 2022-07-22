@@ -60,6 +60,7 @@ if($_POST['task'] == 2){
     $t26->hora_llegadaObra($_POST['id_Remision'], $_POST['hora']);
 }
 if($_POST['task'] == 1){
+    $t26->
     $t26->hora_salidaObra($_POST['id_Remision'], $_POST['h_salida_planta']);
 }
 

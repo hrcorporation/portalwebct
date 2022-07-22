@@ -68,7 +68,48 @@ class modelo_t26 extends conexionPDO {
         // Ejecutar 
         $result = $stmt->execute();
     }
+
+    public static function  get_fecha_remision($con, $id_remision){
+        $sql = "SELECT `ct26_fecha_remi` FROM `ct26_remisiones` WHERE `ct26_id_remision` = :id_remi";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':id_remi', $id_remision);
+        if ($stmt->execute()) { // Ejecutar
+            $num_reg =  $stmt->rowCount(); // Get Numero de Registros
+            if ($num_reg > 0) { // Validar el numero de Registros
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['ct26_fecha_remi'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     
+    function unir_fecha_hora($id_remision, $hora)
+    {
+        $this->id_remision = $id_remision;
+        $this->fecha_remi = SELF::get_fecha_remision($this->con,$this->id_remision);
+        $this->hora = $hora;
+        $tiempo = $this->fecha.' '.$this->hora;
+        $this->tiempof = new Datetime($tiempo);
+        // f_hora_remi
+    }
+
+    function guardar_fecha_remi($id_remision,$tiempof)
+    {
+        $sql="UPDATE `ct26_remisiones` SET `f_hora_remi` = :fecha_remi WHERE `ct26_id_remision` = :id_remi";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':fecha_remi',$tiempof, PDO::PARAM_STR);
+        $stmt->bindParam(':id_remi',$id_remision, PDO::PARAM_INT);
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function hora_terminacion_descargue($id_remision, $hora_terminacion_descargue) {
         $this->search_id = $id_remision;
         $this->notificacion = 7;
