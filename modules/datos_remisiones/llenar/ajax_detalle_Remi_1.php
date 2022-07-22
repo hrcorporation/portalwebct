@@ -16,51 +16,61 @@ $t26_remisiones = new t26_remisiones();
 $id_conductor = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
 $t26_remisiones->validar_falta_horas_remi_conductor($id_conductor);
 
-if($_POST['task'] == 10){
-    
+if ($_POST['task'] == 10) {
+
     $persona =  //$_SESSION['N_identificacion'] . " - ".$_SESSION['nombre_usuario'];
     $persona =  $_SESSION['nombre_usuario'];
 
     $t26->RecibidoFinal($_POST['id_Remision'], $persona);
 }
 
-if($_POST['task'] == 6){
+if ($_POST['task'] == 6) {
     $t26->observaciones($_POST['id_Remision'], $_POST['obs']);
 }
 
-if($_POST['task'] == 5){
+if ($_POST['task'] == 5) {
     $check = $_POST['check'];
-    if($check == 1){
+    if ($check == 1) {
         $option = true;
         $cantidad = floatval($_POST['cant_bombeada']);
         $cantidad = floatval($_POST['cant_bombeada']);
         $tipo_bomba = $_POST['tipo_bomba'];
-    }else{
+    } else {
         $option = false;
         $cantidad = 0;
         $tipo_bomba = 0;
     }
-    
-    $t26->servicio_bomba($_POST['id_Remision'], $option, $cantidad,$tipo_bomba);
+
+    $t26->servicio_bomba($_POST['id_Remision'], $option, $cantidad, $tipo_bomba);
 }
 
-if($_POST['task'] == 7){
-    $t26->hora_llegada_planta($_POST['id_Remision'], $_POST['hora']);
+if ($_POST['task'] == 7) {
+    $fecha_remision = $t26->obtenerFechaIdRemision($_POST['id_Remision']);
+    $hora_llegada_planta = $fecha_remision . " " . $_POST['hora'];
+    $t26->hora_llegada_planta($_POST['id_Remision'], $hora_llegada_planta);
 }
 
-if($_POST['task'] == 4){
-    $t26->hora_terminacion_descargue($_POST['id_Remision'], $_POST['hora']);
+if ($_POST['task'] == 4) {
+    $fecha_remision = $t26->obtenerFechaIdRemision($_POST['id_Remision']);
+    $hora_fin_descargue = $fecha_remision . " " . $_POST['hora'];
+    $t26->hora_terminacion_descargue($_POST['id_Remision'], $hora_fin_descargue);
 }
 
-if($_POST['task'] == 3){
-    $t26->hora_inicio_descargue($_POST['id_Remision'], $_POST['hora']);
+if ($_POST['task'] == 3) {
+    $fecha_remision = $t26->obtenerFechaIdRemision($_POST['id_Remision']);
+    $hora_inicio_descargue = $fecha_remision . " " . $_POST['hora'];
+    $t26->hora_inicio_descargue($_POST['id_Remision'], $hora_inicio_descargue);
 }
 
-if($_POST['task'] == 2){
-    $t26->hora_llegadaObra($_POST['id_Remision'], $_POST['hora']);
+if ($_POST['task'] == 2) {
+    $fecha_remision = $t26->obtenerFechaIdRemision($_POST['id_Remision']);
+    $hora_llegada_obra = $fecha_remision . " " . $_POST['hora'];
+    $t26->hora_llegadaObra($_POST['id_Remision'], $hora_llegada_obra);
 }
-if($_POST['task'] == 1){
-    $t26->hora_salidaObra($_POST['id_Remision'], $_POST['h_salida_planta']);
+if ($_POST['task'] == 1) {
+    $fecha_remision = $t26->obtenerFechaIdRemision($_POST['id_Remision']);
+    $hora_salida_planta = $fecha_remision . " " . $_POST['h_salida_planta'];
+    $t26->hora_salidaObra($_POST['id_Remision'], $hora_salida_planta);
 }
 
 $php_estado = "bien";

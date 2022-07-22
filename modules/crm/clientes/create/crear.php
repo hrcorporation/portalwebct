@@ -44,27 +44,14 @@ require '../../../../vendor/autoload.php'; ?>
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for=""> Cargar Datos de la Oportunidad Negocio </label>
-                            <input type="text" name="txt_op" id="txt_op" class="form-control" placeholder="Digite el codigo de la oportunidad de negocio a cargar">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <br>
-                            <button type="button" id="btn_cargar_data" class="btn btn-warning">Cargar Datos Cliente</button>
-                        </div>
-                    </div>
-                </div>
+           
                 <div id="contenido">
                     <form method="POST" name="F_crear" id="F_crear">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label>Asesora comercial</label>
-                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
+                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_comercial() ?>
                                     </select>
                                 </div>
@@ -72,7 +59,7 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Sede</label>
-                                    <select name="sede" id="sede" class="form-control select2" required>
+                                    <select name="sede" id="sede" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_sede() ?>
                                     </select>
                                 </div>
@@ -90,25 +77,18 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Tipo PLAN MAESTRO</label>
-                                    <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2">
+                                    <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_tipo_plan_maestro() ?>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label> Forma de Pago</label>
-                                    <select class="form-control select2" style="width: 100%;" name="txt_forma_pago" id="txt_forma_pago">
-                                        <?= $t1_terceros->select_forma_pago() ?>
-                                    </select>
-                                </div>
-                            </div>
+                            
                             <div class="col">
                                 <div class="form-group">
                                     <label>Naturaleza (*)</label>
-                                    <select class="form-control select2" style="width: 100%;" name="naturaleza" id="naturaleza">
+                                    <select class="form-control select2" style="width: 100%;" name="naturaleza" id="naturaleza" required="true">
                                         <?= $t1_terceros->select_naturaleza() ?>
                                     </select>
                                 </div>
@@ -118,7 +98,7 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="col">
                                 <div class="form-group">
                                     <label> Tipo Documento (*)</label>
-                                    <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required>
+                                    <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required="true">
                                         <?= $t1_terceros->select_tipo_documento() ?>
                                     </select>
                                 </div>
@@ -126,7 +106,7 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Numero de documento (*)</label>
-                                    <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="">
+                                    <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="" required="true">
                                 </div>
                             </div>
                             <div id="boxPJ1" class="col">
@@ -178,13 +158,13 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="col">
                                 <div class="form-group">
                                     <label> E- Mail </label>
-                                    <input type="text" name="tbx_email" id="tbx_email" class="form-control" placeholder="">
+                                    <input type="text" name="tbx_email" id="tbx_email" class="form-control" placeholder="" required="false">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label> Telefono </label>
-                                    <input type="text" name="tbx_telefono" id="tbx_telefono" class="form-control" placeholder="">
+                                    <input type="text" name="tbx_telefono" id="tbx_telefono" class="form-control" placeholder="" required="true">
                                 </div>
                             </div>
                             <div class="col">
@@ -194,14 +174,15 @@ require '../../../../vendor/autoload.php'; ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="blq_cupo">
+                        <div class="row" >
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Cupo Cliente</label>
-                                    <input type='text' class='form-control ' name='txt_cupo' onkeyup='format(this)' value="0" required />
+                                    <label>Direccion</label>
+                                    <input type='text' class='form-control ' name='txt_direccion' id="txt_direccion"  />
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="container">
                                 <div class="col">

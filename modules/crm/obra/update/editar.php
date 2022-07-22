@@ -60,6 +60,8 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                             $id_comuna = $fila_obra['ct5_id_comuna'];
                             $segmento = $fila_obra['ct5_segmento'];
                             $barrio = $fila_obra['ct5_barrio'];
+                            $latitud = $fila_obra['latitud'];
+                            $longitud = $fila_obra['longitud'];
                         }
                         ?>
                         <input type="hidden" value="<?php echo $id_obra ?>" name="id_obra" id="id_obra">
@@ -135,6 +137,21 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                         <div class="form-group">
                                             <label>Direccion</label>
                                             <input name="direccion" id="direccion" type="text" class="form-control" value="<?= $direccion_obra ?> ">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Latitud</label>
+                                            <input type="text" class="form-control" name="txt_latitud" id="txt_latitud" value="<?php echo $latitud; ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Longitud</label> 
+                                            <input type="text" class="form-control" name="txt_longitud" id="txt_longitud" value="<?php echo $longitud; ?>" />
+
                                         </div>
                                     </div>
                                 </div>

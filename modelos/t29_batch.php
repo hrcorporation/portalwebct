@@ -250,6 +250,20 @@ return $stmt;
 
 }
 
+function crear_consolidado_remision_para_batches($id_batch, $consolidado_remi){
+  $sql = "UPDATE `ct29_batch` SET `consolidado_remi`= :consolidado_remi WHERE `ct29_Id` = :id_batch";
+  $stmt = $this->con->prepare($sql);
+  $stmt->bindParam(':consolidado_remi', $consolidado_remi, PDO::PARAM_STR);
+  $stmt->bindParam(':id_batch',$id_batch, PDO::PARAM_INT);
+  if($stmt->execute()){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+
+
 function select_batch_remi($remision){
 
   $this->id = intval($remision);
@@ -257,7 +271,7 @@ $id_planta = SELF::select_ultimo($this->con,intval($remision));
 
   $sql = "SELECT `ct29_Id`,ct29_estado, `ct29_Remision`, `ct29_Fecha`, `ct29_Hora`,`ct29_CodigoFormula`, `ct29_NombreFormula`, `ct29_DescripcionFormula`,
   `ct29_MetrosCubicos`, `ct29_IdMixer`,`ct29_MixerDriver`,`ct29_IdCliente`,`ct29_NIT`,`ct29_DireccionCliente`,`ct29_IdObra`,
-  `ct29_CodigoObra`,`ct29_DireccionObra`, `ct29_NumeroSello`,`ct29_OBSERVACIONES`,`ct29_IdPlanta`, `ct29_Responsable`,`ct29_NumeroCilindro`, `ct29_Asentamiento` FROM `ct29_batch` WHERE `ct29_Remision` = :remision  AND ct29_IdPlanta = :id_planta  ORDER BY `ct29_batch`.`ct29_Id` DESC ";
+  `ct29_CodigoObra`,`ct29_DireccionObra`, `ct29_NumeroSello`,`ct29_OBSERVACIONES`,`ct29_IdPlanta`, `ct29_Responsable`,`ct29_NumeroCilindro`, `ct29_Asentamiento` FROM `ct29_batch` WHERE `ct29_Remision` = :remision  AND ct29_IdPlanta = :id_planta  ORDER BY `ct29_batch`.`ct29_Id` ASC ";
 //Prepara la conexion
   $stmt = $this->con->prepare($sql);
 // Asignar Datos ARRAY => SQL

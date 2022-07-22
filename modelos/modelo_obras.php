@@ -275,6 +275,23 @@ class modelo_obras extends conexionPDO
     }
 
 
+    function update_latitud_longitud($id_obra, $latitud, $longitud)
+    {
+        $this->latitud = $latitud;
+        $this->longitud = $longitud;
+        $this->id_obra = intval($id_obra);
+       
+        $sql = "UPDATE `ct5_obras` SET latitud = :latitud , longitud = :longitud  WHERE `ct5_IdObras` = :id_obra";
+        $stmt = $this->con->prepare($sql); // Preparar la conexion
+        $stmt->bindParam(':latitud', $this->latitud, PDO::PARAM_STR);
+        $stmt->bindParam(':longitud', $this->longitud, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_INT);
+        if($result = $stmt->execute())
+        {
+        }else{
+            return false;
+        }
+    }
 
     function update_ciudad_departamento($id_obra, $id_departamento, $id_ciudad)
     {

@@ -32,7 +32,7 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
     }else{
         $id_tipo_plan_maestro = 3;
     }
-    $formapago = htmlspecialchars($_POST['txt_forma_pago']);
+    $formapago = null;
     $naturaleza = htmlspecialchars($_POST['naturaleza']);
     $tipo_documento = htmlspecialchars($_POST['tbx_tipoDocumento']);
     $numero_documento = htmlspecialchars($_POST['tbx_NumeroDocumento']);
@@ -52,6 +52,8 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
     $email = htmlspecialchars($_POST['tbx_email']);
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);
+    $direccion = htmlspecialchars($_POST['txt_direccion']);
+
     // $saldo_cliente = htmlspecialchars($_POST['saldo_cliente']);
 
     switch ($formapago) {
@@ -83,7 +85,7 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
     $x = false;
 
     if ($validarExistencias) {
-        if($t1_terceros->editar_cliente($id_cliente, $TipoTercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $formapago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera)){
+        if($t1_terceros->editar_cliente($id_cliente, $TipoTercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $formapago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera,$direccion)){
             $php_estado = true;
         }else{
             $errores = "Hubo un error al guardar";

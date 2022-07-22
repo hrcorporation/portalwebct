@@ -20,6 +20,8 @@ $datos = $t1_terceros->search_tercero_custom_id($id);
 
 while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
     $nit = $fila['ct1_NumeroIdentificacion'];
+    $tipo_cliente = $fila['ct1_tipo_cliente'];
+
     $id_asesora = $fila['ct1_id_asesora'];
     $id_sede = $fila['ct1_id_sede'];
     $tipo_plan_maestro = $fila['ct1_tipo_plan_maestro'];
@@ -34,17 +36,11 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
     $telefono = $fila['ct1_Telefono'];
     $celular = $fila['ct1_Celular'];
     $email = $fila['ct1_CorreoElectronico'];
+    $direccion = $fila['ct1_Direccion'];
 
     // $tipo_documento = $fila['ct1_TipoIdentificacion'];
 }
-$datos_cliente_int = $t3_clientes->get_datos_cliente($id);
 
-foreach ($datos_cliente_int as $key) {
-    $forma_pago = $key['ct3_ModalidadPago'];
-    $cupo_cliente = $key['ct3_Cupo'];
-    $tipo_cliente = $key['ct3_TipoCliente'];
-    $saldo_cliente = $key['ct3_SaldoCartera'];
-}
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -80,21 +76,22 @@ foreach ($datos_cliente_int as $key) {
             </div>
             <div class="card-body">
                 <div id="contenido">
-                    <form method="POST" name="F_editar" id="F_editar">
+                <form method="POST" name="F_editar" id="F_editar">
+                    
                         <input type="hidden" name="id_cliente" id="id_cliente" value="<?php echo $id; ?>" />
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Asesora comercial:</label>
-                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
+                                    <label>Asesora comercial</label>
+                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required="true">
                                         <?php echo $op->select_comercial($id_asesora) ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Sede:</label>
-                                    <select name="sede" id="sede" class="form-control select2" required>
+                                    <label>Sede</label>
+                                    <select name="sede" id="sede" class="form-control select2" required="true">
                                         <?php echo $op->select_sede($id_sede) ?>
                                     </select>
                                 </div>
@@ -103,7 +100,7 @@ foreach ($datos_cliente_int as $key) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Tipo Cliente:</label>
+                                    <label>Tipo Cliente</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required="true">
                                         <?php echo $op->select_tipo_cliente($tipo_cliente) ?>
                                     </select>
@@ -111,26 +108,19 @@ foreach ($datos_cliente_int as $key) {
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Tipo PLAN MAESTRO:</label>
-                                    <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2">
+                                    <label>Tipo PLAN MAESTRO</label>
+                                    <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2" required="true">
                                         <?php echo $op->select_tipo_plan_maestro($tipo_plan_maestro) ?>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
+                            
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Forma de Pago:</label>
-                                    <select class="form-control select2" style="width: 100%;" name="txt_forma_pago" id="txt_forma_pago">
-                                        <?= $t1_terceros->select_forma_pago($forma_pago) ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Naturaleza: (*)</label>
-                                    <select class="form-control select2" style="width: 100%;" name="naturaleza" id="naturaleza">
+                                    <label>Naturaleza (*)</label>
+                                    <select class="form-control select2" style="width: 100%;" name="naturaleza" id="naturaleza" required="true">
                                         <?= $t1_terceros->select_naturaleza($naturaleza) ?>
                                     </select>
                                 </div>
@@ -139,24 +129,23 @@ foreach ($datos_cliente_int as $key) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Tipo Documento: (*)</label>
-                                    <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required>
-                                        <?= $t1_terceros->select_tipo_documento($tipo_documento) ?>
+                                    <label> Tipo Documento (*)</label>
+                                    <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required="true">
+                                    <?= $t1_terceros->select_tipo_documento($tipo_documento) ?>
+                                        
                                     </select>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Numero de documento: (*)</label>
-                                    <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="" value="<?php print_r($nit); ?>" />
+                                    <label>Numero de documento (*)</label>
+                                    <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="" required="true" value="<?php print_r($nit); ?>">
                                 </div>
                             </div>
-                            <div id="boxPJ1">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>dv </label>
-                                        <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="9" placeholder="" value="<?php print_r($dv); ?>" />
-                                    </div>
+                            <div id="boxPJ1" class="col">
+                                <div class="form-group">
+                                    <label>dv </label>
+                                    <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="9" placeholder=""  value="<?php print_r($dv); ?>">
                                 </div>
                             </div>
                         </div>
@@ -164,8 +153,8 @@ foreach ($datos_cliente_int as $key) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Razon social: (*)</label>
-                                        <input type="text" name="tbx_RazonSocial" id="tbx_RazonSocial" class="form-control" placeholder="" value="<?php print_r($razon_social); ?>" />
+                                        <label> Razon social (*)</label>
+                                        <input type="text" name="tbx_RazonSocial" id="tbx_RazonSocial" class="form-control" placeholder="" value="<?php print_r($razon_social); ?>">
                                     </div>
                                 </div>
                             </div>
@@ -174,26 +163,26 @@ foreach ($datos_cliente_int as $key) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Primer Nombre: (*)</label>
-                                        <input type="text" name="tbx_pnombre1" id="tbx_pnombre1" class="form-control" placeholder="" value="<?php print_r($nombre1); ?>" />
+                                        <label> Primer Nombre (*)</label>
+                                        <input type="text" name="tbx_pnombre1" id="tbx_pnombre1" class="form-control" placeholder=""  value="<?php print_r($nombre1); ?>" >
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Segundo Nombre:</label>
-                                        <input type="text" name="tbx_pnombre2" id="tbx_pnombre2" class="form-control" placeholder="" value="<?php print_r($nombre2); ?>" />
+                                        <label> Segundo Nombre</label>
+                                        <input type="text" name="tbx_pnombre2" id="tbx_pnombre2" class="form-control" placeholder=""  value="<?php print_r($nombre2); ?>" >
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Primer Apellido: (*)</label>
-                                        <input type="text" name="tbx_papellido1" id="tbx_papellido1" class="form-control" placeholder="" value="<?php print_r($apellido1); ?>" />
+                                        <label> Primer Apellido (*)</label>
+                                        <input type="text" name="tbx_papellido1" id="tbx_papellido1" class="form-control" placeholder=""  value="<?php print_r($apellido1); ?>" >
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Segundo Apellido:</label>
-                                        <input type="text" name="tbx_papellido2" id="tbx_papellido2" class="form-control" placeholder="" value="<?php print_r($apellido2); ?>" />
+                                        <label> Segundo Apellido</label>
+                                        <input type="text" name="tbx_papellido2" id="tbx_papellido2" class="form-control" placeholder="" value="<?php print_r($apellido2); ?>" >
                                     </div>
                                 </div>
                             </div>
@@ -201,44 +190,47 @@ foreach ($datos_cliente_int as $key) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label> E- Mail: </label>
-                                    <input type="text" name="tbx_email" id="tbx_email" class="form-control" placeholder="" value="<?php print_r($email); ?> " />
+                                    <label> E- Mail </label>
+                                    <input type="text" name="tbx_email" id="tbx_email" class="form-control" placeholder="" required="false"  value="<?php print_r($email); ?>" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Telefono: </label>
-                                    <input type="text" name="tbx_telefono" id="tbx_telefono" class="form-control" placeholder="" value="<?php print_r($telefono); ?>" />
+                                    <label> Telefono </label>
+                                    <input type="text" name="tbx_telefono" id="tbx_telefono" class="form-control" placeholder="" required="true"  value="<?php print_r($telefono); ?>" >
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Celular: </label>
-                                    <input type="text" name="tbx_celular" id="tbx_celular" class="form-control" data-inputmask="'alias': 'numeric', 'groupSeparator': ',' , 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'" data-mask value="<?php print_r($celular); ?>">
+                                    <label> Celular </label>
+                                    <input type="text" name="tbx_celular" id="tbx_celular" class="form-control" data-inputmask="'alias': 'numeric', 'groupSeparator': ',' , 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'"  data-mask value="<?php print_r($celular); ?>">
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="blq_cupo">
+                        <div class="row" >
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Cupo Cliente:</label>
-                                    <input type='text' class='form-control ' name='txt_cupo' onkeyup='format(this)' value="<?php print_r($cupo_cliente) ?>" />
+                                    <label>Direccion</label>
+                                    <input type='text' class='form-control ' name='txt_direccion' id="txt_direccion"  value="<?php echo $direccion; ?>"  />
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ACTUALIZAR CLIENTE </button>
+                            <div class="container">
+                                <div class="col">
+                                    <div class="col align-self-center">
+                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ACTUALIZAR CLIENTE </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ADICIONAR VISITAS CLIENTES </button>
-                                </div>
+                                <br><br>
                             </div>
                         </div>
                     </form>
+
+
+
+               
                 </div>
             </div>
             <div class="card-footer"></div>
@@ -415,52 +407,7 @@ foreach ($datos_cliente_int as $key) {
             <!-- /.modal-content -->
         </div>
         <!-- fin -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Registrar consignacion</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-                </div>
-            </div>
-            <div class="card-body">
-                <div id="contenido">
-                    <form id="form_importar_consignacion_cliente" name="form_importar_consignacion_cliente" method="post">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label> Tipo Documento:</label>
-                                        <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required>
-                                            <?= $t1_terceros->select_tipo_documento($tipo_documento) ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Numero de documento:</label>
-                                        <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="" value="<?php print_r($nit); ?>" />
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Seleccionar Archivo:</label>
-                                        <!-- input para seleccionar el archivo -->
-                                        <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="form-control" name="importar_consignaciones" id="importar_consignaciones" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="btnImportar"> Guardar </button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- /.card-body -->
-        </div>
+        
         <!-- /.card -->
     </section>
     <!-- /.content -->

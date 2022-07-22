@@ -68,7 +68,48 @@ class modelo_t26 extends conexionPDO {
         // Ejecutar 
         $result = $stmt->execute();
     }
+
+    public static function  get_fecha_remision($con, $id_remision){
+        $sql = "SELECT `ct26_fecha_remi` FROM `ct26_remisiones` WHERE `ct26_id_remision` = :id_remi";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':id_remi', $id_remision);
+        if ($stmt->execute()) { // Ejecutar
+            $num_reg =  $stmt->rowCount(); // Get Numero de Registros
+            if ($num_reg > 0) { // Validar el numero de Registros
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['ct26_fecha_remi'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     
+    function unir_fecha_hora($id_remision, $hora)
+    {
+        $this->id_remision = $id_remision;
+        $this->fecha_remi = SELF::get_fecha_remision($this->con,$this->id_remision);
+        $this->hora = $hora;
+        $tiempo = $this->fecha.' '.$this->hora;
+        $this->tiempof = new Datetime($tiempo);
+        // f_hora_remi
+    }
+
+    function guardar_fecha_remi($id_remision,$tiempof)
+    {
+        $sql="UPDATE `ct26_remisiones` SET `f_hora_remi` = :fecha_remi WHERE `ct26_id_remision` = :id_remi";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':fecha_remi',$tiempof, PDO::PARAM_STR);
+        $stmt->bindParam(':id_remi',$id_remision, PDO::PARAM_INT);
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function hora_terminacion_descargue($id_remision, $hora_terminacion_descargue) {
         $this->search_id = $id_remision;
         $this->notificacion = 7;
@@ -190,6 +231,60 @@ class modelo_t26 extends conexionPDO {
         }
 
         return $razon_social;
+    }
+
+
+    public function obtenerFechaIdRemision($id_remision)
+    {
+        $this->id = $id_remision;
+        // sentencia SQL
+        $sql = "SELECT `ct26_fecha_remi` FROM `ct26_remisiones` WHERE `ct26_id_remision` =   :id_remision";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_remision', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['ct26_fecha_remi'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function actualizarFecha($hora_salida, $fecha, $hora){
+        $sql = "UPDATE `ct26_remisiones` SET `ct26_hora_salida_planta` = :hora_salida_planta WHERE `ct26_fecha_remi` = :fecha AND `ct26_hora_salida_planta` = :hora";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':hora_salida_planta', $hora_salida, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+        $stmt->bindParam(':hora', $hora, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getFechaHora(){
+        $sql = "SELECT `ct26_fecha_remi`, `ct26_hora_salida_planta` FROM `ct26_remisiones`";
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['ct26_fecha_remi'] = $fila['ct26_fecha_remi'];
+                    $datos['ct26_hora_salida_planta'] = $fila['ct26_hora_salida_planta'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            }
+        }
+        return false;
     }
 
 }

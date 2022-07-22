@@ -32,7 +32,7 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
         $id_tipo_plan_maestro = "";
     }
     
-    $forma_pago = $_POST['txt_forma_pago'];
+    $forma_pago = null;
     $naturaleza = htmlspecialchars($_POST['naturaleza']);
     $tipo_documento = htmlspecialchars($_POST['tbx_tipoDocumento']);
     $numero_documento = htmlspecialchars($_POST['tbx_NumeroDocumento']);
@@ -51,6 +51,7 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
     $email = htmlspecialchars($_POST['tbx_email']);
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);
+    $direccion = htmlspecialchars($_POST['txt_direccion']);
     switch ($forma_pago) {
         case 1:
             $cupo_cliente = htmlspecialchars($_POST['txt_cupo']);
@@ -70,7 +71,7 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
     $municipio = null;
     $genero = null;
     $fecha_naci = null;
-    $direccion = null;
+    
 
     $usuario = $numero_documento;
     $C_Pass = md5($numero_documento);
@@ -82,7 +83,7 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
     $validarExistencias = $general_modelos->existencia('ct1_terceros', 'ct1_NumeroIdentificacion', $numero_documento);
     $x = false;
     if ($validarExistencias) {
-        if ($t1_terceros->crear_cliente($id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera)) {
+        if ($t1_terceros->crear_cliente($id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera,$direccion)) {
             $php_estado = true;
         } else {
             $errores = "Hubo un error al guardar" .  $resultado;

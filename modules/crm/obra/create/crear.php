@@ -114,6 +114,21 @@ $modelo_obras = new modelo_obras();
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Latitud</label>
+                                            <input type="text" class="form-control" name="txt_latitud" id="txt_latitud" />
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Longitud</label>
+                                            <input type="text" class="form-control" name="txt_longitud" id="txt_longitud" />
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>

@@ -42,6 +42,8 @@ if (isset($_POST['txt_remision_batch']) && !empty($_POST['txt_remision_batch']))
 
     if ($datos_remision) {
         foreach ($datos_remision as $datos) {
+
+            $id_batches[] = $datos['ct29_Id'];
             //$remision = $fila1['ct29_Remision'];
             $num_remi = $datos['ct29_Remision'];
             $id_planta = $datos['ct29_IdPlanta'];
@@ -66,6 +68,14 @@ if (isset($_POST['txt_remision_batch']) && !empty($_POST['txt_remision_batch']))
            
         }
 
+        $consolidado_remi = $id_planta . ' - '. $numero_remi;
+
+        if($id_batches){
+            
+            foreach ($id_batches as $key) {
+                $t29_batch->crear_consolidado_remision_para_batches($key, $consolidado_remi);
+            }
+        }
 
         $codigo_remi = intval($num_remi);
         $razon_social = $nombre_cliente_remi;

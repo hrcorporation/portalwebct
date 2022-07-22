@@ -37,7 +37,7 @@ $t1_terceros = new t1_terceros();
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">TABLA DE LAS OPORTUNIDADES DE NEGOCIO</h3>
+                <h3 class="card-title">Explorar las Oportunidades de Negocio</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -90,9 +90,19 @@ $t1_terceros = new t1_terceros();
 
 <script>
     $('.select2').select2();
+    var cod = $('#txt_cod_oportunidad').val();
+    var nombre = $('#txd_cliente').val();
+    var table;
+    table = datatable_oportunidad_negocio(cod, nombre);
+    setInterval(function() {
+        table.ajax.reload(null, false);
+    }, 5000);
 
     function datatable_oportunidad_negocio(cod, nombre) {
         var table = $('#table_op').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            },
             'searching': true,
             "processing": true,
             "scrollX": true,

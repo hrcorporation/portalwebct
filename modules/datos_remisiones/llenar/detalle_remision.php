@@ -1,36 +1,25 @@
 <?php include '../../../layout/validar_session3.php' ?>
-
 <?php
 require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php'; ?>
-
 <?php require 'modelo_t26.php'; ?>
-
 <?php
 $t26_remisiones = new t26_remisiones();
 $php_clases = new php_clases();
 $modelo_t26 = new modelo_t26();
-
 
 $id = $php_clases->HR_Crypt($_GET['id'], 2);
 $nombre_obra = $php_clases->HR_Crypt($_GET['ob'], 2);
 
 $id_conductor = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
 
-
 $t26_remisiones->validar_falta_horas_remi_conductor($id_conductor);
 
 $result = $t26_remisiones->get_remision_id($id);
 
-
-
 //$datos_remision = $get_datos->get_all($conexion_bd, 'ct26_remisiones', 'ct26_id_remision', $id);
-
 while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
-
-
-
     $date = new DateTime($fila['ct26_fecha_remi']);
     $datef = $date->format("d-m-Y");
     $codigo_remision = $fila['ct26_codigo_remi'];
@@ -39,7 +28,7 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
 
     $Hora_salida_planta = $fila['ct26_hora_salida_planta'];
     if (empty($Hora_salida_planta) || is_null($Hora_salida_planta)) {
-        $Hora_salida_planta = date('H:i:s');
+        $Hora_salida_planta = date("H:i:s");
     }
 
     $Hora_llegada_obra = $fila['ct26_hora_llegada_obra'];
@@ -56,12 +45,11 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
     if (empty($Hora_terminacion_descargue) || is_null($Hora_terminacion_descargue)) {
         $Hora_terminacion_descargue = date('H:i:s');
     }
+
     $Hora_llegada_planta = $fila['ct26_hora_llegada_planta'];
     if (empty($Hora_llegada_planta) || is_null($Hora_llegada_planta)) {
         $Hora_llegada_planta = date('H:i:s');
     }
-
-
 
     $nombre_recibido = $fila['ct26_recibido'];
     $fecha_recibido = $fila['ct26_fechaRecibido'];
@@ -74,7 +62,6 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
     $observaciones = $fila['ct26_observaciones'];
 
     $tipo_bomba = $fila['ct26_tipo_bomba'];
-
 
     //$notificacion = 6;
 }
@@ -94,11 +81,11 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -111,12 +98,10 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">ENTREGA DE PRODUCTO</h3>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                 </div>
             </div>
             <div class="card-body">
@@ -149,7 +134,6 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                             </div>
                         </div>
                     </div>
-
                     <hr>
                     <!-- Main node for this component -->
                     <div class="timeline">
@@ -157,19 +141,13 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                         <div class="time-label">
                             <span class="bg-green"><?php echo $datef ?></span>
                         </div>
-
                         <!-- Aceptacion del Producto -->
                         <div id="bloque_1"></div>
                         <!-- Fin Aceptacion del Producto -->
-
                         <?php
                         include 'notificacion.php';
                         ?>
-
-
                     </div>
-
-
                     <hr>
                 </div>
             </div>
@@ -177,27 +155,20 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
 </div>
 <!-- /.card-body -->
 <div class="card-footer">
-
 </div>
 <!-- /.card-footer-->
 </div>
 <!-- /.card -->
-
 </section>
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
 <?php include '../../../layout/footer/footer3.php' ?>
-
 <script>
     $(document).ready(function(e) {
-
-        //
         $("#b_llegada_planta").click(function() {
             var hora = $("#ch_llegada_planta").val();
             var id_remision = <?php echo $id ?>;
-
             $.ajax({
                 url: "ajax_detalle_Remi_1.php",
                 type: "POST",
@@ -213,16 +184,12 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
-
             });
         });
-
-
 
         $("#b_observaciones").click(function() {
             var obs = $("#c_observaciones").val();
             var id_remision = <?php echo $id ?>;
-
             $.ajax({
                 url: "ajax_detalle_Remi_1.php",
                 type: "POST",
@@ -238,15 +205,11 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
-
             });
         });
 
 
         $("#b_bomba").click(function() {
-
-
-
             if ($("#check_si").is(':checked')) {
                 var opc = 1;
             } else {
@@ -260,12 +223,8 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                 var tipo_bomba = 2;
             }
 
-
             var cant_bombeada = $("#c_cantidad_bombeada").val();
-
             var id_remision = <?php echo $id ?>;
-
-
             $.ajax({
                 url: "ajax_detalle_Remi_1.php",
                 type: "POST",
@@ -273,20 +232,16 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                     task: 5,
                     id_Remision: id_remision,
                     check: opc,
-
                     cant_bombeada: cant_bombeada,
                     tipo_bomba: tipo_bomba,
-
                 },
                 success: function(response) {
-
                     toastr.success('el servicio de bombe fue guardado correctamente');
                     location.reload();
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
-
             });
         });
 
@@ -309,7 +264,6 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
-
             });
         });
 
@@ -317,7 +271,6 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
         $("#b_descargueProduct").click(function() {
             var hora = $("#h_descargueProduct").val();
             var id_remision = <?php echo $id ?>;
-
             $.ajax({
                 url: "ajax_detalle_Remi_1.php",
                 type: "POST",
@@ -333,16 +286,13 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
-
             });
         });
 
 
         $("#b_llegadaVehiculo").click(function() {
             var hora = $("#ch_llegadaObra").val();
-
             var id_remision = <?php echo $id ?>;
-
             $.ajax({
                 url: "ajax_detalle_Remi_1.php",
                 type: "POST",
@@ -358,7 +308,6 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
-
             });
         });
 
@@ -367,7 +316,6 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
         $("#bh_salida_planta").click(function() {
             var hora = $("#h_salida_planta").val();
             var id_remision = <?php echo $id ?>;
-
             $.ajax({
                 url: "ajax_detalle_Remi_1.php",
                 type: "POST",
@@ -383,7 +331,6 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
-
             });
         });
 
@@ -391,7 +338,6 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
         $("#f_recibido").on('submit', (function(e) {
             var form = new FormData(this);
             var id_remision = <?php echo $id ?>;
-
             form.append('task', 10);
             form.append('id_Remision', id_remision);
             e.preventDefault();
@@ -411,14 +357,6 @@ while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
                 },
             });
         }));
-
-
-
-
-
-
-
-
     });
 </script>
 

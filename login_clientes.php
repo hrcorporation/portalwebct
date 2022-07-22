@@ -22,10 +22,10 @@ if (isset($_POST['usuario']) && !empty($_POST['usuario']) && isset($_POST['contr
     //$datos = false;
     $validacion_autenticacion = false;
 
-
-    if (!$datosuser = $t1_terceros->autenticacion_tercero($php_usuario, $php_password)) {
-        $php_mensaje =  "Usuario o Contraseña Incorrectos12";
-    } else {
+    
+    if(!$datosuser = $t1_terceros->autenticacion_tercero($php_usuario,$php_password) ){
+        $php_mensaje =  "Usuario o Contraseña Incorrectos";
+    }else{
         $datos_user = $t1_terceros->get_datos_terceros_user($datosuser);
         foreach ($datos_user as $valor) {
             $id_usuario = $valor['ct1_IdTerceros'];
