@@ -168,22 +168,31 @@ class pedidos extends conexionPDO
     //Select de los productos
     public function select_productos($id = null)
     {
-        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione producto</option>";
+        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el producto</option>";
 
-        $sql = "SELECT * FROM `ct4_productos`";
+        $sql = "SELECT * FROM `ct65_precio_base` WHERE `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-
         if ($stmt->execute()) {
-            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if ($id == $fila['ct4_Id_productos']) {
-                    $selection = "selected='true'";
-                } else {
-                    $selection = " ";
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if ($id == $fila['id']) {
+                        $selection = " selected='true' ";
+                    } else {
+                        $selection = "";
+                    }
+                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['codigo_producto'] . " - " . $fila['nombre_producto'] . ' </option>';
                 }
-                $option .= '<option value="' . $fila['ct4_Id_productos'] . '" ' . $selection . ' >' . $fila['ct4_CodigoSyscafe'] . " - " . $fila['ct4_Descripcion'] . ' </option>';
+            } else {
+                $option = "<option  selected='true' disabled='disabled'> No hay productos cargados </option>";
             }
+        } else {
+            $option = "<option  selected='true' disabled='disabled'> Error al cargar los datos :(</option>";
         }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
         return $option;
     }
     //Select de las bombas
@@ -593,7 +602,7 @@ class pedidos extends conexionPDO
         $this->PDO->closePDO();
     }
     //Registrar el producto a un pedido.
-    public function crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $precio_total_pedido, $observaciones)
+    public function crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $saldo_m3, $precio_total_pedido, $observaciones)
     {
         $this->status = 1;
         $this->id_pedido = $id_pedido;
@@ -605,10 +614,11 @@ class pedidos extends conexionPDO
         $this->precio_base = $precio_base;
         $this->precio_m3 = $precio_m3;
         $this->cantidad_m3 = $cantidad_m3;
+        $this->saldo_m3 = $saldo_m3;
         $this->precio_total_pedido = $precio_total_pedido;
         $this->observaciones = $observaciones;
 
-        $sql = "INSERT INTO `ct65_pedidos_has_precio_productos`(`id_pedido`, `status`, `id_producto`, `codigo_producto`, `nombre_producto`, `porcentaje_descuento`, `id_precio_base`, `precio_base`, `precio_m3`, `cantidad_m3`, `precio_total_pedido`, `observaciones`) VALUES  (:id_pedido, :status, :id_producto, :codigo_producto, :nombre_producto, :porcentaje_descuento, :id_precio_base, :precio_base, :precio_m3, :cantidad_m3, :precio_total_pedido, :observaciones)";
+        $sql = "INSERT INTO `ct65_pedidos_has_precio_productos`(`id_pedido`, `status`, `id_producto`, `codigo_producto`, `nombre_producto`, `porcentaje_descuento`, `id_precio_base`, `precio_base`, `precio_m3`, `cantidad_m3`, `saldo_m3`, `precio_total_pedido`, `observaciones`) VALUES  (:id_pedido, :status, :id_producto, :codigo_producto, :nombre_producto, :porcentaje_descuento, :id_precio_base, :precio_base, :precio_m3, :cantidad_m3, :saldo_m3, :precio_total_pedido, :observaciones)";
 
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $this->id_pedido, PDO::PARAM_STR);
@@ -621,6 +631,7 @@ class pedidos extends conexionPDO
         $stmt->bindParam(':precio_base', $this->precio_base, PDO::PARAM_STR);
         $stmt->bindParam(':precio_m3', $this->precio_m3, PDO::PARAM_STR);
         $stmt->bindParam(':cantidad_m3', $this->cantidad_m3, PDO::PARAM_STR);
+        $stmt->bindParam(':saldo_m3', $this->saldo_m3, PDO::PARAM_STR);
         $stmt->bindParam(':precio_total_pedido', $this->precio_total_pedido, PDO::PARAM_STR);
         $stmt->bindParam(':observaciones', $this->observaciones, PDO::PARAM_STR);
 

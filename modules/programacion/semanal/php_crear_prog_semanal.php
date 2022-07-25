@@ -71,7 +71,7 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     }
 
     $metrosCubicos = ($decCantidad / $numeroViajesAp);
-    $dtmFrecuenciaNueva = $ClsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
+    $dtmFrecuenciaNueva = $ClsProgramacionSemanal->multiplicar_horas(($numeroViajesAp - 1), $dtmFrecuencia);
     $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmFechaInicio, $dtmFrecuenciaNueva);
     //Validar que tome bien los parametros y guarde correctamente la programacion.
     if ($ClsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {

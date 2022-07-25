@@ -139,7 +139,7 @@ if (isset($_POST['task'])) {
                 $dtmFrecuenciaNueva = $ClsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
                 $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmFechaInicial, $dtmFrecuenciaNueva);
 
-                if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $intCantidad, $metrosCubicos, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
+                if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $metrosCubicos, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
                     //Si pasa la validacion se retorna verdadero(true)
                     $php_estado = true;
                 } else {

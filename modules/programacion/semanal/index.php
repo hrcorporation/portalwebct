@@ -46,10 +46,10 @@
             <div class="card-body">
                 <div class="form-group">
                     <span class="badge bg-secondary" title='Programaciones sin Confirmar, cuando el cliente registra en la Base de datos.'><?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar</span>
-                    <span class="badge bg-warning" title='Programaciones por cargar, cuando el cliente confirma y envia al area de programacion.'><?= $intCantidadProgramacionPorCargar ?> - Por Cargar</span>
+                    <span class="badge bg-warning" title='Programaciones por cargar, cuando el cliente confirma y envia al area de programacion.'><?= $intCantidadProgramacionPorCargar ?> - Por Confirmar</span>
                     <span class="badge bg-info" title='Programaciones confirmadas por el area de programacion.'><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
                     <span class="badge bg-success" title='Programaciones ejecutadas y anexadas a la programacion diaria.'><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
-                    <button style="position: absolute; right: 69%; top: 12.2%" type="button" class="btn btn-success" id="btnModalConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_cargar_programacion"> Cargar programación </button>
+                    <button style="position: absolute; right: 65%; top: 12.2%" type="button" class="btn btn-success" id="btnModalConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_cargar_programacion"> Confirmar programación </button>
                     <button style="position: absolute; right: 25%; top: 12.2%" type="button" class="btn btn-warning" id="btnModalCambiarHoraLimite" title='Cambiar la hora limite para modificar la programacion el dia sabado' data-toggle="modal" data-target="#modal_cambiar_hora"> Cambiar hora limite </button>
                 </div>
                 <div id='calendar'></div>
@@ -75,11 +75,40 @@
 <?php include '../../../layout/footer/footer3.php' ?>
 <script src="calendar.js"> </script>
 <script>
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
     $(function() {
+        $(document).ready(function() {
+            $('.select2').select2();
+
+        });
+
         $("#volumen").hide();
+
+        $('#txtCant').on('change', function() {
+            //Ajax 
+            var formData = new FormData();
+            formData.append('pedido', $("#cbxPedido").val());
+            formData.append('producto', $("#cbxProducto").val());
+            formData.append('cantidad', $("#txtCant").val());
+            $.ajax({
+                url: "validar_cantidad.php", // URL
+                type: "POST", // Metodo HTTP
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente');
+                    } else {
+                        toastr.warning('La cantidad excede los metros cubicos que estan en el pedido');
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
 
         $('#cbxCliente').on('change', function() {
             //Ajax 
@@ -333,13 +362,13 @@
             });
         }));
 
-        $('#txtCant').on('change', function() {
-            $('#modal_informativo').modal('show');
-        });
+        // $('#txtCant').on('change', function() {
+        //     $('#modal_informativo').modal('show');
+        // });
 
-        $('#txtCantEditar').on('change', function() {
-            $('#modal_informativo').modal('show');
-        });
+        // $('#txtCantEditar').on('change', function() {
+        //     $('#modal_informativo').modal('show');
+        // });
 
         $("#form_cambiar_hora").on('submit', (function(e) {
             e.preventDefault();

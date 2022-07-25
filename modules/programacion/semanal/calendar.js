@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let form_crear_programacion = document.querySelector("#form_crear_programacion");
   let form_show_event = document.querySelector("#form_mostrar_programacion");
   let aceptar_programacion = document.querySelector("#form_confirmar_programacion");
-  var calendarEl = document.getElementById("calendar"); // ID = calendar
+  var calendarEl = document.getElementById("calendar");
+  $('.select2').select2(); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
     // Configuracion

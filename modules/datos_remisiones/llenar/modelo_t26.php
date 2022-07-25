@@ -257,12 +257,34 @@ class modelo_t26 extends conexionPDO {
         }
     }
 
-    public function actualizarFecha($hora_salida, $fecha, $hora){
-        $sql = "UPDATE `ct26_remisiones` SET `ct26_hora_salida_planta` = :hora_salida_planta WHERE `ct26_fecha_remi` = :fecha AND `ct26_hora_salida_planta` = :hora";
+    public function actualizarFechaTres($hora_salida, $fecha){
+        $sql = "UPDATE `ct26_remisiones` SET `ct26_hora_salida_planta` = :hora_salida_planta WHERE `ct26_fecha_remi` = :fecha";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':hora_salida_planta', $hora_salida, PDO::PARAM_STR);
         $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
-        $stmt->bindParam(':hora', $hora, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function actualizarFechaCuatro($hora_salida, $hora_llegada, $fecha){
+        $sql = "UPDATE `ct26_remisiones` SET `ct26_hora_salida_planta` = :hora_salida_planta WHERE `ct26_fecha_remi` = :fecha";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':hora_salida_planta', $hora_salida, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    
+    public function actualizarNotificacion(){
+        $notificacion = 4;
+        $sql = "UPDATE `ct26_remisiones` SET `ct26_notificacion` = :notificacion";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':notificacion', $notificacion, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         }
@@ -270,15 +292,17 @@ class modelo_t26 extends conexionPDO {
     }
 
     public function getFechaHora(){
-        $sql = "SELECT `ct26_fecha_remi`, `ct26_hora_salida_planta` FROM `ct26_remisiones`";
+        $sql = "SELECT `ct26_notificacion`, `ct26_fecha_remi`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra` FROM `ct26_remisiones`";
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['ct26_notificacion'] = $fila['ct26_notificacion'];
                     $datos['ct26_fecha_remi'] = $fila['ct26_fecha_remi'];
                     $datos['ct26_hora_salida_planta'] = $fila['ct26_hora_salida_planta'];
+                    $datos['ct26_hora_llegada_obra'] = $fila['ct26_hora_llegada_obra'];
                     $datosf[] = $datos;
                 }
                 return $datosf;

@@ -336,7 +336,7 @@ class ClsProgramacionSemanal extends conexionPDO
     public function fntOptionProductoFuncionarioObj($id_pedido, $id_producto = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Producto</option>";
-        $sql = "SELECT ct65_pedidos_has_precio_productos.id, `codigo_producto`, `nombre_producto` 
+        $sql = "SELECT ct65_pedidos_has_precio_productos.id_producto, `codigo_producto`, `nombre_producto` 
         FROM `ct65_pedidos_has_precio_productos`
         INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id 
         WHERE `id_pedido` = :id  AND ct65_pedidos_has_precio_productos.status = 1";
@@ -348,12 +348,12 @@ class ClsProgramacionSemanal extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($id_producto == $fila['id']) {
+                    if ($id_producto == $fila['id_producto']) {
                         $selection = "selected='true'";
                     } else {
                         $selection = "";
                     }
-                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
+                    $option .= '<option value="' . $fila['id_producto'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
                 }
             } else {
                 $option = "<option  selected='true' disabled='disabled'> No hay productos asociados al pedido </option>";
@@ -1429,6 +1429,54 @@ class ClsProgramacionSemanal extends conexionPDO
             $segundos = '0' . $segundos;
         $sum_hrs = $horas . ':' . $minutos . ':' . $segundos;
         return ($sum_hrs);
+    }
+
+    public function cargar_cantidad_metros($id_pedido, $id_producto)
+    {
+        $sql = "SELECT `id_pedido`,`id_producto`,sum(`cantidad`) AS suma FROM `ct66_programacion_semanal` WHERE `id_pedido` = :id_pedido AND `id_producto` = :id_producto";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['suma'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function cargar_cantidad_metros_pedido($id_pedido, $id_producto)
+    {
+        $sql = "SELECT `saldo_m3` FROM `ct65_pedidos_has_precio_productos` WHERE `id_producto` = :id_producto AND `id_pedido` = :id_pedido";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['saldo_m3'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function actualizar_saldo(){
+        
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
