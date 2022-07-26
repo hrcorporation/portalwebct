@@ -17,7 +17,7 @@ $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/internal/load_data/';
 $php_tempfoto = ('/internal/load_data/' . $php_serial);
 $php_movefile = move_uploaded_file($ruta, $carpeta_destino . $php_serial);
 $inputFileName = $_SERVER['DOCUMENT_ROOT'] . $php_tempfoto;
-$ClsConsignacion = new ClsConsignacion();
+$ClsConsignacion = new clsConsignacion();
 // Clase para Escoger celdas Especificas
 class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
 {

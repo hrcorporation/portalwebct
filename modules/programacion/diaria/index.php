@@ -52,7 +52,7 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label class="form-label">Linea de despacho</label>
-                            <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
+                            <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select" style="width: 100%;">
                                 <?= $programacionDiaria->fntOptionLineaDespachoObj() ?>
                             </select>
                         </div>
@@ -89,7 +89,7 @@
 </script>
 <script>
     $(document).ready(function() {
-        $('.select2').select2();
+        $('.select').select2();
     });
 
     $("#volumen").hide();

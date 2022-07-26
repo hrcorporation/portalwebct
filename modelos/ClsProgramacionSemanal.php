@@ -604,10 +604,10 @@ class ClsProgramacionSemanal extends conexionPDO
         }
     }
     // Crear programacion diaria (FUNCIONARIO)
-    public function fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $intCantidad, $dblValorProgramacion, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmFechaFinal, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)
+    public function fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $intCantidad, $dblValorProgramacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmFechaFinal, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)
     {
-        $sql = "INSERT INTO `ct66_programacion_diaria`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `valor_programacion`, `requiere_bomba`, `id_tipo_descargue`, `nombre_tipo_descargue`, `metros_tuberia`, `fecha_ini`, `fecha_fin`, `elementos_fundir`, `observaciones`, `id_usuario`, `nombre_usuario`)
-        VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :valor_programacion, :requiere_bomba, :id_tipo_descargue, :nombre_tipo_descargue, :metros_tuberia, :fecha_ini, :fecha_fin, :elementos_fundir, :observaciones, :id_usuario, :nombre_usuario)";
+        $sql = "INSERT INTO `ct66_programacion_diaria`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `valor_programacion`, `hora_cargue`,`hora_mixer_obra`, `requiere_bomba`, `id_tipo_descargue`, `nombre_tipo_descargue`, `metros_tuberia`, `fecha_ini`, `fecha_fin`, `elementos_fundir`, `observaciones`, `id_usuario`, `nombre_usuario`)
+        VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :valor_programacion, :hora_cargue, :hora_mixer_obra, :requiere_bomba, :id_tipo_descargue, :nombre_tipo_descargue, :metros_tuberia, :fecha_ini, :fecha_fin, :elementos_fundir, :observaciones, :id_usuario, :nombre_usuario)";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':status', $intEstado, PDO::PARAM_INT);
         $stmt->bindParam(':id_cliente', $intIdCliente, PDO::PARAM_INT);
@@ -619,6 +619,8 @@ class ClsProgramacionSemanal extends conexionPDO
         $stmt->bindParam(':nombre_producto', $strNombreProducto, PDO::PARAM_STR);
         $stmt->bindParam(':cantidad', $intCantidad, PDO::PARAM_STR);
         $stmt->bindParam(':valor_programacion', $dblValorProgramacion, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_cargue', $dtmhoracargue, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_mixer_obra', $dtmhoramixerobra, PDO::PARAM_STR);
         $stmt->bindParam(':requiere_bomba', $boolRequiereBomba, PDO::PARAM_STR);
         $stmt->bindParam(':id_tipo_descargue', $intIdTipoDescargue, PDO::PARAM_INT);
         $stmt->bindParam(':nombre_tipo_descargue', $strNombreTipoDescargue, PDO::PARAM_STR);
@@ -1393,7 +1395,7 @@ class ClsProgramacionSemanal extends conexionPDO
     }
 
     //Sumar horas
-    function sumar($hora1, $hora2)
+    public function sumar($hora1, $hora2)
     {
         list($h, $m, $s) = explode(':', $hora2); //Separo los elementos de la segunda hora.
         $a = new DateTime($hora1); //Creo un DateTime.
@@ -1402,7 +1404,17 @@ class ClsProgramacionSemanal extends conexionPDO
         return $a->format('Y-m-d H:i:s'); //Retorno la Suma.
     }
 
-    function multiplicar_horas($hora1, $hora2)
+    //restar horas
+    public function restar($hora1, $hora2)
+    {
+        list($h, $m, $s) = explode(':', $hora2); //Separo los elementos de la segunda hora.
+        $a = new DateTime($hora1); //Creo un DateTime.
+        $b = new DateInterval(sprintf('PT%sH%sM%sS', $h, $m, $s)); //Creo un DateInterval.
+        $a->sub($b); //SUMO las horas.
+        return $a->format('Y-m-d H:i:s'); //Retorno la Suma.
+    }
+
+    public function multiplicar_horas($hora1, $hora2)
     {
         $hora2 = explode(":", $hora2);
         $temp = 0;

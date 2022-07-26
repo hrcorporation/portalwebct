@@ -126,26 +126,42 @@ if (isset($_POST['task'])) {
                     $intIdUsuario = $estado['id_usuario'];
                     $strNombreUsuario = $estado['nombre_usuario'];
                 }
-
+                //Se valida que la cantidad de metros cubicos o volumen sea mayor a 7
                 if ($intCantidad > 7) {
+                    //Calcular la cantidad de viajes que requiere (Se divide en 7 porque es la cantidad maxima que puede llevar una mixer)
                     $numeroViajes = ($intCantidad / 7);
+                    //Aca aproximamos la cantidad de viajes por lo que el valor anterior es un numero decimal.
                     $numeroViajesAp = intval(ceil($numeroViajes));
                 } else {
-                    $numeroViajes = 1;
+                    //Si la cantidad es menor a 7 solo se requiere un viaje
                     $numeroViajesAp = 1;
                 }
-
+                $valor_programacion = 0;
+                //Calcular los metros cubicos de cada viaje
                 $metrosCubicos = ($intCantidad / $numeroViajesAp);
-                $dtmFrecuenciaNueva = $ClsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
-                $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmFechaInicial, $dtmFrecuenciaNueva);
-
-                if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $metrosCubicos, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
-                    //Si pasa la validacion se retorna verdadero(true)
-                    $php_estado = true;
-                } else {
-                    $php_error = 'No guardo correctamente';
+                //Calcular la hora del cargue
+                $dtmhoracargue = $ClsProgramacionSemanal->restar($dtmFechaInicial, "01:00:00");
+                //Calcular la nueva fecha inicial teniendo en cuenta la frecuencia
+                $dtmnuevafechainicial = $ClsProgramacionSemanal->restar($dtmFechaInicial, $dtmFrecuencia);
+                //La hora de la mixer en obra
+                $dtmhoramixerobra = $dtmFechaInicial;
+                //Calcular la fecha final de la programacion
+                $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmFrecuencia);
+                for ($i = 1; $i <= $numeroViajesAp; $i++) {
+                    if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $valor_programacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmnuevafechainicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
+                        $php_estado = true;
+                        //Actualizando la nueva fecha inicial.
+                        $dtmnuevafechainicial = $dtmNuevaFechafin;
+                        //Calcular la fecha final de la programacion.
+                        $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmNuevaFechafin, $dtmFrecuencia);
+                        //Calcular la hora del cargue.
+                        $dtmhoracargue = $ClsProgramacionSemanal->restar($dtmNuevaFechafin, "01:00:00");
+                        // Calcular la hora que debe de estar la mixer en obra.
+                        $dtmhoramixerobra = $dtmNuevaFechafin;
+                    } else {
+                        $php_error = 'No guardo correctamente';
+                    }
                 }
-
                 if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioUnoObj($intId)) {
                     //Si pasa la validacion se retorna verdadero(true)
                     $php_estado = true;
@@ -208,17 +224,33 @@ if (isset($_POST['task'])) {
                 } else {
                     $numeroViajesAp = 1;
                 }
-
+                $valor_programacion = 0;
+                //Calcular los metros cubicos de cada viaje
                 $metrosCubicos = ($intCantidad / $numeroViajesAp);
-                $dtmFrecuenciaNueva = $ClsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
-                $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmFechaInicial, $dtmFrecuenciaNueva);
-
+                //Calcular la hora del cargue
+                $dtmhoracargue = $ClsProgramacionSemanal->restar($dtmFechaInicial, "01:00:00");
+                //Calcular la nueva fecha inicial teniendo en cuenta la frecuencia
+                $dtmnuevafechainicial = $ClsProgramacionSemanal->restar($dtmFechaInicial, $dtmFrecuencia);
+                //La hora de la mixer en obra
+                $dtmhoramixerobra = $dtmFechaInicial;
+                //Calcular la fecha final de la programacion
+                $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmFrecuencia);
                 if ($intEstadoProgramacion == 2) {
-                    if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $intCantidad, $metrosCubicos, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
-                        //Si pasa la validacion se retorna verdadero(true)
-                        $php_estado = true;
-                    } else {
-                        $php_error = 'No guardo correctamente';
+                    for ($i = 1; $i <= $numeroViajesAp; $i++) {
+                        if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $valor_programacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmnuevafechainicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
+                            //Si pasa la validacion se retorna verdadero(true)
+                            $php_estado = true;
+                            //Actualizando la nueva fecha inicial.
+                            $dtmnuevafechainicial = $dtmNuevaFechafin;
+                            //Calcular la fecha final de la programacion.
+                            $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmNuevaFechafin, $dtmFrecuencia);
+                            //Calcular la hora del cargue.
+                            $dtmhoracargue = $ClsProgramacionSemanal->restar($dtmNuevaFechafin, "01:00:00");
+                            // Calcular la hora que debe de estar la mixer en obra.
+                            $dtmhoramixerobra = $dtmNuevaFechafin;
+                        } else {
+                            $php_error = 'No guardo correctamente';
+                        }
                     }
                     if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj()) {
                         //Si pasa la validacion se retorna verdadero(true)

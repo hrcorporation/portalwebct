@@ -76,11 +76,6 @@
 <script src="calendar.js"> </script>
 <script>
     $(function() {
-        $(document).ready(function() {
-            $('.select2').select2();
-
-        });
-
         $("#volumen").hide();
 
         $('#txtCant').on('change', function() {
@@ -419,6 +414,11 @@
                 },
             });
         }));
+
+        // Do this before you initialize any of your modals
+        $.fn.modal.Constructor.prototype.enforceFocus = function() {
+            
+        };
     });
 </script>
 </body>

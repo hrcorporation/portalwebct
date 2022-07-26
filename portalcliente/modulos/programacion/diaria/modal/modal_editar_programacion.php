@@ -35,7 +35,7 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Producto:</label>
-                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
@@ -50,7 +50,7 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Linea de despacho:</label>
-                                <select name="cbxLineaDespachoEditar" id="cbxLineaDespachoEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxLineaDespachoEditar" id="cbxLineaDespachoEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
@@ -71,14 +71,14 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label for="cbxMixerEditar" class="form-label">Mixer:</label>
-                                <select name="cbxMixerEditar" id="cbxMixerEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxMixerEditar" id="cbxMixerEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtConductorEditar" class="form-label">Conductor:</label>
-                                <select name="cbxConductorEditar" id="cbxConductorEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxConductorEditar" id="cbxConductorEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
@@ -99,14 +99,14 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Tipo de descargue:</label>
-                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="cbxTipoBombaEditar" class="form-label">Tipo de bomba:</label>
-                                <select name="cbxTipoBombaEditar" id="cbxTipoBombaEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxTipoBombaEditar" id="cbxTipoBombaEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
@@ -144,4 +144,10 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
     </div>
 </div>
 <!-- /.modal-content -->
-</div>
+<script>
+    $(document).ready(function() {
+        $(".select-2").select2({
+            dropdownParent: $("#modal_show_evento")
+        });
+    });
+</script>

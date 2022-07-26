@@ -7,7 +7,7 @@ require '../../librerias/autoload.php';
 require '../../modelos/autoload.php';
 require '../../vendor/autoload.php';
 
-$ClsConsignacion = new ClsConsignacion();
+$ClsConsignacion = new clsConsignacion();
 
 $php_estado = false;
 $php_error[] = "";

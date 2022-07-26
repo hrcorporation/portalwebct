@@ -13,6 +13,8 @@ $datos = $pedidos->get_nombre_cliente_obra($id);
 foreach ($datos as $dato) {
     $nombre_cliente = $dato['nombre_cliente'];
     $nombre_obra = $dato['nombre_obra'];
+    $id_cliente = $dato['id_cliente'];
+    $id_obra = $dato['id_obra'];
 }
 ?>
 <div class="content-wrapper">
@@ -487,7 +489,7 @@ foreach ($datos as $dato) {
                 <!-- /.modal-content -->
             </div><!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL FIN -->
             <!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL INICIO -->
-            <div class="modal fade" id="modal_cargar_programacion">
+            <div class="modal fade" id="modal_crear_programacion">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -497,20 +499,19 @@ foreach ($datos as $dato) {
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form name="form_productos" id="form_productos" method="post">
-                                <!-- <input type="hidden" name="id" id="id" value="<?= $id ?>"> -->
+                            <form name="form_crear_programacion" id="form_crear_programacion" method="post">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">Cliente:</label>
-                                            <br>
+                                            <input type="hidden" name="txtCliente" id="txtCliente" class="form-control" style="width: 100%;" value="<?= $id_cliente ?>" />
                                             <b><?= $nombre_cliente ?></b>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">Obra:</label>
-                                            <br>
+                                            <input type="hidden" name="txtObra" id="txtObra" class="form-control" style="width: 100%;" value="<?= $id_obra ?>"/>
                                             <b><?= $nombre_obra ?></b>
                                         </div>
                                     </div>
@@ -524,8 +525,8 @@ foreach ($datos as $dato) {
                                     </div>
                                     <div class="col-3">
                                         <div class="form-group">
-                                            <label for="txtElementos" class="form-label">Cantidad metros cubicos:</label>
-                                            <input type="number" name="txtFechaFundida" id="txtFechaFundida" class="form-control" style="width: 100%;" />
+                                            <label for="txtcantidadmetros" class="form-label">Cantidad metros cubicos:</label>
+                                            <input type="number" name="txtcantidadmetros" id="txtcantidadmetros" class="form-control" style="width: 100%;" />
                                         </div>
                                     </div>
                                     <div class="col-5">
@@ -591,7 +592,7 @@ foreach ($datos as $dato) {
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">Linea de despacho:</label>
-                                            <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
+                                            <select name="cbxlineadespacho" id="cbxlineadespacho" class="form-control select2" style="width: 100%;">
                                                 <?= $ClsProgramacionSemanal->fntOptionLineaDespachoObj() ?>
                                             </select>
                                         </div>
@@ -624,7 +625,6 @@ foreach ($datos as $dato) {
     </section>
 </div>
 <?php include '../../../../layout/footer/footer4.php' ?>
-
 <script>
     $(function() {
         $(".progress").hide();
@@ -786,7 +786,7 @@ foreach ($datos as $dato) {
                 },
                 {
                     "data": null,
-                    "defaultContent": "<a class='btn btn-primary btn-sm' id = 'btn-cargar' data-toggle='modal' data-target='#modal_cargar_programacion'> Cargar </a>"
+                    "defaultContent": "<a class='btn btn-primary btn-sm' id = 'btn-cargar' data-toggle='modal' data-target='#modal_crear_programacion'> Cargar </a>"
                 },
             ],
             //"scrollX": true,

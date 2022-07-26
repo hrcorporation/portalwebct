@@ -157,3 +157,10 @@ $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
     </div>
     <!-- /.modal-content -->
 </div>
+<script>
+    $(document).ready(function() {
+        $(".select2").select2({
+            dropdownParent: $("#modal_crear_evento")
+        });
+    });
+</script>

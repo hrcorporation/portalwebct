@@ -22,8 +22,9 @@
     <script src="../../dist/js/demo.js"></script>
     <script src="../../dist/js/demo.js"></script>
     <script src="../../plugins/select2/js/select2.js"></script>
+    <script src="../../plugins/select2/js/select2.full.js"></script>
     <script src="../../plugins/sweetalert2/dist/sweetalert2.js"></script>
-    <script type="text/javascript" src="../../plugins/datatables/datatables.min.js"></script>
+    <script src="../../plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <!-- bs-custom-file-input -->
 <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 

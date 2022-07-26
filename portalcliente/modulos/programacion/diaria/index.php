@@ -85,7 +85,6 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
 <script src="calendar.js"> </script>
 <script>
     $(function() {
-        $('.select2').select2();
         $("#volumen").hide();
 
         $('#chkRequiereBomba').on('click', function() {

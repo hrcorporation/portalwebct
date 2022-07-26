@@ -1,5 +1,5 @@
 <?php
-$ClsConsignacion = new ClsConsignacion();
+$ClsConsignacion = new clsConsignacion();
 ?>
 <div class="modal fade" id="modal_importar_consignacion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

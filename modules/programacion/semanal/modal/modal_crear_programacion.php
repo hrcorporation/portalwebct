@@ -1,7 +1,7 @@
 <?php
 $ClsProgramacionSemanal = new ClsProgramacionSemanal();
 ?>
-<div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -57,6 +57,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                                 <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
                                     <?= $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj(); ?>
                                 </select>
+                                <!-- <input type="number" name="cbxFrecuencia" id="cbxFrecuencia" class="form-control" style="width: 100%;" /> -->
                             </div>
                         </div>
                     </div>
@@ -127,3 +128,10 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
     </div>
     <!-- /.modal-content -->
 </div>
+<script>
+    $(document).ready(function() {
+        $(".select2").select2({
+            dropdownParent: $("#modal_crear_evento")
+        });
+    });
+</script>

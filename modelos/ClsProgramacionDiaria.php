@@ -397,7 +397,7 @@ class ClsProgramacionDiaria extends conexionPDO
     public function fntOptionProductoFuncionarioObj($id_pedido, $id_producto = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Producto</option>";
-        $sql = "SELECT `id`, `codigo_producto`, `nombre_producto` 
+        $sql = "SELECT `id_pedido`, `id_producto`, `codigo_producto`, `nombre_producto` 
         FROM `ct65_pedidos_has_precio_productos` 
         WHERE `id_pedido` = :id AND `status` = 1";
         //Preparar Conexion
@@ -408,12 +408,12 @@ class ClsProgramacionDiaria extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($id_producto == $fila['id']) {
+                    if ($id_producto == $fila['id_producto']) {
                         $selection = "selected='true'";
                     } else {
                         $selection = "";
                     }
-                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
+                    $option .= '<option value="' . $fila['id_producto'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
                 }
             } else {
                 $option = "<option  selected='true' disabled='disabled'> No hay productos asociados al pedido </option>";

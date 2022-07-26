@@ -7,7 +7,7 @@ require '../../librerias/autoload.php';
 require '../../modelos/autoload.php';
 require '../../vendor/autoload.php';
 //SE CREA UN OBJETO DE LA CLASE PEDIDOS
-$ClsConsignacion = new ClsConsignacion();
+$ClsConsignacion = new clsConsignacion();
 //LISTA TODOS LOS PEDIDOS REALIZADOS
 $data = $ClsConsignacion->fntGetConsignacionesObj();
 //print json_encode($datos, JSON_FORCE_OBJECT);

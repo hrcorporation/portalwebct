@@ -81,9 +81,6 @@
 <!-- /.modal-dialog -->
 <?php include '../../layout/footer/footer2.php' ?>
 <script>
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
     ///////////////////////////////////////////////////////////////
     $("#form_crear_consignacion").on('submit', (function(e) {
         e.preventDefault();
@@ -245,6 +242,12 @@
             });
         }));
     });
+</script>
+<script>
+    $('.select2').select2({
+        dropdownParent: $('#modal_crear_consignacion .modal-body')
+    });
+    $.fn.modal.Constructor.prototype.enforceFocus = function() {};
 </script>
 </body>
 

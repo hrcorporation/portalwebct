@@ -18,14 +18,14 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class=" control-label">Cliente:</label>
-                                <select name="cbxClienteEditar" id="cbxClienteEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxClienteEditar" id="cbxClienteEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Obra:</label>
-                                <select name="cbxObraEditar" id="cbxObraEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxObraEditar" id="cbxObraEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
@@ -34,14 +34,14 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class=" control-label">Pedido:</label>
-                                <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Producto:</label>
-                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
@@ -56,7 +56,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Frecuencia:</label>
-                                <select name="cbxFrecuenciaEditar" id="cbxFrecuenciaEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxFrecuenciaEditar" id="cbxFrecuenciaEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
@@ -85,7 +85,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Tipo de descargue:</label>
-                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select-2" style="width: 100%;">
                                 </select>
                             </div>
                         </div>
@@ -132,3 +132,11 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
 </div>
 <!-- /.modal-content -->
 </div>
+
+<script>
+    $(document).ready(function() {
+        $(".select-2").select2({
+            dropdownParent: $("#modal_show_evento")
+        });
+    });
+</script>

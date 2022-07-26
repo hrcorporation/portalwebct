@@ -27,7 +27,7 @@ $intIdUsuario = $ClsProgramacionSemanal->fntGetIdUsuarioObj();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Usuario:</label>
-                                <select name="cbxUsuario" id="cbxUsuario" class="form-control select2" style="width: 100%;">
+                                <select name="cbxUsuario" id="cbxUsuario" class="form-control select" style="width: 100%;">
                                     <?= $ClsProgramacionSemanal->fntOptionUsuariosObj($intIdUsuario) ?>
                                 </select>
                             </div>
@@ -43,3 +43,11 @@ $intIdUsuario = $ClsProgramacionSemanal->fntGetIdUsuarioObj();
     </div>
     <!-- /.modal-content -->
 </div>
+
+<script>
+    $(document).ready(function() {
+        $(".select").select2({
+            dropdownParent: $("#modal_cambiar_hora")
+        });
+    });
+</script>

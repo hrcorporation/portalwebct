@@ -34,11 +34,7 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     //Nombre del producto mediante el parametro del id del producto.
     $StrNombreProducto = $ClsProgramacionSemanal->fntGetNombreProducto($intIdProducto);
     //Cantidad.
-    if ($_POST['txtCant'] == 0) {
-        $decCantidad = 1;
-    } else {
-        $decCantidad = $_POST['txtCant'];
-    }
+    $decCantidad = $_POST['txtCant'];
     //Frecuencia.
     $dtmFrecuencia = $_POST['cbxFrecuencia'];
     //Elementos a fundir.
@@ -61,20 +57,8 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     $dtmFechaInicio = $_POST['txtInicio'];
     //Fecha final de la programacion.
     $dtmFechaFin = $_POST['txtFin'];
-
-    if ($decCantidad > 7) {
-        $numeroViajes = ($decCantidad / 7);
-        $numeroViajesAp = intval(ceil($numeroViajes));
-    } else {
-        $numeroViajes = 1;
-        $numeroViajesAp = 1;
-    }
-
-    $metrosCubicos = ($decCantidad / $numeroViajesAp);
-    $dtmFrecuenciaNueva = $ClsProgramacionSemanal->multiplicar_horas(($numeroViajesAp - 1), $dtmFrecuencia);
-    $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmFechaInicio, $dtmFrecuenciaNueva);
     //Validar que tome bien los parametros y guarde correctamente la programacion.
-    if ($ClsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+    if ($ClsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
         //Si pasa la validacion se retorna verdadero(true).
         $php_estado = true;
     } else {

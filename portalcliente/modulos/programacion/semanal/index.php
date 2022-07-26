@@ -69,7 +69,6 @@
 <script src="calendar.js"> </script>
 <script>
     $(function() {
-        $('.select2').select2();
         $("#volumen").hide();
 
         $("#form_mostrar_programacion").on('submit', (function(e) {

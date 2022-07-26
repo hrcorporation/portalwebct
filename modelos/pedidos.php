@@ -1640,7 +1640,7 @@ class pedidos extends conexionPDO
     {
         $this->id = $id;
 
-        $sql = "SELECT `nombre_cliente`,`nombre_obra` FROM `ct65_pedidos` WHERE `id` = :id";
+        $sql = "SELECT `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra` FROM `ct65_pedidos` WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
 
@@ -1650,7 +1650,9 @@ class pedidos extends conexionPDO
             if ($num_reg > 0) {
                 // Recorrer limpieza de datos obtenidos en la consulta
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['id_cliente'] = $fila['id_cliente'];
                     $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['id_obra'] = $fila['id_obra'];
                     $data_array['nombre_obra'] = $fila['nombre_obra'];
                     $datosf[] = $data_array;
                 }

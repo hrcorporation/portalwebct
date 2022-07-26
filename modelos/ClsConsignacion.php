@@ -1,6 +1,6 @@
 <?php
 
-class ClsConsignacion extends conexionPDO
+class clsConsignacion extends conexionPDO
 {
     protected $con;
     // Iniciar Conexion

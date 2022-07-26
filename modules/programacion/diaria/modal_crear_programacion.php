@@ -1,7 +1,7 @@
 <?php
 $ClsProgramacionDiaria = new ClsProgramacionDiaria();
 ?>
-<div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -152,3 +152,10 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
     </div>
     <!-- /.modal-content -->
 </div>
+<script>
+    $(document).ready(function() {
+        $(".select2").select2({
+            dropdownParent: $("#modal_crear_evento")
+        });
+    });
+</script>

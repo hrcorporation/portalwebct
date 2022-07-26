@@ -5,7 +5,7 @@ require '../../librerias/autoload.php';
 require '../../modelos/autoload.php';
 require '../../vendor/autoload.php';
 //Se crea un objeto de la clase consignacion
-$ClsConsignaciones = new ClsConsignacion();
+$ClsConsignaciones = new clsConsignacion();
 $log = false;
 $boolPhpEstado = false;
 $php_error[] = "";

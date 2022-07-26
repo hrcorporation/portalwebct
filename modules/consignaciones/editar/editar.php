@@ -22,7 +22,7 @@
     </section>
     <section class="content">
         <?php
-        $ClsConsignacion = new Clsconsignacion();
+        $ClsConsignacion = new clsConsignacion();
         $id = $_GET['id'];
         $datos = $ClsConsignacion->fntGetConsignacionesPorid($id);
 
