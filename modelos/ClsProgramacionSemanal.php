@@ -603,6 +603,36 @@ class ClsProgramacionSemanal extends conexionPDO
             return false;
         }
     }
+    // Crear programacion semanal.
+    public function fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $fecha_ini, $fecha_fin, $observaciones, $id_usuario, $nombre_usuario)
+    {
+        $sql = "INSERT INTO `ct66_programacion_semanal`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `frecuencia`, `requiere_bomba`, `fecha_ini`, `fecha_fin`, `observaciones`, `id_usuario`, `nombre_usuario`) 
+        VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :frecuencia, :requiere_bomba, :fecha_ini, :fecha_fin, :observaciones, :id_usuario, :nombre_usuario)";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_cliente', $nombre_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_obra', $nombre_obra, PDO::PARAM_STR);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
+        $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_STR);
+        $stmt->bindParam(':frecuencia', $frecuencia, PDO::PARAM_STR);
+        $stmt->bindParam(':requiere_bomba', $requiere_bomba, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_ini', $fecha_ini, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $fecha_fin, PDO::PARAM_STR);
+        $stmt->bindParam(':observaciones', $observaciones, PDO::PARAM_STR);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     // Crear programacion diaria (FUNCIONARIO)
     public function fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $intCantidad, $dblValorProgramacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmFechaInicial, $dtmFechaFinal, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)
     {
@@ -1413,7 +1443,7 @@ class ClsProgramacionSemanal extends conexionPDO
         $a->sub($b); //SUMO las horas.
         return $a->format('Y-m-d H:i:s'); //Retorno la Suma.
     }
-
+    //multiplicar hora
     public function multiplicar_horas($hora1, $hora2)
     {
         $hora2 = explode(":", $hora2);

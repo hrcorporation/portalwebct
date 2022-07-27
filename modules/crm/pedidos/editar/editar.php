@@ -488,30 +488,33 @@ foreach ($datos as $dato) {
                 </div>
                 <!-- /.modal-content -->
             </div><!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL FIN -->
-            <!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL INICIO -->
+            <!-- MODAL CREAR PROGRAMACION INICIO -->
             <div class="modal fade" id="modal_crear_programacion">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">CARGAR</h4>
+                            <h4 class="modal-title">Crear programacion</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <form name="form_crear_programacion" id="form_crear_programacion" method="post">
+                                <input type="hidden" name="id" id="id" value="<?= $id ?>">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">Cliente:</label>
                                             <input type="hidden" name="txtCliente" id="txtCliente" class="form-control" style="width: 100%;" value="<?= $id_cliente ?>" />
+                                            <br>
                                             <b><?= $nombre_cliente ?></b>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">Obra:</label>
-                                            <input type="hidden" name="txtObra" id="txtObra" class="form-control" style="width: 100%;" value="<?= $id_obra ?>"/>
+                                            <input type="hidden" name="txtObra" id="txtObra" class="form-control" style="width: 100%;" value="<?= $id_obra ?>" />
+                                            <br>
                                             <b><?= $nombre_obra ?></b>
                                         </div>
                                     </div>
@@ -539,7 +542,7 @@ foreach ($datos as $dato) {
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col">
                                         <div class="form-group">
                                             <div class="form-check">
                                                 <label class="form-label"></label>
@@ -551,13 +554,13 @@ foreach ($datos as $dato) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col">
                                         <div class="form-group">
-                                            <label for="txtHoraBomba" class="form-label">Hora bomba sugerida por el cliente:</label>
+                                            <label for="txtHoraBomba" class="form-label">Hora bomba sugerida por cliente:</label>
                                             <input type="time" name="txtHoraBomba" id="txtHoraBomba" class="form-control" style="width: 100%;" />
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col">
                                         <div class="form-group">
                                             <div class="form-check">
                                                 <label class="form-label"></label>
@@ -620,7 +623,7 @@ foreach ($datos as $dato) {
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div><!-- MODAL CARGAR PRECIOS MEDIANTE FORMATO DE EXCEL FIN -->
+            </div><!-- MODAL CREAR PROGRAMACION -->
         </div>
     </section>
 </div>
@@ -690,6 +693,7 @@ foreach ($datos as $dato) {
             });
         }));
     })
+
 
     $(document).ready(function() {
         $("#form_crear_precio_bomba").on('submit', (function(e) {
@@ -791,6 +795,30 @@ foreach ($datos as $dato) {
             ],
             //"scrollX": true,
         });
+
+        $("#form_crear_programacion").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "php_crear_programacion.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente la programacion');
+                        $('#modal_crear_programacion').modal('hide');
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }));
 
         table_producto.on('order.dt search.dt', function() {
             table_producto.column(0, {
