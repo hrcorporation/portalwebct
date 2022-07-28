@@ -102,6 +102,7 @@ class pedidos extends conexionPDO
                     $datos['precio_base'] = $fila['precio_base'];
                     $datos['precio_m3'] = $fila['precio_m3'];
                     $datos['cantidad_m3'] = $fila['cantidad_m3'];
+                    $datos['saldo_m3'] = $fila['saldo_m3'];
                     $datos['precio_total_pedido'] = $fila['precio_total_pedido'];
                     $datos['observaciones'] = $fila['observaciones'];
 
@@ -170,7 +171,7 @@ class pedidos extends conexionPDO
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el producto</option>";
 
-        $sql = "SELECT * FROM `ct65_precio_base` WHERE `status` = 1";
+        $sql = "SELECT `codigo_producto`,`nombre_producto` FROM `ct65_precio_base` WHERE `status` =  1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         if ($stmt->execute()) {

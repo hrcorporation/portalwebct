@@ -15,7 +15,7 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
-$precio_subtotal = 0;
+// $precio_subtotal = 0;
 
 if (isset($_POST['task']) && !empty($_POST['task'])) {
     $php_msg = "Paso 1";

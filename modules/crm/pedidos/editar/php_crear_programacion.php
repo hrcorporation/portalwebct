@@ -17,13 +17,13 @@ $php_error[] = "";
 $resultado = "";
 
 if ($_POST['id']) {
-    $id_producto = 0;
-    $nombre_producto = "Cemento del bueno";
+    $id_producto = 1;
+    $nombre_producto = "";
     //Id del usuario.
     $id_usuario = $_SESSION['id_usuario'];
     //Nombre del usuario mediante el parametro del id del usuario
     $nombre_usuario = $clsprogramacionsemanal->fntGetNombreClienteObj($id_usuario);
-    $status = 1;
+    $status = 2;
     $id_pedido = $_POST['id'];
     $id_cliente = $_POST['txtCliente'];
     $nombre_cliente = $clsprogramacionsemanal->fntGetNombreClienteObj($id_cliente);
@@ -34,7 +34,6 @@ if ($_POST['id']) {
     $horacargue = $_POST['txtHoraCargue'];
     $fechafundida = $_POST['txtFechaFundida'];
     // $horainicio = $clsprogramacionsemanal->sumar($horacargue, "01:00:00");
-
     $fecha_ini = $fechafundida ." ". $horacargue;
     $fecha_fin = $fechafundida ." ". $horacargue;
 

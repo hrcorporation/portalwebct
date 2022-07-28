@@ -32,7 +32,7 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
             if ($pedidos->validar_existencias_precio_producto($key['id_producto'], $id_pedido)) {
                 //Validar que el producto exista en la base de datos
                 if ($pedidos->validar_producto($key['id_producto'])) {
-                    $pedidos->crear_precio_producto($id_pedido, $key['id_producto'], $key['codigo_producto'], $key['nombre_producto'], $key['porcentaje_descuento'], $key['id_precio_base'], $key['precio_base'], $key['precio_m3'], $key['cantidad_m3'], $key['precio_total_pedido'], $key['observaciones']);
+                    $pedidos->crear_precio_producto($id_pedido, $key['id_producto'], $key['codigo_producto'], $key['nombre_producto'], $key['porcentaje_descuento'], $key['id_precio_base'], $key['precio_base'], $key['precio_m3'], $key['cantidad_m3'], $key['saldo_m3'],$key['precio_total_pedido'], $key['observaciones']);
                     $php_estado = true;
                 } else {
                     $php_error = "Producto no existente en la base de datos";

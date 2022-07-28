@@ -47,7 +47,7 @@
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>NOMBRE DEL CLIENTE</label>
-                                    <select name="id_cliente" id="id_cliente" class="form-control select2 ">
+                                    <select name="id_cliente" id="id_cliente" class="form-control select2" required="true">
                                         <?= $pedidos->option_cliente_edit(); ?>
                                     </select>
                                 </div>
@@ -55,7 +55,7 @@
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>NOMBRE DE LA OBRA</label>
-                                    <select name="id_obra" id="id_obra" class="form-control select2 ">
+                                    <select name="id_obra" id="id_obra" class="form-control select2" required="true">
 
                                     </select>
                                 </div>
@@ -63,13 +63,13 @@
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>FECHA DE VENCIMIENTO</label>
-                                    <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" />
+                                    <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" required="true"/>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>ASESORA COMERCIAL</label>
-                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required>
+                                    <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_comercial() ?>
                                     </select>
                                 </div>

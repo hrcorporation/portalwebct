@@ -722,6 +722,29 @@ foreach ($datos as $dato) {
         }));
     })
 
+    $("#form_crear_programacion").on('submit', (function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "php_crear_programacion.php",
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                console.log(data);
+                if (data.estado) {
+                    toastr.success('Se ha guardado correctamente la programacion');
+                } else {
+                    toastr.warning(data.errores);
+                }
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
+        });
+    }));
+
     $(document).ready(function() {
         $("#form_crear_precio_servicio").on('submit', (function(e) {
             $('#crear_precio_servicio_adicional').modal('toggle');
@@ -790,36 +813,11 @@ foreach ($datos as $dato) {
                 },
                 {
                     "data": null,
-                    "defaultContent": "<a class='btn btn-primary btn-sm' id = 'btn-cargar' data-toggle='modal' data-target='#modal_crear_programacion'> Cargar </a>"
+                    "defaultContent": "<a class='btn btn-primary btn-sm' href = '' id = 'btn-cargar' data-toggle='modal' data-target='#modal_crear_programacion'> Cargar </a>"
                 },
             ],
             //"scrollX": true,
         });
-
-        $("#form_crear_programacion").on('submit', (function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "php_crear_programacion.php",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data);
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente la programacion');
-                        $('#modal_crear_programacion').modal('hide');
-                    } else {
-                        toastr.warning(data.errores);
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        }));
-
         table_producto.on('order.dt search.dt', function() {
             table_producto.column(0, {
                 search: 'applied',
@@ -828,6 +826,7 @@ foreach ($datos as $dato) {
                 cell.innerHTML = i + 1;
             });
         }).draw();
+
         $('#table_precio_productos tbody').on('click', 'button', function() {
             var data = table_producto.row($(this).parents('tr')).data();
             var id = data['id'];
