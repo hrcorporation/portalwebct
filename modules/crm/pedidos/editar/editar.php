@@ -1059,18 +1059,21 @@ foreach ($datos as $dato) {
             type: "POST",
             data: {
                 task: 1,
-                id_producto: $('#id_producto').val(),
+                id_producto: $("#id_producto").val(),
                 descuento: $('#descuento').val(),
             },
             success: function(response) {
-                $("#subtotal").val(response.subtotal);
+                if (response.estado) {
+                    $("#subtotal").val(response.subtotal);
+                } else {
+                    toastr.warning(response.msg);
+                }
             },
             error: function(respuesta) {
                 alert(JSON.stringify(respuesta));
             },
         });
     })
-
     $('#descuento').change(function() {
         var subtotal = $("#subtotal").val();
         $.ajax({
@@ -1082,7 +1085,11 @@ foreach ($datos as $dato) {
                 descuento: $('#descuento').val(),
             },
             success: function(response) {
-                $("#subtotal").val(response.subtotal);
+                if (response.estado) {
+                    $("#subtotal").val(response.subtotal);
+                } else {
+                    toastr.warning(response.msg);
+                }
             },
             error: function(respuesta) {
                 alert(JSON.stringify(respuesta));

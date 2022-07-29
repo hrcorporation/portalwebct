@@ -15,21 +15,19 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 
-// $precio_subtotal = 0;
+$precio_subtotal = 0;
 
 if (isset($_POST['task']) && !empty($_POST['task'])) {
-    $php_msg = "Paso 1";
-    if (intval($_POST['task'] == 1)) {
-        $id_producto = $_POST['id_producto'];
-        // CALCULAR EL DESCUENTO DEL VALOR DEL PRODUCTO
-        if ($precio_subtotal = $pedidos->calcularDescuento(doubleval($pedidos->get_precio_producto($id_producto)), doubleval($_POST['descuento']))) {
-            $php_msg = "bien";
-        }
-    } else {
-        $php_msg = "error en el post task";
-    }
+    $id_producto = $_POST['id_producto'];
+    $precio_producto = doubleval($pedidos->get_precio_producto($id_producto));
+    $descuento = doubleval($_POST['descuento']);
+    // CALCULAR EL DESCUENTO DEL VALOR DEL PRODUCTO
+    $precio_subtotal = $pedidos->calcularDescuento($precio_producto, $descuento);
+    $php_msg = "bien";
+    $php_estado = true;
 } else {
     $php_msg = "falta datos requeridos";
+    $php_estado = false;
 }
 $datos = array(
     'estado' => $php_estado,

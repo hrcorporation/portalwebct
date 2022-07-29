@@ -171,19 +171,19 @@ class pedidos extends conexionPDO
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el producto</option>";
 
-        $sql = "SELECT `codigo_producto`,`nombre_producto` FROM `ct65_precio_base` WHERE `status` =  1";
+        $sql = "SELECT `ct4_Id_productos`,`ct4_Nombre`,`ct4_Descripcion` FROM `ct4_productos` INNER JOIN `ct65_precio_base` ON `ct4_productos`.`ct4_Id_productos` = `ct65_precio_base`.`id_producto`;";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($id == $fila['id']) {
+                    if ($id == $fila['ct4_Id_productos']) {
                         $selection = " selected='true' ";
                     } else {
                         $selection = "";
                     }
-                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['codigo_producto'] . " - " . $fila['nombre_producto'] . ' </option>';
+                    $option .= '<option value="' . $fila['ct4_Id_productos'] . '" ' . $selection . ' >' . $fila['ct4_Nombre'] . " - " . $fila['ct4_Descripcion'] . ' </option>';
                 }
             } else {
                 $option = "<option  selected='true' disabled='disabled'> No hay productos cargados </option>";
@@ -310,7 +310,7 @@ class pedidos extends conexionPDO
     public function get_precio_producto($id)
     {
         $this->id = $id;
-        $sql = "SELECT `precio` FROM `ct65_precio_base` WHERE `id_producto` = :id";
+        $sql = "SELECT `precio` FROM `ct65_precio_base` WHERE `id_producto` = :id AND `status` = 1";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -1668,7 +1668,6 @@ class pedidos extends conexionPDO
     //Funcion para sacar el descuento se requiere como parametro el precio base y el porcentaje
     public function calcularDescuento($precio_base, $porcentaje)
     {
-        $resultado = 0;
         $resultado = ($precio_base * (1 - ($porcentaje / 100)));
 
         return $resultado;
