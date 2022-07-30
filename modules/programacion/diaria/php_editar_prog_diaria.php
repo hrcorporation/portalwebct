@@ -11,11 +11,11 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase programacion
-$ClsProgramacionDiaria = new ClsProgramacionDiaria();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 //id del usuario en sesion
 $id_usuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario
-$nombre_usuario = $ClsProgramacionDiaria->fntGetNombreClienteObj($id_usuario);
+$nombre_usuario = $clsProgramacionDiaria->fntGetNombreClienteObj($id_usuario);
 //Se crea un objeto de la clase Datetime
 $fecha_actual = new DateTime();
 //Se obtiene la fecha actual con el formato completo
@@ -30,7 +30,7 @@ if (isset($_POST['task'])) {
         //Fecha final de la programacion
         $fin = $_POST['txtFin'];
         //Validar que modifique correctamente la programacion (fechas)
-        if ($ClsProgramacionDiaria->fntEditarProgramacionBool($id, $inicio, $fin, $hoy, $id_usuario, $nombre_usuario)) {
+        if ($clsProgramacionDiaria->fntEditarProgramacionBool($id, $inicio, $fin, $hoy, $id_usuario, $nombre_usuario)) {
             $php_estado = true;
         }
     } else if ($_POST['task'] == 2) {
@@ -39,21 +39,21 @@ if (isset($_POST['task'])) {
         //id cliente
         $intIdCliente = $_POST['cbxClienteEditar'];
         //nombre cliente
-        $strNombreCliente = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdCliente);
+        $strNombreCliente = $clsProgramacionDiaria->fntGetNombreClienteObj($intIdCliente);
         //id de la obra.
         $intIdObra = $_POST['cbxObraEditar'];
         //Nombre de la obra mediante el parametro del id de la obra.
-        $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
+        $StrNombreObra = $clsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
         //id del pedido
         $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
         $intIdProducto = $_POST['cbxProductoEditar'];
         //nombre del producto mediante el id
-        $strNombreProducto = $ClsProgramacionDiaria->fntGetNombreProductoObj($intIdProducto);
+        $strNombreProducto = $clsProgramacionDiaria->fntGetNombreProductoObj($intIdProducto);
         //id de la linea de despacho.
         $intIdLineaDespacho = $_POST['cbxLineaDespachoEditar'];
         //Nombre de la linea de despacho mediante el parametro del id del producto.
-        $StrNombreLineaDespacho = $ClsProgramacionDiaria->fntGetNombreLineaDespachoObj($intIdLineaDespacho);
+        $StrNombreLineaDespacho = $clsProgramacionDiaria->fntGetNombreLineaDespachoObj($intIdLineaDespacho);
         //hora de cargue
         $dtmHoraCargue = $_POST['txtHoraCargueEditar'];
         //Hora mixer en obra
@@ -61,11 +61,11 @@ if (isset($_POST['task'])) {
         //Id de la mixer 
         $intIdMixer = $_POST['cbxMixerEditar'];
         //Placa de la mixer
-        $StrPlacaMixer = $ClsProgramacionDiaria->fntGetPlacaMixerObj($intIdMixer);
+        $StrPlacaMixer = $clsProgramacionDiaria->fntGetPlacaMixerObj($intIdMixer);
         //Id del conductor
         $intIdConductor = $_POST['cbxConductorEditar'];
         //Nombre del conductor mediante el parametro del id del conductor
-        $StrNombreConductor = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdConductor);
+        $StrNombreConductor = $clsProgramacionDiaria->fntGetNombreClienteObj($intIdConductor);
         //Cantidad
         $decCantidad = $_POST['txtCantEditar'];
         if (isset($_POST['chkRequiereBombaEditar'])) {
@@ -76,11 +76,11 @@ if (isset($_POST['task'])) {
         //Tipo de descargue
         $intTipoDescargue = $_POST['cbxTipoDescargueEditar'];
         //nombre del tipo de descargue
-        $StrNombreTipoDescargue = $ClsProgramacionDiaria->fntGetNombreTipoDescargueObj($intTipoDescargue);
+        $StrNombreTipoDescargue = $clsProgramacionDiaria->fntGetNombreTipoDescargueObj($intTipoDescargue);
         //Tipo de bomba
         $intTipoBomba = $_POST['cbxTipoBombaEditar'];
         //nombre del tipo de bomba
-        $StrNombreTipoBomba = $ClsProgramacionDiaria->fntGetNombreTipoBombaObj($intTipoBomba);
+        $StrNombreTipoBomba = $clsProgramacionDiaria->fntGetNombreTipoBombaObj($intTipoBomba);
         //Observaciones
         $StrObservaciones = $_POST['txtObservacionesEditar'];
         //Fecha de inicio de la programacion
@@ -88,7 +88,7 @@ if (isset($_POST['task'])) {
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
 
-        if ($ClsProgramacionDiaria->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $hoy, $id_usuario, $nombre_usuario)) {
+        if ($clsProgramacionDiaria->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $hoy, $id_usuario, $nombre_usuario)) {
             $php_estado = true;
         } else {
             $php_error = 'ERROR';
@@ -98,7 +98,7 @@ if (isset($_POST['task'])) {
         //id de la programacion
         $id = $_POST['id'];
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
-        if ($ClsProgramacionDiaria->fntEliminarProgramacionDiariaObj($id)) {
+        if ($clsProgramacionDiaria->fntEliminarProgramacionDiariaObj($id)) {
             $php_estado = true;
         }
     }

@@ -5,7 +5,7 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacion semanal
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 $boolPhpEstado = false;
 $errores = "";
 $resultado = "";
@@ -14,13 +14,13 @@ $intidpedido = intval($_POST['pedido']);
 $intidproducto = intval($_POST['producto']);
 $cantidad_solicitada = intval($_POST['cantidad']);
 
-if ($cantidad = $ClsProgramacionSemanal->cargar_cantidad_metros($intidpedido, $intidproducto)) {
+if ($cantidad = $clsProgramacionSemanal->cargar_cantidad_metros($intidpedido, $intidproducto)) {
     $nueva_cantidad = doubleval($cantidad) + doubleval($cantidad_solicitada);
 } else {
     $nueva_cantidad = doubleval($cantidad_solicitada);
 }
 
-if ($cantidad_pedido = $ClsProgramacionSemanal->cargar_cantidad_metros_pedido($intidpedido, $intidproducto)) {
+if ($cantidad_pedido = $clsProgramacionSemanal->cargar_cantidad_metros_pedido($intidpedido, $intidproducto)) {
     $cantidad_final = doubleval($cantidad_pedido) - $nueva_cantidad;
     if ($cantidad_final > 0) {
         $boolPhpEstado = true;

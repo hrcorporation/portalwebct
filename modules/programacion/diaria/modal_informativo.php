@@ -1,5 +1,5 @@
 <?php
-    $ClsProgramacionDiaria = new ClsProgramacionDiaria();
+    $clsProgramacionDiaria = new clsProgramacionDiaria();
 ?>
 <div class="modal fade" id="modal_informativo" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

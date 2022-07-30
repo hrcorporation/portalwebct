@@ -1,7 +1,7 @@
 <?php include '../../../layout/validar_session_cliente3.php' ?>
 <?php include '../../../layout/head/headcliente3.php' ?>
 <?php include 'sidebar.php' ?>
-<?php $ClsProgramacion = new ClsProgramacion(); ?>
+<?php $clsProgramacion = new clsProgramacion(); ?>
 
 <?php $intIdUsuario = $_SESSION['id_usuario']; ?>
 <?php $id = $_GET['programacion']?>
@@ -45,7 +45,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="txtCliente" class="col-sm-2 form-label h4">Cliente</label>
-                            <?php echo $ClsProgramacion->option_cliente_edit_cliente($intIdUsuario); ?>
+                            <?php echo $clsProgramacion->option_cliente_edit_cliente($intIdUsuario); ?>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     <div class="col">
                         <div class="form-group">
                             <div id="txtObra">
-                                <?php echo $ClsProgramacion->option_obra_edit_uno($intIdUsuario, $id) ?>
+                                <?php echo $clsProgramacion->option_obra_edit_uno($intIdUsuario, $id) ?>
                             </div>
                         </div>
                     </div>

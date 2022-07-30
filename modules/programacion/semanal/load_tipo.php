@@ -5,12 +5,14 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacionSemanal
-$objProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 $boolPhpEstado = false;
-if ($objSelectTipoUno = $objProgramacionSemanal->fntOptionTipoDescargueConcretolObj()) {
+//Si el checkbox esta activado se lista dos tipos de descargue
+if ($objSelectTipoUno = $clsProgramacionSemanal->fntOptionTipoDescargueConcretolObj()) {
     $boolPhpEstado = true;
 }
-if ($objSelectTipoDos = $objProgramacionSemanal->fntOptionTipoDescargueObj()) {
+//Si el checkbox esta deactivado se lista los cuatro tipos de descargue
+if ($objSelectTipoDos = $clsProgramacionSemanal->fntOptionTipoDescargueObj()) {
     $boolPhpEstado = true;
 }
 $datos = array(

@@ -1,9 +1,9 @@
 <?php
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 $intIdCliente = $_GET['id_cliente'];
-$StrNombreCliente = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
+$StrNombreCliente = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
 $intIdObra = $_GET['id_obra'];
-$StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
+$StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
 ?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -37,7 +37,7 @@ $StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra); ?>
+                                    <?= $clsProgramacionSemanal->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra); ?>
                                 </select>
                             </div>
                         </div>
@@ -60,7 +60,7 @@ $StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
                             <div class="form-group">
                                 <label for="cbxFrecuencia" class="col-sm-2 form-label">Frecuencia:</label>
                                 <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj() ?>
+                                    <?= $clsProgramacionSemanal->fntOptionFrecuenciaEditObj() ?>
                                 </select>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ $StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
                             <div class="form-group">
                                 <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
                                 <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionTipoDescargueObj(); ?>
+                                    <?= $clsProgramacionSemanal->fntOptionTipoDescargueObj(); ?>
                                 </select>
                             </div>
                         </div>

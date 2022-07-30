@@ -5,12 +5,12 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacionSemanal
-$objProgramacionDiaria = new ClsProgramacionDiaria();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 $boolPhpEstado = false;
-if ($objSelectTipoUno = $objProgramacionDiaria->fntOptionTipoDescargueConcretolObj()) {
+if ($objSelectTipoUno = $clsProgramacionDiaria->fntOptionTipoDescargueConcretolObj()) {
     $boolPhpEstado = true;
 }
-if ($objSelectTipoDos = $objProgramacionDiaria->fntOptionTipoDescargueObj()) {
+if ($objSelectTipoDos = $clsProgramacionDiaria->fntOptionTipoDescargueObj()) {
     $boolPhpEstado = true;
 }
 $datos = array(

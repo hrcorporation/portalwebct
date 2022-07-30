@@ -5,23 +5,23 @@ require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 
 //se crea un objeto de la clase programacion
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 //Validar que el id de la programacion exista
 if (isset($_POST['id'])) {
     //listar los datos de la programacion mediante el parametro de el id de la programacion 
-    if (is_array($data = $ClsProgramacionSemanal->fntCargarDataProgramacionFuncionarioObj($_POST['id']))) {
+    if (is_array($data = $clsProgramacionSemanal->fntCargarDataProgramacionFuncionarioObj($_POST['id']))) {
         //Recorremos los datos mediante un foreach usando la variable key para cada dato
         foreach ($data as $key) {
             //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion
-            $objSelectCliente  = $ClsProgramacionSemanal->fntOptionClienteEditFuncionarioObj($key['cliente']);
+            $objSelectCliente  = $clsProgramacionSemanal->fntOptionClienteEditFuncionarioObj($key['cliente']);
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
-            $objSelectObra  = $ClsProgramacionSemanal->fntOptionObraEditFuncionarioObj($key['cliente'], $key['obra']);
+            $objSelectObra  = $clsProgramacionSemanal->fntOptionObraEditFuncionarioObj($key['cliente'], $key['obra']);
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
-            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoFuncionarioObj($key['id_pedido'], $key['producto']);
+            $objSelectProducto  = $clsProgramacionSemanal->fntOptionProductoFuncionarioObj($key['id_pedido'], $key['producto']);
             //mostrar el select de los pedidos
-            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosObj($key['cliente'], $key['obra'], $key['id_pedido']);
+            $objSelectPedidos = $clsProgramacionSemanal->fntOptionListaPedidosObj($key['cliente'], $key['obra'], $key['id_pedido']);
             //mostrar el select del listado de las frecuencias
-            $objSelectFrecuencia = $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
+            $objSelectFrecuencia = $clsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
             //Cantidad / Volumen
             $intCantidad = $key['cantidad'];
             //Fecha inicial de la programacion
@@ -42,9 +42,11 @@ if (isset($_POST['id'])) {
             $boolRequiereBomba = $key['requiere_bomba'];
             //Validar que si requiere o no la bomba de concretolima
             if ($boolRequiereBomba) {
-                $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
+                //Si el checkbox esta activado se lista dos tipos de descargues
+                $objSelectTipoDescargue = $clsProgramacionSemanal->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
             } else {
-                $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
+                //Si el checkbox esta desactivado se lista los 4 tipos de descargue
+                $objSelectTipoDescargue = $clsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             }
         }
     } else {

@@ -5,7 +5,7 @@ require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 $programacion = new ClsProgramacion();
-$clsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 $log = false;
 $php_estado = false;
 $php_error[] = "";
@@ -17,13 +17,14 @@ $hora_actual = new DateTime();
 $hora_hoy = $hora_actual->format("H:i:s");
 $diassemana = array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado");
 $dia = $diassemana[date('w')];
+//id del usuario
+$intIdUsuario = $_SESSION['id_usuario'];
+//Nombre del usuario mediante el parametro del id del usuario
+$StrNombreUsuario = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
+$dtmHoraValidacion = $clsProgramacionSemanal->validacionHora($intIdUsuario);
 // Crear la programacion hasta las 04 pm
 //Validar que la variable de txt_cliente exista y no este vacia
 if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
-    //id del usuario
-    $intIdUsuario = $_SESSION['id_usuario'];
-    //Nombre del usuario mediante el parametro del id del usuario
-    $StrNombreUsuario = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
     //Estado
     $intEstado = 1;
     //id del cliente
@@ -76,7 +77,7 @@ if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
     $dtmFrecuenciaNueva = $clsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
     $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmFechaInicio, $dtmFrecuenciaNueva);
 
-    if ($dia == "Sabado" && $hora_hoy <= "06:00:00" || $dia == "Lunes" && $hora_hoy >= "06:00:00") {
+    if ($dia == "Sabado" && $hora_hoy <= $dtmHoraValidacion || $dia == "Lunes" && $hora_hoy >= $dtmHoraValidacion) {
         if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
             //Si pasa la validacion se retorna verdadero(true)
             $php_estado = true;

@@ -722,28 +722,7 @@ foreach ($datos as $dato) {
         }));
     })
 
-    $("#form_crear_programacion").on('submit', (function(e) {
-        e.preventDefault();
-        $.ajax({
-            url: "php_crear_programacion.php",
-            type: "POST",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(data) {
-                console.log(data);
-                if (data.estado) {
-                    toastr.success('Se ha guardado correctamente la programacion');
-                } else {
-                    toastr.warning(data.errores);
-                }
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
-            },
-        });
-    }));
+    
 
     $(document).ready(function() {
         $("#form_crear_precio_servicio").on('submit', (function(e) {
@@ -809,11 +788,11 @@ foreach ($datos as $dato) {
                 },
                 {
                     "data": null,
-                    "defaultContent": "<button class='btn btn-danger btn-sm' id = 'btn-eliminar'> <i class='fas fa-trash'></i> </button>"
+                    "defaultContent": "<a class='btn btn-danger btn-sm' id = 'btn-eliminar'> <i class='fas fa-trash'></i> </a>"
                 },
                 {
                     "data": null,
-                    "defaultContent": "<a class='btn btn-primary btn-sm' href = '' id = 'btn-cargar' data-toggle='modal' data-target='#modal_crear_programacion'> Cargar </a>"
+                    "defaultContent": "<button class='btn btn-primary btn-sm' id = 'btn-cargar'> Cargar </button>"
                 },
             ],
             //"scrollX": true,
@@ -826,8 +805,13 @@ foreach ($datos as $dato) {
                 cell.innerHTML = i + 1;
             });
         }).draw();
-
         $('#table_precio_productos tbody').on('click', 'button', function() {
+            var data = table_producto.row($(this).parents('tr')).data();
+            var id = data['id'];
+            window.location = "crear_programacion.php?id_producto=" + id+'&id_pedido='+id_pedido;
+        });
+
+        $('#table_precio_productos tbody').on('click', 'a', function() {
             var data = table_producto.row($(this).parents('tr')).data();
             var id = data['id'];
             Swal.fire({

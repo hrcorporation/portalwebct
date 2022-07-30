@@ -1,13 +1,16 @@
 <?php include '../../../layout/validar_session3.php' ?>
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php'; ?>
-
-<?php $objProgramacionSemanal = new ClsProgramacionSemanal(); ?>
-
-<?php $intCantidadProgramacionSinConfirmar = $objProgramacionSemanal->fntContarProgramacionesSinConfirmarObj(); ?>
-<?php $intCantidadProgramacionPorCargar = $objProgramacionSemanal->fntContarProgramacionesPorCargarObj(); ?>
-<?php $intCantidadProgramacionConfirmadas = $objProgramacionSemanal->fntContarProgramacionesConfirmadasObj(); ?>
-<?php $intCantidadProgramacionEjecutadas = $objProgramacionSemanal->fntContarProgramacionesEjecutadasObj(); ?>
+<!-- Se crea un objeto de la clase clsProgramacionSemanal -->
+<?php $clsProgramacionSemanal = new clsProgramacionSemanal(); ?>
+<!-- La cantidad de programaciones semanales sin confirmar por el cliente -->
+<?php $intCantidadProgramacionSinConfirmar = $clsProgramacionSemanal->fntContarProgramacionesSinConfirmarObj(); ?>
+<!-- La cantidad de programaciones por cargar por parte del funcionario -->
+<?php $intCantidadProgramacionPorCargar = $clsProgramacionSemanal->fntContarProgramacionesPorCargarObj(); ?>
+<!-- La cantidad de programaciones confirmadas por parte del funcionario -->
+<?php $intCantidadProgramacionConfirmadas = $clsProgramacionSemanal->fntContarProgramacionesConfirmadasObj(); ?>
+<!-- La cantidad de programaciones ya ejecutadas -->
+<?php $intCantidadProgramacionEjecutadas = $clsProgramacionSemanal->fntContarProgramacionesEjecutadasObj(); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -76,8 +79,9 @@
 <script src="calendar.js"> </script>
 <script>
     $(function() {
+        //Ocultar el input del volumen o cantidad de m3
         $("#volumen").hide();
-
+        //Validar que la cantidad de m3 no exceda al que esta en el pedido.
         $('#txtCant').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -104,7 +108,7 @@
                 },
             });
         });
-
+        //Al seleccionar el cliente se lista las obras que estan relacionadas con el cliente seleccionado a la hora de crear una programacion semanal.
         $('#cbxCliente').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -128,7 +132,7 @@
                 },
             });
         });
-
+        //Al seleccionar el cliente se lista las obras que estan relacionadas con el cliente seleccionado a la hora de editar una programacion semanal.
         $('#cbxClienteEditar').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -152,7 +156,7 @@
                 },
             });
         });
-
+        //Al seleccionar la obra se lista todos los pedidos que estan relacionadas con el cliente y obra seleccionado a la hora de crear una programacion semanal.
         $('#cbxObra').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -176,7 +180,7 @@
                 },
             });
         });
-
+        //Al seleccionar la obra se lista todos los pedidos que estan relacionadas con el cliente y obra seleccionado a la hora de editar una programacion semanal.
         $('#cbxObraEditar').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -200,7 +204,7 @@
                 },
             });
         });
-
+        //Al seleccionar el pedido se lista todos los productos que estan relacionadas con el pedido seleccionado a la hora de crear una programacion semanal.
         $('#cbxPedido').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -221,7 +225,7 @@
                 },
             });
         });
-
+        //Al seleccionar el pedido se lista todos los productos que estan relacionadas con el pedido seleccionado a la hora de editar una programacion semanal.
         $('#cbxPedidoEditar').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -242,11 +246,11 @@
                 },
             });
         });
-
+        //Al seleccionar el producto se habilita el input para ingresar el volumen o cantidad de m3.
         $('#cbxProducto').on('change', function() {
             $("#volumen").show();
         });
-        /////////////////////////////////////////////////////
+        //Al dar click al checkbox se despliega una lista diferente de tipo de descargue a la hora de crear una programacion semanal.
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
             var formData = 'null';
@@ -277,7 +281,7 @@
                 });
             }
         });
-
+        //Al dar click al checkbox se despliega una lista diferente de tipo de descargue a la hora de editar una programacion semanal.
         $('#chkRequiereBombaEditar').on('click', function() {
             //Ajax 
             var formData = 'null';
@@ -309,7 +313,7 @@
                 });
             }
         });
-
+        //Para crear una programacion semanal.
         $("#form_crear_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -333,7 +337,7 @@
                 },
             });
         }));
-
+        //Para editar una programacion semanal.
         $("#form_mostrar_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -356,15 +360,7 @@
                 },
             });
         }));
-
-        // $('#txtCant').on('change', function() {
-        //     $('#modal_informativo').modal('show');
-        // });
-
-        // $('#txtCantEditar').on('change', function() {
-        //     $('#modal_informativo').modal('show');
-        // });
-
+        //para actualizar la hora de plazo para que el cliente pueda crear o editar alguna programacion el dia sabado.
         $("#form_cambiar_hora").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -389,7 +385,7 @@
                 },
             });
         }));
-
+        //Para cargar la programacion semanal la cual el cliente hizo la confirmacion.
         $("#form_cargar_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({

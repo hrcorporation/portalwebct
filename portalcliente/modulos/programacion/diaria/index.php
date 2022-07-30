@@ -1,10 +1,10 @@
 <?php include '../../../../layout/validar_session_cliente4.php' ?>
 <?php include '../../../../layout/head/headcliente4.php' ?>
 <?php include 'sidebar.php' ?>
-<?php $programacionDiaria = new ClsProgramacionDiaria();
+<?php $clsProgramacionDiaria = new clsProgramacionDiaria();
 //Se crea un objeto de la clase programacion
 $intIdUsuario = $_SESSION['id_usuario']; ?>
-<?php $intCantidadProgramacionSinConfirmar = $programacionDiaria->fntContarProgramacionesSinConfirmarClienteObj($intIdUsuario); ?>
+<?php $intCantidadProgramacionSinConfirmar = $clsProgramacionDiaria->fntContarProgramacionesSinConfirmarClienteObj($intIdUsuario); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -53,7 +53,7 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                         <!-- <div class="form-group">
                             <label class="form-label">Linea de despacho</label>
                             <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
-                                <?= $programacionDiaria->fntOptionLineaDespachoObj(); ?>
+                                <?= $clsProgramacionDiaria->fntOptionLineaDespachoObj(); ?>
                             </select>
                         </div> -->
                     </div>

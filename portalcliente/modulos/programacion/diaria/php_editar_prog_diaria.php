@@ -11,11 +11,11 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase programacion
-$ClsProgramacionDiaria = new ClsProgramacionDiaria();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 //id del usuario en sesion
 $intIdUsuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario
-$StrNombreUsuario = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdUsuario);
+$StrNombreUsuario = $clsProgramacionDiaria->fntGetNombreClienteObj($intIdUsuario);
 //Se crea un objeto de la clase Datetime
 $dtmFechaActual = new DateTime();
 //Se obtiene la fecha actual con el formato completo
@@ -29,14 +29,14 @@ if (isset($_POST['task'])) {
         //id de la programacion
         $intId = $_POST['id'];
         //estado de la programacion
-        $intEstado = $ClsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
+        $intEstado = $clsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
         //Fecha inicio de la programacion
         $dtmFechaInicio = $_POST['txtInicio'];
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFin'];
         //Validar que modifique correctamente la programacion (Fechas)
         if ($intEstado == 1) {
-            if ($ClsProgramacionDiaria->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+            if ($clsProgramacionDiaria->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
                 $php_estado = true;
             } else {
                 $php_error = 'ERROR';
@@ -48,17 +48,17 @@ if (isset($_POST['task'])) {
         //id de la programacion
         $intId = $_POST['id_prog_evento'];
         //estado de la programacion
-        $intEstado = $ClsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
+        $intEstado = $clsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
         //id del pedido
         $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
         $intIdProducto = $_POST['cbxProductoEditar'];
         //nombre del producto mediante el id
-        $strNombreProducto = $ClsProgramacionDiaria->fntGetNombreProductoObj($intIdProducto);
+        $strNombreProducto = $clsProgramacionDiaria->fntGetNombreProductoObj($intIdProducto);
         //id de la linea de despacho.
         $intIdLineaDespacho = $_POST['cbxLineaDespachoEditar'];
         //Nombre de la linea de despacho mediante el parametro del id del producto.
-        $StrNombreLineaDespacho = $ClsProgramacionDiaria->fntGetNombreLineaDespachoObj($intIdLineaDespacho);
+        $StrNombreLineaDespacho = $clsProgramacionDiaria->fntGetNombreLineaDespachoObj($intIdLineaDespacho);
         //hora de cargue
         $dtmHoraCargue = $_POST['txtHoraCargueEditar'];
         //Hora mixer en obra
@@ -66,11 +66,11 @@ if (isset($_POST['task'])) {
         //Id de la mixer 
         $intIdMixer = $_POST['cbxMixerEditar'];
         //Placa de la mixer
-        $StrPlacaMixer = $ClsProgramacionDiaria->fntGetPlacaMixerObj($intIdMixer);
+        $StrPlacaMixer = $clsProgramacionDiaria->fntGetPlacaMixerObj($intIdMixer);
         //Id del conductor
         $intIdConductor = $_POST['cbxConductorEditar'];
         //Nombre del conductor mediante el parametro del id del conductor
-        $StrNombreConductor = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdConductor);
+        $StrNombreConductor = $clsProgramacionDiaria->fntGetNombreClienteObj($intIdConductor);
         //Cantidad
         $decCantidad = $_POST['txtCantEditar'];
         if (isset($_POST['chkRequiereBombaEditar'])) {
@@ -81,11 +81,11 @@ if (isset($_POST['task'])) {
         //Tipo de descargue
         $intTipoDescargue = $_POST['cbxTipoDescargueEditar'];
         //nombre del tipo de descargue
-        $StrNombreTipoDescargue = $ClsProgramacionDiaria->fntGetNombreTipoDescargueObj($intTipoDescargue);
+        $StrNombreTipoDescargue = $clsProgramacionDiaria->fntGetNombreTipoDescargueObj($intTipoDescargue);
         //Tipo de bomba
         $intTipoBomba = $_POST['cbxTipoBombaEditar'];
         //nombre del tipo de bomba
-        $StrNombreTipoBomba = $ClsProgramacionDiaria->fntGetNombreTipoBombaObj($intTipoBomba);
+        $StrNombreTipoBomba = $clsProgramacionDiaria->fntGetNombreTipoBombaObj($intTipoBomba);
         //Observaciones
         $StrObservaciones = $_POST['txtObservacionesEditar'];
         //Fecha de inicio de la programacion
@@ -93,7 +93,7 @@ if (isset($_POST['task'])) {
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
         if ($intEstado == 1) {
-            if ($ClsProgramacionDiaria->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+            if ($clsProgramacionDiaria->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
                 $php_estado = true;
             } else {
                 $php_error = 'ERROR';
@@ -105,10 +105,10 @@ if (isset($_POST['task'])) {
     } else if ($_POST['task'] == 3) {
         //id de la programacion
         $intId = $_POST['id'];
-        $intEstado = $ClsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
+        $intEstado = $clsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
         if ($intEstado == 1) {
-            if ($ClsProgramacionDiaria->fntEliminarProgramacionDiariaObj($intId)) {
+            if ($clsProgramacionDiaria->fntEliminarProgramacionDiariaObj($intId)) {
                 $php_estado = true;
             } else {
                 $php_error = 'ERROR';

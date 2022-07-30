@@ -1,9 +1,9 @@
 <?php include '../../../layout/validar_session3.php'; ?>
 <?php include '../../../layout/head/head3.php'; ?>
 <?php include 'sidebar.php'; ?>
-<?php $programacionDiaria = new ClsProgramacionDiaria(); //Se crea un objeto de la clase programacion 
+<?php $clsProgramacionDiaria = new clsProgramacionDiaria(); //Se crea un objeto de la clase programacion 
 ?>
-<?php $intCantidadProgramacionSinConfirmar = $programacionDiaria->fntContarProgramacionesSinConfirmarFuncionarioObj(); ?>
+<?php $intCantidadProgramacionSinConfirmar = $clsProgramacionDiaria->fntContarProgramacionesSinConfirmarFuncionarioObj(); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -53,7 +53,7 @@
                         <div class="form-group">
                             <label class="form-label">Linea de despacho</label>
                             <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select" style="width: 100%;">
-                                <?= $programacionDiaria->fntOptionLineaDespachoObj() ?>
+                                <?= $clsProgramacionDiaria->fntOptionLineaDespachoObj() ?>
                             </select>
                         </div>
                     </div>

@@ -1,6 +1,10 @@
 <?php include '../../../../layout/validar_session_cliente4.php' ?>
 <?php include '../../../../layout/head/headcliente4.php' ?>
 <?php include 'sidebar.php' ?>
+<?php
+$id_cliente = $_GET['id_cliente'];
+$id_obra = $_GET['id_obra'];
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -39,6 +43,8 @@
                 </div>
             </div>
             <div class="card-body">
+                <input type="hidden" name="id_cliente" id="id_cliente" value="<?= $id_cliente ?>">
+                <input type="hidden" name="id_obra" id="id_obra" value="<?= $id_obra ?>">
                 <button style="position: absolute; right: 71%; top: 9%" type="button" class="btn btn-success" id="btnAceptarTodaProgramacion" data-toggle="modal" data-target="#modal_aceptar_toda_programacion">
                     Aceptar y enviar
                 </button>
@@ -248,7 +254,7 @@
             });
         });
 
-        $('#cbxProducto').on('change', function(){
+        $('#cbxProducto').on('change', function() {
             $("#volumen").show();
         });
     });

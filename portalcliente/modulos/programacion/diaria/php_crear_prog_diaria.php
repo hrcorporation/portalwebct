@@ -5,7 +5,7 @@ require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacion
-$ClsProgramacionDiaria = new ClsProgramacionDiaria();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 $log = false;
 $php_estado = false;
 $php_error[] = "";
@@ -15,27 +15,27 @@ if (isset($_POST['cbxPedido']) && !empty($_POST['cbxPedido'])) {
     //id del usuario
     $intIdUsuario = $_SESSION['id_usuario'];
     //Nombre del usuario mediante el parametro del id del usuario
-    $StrNombreUsuario = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdUsuario);
+    $StrNombreUsuario = $clsProgramacionDiaria->fntGetNombreClienteObj($intIdUsuario);
     //Estado
     $intEstado = 1;
     //id del cliente
     $intIdCliente = $_POST['txtCliente'];
     //Nombre del cliente mediante el parametro del id del cliente
-    $StrNombreCliente = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdCliente);
+    $StrNombreCliente = $clsProgramacionDiaria->fntGetNombreClienteObj($intIdCliente);
     //id de la obra
     $intIdObra = $_POST['txtObra'];
     //Nombre de la obra mediante el parametro del id de la obra.
-    $StrNombreObra = $ClsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
+    $StrNombreObra = $clsProgramacionDiaria->fntGetNombreObraObj($intIdObra);
     //id del pedido
     $intPedido = $_POST['cbxPedido'];
     //id del producto.
     $intIdProducto = $_POST['cbxProducto'];
     //Nombre del producto mediante el parametro del id del producto.
-    $StrNombreProducto = $ClsProgramacionDiaria->fntGetNombreProductoObj($intIdProducto);
+    $StrNombreProducto = $clsProgramacionDiaria->fntGetNombreProductoObj($intIdProducto);
     //id de la linea de despacho.
     $intIdLineaDespacho = $_POST['cbxLineaDespacho'];
     //Nombre de la linea de despacho mediante el parametro del id del producto.
-    $StrNombreLineaDespacho = $ClsProgramacionDiaria->fntGetNombreLineaDespachoObj($intIdLineaDespacho);
+    $StrNombreLineaDespacho = $clsProgramacionDiaria->fntGetNombreLineaDespachoObj($intIdLineaDespacho);
     //hora de cargue
     $dtmHoraCargue = $_POST['txtHoraCargue'];
     //Hora mixer en obra
@@ -43,11 +43,11 @@ if (isset($_POST['cbxPedido']) && !empty($_POST['cbxPedido'])) {
     //Id de la mixer 
     $intIdMixer = $_POST['cbxMixer'];
     //Placa de la mixer
-    $StrPlacaMixer = $ClsProgramacionDiaria->fntGetPlacaMixerObj($intIdMixer);
+    $StrPlacaMixer = $clsProgramacionDiaria->fntGetPlacaMixerObj($intIdMixer);
     //Id del conductor
     $intIdConductor = $_POST['cbxConductor'];
     //Nombre del conductor mediante el parametro del id del conductor
-    $StrNombreConductor = $ClsProgramacionDiaria->fntGetNombreClienteObj($intIdConductor);
+    $StrNombreConductor = $clsProgramacionDiaria->fntGetNombreClienteObj($intIdConductor);
     //Cantidad
     $decCantidad = $_POST['txtCant'];
     //Validar que la variable exista, si cumple la variable se le asigna true, de lo contrario seria false.
@@ -59,11 +59,11 @@ if (isset($_POST['cbxPedido']) && !empty($_POST['cbxPedido'])) {
     //Tipo de descargue
     $intTipoDescargue = $_POST['cbxTipoDescargue'];
     //nombre del tipo de descargue
-    $StrNombreTipoDescargue = $ClsProgramacionDiaria->fntGetNombreTipoDescargueObj($intTipoDescargue);
+    $StrNombreTipoDescargue = $clsProgramacionDiaria->fntGetNombreTipoDescargueObj($intTipoDescargue);
     //Tipo de bomba
     $intTipoBomba = $_POST['cbxTipoBomba'];
     //nombre del tipo de bomba
-    $StrNombreTipoBomba = $ClsProgramacionDiaria->fntGetNombreTipoBombaObj($intTipoBomba);
+    $StrNombreTipoBomba = $clsProgramacionDiaria->fntGetNombreTipoBombaObj($intTipoBomba);
     //Observaciones
     $StrObservaciones = $_POST['txtObservaciones'];
     //Fecha de inicio de la programacion
@@ -71,7 +71,7 @@ if (isset($_POST['cbxPedido']) && !empty($_POST['cbxPedido'])) {
     //Fecha final de la programacion
     $dtmFechaFin = $_POST['txtFin'];
     //Validar que tome bien los parametros y guarde correctamente la programacion
-    if ($ClsProgramacionDiaria->fntCrearProgDiariaClienteBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $dtmFechaInicio, $dtmFechaFin, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+    if ($clsProgramacionDiaria->fntCrearProgDiariaClienteBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $dtmFechaInicio, $dtmFechaFin, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
         //Si pasa la validacion se retorna verdadero(true)
         $php_estado = true;
     } else {

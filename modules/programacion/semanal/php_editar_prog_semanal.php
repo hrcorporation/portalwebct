@@ -11,11 +11,11 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase programacion.
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 //id del usuario en sesion.
 $intIdUsuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario.
-$StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
+$StrNombreUsuario = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
 //Se crea un objeto de la clase Datetime.
 $dtmFechaActual = new DateTime();
 //Se obtiene la fecha actual con el formato completo.
@@ -30,7 +30,7 @@ if (isset($_POST['task'])) {
         //Fecha final de la programacion.
         $dtmFechaFin = $_POST['txtFin'];
         //Validar que modifique correctamente la programacion (fechas).
-        if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+        if ($clsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
             $php_estado = true;
         }
     } else if ($_POST['task'] == 2) {
@@ -39,17 +39,17 @@ if (isset($_POST['task'])) {
         //id cliente.
         $intIdCliente = $_POST['cbxClienteEditar'];
         //nombre cliente.
-        $strNombreCliente = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
+        $strNombreCliente = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
         //id de la obra.
         $intIdObra = $_POST['cbxObraEditar'];
         //Nombre de la obra mediante el parametro del id de la obra.
-        $StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
+        $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
         //id del pedido
         $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
         $intIdProducto = $_POST['cbxProductoEditar'];
         //nombre del producto mediante el id
-        $strNombreProducto = $ClsProgramacionSemanal->fntGetNombreProducto($intIdProducto);
+        $strNombreProducto = $clsProgramacionSemanal->fntGetNombreProducto($intIdProducto);
         //Volumen
         $dblCantidad = $_POST['txtCantEditar'];
         //Frecuencia
@@ -65,7 +65,7 @@ if (isset($_POST['task'])) {
         //Tipo de descargue
         $intTipoDescargue = $_POST['cbxTipoDescargueEditar'];
         //nombre del tipo de descargue
-        $StrNombreTipoDescargue = $ClsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
+        $StrNombreTipoDescargue = $clsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
         //metros de tuberia
         $decMetrosTuberia = $_POST['txtMetrosEditar'];
         //Observaciones
@@ -74,18 +74,22 @@ if (isset($_POST['task'])) {
         $dtmFechaInicio = $_POST['txtInicioEditar'];
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
+        //Validar la cantidad que sea mayor a 7
         if ($dblCantidad > 7) {
+            //Para obtener el numero de viajes se divide la cantidad sobre 7 (Se divide en 7 porque es la cantidad maxima que puede llevar una mixer.)
             $numeroViajes = ($dblCantidad / 7);
+            //Se usa la funcion ceil para aproximar este numero y no de un decimal.
             $numeroViajesAp = intval(ceil($numeroViajes));
         } else {
+            //Si no es mayor a 7 el viaje solo es uno.
             $numeroViajesAp = 1;
         }
-
+        //los metros cubicos por viaje se obtiene dividiendo la cantidad sobre la cantidad de viajes.
         $metrosCubicos = ($dblCantidad / $numeroViajesAp);
-        $dtmFrecuenciaNueva = $ClsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
-        $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmFechaInicio, $dtmFrecuenciaNueva);
+        $dtmFrecuenciaNueva = $clsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
+        $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmFechaInicio, $dtmFrecuenciaNueva);
 
-        if ($ClsProgramacionSemanal->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmNuevaFechafin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
+        if ($clsProgramacionSemanal->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmNuevaFechafin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
             $php_estado = true;
         } else {
             $php_error = 'ERROR';
@@ -94,14 +98,14 @@ if (isset($_POST['task'])) {
         //id de la programacion
         $intId = $_POST['id'];
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
-        if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
+        if ($clsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
             $php_estado = true;
         }
     } else if ($_POST['task'] == 4) {
         $intId = $_POST['id'];
-        $intIdEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionFuncionarioDosObj($intId);
+        $intIdEstado = $clsProgramacionSemanal->fntGetEstadosProgramacionFuncionarioDosObj($intId);
         if ($intIdEstado == 2) {
-            $objProgramacionesSemanales = $ClsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoUnoObj($intId);
+            $objProgramacionesSemanales = $clsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoUnoObj($intId);
             if (is_array($objProgramacionesSemanales)) {
                 foreach ($objProgramacionesSemanales as $estado) {
                     $intEstado = 3;
@@ -140,29 +144,29 @@ if (isset($_POST['task'])) {
                 //Calcular los metros cubicos de cada viaje
                 $metrosCubicos = ($intCantidad / $numeroViajesAp);
                 //Calcular la hora del cargue
-                $dtmhoracargue = $ClsProgramacionSemanal->restar($dtmFechaInicial, "01:00:00");
+                $dtmhoracargue = $clsProgramacionSemanal->restar($dtmFechaInicial, "01:00:00");
                 //Calcular la nueva fecha inicial teniendo en cuenta la frecuencia
-                $dtmnuevafechainicial = $ClsProgramacionSemanal->restar($dtmFechaInicial, $dtmFrecuencia);
+                $dtmnuevafechainicial = $clsProgramacionSemanal->restar($dtmFechaInicial, $dtmFrecuencia);
                 //La hora de la mixer en obra
                 $dtmhoramixerobra = $dtmFechaInicial;
                 //Calcular la fecha final de la programacion
-                $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmFrecuencia);
+                $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmFrecuencia);
                 for ($i = 1; $i <= $numeroViajesAp; $i++) {
-                    if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $valor_programacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmnuevafechainicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
+                    if ($clsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $valor_programacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmnuevafechainicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
                         $php_estado = true;
                         //Actualizando la nueva fecha inicial.
                         $dtmnuevafechainicial = $dtmNuevaFechafin;
                         //Calcular la fecha final de la programacion.
-                        $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmNuevaFechafin, $dtmFrecuencia);
+                        $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmNuevaFechafin, $dtmFrecuencia);
                         //Calcular la hora del cargue.
-                        $dtmhoracargue = $ClsProgramacionSemanal->restar($dtmNuevaFechafin, "01:00:00");
+                        $dtmhoracargue = $clsProgramacionSemanal->restar($dtmNuevaFechafin, "01:00:00");
                         // Calcular la hora que debe de estar la mixer en obra.
                         $dtmhoramixerobra = $dtmNuevaFechafin;
                     } else {
                         $php_error = 'No guardo correctamente';
                     }
                 }
-                if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioUnoObj($intId)) {
+                if ($clsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioUnoObj($intId)) {
                     //Si pasa la validacion se retorna verdadero(true)
                     $php_estado = true;
                 } else {
@@ -179,9 +183,9 @@ if (isset($_POST['task'])) {
         }
     } else if ($_POST['task'] == 5) {
         $intId = $_POST['id'];
-        $intEstadoProgramacion = $ClsProgramacionSemanal->fntGetEstadosProgramacionFuncionarioDosObj($intId);
+        $intEstadoProgramacion = $clsProgramacionSemanal->fntGetEstadosProgramacionFuncionarioDosObj($intId);
         if ($intEstadoProgramacion == 2) {
-            if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalHabilitar($intId)) {
+            if ($clsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalHabilitar($intId)) {
                 $php_estado = true;
             } else {
                 $php_error = "ERROR";
@@ -192,7 +196,7 @@ if (isset($_POST['task'])) {
             $php_error = "Esta programacion no se le puede habilitar al cliente para hacer modificaciones";
         }
     } else if ($_POST['task'] == 6) {
-        $objProgramacionesSemanales = $ClsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoDosObj();
+        $objProgramacionesSemanales = $clsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoDosObj();
         if (is_array($objProgramacionesSemanales)) {
             foreach ($objProgramacionesSemanales as $estado) {
                 $intEstado = 3;
@@ -228,31 +232,31 @@ if (isset($_POST['task'])) {
                 //Calcular los metros cubicos de cada viaje
                 $metrosCubicos = ($intCantidad / $numeroViajesAp);
                 //Calcular la hora del cargue
-                $dtmhoracargue = $ClsProgramacionSemanal->restar($dtmFechaInicial, "01:00:00");
+                $dtmhoracargue = $clsProgramacionSemanal->restar($dtmFechaInicial, "01:00:00");
                 //Calcular la nueva fecha inicial teniendo en cuenta la frecuencia
-                $dtmnuevafechainicial = $ClsProgramacionSemanal->restar($dtmFechaInicial, $dtmFrecuencia);
+                $dtmnuevafechainicial = $clsProgramacionSemanal->restar($dtmFechaInicial, $dtmFrecuencia);
                 //La hora de la mixer en obra
                 $dtmhoramixerobra = $dtmFechaInicial;
                 //Calcular la fecha final de la programacion
-                $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmFrecuencia);
+                $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmFrecuencia);
                 if ($intEstadoProgramacion == 2) {
                     for ($i = 1; $i <= $numeroViajesAp; $i++) {
-                        if ($ClsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $valor_programacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmnuevafechainicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
+                        if ($clsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $valor_programacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmnuevafechainicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
                             //Si pasa la validacion se retorna verdadero(true)
                             $php_estado = true;
                             //Actualizando la nueva fecha inicial.
                             $dtmnuevafechainicial = $dtmNuevaFechafin;
                             //Calcular la fecha final de la programacion.
-                            $dtmNuevaFechafin = $ClsProgramacionSemanal->sumar($dtmNuevaFechafin, $dtmFrecuencia);
+                            $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmNuevaFechafin, $dtmFrecuencia);
                             //Calcular la hora del cargue.
-                            $dtmhoracargue = $ClsProgramacionSemanal->restar($dtmNuevaFechafin, "01:00:00");
+                            $dtmhoracargue = $clsProgramacionSemanal->restar($dtmNuevaFechafin, "01:00:00");
                             // Calcular la hora que debe de estar la mixer en obra.
                             $dtmhoramixerobra = $dtmNuevaFechafin;
                         } else {
                             $php_error = 'No guardo correctamente';
                         }
                     }
-                    if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj()) {
+                    if ($clsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj()) {
                         //Si pasa la validacion se retorna verdadero(true)
                         $php_estado = true;
                     } else {

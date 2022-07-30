@@ -1,6 +1,6 @@
 <?php
 
-class ClsProgramacionSemanal extends conexionPDO
+class clsProgramacionSemanal extends conexionPDO
 {
     protected $con;
     // CONEXION
@@ -1237,6 +1237,68 @@ class ClsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
+    // Obtener todas las programaciones (CLIENTE).
+    public function fntGetProgSemanalClientePorClienteObraObj($id_cliente, $id_obra)
+    {
+        $this->id_cliente = $id_cliente;
+        $this->id_obra = $id_obra;
+        $sql = "SELECT * FROM `ct66_programacion_semanal` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $this->id, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    if ($fila['status'] == 1) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'gray',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 2) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'orange',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 3) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'Light Blue',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 4) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
+                            'textcolor' => 'black'
+                        ];
+                    }
+                }
+                return $events;
+            }
+        }
+        return false;
+    }
     // Obtener todos los estados de las programaciones (CLIENTE).
     public function fntGetEstadosProgramacionClienteUnoObj($id_usuario)
     {
@@ -1517,8 +1579,8 @@ class ClsProgramacionSemanal extends conexionPDO
         }
     }
 
-    public function actualizar_saldo(){
-        
+    public function actualizar_saldo()
+    {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////

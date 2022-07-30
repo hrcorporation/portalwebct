@@ -11,13 +11,17 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase Programacion
-$programacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 //id del usuario que esta en sesion
 $id_usuario = $_SESSION['id_usuario'];
 //id del rol que esta en sesion
 $id_rol = $_SESSION['rol'];
+// //id del cliente
+$id_cliente = $_POST['id_cliente'];
+// //id de la obra
+$id_obra = $_POST['id_obra'];
 //Validar que la consulta salga exitosamente
-if ($data = $programacionSemanal->fntGetProgSemanalClienteObj($id_usuario)) {
+if ($data = $clsProgramacionSemanal->fntGetProgSemanalClienteObj($id_usuario)) {
     $php_estado = true;
 }
 

@@ -9,9 +9,9 @@ $boolPhpEstado = false;
 $arrayPhpError[] = "";
 $StrResultado = "";
 //se crea un objeto de la clase programacion.
-$ClsProgramacionSemanal = new ClsProgramacionDiaria();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 //Se listan todas las programaciones.
-$objData = $ClsProgramacionSemanal->fntGetProgDiariaFuncionarioObj();
+$objData = $clsProgramacionDiaria->fntGetProgDiariaFuncionarioObj();
 $boolPhpEstado = true;
 //Datos de los arreglos.
 $datos = array(

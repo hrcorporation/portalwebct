@@ -1,6 +1,6 @@
 <?php
 
-class ClsProgramacionDiaria extends conexionPDO
+class clsProgramacionDiaria extends conexionPDO
 {
     protected $con;
     // CONEXION

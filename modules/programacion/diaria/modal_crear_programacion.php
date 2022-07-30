@@ -1,5 +1,5 @@
 <?php
-$ClsProgramacionDiaria = new ClsProgramacionDiaria();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 ?>
 <div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -55,7 +55,7 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                             <div class="form-group">
                                 <label class="form-label">Linea de despacho:</label>
                                 <select name="cbxLineaDespacho" id="cbxLineaDespacho" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionLineaDespachoObj(); ?>
+                                    <?= $clsProgramacionDiaria->fntOptionLineaDespachoObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -77,7 +77,7 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                             <div class="form-group">
                                 <label for="cbxMixer" class="form-label">Mixer:</label>
                                 <select name="cbxMixer" id="cbxMixer" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionVehiculoObj(); ?>
+                                    <?= $clsProgramacionDiaria->fntOptionVehiculoObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -85,7 +85,7 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                             <div class="form-group">
                                 <label for="txtConductor" class="form-label">Conductor:</label>
                                 <select name="cbxConductor" id="cbxConductor" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionConductorObj(); ?>
+                                    <?= $clsProgramacionDiaria->fntOptionConductorObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -107,7 +107,7 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                             <div class="form-group">
                                 <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
                                 <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionTipoDescargueObj(); ?>
+                                    <?= $clsProgramacionDiaria->fntOptionTipoDescargueObj(); ?>
                                 </select>
                             </div>
                         </div>
@@ -115,7 +115,7 @@ $ClsProgramacionDiaria = new ClsProgramacionDiaria();
                             <div class="form-group">
                                 <label for="cbxTipoBomba" class="form-label">Tipo de bomba:</label>
                                 <select name="cbxTipoBomba" id="cbxTipoBomba" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionDiaria->fntOptionTipoBombaObj(); ?>
+                                    <?= $clsProgramacionDiaria->fntOptionTipoBombaObj(); ?>
                                 </select>
                             </div>
                         </div>

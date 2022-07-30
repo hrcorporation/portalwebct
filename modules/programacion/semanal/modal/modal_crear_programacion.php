@@ -1,5 +1,5 @@
 <?php
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_crear_evento" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -55,7 +55,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="txtFrecuencia" class="form-label">Frecuencia:</label>
                                 <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj(); ?>
+                                    <?= $clsProgramacionSemanal->fntOptionFrecuenciaEditObj(); ?>
                                 </select>
                                 <!-- <input type="number" name="cbxFrecuencia" id="cbxFrecuencia" class="form-control" style="width: 100%;" /> -->
                             </div>
@@ -86,7 +86,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                             <div class="form-group">
                                 <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
                                 <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;">
-                                    <?= $ClsProgramacionSemanal->fntOptionTipoDescargueObj(); ?>
+                                    <?= $clsProgramacionSemanal->fntOptionTipoDescargueObj(); ?>
                                 </select>
                             </div>
                         </div>

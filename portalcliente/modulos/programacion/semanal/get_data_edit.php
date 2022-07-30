@@ -6,25 +6,25 @@ require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 
 //se crea un objeto de la clase programacion
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 //Id del usuario en sesion
 $id_usuario = $_SESSION['id_usuario'];
 //Validar que el id de la programacion exista
 if (isset($_POST['id'])) {
     //listar los datos de la programacion mediante el parametro de el id de la programacion 
-    if (is_array($data = $ClsProgramacionSemanal->fntCargarDataProgramacionClienteObj($_POST['id']))) {
+    if (is_array($data = $clsProgramacionSemanal->fntCargarDataProgramacionClienteObj($_POST['id']))) {
         //Recorremos los datos mediante un foreach usando la variable key para cada dato
         foreach ($data as $key) {
-            $strNombreCliente = $ClsProgramacionSemanal->fntGetNombreClienteObj($key['cliente']);
-            $strNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($key['obra']);
+            $strNombreCliente = $clsProgramacionSemanal->fntGetNombreClienteObj($key['cliente']);
+            $strNombreObra = $clsProgramacionSemanal->fntGetNombreObra($key['obra']);
             //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion
             $objSelectCliente  = "<label class='form-label'>Cliente:</label><input type='hidden' name='txtCliente' id='txtCliente' class='form-control' style='width: 100%;' value='" . $key['cliente'] . "' /><p>" . $strNombreCliente . "</p>";
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion
             $objSelectObra  = "<label class='form-label'>Obra:</label><input type='hidden' name='txtObra' id='txtObra' class='form-control' style='width: 100%;' value='" . $key['obra'] . "' /><p>" . $strNombreObra . "</p>";
             //mostrar el select de los pedidos
-            $objSelectPedidos = $ClsProgramacionSemanal->fntOptionListaPedidosClienteObj($key['cliente'], $key['obra'], $key['id_pedido']);
+            $objSelectPedidos = $clsProgramacionSemanal->fntOptionListaPedidosClienteObj($key['cliente'], $key['obra'], $key['id_pedido']);
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion
-            $objSelectProducto  = $ClsProgramacionSemanal->fntOptionProductoClienteObj($key['id_pedido'], $key['producto']);
+            $objSelectProducto  = $clsProgramacionSemanal->fntOptionProductoClienteObj($key['id_pedido'], $key['producto']);
             //Cantidad / Volumen
             $intCantidad = $key['cantidad'];
             //Fecha inicial de la programacion
@@ -32,7 +32,7 @@ if (isset($_POST['id'])) {
             //Fecha final de la programacion
             $dtmFin = $key['fin'];
             //Frecuencia
-            $dtmFrecuencia = $ClsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
+            $dtmFrecuencia = $clsProgramacionSemanal->fntOptionFrecuenciaEditObj($key['frecuencia']);
             //Elementos a fundir
             $StrElementos = $key['elementos'];
             //Observaciones
@@ -47,10 +47,10 @@ if (isset($_POST['id'])) {
             $boolRequiereBomba = $key['requiere_bomba'];
             if ($boolRequiereBomba) {
                 //mostrar el select del tipo de descargue
-                $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
+                $objSelectTipoDescargue = $clsProgramacionSemanal->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
             } else {
                 //mostrar el select del tipo de descargue
-                $objSelectTipoDescargue = $ClsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
+                $objSelectTipoDescargue = $clsProgramacionSemanal->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             }
         }
     } else {

@@ -17,14 +17,16 @@ $php_error[] = "";
 $resultado = "";
 
 if ($_POST['id']) {
-    $id_producto = 1;
-    $nombre_producto = "";
+    $id_producto = $_POST['id_producto'];
+    $nombre_producto = $clsprogramacionsemanal->fntGetNombreProducto($id_producto);
     //Id del usuario.
     $id_usuario = $_SESSION['id_usuario'];
     //Nombre del usuario mediante el parametro del id del usuario
     $nombre_usuario = $clsprogramacionsemanal->fntGetNombreClienteObj($id_usuario);
+    //Estado de la programacion
     $status = 2;
     $id_pedido = $_POST['id'];
+    //Id del cliente
     $id_cliente = $_POST['txtCliente'];
     $nombre_cliente = $clsprogramacionsemanal->fntGetNombreClienteObj($id_cliente);
     $id_obra = $_POST['txtObra'];
@@ -33,25 +35,25 @@ if ($_POST['id']) {
     $frecuencia = $_POST['cbxFrecuencia'];
     $horacargue = $_POST['txtHoraCargue'];
     $fechafundida = $_POST['txtFechaFundida'];
-    // $horainicio = $clsprogramacionsemanal->sumar($horacargue, "01:00:00");
-    $fecha_ini = $fechafundida ." ". $horacargue;
-    $fecha_fin = $fechafundida ." ". $horacargue;
-
+    $fecha_ini = $fechafundida . " " . $horacargue;
+    $fecha_fin = $fechafundida . " " . $horacargue;
+    //Validar si el checkbox esta activo o no
     if (isset($_POST['chkRequiereBomba'])) {
+        //Si esta activo se guarda como verdadero
         $requiereBomba = true;
     } else {
+        //De lo contrario se guarda como falso.
         $requiereBomba = false;
     }
-
     $observaciones = $_POST['txtObservaciones'];
-
+    //Se valida que se guarde correctamente todos los datos de la programacion.
     if ($clsprogramacionsemanal->fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiereBomba, $fecha_ini, $fecha_fin, $observaciones, $id_usuario, $nombre_usuario)) {
         $php_estado = true;
     } else {
         $log = 'No Guardo Correctamente';
     }
 } else {
-    $php_error = "El servicio ya se encuentra guardado con este pedido";
+    $php_error = "Error inesperado";
 }
 $datos = array(
     'estado' => $php_estado,

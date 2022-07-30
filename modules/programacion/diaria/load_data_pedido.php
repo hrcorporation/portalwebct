@@ -5,7 +5,7 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacionSemanal
-$objProgramacionDiaria = new ClsProgramacionDiaria();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 
 $php_estado = false;
 $errores = "";
@@ -15,7 +15,7 @@ if ($_POST['task'] == 1) {
     $intIdCliente = $_POST['cliente'];
     $intIdObra = $_POST['obra'];
     //Buscar el id de la obra filtrandola con el id del cliente.
-    $objSelectPedidos = $objProgramacionDiaria->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra);
+    $objSelectPedidos = $clsProgramacionDiaria->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra);
     $objSelectProductos = "";
     $php_estado = true;
     $datos = array(
@@ -27,7 +27,7 @@ if ($_POST['task'] == 1) {
     );
 } elseif ($_POST['task'] == 2) {
     $intIdPedido = $_POST['pedido'];
-    $objSelectProductos = $objProgramacionDiaria->fntOptionProductoFuncionarioObj($intIdPedido);
+    $objSelectProductos = $clsProgramacionDiaria->fntOptionProductoFuncionarioObj($intIdPedido);
     $datos = array(
         'estado' => $php_estado,
         'errores' => $errores,

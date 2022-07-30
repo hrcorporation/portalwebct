@@ -4,29 +4,29 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //se crea un objeto de la clase programacion
-$ClsProgramacionDiaria = new ClsProgramacionDiaria();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 //Validar que el id de la programacion exista
 if (isset($_POST['id'])) {
     //listar los datos de la programacion mediante el parametro de el id de la programacion 
-    if (is_array($data = $ClsProgramacionDiaria->fntCargarDataProgramacionDiariaObj($_POST['id']))) {
+    if (is_array($data = $clsProgramacionDiaria->fntCargarDataProgramacionDiariaObj($_POST['id']))) {
         //Recorremos los datos mediante un foreach usando la variable key para cada dato
         foreach ($data as $key) {
             //mostrar el select listando los clientes y seleccionando el cliente que esta guardado en la programacion.
-            $objSelectCliente  = $ClsProgramacionDiaria->fntOptionClienteEditObj($key['cliente']);
+            $objSelectCliente  = $clsProgramacionDiaria->fntOptionClienteEditObj($key['cliente']);
             //mostrar el select listando las obras y seleccionando la obra que esta guardado en la programacion.
-            $objSelectObra  = $ClsProgramacionDiaria->fntOptionObraEditObj($key['cliente'], $key['obra']);
+            $objSelectObra  = $clsProgramacionDiaria->fntOptionObraEditObj($key['cliente'], $key['obra']);
             //mostrar el select listando los productos y seleccionando el producto que esta guardado en la programacion.
-            $objSelectProducto  = $ClsProgramacionDiaria->fntOptionProductoFuncionarioObj($key['id_pedido'], $key['producto']);
+            $objSelectProducto  = $clsProgramacionDiaria->fntOptionProductoFuncionarioObj($key['id_pedido'], $key['producto']);
             //mostrar el select de los pedidos
-            $objSelectPedidos = $ClsProgramacionDiaria->fntOptionListaPedidosClienteObj($key['cliente'], $key['obra'], $key['id_pedido']);
+            $objSelectPedidos = $clsProgramacionDiaria->fntOptionListaPedidosClienteObj($key['cliente'], $key['obra'], $key['id_pedido']);
             //mostrar el select del lineas de despacho
-            $objSelectLineasDespacho = $ClsProgramacionDiaria->fntOptionLineaDespachoObj($key['id_linea_produccion']);
+            $objSelectLineasDespacho = $clsProgramacionDiaria->fntOptionLineaDespachoObj($key['id_linea_produccion']);
             //mostrar el select de las mixer en obra
-            $objSelectMixer = $ClsProgramacionDiaria->fntOptionVehiculoObj($key['id_mixer']);
+            $objSelectMixer = $clsProgramacionDiaria->fntOptionVehiculoObj($key['id_mixer']);
             //mostrar el select de los conductores
-            $objSelectConductores = $ClsProgramacionDiaria->fntOptionConductorObj($key['id_conductor']);
+            $objSelectConductores = $clsProgramacionDiaria->fntOptionConductorObj($key['id_conductor']);
             //mostrar el select del tipo de bomba
-            $objSelectTipoBomba = $ClsProgramacionDiaria->fntOptionTipoBombaObj($key['id_tipo_bomba']);
+            $objSelectTipoBomba = $clsProgramacionDiaria->fntOptionTipoBombaObj($key['id_tipo_bomba']);
             //Hora cargue
             $dtmHoraCargue = $key['hora_cargue'];
             //Hora mixer obra
@@ -47,10 +47,10 @@ if (isset($_POST['id'])) {
             $boolRequiereBomba = $key['requiere_bomba'];
             if ($boolRequiereBomba) {
                 //mostrar el select del tipo de descargue
-                $objSelectTipoDescargue = $ClsProgramacionDiaria->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
+                $objSelectTipoDescargue = $clsProgramacionDiaria->fntOptionTipoDescargueConcretolObj($key['id_tipo_descargue']);
             } else {
                 //mostrar el select del tipo de descargue
-                $objSelectTipoDescargue = $ClsProgramacionDiaria->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
+                $objSelectTipoDescargue = $clsProgramacionDiaria->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             }
         }
     } else {

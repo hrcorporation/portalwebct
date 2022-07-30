@@ -11,11 +11,11 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase Programacion.
-$programacionDiaria = new ClsProgramacionDiaria();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 //id del usuario que esta en sesion.
 $id_usuario = $_SESSION['id_usuario'];
 //Validar que la consulta salga exitosamente.
-if ($data = $programacionDiaria->fntGetProgDiariaClienteObj($id_usuario)) {
+if ($data = $clsProgramacionDiaria->fntGetProgDiariaClienteObj($id_usuario)) {
     $php_estado = true;
 }
 

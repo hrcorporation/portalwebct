@@ -11,11 +11,11 @@ $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase programacion
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 //id del usuario en sesion
 $intIdUsuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario
-$StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
+$StrNombreUsuario = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
 //Se crea un objeto de la clase Datetime
 $dtmFechaActual = new DateTime();
 //Se obtiene la fecha actual con el formato completo
@@ -23,14 +23,14 @@ $dtmHoy = $dtmFechaActual->format("Y-m-d H:i:s");
 $dtmDiaSemana = array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado");
 $dtmDia = $dtmDiaSemana[date('w')];
 $dtmHoraHoy = $dtmFechaActual->format("H:i:s");
-$dtmHoraValidacion = $ClsProgramacionSemanal->validacionHora($intIdUsuario);
+$dtmHoraValidacion = $clsProgramacionSemanal->validacionHora($intIdUsuario);
 if (isset($_POST['task'])) {
     //validar que la variable task tenga el valor de 1
     if ($_POST['task'] == 1) {
         //id de la programacion
         $intId = $_POST['id'];
         //estado de la programacion
-        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
+        $intEstado = $clsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
         //Fecha inicio de la programacion
         $dtmFechaInicio = $_POST['txtInicio'];
         //Fecha final de la programacion
@@ -38,13 +38,13 @@ if (isset($_POST['task'])) {
         //Validar que modifique correctamente la programacion (Fechas)
         if ($intEstado == 1) {
             if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
-                if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                if ($clsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
                     $php_estado = true;
                 } else {
                     $php_error = 'ERROR';
                 }
             } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
-                if ($ClsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                if ($clsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
                     $php_estado = true;
                 } else {
                     $php_error = 'ERROR';
@@ -59,13 +59,13 @@ if (isset($_POST['task'])) {
         //id de la programacion
         $intId = $_POST['id_prog_evento'];
         // id del estado
-        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
+        $intEstado = $clsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
         //id del pedido
         $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
         $intIdProducto = $_POST['cbxProductoEditar'];
         //nombre del producto mediante el id
-        $strNombreProducto = $ClsProgramacionSemanal->fntGetNombreProducto($intIdProducto);
+        $strNombreProducto = $clsProgramacionSemanal->fntGetNombreProducto($intIdProducto);
         //Volumen
         $dblCantidad = $_POST['txtCantEditar'];
         //Frecuencia
@@ -81,7 +81,7 @@ if (isset($_POST['task'])) {
         //Tipo de descargue
         $intTipoDescargue = $_POST['cbxTipoDescargueEditar'];
         //nombre del tipo de descargue
-        $StrNombreTipoDescargue = $ClsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
+        $StrNombreTipoDescargue = $clsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
         //metros de tuberia
         $decMetrosTuberia = $_POST['txtMetrosEditar'];
         //Observaciones
@@ -93,13 +93,13 @@ if (isset($_POST['task'])) {
         //Editar programacion
         if ($intEstado == 1) {
             if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
-                if ($ClsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
+                if ($clsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
                     $php_estado = true;
                 } else {
                     $php_error = 'ERROR';
                 }
             } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
-                if ($ClsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
+                if ($clsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
                     $php_estado = true;
                 } else {
                     $php_error = 'ERROR';
@@ -113,17 +113,17 @@ if (isset($_POST['task'])) {
     } elseif ($_POST['task'] == 3) {
         //id de la programacion
         $intId = $_POST['id'];
-        $intEstado = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
+        $intEstado = $clsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
         if ($intEstado == 1) {
             if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
-                if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
+                if ($clsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
                     $php_estado = true;
                 } else {
                     $php_error = 'ERROR';
                 }
             } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
-                if ($ClsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
+                if ($clsProgramacionSemanal->fntEliminarProgramacionSemanalObj($intId)) {
                     $php_estado = true;
                 } else {
                     $php_error = 'ERROR';
@@ -136,9 +136,9 @@ if (isset($_POST['task'])) {
         }
     } else if ($_POST['task'] == 4) {
         $intId = $_POST['id'];
-        $intEstadoProgramacion = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
+        $intEstadoProgramacion = $clsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
         if ($intEstadoProgramacion == 1) {
-            if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalClienteUnoObj($intId)) {
+            if ($clsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalClienteUnoObj($intId)) {
                 //Si pasa la validacion se retorna verdadero(true)
                 $php_estado = true;
             } else {
@@ -149,12 +149,12 @@ if (isset($_POST['task'])) {
             $php_error = 'La programacion ya fue enviada al area de logistica de Concre Tolima';
         }
     } else if ($_POST['task'] == 5) {
-        $objEstados = $ClsProgramacionSemanal->fntGetEstadosProgramacionClienteUnoObj($intIdUsuario);
+        $objEstados = $clsProgramacionSemanal->fntGetEstadosProgramacionClienteUnoObj($intIdUsuario);
         if (is_array($objEstados)) {
             foreach ($objEstados as $estado) {
                 $intEstadoProgramacion = $estado['status'];
                 if ($intEstadoProgramacion == 1) {
-                    if ($ClsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalClienteDosObj()) {
+                    if ($clsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalClienteDosObj()) {
                         //Si pasa la validacion se retorna verdadero(true)
                         $php_estado = true;
                     } else {

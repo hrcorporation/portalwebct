@@ -6,7 +6,7 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacion.
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 $log = false;
 $php_estado = false;
 $php_error[] = "";
@@ -16,23 +16,23 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     //Id del usuario.
     $intIdUsuario = $_SESSION['id_usuario'];
     //Nombre del usuario mediante el parametro del id del usuario
-    $StrNombreUsuario = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
+    $StrNombreUsuario = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
     //Estado.
     $intEstado = 2;
     //Id del cliente.
     $intIdCliente = $_POST['cbxCliente'];
     //Nombre del cliente mediante el parametro del id del cliente
-    $StrNombreCliente = $ClsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
+    $StrNombreCliente = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
     //id de la obra.
     $intIdObra = $_POST['cbxObra'];
     //Nombre de la obra mediante el parametro del id de la obra.
-    $StrNombreObra = $ClsProgramacionSemanal->fntGetNombreObra($intIdObra);
+    $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
     //Id del pedido.
     $intPedido = $_POST['cbxPedido'];
     //Id del producto.
     $intIdProducto = $_POST['cbxProducto'];
     //Nombre del producto mediante el parametro del id del producto.
-    $StrNombreProducto = $ClsProgramacionSemanal->fntGetNombreProducto($intIdProducto);
+    $StrNombreProducto = $clsProgramacionSemanal->fntGetNombreProducto($intIdProducto);
     //Cantidad.
     $decCantidad = $_POST['txtCant'];
     //Frecuencia.
@@ -48,7 +48,7 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     //Tipo de descargue.
     $intTipoDescargue = $_POST['cbxTipoDescargue'];
     //Nombre del tipo de descargue.
-    $StrNombreTipoDescargue = $ClsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
+    $StrNombreTipoDescargue = $clsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
     //Metros de tuberia.
     $decMetrosTuberia = $_POST['txtMetros'];
     //Observaciones.
@@ -58,7 +58,7 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     //Fecha final de la programacion.
     $dtmFechaFin = $_POST['txtFin'];
     //Validar que tome bien los parametros y guarde correctamente la programacion.
-    if ($ClsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+    if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
         //Si pasa la validacion se retorna verdadero(true).
         $php_estado = true;
     } else {

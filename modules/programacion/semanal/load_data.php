@@ -5,19 +5,20 @@ require '../../../librerias/autoload.php';
 require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacionSemanal
-$objProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 $boolPhpEstado = false;
 $objSelectObras = "";
 
 if ($_POST['task'] == 1) {
-    $objSelectCliente  = $objProgramacionSemanal->fntOptionClienteEditFuncionarioObj();
+    //Select de los clientes
+    $objSelectCliente  = $clsProgramacionSemanal->fntOptionClienteEditFuncionarioObj();
     $datos = array(
         'select_cliente' => $objSelectCliente,
     );
 } elseif ($_POST['task'] == 2) {
     $intIdCliente = $_POST['cliente'];
-    //Buscar el id de la obra filtrandola con el id del cliente.
-    $objSelectObras = $objProgramacionSemanal->fntOptionObraEditFuncionarioObj($intIdCliente);
+    //Select de las obras que estan relacionadas con el cliente.
+    $objSelectObras = $clsProgramacionSemanal->fntOptionObraEditFuncionarioObj($intIdCliente);
     $objSelectPedidos = "";
     $objSelectProductos = "";
 
