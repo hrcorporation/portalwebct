@@ -43,8 +43,6 @@ $id_obra = $_GET['id_obra'];
                 </div>
             </div>
             <div class="card-body">
-                <input type="hidden" name="id_cliente" id="id_cliente" value="<?= $id_cliente ?>">
-                <input type="hidden" name="id_obra" id="id_obra" value="<?= $id_obra ?>">
                 <button style="position: absolute; right: 71%; top: 9%" type="button" class="btn btn-success" id="btnAceptarTodaProgramacion" data-toggle="modal" data-target="#modal_aceptar_toda_programacion">
                     Aceptar y enviar
                 </button>

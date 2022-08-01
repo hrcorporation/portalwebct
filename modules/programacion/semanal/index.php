@@ -48,10 +48,10 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <span class="badge bg-secondary" title='Programaciones sin Confirmar, cuando el cliente registra en la Base de datos.'><?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar</span>
-                    <span class="badge bg-warning" title='Programaciones por cargar, cuando el cliente confirma y envia al area de programacion.'><?= $intCantidadProgramacionPorCargar ?> - Por Confirmar</span>
-                    <span class="badge bg-info" title='Programaciones confirmadas por el area de programacion.'><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
-                    <span class="badge bg-success" title='Programaciones ejecutadas y anexadas a la programacion diaria.'><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
+                    <span class="badge bg-secondary" title='Programaciones sin confirmar por parte del cliente, cuando el cliente registra su programacion.'><?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar</span>
+                    <span class="badge bg-warning" title='Programaciones sin confirmar por parte del funcionario, cuando el cliente confirma y envia al area de programacion.'><?= $intCantidadProgramacionPorCargar ?> - Por Confirmar</span>
+                    <span class="badge bg-info" title='Programaciones confirmadas por el area de programacion y anexadas a la programacion diaria.'><?= $intCantidadProgramacionConfirmadas ?> - Confirmadas</span>
+                    <span class="badge bg-success" title='Programaciones ejecutadas.'><?= $intCantidadProgramacionEjecutadas ?> - Ejecutadas</span>
                     <button style="position: absolute; right: 65%; top: 12.2%" type="button" class="btn btn-success" id="btnModalConfirmarProgramacion" title='Cargar todas las programaciones de la proxima semana' data-toggle="modal" data-target="#modal_cargar_programacion"> Confirmar programación </button>
                     <button style="position: absolute; right: 25%; top: 12.2%" type="button" class="btn btn-warning" id="btnModalCambiarHoraLimite" title='Cambiar la hora limite para modificar la programacion el dia sabado' data-toggle="modal" data-target="#modal_cambiar_hora"> Cambiar hora limite </button>
                 </div>

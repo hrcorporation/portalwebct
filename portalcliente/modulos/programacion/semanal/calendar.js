@@ -1,11 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let form_crear_programacion = document.querySelector(
-    "#form_crear_programacion"
-  );
+  let form_crear_programacion = document.querySelector("#form_crear_programacion");
   let form_show_event = document.querySelector("#form_mostrar_programacion");
-  let aceptar_programacion = document.querySelector(
-    "#form_aceptar_programacion"
-  );
+  let aceptar_programacion = document.querySelector("#form_aceptar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -64,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alert(JSON.stringify(respuesta));
         },
       });
-      //==================================================================
+      //=====================================================================================================================
       $("#modal_crear_evento").modal("show");
     },
     //=======================================================================================================================

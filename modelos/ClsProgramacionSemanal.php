@@ -1237,7 +1237,7 @@ class clsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-    // Obtener todas las programaciones (CLIENTE).
+    // Obtener todas las programaciones (CLIENTE). mediante el cliente y obra.
     public function fntGetProgSemanalClientePorClienteObraObj($id_cliente, $id_obra)
     {
         $this->id_cliente = $id_cliente;
@@ -1245,8 +1245,8 @@ class clsProgramacionSemanal extends conexionPDO
         $sql = "SELECT * FROM `ct66_programacion_semanal` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
-        $stmt->bindParam(':id_obra', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_INT);
         // Asignando Datos ARRAY => SQL
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -1385,6 +1385,27 @@ class clsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
+    // Obtener los clientes y obras de los usuarios.
+    public function fntGetClienteObraUsuarioObj($id_usuario)
+    {
+        $this->id = $id_usuario;
+        $sql = "SELECT `id_cliente`, `id_obra` FROM `ct1_gestion_acceso` WHERE `id_residente` = :id_usuario";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    // Obtener los datos de los valores.
+                    $datos['id_cliente'] = $fila['id_cliente'];
+                    $datos['id_obra'] = $fila['id_obra'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            }
+        }
+        return false;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////DELETE - ELIMINAR PROGRAMACION/////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1406,7 +1427,7 @@ class clsProgramacionSemanal extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////FUNCIONES ADICIONALES//////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    //Actualizar la hora limite para guardar o modificar alguna programacion el dia sabado por parte del cliente.
     public function fntCambiarHoraObj($hora, $id_usuario)
     {
         $sql = "UPDATE `ct66_horario`
@@ -1420,7 +1441,7 @@ class clsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-
+    //Obtener la hora limite para guardar o modificar alguna programacion el dia sabado por parte del cliente.
     public function fntGetHoraObj()
     {
         $sql = "SELECT `descripcion` FROM `ct66_horario` ";
@@ -1442,7 +1463,7 @@ class clsProgramacionSemanal extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Obtener el id del usuario que tiene el permiso de guardar o modificar alguna programacion el dia sabado.
     public function fntGetIdUsuarioObj()
     {
         $sql = "SELECT `id_usuario` FROM `ct66_horario` ";
@@ -1464,7 +1485,7 @@ class clsProgramacionSemanal extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Validar que el usuario que esta en sesion tiene o no el permiso de guardar o modificar alguna programacion el dia sabado.
     public function validacionHora($id_usuario)
     {
         $sql = "SELECT `descripcion` FROM `ct66_horario` WHERE `id_usuario` = :id_usuario";
@@ -1485,7 +1506,7 @@ class clsProgramacionSemanal extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
-
+    //Permite sumar dos datos de tipo time y pasarlo a datetime
     //Sumar horas
     public function sumar($hora1, $hora2)
     {
@@ -1495,7 +1516,7 @@ class clsProgramacionSemanal extends conexionPDO
         $a->add($b); //SUMO las horas.
         return $a->format('Y-m-d H:i:s'); //Retorno la Suma.
     }
-
+    
     //restar horas
     public function restar($hora1, $hora2)
     {

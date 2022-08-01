@@ -16,12 +16,12 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
 $id_usuario = $_SESSION['id_usuario'];
 //id del rol que esta en sesion
 $id_rol = $_SESSION['rol'];
-// //id del cliente
-$id_cliente = $_POST['id_cliente'];
-// //id de la obra
-$id_obra = $_POST['id_obra'];
-//Validar que la consulta salga exitosamente
-if ($data = $clsProgramacionSemanal->fntGetProgSemanalClienteObj($id_usuario)) {
+// $datosClientes = $clsProgramacionSemanal->fntGetClienteObraUsuarioObj($id_usuario);
+
+$id_cliente = 2;
+$id_obra = 59;
+
+if ($data = $clsProgramacionSemanal->fntGetProgSemanalClientePorClienteObraObj($id_cliente, $id_obra)) {
     $php_estado = true;
 }
 
