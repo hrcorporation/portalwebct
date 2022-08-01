@@ -370,7 +370,7 @@ class clsProgramacionSemanal extends conexionPDO
     public function fntOptionProductoClienteObj($id_pedido, $id_producto = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione un Producto</option>";
-        $sql = "SELECT ct65_pedidos_has_precio_productos.id, `codigo_producto`, `nombre_producto` 
+        $sql = "SELECT ct65_pedidos_has_precio_productos.id_producto, `codigo_producto`, `nombre_producto` 
         FROM `ct65_pedidos_has_precio_productos`
         INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id 
         WHERE `id_pedido` = :id AND ct65_pedidos_has_precio_productos.status = 1";
@@ -382,12 +382,12 @@ class clsProgramacionSemanal extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($id_producto == $fila['id']) {
+                    if ($id_producto == $fila['id_producto']) {
                         $selection = "selected='true'";
                     } else {
                         $selection = "";
                     }
-                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
+                    $option .= '<option value="' . $fila['id_producto'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
                 }
             } else {
                 $option = "<option  selected='true' disabled='disabled'> No hay productos asociados al pedido </option>";
@@ -973,6 +973,28 @@ class clsProgramacionSemanal extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     return $fila['ct5_IdObras'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    public function fntGetIdProductoObj($id)
+    {
+        $this->id = $id;
+        // sentencia SQL
+        $sql = "SELECT `id_producto` FROM `ct65_pedidos_has_precio_productos` WHERE `id` = :id";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['id_producto'];
                 }
             } else {
                 return false;

@@ -19,7 +19,7 @@ $id_rol = $_SESSION['rol'];
 // $datosClientes = $clsProgramacionSemanal->fntGetClienteObraUsuarioObj($id_usuario);
 
 $id_cliente = 2;
-$id_obra = 59;
+$id_obra = 174;
 
 if ($data = $clsProgramacionSemanal->fntGetProgSemanalClientePorClienteObraObj($id_cliente, $id_obra)) {
     $php_estado = true;

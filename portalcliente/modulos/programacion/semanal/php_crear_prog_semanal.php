@@ -60,7 +60,11 @@ if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
     //metros de tuberia
     $decMetrosTuberia = $_POST['txtMetros'];
     //Observaciones
-    $StrObservaciones = $_POST['txtObservaciones'];
+    if (isset($_POST['txtObservaciones'])) {
+        $StrObservaciones = $_POST['txtObservaciones'];
+    } else {
+        $StrObservaciones = "";
+    }
     //Fecha de inicio de la programacion
     $dtmFechaInicio = $_POST['txtInicio'];
     //Fecha final de la programacionNancy

@@ -27,7 +27,8 @@ $pedidos = new pedidos();
         <?php
         //Se llaman los modelos de las clases de programacion
         $id = $_GET['id_pedido'];
-        $id_producto = $_GET['id_producto'];
+        $id_precio_producto = $_GET['id_producto'];
+        $id_producto = $clsProgramacionSemanal->fntGetIdProductoObj($id_precio_producto);
         // SE LLAMA UNA FUNCION PARA OBTENER EL CLIENTE Y LA OBRA DEL PEDIDO
         $datos = $pedidos->get_nombre_cliente_obra($id);
         // SE VA LISTANDO MEDIANTE UN FOREACH

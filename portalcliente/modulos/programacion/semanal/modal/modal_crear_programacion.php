@@ -36,7 +36,7 @@ $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
                         <div class="col">
                             <div class="form-group">
                                 <label for="cbxPedido" class="form-label">Pedido:</label>
-                                <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;">
+                                <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;" required="true">
                                     <?= $clsProgramacionSemanal->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra); ?>
                                 </select>
                             </div>
@@ -44,7 +44,7 @@ $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
                         <div class="col">
                             <div class="form-group">
                                 <label for="cbxProducto" class="form-label">Producto:</label>
-                                <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;">
+                                <select name="cbxProducto" id="cbxProducto" class="form-control select2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
@@ -53,13 +53,13 @@ $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtCant" class="form-label">Volumen:</label>
-                                <input name="txtCant" id="txtCant" class="form-control" style="width: 100%;" />
+                                <input name="txtCant" id="txtCant" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="cbxFrecuencia" class="col-sm-2 form-label">Frecuencia:</label>
-                                <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;">
+                                <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;" required="true">
                                     <?= $clsProgramacionSemanal->fntOptionFrecuenciaEditObj() ?>
                                 </select>
                             </div>
@@ -69,7 +69,7 @@ $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtElementos" class="form-label">Elementos a fundir:</label>
-                                <input name="txtElementos" id="txtElementos" class="form-control" style="width: 100%;" />
+                                <input name="txtElementos" id="txtElementos" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
                         <div class="col">
                             <div class="form-group">
                                 <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
-                                <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;">
+                                <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;" required="true">
                                     <?= $clsProgramacionSemanal->fntOptionTipoDescargueObj(); ?>
                                 </select>
                             </div>
@@ -97,7 +97,7 @@ $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtMetros" class="form-label">Metros de tuberia:</label>
-                                <input name="txtMetros" id="txtMetros" class="form-control" style="width: 100%;" />
+                                <input name="txtMetros" id="txtMetros" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
