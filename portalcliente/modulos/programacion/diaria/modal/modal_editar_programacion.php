@@ -28,21 +28,21 @@ $clsProgramacionDiaria = new clsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label class=" control-label">Pedido:</label>
-                                <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select2" style="width: 100%;">
+                                <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Producto:</label>
-                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="col-sm-2 form-label">Volumen:</label>
-                                <input type="text" name="txtCantEditar" id="txtCantEditar" class="form-control" style="width: 100%;" />
+                                <input type="text" name="txtCantEditar" id="txtCantEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -50,20 +50,20 @@ $clsProgramacionDiaria = new clsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Linea de despacho:</label>
-                                <select name="cbxLineaDespachoEditar" id="cbxLineaDespachoEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxLineaDespachoEditar" id="cbxLineaDespachoEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtHoraCargueEditar" class="form-label">Hora de cargue:</label>
-                                <input type="time" name="txtHoraCargueEditar" id="txtHoraCargueEditar" class="form-control" style="width: 100%;" />
+                                <input type="time" name="txtHoraCargueEditar" id="txtHoraCargueEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtHoraMixerEditar" class="form-label">Hora en mixer en obra:</label>
-                                <input type="time" name="txtHoraMixerEditar" id="txtHoraMixerEditar" class="form-control" style="width: 100%;" />
+                                <input type="time" name="txtHoraMixerEditar" id="txtHoraMixerEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -71,14 +71,14 @@ $clsProgramacionDiaria = new clsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label for="cbxMixerEditar" class="form-label">Mixer:</label>
-                                <select name="cbxMixerEditar" id="cbxMixerEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxMixerEditar" id="cbxMixerEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtConductorEditar" class="form-label">Conductor:</label>
-                                <select name="cbxConductorEditar" id="cbxConductorEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxConductorEditar" id="cbxConductorEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
@@ -99,14 +99,14 @@ $clsProgramacionDiaria = new clsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Tipo de descargue:</label>
-                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="cbxTipoBombaEditar" class="form-label">Tipo de bomba:</label>
-                                <select name="cbxTipoBombaEditar" id="cbxTipoBombaEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxTipoBombaEditar" id="cbxTipoBombaEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
@@ -123,13 +123,13 @@ $clsProgramacionDiaria = new clsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Fecha Inicial:</label>
-                                <input type="text" name="txtInicioEditar" id="txtInicioEditar" class="form-control">
+                                <input type="text" name="txtInicioEditar" id="txtInicioEditar" class="form-control" required="true">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="control-label">Fecha Final:</label>
-                                <input type="text" name="txtFinEditar" id="txtFinEditar" class="form-control">
+                                <input type="text" name="txtFinEditar" id="txtFinEditar" class="form-control" required="true">
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 <?php
-$clsProgramacionSemanal = new clsProgramacionSemanal();
+    $clsProgramacionSemanal = new clsProgramacionSemanal();
 ?>
 <div class="modal fade" id="modal_show_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -29,14 +29,14 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group" id="obra">
                                 <label class=" control-label">Pedido</label>
-                                <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Producto</label>
-                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
@@ -45,13 +45,13 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Volumen:</label>
-                                <input name="txtCantEditar" id="txtCantEditar" class="form-control" style="width: 100%;" />
+                                <input name="txtCantEditar" id="txtCantEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="col-sm-2 form-label">Frecuencia:</label>
-                                <select name="cbxFrecuenciaEditar" id="cbxFrecuenciaEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxFrecuenciaEditar" id="cbxFrecuenciaEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
@@ -60,7 +60,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Elementos a fundir:</label>
-                                <input name="txtElementosEditar" id="txtElementosEditar" class="form-control" style="width: 100%;" />
+                                <input name="txtElementosEditar" id="txtElementosEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -80,14 +80,14 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Tipo de descargue:</label>
-                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Metros de tuberia:</label>
-                                <input name="txtMetrosEditar" id="txtMetrosEditar" class="form-control" style="width: 100%;" />
+                                <input name="txtMetrosEditar" id="txtMetrosEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Observaciones:</label>
-                                <input name="txtObservacionesEditar" id="txtObservacionesEditar" class="form-control" style="width: 100%;" />
+                                <input name="txtObservacionesEditar" id="txtObservacionesEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -103,13 +103,13 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Fecha Inicial:</label>
-                                <input type="text" name="txtInicioEditar" id="txtInicioEditar" class="form-control">
+                                <input type="text" name="txtInicioEditar" id="txtInicioEditar" class="form-control" required="true">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="control-label">Fecha Final:</label>
-                                <input type="text" name="txtFinEditar" id="txtFinEditar" class="form-control">
+                                <input type="text" name="txtFinEditar" id="txtFinEditar" class="form-control" required="true">
                             </div>
                         </div>
                     </div>

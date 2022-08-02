@@ -121,10 +121,10 @@ foreach ($datos as $dato) {
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col" id="descuento_oculto">
                                         <div class="form-group">
                                             <label for="descuento">Descuento</label>
-                                            <input type="number" name="descuento" id="descuento" class="form-control validanumericos" required="true" />
+                                            <input type="text" name="descuento" id="descuento" class="form-control validanumericos" maxlength="2" required="true" />
                                         </div>
                                     </div>
                                     <div class="col">
@@ -136,14 +136,14 @@ foreach ($datos as $dato) {
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="cantidad">Cantidad m3</label>
-                                            <input type="number" name="cantidad" id="cantidad" class="form-control validanumericos" />
+                                            <input type="text" name="cantidad" id="cantidad" class="form-control validanumericos" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="descuento">Observaciones</label>
+                                            <label for="observaciones">Observaciones</label>
                                             <input type="text" name="observaciones" id="observaciones" class="form-control" />
                                         </div>
                                     </div>
@@ -248,7 +248,7 @@ foreach ($datos as $dato) {
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="descuento">Observaciones</label>
+                                            <label for="observaciones">Observaciones</label>
                                             <input type="text" name="observaciones" id="observaciones" class="form-control" />
                                         </div>
                                     </div>
@@ -632,6 +632,11 @@ foreach ($datos as $dato) {
     $(function() {
         $(".progress").hide();
         $('.select2').select2();
+        $("#descuento_oculto").hide();
+    });
+
+    $('#id_producto').on('change', function() {
+        $("#descuento_oculto").show();
     });
 
     $(function() {
@@ -722,7 +727,7 @@ foreach ($datos as $dato) {
         }));
     })
 
-    
+
 
     $(document).ready(function() {
         $("#form_crear_precio_servicio").on('submit', (function(e) {
@@ -808,14 +813,14 @@ foreach ($datos as $dato) {
         $('#table_precio_productos tbody').on('click', 'button', function() {
             var data = table_producto.row($(this).parents('tr')).data();
             var id = data['id'];
-            window.location = "crear_programacion.php?id_producto=" + id+'&id_pedido='+id_pedido;
+            window.location = "crear_programacion.php?id_pedido=" + id_pedido + '&id_producto=' + id;
         });
 
         $('#table_precio_productos tbody').on('click', 'a', function() {
             var data = table_producto.row($(this).parents('tr')).data();
             var id = data['id'];
             Swal.fire({
-                title: '¿Esta Seguro(a) que desea eliminar el producto?', // mensaje de la alerta
+                title: '¿Esta Seguro(a) que desea eliminar el producto?', // mensaje de la alerta                                                               
                 text: "",
                 icon: 'warning',
                 showCancelButton: true,

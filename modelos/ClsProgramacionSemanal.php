@@ -393,7 +393,7 @@ class clsProgramacionSemanal extends conexionPDO
                 $option = "<option  selected='true' disabled='disabled'> No hay productos asociados al pedido </option>";
             }
         } else {
-            $option = "<option  selected='true' disabled='disabled'> Error al cargar Productos H1</option>";
+            $option = "<option  selected='true' disabled='disabled'> Error al cargar Productos </option>";
         }
         //Cerrar Conexion
         $this->PDO->closePDO();
@@ -1602,7 +1602,7 @@ class clsProgramacionSemanal extends conexionPDO
 
     public function cargar_cantidad_metros_pedido($id_pedido, $id_producto)
     {
-        $sql = "SELECT `saldo_m3` FROM `ct65_pedidos_has_precio_productos` WHERE `id_producto` = :id_producto AND `id_pedido` = :id_pedido";
+        $sql = "SELECT `saldo_m3` FROM `ct65_pedidos_has_precio_productos` WHERE `id_pedido` = :id_pedido AND `id_producto` = :id_producto";
         // Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);

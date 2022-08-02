@@ -16,7 +16,6 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
 $id_usuario = $_SESSION['id_usuario'];
 //id del rol que esta en sesion
 $id_rol = $_SESSION['rol'];
-// $datosClientes = $clsProgramacionSemanal->fntGetClienteObraUsuarioObj($id_usuario);
 
 $id_cliente = 2;
 $id_obra = 174;

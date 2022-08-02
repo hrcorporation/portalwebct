@@ -1,9 +1,6 @@
 <?php include '../../../../layout/validar_session4.php' ?>
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
-
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -50,13 +47,13 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Fecha inicio: </label>
-                                    <input type="date" class="form-control" name="txt_fecha_ini" id="txt_fecha_ini" required>
+                                    <input type="date" class="form-control" name="txt_fecha_ini" id="txt_fecha_ini" required="true">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Fecha Fin: </label>
-                                    <input type="date" name="txt_fecha_fin" class="form-control" id="txt_fecha_fin" required>
+                                    <input type="date" name="txt_fecha_fin" class="form-control" id="txt_fecha_fin" required="true">
                                 </div>
                             </div>
                         </div>

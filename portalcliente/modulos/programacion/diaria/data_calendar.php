@@ -14,8 +14,12 @@ $resultado = "";
 $clsProgramacionDiaria = new clsProgramacionDiaria();
 //id del usuario que esta en sesion.
 $id_usuario = $_SESSION['id_usuario'];
+//id del cliente
+$id_cliente = 2;
+//id de la obra
+$id_obra = 174;
 //Validar que la consulta salga exitosamente.
-if ($data = $clsProgramacionDiaria->fntGetProgDiariaClienteObj($id_usuario)) {
+if ($data = $clsProgramacionDiaria->fntGetProgDiariaClientePorClienteObraObj($id_cliente, $id_obra)) {
     $php_estado = true;
 }
 

@@ -13,7 +13,7 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Style;
 
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 
 //$fecha_ini = '2020-12-01'; // GET dato de la fecha
 //$fecha_fin = '2020-12-31';  // GET dato de la fecha
@@ -31,7 +31,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     $fecha_fin = $_GET['txt_fecha_fin'];
 
     // traemos los datos de la consulta
-    $datos = $ClsProgramacionSemanal->fntGetProgSemanalInformeObj($fecha_ini, $fecha_fin);
+    $datos = $clsProgramacionSemanal->fntGetProgSemanalInformeObj($fecha_ini, $fecha_fin);
 
     // iniciamos la clase de excel
     $spreadsheet = new Spreadsheet();

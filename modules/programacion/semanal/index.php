@@ -81,7 +81,7 @@
     $(function() {
         //Ocultar el input del volumen o cantidad de m3
         $("#volumen").hide();
-        //Validar que la cantidad de m3 no exceda al que esta en el pedido.
+        //Validar que la cantidad de m3 no exceda al que esta en el pedido al crear la programacion semanal
         $('#txtCant').on('change', function() {
             //Ajax 
             var formData = new FormData();
@@ -99,8 +99,39 @@
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
+                        $("#btnCrear").attr('disabled', false);
+                    } else {
+                        toastr.warning("La cantidad excede la del pedido");
+                        $("#btnCrear").attr('disabled', true);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+        //Validar que la cantidad de m3 no exceda al que esta en el pedido. al editar la programacion semanal.
+        $('#txtCantEditar').on('change', function() {
+            //Ajax 
+            var formData = new FormData();
+            formData.append('pedido', $("#cbxPedidoEditar").val());
+            formData.append('producto', $("#cbxProductoEditar").val());
+            formData.append('cantidad', $("#txtCantEditar").val());
+            $.ajax({
+                url: "validar_cantidad.php", // URL
+                type: "POST", // Metodo HTTP
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Tiene la cantidad adecuada.');
+                        $("#btnEditar").attr('disabled', false);
                     } else {
                         toastr.warning('La cantidad excede los metros cubicos que estan en el pedido');
+                        $("#btnEditar").attr('disabled', true);
                     }
                 },
                 error: function(respuesta) {

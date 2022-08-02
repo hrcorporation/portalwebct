@@ -18,14 +18,14 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class=" control-label">Cliente:</label>
-                                <select name="cbxClienteEditar" id="cbxClienteEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxClienteEditar" id="cbxClienteEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Obra:</label>
-                                <select name="cbxObraEditar" id="cbxObraEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxObraEditar" id="cbxObraEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
@@ -34,14 +34,14 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class=" control-label">Pedido:</label>
-                                <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Producto:</label>
-                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxProductoEditar" id="cbxProductoEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
@@ -50,13 +50,13 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Volumen:</label>
-                                <input type="text" name="txtCantEditar" id="txtCantEditar" class="form-control" />
+                                <input type="text" name="txtCantEditar" id="txtCantEditar" class="form-control" required="true"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Frecuencia:</label>
-                                <select name="cbxFrecuenciaEditar" id="cbxFrecuenciaEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxFrecuenciaEditar" id="cbxFrecuenciaEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
@@ -65,7 +65,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Elementos a fundir:</label>
-                                <input name="txtElementosEditar" id="txtElementosEditar" class="form-control" style="width: 100%;" />
+                                <input name="txtElementosEditar" id="txtElementosEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBombaEditar" name="chkRequiereBombaEditar">
+                                    <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBombaEditar" name="chkRequiereBombaEditar" required="true">
                                     <label for="chkRequiereBombaEditar" class="form-check-label" for="flexCheckDefault">
                                         <b>¿Requiere bomba de Concre Tolima?</b>
                                     </label>
@@ -85,14 +85,14 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Tipo de descargue:</label>
-                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select-2" style="width: 100%;">
+                                <select name="cbxTipoDescargueEditar" id="cbxTipoDescargueEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Metros de tuberia:</label>
-                                <input name="txtMetrosEditar" id="txtMetrosEditar" class="form-control" style="width: 100%;" />
+                                <input name="txtMetrosEditar" id="txtMetrosEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Observaciones:</label>
-                                <input name="txtObservacionesEditar" id="txtObservacionesEditar" class="form-control" style="width: 100%;" />
+                                <input name="txtObservacionesEditar" id="txtObservacionesEditar" class="form-control" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -108,13 +108,13 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Fecha Inicial:</label>
-                                <input type="text" name="txtInicioEditar" id="txtInicioEditar" class="form-control">
+                                <input type="text" name="txtInicioEditar" id="txtInicioEditar" class="form-control" required="true">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="control-label">Fecha Final:</label>
-                                <input type="text" name="txtFinEditar" id="txtFinEditar" class="form-control">
+                                <input type="text" name="txtFinEditar" id="txtFinEditar" class="form-control" required="true">
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                 <div class="modal-footer">
                     <button type="button" id="btnHabilitarCliente" class="btn btn-warning" title='Habilitar al cliente la edicion de la programacion'> Habilitar edicion al cliente </button>
                     <button type="button" class="btn btn-success" title='Confirmar programacion diaria' data-toggle="modal" data-target="#modal_confirmar_programacion"> Confirmar </button>
-                    <button type="submit" id="btnGuardar" class="btn btn-primary" title='Guardar datos modificados'> Guardar </button>
+                    <button type="submit" id="btnEditar" class="btn btn-primary" title='Guardar datos modificados'> Guardar </button>
                     <button type="button" id="btnEliminar" class="btn btn-danger" title='Eliminar programacion semanal'> Eliminar </button>
                     <button type="button" class="btn btn-info" data-dismiss="modal"> Cerrar </button>
                 </div>

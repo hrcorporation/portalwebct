@@ -40,13 +40,13 @@ if (isset($_POST['minimo']) && !empty($_POST['minimo']) && isset($_POST['maximo'
         if (in_array(false, $resultado_f, false)) {
             $php_error = "Esta bomba ya existe";
         } else if (in_array(true, $resultado_f, true)) {
-            $php_error = "Exitoso";
+            $php_estado = true;
             $pedidos->crear_precio_bomba($id_pedido, $id_tipo_bomba, $nombre_tipo_bomba, $minimo_m3, $maximo_m3, $precio, $observaciones);
         } else {
             $php_error = "ERROR";
         }
     } else {
-        $php_error = "Exitoso";
+        $php_estado = true;
         $pedidos->crear_precio_bomba($id_pedido, $id_tipo_bomba, $nombre_tipo_bomba, $minimo_m3, $maximo_m3, $precio, $observaciones);
     }
     // $pedidos->crear_precio_bomba($id_pedido, $id_tipo_bomba, $nombre_tipo_bomba, $minimo, $maximo, $precio, $observaciones)

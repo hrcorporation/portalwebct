@@ -157,6 +157,68 @@ class clsProgramacionDiaria extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+    // Obtener todas las programaciones (CLIENTE). mediante el cliente y obra.
+    public function fntGetProgDiariaClientePorClienteObraObj($id_cliente, $id_obra)
+    {
+        $this->id_cliente = $id_cliente;
+        $this->id_obra = $id_obra;
+        $sql = "SELECT * FROM `ct66_programacion_diaria` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    if ($fila['status'] == 1) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'gray',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 2) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'orange',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 3) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'Light Blue',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 4) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
+                            'textcolor' => 'black'
+                        ];
+                    }
+                }
+                return $events;
+            }
+        }
+        return false;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - CARGAR PROGRAMACIONES/////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -364,7 +426,7 @@ class clsProgramacionDiaria extends conexionPDO
     {
         $this->id = $id_producto;
         $option = "<option  selected='true' disabled='disabled'> Seleccione una Producto</option>";
-        $sql = "SELECT `id`, `codigo_producto`, `nombre_producto` 
+        $sql = "SELECT `id_producto`, `codigo_producto`, `nombre_producto` 
         FROM `ct65_pedidos_has_precio_productos` 
         WHERE `id_pedido` = :id AND `status` = 1";
         //Preparar Conexion
@@ -375,12 +437,12 @@ class clsProgramacionDiaria extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($this->id == $fila['id']) {
+                    if ($this->id == $fila['id_producto']) {
                         $selection = "selected='true'";
                     } else {
                         $selection = "";
                     }
-                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
+                    $option .= '<option value="' . $fila['id_producto'] . '" ' . $selection . ' >' . $fila['codigo_producto']  . ' - ' . $fila['nombre_producto']  . ' </option>';
                 }
             } else {
                 $option = "<option  selected='true' disabled='disabled'> Error al cargar Productos H2" . $num_reg . "</option>";
@@ -1124,6 +1186,51 @@ class clsProgramacionDiaria extends conexionPDO
             $segundos = '0' . $segundos;
         $sum_hrs = $horas . ':' . $minutos . ':' . $segundos;
         return ($sum_hrs);
+    }
+
+    public function cargar_cantidad_metros($id_pedido, $id_producto)
+    {
+        $sql = "SELECT `id_pedido`,`id_producto`,sum(`cantidad`) AS suma FROM `ct66_programacion_diaria` WHERE `id_pedido` = :id_pedido AND `id_producto` = :id_producto";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['suma'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function cargar_cantidad_metros_pedido($id_pedido, $id_producto)
+    {
+        $sql = "SELECT `saldo_m3` FROM `ct65_pedidos_has_precio_productos` 
+        WHERE `id_pedido` = :id_pedido AND `id_producto` = :id_producto";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['saldo_m3'];
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return false;
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - INFORME EXCEL/////////////////////////////////////////////

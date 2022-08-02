@@ -1,9 +1,9 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-require '../../../librerias/autoload.php';
-require '../../../modelos/autoload.php';
-require '../../../vendor/autoload.php';
+require '../../../../librerias/autoload.php';
+require '../../../../modelos/autoload.php';
+require '../../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacion semanal
 $clsProgramacionSemanal = new clsProgramacionSemanal();
 $boolPhpEstado = false;

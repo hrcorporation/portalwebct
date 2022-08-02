@@ -46,7 +46,7 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                 <div class="row">
                     <div class="col-2">
                         <div class="form-group">
-                            <span style="position: absolute; right: 20%; top: 40%" class="badge bg-secondary"> <?=$intCantidadProgramacionSinConfirmar?> - Sin Confirmar </span>
+                            <span style="position: absolute; right: 20%; top: 40%" class="badge bg-secondary"> <?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar </span>
                         </div>
                     </div>
                     <div class="col-4">
@@ -86,6 +86,65 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
 <script>
     $(function() {
         $("#volumen").hide();
+
+        //Validar que la cantidad de m3 no exceda al que esta en el pedido al crear la programacion semanal
+        $('#txtCant').on('change', function() {
+            //Ajax 
+            var formData = new FormData();
+            formData.append('pedido', $("#cbxPedido").val());
+            formData.append('producto', $("#cbxProducto").val());
+            formData.append('cantidad', $("#txtCant").val());
+            $.ajax({
+                url: "validar_cantidad.php", // URL
+                type: "POST", // Metodo HTTP
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Se ha guardado correctamente');
+                        $("#btnCrear").attr('disabled', false);
+                    } else {
+                        toastr.warning("La cantidad excede la del pedido");
+                        $("#btnCrear").attr('disabled', true);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
+        //Validar que la cantidad de m3 no exceda al que esta en el pedido. al editar la programacion semanal.
+        $('#txtCantEditar').on('change', function() {
+            //Ajax 
+            var formData = new FormData();
+            formData.append('pedido', $("#cbxPedidoEditar").val());
+            formData.append('producto', $("#cbxProductoEditar").val());
+            formData.append('cantidad', $("#txtCantEditar").val());
+            $.ajax({
+                url: "validar_cantidad.php", // URL
+                type: "POST", // Metodo HTTP
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    if (data.estado) {
+                        toastr.success('Tiene la cantidad adecuada.');
+                        $("#btnGuardar").attr('disabled', false);
+                    } else {
+                        toastr.warning('La cantidad excede los metros cubicos que estan en el pedido');
+                        $("#btnGuardar").attr('disabled', true);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
 
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
@@ -154,7 +213,7 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                 });
             }
         });
-        
+
         $('#cbxPedido').on('change', function() {
             $.ajax({
                 url: "load_data_pedido.php", // URL
@@ -192,8 +251,8 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                 },
             });
         });
-        
-        $('#cbxProducto').on('change', function(){
+
+        $('#cbxProducto').on('change', function() {
             $("#volumen").show();
         });
 
