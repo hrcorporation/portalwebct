@@ -4,7 +4,7 @@
 <?php
 // SE CREAN OBJETOS DE LA CLASE PEDIDOS
 $pedidos = new pedidos();
-$ClsProgramacionSemanal = new ClsProgramacionSemanal();
+$clsProgramacionSemanal = new clsProgramacionSemanal();
 // SE OBTIENE EL ID POR GET
 $id = $_GET['id'];
 // SE LLAMA UNA FUNCION PARA OBTENER EL CLIENTE Y LA OBRA DEL PEDIDO
@@ -92,7 +92,6 @@ foreach ($datos as $dato) {
                         </tr>
                     </thead>
                     <tbody>
-
                     </tbody>
                 </table>
             </div>
@@ -128,7 +127,6 @@ foreach ($datos as $dato) {
                         </tr>
                     </thead>
                     <tbody>
-
                     </tbody>
                 </table>
             </div>
@@ -176,6 +174,7 @@ foreach ($datos as $dato) {
 <?php include 'modal/modal_crear_precio_servicio.php' ?>
 <?php include 'modal/modal_cargar_precio_codigo.php' ?>
 <?php include 'modal/modal_cargar_precio_excel.php' ?>
+
 <script>
     $(function() {
         $(".progress").hide();
@@ -221,7 +220,9 @@ foreach ($datos as $dato) {
                 },
             });
         }));
+    });
 
+    $(document).ready(function() {
         $("#form_crear_precio_producto").on('submit', (function(e) {
             $('#crear_precio_producto').modal('toggle');
             e.preventDefault();
@@ -245,8 +246,7 @@ foreach ($datos as $dato) {
                 },
             });
         }));
-    })
-
+    });
 
     $(document).ready(function() {
         $("#form_crear_precio_bomba").on('submit', (function(e) {
@@ -273,9 +273,7 @@ foreach ($datos as $dato) {
                 },
             });
         }));
-    })
-
-
+    });
 
     $(document).ready(function() {
         $("#form_crear_precio_servicio").on('submit', (function(e) {
@@ -301,7 +299,7 @@ foreach ($datos as $dato) {
                 },
             });
         }));
-    })
+    });
 
     $(document).ready(function() {
         var n = 1;
@@ -405,7 +403,7 @@ foreach ($datos as $dato) {
         setInterval(function() {
             table_producto.ajax.reload(null, false);
         }, 5000);
-    })
+    });
 
     $(document).ready(function() {
         var n = 1;
@@ -499,7 +497,7 @@ foreach ($datos as $dato) {
         setInterval(function() {
             table_bomba.ajax.reload(null, false);
         }, 5000);
-    })
+    });
 
     $(document).ready(function() {
         var n = 1;
@@ -587,7 +585,7 @@ foreach ($datos as $dato) {
         setInterval(function() {
             table.ajax.reload(null, false);
         }, 5000);
-    })
+    });
 
     $('#id_producto').change(function() {
         var subtotal = $("#subtotal").val();
@@ -610,7 +608,8 @@ foreach ($datos as $dato) {
                 alert(JSON.stringify(respuesta));
             },
         });
-    })
+    });
+
     $('#descuento').change(function() {
         var subtotal = $("#subtotal").val();
         $.ajax({
@@ -632,7 +631,7 @@ foreach ($datos as $dato) {
                 alert(JSON.stringify(respuesta));
             },
         });
-    })
+    });
 
     $("#id_select_producto").change(function() {
         var producto = $("#id_select_producto").val();
@@ -692,7 +691,6 @@ foreach ($datos as $dato) {
             $("#file_productos").attr('disabled', true);
         }
     });
-
 
     function format(input) {
         var num = input.value.replace(/\./g, '');
