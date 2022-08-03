@@ -32,7 +32,7 @@ $id_obra = $_GET['id_obra'];
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">VER PROGRACIONES SEMANALES</h3>
+                <h3 class="card-title">VER PROGRAMACIONES SEMANALES</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -43,7 +43,7 @@ $id_obra = $_GET['id_obra'];
                 </div>
             </div>
             <div class="card-body">
-                <button style="position: absolute; right: 71%; top: 9%" type="button" class="btn btn-success" id="btnAceptarTodaProgramacion" data-toggle="modal" data-target="#modal_aceptar_toda_programacion">
+                <button class="btn btn-success" id="btnAceptarTodaProgramacion" data-toggle="modal" data-target="#modal_aceptar_toda_programacion">
                     Aceptar y enviar
                 </button>
                 <div id='calendar'></div>
@@ -73,8 +73,8 @@ $id_obra = $_GET['id_obra'];
 <script src="calendar.js"> </script>
 <script>
     $(function() {
+        //Ocultar el campo de volumen
         $("#volumen").hide();
-
         //Validar que la cantidad de m3 no exceda al que esta en el pedido al crear la programacion semanal
         $('#txtCant').on('change', function() {
             //Ajax 
@@ -133,7 +133,7 @@ $id_obra = $_GET['id_obra'];
                 },
             });
         });
-
+        //Modificar o eliminar programacion semanal
         $("#form_mostrar_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -157,7 +157,7 @@ $id_obra = $_GET['id_obra'];
                 },
             });
         }));
-
+        //Crear programacion semanal
         $("#form_crear_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -181,7 +181,7 @@ $id_obra = $_GET['id_obra'];
                 },
             });
         }));
-
+        //Aceptar programacion y cambiar estado a (Por confirmar)
         $("#form_aceptar_toda_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({
@@ -206,7 +206,7 @@ $id_obra = $_GET['id_obra'];
                 },
             });
         }));
-
+        //Validar si esta activado el checkbox o no a la hora de crear una programacion semanal.
         $('#chkRequiereBomba').on('click', function() {
             //Ajax 
             var formData = new FormData();
@@ -242,7 +242,7 @@ $id_obra = $_GET['id_obra'];
                 });
             }
         });
-
+        //Validar si esta activado el checkbox o no a la hora de modificar una programacion semanal.
         $('#chkRequiereBombaEditar').on('click', function() {
             //Ajax 
             var formData = 'null';
@@ -274,7 +274,7 @@ $id_obra = $_GET['id_obra'];
                 });
             }
         });
-
+        //Validar si se selecciono algun pedido para que le liste todos los productos que estan relacionados con el pedido a la hora de crear una programacion semanal.
         $('#cbxPedido').on('change', function() {
             $.ajax({
                 url: "load_data_pedido.php", // URL
@@ -292,7 +292,7 @@ $id_obra = $_GET['id_obra'];
                 },
             });
         });
-
+        //Validar si se selecciono algun pedido para que le liste todos los productos que estan relacionados con el pedido a la hora de modificar una programacion semanal.
         $('#cbxPedidoEditar').on('change', function() {
             $.ajax({
                 url: "load_data_pedido.php", // URL
@@ -310,7 +310,7 @@ $id_obra = $_GET['id_obra'];
                 },
             });
         });
-
+        //Validar que se seleccione algun producto para habilitar el campo de volumen.
         $('#cbxProducto').on('change', function() {
             $("#volumen").show();
         });

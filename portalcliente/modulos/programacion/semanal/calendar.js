@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let form_show_event = document.querySelector("#form_mostrar_programacion");
   let aceptar_programacion = document.querySelector("#form_aceptar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
-  //crear calendario
+  //Crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
     // Configuracion
     themeSystem: "bootstrap", // Tema del Calendario
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     droppable: true,
     selectable: true,
     editable: true,
-    // Botones de
+    // Botones de iteracion de las fechas.
     headerToolbar: {
       language: "es",
       left: "prev,next,today",
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //=======================================================================================================================
     // Crear Eventos
     select: function (event) {
-      console.log("Crear Evento");
+      console.log("Crear programacion");
       form_crear_programacion.reset();
       $("#txtInicio").val(moment(event.startStr).format("YYYY-MM-DD HH:mm:ss"));
       $("#txtFin").val(moment(event.endStr).format("YYYY-MM-DD HH:mm:ss"));
@@ -154,6 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
         editar_event(form_editar, calendar);
         $("#modal_show_evento").modal("hide");
       } else if (result.isDenied) {
+        
       }
     });
   });

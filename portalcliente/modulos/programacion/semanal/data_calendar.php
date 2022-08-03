@@ -5,21 +5,20 @@ header('Content-Type: application/json');
 require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
-//inicializacion de algunas variables que se requieren
+// Inicializacion de algunas variables que se requieren
 $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase Programacion
 $clsProgramacionSemanal = new clsProgramacionSemanal();
-//id del usuario que esta en sesion
+//Id del usuario que esta en sesion
 $id_usuario = $_SESSION['id_usuario'];
-//id del rol que esta en sesion
-$id_rol = $_SESSION['rol'];
-
+//Id del cliente
 $id_cliente = 2;
-$id_obra = 174;
-
+//Id de la obra
+$id_obra = 59;
+//Si la consulta sale exitosa se guarda todas las programaciones en la variable data.
 if ($data = $clsProgramacionSemanal->fntGetProgSemanalClientePorClienteObraObj($id_cliente, $id_obra)) {
     $php_estado = true;
 }

@@ -70,7 +70,7 @@ class clsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
-    // Obtener todas las programaciones (CLIENTES).
+    // Obtener todas las programaciones (CLIENTES) mediante el id del usuario.
     public function fntGetProgDiariaClienteObj($id_usuario)
     {
         $this->id = $id_usuario;
@@ -132,32 +132,7 @@ class clsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
-    // Obtener todos los estados de las programaciones (CLIENTE).
-    public function fntGetEstadosProgramacionCliente2Obj($id_programacion)
-    {
-        $this->id = $id_programacion;
-        $sql = "SELECT `status` 
-        FROM `ct66_programacion_diaria`
-        WHERE `id` = :id";
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
-        // Ejecutar 
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount();
-            if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    return $fila['status'];
-                }
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-        //Cerrar Conexion
-        $this->PDO->closePDO();
-    }
-    // Obtener todas las programaciones (CLIENTE). mediante el cliente y obra.
+    // Obtener todas las programaciones (CLIENTE) mediante el cliente y obra.
     public function fntGetProgDiariaClientePorClienteObraObj($id_cliente, $id_obra)
     {
         $this->id_cliente = $id_cliente;
@@ -902,6 +877,31 @@ class clsProgramacionDiaria extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - OBTENER NOMBRES///////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Obtener todos los estados de las programaciones (CLIENTE).
+    public function fntGetEstadosProgramacionCliente2Obj($id_programacion)
+    {
+        $this->id = $id_programacion;
+        $sql = "SELECT `status` 
+        FROM `ct66_programacion_diaria`
+        WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['status'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
     // Traer el nombre del estado
     public function fntGetNombreEstadoObj($id_estado)
     {

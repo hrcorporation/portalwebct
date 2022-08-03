@@ -816,7 +816,6 @@ class clsProgramacionSemanal extends conexionPDO
         }
         return false;
     }
-
     // Cambiar estado de la programacion semanales (FUNCIONARIO).
     public function fntCambiarEstadoProgramacionSemanalFuncionarioDosObj()
     {
@@ -1445,7 +1444,6 @@ class clsProgramacionSemanal extends conexionPDO
             return false;
         }
     }
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////FUNCIONES ADICIONALES//////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1538,7 +1536,6 @@ class clsProgramacionSemanal extends conexionPDO
         $a->add($b); //SUMO las horas.
         return $a->format('Y-m-d H:i:s'); //Retorno la Suma.
     }
-    
     //restar horas
     public function restar($hora1, $hora2)
     {
@@ -1577,7 +1574,7 @@ class clsProgramacionSemanal extends conexionPDO
         $sum_hrs = $horas . ':' . $minutos . ':' . $segundos;
         return ($sum_hrs);
     }
-
+    
     public function cargar_cantidad_metros($id_pedido, $id_producto)
     {
         $sql = "SELECT `id_pedido`,`id_producto`,sum(`cantidad`) AS suma FROM `ct66_programacion_semanal` WHERE `id_pedido` = :id_pedido AND `id_producto` = :id_producto";

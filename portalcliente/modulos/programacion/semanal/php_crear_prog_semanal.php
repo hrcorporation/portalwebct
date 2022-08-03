@@ -53,23 +53,23 @@ if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
     } else {
         $bolRequiereBomba = false;
     }
-    //Tipo de descargue
+    //Tipo de descargue.
     $intTipoDescargue = $_POST['cbxTipoDescargue'];
-    //nombre del tipo de descargue
+    //nombre del tipo de descargue.
     $StrNombreTipoDescargue = $clsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
-    //metros de tuberia
+    //metros de tuberia.
     $decMetrosTuberia = $_POST['txtMetros'];
-    //Observaciones
+    //Observaciones.
     if (isset($_POST['txtObservaciones'])) {
         $StrObservaciones = $_POST['txtObservaciones'];
     } else {
         $StrObservaciones = "";
     }
-    //Fecha de inicio de la programacion
+    //Fecha de inicio de la programacion.
     $dtmFechaInicio = $_POST['txtInicio'];
-    //Fecha final de la programacionNancy
+    //Fecha final de la programacion.
     $dtmFechaFin = $_POST['txtFin'];
-    //Validar que tome bien los parametros y guarde correctamente la programacion
+    //Validar que tome bien los parametros y guarde correctamente la programacion.
     if ($decCantidad > 7) {
         $numeroViajes = ($decCantidad / 7);
         $numeroViajesAp = intval(ceil($numeroViajes));
@@ -83,18 +83,18 @@ if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
 
     if ($dia == "Sabado" && $hora_hoy <= $dtmHoraValidacion || $dia == "Lunes" && $hora_hoy >= $dtmHoraValidacion) {
         if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
-            //Si pasa la validacion se retorna verdadero(true)
+            //Si pasa la validacion se retorna verdadero(true).
             $php_estado = true;
         } else {
-            //De lo contrario mostrara un mensaje mostrando que no se guardo
+            //De lo contrario mostrara un mensaje mostrando que no se guardo.
             $php_error = 'No Guardo Correctamente';
         }
     } else if ($dia != "Sabado" && $dia != "Domingo" && $dia != "Lunes") {
         if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
-            //Si pasa la validacion se retorna verdadero(true)
+            //Si pasa la validacion se retorna verdadero(true).
             $php_estado = true;
         } else {
-            //De lo contrario mostrara un mensaje mostrando que no se guardo
+            //De lo contrario mostrara un mensaje mostrando que no se guardo.
             $php_error = 'No Guardo Correctamente';
         }
     } else {

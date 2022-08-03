@@ -41,13 +41,12 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
             <div class="card-body">
                 <div class="col-1">
                     <div class="form-group">
+                    <span class="badge bg-secondary"> <?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar </span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-2">
-                        <div class="form-group">
-                            <span style="position: absolute; right: 20%; top: 40%" class="badge bg-secondary"> <?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar </span>
-                        </div>
+                        
                     </div>
                     <div class="col-4">
                         <!-- <div class="form-group">
