@@ -1261,13 +1261,9 @@ class clsProgramacionSemanal extends conexionPDO
     // Obtener todas las programaciones (CLIENTE). mediante el cliente y obra.
     public function fntGetProgSemanalClientePorClienteObraObj($id_cliente, $id_obra)
     {
-        $this->id_cliente = $id_cliente;
-        $this->id_obra = $id_obra;
-        $sql = "SELECT * FROM `ct66_programacion_semanal` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
+        $sql = "SELECT * FROM `ct66_programacion_semanal` WHERE `id_cliente` IN($id_cliente) AND `id_obra` IN ($id_obra)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
-        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_INT);
         // Asignando Datos ARRAY => SQL
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -1316,6 +1312,8 @@ class clsProgramacionSemanal extends conexionPDO
                     }
                 }
                 return $events;
+            } else {
+                return false;
             }
         }
         return false;
@@ -1574,7 +1572,7 @@ class clsProgramacionSemanal extends conexionPDO
         $sum_hrs = $horas . ':' . $minutos . ':' . $segundos;
         return ($sum_hrs);
     }
-    
+
     public function cargar_cantidad_metros($id_pedido, $id_producto)
     {
         $sql = "SELECT `id_pedido`,`id_producto`,sum(`cantidad`) AS suma FROM `ct66_programacion_semanal` WHERE `id_pedido` = :id_pedido AND `id_producto` = :id_producto";

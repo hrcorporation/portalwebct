@@ -135,13 +135,9 @@ class clsProgramacionDiaria extends conexionPDO
     // Obtener todas las programaciones (CLIENTE) mediante el cliente y obra.
     public function fntGetProgDiariaClientePorClienteObraObj($id_cliente, $id_obra)
     {
-        $this->id_cliente = $id_cliente;
-        $this->id_obra = $id_obra;
-        $sql = "SELECT * FROM `ct66_programacion_diaria` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
+        $sql = "SELECT * FROM `ct66_programacion_diaria` WHERE `id_cliente` IN($id_cliente) AND `id_obra` IN ($id_obra)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
-        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_INT);
         // Asignando Datos ARRAY => SQL
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -1128,6 +1124,27 @@ class clsProgramacionDiaria extends conexionPDO
         }
         //Cerrar Conexion
         $this->PDO->closePDO();
+    }
+    // Obtener los clientes y obras de los usuarios.
+    public function fntGetClienteObraUsuarioObj($id_usuario)
+    {
+        $this->id = $id_usuario;
+        $sql = "SELECT `id_cliente`, `id_obra` FROM `ct1_gestion_acceso` WHERE `id_residente` = :id_usuario";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    // Obtener los datos de los valores.
+                    $datos['id_cliente'] = $fila['id_cliente'];
+                    $datos['id_obra'] = $fila['id_obra'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            }
+        }
+        return false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////DELETE - ELIMINAR PROGRAMACION/////////////////////////////////////
