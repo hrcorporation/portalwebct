@@ -103,7 +103,6 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                 success: function(data) {
                     console.log(data);
                     if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
                         $("#btnCrear").attr('disabled', false);
                     } else {
                         toastr.warning("La cantidad excede la del pedido");
@@ -132,7 +131,6 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
                 success: function(data) {
                     console.log(data);
                     if (data.estado) {
-                        toastr.success('Tiene la cantidad adecuada.');
                         $("#btnGuardar").attr('disabled', false);
                     } else {
                         toastr.warning('La cantidad excede los metros cubicos que estan en el pedido');

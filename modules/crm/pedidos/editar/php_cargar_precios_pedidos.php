@@ -24,14 +24,14 @@ if (isset($_POST['txt_cod_load']) && !empty($_POST['txt_cod_load'])) {
     $id_pedido_load = intval($_POST['txt_cod_load']);
     $id_pedido = intval($_POST['id_pedido_cargar']);
 
-    //Traer los productos del pedido mediante su codigo
+    //Traer los productos del pedido mediante el id del pedido
     if ($precio_poductos = $pedidos::cargar_precio_productos_for_id_pedido($con, $id_pedido_load)) {
         //Recorre todos los productos mediante el foreach
         foreach ($precio_poductos as $key) {
             //Validar que el producto ya este creado anteriormente o no
             if ($pedidos->validar_existencias_precio_producto($key['id_producto'], $id_pedido)) {
                 //Validar que el producto exista en la base de datos
-                if ($pedidos->validar_producto($key['id_producto'])) {
+                if ($pedidos->validar_producto_por_id($key['id_producto'])) {
                     $pedidos->crear_precio_producto($id_pedido, $key['id_producto'], $key['codigo_producto'], $key['nombre_producto'], $key['porcentaje_descuento'], $key['id_precio_base'], $key['precio_base'], $key['precio_m3'], $key['cantidad_m3'], $key['saldo_m3'],$key['precio_total_pedido'], $key['observaciones']);
                     $php_estado = true;
                 } else {

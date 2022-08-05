@@ -71,6 +71,7 @@ if (is_array($array_reg)) {
             } else {
                 $cantidad = 0;
             }
+            $saldo = $cantidad;
             /** variable final para guardar en la base de datos $new_array */
             //VERIFICA QUE EL PRODUCTO NO EXISTA
             if ($pedidos->validar_existencias_precio_producto($id_producto, $id_pedido)) 
@@ -79,7 +80,7 @@ if (is_array($array_reg)) {
                 if ($pedidos->validar_producto($codigo_producto)) 
                 {
                     //GUARDA LOS DATOS YA VALIDADOS DEL ARCHIVO DE EXCEL
-                    if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)) {
+                    if ($php_result = $pedidos->insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad, $saldo)) {
                         $php_estado = true;
                     }
                 }

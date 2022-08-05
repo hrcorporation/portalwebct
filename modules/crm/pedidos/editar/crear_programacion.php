@@ -17,7 +17,7 @@ $pedidos = new pedidos();
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                             <li class="breadcrumb-item active">Actual</li>
-                        </ol> 
+                        </ol>
                     -->
                 </div>
             </div>
@@ -214,29 +214,31 @@ $pedidos = new pedidos();
     }));
 
     $('#txtcantidadmetros').on('change', function() {
-            //Ajax 
-            var formData = new FormData();
-            formData.append('pedido', $("#id").val());
-            formData.append('producto', $("#id_producto").val());
-            formData.append('cantidad', $("#txtcantidadmetros").val());
-            $.ajax({
-                url: "validar_cantidad.php", // URL
-                type: "POST", // Metodo HTTP
-                data: formData,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data);
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
-                    } else {
-                        toastr.warning('La cantidad excede los metros cubicos que estan en el pedido');
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
+        //Ajax
+        var formData = new FormData();
+        formData.append('pedido', $("#id").val());
+        formData.append('producto', $("#id_producto").val());
+        formData.append('cantidad', $("#txtcantidadmetros").val());
+        $.ajax({
+            url: "validar_cantidad.php", // URL
+            type: "POST", // Metodo HTTP
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                console.log(data);
+                if (data.estado) {
+                    toastr.success('Se ha guardado correctamente');
+                    $("#btnCrear").attr('disabled', false);
+                } else {
+                    toastr.warning('La cantidad excede los metros cubicos que estan en el pedido');
+                    $("#btnCrear").attr('disabled', true);
+                }
+            },
+            error: function(respuesta) {
+                alert(JSON.stringify(respuesta));
+            },
         });
+    });
 </script>

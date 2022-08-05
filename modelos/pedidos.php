@@ -1077,10 +1077,10 @@ class pedidos extends conexionPDO
         return $php_result;
     }
     //Registrar el producto al pedido.
-    function insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad)
+    function insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad, $saldo)
     {
         $status = 1;
-        $sql =  "INSERT INTO `ct65_pedidos_has_precio_productos`(`id_pedido`, `status`, `id_producto`, `codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`) VALUES (:id_pedido, :status, :id_producto, :codigo_producto, :nombre_producto, :precio_m3, :cantidad_m3)";
+        $sql =  "INSERT INTO `ct65_pedidos_has_precio_productos`(`id_pedido`, `status`, `id_producto`, `codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `saldo_m3`) VALUES (:id_pedido, :status, :id_producto, :codigo_producto, :nombre_producto, :precio_m3, :cantidad_m3, :saldo)";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_STR);
         $stmt->bindParam(':status', $status, PDO::PARAM_STR);
@@ -1089,6 +1089,7 @@ class pedidos extends conexionPDO
         $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
         $stmt->bindParam(':precio_m3', $precio, PDO::PARAM_STR);
         $stmt->bindParam(':cantidad_m3', $cantidad, PDO::PARAM_STR);
+        $stmt->bindParam(':saldo', $saldo, PDO::PARAM_STR);
 
         if ($stmt->execute()) { // Ejecutar
             $php_result = true;

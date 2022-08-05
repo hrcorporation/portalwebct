@@ -210,7 +210,7 @@ foreach ($datos as $dato) {
                 processData: false,
                 success: function(data) {
                     if (data.estado) {
-                        toastr.success('Se ha cargado los precios correctamente');
+                        toastr.success('Se han cargado los productos exitosamente');
                     } else {
                         toastr.warning(data.errores);
                     }

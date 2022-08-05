@@ -18,7 +18,7 @@
                      <div class="row">
                          <div class="col">
                              <div class="form-group">
-                                 <label for="codigo_pedido_existente">Digite el Codigo del pedido existente para cargar los datos</label>
+                                 <label>Digite el Codigo del pedido existente para cargar los datos</label>
                                  <input type="text" name="txt_cod_load" id="txt_cod_load" class="form-control">
                              </div>
                          </div>
@@ -26,7 +26,7 @@
                      <div class="row">
                          <div class="col-10">
                              <div class="form-group">
-                                 <label for=""></label>
+                                 <label></label>
                              </div>
                          </div>
                          <div class="col">
