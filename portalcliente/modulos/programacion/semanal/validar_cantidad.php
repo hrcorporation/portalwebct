@@ -35,7 +35,6 @@ if ($cantidad_pedido = $clsProgramacionSemanal->cargar_cantidad_metros_pedido($i
 $datos = array(
     'estado' => $boolPhpEstado,
     'cantidad_final' => $cantidad_pedido
-
 );
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

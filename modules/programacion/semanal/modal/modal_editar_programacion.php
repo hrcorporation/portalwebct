@@ -50,7 +50,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Volumen:</label>
-                                <input type="text" name="txtCantEditar" id="txtCantEditar" class="form-control" required="true"/>
+                                <input type="text" name="txtCantEditar" id="txtCantEditar" class="form-control validanumericos" required="true"/>
                             </div>
                         </div>
                         <div class="col">
@@ -73,7 +73,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBombaEditar" name="chkRequiereBombaEditar" required="true">
+                                    <input class="form-check-input" type="checkbox" value="1" id="chkRequiereBombaEditar" name="chkRequiereBombaEditar">
                                     <label for="chkRequiereBombaEditar" class="form-check-label" for="flexCheckDefault">
                                         <b>¿Requiere bomba de Concre Tolima?</b>
                                     </label>
@@ -92,7 +92,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Metros de tuberia:</label>
-                                <input name="txtMetrosEditar" id="txtMetrosEditar" class="form-control" style="width: 100%;" required="true"/>
+                                <input name="txtMetrosEditar" id="txtMetrosEditar" class="form-control validanumericos" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ $clsProgramacionSemanal = new clsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Observaciones:</label>
-                                <input name="txtObservacionesEditar" id="txtObservacionesEditar" class="form-control" style="width: 100%;" required="true"/>
+                                <input name="txtObservacionesEditar" id="txtObservacionesEditar" class="form-control" style="width: 100%;"/>
                             </div>
                         </div>
                     </div>

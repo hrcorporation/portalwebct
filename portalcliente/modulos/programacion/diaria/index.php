@@ -41,12 +41,12 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
             <div class="card-body">
                 <div class="col-1">
                     <div class="form-group">
-                    <span class="badge bg-secondary"> <?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar </span>
+                        <span class="badge bg-secondary"> <?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar </span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-2">
-                        
+
                     </div>
                     <div class="col-4">
                         <!-- <div class="form-group">
@@ -83,6 +83,16 @@ $intIdUsuario = $_SESSION['id_usuario']; ?>
 
 <script src="calendar.js"> </script>
 <script>
+    $(function() {
+        $('.validanumericos').keypress(function(e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            })
+            .on("cut copy paste", function(e) {
+                e.preventDefault();
+            });
+    });
+
     $(function() {
         $("#volumen").hide();
 

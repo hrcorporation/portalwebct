@@ -21,7 +21,7 @@ $id_obra = $_GET['id_obra'];
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                             <li class="breadcrumb-item active">Actual</li>
-                        </ol> 
+                        </ol>
                     -->
                 </div>
             </div>
@@ -73,11 +73,21 @@ $id_obra = $_GET['id_obra'];
 <script src="calendar.js"> </script>
 <script>
     $(function() {
+        $('.validanumericos').keypress(function(e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            })
+            .on("cut copy paste", function(e) {
+                e.preventDefault();
+            });
+    });
+
+    $(function() {
         //Ocultar el campo de volumen
         $("#volumen").hide();
         //Validar que la cantidad de m3 no exceda al que esta en el pedido al crear la programacion semanal
         $('#txtCant').on('change', function() {
-            //Ajax 
+            //Ajax
             var formData = new FormData();
             formData.append('pedido', $("#cbxPedido").val());
             formData.append('producto', $("#cbxProducto").val());
@@ -105,7 +115,7 @@ $id_obra = $_GET['id_obra'];
         });
         //Validar que la cantidad de m3 no exceda al que esta en el pedido. al editar la programacion semanal.
         $('#txtCantEditar').on('change', function() {
-            //Ajax 
+            //Ajax
             var formData = new FormData();
             formData.append('pedido', $("#cbxPedidoEditar").val());
             formData.append('producto', $("#cbxProductoEditar").val());
@@ -206,7 +216,7 @@ $id_obra = $_GET['id_obra'];
         }));
         //Validar si esta activado el checkbox o no a la hora de crear una programacion semanal.
         $('#chkRequiereBomba').on('click', function() {
-            //Ajax 
+            //Ajax
             var formData = new FormData();
             if ($(this).is(':checked')) {
                 $.ajax({
@@ -242,7 +252,7 @@ $id_obra = $_GET['id_obra'];
         });
         //Validar si esta activado el checkbox o no a la hora de modificar una programacion semanal.
         $('#chkRequiereBombaEditar').on('click', function() {
-            //Ajax 
+            //Ajax
             var formData = 'null';
             if ($(this).is(':checked')) {
                 $.ajax({

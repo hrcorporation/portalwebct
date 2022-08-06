@@ -15,6 +15,7 @@ setlocale(LC_ALL, "es_ES");
 setlocale(LC_TIME, 'es_ES');
 $hora_actual = new DateTime();
 $hora_hoy = $hora_actual->format("H:i:s");
+$fecha_hoy = $hora_actual->format("Y-m-d H:i:s");
 $diassemana = array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado");
 $dia = $diassemana[date('w')];
 //id del usuario
@@ -47,7 +48,7 @@ if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
     $dtmFrecuencia = $_POST['cbxFrecuencia'];
     //Elementos a fundir
     $StrElementos = $_POST['txtElementos'];
-    //Requiere bomba (si/no - true/false)
+    //Requiere bomba (Si/No - true/false)
     if (isset($_POST['chkRequiereBomba'])) {
         $bolRequiereBomba = true;
     } else {
@@ -69,36 +70,29 @@ if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
     $dtmFechaInicio = $_POST['txtInicio'];
     //Fecha final de la programacion.
     $dtmFechaFin = $_POST['txtFin'];
-    //Validar que tome bien los parametros y guarde correctamente la programacion.
-    if ($decCantidad > 7) {
-        $numeroViajes = ($decCantidad / 7);
-        $numeroViajesAp = intval(ceil($numeroViajes));
-    } else {
-        $numeroViajesAp = 1;
-    }
-
-    $metrosCubicos = ($decCantidad / $numeroViajesAp);
-    $dtmFrecuenciaNueva = $clsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
-    $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmFechaInicio, $dtmFrecuenciaNueva);
-
-    if ($dia == "Sabado" && $hora_hoy <= $dtmHoraValidacion || $dia == "Lunes" && $hora_hoy >= $dtmHoraValidacion) {
-        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
-            //Si pasa la validacion se retorna verdadero(true).
-            $php_estado = true;
+    if ($fecha_hoy <= $dtmFechaInicio) {
+        if ($dia == "Sabado" && $hora_hoy <= $dtmHoraValidacion || $dia == "Lunes" && $hora_hoy >= $dtmHoraValidacion) {
+            if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+                //Si pasa la validacion se retorna verdadero(true).
+                $php_estado = true;
+            } else {
+                //De lo contrario mostrara un mensaje mostrando que no se guardo.
+                $php_error = 'No Guardo Correctamente';
+            }
+        } else if ($dia != "Sabado" && $dia != "Domingo" && $dia != "Lunes") {
+            if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+                //Si pasa la validacion se retorna verdadero(true).
+                $php_estado = true;
+            } else {
+                //De lo contrario mostrara un mensaje mostrando que no se guardo.
+                $php_error = 'No Guardo Correctamente';
+            }
         } else {
-            //De lo contrario mostrara un mensaje mostrando que no se guardo.
-            $php_error = 'No Guardo Correctamente';
+            //Si no cumple ninguna condicion mostrara un mensaje de error
+            $php_error = 'Fuera del horario establecido para agendar una programación';
         }
-    } else if ($dia != "Sabado" && $dia != "Domingo" && $dia != "Lunes") {
-        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
-            //Si pasa la validacion se retorna verdadero(true).
-            $php_estado = true;
-        } else {
-            //De lo contrario mostrara un mensaje mostrando que no se guardo.
-            $php_error = 'No Guardo Correctamente';
-        }
-    } else {
-        $php_error = 'Fuera del horario establecido para programar';
+    }else{
+        $php_error = 'No puede crear una programacion antes de la fecha actual';
     }
 } else {
     $php_error = 'Se requieren los datos';

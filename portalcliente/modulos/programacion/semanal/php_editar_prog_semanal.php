@@ -10,22 +10,27 @@ $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
-//Se crea un objeto de la clase programacion
+date_default_timezone_set('America/Bogota');
+setlocale(LC_ALL, "es_ES");
+setlocale(LC_TIME, 'es_ES');
+//Se crea un objeto de la clase programacion semanal.
 $clsProgramacionSemanal = new clsProgramacionSemanal();
 //id del usuario en sesion
 $intIdUsuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario
 $StrNombreUsuario = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
-//Se crea un objeto de la clase Datetime
+//Se crea un objeto de la clase Datetime para obtener la fecha actual.
 $dtmFechaActual = new DateTime();
-//Se obtiene la fecha actual con el formato completo
+//Se obtiene la fecha actual con el formato completo.
 $dtmHoy = $dtmFechaActual->format("Y-m-d H:i:s");
 $dtmDiaSemana = array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado");
+//Se recorre el arreglo de los dias para obtener el dia actual
 $dtmDia = $dtmDiaSemana[date('w')];
+//Se obtiene la hora actual
 $dtmHoraHoy = $dtmFechaActual->format("H:i:s");
 $dtmHoraValidacion = $clsProgramacionSemanal->validacionHora($intIdUsuario);
 if (isset($_POST['task'])) {
-    //validar que la variable task tenga el valor de 1
+    //validar que la variable task tenga el valor de 1 (Modificar la fecha inicial o final de la programacion semanal)
     if ($_POST['task'] == 1) {
         //id de la programacion
         $intId = $_POST['id'];
@@ -37,24 +42,29 @@ if (isset($_POST['task'])) {
         $dtmFechaFin = $_POST['txtFin'];
         //Validar que modifique correctamente la programacion (Fechas)
         if ($intEstado == 1) {
-            if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
-                if ($clsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
-                    $php_estado = true;
+            if ($dtmHoy <= $dtmFechaInicio) {
+                if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
+                    if ($clsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                        $php_estado = true;
+                    } else {
+                        $php_error = 'ERROR';
+                    }
+                } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
+                    if ($clsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                        $php_estado = true;
+                    } else {
+                        $php_error = 'ERROR';
+                    }
                 } else {
-                    $php_error = 'ERROR';
-                }
-            } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
-                if ($clsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
-                    $php_estado = true;
-                } else {
-                    $php_error = 'ERROR';
+                    $php_error = 'Fuera del horario establecido para modificar la programación';
                 }
             } else {
-                $php_error = 'Fuera del horario establecido para modificar la programación';
+                $php_error = 'No puede cambiar la fecha de la programacion a una anterior a la fecha actual';
             }
         } else {
             $php_error = 'La programacion ya fue enviada al area de logistica de Concre Tolima y no se puede hacer modificaciones';
         }
+    //Modificar toda la programacion semanal
     } else if ($_POST['task'] == 2) {
         //id de la programacion
         $intId = $_POST['id_prog_evento'];
@@ -92,24 +102,29 @@ if (isset($_POST['task'])) {
         $dtmFechaFin = $_POST['txtFinEditar'];
         //Editar programacion
         if ($intEstado == 1) {
-            if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
-                if ($clsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
-                    $php_estado = true;
+            if ($dtmHoy <= $dtmFechaInicio) {
+                if ($dtmDia == "Sabado" && $dtmHoraHoy <= $dtmHoraValidacion || $dtmDia == "Lunes" && $dtmHoraHoy >= $dtmHoraValidacion) {
+                    if ($clsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
+                        $php_estado = true;
+                    } else {
+                        $php_error = 'ERROR';
+                    }
+                } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
+                    if ($clsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
+                        $php_estado = true;
+                    } else {
+                        $php_error = 'ERROR';
+                    }
                 } else {
-                    $php_error = 'ERROR';
-                }
-            } else if ($dtmDia != "Sabado" && $dtmDia != "Domingo" && $dtmDia != "Lunes") {
-                if ($clsProgramacionSemanal->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
-                    $php_estado = true;
-                } else {
-                    $php_error = 'ERROR';
+                    $php_error = 'Fuera del horario establecido para modificar la programación';
                 }
             } else {
-                $php_error = 'Fuera del horario establecido para modificar la programación';
+                $php_error = 'No puede cambiar la fecha de la programacion a una anterior a la fecha actual';
             }
         } else {
             $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
         }
+    //Eliminar la programacion semanal.
     } elseif ($_POST['task'] == 3) {
         //id de la programacion
         $intId = $_POST['id'];
@@ -134,6 +149,7 @@ if (isset($_POST['task'])) {
         } else {
             $php_error = 'La programacion ya fue enviada al area de logistica y no se puede eliminar';
         }
+    //Cambiar el estado de la programacion diaria.
     } else if ($_POST['task'] == 4) {
         $intId = $_POST['id'];
         $intEstadoProgramacion = $clsProgramacionSemanal->fntGetEstadosProgramacionClienteDosObj($intId);
@@ -148,6 +164,7 @@ if (isset($_POST['task'])) {
         } else {
             $php_error = 'La programacion ya fue enviada al area de logistica de Concre Tolima';
         }
+    //Cambiar el estado de la programacion diaria.
     } else if ($_POST['task'] == 5) {
         $objEstados = $clsProgramacionSemanal->fntGetEstadosProgramacionClienteUnoObj($intIdUsuario);
         if (is_array($objEstados)) {

@@ -42,7 +42,7 @@ $clsProgramacionDiaria = new clsProgramacionDiaria();
                         <div class="col">
                             <div class="form-group">
                                 <label class="col-sm-2 form-label">Volumen:</label>
-                                <input type="text" name="txtCantEditar" id="txtCantEditar" class="form-control" style="width: 100%;" required="true"/>
+                                <input type="text" name="txtCantEditar" id="txtCantEditar" class="form-control validanumericos" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>

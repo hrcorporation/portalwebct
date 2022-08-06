@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>PROGRAMACION SEMANAL</h1>
+                    <h1>PROGRAMACIÓN SEMANAL</h1>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -78,6 +78,16 @@
 <?php include '../../../layout/footer/footer3.php' ?>
 <script src="calendar.js"> </script>
 <script>
+    $(function() {
+        $('.validanumericos').keypress(function(e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            })
+            .on("cut copy paste", function(e) {
+                e.preventDefault();
+            });
+    });
+    
     $(function() {
         //Ocultar el input del volumen o cantidad de m3
         $("#volumen").hide();
@@ -439,11 +449,6 @@
                 },
             });
         }));
-
-        // Do this before you initialize any of your modals
-        $.fn.modal.Constructor.prototype.enforceFocus = function() {
-            
-        };
     });
 </script>
 </body>

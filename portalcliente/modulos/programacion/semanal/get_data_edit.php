@@ -5,15 +5,15 @@ require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 
-//se crea un objeto de la clase programacion
+//Se crea un objeto de la clase programacion semanal.
 $clsProgramacionSemanal = new clsProgramacionSemanal();
-//Id del usuario en sesion
+//Id del usuario en sesion.
 $id_usuario = $_SESSION['id_usuario'];
-//Validar que el id de la programacion exista
+//Validar que el id de la programacion exista.
 if (isset($_POST['id'])) {
-    //listar los datos de la programacion mediante el parametro de el id de la programacion 
+    //Listar los datos de la programacion mediante el parametro de el id de la programacion 
     if (is_array($data = $clsProgramacionSemanal->fntCargarDataProgramacionClienteObj($_POST['id']))) {
-        //Recorremos los datos mediante un foreach usando la variable key para cada dato
+        //Recorremos los datos mediante un foreach usando la variable key para cada dato.
         foreach ($data as $key) {
             $strNombreCliente = $clsProgramacionSemanal->fntGetNombreClienteObj($key['cliente']);
             $strNombreObra = $clsProgramacionSemanal->fntGetNombreObra($key['obra']);
@@ -54,6 +54,7 @@ if (isset($_POST['id'])) {
             }
         }
     } else {
+        $data = false;
     }
 } else {
     $data = false;

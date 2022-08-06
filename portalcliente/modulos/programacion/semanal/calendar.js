@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     themeSystem: "bootstrap", // Tema del Calendario
     locale: "es", // Lenguaje
     initialView: "timeGridWeek", // Vista Semanal
-    timeZone: "America/New_York",
+    timeZone: "America/Bogota",
     droppable: true,
     selectable: true,
     editable: true,
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
       language: "es",
       left: "prev,next,today",
       center: "title",
-      right: "dayGridMonth,timeGridWeek,timeGridDay,",
+      right: "dayGridMonth,timeGridWeek,timeGridDay",
     },
     // Cargar Datos, los eventos del Calendario
     events: {
@@ -230,9 +230,9 @@ document.addEventListener("DOMContentLoaded", function () {
         calendar.refetchEvents();
         if (response.task == 1 && response.estado) {
           toastr.success("Programacion Actualizada Satisfactoriamente");
-        } else if (response.task == 3 && response.estado) {
-          toastr.success("Programacion eliminada Satisfactoriamente");
         } else if (response.task == 2 && response.estado) {
+          toastr.success("Programacion eliminada Satisfactoriamente");
+        } else if (response.task == 3 && response.estado) {
           toastr.success("Programacion Actualizada Satisfactoriamente");
         } else if (response.task == 4 && response.estado) {
           toastr.success("Programacion enviada correctamente al area de logistica");

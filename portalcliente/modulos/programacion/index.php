@@ -2,9 +2,9 @@
 <?php include '../../../layout/head/headcliente3.php' ?>
 <?php include 'sidebar.php' ?>
 <?php $clsProgramacion = new clsProgramacion(); ?>
-
 <?php $intIdUsuario = $_SESSION['id_usuario']; ?>
 <?php $id = $_GET['programacion']?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

@@ -7,9 +7,9 @@ require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 
-//Se crea un objeto de la clase Programacion
+//Se crea un objeto de la clase Programacion semanal.
 $clsProgramacionSemanal = new clsProgramacionSemanal();
-//Id del usuario que esta en sesion
+//Id del usuario que esta en sesion.
 $id_usuario = $_SESSION['id_usuario'];
 $data = $clsProgramacionSemanal->fntGetClienteObraUsuarioObj($id_usuario);
 

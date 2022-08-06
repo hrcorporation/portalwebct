@@ -1672,6 +1672,9 @@ class clsProgramacionSemanal extends conexionPDO
                 }
                 return $datosf;
             }
+            else{
+                return false;
+            }
         }
         return false;
     }

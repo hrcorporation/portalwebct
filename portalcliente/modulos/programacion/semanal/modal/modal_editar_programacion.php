@@ -45,7 +45,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Volumen:</label>
-                                <input name="txtCantEditar" id="txtCantEditar" class="form-control" style="width: 100%;" required="true"/>
+                                <input name="txtCantEditar" id="txtCantEditar" class="form-control validanumericos" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                         <div class="col">
@@ -87,7 +87,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Metros de tuberia:</label>
-                                <input name="txtMetrosEditar" id="txtMetrosEditar" class="form-control" style="width: 100%;" required="true"/>
+                                <input name="txtMetrosEditar" id="txtMetrosEditar" class="form-control validanumericos" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>

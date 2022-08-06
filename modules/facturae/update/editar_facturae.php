@@ -393,6 +393,9 @@
 
 <script>
 $(document).ready(function() {
+    $(function() {
+        $('.select2').select2();
+    });
 
     $('#check_habilitar_arch').click(function() {
         if (!$(this).is(':checked')) {

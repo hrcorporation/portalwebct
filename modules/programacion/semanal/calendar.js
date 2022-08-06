@@ -242,11 +242,11 @@ document.addEventListener("DOMContentLoaded", function () {
       //processData: false,
       success: function (response) {
         calendar.refetchEvents();
-        if (response.task == 1) {
+        if (response.task == 1 && response.estado) {
           toastr.success("Programacion Actualizada Satisfactoriamente");
-        } else if (response.task == 2) {
+        } else if (response.task == 2 && response.estado) {
           toastr.success("Programacion Actualizada Satisfactoriamente");
-        } else if (response.task == 3) {
+        } else if (response.task == 3 && response.estado) {
           toastr.success("Programacion eliminada Satisfactoriamente");
         } else if (response.task == 4 && response.estado) {
           toastr.success("Programacion confirmada correctamente");
@@ -254,9 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (response.task == 5 && response.estado) {
           toastr.success("El cliente ya puede modificar la programacion");
         } else if (response.task == 6 && response.estado) {
-          toastr.success(
-            "Programaciones confirmadas y enviadas a la programacion diaria"
-          );
+          toastr.success("Programaciones confirmadas y enviadas a la programacion diaria");
           $("#modal_cargar_programacion").modal("hide");
         } else {
           toastr.warning(response.errores);

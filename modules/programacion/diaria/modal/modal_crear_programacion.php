@@ -46,7 +46,7 @@ $clsProgramacionDiaria = new clsProgramacionDiaria();
                         <div class="col" id="volumen">
                             <div class="form-group">
                                 <label for="txtCant" class="form-label">Volumen:</label>
-                                <input type="text" name="txtCant" id="txtCant" class="form-control" style="width: 100%;" />
+                                <input type="text" name="txtCant" id="txtCant" class="form-control validanumericos" style="width: 100%;" />
                             </div>
                         </div>
                     </div>

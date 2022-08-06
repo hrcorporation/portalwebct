@@ -11,6 +11,11 @@ $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
+date_default_timezone_set('America/Bogota');
+setlocale(LC_ALL, "es_ES");
+setlocale(LC_TIME, 'es_ES');
+$fecha = new DateTime();
+$fecha_hoy = $fecha->format("Y-m-d H:i:s");
 //Validar que la variable de cbxCliente exista y no este vacia
 if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     //Id del usuario.
@@ -57,16 +62,21 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     $dtmFechaInicio = $_POST['txtInicio'];
     //Fecha final de la programacion.
     $dtmFechaFin = $_POST['txtFin'];
-    //Validar que tome bien los parametros y guarde correctamente la programacion.
-    if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
-        //Si pasa la validacion se retorna verdadero(true).
-        $php_estado = true;
+    if ($fecha_hoy <= $dtmFechaInicio) {
+        //Validar que tome bien los parametros y guarde correctamente la programacion.
+        if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+            //Si pasa la validacion se retorna verdadero(true).
+            $php_estado = true;
+        } else {
+            //De lo contrario mostrara un mensaje mostrando que no se guardo.
+            $php_error = 'No guardo Correctamente';
+        }
     } else {
-        //De lo contrario mostrara un mensaje mostrando que no se guardo.
-        $php_error = 'No guardo Correctamente';
+        $php_error = 'No puede crear una programacion antes de la fecha actual';
     }
 } else {
-    $php_error = 'Se requieren los datos';
+    //Mensaje de error.
+    $php_error = 'Se requieren todos los datos';
 }
 $datos = array(
     'estado' => $php_estado,

@@ -1,9 +1,9 @@
 <?php
-$clsProgramacionSemanal = new clsProgramacionSemanal();
-$intIdCliente = $_GET['id_cliente'];
-$StrNombreCliente = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
-$intIdObra = $_GET['id_obra'];
-$StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
+    $clsProgramacionSemanal = new clsProgramacionSemanal();
+    $intIdCliente = $_GET['id_cliente'];
+    $StrNombreCliente = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdCliente);
+    $intIdObra = $_GET['id_obra'];
+    $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
 ?>
 <div class="modal fade" id="modal_crear_evento" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -49,16 +49,16 @@ $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
                             </div>
                         </div>
                     </div>
-                    <div class="row" id = "volumen">
-                        <div class="col">
+                    <div class="row">
+                        <div class="col" id = "volumen">
                             <div class="form-group">
                                 <label for="txtCant" class="form-label">Volumen:</label>
-                                <input name="txtCant" id="txtCant" class="form-control" style="width: 100%;" required="true"/>
+                                <input name="txtCant" id="txtCant" class="form-control validanumericos" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxFrecuencia" class="col-sm-2 form-label">Frecuencia:</label>
+                                <label for="cbxFrecuencia" class="form-label">Frecuencia:</label>
                                 <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select2" style="width: 100%;" required="true">
                                     <?= $clsProgramacionSemanal->fntOptionFrecuenciaEditObj() ?>
                                 </select>
@@ -97,7 +97,7 @@ $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtMetros" class="form-label">Metros de tuberia:</label>
-                                <input name="txtMetros" id="txtMetros" class="form-control" style="width: 100%;" required="true"/>
+                                <input name="txtMetros" id="txtMetros" class="form-control validanumericos" style="width: 100%;" required="true"/>
                             </div>
                         </div>
                     </div>

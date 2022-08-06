@@ -12,10 +12,13 @@ $php_error[] = "";
 $resultado = "";
 //Se crea un objeto de la clase programacion.
 $clsProgramacionSemanal = new clsProgramacionSemanal();
+date_default_timezone_set('America/Bogota');
+setlocale(LC_ALL, "es_ES");
+setlocale(LC_TIME, 'es_ES');
 //id del usuario en sesion.
 $intIdUsuario = $_SESSION['id_usuario'];
 //Nombre del usuario en sesion mediante el parametro del id del usuario.
-$StrNombreUsuario = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
+$strNombreUsuario = $clsProgramacionSemanal->fntGetNombreClienteObj($intIdUsuario);
 //Se crea un objeto de la clase Datetime.
 $dtmFechaActual = new DateTime();
 //Se obtiene la fecha actual con el formato completo.
@@ -30,8 +33,12 @@ if (isset($_POST['task'])) {
         //Fecha final de la programacion.
         $dtmFechaFin = $_POST['txtFin'];
         //Validar que modifique correctamente la programacion (fechas).
-        if ($clsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
-            $php_estado = true;
+        if ($dtmHoy <= $dtmFechaInicio) {
+            if ($clsProgramacionSemanal->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $strNombreUsuario)) {
+                $php_estado = true;
+            }
+        } else {
+            $php_error = 'No puede cambiar la fecha de la programacion a una anterior a la fecha actual';
         }
     } else if ($_POST['task'] == 2) {
         //id de la programacion.
@@ -43,7 +50,7 @@ if (isset($_POST['task'])) {
         //id de la obra.
         $intIdObra = $_POST['cbxObraEditar'];
         //Nombre de la obra mediante el parametro del id de la obra.
-        $StrNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
+        $strNombreObra = $clsProgramacionSemanal->fntGetNombreObra($intIdObra);
         //id del pedido
         $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
@@ -65,34 +72,25 @@ if (isset($_POST['task'])) {
         //Tipo de descargue
         $intTipoDescargue = $_POST['cbxTipoDescargueEditar'];
         //nombre del tipo de descargue
-        $StrNombreTipoDescargue = $clsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
+        $strNombreTipoDescargue = $clsProgramacionSemanal->fntGetNombreTipoDescargue($intTipoDescargue);
         //metros de tuberia
         $decMetrosTuberia = $_POST['txtMetrosEditar'];
         //Observaciones
-        $StrObservaciones = $_POST['txtObservacionesEditar'];
+        $strObservaciones = $_POST['txtObservacionesEditar'];
         //Fecha de inicio de la programacion
         $dtmFechaInicio = $_POST['txtInicioEditar'];
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
-        //Validar la cantidad que sea mayor a 7
-        if ($dblCantidad > 7) {
-            //Para obtener el numero de viajes se divide la cantidad sobre 7 (Se divide en 7 porque es la cantidad maxima que puede llevar una mixer.)
-            $numeroViajes = ($dblCantidad / 7);
-            //Se usa la funcion ceil para aproximar este numero y no de un decimal.
-            $numeroViajesAp = intval(ceil($numeroViajes));
+        //Validar que la fecha inicial no sea anterior a la fecha actual.
+        if ($dtmHoy <= $dtmFechaInicio) {
+            //Validar que la consulta salga exitosa y actualizar la programacion semanal.
+            if ($clsProgramacionSemanal->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $strNombreTipoDescargue, $decMetrosTuberia, $strObservaciones, $dtmFechaInicio, $dtmFechaFin, $intIdUsuario, $strNombreUsuario, $dtmHoy)) {
+                $php_estado = true;
+            } else {
+                $php_error = 'ERROR';
+            }
         } else {
-            //Si no es mayor a 7 el viaje solo es uno.
-            $numeroViajesAp = 1;
-        }
-        //los metros cubicos por viaje se obtiene dividiendo la cantidad sobre la cantidad de viajes.
-        $metrosCubicos = ($dblCantidad / $numeroViajesAp);
-        $dtmFrecuenciaNueva = $clsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
-        $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmFechaInicio, $dtmFrecuenciaNueva);
-
-        if ($clsProgramacionSemanal->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $dblCantidad, $dtmFrecuencia, $strElementos, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $StrObservaciones, $dtmFechaInicio, $dtmNuevaFechafin, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
-            $php_estado = true;
-        } else {
-            $php_error = 'ERROR';
+            $php_error = 'No puede cambiar la fecha de la programacion a una anterior a la fecha actual';
         }
     } elseif ($_POST['task'] == 3) {
         //id de la programacion

@@ -31,12 +31,10 @@ if ($cantidad_pedido = $clsProgramacionDiaria->cargar_cantidad_metros_pedido($in
     $boolPhpEstado = false;
 }
 
-
 $datos = array(
     'estado' => $boolPhpEstado,
     'id_producto' => $intidproducto,
     'id_pedido' => $intidpedido
-
 );
 
 echo json_encode($datos, JSON_FORCE_OBJECT);
