@@ -29,6 +29,7 @@ $pedidos = new pedidos();
         $id = $_GET['id_pedido'];
         $id_precio_producto = $_GET['id_producto'];
         $id_producto = $clsProgramacionSemanal->fntGetIdProductoObj($id_precio_producto);
+        $cantidad = $clsProgramacionSemanal->fntGetCantidadObj($id_precio_producto);
         // SE LLAMA UNA FUNCION PARA OBTENER EL CLIENTE Y LA OBRA DEL PEDIDO
         $datos = $pedidos->get_nombre_cliente_obra($id);
         // SE VA LISTANDO MEDIANTE UN FOREACH
@@ -86,7 +87,7 @@ $pedidos = new pedidos();
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="txtcantidadmetros" class="form-label">Cantidad metros cubicos:</label>
-                                    <input type="number" name="txtcantidadmetros" id="txtcantidadmetros" class="form-control" style="width: 100%;" />
+                                    <input type="text" name="txtcantidadmetros" id="txtcantidadmetros" class="form-control validanumericos" style="width: 100%;" value = "<?=$cantidad?>"/>
                                 </div>
                             </div>
                             <div class="col-5">
@@ -189,6 +190,15 @@ $pedidos = new pedidos();
     $(function() {
         $(".progress").hide();
         $('.select2').select2();
+    });
+    $(function() {
+        $('.validanumericos').keypress(function(e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            })
+            .on("cut copy paste", function(e) {
+                e.preventDefault();
+            });
     });
     $("#form_crear_programacion").on('submit', (function(e) {
         e.preventDefault();

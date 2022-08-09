@@ -80,7 +80,7 @@ if (isset($_POST['txtCliente']) && !empty($_POST['txtCliente'])) {
                 $php_error = 'No Guardo Correctamente';
             }
         } else if ($dia != "Sabado" && $dia != "Domingo" && $dia != "Lunes") {
-            if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmNuevaFechafin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
+            if ($clsProgramacionSemanal->fntCrearProgSemanalBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $decCantidad, $dtmFrecuencia, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $decMetrosTuberia, $dtmFechaInicio, $dtmFechaFin, $StrElementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
                 //Si pasa la validacion se retorna verdadero(true).
                 $php_estado = true;
             } else {

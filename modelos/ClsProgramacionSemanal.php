@@ -980,6 +980,7 @@ class clsProgramacionSemanal extends conexionPDO
             return false;
         }
     }
+    //Traer el id del producto
     public function fntGetIdProductoObj($id)
     {
         $this->id = $id;
@@ -994,6 +995,29 @@ class clsProgramacionSemanal extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     return $fila['id_producto'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    //Traer la cantidad de metros cubicos del pedido
+    public function fntGetCantidadObj($id)
+    {
+        $this->id = $id;
+        // sentencia SQL
+        $sql = "SELECT `cantidad_m3` FROM `ct65_pedidos_has_precio_productos` WHERE `id` = :id";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['cantidad_m3'];
                 }
             } else {
                 return false;
