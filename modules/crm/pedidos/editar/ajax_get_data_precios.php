@@ -1,22 +1,16 @@
 <?php
-
 session_start();
 header('Content-Type: application/json');
-
 require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
-
 //Se crea un objeto de la clase pedidos
 $pedidos = new pedidos();
-
 $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
-
 $precio_subtotal = 0;
-
 if (isset($_POST['task']) && !empty($_POST['task'])) {
     $id_producto = $_POST['id_producto'];
     $precio_producto = doubleval($pedidos->get_precio_producto($id_producto));

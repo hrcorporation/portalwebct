@@ -12,7 +12,7 @@ $resultado = "";
 
 $intidpedido = intval($_POST['pedido']);
 $intidproducto = intval($_POST['producto']);
-$cantidad_solicitada = intval($_POST['cantidad']);
+$cantidad_solicitada = doubleval($_POST['cantidad']);
 
 if ($cantidad = $clsProgramacionSemanal->cargar_cantidad_metros($intidpedido, $intidproducto)) {
     $nueva_cantidad = doubleval($cantidad) + doubleval($cantidad_solicitada);
@@ -21,8 +21,8 @@ if ($cantidad = $clsProgramacionSemanal->cargar_cantidad_metros($intidpedido, $i
 }
 
 if ($cantidad_pedido = $clsProgramacionSemanal->cargar_cantidad_metros_pedido($intidpedido, $intidproducto)) {
-    $cantidad_final = doubleval($cantidad_pedido) - $nueva_cantidad;
-    if ($cantidad_final > 0) {
+    $cantidad_final = doubleval($cantidad_pedido) - doubleval($nueva_cantidad);
+    if ($cantidad_final >= 0) {
         $boolPhpEstado = true;
     } else {
         $boolPhpEstado = false;
@@ -37,4 +37,4 @@ $datos = array(
 
 );
 
-echo json_encode($datos, JSON_FORCE_OBJECT);
+echo json_encode($datos , JSON_FORCE_OBJECT);
