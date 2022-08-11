@@ -15,6 +15,11 @@ $log = false;
 $php_estado = false;
 $php_error[] = "";
 $resultado = "";
+date_default_timezone_set('America/Bogota');
+setlocale(LC_ALL, "es_ES");
+setlocale(LC_TIME, 'es_ES');
+$fecha = new DateTime();
+$fecha_hoy = $fecha->format("Y-m-d H:i:s");
 
 if ($_POST['id']) {
     $id_producto = $_POST['id_producto'];
@@ -47,10 +52,14 @@ if ($_POST['id']) {
     }
     $observaciones = $_POST['txtObservaciones'];
     //Se valida que se guarde correctamente todos los datos de la programacion.
-    if ($clsprogramacionsemanal->fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiereBomba, $fecha_ini, $fecha_fin, $observaciones, $id_usuario, $nombre_usuario)) {
-        $php_estado = true;
-    } else {
-        $log = 'No Guardo Correctamente';
+    if ($fecha_hoy <= $fecha_ini) {
+        if ($clsprogramacionsemanal->fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiereBomba, $fecha_ini, $fecha_fin, $observaciones, $id_usuario, $nombre_usuario)) {
+            $php_estado = true;
+        } else {
+            $log = 'No Guardo Correctamente';
+        }
+    }else{
+        $php_error = "No puede crear una programacion antes de la fecha actual";
     }
 } else {
     $php_error = "Error inesperado";

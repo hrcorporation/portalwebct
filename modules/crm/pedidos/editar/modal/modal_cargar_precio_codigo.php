@@ -19,7 +19,7 @@
                          <div class="col">
                              <div class="form-group">
                                  <label>Digite el Codigo del pedido existente para cargar los datos</label>
-                                 <input type="text" name="txt_cod_load" id="txt_cod_load" class="form-control">
+                                 <input type="text" name="txt_cod_load" id="txt_cod_load" class="form-control validanumericos">
                              </div>
                          </div>
                      </div>

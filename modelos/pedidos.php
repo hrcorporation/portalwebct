@@ -254,7 +254,7 @@ class pedidos extends conexionPDO
                 } else {
                     $selection = " ";
                 }
-                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . $fila['nombre_cliente'] . ' - ' . $fila['nombre_obra'] . ' </option>';
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . $fila['nombre_cliente'] . ' - ' . $fila['nombre_obra'] . ' FV: '. $fila['fecha_vencimiento'].' </option>';
             }
         }
         return $option;
