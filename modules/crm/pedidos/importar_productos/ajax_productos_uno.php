@@ -7,7 +7,7 @@ require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php';
 
 $php_estado = false;
-$php_result = "saludo desde el servidor";
+$php_result = "";
 
 $php_fechatime = "" . date("Y-m-d H:i:s");
 $image = htmlspecialchars($_FILES['file_productos']['name']);

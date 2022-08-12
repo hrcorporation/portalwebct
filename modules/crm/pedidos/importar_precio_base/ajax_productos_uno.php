@@ -73,13 +73,13 @@ if (is_array($array_reg)) {
                             $php_estado = true;
                         }
                     } else {
-                        $php_result = "Producto no fue importado" .$codigo_producto;
+                        $php_result = "Producto no fue importado";
                     }
                 } else {
                     $php_result = "No se pudo subir este producto";
                 }
             }else{
-                $php_result = "No existe ese producto Codigo: ".$codigo_producto;
+                $php_result = "No existe ese producto Codigo: ";
             }
         }
     }

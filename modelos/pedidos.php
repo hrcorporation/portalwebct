@@ -1094,7 +1094,7 @@ class pedidos extends conexionPDO
         if ($stmt->execute()) { // Ejecutar
             $php_result = true;
         } else {
-            $php_result = true;
+            $php_result = false;
         }
         return $php_result;
     }

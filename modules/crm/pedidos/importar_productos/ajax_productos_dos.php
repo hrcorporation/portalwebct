@@ -77,6 +77,8 @@ if (is_array($array_reg)) {
                         $php_estado = true;
                     }
                 }
+            }else{
+                $php_result = "Producto ya agregado al pedido";
             }
         }
     }

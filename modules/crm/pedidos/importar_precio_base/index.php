@@ -104,7 +104,7 @@
                         if (data.estado) {
                             toastr.success('Guardado Correctamente');
                         } else {
-                            toastr.info(data.result);
+                            toastr.warning(data.result);
                         }
                     },
                     error: function(respuesta) {
@@ -129,7 +129,7 @@
                         if (data.estado) {
                             toastr.success('Guardado Correctamente');
                         } else {
-                            toastr.info(data.result);
+                            toastr.warning(data.result);
                         }
                     },
                     error: function(respuesta) {

@@ -11,8 +11,6 @@ switch ($rol_user) {
     case 29:
     case 32:
 
-        //case 20:
-
 ?>
         <div class="col-4" id="">
             <div class="small-box bg-info">
@@ -46,7 +44,6 @@ switch ($rol_user) {
     case 13:
     case 14:
     case 16:
-
     case 20:
     case 29:
     case 32:
@@ -81,7 +78,6 @@ switch ($rol_user) {
     case 13:
     case 14:
     case 16:
-
     case 29:
     case 20:
     case 32:

@@ -103,9 +103,9 @@
                     success: function(data) {
                         console.log(data);
                         if (data.estado) {
-                            toastr.success('Guardado Correctamente');
+                            toastr.success('Productos actualizados correctamente');
                         } else {
-                            toastr.info(data.result);
+                            toastr.warning(data.result);
                         }
                     },
                     error: function(respuesta) {
@@ -128,9 +128,9 @@
                     success: function(data) {
                         console.log(data);
                         if (data.estado) {
-                            toastr.success('Guardado Correctamente');
+                            toastr.success('Productos agregados correctamente');
                         } else {
-                            toastr.info(data.result);
+                            toastr.warning(data.result);
                         }
                     },
                     error: function(respuesta) {
