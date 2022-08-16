@@ -113,12 +113,40 @@ switch ($rol_user) {
         <div class="col-4" id="">
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Pedidos</H3>
+                    <h3>Orden de compra</H3>
                 </div>
                 <div class="icon">
                     <i class="fas fa-box"></i>
                 </div>
-                <a class="small-box-footer" href="pedidos/">
+                <a class="small-box-footer" href="orden_compra/">
+                    Ir <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+<?php
+        break;
+}
+?>
+
+<?php
+
+switch ($rol_user) {
+    case 1:
+    case 8:
+    case 12:
+    case 13:
+    case 32:
+?>
+        <div class="col-4" id="">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Lista de precios</H3>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <a class="small-box-footer" href="lista_precio/">
                     Ir <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

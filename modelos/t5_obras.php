@@ -202,7 +202,30 @@ class t5_obras extends conexionPDO
         //resultado
         return $option;
     }
-
+    function option_obra2($id_cliente, $id_obra = null)
+    {
+        $this->id = $id_cliente;
+        $option = "<option  selected='true' disabled='disabled'> Seleccione una Obra</option>";
+        $sql = "SELECT * FROM `ct65_lista_precio` WHERE `id_cliente` = :id_cliente AND `status` = 1";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id_cliente', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        $result = $stmt->execute();
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($id_obra == $fila['id_obra']) {
+                $selection = "selected='true'";
+            } else {
+                $selection = "";
+            }
+            $option .= '<option value="' . $fila['id_obra'] . '" ' . $selection . ' >' . $fila['nombre_obra']  . ' </option>';
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
+    }
     function option_obra($id_cliente, $id_obra = null)
     {
         $this->id = $id_cliente;

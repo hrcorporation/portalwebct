@@ -572,7 +572,7 @@ class oportunidad_negocio extends conexionPDO
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione Comercial</option>";
 
-        $sql = "SELECT  `ct1_IdTerceros`, `ct1_NumeroIdentificacion`, `ct1_RazonSocial`  FROM `ct1_terceros` WHERE `ct1_Estado` = 1 AND `ct1_rol` IN(3,8,12,13)";
+        $sql="SELECT `ct1_IdTerceros`, `ct1_NumeroIdentificacion`, `ct1_RazonSocial`  FROM `ct1_terceros` WHERE `ct1_Estado` = 1 AND `ct1_rol` IN(3,8,12,13)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -588,7 +588,7 @@ class oportunidad_negocio extends conexionPDO
         }
         return $option;
     }
-
+    
     public function select_sede($id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione la sede</option>";

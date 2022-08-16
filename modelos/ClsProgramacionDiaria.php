@@ -361,7 +361,7 @@ class clsProgramacionDiaria extends conexionPDO
     public function fntOptionListaPedidosClienteObj($id_cliente, $id_obra, $id_pedido = null)
     {
         $option = "<option  selected='true' disabled='disabled'> Seleccione el pedido</option>";
-        $sql = "SELECT `id`, `fecha_vencimiento`, `nombre_cliente`, `nombre_obra` 
+        $sql = "SELECT `id`, `nombre_orden_compra`, `nombre_cliente`, `nombre_obra` 
         FROM `ct65_pedidos` 
         WHERE `status` = 1 AND `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
         //Preparar Conexion
@@ -379,7 +379,7 @@ class clsProgramacionDiaria extends conexionPDO
                     } else {
                         $selection = "";
                     }
-                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . " PEDIDO " . "(" . $fila['fecha_vencimiento'] . ")" . ' </option>';
+                    $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . "(" . $fila['nombre_orden_compra'] . ")" . ' </option>';
                 }
             } else {
                 $option = "<option  selected='true' disabled='disabled'> No hay pedidos asociados con el cliente </option>";

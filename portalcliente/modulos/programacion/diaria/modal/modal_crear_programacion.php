@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="cbxPedido" class="form-label">Pedido:</label>
+                                <label for="cbxPedido" class="form-label">Orden de compra:</label>
                                 <select name="cbxPedido" id="cbxPedido" class="form-control select2" style="width: 100%;" required="true">
                                     <?= $clsProgramacionDiaria->fntOptionListaPedidosClienteObj($intIdCliente, $intIdObra); ?>
                                 </select>

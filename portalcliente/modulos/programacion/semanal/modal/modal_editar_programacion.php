@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group" id="obra">
-                                <label class=" control-label">Pedido</label>
+                                <label class=" control-label">Orden de compra</label>
                                 <select name="cbxPedidoEditar" id="cbxPedidoEditar" class="form-control select-2" style="width: 100%;" required="true">
                                 </select>
                             </div>

@@ -1,14 +1,81 @@
 <?php
 
-class pedidos extends conexionPDO
+class clslistaprecio extends conexionPDO
 {
     protected $con;
-
+    
     // Iniciar Conexion
     public function __construct()
     {
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
+    }
+    public function cargar_cantidad_metros_pedido($id_pedido, $id_producto)
+    {
+        $sql = "SELECT `saldo_m3` FROM `ct65_lista_precio_has_precio_productos` WHERE `id_pedido` = :id_pedido AND `id_producto` = :id_producto";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['saldo_m3'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    //Traer el id del producto
+    public function fntGetIdProductoObj($id)
+    {
+        $this->id = $id;
+        // sentencia SQL
+        $sql = "SELECT `id_producto` FROM `ct65_lista_precio_has_precio_productos` WHERE `id` = :id";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['id_producto'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    //Traer la cantidad de metros cubicos del pedido
+    public function fntGetCantidadObj($id)
+    {
+        $this->id = $id;
+        // sentencia SQL
+        $sql = "SELECT `cantidad_m3` FROM `ct65_lista_precio_has_precio_productos` WHERE `id` = :id";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['cantidad_m3'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
     //Listar con un arreglo los valores de metros cubicos minimos.
     public function array_list_min_max($minimo, $maximo)
@@ -28,7 +95,7 @@ class pedidos extends conexionPDO
     public static function cargar_precio_servicios_for_id_pedido($con, $id_pedido)
     {
         //  sql de consulta para cargar precios porductos
-        $sql = "SELECT * FROM ct65_pedido_has_precio_servicio WHERE id_pedido = :id_pedido AND `status` = 1";
+        $sql = "SELECT * FROM ct65_lista_precio_has_precio_servicio WHERE id_pedido = :id_pedido AND `status` = 1";
         $stmt = $con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
 
@@ -55,7 +122,7 @@ class pedidos extends conexionPDO
     public static function cargar_precio_bomba_for_id_pedido($con, $id_pedido)
     {
         //  sql de consulta para cargar precios porductos
-        $sql = "SELECT * FROM ct65_pedido_has_precio_bomba WHERE id_pedido = :id_pedido AND `status` = 1";
+        $sql = "SELECT * FROM ct65_lista_precio_has_precio_bomba WHERE id_pedido = :id_pedido AND `status` = 1";
         $stmt = $con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
 
@@ -84,7 +151,7 @@ class pedidos extends conexionPDO
     public static function cargar_precio_productos_for_id_pedido($con, $id_pedido)
     {
         //  sql de consulta para cargar precios porductos
-        $sql = "SELECT * FROM ct65_pedidos_has_precio_productos WHERE id_pedido = :id_pedido AND `status` = 1";
+        $sql = "SELECT * FROM ct65_lista_precio_has_precio_productos WHERE id_pedido = :id_pedido AND `status` = 1";
         $stmt = $con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
         if ($stmt->execute()) {
@@ -166,55 +233,12 @@ class pedidos extends conexionPDO
         //resultado
         return $option;
     }
-    //Select de los clientes para la orden de compra
-    function option_cliente_edit2($id_cliente = null)
-    {
-        $option = "<option  selected='true'> Seleccione un Cliente</option>";
-        $sql = "SELECT * FROM `ct65_lista_precio` WHERE `status` = 1;";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-
-        // Asignando Datos ARRAY => SQL
-        //$stmt->bindParam(':id_tercero', $this->id, PDO::PARAM_INT);
-        // Ejecutar 
-        $stmt->execute();
-        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($id_cliente == $fila['id_cliente']) {
-                $selection = " selected='true' ";
-            } else {
-                $selection = "";
-            }
-            $option .= '<option value="' . $fila['id_cliente'] . '" ' . $selection . ' >' . $fila['id_cliente'] . ' - ' . $fila['nombre_cliente'] . ' </option>';
-        }
-
-        //Cerrar Conexion
-        $this->PDO->closePDO();
-
-        //resultado
-        return $option;
-    }
-    public function select_comercial2($id_cliente, $id_obra)
-    {
-        $option = "";
-        $sql="SELECT `id_comercial`, `nombre_asesora` FROM `ct65_lista_precio` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra;";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
-        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
-        if ($stmt->execute()) {
-            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $option = "<input type='hidden' name='asesora_comercial' id='asesora_comercial' class='form-control' style='width: 100%;' value = '".$fila['id_comercial']."'/>";
-                $option .="<p>".$fila['nombre_asesora']."</p>";
-            }
-        }
-        return $option;
-    }
     //Select de los productos
     public function select_productos($id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el producto</option>";
 
-        $sql = "SELECT `ct4_Id_productos`,`ct4_Nombre`,`ct4_Descripcion` FROM `ct4_productos` INNER JOIN `ct65_precio_base` ON `ct4_productos`.`ct4_Id_productos` = `ct65_precio_base`.`id_producto`;";
+        $sql = "SELECT `ct4_Id_productos`,`ct4_Nombre`,`ct4_Descripcion` FROM `ct4_productos` INNER JOIN `ct65_lista_precio_precio_base` ON `ct4_productos`.`ct4_Id_productos` = `ct65_lista_precio_precio_base`.`id_producto`;";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         if ($stmt->execute()) {
@@ -239,44 +263,12 @@ class pedidos extends conexionPDO
         //resultado
         return $option;
     }
-    //Select de los productos
-    public function select_producto($id_cliente, $id_obra, $id = null)
-    {
-        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el producto</option>";
-
-        $sql = "SELECT id_producto, codigo_producto, nombre_producto FROM `ct65_lista_precio_has_precio_productos` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_productos.id_pedido = ct65_lista_precio.id WHERE ct65_lista_precio.`status` = 1 AND id_cliente = :id_cliente AND id_obra = :id_obra; ";
-        //Preparar Conexion
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
-        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
-        if ($stmt->execute()) {
-            $num_reg =  $stmt->rowCount();
-            if ($num_reg > 0) {
-                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($id == $fila['id_producto']) {
-                        $selection = " selected='true' ";
-                    } else {
-                        $selection = "";
-                    }
-                    $option .= '<option value="' . $fila['id_producto'] . '" ' . $selection . ' >' . $fila['codigo_producto'] . " - " . $fila['nombre_producto'] . ' </option>';
-                }
-            } else {
-                $option = "<option  selected='true' disabled='disabled'> No hay productos cargados </option>";
-            }
-        } else {
-            $option = "<option  selected='true' disabled='disabled'> Error al cargar los datos :(</option>";
-        }
-        //Cerrar Conexion
-        $this->PDO->closePDO();
-        //resultado
-        return $option;
-    }
     //Select de las bombas
     public function select_bomba($id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione la bomba</option>";
 
-        $sql = "SELECT * FROM `ct65_tipo_bomba`";
+        $sql = "SELECT * FROM `ct65_lista_precio_tipo_bomba`";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -297,7 +289,7 @@ class pedidos extends conexionPDO
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el servicio</option>";
 
-        $sql = "SELECT * FROM `ct65_tipo_servicio`";
+        $sql = "SELECT * FROM `ct65_lista_precio_tipo_servicio`";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -318,7 +310,7 @@ class pedidos extends conexionPDO
     {
         $option = "<option  selected='true'> Seleccione el codigo del pedido </option>";
 
-        $sql = "SELECT * FROM `ct65_pedidos` WHERE `status` = 1";
+        $sql = "SELECT * FROM `ct65_lista_precio` WHERE `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -329,7 +321,7 @@ class pedidos extends conexionPDO
                 } else {
                     $selection = " ";
                 }
-                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . $fila['nombre_cliente'] . ' - ' . $fila['nombre_obra'] . ' FV: ' . $fila['fecha_vencimiento'] . ' </option>';
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . $fila['nombre_cliente'] . ' - ' . $fila['nombre_obra'] . ' FV: '. $fila['fecha_vencimiento'].' </option>';
             }
         }
         return $option;
@@ -385,7 +377,7 @@ class pedidos extends conexionPDO
     public function get_precio_producto($id)
     {
         $this->id = $id;
-        $sql = "SELECT `precio` FROM `ct65_precio_base` WHERE `id_producto` = :id AND `status` = 1";
+        $sql = "SELECT `precio` FROM `ct65_lista_precio_precio_base` WHERE `id_producto` = :id AND `status` = 1";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -553,7 +545,7 @@ class pedidos extends conexionPDO
     public function get_id_precio_base($id)
     {
         $this->id = $id;
-        $sql = "SELECT `id` FROM `ct65_precio_base` WHERE `id_producto` = :id";
+        $sql = "SELECT `id` FROM `ct65_lista_precio_precio_base` WHERE `id_producto` = :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -577,7 +569,7 @@ class pedidos extends conexionPDO
     public function get_precio_base($id)
     {
         $this->id = $id;
-        $sql = "SELECT `precio` FROM `ct65_precio_base` WHERE `id_producto` = :id";
+        $sql = "SELECT `precio` FROM `ct65_lista_precio_precio_base` WHERE `id_producto` = :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -601,7 +593,7 @@ class pedidos extends conexionPDO
     public function get_nombre_bomba($id)
     {
         $this->id = $id;
-        $sql = "SELECT `nombre` FROM `ct65_tipo_bomba` WHERE `id` = :id";
+        $sql = "SELECT `nombre` FROM `ct65_lista_precio_tipo_bomba` WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -625,7 +617,7 @@ class pedidos extends conexionPDO
     public function get_nombre_servicio($id)
     {
         $this->id = $id;
-        $sql = "SELECT `nombre` FROM `ct65_tipo_servicio` WHERE `id` = :id";
+        $sql = "SELECT `nombre` FROM `ct65_lista_precio_tipo_servicio` WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -646,20 +638,21 @@ class pedidos extends conexionPDO
         $this->PDO->closePDO();
     }
     //Crear el pedido
-    public function crear_pedido($id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora, $nombre_orden_compra)
+    public function crear_pedido($fecha, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora)
     {
         $this->status = 1;
+        $this->fecha = $fecha;
         $this->id_cliente = $id_cliente;
         $this->nombre_cliente = $nombre_cliente;
         $this->id_obra = $id_obra;
         $this->nombre_obra = $nombre_obra;
         $this->id_asesora = $id_asesora;
         $this->nombre_asesora = $nombre_asesora;
-        $this->nombre_orden_compra = $nombre_orden_compra;
 
-        $sql = "INSERT INTO `ct65_pedidos`(`nombre_orden_compra`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_comercial`, `nombre_asesora`) VALUES  (:nombre_orden_compra, :status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_comercial, :nombre_asesora)";
+        $sql = "INSERT INTO `ct65_lista_precio`(`fecha_vencimiento`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_comercial`, `nombre_asesora`) VALUES  (:fecha_vencimiento, :status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_comercial, :nombre_asesora)";
 
         $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':fecha_vencimiento', $this->fecha, PDO::PARAM_STR);
         $stmt->bindParam(':status', $this->status, PDO::PARAM_STR);
         $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
         $stmt->bindParam(':nombre_cliente', $this->nombre_cliente, PDO::PARAM_STR);
@@ -667,7 +660,6 @@ class pedidos extends conexionPDO
         $stmt->bindParam(':nombre_obra', $this->nombre_obra, PDO::PARAM_STR);
         $stmt->bindParam(':id_comercial', $this->id_asesora, PDO::PARAM_INT);
         $stmt->bindParam(':nombre_asesora', $this->nombre_asesora, PDO::PARAM_STR);
-        $stmt->bindParam(':nombre_orden_compra', $this->nombre_orden_compra, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             return $this->con->lastInsertId();
@@ -678,7 +670,7 @@ class pedidos extends conexionPDO
         $this->PDO->closePDO();
     }
     //Registrar el producto a un pedido.
-    public function crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $saldo_m3, $precio_total_pedido, $observaciones)
+    public function crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $precio_total_pedido, $observaciones)
     {
         $this->status = 1;
         $this->id_pedido = $id_pedido;
@@ -689,12 +681,10 @@ class pedidos extends conexionPDO
         $this->id_precio_base = $id_precio_base;
         $this->precio_base = $precio_base;
         $this->precio_m3 = $precio_m3;
-        $this->cantidad_m3 = $cantidad_m3;
-        $this->saldo_m3 = $saldo_m3;
         $this->precio_total_pedido = $precio_total_pedido;
         $this->observaciones = $observaciones;
 
-        $sql = "INSERT INTO `ct65_pedidos_has_precio_productos`(`id_pedido`, `status`, `id_producto`, `codigo_producto`, `nombre_producto`, `porcentaje_descuento`, `id_precio_base`, `precio_base`, `precio_m3`, `cantidad_m3`, `saldo_m3`, `precio_total_pedido`, `observaciones`) VALUES  (:id_pedido, :status, :id_producto, :codigo_producto, :nombre_producto, :porcentaje_descuento, :id_precio_base, :precio_base, :precio_m3, :cantidad_m3, :saldo_m3, :precio_total_pedido, :observaciones)";
+        $sql = "INSERT INTO `ct65_lista_precio_has_precio_productos`(`id_pedido`, `status`, `id_producto`, `codigo_producto`, `nombre_producto`, `porcentaje_descuento`, `id_precio_base`, `precio_base`, `precio_m3`, `precio_total_pedido`, `observaciones`) VALUES  (:id_pedido, :status, :id_producto, :codigo_producto, :nombre_producto, :porcentaje_descuento, :id_precio_base, :precio_base, :precio_m3, :precio_total_pedido, :observaciones)";
 
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $this->id_pedido, PDO::PARAM_STR);
@@ -706,8 +696,6 @@ class pedidos extends conexionPDO
         $stmt->bindParam(':id_precio_base', $this->id_precio_base, PDO::PARAM_INT);
         $stmt->bindParam(':precio_base', $this->precio_base, PDO::PARAM_STR);
         $stmt->bindParam(':precio_m3', $this->precio_m3, PDO::PARAM_STR);
-        $stmt->bindParam(':cantidad_m3', $this->cantidad_m3, PDO::PARAM_STR);
-        $stmt->bindParam(':saldo_m3', $this->saldo_m3, PDO::PARAM_STR);
         $stmt->bindParam(':precio_total_pedido', $this->precio_total_pedido, PDO::PARAM_STR);
         $stmt->bindParam(':observaciones', $this->observaciones, PDO::PARAM_STR);
 
@@ -730,7 +718,7 @@ class pedidos extends conexionPDO
         $this->precio = $precio;
         $this->observaciones = $observaciones;
 
-        $sql = "INSERT INTO `ct65_pedido_has_precio_bomba`(`id_pedido`, `status`, `id_tipo_bomba`, `nombre_tipo_bomba`, `min_m3`, `max_m3`, `precio`, `observaciones`) VALUES (:id_pedido, :status, :id_tipo_bomba, :nombre_tipo_bomba, :min_m3, :max_m3, :precio, :observaciones)";
+        $sql = "INSERT INTO `ct65_lista_precio_has_precio_bomba`(`id_pedido`, `status`, `id_tipo_bomba`, `nombre_tipo_bomba`, `min_m3`, `max_m3`, `precio`, `observaciones`) VALUES (:id_pedido, :status, :id_tipo_bomba, :nombre_tipo_bomba, :min_m3, :max_m3, :precio, :observaciones)";
 
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $this->id_pedido, PDO::PARAM_STR);
@@ -759,7 +747,7 @@ class pedidos extends conexionPDO
         $this->observaciones = $observaciones;
 
 
-        $sql = "INSERT INTO `ct65_pedido_has_precio_servicio`(`id_pedido`, `status`, `id_tipo_servicio`, `nombre_tipo_servicio`, `precio`, `observaciones`) VALUES  (:id_pedido, :status, :id_tipo_servicio, :nombre_tipo_servicio, :precio, :observaciones)";
+        $sql = "INSERT INTO `ct65_lista_precio_has_precio_servicio`(`id_pedido`, `status`, `id_tipo_servicio`, `nombre_tipo_servicio`, `precio`, `observaciones`) VALUES  (:id_pedido, :status, :id_tipo_servicio, :nombre_tipo_servicio, :precio, :observaciones)";
 
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $this->id_pedido, PDO::PARAM_STR);
@@ -778,7 +766,7 @@ class pedidos extends conexionPDO
     //Listar todos los pedidos.
     public function get_pedidos()
     {
-        $sql = "SELECT `id`, `nombre_orden_compra`, `status`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE  `status` = 1";
+        $sql = "SELECT `id`, `status`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_lista_precio` WHERE  `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
 
@@ -788,7 +776,6 @@ class pedidos extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
-                    $datos['nombre_orden_compra'] = $fila['nombre_orden_compra'];
                     switch ($fila['status']) {
                         case 1:
                             $datos['status'] = " <span class='badge  badge-success > float-right'> Activo </span> ";
@@ -817,7 +804,7 @@ class pedidos extends conexionPDO
     //Obtener los precios de los productos mediante el id del pedido.
     public function get_productos_precio($id_pedido)
     {
-        $sql = "SELECT `id`, `status`, `codigo_producto`, `porcentaje_descuento`, `cantidad_m3`, `precio_m3`, `observaciones` FROM `ct65_pedidos_has_precio_productos` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
+        $sql = "SELECT `id`, `status`, `codigo_producto`, `porcentaje_descuento`, `cantidad_m3`, `precio_m3`, `observaciones` FROM `ct65_lista_precio_has_precio_productos` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
@@ -861,7 +848,7 @@ class pedidos extends conexionPDO
     //Obtener los precios de la bomba mediante el id del pedido.
     public function get_bomba_precio($id_pedido)
     {
-        $sql = "SELECT `id`,`status`,`nombre_tipo_bomba`,`min_m3`,`max_m3`,`precio`, `observaciones` FROM `ct65_pedido_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
+        $sql = "SELECT `id`,`status`,`nombre_tipo_bomba`,`min_m3`,`max_m3`,`precio`, `observaciones` FROM `ct65_lista_precio_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
@@ -902,7 +889,7 @@ class pedidos extends conexionPDO
     //Obtener el precio de la bomba mediante el id del pedido y el id del tipo de bomba
     public function bomba_precio($id_pedido, $id_tipo_bomba)
     {
-        $sql = "SELECT `id_tipo_bomba`, `min_m3`,`max_m3` FROM `ct65_pedido_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `id_tipo_bomba` = :id_tipo_bomba AND `status` = 1";
+        $sql = "SELECT `id_tipo_bomba`, `min_m3`,`max_m3` FROM `ct65_lista_precio_has_precio_bomba` WHERE `id_pedido` =  :id_pedido AND `id_tipo_bomba` = :id_tipo_bomba AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
@@ -928,7 +915,7 @@ class pedidos extends conexionPDO
     //Obtener el precio del servicio mediante el id del pedido.
     public function get_servicios_precio($id_pedido)
     {
-        $sql = "SELECT `id`,`status`, `nombre_tipo_servicio`, `precio`, `observaciones` FROM `ct65_pedido_has_precio_servicio` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
+        $sql = "SELECT `id`,`status`, `nombre_tipo_servicio`, `precio`, `observaciones` FROM `ct65_lista_precio_has_precio_servicio` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
@@ -966,7 +953,7 @@ class pedidos extends conexionPDO
     //Validar la existencia de algun pédido mediante el cliente y la obra.
     public function validar_existencias_pedido($cliente, $obra)
     {
-        $sql = "SELECT id FROM ct65_pedidos WHERE status = 1 AND `id_cliente` = :cliente AND `id_obra` = :obra";
+        $sql = "SELECT id FROM ct65_lista_precio WHERE status = 1 AND `id_cliente` = :cliente AND `id_obra` = :obra";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':cliente', $cliente, PDO::PARAM_STR);
         $stmt->bindParam(':obra', $obra, PDO::PARAM_STR);
@@ -986,7 +973,7 @@ class pedidos extends conexionPDO
     //Validar la existencia de algun pédido mediante el codigo.
     public function validar_existencias_pedido_id($codigo)
     {
-        $sql = "SELECT id FROM ct65_pedidos WHERE status = 1 AND id = :id";
+        $sql = "SELECT id FROM ct65_lista_precio WHERE status = 1 AND id = :id";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':id', $codigo, PDO::PARAM_STR);
 
@@ -1005,7 +992,7 @@ class pedidos extends conexionPDO
     //Validar la existencia de algun producto mediante el id del producto.
     public function validar_existencias_productos($id_producto)
     {
-        $sql = "SELECT id FROM concr_bdportalconcretol.ct65_precio_base WHERE status = 1 AND id_producto = :id_producto";
+        $sql = "SELECT id FROM concr_bdportalconcretol.ct65_lista_precio_precio_base WHERE status = 1 AND id_producto = :id_producto";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
         // Ejecutar
@@ -1041,7 +1028,7 @@ class pedidos extends conexionPDO
     //Validar la existencia de algun producto mediante el id del producto y el id del pedido.
     public function validar_existencias_precio_producto($id_producto, $id_pedido)
     {
-        $sql = "SELECT id FROM ct65_pedidos_has_precio_productos WHERE status = 1 AND id_producto = :id_producto AND `id_pedido` = :id_pedido";
+        $sql = "SELECT id FROM ct65_lista_precio_has_precio_productos WHERE status = 1 AND id_producto = :id_producto AND `id_pedido` = :id_pedido";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_STR);
@@ -1060,7 +1047,7 @@ class pedidos extends conexionPDO
     //Validar la existencia de algun precio del producto mediante el codigo.
     public function validar_producto($codigo)
     {
-        $sql = "SELECT `id` FROM `ct65_precio_base` WHERE `codigo_producto` = :codigo_producto";
+        $sql = "SELECT `id` FROM `ct65_lista_precio_precio_base` WHERE `codigo_producto` = :codigo_producto";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':codigo_producto', $codigo, PDO::PARAM_STR);
         // Ejecutar 
@@ -1078,7 +1065,7 @@ class pedidos extends conexionPDO
     //Validar la existencia de algun precio del producto mediante el codigo.
     public function validar_producto_por_id($id)
     {
-        $sql = "SELECT `id` FROM `ct65_precio_base` WHERE `id_producto` = :id";
+        $sql = "SELECT `id` FROM `ct65_lista_precio_precio_base` WHERE `id_producto` = :id";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         // Ejecutar 
@@ -1096,7 +1083,7 @@ class pedidos extends conexionPDO
     //Validar la existencia de alguna bomba mediante la cantidad maxima, cantidad minima y el id del pedido.
     public function validar_bomba($cant_min, $cant_max, $id_pedido)
     {
-        $sql = "SELECT id FROM ct65_pedido_has_precio_bomba WHERE status = 1 AND `min_m3` = :min_m3 AND `max_m3` = :max_m3 AND `id_pedido` = :id_pedido";
+        $sql = "SELECT id FROM ct65_lista_precio_has_precio_bomba WHERE status = 1 AND `min_m3` = :min_m3 AND `max_m3` = :max_m3 AND `id_pedido` = :id_pedido";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':min_m3', $cant_min, PDO::PARAM_STR);
         $stmt->bindParam(':max_m3', $cant_max, PDO::PARAM_STR);
@@ -1116,7 +1103,7 @@ class pedidos extends conexionPDO
     //Validar la existencia de algun servicio del producto mediante el id del tipo de servicio y el id del pedido.
     public function validar_existencias_precio_servicio($id_tipo_servicio, $id_pedido)
     {
-        $sql = "SELECT id FROM ct65_pedido_has_precio_servicio WHERE 'status' = 1 AND id_tipo_servicio = :id_tipo_servicio AND `id_pedido` = :id_pedido";
+        $sql = "SELECT id FROM ct65_lista_precio_has_precio_servicio WHERE 'status' = 1 AND id_tipo_servicio = :id_tipo_servicio AND `id_pedido` = :id_pedido";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':id_tipo_servicio', $id_tipo_servicio, PDO::PARAM_STR);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_STR);
@@ -1136,7 +1123,7 @@ class pedidos extends conexionPDO
     function insert_precio_productos($fecha_subida, $id_producto, $codigo_producto, $nombre_producto, $precio)
     {
         $status = 1;
-        $sql =  "INSERT INTO `ct65_precio_base` (`status`, `fecha_subida`, `id_producto`, `codigo_producto`, `nombre_producto`, `precio`) VALUES (:status, :fecha_subida, :id_producto, :codigo_producto, :nombre_producto, :precio)";
+        $sql =  "INSERT INTO `ct65_lista_precio_precio_base` (`status`, `fecha_subida`, `id_producto`, `codigo_producto`, `nombre_producto`, `precio`) VALUES (:status, :fecha_subida, :id_producto, :codigo_producto, :nombre_producto, :precio)";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_subida', $fecha_subida, PDO::PARAM_STR);
@@ -1153,10 +1140,10 @@ class pedidos extends conexionPDO
         return $php_result;
     }
     //Registrar el producto al pedido.
-    function insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio, $cantidad, $saldo)
+    function insert_precio_base_productos($id_pedido, $id_producto, $codigo_producto, $nombre_producto, $precio)
     {
         $status = 1;
-        $sql =  "INSERT INTO `ct65_pedidos_has_precio_productos`(`id_pedido`, `status`, `id_producto`, `codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `saldo_m3`) VALUES (:id_pedido, :status, :id_producto, :codigo_producto, :nombre_producto, :precio_m3, :cantidad_m3, :saldo)";
+        $sql =  "INSERT INTO `ct65_lista_precio_has_precio_productos`(`id_pedido`, `status`, `id_producto`, `codigo_producto`, `nombre_producto`, `precio_m3`) VALUES (:id_pedido, :status, :id_producto, :codigo_producto, :nombre_producto, :precio_m3)";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_STR);
         $stmt->bindParam(':status', $status, PDO::PARAM_STR);
@@ -1164,8 +1151,6 @@ class pedidos extends conexionPDO
         $stmt->bindParam(':codigo_producto', $codigo_producto, PDO::PARAM_STR);
         $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
         $stmt->bindParam(':precio_m3', $precio, PDO::PARAM_STR);
-        $stmt->bindParam(':cantidad_m3', $cantidad, PDO::PARAM_STR);
-        $stmt->bindParam(':saldo', $saldo, PDO::PARAM_STR);
 
         if ($stmt->execute()) { // Ejecutar
             $php_result = true;
@@ -1178,7 +1163,7 @@ class pedidos extends conexionPDO
     function editar_status_precio_base_productos()
     {
         $this->status = 2;
-        $sql = "UPDATE `ct65_pedidos_has_precio_productos` SET `status`= :status";
+        $sql = "UPDATE `ct65_lista_precio_has_precio_productos` SET `status`= :status";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':status', $this->status, PDO::PARAM_INT);
         // Ejecutar 
@@ -1193,7 +1178,7 @@ class pedidos extends conexionPDO
     {
         $this->fecha = $fecha;
         $this->status = 2;
-        $sql = "UPDATE `ct65_pedidos` SET `status`= :status WHERE  `fecha_vencimiento` < :fecha";
+        $sql = "UPDATE `ct65_lista_precio` SET `status`= :status WHERE  `fecha_vencimiento` < :fecha";
 
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':status', $this->status, PDO::PARAM_INT);
@@ -1212,7 +1197,7 @@ class pedidos extends conexionPDO
     function editar_status_productos()
     {
         $this->status = 2;
-        $sql = "UPDATE `ct65_precio_base` SET `status`= :status";
+        $sql = "UPDATE `ct65_lista_precio_precio_base` SET `status`= :status";
 
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':status', $this->status, PDO::PARAM_INT);
@@ -1231,7 +1216,7 @@ class pedidos extends conexionPDO
     {
         $this->id = $id;
         $this->status = 2;
-        $sql = "UPDATE `ct65_pedidos_has_precio_productos` SET `status`= :status WHERE `id` = :id";
+        $sql = "UPDATE `ct65_lista_precio_has_precio_productos` SET `status`= :status WHERE `id` = :id";
 
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -1251,7 +1236,7 @@ class pedidos extends conexionPDO
     {
         $this->id = $id;
         $this->status = 2;
-        $sql = "UPDATE `ct65_pedido_has_precio_bomba` SET `status`= :status  WHERE `id` = :id";
+        $sql = "UPDATE `ct65_lista_precio_has_precio_bomba` SET `status`= :status  WHERE `id` = :id";
 
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -1271,7 +1256,7 @@ class pedidos extends conexionPDO
     {
         $this->id = $id;
         $this->status = 2;
-        $sql = "UPDATE `ct65_pedido_has_precio_servicio` SET `status`= :status WHERE `id` = :id";
+        $sql = "UPDATE `ct65_lista_precio_has_precio_servicio` SET `status`= :status WHERE `id` = :id";
 
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -1290,7 +1275,7 @@ class pedidos extends conexionPDO
     //  Excel Pedidos codigo
     public function excel_pedidos_codigo($codigo)
     {
-        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`, `nombre_cliente`, `nombre_obra`, `nombre_asesora` FROM `ct65_pedidos` WHERE `id` = :codigo AND ct65_pedidos.status = 1";
+        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`, `nombre_cliente`, `nombre_obra`, `nombre_asesora` FROM `ct65_lista_precio` WHERE `id` = :codigo AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1321,7 +1306,7 @@ class pedidos extends conexionPDO
     //  Excel Productos codigo
     public function excel_productos_codigo($codigo)
     {
-        $sql = "SELECT `id_pedido`, ct65_pedidos.fecha_vencimiento, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE `id_pedido` = :codigo AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT `id_pedido`, ct65_lista_precio.fecha_vencimiento, ct65_lista_precio.nombre_cliente, ct65_lista_precio.nombre_obra, `codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_lista_precio_has_precio_productos` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_productos.id_pedido = ct65_lista_precio.id WHERE `id_pedido` = :codigo AND ct65_lista_precio_has_precio_productos.status = 1 AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1355,7 +1340,7 @@ class pedidos extends conexionPDO
     //  Excel Bombas codigo
     public function excel_bomba_codigo($codigo)
     {
-        $sql = "SELECT `id_pedido`, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE `id_pedido` = :codigo AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT `id_pedido`, ct65_lista_precio.nombre_cliente, ct65_lista_precio.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_lista_precio_has_precio_bomba` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_bomba.id_pedido = ct65_lista_precio.id WHERE `id_pedido` = :codigo AND ct65_lista_precio_has_precio_bomba.status = 1 AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1389,7 +1374,7 @@ class pedidos extends conexionPDO
     //  Excel Servicios codigo
     public function excel_servicio_codigo($codigo)
     {
-        $sql = "SELECT `id_pedido`, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE `id_pedido` = :codigo AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT `id_pedido`, ct65_lista_precio.nombre_cliente, ct65_lista_precio.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_lista_precio_has_precio_servicio` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_servicio.id_pedido = ct65_lista_precio.id WHERE `id_pedido` = :codigo AND ct65_lista_precio_has_precio_servicio.status = 1 AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL.
         $stmt = $this->con->prepare($sql);
@@ -1424,7 +1409,7 @@ class pedidos extends conexionPDO
         $this->cliente = $cliente;
         $this->obra = $obra;
 
-        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `nombre_cliente` = :cliente AND `nombre_obra` = :obra AND ct65_pedidos.status = 1";
+        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_lista_precio` WHERE `nombre_cliente` = :cliente AND `nombre_obra` = :obra AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1461,7 +1446,7 @@ class pedidos extends conexionPDO
         $this->cliente = $cliente;
         $this->obra = $obra;
 
-        $sql = "SELECT ct65_pedidos.fecha_vencimiento, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_lista_precio.fecha_vencimiento, ct65_lista_precio.nombre_cliente, ct65_lista_precio.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_lista_precio_has_precio_productos` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_productos.id_pedido = ct65_lista_precio.id WHERE ct65_lista_precio.nombre_cliente = :cliente AND ct65_lista_precio.nombre_obra = :obra AND ct65_lista_precio_has_precio_productos.status = 1 AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1499,7 +1484,7 @@ class pedidos extends conexionPDO
         $this->cliente = $cliente;
         $this->obra = $obra;
 
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_lista_precio.nombre_cliente, ct65_lista_precio.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_lista_precio_has_precio_bomba` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_bomba.id_pedido = ct65_lista_precio.id WHERE ct65_lista_precio.nombre_cliente = :cliente AND ct65_lista_precio.nombre_obra = :obra AND ct65_lista_precio_has_precio_bomba.status = 1 AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1536,7 +1521,7 @@ class pedidos extends conexionPDO
         $this->cliente = $cliente;
         $this->obra = $obra;
 
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_lista_precio.nombre_cliente, ct65_lista_precio.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_lista_precio_has_precio_servicio` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_servicio.id_pedido = ct65_lista_precio.id WHERE ct65_lista_precio.nombre_cliente = :cliente AND ct65_lista_precio.nombre_obra = :obra AND ct65_lista_precio_has_precio_servicio.status = 1 AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1571,7 +1556,7 @@ class pedidos extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos.status = 1";
+        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_lista_precio` WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1608,7 +1593,7 @@ class pedidos extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT ct65_pedidos.fecha_vencimiento, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.fecha_creacion BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_lista_precio.fecha_vencimiento, ct65_lista_precio.nombre_cliente, ct65_lista_precio.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_lista_precio_has_precio_productos` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_productos.id_pedido = ct65_lista_precio.id WHERE ct65_lista_precio.fecha_creacion BETWEEN :fecha_ini AND :fecha_fin AND ct65_lista_precio_has_precio_productos.status = 1 AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1646,7 +1631,7 @@ class pedidos extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_pedido_has_precio_bomba` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_bomba.id_pedido = ct65_pedidos.id WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedido_has_precio_bomba.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_lista_precio.nombre_cliente, ct65_lista_precio.nombre_obra, `nombre_tipo_bomba`, `min_m3`,`max_m3`,`precio` FROM `ct65_lista_precio_has_precio_bomba` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_bomba.id_pedido = ct65_lista_precio.id WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_lista_precio_has_precio_bomba.status = 1 AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1683,7 +1668,7 @@ class pedidos extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_pedido_has_precio_servicio` INNER JOIN ct65_pedidos ON ct65_pedido_has_precio_servicio.id_pedido = ct65_pedidos.id WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_pedido_has_precio_servicio.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_lista_precio.nombre_cliente, ct65_lista_precio.nombre_obra, `nombre_tipo_servicio`,`precio` FROM `ct65_lista_precio_has_precio_servicio` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_servicio.id_pedido = ct65_lista_precio.id WHERE `fecha_creacion` BETWEEN :fecha_ini AND :fecha_fin AND ct65_lista_precio_has_precio_servicio.status = 1 AND ct65_lista_precio.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1718,7 +1703,7 @@ class pedidos extends conexionPDO
     {
         $this->id = $id;
 
-        $sql = "SELECT `nombre_orden_compra`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra` FROM `ct65_pedidos` WHERE `id` = :id";
+        $sql = "SELECT `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra` FROM `ct65_lista_precio` WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
 
@@ -1728,7 +1713,6 @@ class pedidos extends conexionPDO
             if ($num_reg > 0) {
                 // Recorrer limpieza de datos obtenidos en la consulta
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_orden_compra'] = $fila['nombre_orden_compra'];
                     $data_array['id_cliente'] = $fila['id_cliente'];
                     $data_array['nombre_cliente'] = $fila['nombre_cliente'];
                     $data_array['id_obra'] = $fila['id_obra'];
