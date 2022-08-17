@@ -52,7 +52,7 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label class="form-label">Linea de despacho</label>
-                            <select name="cbxFrecuencia" id="cbxFrecuencia" class="form-control select" style="width: 100%;">
+                            <select name="cbxlineaproduccion" id="cbxlineaproduccion" class="form-control select" style="width: 100%;">
                                 <?= $clsProgramacionDiaria->fntOptionLineaDespachoObj() ?>
                             </select>
                         </div>
@@ -100,7 +100,21 @@
     $(document).ready(function() {
         $('.select').select2();
     });
-
+    
+    $('#cbxlineaproduccion').on('change', function() {
+        var formData = new FormData();
+        formData.append('linea_produccion', $("#cbxlineaproduccion").val());
+        $.ajax({
+            url: "data_calendar.php",
+            method: "POST",
+            extraParams: {
+                custom_param1: "something",
+            },
+            failure: function() {
+                alert("Error al Cargar las programaciones");
+            },
+        });
+    });
     $("#volumen").hide();
     //Validar que la cantidad de m3 no exceda al que esta en el pedido al crear la programacion semanal
     $('#txtCant').on('change', function() {

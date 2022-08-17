@@ -11,8 +11,16 @@ $StrResultado = "";
 //se crea un objeto de la clase programacion.
 $clsProgramacionDiaria = new clsProgramacionDiaria();
 //Se listan todas las programaciones.
-$objData = $clsProgramacionDiaria->fntGetProgDiariaFuncionarioObj();
-$boolPhpEstado = true;
+if (isset($_POST['linea_produccion'])) {
+    $linea_produccion = $_POST['linea_produccion'];
+    $objData = $clsProgramacionDiaria->fntGetProgDiariaFuncionario2Obj($linea_produccion);
+    $boolPhpEstado = true;
+} else {
+    $objData = $clsProgramacionDiaria->fntGetProgDiariaFuncionarioObj();
+    $boolPhpEstado = true;
+}
+
+
 //Datos de los arreglos.
 $datos = array(
     'estado' => $boolPhpEstado,

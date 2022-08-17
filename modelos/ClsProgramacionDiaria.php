@@ -70,6 +70,65 @@ class clsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
+    // Obtener todas las programaciones (FUNCIONARIOS).
+    public function fntGetProgDiariaFuncionario2Obj($id_linea_produccion)
+    {
+        $sql = "SELECT * FROM `ct66_programacion_diaria` WHERE `id_linea_produccion` = :linea_produccion";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':linea_produccion', $id_linea_produccion, PDO::PARAM_INT);
+        // Asignando Datos ARRAY => SQL
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    if ($fila['status'] == 1) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'gray',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 2) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'orange',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 3) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'Light Blue',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 4) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'green',
+                            'textcolor' => 'black'
+                        ];
+                    }
+                }
+                return $events;
+            }
+        }
+        return false;
+    }
     // Obtener todas las programaciones (CLIENTES) mediante el id del usuario.
     public function fntGetProgDiariaClienteObj($id_usuario)
     {

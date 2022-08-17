@@ -21,7 +21,7 @@ if ($clslistaprecio->validar_existencias_precio_producto($_POST['id_producto'], 
     $id_producto = $_POST['id_producto'];
     $cod_producto = $clslistaprecio->get_codigo_producto($id_producto);
     $nombre_producto = $clslistaprecio->get_nombre_producto($id_producto);
-    if(!isset($_POST['descuento'])){
+    if(isset($_POST['descuento'])){
         $porcentaje = $_POST['descuento'];
     }else{
         $porcentaje = 0;

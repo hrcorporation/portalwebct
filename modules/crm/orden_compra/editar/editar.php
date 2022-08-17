@@ -82,7 +82,6 @@ foreach ($datos as $dato) {
                             <th>N</th>
                             <th>Status</th>
                             <th>Producto</th>
-                            <th>%</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
                             <th>Observaciones</th>
@@ -323,9 +322,6 @@ foreach ($datos as $dato) {
                 },
                 {
                     "data": "codigo_producto"
-                },
-                {
-                    "data": "porcentaje_descuento"
                 },
                 {
                     "data": "cantidad_m3"
