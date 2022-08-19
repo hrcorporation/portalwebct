@@ -1652,10 +1652,10 @@ class clsProgramacionDiaria extends conexionPDO
     public function actualizar_valor_total($id_remision, $valor_total)
     {
         $sql = "UPDATE `ct26_remisiones` SET `ct26_valor_total` = :valor_total WHERE `ct26_id_remision` = :id_remision";
-         // Preparar Conexion
-         $stmt = $this->con->prepare($sql);
-         $stmt->bindParam(':id_remision', $id_remision, PDO::PARAM_INT);
-         $stmt->bindParam(':valor_total', $valor_total, PDO::PARAM_STR);
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_remision', $id_remision, PDO::PARAM_INT);
+        $stmt->bindParam(':valor_total', $valor_total, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         }
@@ -1663,7 +1663,8 @@ class clsProgramacionDiaria extends conexionPDO
     }
 
     //Id de la programacion
-    public function get_id_programacion($fecha, $id_cliente, $id_obra, $id_producto){
+    public function get_id_programacion($fecha, $id_cliente, $id_obra, $id_producto)
+    {
         $sql = "SELECT `id` FROM `ct66_programacion_semanal_v2` 
         WHERE DATE(fecha_ini) = :fecha AND `id_cliente` = :id_cliente AND `id_obra` = :id_obra AND `id_producto` = :id_producto AND `status` >= 6";
         // Preparar Conexion
@@ -1709,8 +1710,40 @@ class clsProgramacionDiaria extends conexionPDO
         }
     }
 
+    //obtener datos de las remisones relacionadas con la programacion
+    public function get_datos_remision($id_programacion)
+    {
+        $sql = "SELECT ct66_programacion_has_remision.id, ct26_remisiones.ct26_hora_remi, ct26_remisiones.`ct26_idplanta`, ct26_remisiones.ct26_codigo_remi, ct26_remisiones.ct26_razon_social, ct26_remisiones.ct26_nombre_obra, ct26_remisiones.ct26_codigo_producto, ct26_remisiones.ct26_metros FROM `ct66_programacion_has_remision` INNER JOIN ct26_remisiones ON ct66_programacion_has_remision.`id_remision` = ct26_remisiones.ct26_id_remision WHERE ct66_programacion_has_remision.id_programacion = :id_programacion;";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_STR);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                // Obtener los datos de los valores
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $datos['id'] = $fila['id'];
+                    $datos['hora'] = $fila['ct26_hora_remi'];
+                    $datos['planta'] = $fila['ct26_idplanta'];
+                    $datos['codigo_remision'] = $fila['ct26_codigo_remi'];
+                    $datos['cliente'] = $fila['ct26_razon_social'];
+                    $datos['obra'] = $fila['ct26_nombre_obra'];
+                    $datos['producto'] = $fila['ct26_codigo_producto'];
+                    $datos['cantidadm3'] = $fila['ct26_metros'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     //Guardar datos en la tabla  ct66_programacion_has_remision
-    public function programacion_has_remision($fecha, $id_programacion, $id_remision, $id_cliente, $id_obra, $id_producto, $id_orden_compra, $metros3){
+    public function programacion_has_remision($fecha, $id_programacion, $id_remision, $id_cliente, $id_obra, $id_producto, $id_orden_compra, $metros3)
+    {
         $sql = "INSERT INTO `ct66_programacion_has_remision`(`fecha`, `id_programacion`, `id_remision`, `id_cliente`, `id_obra`, `id_producto`, `id_orden_compra`, `metros_cubicos`) VALUES (:fecha, :id_programacion, :id_remision, :id_cliente, :id_obra, :id_producto, :id_orden_compra, :metros_cubicos)";
         $stmt = $this->con->prepare($sql);
 
@@ -1728,7 +1761,52 @@ class clsProgramacionDiaria extends conexionPDO
         } else {
             return false;
         }
-    } 
+    }
+
+    //Obtener la cantidad de metros cubicos de la programacion.
+    public function get_cantidad_m3_programacion($id_programacion)
+    {
+        $sql = "SELECT `cantidad` FROM `ct66_programacion_semanal_v2` WHERE `id` = :id";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id_programacion, PDO::PARAM_STR);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['cantidad'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //Suma de cantidad de metros cubicos de la remision
+    public function suma_cantidades_m3($id_programacion)
+    {
+        $sql = "SELECT SUM(`metros_cubicos`) AS suma FROM `ct66_programacion_has_remision` WHERE `id_programacion` = :id";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id_programacion, PDO::PARAM_STR);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['suma'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - INFORME EXCEL/////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////

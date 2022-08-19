@@ -17,7 +17,7 @@ if (isset($_POST['cbxCliente']) && !empty($_POST['cbxCliente'])) {
     //Nombre del usuario mediante el parametro del id del usuario
     $StrNombreUsuario = $clsProgramacionDiaria->fntGetNombreClienteObj($intIdUsuario);
     //Estado (1. Aprobado, 2. Pendiente, 3. Cancelado)
-    $intEstado = 2;
+    $intEstado = 4;
     //id del cliente
     $intIdCliente = $_POST['cbxCliente'];
     //Nombre del cliente mediante el parametro del id del cliente

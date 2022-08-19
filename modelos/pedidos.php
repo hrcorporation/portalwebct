@@ -817,7 +817,7 @@ class pedidos extends conexionPDO
     //Obtener los precios de los productos mediante el id del pedido.
     public function get_productos_precio($id_pedido)
     {
-        $sql = "SELECT `id`, `status`, `codigo_producto`, `porcentaje_descuento`, `cantidad_m3`, `precio_m3`, `observaciones` FROM `ct65_pedidos_has_precio_productos` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
+        $sql = "SELECT * FROM `ct65_pedidos_has_precio_productos` WHERE `id_pedido` =  :id_pedido AND `status` = 1";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
@@ -845,7 +845,7 @@ class pedidos extends conexionPDO
                     } else {
                         $datos['porcentaje_descuento'] = number_format($fila['porcentaje_descuento'], 2);
                     }
-                    $datos['cantidad_m3'] = number_format($fila['cantidad_m3'], 2);
+                    $datos['cantidad_m3'] = number_format($fila['saldo_m3'], 2);
                     $datos['precio_m3'] = " $ " . number_format($fila['precio_m3'], 2);
                     $datos['observaciones'] = $fila['observaciones'];
                     $datosf[] = $datos;

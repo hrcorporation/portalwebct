@@ -29,9 +29,13 @@ if (isset($_POST['task'])) {
         $inicio = $_POST['txtInicio'];
         //Fecha final de la programacion
         $fin = $_POST['txtFin'];
-        //Validar que modifique correctamente la programacion (fechas)
-        if ($clsProgramacionDiaria->fntEditarProgramacionBool($id, $inicio, $fin, $hoy, $id_usuario, $nombre_usuario)) {
-            $php_estado = true;
+        if ($hoy <= $inicio) {
+            //Validar que modifique correctamente la programacion (fechas)
+            if ($clsProgramacionDiaria->fntEditarProgramacionBool($id, $inicio, $fin, $hoy, $id_usuario, $nombre_usuario)) {
+                $php_estado = true;
+            }
+        } else {
+            $php_error = 'No puede cambiar la fecha de la programacion a una anterior a la fecha actual';
         }
     } else if ($_POST['task'] == 2) {
         //id de la programacion
@@ -87,32 +91,35 @@ if (isset($_POST['task'])) {
         $dtmFechaInicio = $_POST['txtInicioEditar'];
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
-
-        if ($clsProgramacionDiaria->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $hoy, $id_usuario, $nombre_usuario)) {
-            $php_estado = true;
-            $objEstados = $clsProgramacionDiaria->fntGetEstadosProgramacionClienteUnoObj($intId);
-            if (is_array($objEstados)) {
-                foreach ($objEstados as $estado) {
-                    $intEstadoProgramacion = $estado['status'];
-                    if ($intEstadoProgramacion == 4) {
-                        if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj($intId)) {
-                            //Si pasa la validacion se retorna verdadero(true)
-                            $php_estado = true;
+        if ($hoy <= $dtmFechaInicio) {
+            if ($clsProgramacionDiaria->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $hoy, $id_usuario, $nombre_usuario)) {
+                $php_estado = true;
+                $objEstados = $clsProgramacionDiaria->fntGetEstadosProgramacionClienteUnoObj($intId);
+                if (is_array($objEstados)) {
+                    foreach ($objEstados as $estado) {
+                        $intEstadoProgramacion = $estado['status'];
+                        if ($intEstadoProgramacion == 4) {
+                            if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj($intId)) {
+                                //Si pasa la validacion se retorna verdadero(true)
+                                $php_estado = true;
+                            } else {
+                                //De lo contrario mostrara un mensaje mostrando que no se guardo
+                                $php_error = 'No Guardo Correctamente';
+                            }
+                        } else if ($intEstadoProgramacion == 3) {
+                            $php_error = 'Hay que esperar la confirmacion del cliente';
                         } else {
-                            //De lo contrario mostrara un mensaje mostrando que no se guardo
-                            $php_error = 'No Guardo Correctamente';
+                            $php_error = 'La programacion ya fue cargada anteriormente';
                         }
-                    } else if ($intEstadoProgramacion == 3) {
-                        $php_error = 'Hay que esperar la confirmacion del cliente';
-                    } else {
-                        $php_error = 'La programacion ya fue cargada anteriormente';
                     }
+                } else {
+                    $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
                 }
             } else {
-                $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
+                $php_error = 'ERROR';
             }
         } else {
-            $php_error = 'ERROR';
+            $php_error = 'No puede cambiar la fecha de la programacion a una anterior a la fecha actual';
         }
         //Validar que la variable exista, si cumple la variable se le asigna true, de lo contrario seria false.
     } elseif ($_POST['task'] == 3) {

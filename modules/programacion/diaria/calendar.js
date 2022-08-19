@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let form_crear_programacion = document.querySelector(
     "#form_crear_programacion"
   );
-  let aceptar_programacion = document.querySelector("#form_confirmar_programacion");
+  let aceptar_programacion = document.querySelector(
+    "#form_confirmar_programacion"
+  );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
@@ -94,10 +96,95 @@ document.addEventListener("DOMContentLoaded", function () {
           form_show_event.txtInicioEditar.value = data.inicio;
           form_show_event.txtFinEditar.value = data.fin;
           form_show_event.txtObservacionesEditar.value = data.observaciones;
+          $("#cantidad_m3").html(data.cantidad_m3);
+          $("#suma").html(data.suma);
+          $("#restante").html(data.restante);
+          data.suma;
+          data.restante;
           if (data.requiere_bomba == 1) {
             $("#chkRequiereBombaEditar").prop("checked", true);
           }
           $("#modal_show_evento").modal("show");
+
+          ////// funcion tablas
+          function datatable_remisiones(id_programacion) {
+            var table = $("#table_remisiones").DataTable({
+              //"processing": true,
+              //"scrollX": true,
+              ajax: {
+                url: "tabla_remisiones.php",
+                data: {
+                  id_programacion: id_programacion,
+                },
+                type: "post",
+                dataSrc: "",
+              },
+              order: [[0, "desc"]],
+              columns: [
+                {
+                  data: "id",
+                },
+                {
+                  data: "hora",
+                },
+                {
+                  data: "planta",
+                },
+                {
+                  data: "codigo_remision",
+                },
+                {
+                  data: "cliente",
+                },
+                {
+                  data: "obra",
+                },
+                {
+                  data: "producto",
+                },
+                {
+                  data: "cantidadm3",
+                },
+              ],
+              paging: false,
+              searching: false,
+
+              //"scrollX": true,
+            });
+
+            table
+              .on("order.dt search.dt", function () {
+                table
+                  .column(0, {
+                    search: "applied",
+                    order: "applied",
+                  })
+                  .nodes()
+                  .each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                  });
+              })
+              .draw();
+            table.ajax.reload();
+            return table;
+          } //  Tabla remisiones
+
+          var id_programacion = info.event.id;
+          if ($.fn.dataTable.isDataTable("#table_remisiones")) {
+            table = $("#table_remisiones").DataTable();
+            table.destroy();
+          }
+
+          table = datatable_remisiones(id_programacion);
+          setInterval(function () {
+            table.ajax.reload(null, false);
+          }, 5000);
+
+//////////////////////////////////////////////
+
+
+
+/////////////////////////////////////////////////
         },
         error: function (respuesta) {
           alert(JSON.stringify(respuesta));
@@ -210,9 +297,9 @@ document.addEventListener("DOMContentLoaded", function () {
           toastr.success("Programacion Actualizada Satisfactoriamente");
         } else if (response.task == 4 && response.estado) {
           toastr.success("Programacion diaria confirmada correctamente");
-          $('#modal_confirmar_programacion').modal("hide"); 
+          $("#modal_confirmar_programacion").modal("hide");
         } else {
-          $('#modal_confirmar_programacion').modal("hide"); 
+          $("#modal_confirmar_programacion").modal("hide");
           toastr.warning(response.errores);
         }
       },

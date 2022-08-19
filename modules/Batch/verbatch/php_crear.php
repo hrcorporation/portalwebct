@@ -18,6 +18,7 @@ $t26_remisiones = new t26_remisiones();
 $t29_batch = new t29_batch();
 $t10_vehiculo = new t10_vehiculo();
 $clsProgramacionDiaria = new clsProgramacionDiaria();
+$clsSaldosClientes = new clsSaldosClientes();
 
 
 $general_modelos = new general_modelos();
@@ -189,6 +190,20 @@ if (isset($_POST['txt_remision_batch']) && !empty($_POST['txt_remision_batch']))
             $id_orden_compra = $clsProgramacionDiaria->get_id_orden_compra($id_programacion);
             //Ingresar los datos a la tabla de programacion_has_remision.
             $clsProgramacionDiaria->programacion_has_remision($fecha, $id_programacion, $last_insert, $id_cliente, $id_obra, $id_producto, $id_orden_compra, $cantidad_metros_cubicos);
+            //Valor de la remision
+            $valor_remision = $clsSaldosClientes->get_valor_remision($last_insert);
+            //Saldo del cliente
+            $saldo_cliente = $clsSaldosClientes->get_saldo_cliente($id_cliente);
+            //Actualizar el saldo del cliente
+            $nuevo_saldo_cliente = $saldo_cliente - $valor_remision;
+            //Actualizar el saldo del cliente
+            $clsSaldosClientes->actualizar_saldo_cliente($id_cliente, $nuevo_saldo_cliente);
+            //Saldo de la orden de compra
+            $saldo_orden_compra = $clsSaldosClientes->cantidad_m3_orden_compra($id_orden_compra);
+            //Actualizar el saldo de la orden de compra
+            $nuevo_saldo_orden_compra = $saldo_orden_compra - $cantidad_metros_cubicos;
+            //Actualizar el saldo de la orden de compra
+            $clsSaldosClientes->actualizar_saldo_orden_compra($id_orden_compra, $nuevo_saldo_orden_compra);
             if($last_insert){
                 $success[] = "Remision Generada Exitosamente";
                     $last_insert = $php_clases->HR_Crypt($last_insert,1);

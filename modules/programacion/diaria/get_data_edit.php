@@ -53,6 +53,14 @@ if (isset($_POST['id'])) {
                 $objSelectTipoDescargue = $clsProgramacionDiaria->fntOptionTipoDescargueObj($key['id_tipo_descargue']);
             }
         }
+
+        $cantidad_m3_programacion = $clsProgramacionDiaria->get_cantidad_m3_programacion($_POST['id']);
+        $cantidad_m3_programacion  = $cantidad_m3_programacion ;
+        $suma_m3_remisiones = $clsProgramacionDiaria->suma_cantidades_m3($_POST['id']);
+        $suma_m3_remisiones = $suma_m3_remisiones ;
+        $restante_m3 = $cantidad_m3_programacion - $suma_m3_remisiones;
+        $restante_m3 = $restante_m3 ;
+
     } else {
         $data = false;
     }
@@ -78,6 +86,11 @@ $datos = array(
     'inicio' => $dtmInicio,
     'fin' => $dtmFin,
     'observaciones' => $StrObservaciones,
+
+    'cantidad_m3' => $cantidad_m3_programacion,
+    'suma' => $suma_m3_remisiones,
+    'restante' => $restante_m3,
+
     'color' => $StrColor,
     'textcolor' => $StrTextColor
 );
