@@ -21,7 +21,6 @@ $datos = $t1_terceros->search_tercero_custom_id($id);
 while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
     $nit = $fila['ct1_NumeroIdentificacion'];
     $tipo_cliente = $fila['ct1_tipo_cliente'];
-
     $id_asesora = $fila['ct1_id_asesora'];
     $id_sede = $fila['ct1_id_sede'];
     $tipo_plan_maestro = $fila['ct1_tipo_plan_maestro'];
@@ -37,8 +36,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
     $celular = $fila['ct1_Celular'];
     $email = $fila['ct1_CorreoElectronico'];
     $direccion = $fila['ct1_Direccion'];
-
-    // $tipo_documento = $fila['ct1_TipoIdentificacion'];
+    $cupo_cliente = $fila['ct1_cupo_cliente'];
 }
 
 ?>
@@ -76,13 +74,12 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div class="card-body">
                 <div id="contenido">
-                <form method="POST" name="F_editar" id="F_editar">
-                    
+                    <form method="POST" name="F_editar" id="F_editar">
                         <input type="hidden" name="id_cliente" id="id_cliente" value="<?php echo $id; ?>" />
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Asesora comercial</label>
+                                    <label>Asesora comercial:</label>
                                     <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required="true">
                                         <?php echo $op->select_comercial($id_asesora) ?>
                                     </select>
@@ -90,7 +87,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Sede</label>
+                                    <label>Sede:</label>
                                     <select name="sede" id="sede" class="form-control select2" required="true">
                                         <?php echo $op->select_sede($id_sede) ?>
                                     </select>
@@ -100,7 +97,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Tipo Cliente</label>
+                                    <label>Tipo Cliente:</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required="true">
                                         <?php echo $op->select_tipo_cliente($tipo_cliente) ?>
                                     </select>
@@ -108,7 +105,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Tipo PLAN MAESTRO</label>
+                                    <label>Tipo de plan maestro:</label>
                                     <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2" required="true">
                                         <?php echo $op->select_tipo_plan_maestro($tipo_plan_maestro) ?>
                                     </select>
@@ -116,36 +113,40 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                             </div>
                         </div>
                         <div class="row">
-                            
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Naturaleza (*)</label>
+                                    <label>Naturaleza:</label>
                                     <select class="form-control select2" style="width: 100%;" name="naturaleza" id="naturaleza" required="true">
                                         <?= $t1_terceros->select_naturaleza($naturaleza) ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Cupo del cliente:</label>
+                                    <input type="number" name="txtcupocliente" id="txtcupocliente" class="form-control validanumericos" value="<?= $cupo_cliente ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Tipo Documento (*)</label>
+                                    <label> Tipo Documento:</label>
                                     <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required="true">
-                                    <?= $t1_terceros->select_tipo_documento($tipo_documento) ?>
-                                        
+                                        <?= $t1_terceros->select_tipo_documento($tipo_documento) ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Numero de documento (*)</label>
-                                    <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="" required="true" value="<?php print_r($nit); ?>">
+                                    <label> Numero de documento:</label>
+                                    <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control validanumericos" required="true" value="<?php print_r($nit); ?>">
                                 </div>
                             </div>
                             <div id="boxPJ1" class="col">
                                 <div class="form-group">
-                                    <label>dv </label>
-                                    <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="9" placeholder=""  value="<?php print_r($dv); ?>">
+                                    <label>DV</label>
+                                    <input type="number" name="tbx_dv" id="tbx_dv" class="form-control validanumericos" max="9" value="<?php print_r($dv); ?>">
                                 </div>
                             </div>
                         </div>
@@ -153,8 +154,8 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Razon social (*)</label>
-                                        <input type="text" name="tbx_RazonSocial" id="tbx_RazonSocial" class="form-control" placeholder="" value="<?php print_r($razon_social); ?>">
+                                        <label>Razon social:</label>
+                                        <input type="text" name="tbx_RazonSocial" id="tbx_RazonSocial" class="form-control" value="<?php print_r($razon_social); ?>">
                                     </div>
                                 </div>
                             </div>
@@ -163,26 +164,26 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Primer Nombre (*)</label>
-                                        <input type="text" name="tbx_pnombre1" id="tbx_pnombre1" class="form-control" placeholder=""  value="<?php print_r($nombre1); ?>" >
+                                        <label> Primer Nombre:</label>
+                                        <input type="text" name="tbx_pnombre1" id="tbx_pnombre1" class="form-control"  value="<?php print_r($nombre1); ?>">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Segundo Nombre</label>
-                                        <input type="text" name="tbx_pnombre2" id="tbx_pnombre2" class="form-control" placeholder=""  value="<?php print_r($nombre2); ?>" >
+                                        <label> Segundo Nombre:</label>
+                                        <input type="text" name="tbx_pnombre2" id="tbx_pnombre2" class="form-control"  value="<?php print_r($nombre2); ?>">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Primer Apellido (*)</label>
-                                        <input type="text" name="tbx_papellido1" id="tbx_papellido1" class="form-control" placeholder=""  value="<?php print_r($apellido1); ?>" >
+                                        <label> Primer Apellido:</label>
+                                        <input type="text" name="tbx_papellido1" id="tbx_papellido1" class="form-control"  value="<?php print_r($apellido1); ?>">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Segundo Apellido</label>
-                                        <input type="text" name="tbx_papellido2" id="tbx_papellido2" class="form-control" placeholder="" value="<?php print_r($apellido2); ?>" >
+                                        <label> Segundo Apellido:</label>
+                                        <input type="text" name="tbx_papellido2" id="tbx_papellido2" class="form-control" value="<?php print_r($apellido2); ?>">
                                     </div>
                                 </div>
                             </div>
@@ -190,47 +191,39 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label> E- Mail </label>
-                                    <input type="text" name="tbx_email" id="tbx_email" class="form-control" placeholder="" required="false"  value="<?php print_r($email); ?>" />
+                                    <label> E- Mail: </label>
+                                    <input type="text" name="tbx_email" id="tbx_email" class="form-control" required="true" value="<?php print_r($email); ?>" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Telefono </label>
-                                    <input type="text" name="tbx_telefono" id="tbx_telefono" class="form-control" placeholder="" required="true"  value="<?php print_r($telefono); ?>" >
+                                    <label> Telefono: </label>
+                                    <input type="text" name="tbx_telefono" id="tbx_telefono" class="form-control validanumericos" required="true" value="<?php print_r($telefono); ?>">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Celular </label>
-                                    <input type="text" name="tbx_celular" id="tbx_celular" class="form-control" data-inputmask="'alias': 'numeric', 'groupSeparator': ',' , 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'"  data-mask value="<?php print_r($celular); ?>">
+                                    <label> Celular: </label>
+                                    <input type="text" name="tbx_celular" id="tbx_celular" class="form-control validanumericos" data-inputmask="'alias': 'numeric', 'groupSeparator': ',' , 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'" data-mask value="<?php print_r($celular); ?>">
                                 </div>
                             </div>
                         </div>
-                        <div class="row" >
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Direccion</label>
-                                    <input type='text' class='form-control ' name='txt_direccion' id="txt_direccion"  value="<?php echo $direccion; ?>"  />
-                                </div>
-                            </div>
-                        </div>
-                        
                         <div class="row">
-                            <div class="container">
-                                <div class="col">
-                                    <div class="col align-self-center">
-                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ACTUALIZAR CLIENTE </button>
-                                    </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Direccion:</label>
+                                    <input type='text' class='form-control ' name='txt_direccion' id="txt_direccion" value="<?php echo $direccion; ?>" />
                                 </div>
-                                <br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> ACTUALIZAR CLIENTE </button>
+                                </div>
                             </div>
                         </div>
                     </form>
-
-
-
-               
                 </div>
             </div>
             <div class="card-footer"></div>
@@ -407,7 +400,7 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
             <!-- /.modal-content -->
         </div>
         <!-- fin -->
-        
+
         <!-- /.card -->
     </section>
     <!-- /.content -->
@@ -423,6 +416,39 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
         $(".progress").hide();
         $('.select2').select2();
     });
+    //Desabilitar la opcion de tipo de plan maestro cuando el tipo de cliente no es de plan maestro
+    $(function() {
+        var tipo_cliente = $("#tipo_cliente").val();
+
+        if (tipo_cliente != 2) {
+            $("#tipo_plan_maestro").attr('disabled', true);
+        }
+    });
+
+    $(function() {
+        var naturaleza = $("#naturaleza").val();
+
+        if (naturaleza == 'PN') {
+            $("#boxPN1").show();
+            $("#boxPJ1").hide();
+            $("#boxPJ2").hide();
+        } else {
+            $("#boxPN1").hide();
+            $("#boxPJ1").show();
+            $("#boxPJ2").show();
+        }
+    });
+
+    $(function() {
+        $('.validanumericos').keypress(function(e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            })
+            .on("cut copy paste", function(e) {
+                e.preventDefault();
+            });
+    });
+
     $("#tipo_cliente").change(function() {
         var tipo_cliente = $("#tipo_cliente").val();
         console.log(tipo_cliente);
@@ -432,6 +458,50 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
             $("#tipo_plan_maestro").attr('disabled', true);
         }
     });
+
+    $(document).ready(function() {
+        $("#txt_forma_pago").change(function() {
+            var forma_pago = $("#txt_forma_pago").val();
+            if (forma_pago == 2) {
+                $("#txt_cupo").val(0);
+                $("#blq_cupo").hide();
+            }
+
+            if (forma_pago == 1) {
+                $("#blq_cupo").show();
+            }
+        });
+        $("#naturaleza").change(function() {
+            var naturaleza = $("#naturaleza").val();
+            if (naturaleza == "PJ") {
+                var apellido1 = $("#tbx_papellido1").val();
+                var apellido2 = $("#tbx_papellido2").val();
+                var nombre1 = $("#tbx_pnombre1").val();
+                var nombre2 = $("#tbx_pnombre2").val();
+                $("#tbx_pnombre1").val();
+                $("#tbx_pnombre2").val();
+                $("#tbx_papellido1").val();
+                $("#tbx_papellido2").val();
+                $("#tbx_RazonSocial").val(nombre1 + ' ' + nombre2 + ' ' + apellido1 + ' ' + apellido2);
+                $("#boxPN1").hide();
+                $("#boxPJ1").show();
+                $("#boxPJ2").show();
+            } else if (naturaleza == "PN") {
+                $("#tbx_pnombre1").val();
+                $("#tbx_pnombre2").val();
+                $("#tbx_papellido1").val();
+                $("#tbx_papellido2").val();
+                $("#tbx_RazonSocial").val();
+                $("#boxPN1").show();
+                $("#boxPJ1").hide();
+                $("#boxPJ2").hide();
+            } else {
+                $("#boxPN1").hide();
+                $("#boxPJ2").hide();
+            }
+        });
+    });
+
     $("#form_add_visita").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({
@@ -590,54 +660,6 @@ while ($fila = $datos->fetch(PDO::FETCH_ASSOC)) {
             },
         });
     }));
-
-    $(document).ready(function() {
-        $("#boxPN1").hide();
-        $("#boxPJ2").show();
-        $("#boxPJ1").show();
-
-        $("#txt_forma_pago").change(function() {
-            var forma_pago = $("#txt_forma_pago").val();
-
-            if (forma_pago == 2) {
-                $("#txt_cupo").val(0);
-                $("#blq_cupo").hide();
-
-            }
-            if (forma_pago == 1) {
-                $("#blq_cupo").show();
-            }
-        });
-        $("#naturaleza").change(function() {
-            var naturaleza = $("#naturaleza").val();
-            if (naturaleza == "PJ") {
-                var apellido1 = $("#tbx_papellido1").val();
-                var apellido2 = $("#tbx_papellido2").val();
-                var nombre1 = $("#tbx_pnombre1").val();
-                var nombre2 = $("#tbx_pnombre2").val();
-                $("#tbx_pnombre1").val();
-                $("#tbx_pnombre2").val();
-                $("#tbx_papellido1").val();
-                $("#tbx_papellido2").val();
-                $("#tbx_RazonSocial").val(nombre1 + ' ' + nombre2 + ' ' + apellido1 + ' ' + apellido2);
-                $("#boxPN1").hide();
-                $("#boxPJ1").show();
-                $("#boxPJ2").show();
-            } else if (naturaleza == "PN") {
-                $("#tbx_pnombre1").val();
-                $("#tbx_pnombre2").val();
-                $("#tbx_papellido1").val();
-                $("#tbx_papellido2").val();
-                $("#tbx_RazonSocial").val();
-                $("#boxPN1").show();
-                $("#boxPJ1").hide();
-                $("#boxPJ2").hide();
-            } else {
-                $("#boxPN1").hide();
-                $("#boxPJ2").hide();
-            }
-        });
-    })
 </script>
 
 <script type="text/javascript">

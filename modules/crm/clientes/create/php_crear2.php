@@ -42,6 +42,12 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
     $nombre2 = htmlspecialchars($_POST['tbx_pnombre2']);
     $apellido1 = htmlspecialchars($_POST['tbx_papellido1']);
     $apellido2 = htmlspecialchars($_POST['tbx_papellido2']);
+    if(isset($_POST['txtcupocliente'])){
+        $cupo_cliente = $_POST['txtcupocliente'];
+    }else{
+        $cupo_cliente = 0;
+    }
+    $saldo_cliente = $cupo_cliente;
     if ($naturaleza == "PJ") {
         $razon_social = htmlspecialchars($_POST['tbx_RazonSocial']);
     } else if ($naturaleza == "PN") {
@@ -52,27 +58,12 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);
     $direccion = htmlspecialchars($_POST['txt_direccion']);
-    switch ($forma_pago) {
-        case 1:
-            $cupo_cliente = htmlspecialchars($_POST['txt_cupo']);
-            $cupo_cliente = str_replace('.', '', $cupo_cliente);
-            $saldo_cartera  = $cupo_cliente;
-            break;
-        case 2:
-            $cupo_cliente = 0;
-            $saldo_cartera = 0;
-            break;
-        default:
-            $cupo_cliente = 0;
-            $saldo_cartera = 0;
-            break;
-    }
+    
     $departamento = null;
     $municipio = null;
     $genero = null;
     $fecha_naci = null;
     
-
     $usuario = $numero_documento;
     $C_Pass = md5($numero_documento);
 
@@ -83,10 +74,10 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
     $validarExistencias = $general_modelos->existencia('ct1_terceros', 'ct1_NumeroIdentificacion', $numero_documento);
     $x = false;
     if ($validarExistencias) {
-        if ($t1_terceros->crear_cliente($id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera,$direccion)) {
+        if ($t1_terceros->crear_cliente($id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $direccion , $cupo_cliente, $saldo_cliente)) {
             $php_estado = true;
         } else {
-            $errores = "Hubo un error al guardar" .  $resultado;
+            $errores = "Hubo un error al guardar";
         }
     } else {
         $errores = "Este Cliente ya existe en la base de datos";

@@ -23,7 +23,7 @@ if ($pedidos->validar_existencias_precio_producto($_POST['id_producto'], $_POST[
     $nombre_producto = $pedidos->get_nombre_producto($id_producto);
     $porcentaje = 0;
     $id_precio_base = $pedidos->get_id_precio_base($id_producto);
-    $precio_base = $pedidos->get_precio_base($id_producto);
+    $precio_base = $pedidos->get_precio_producto($id_producto);
     if (!is_null($_POST['cantidad'])) {
         $cantidad_m3 = $_POST['cantidad'];
     } else {

@@ -53,39 +53,21 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
     $telefono = htmlspecialchars($_POST['tbx_telefono']);
     $celular = htmlspecialchars($_POST['tbx_celular']);
     $direccion = htmlspecialchars($_POST['txt_direccion']);
-
-    // $saldo_cliente = htmlspecialchars($_POST['saldo_cliente']);
-
-    switch ($formapago) {
-        case 1:
-            $cupo_cliente = htmlspecialchars($_POST['txt_cupo']);
-            $cupo_cliente = str_replace('.', '', $cupo_cliente);
-            $saldo_cartera  = str_replace('.', '', $cupo_cliente);
-            break;
-        case 2:
-            $cupo_cliente = 0;
-            $saldo_cartera = 0;
-            break;
-        default:
-            $cupo_cliente = 0;
-            $saldo_cartera = 0;
-            break;
+    if(isset($_POST['txtcupocliente'])){
+        $cupo_cliente = htmlspecialchars($_POST['txtcupocliente']);
+    }else{
+        $cupo_cliente = 0;
     }
-
-
+    $saldo_cliente = $cupo_cliente;
     $usuario = $numero_documento;
     $C_Pass = md5($numero_documento);
-
     $estado = 1;
     $rol = 101;
     $TipoTercero = 1;
-
     $validarExistencias = true;
-
     $x = false;
-
     if ($validarExistencias) {
-        if($t1_terceros->editar_cliente($id_cliente, $TipoTercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $formapago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera,$direccion)){
+        if($t1_terceros->editar_cliente($id_cliente, $TipoTercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $formapago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $direccion, $cupo_cliente, $saldo_cliente)){
             $php_estado = true;
         }else{
             $errores = "Hubo un error al guardar";

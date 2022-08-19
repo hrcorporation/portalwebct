@@ -1,11 +1,9 @@
 <?php include '../../../../layout/validar_session4.php' ?>
 <?php include '../../../../layout/head/head4.php'; ?>
 <?php include 'sidebar.php' ?>
-
 <?php require '../../../../librerias/autoload.php';
 require '../../../../modelos/autoload.php';
 require '../../../../vendor/autoload.php'; ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -26,7 +24,6 @@ require '../../../../vendor/autoload.php'; ?>
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
         <?php
@@ -44,13 +41,12 @@ require '../../../../vendor/autoload.php'; ?>
                 </div>
             </div>
             <div class="card-body">
-           
                 <div id="contenido">
                     <form method="POST" name="F_crear" id="F_crear">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Asesora comercial</label>
+                                    <label>Asesora comercial:</label>
                                     <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_comercial() ?>
                                     </select>
@@ -58,7 +54,7 @@ require '../../../../vendor/autoload.php'; ?>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Sede</label>
+                                    <label>Sede:</label>
                                     <select name="sede" id="sede" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_sede() ?>
                                     </select>
@@ -68,7 +64,7 @@ require '../../../../vendor/autoload.php'; ?>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Tipo Cliente</label>
+                                    <label>Tipo Cliente:</label>
                                     <select name="tipo_cliente" id="tipo_cliente" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_tipo_cliente() ?>
                                     </select>
@@ -76,7 +72,7 @@ require '../../../../vendor/autoload.php'; ?>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Tipo PLAN MAESTRO</label>
+                                    <label>Tipo de plan maestro:</label>
                                     <select name="tipo_plan_maestro" id="tipo_plan_maestro" class="form-control select2" required="true">
                                         <?php echo $oportunidad_negocio->select_tipo_plan_maestro() ?>
                                     </select>
@@ -84,20 +80,25 @@ require '../../../../vendor/autoload.php'; ?>
                             </div>
                         </div>
                         <div class="row">
-                            
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Naturaleza (*)</label>
+                                    <label>Naturaleza:</label>
                                     <select class="form-control select2" style="width: 100%;" name="naturaleza" id="naturaleza" required="true">
                                         <?= $t1_terceros->select_naturaleza() ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Cupo del cliente:</label>
+                                    <input type="number" name="txtcupocliente" id="txtcupocliente" class="form-control validanumericos">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Tipo Documento (*)</label>
+                                    <label> Tipo Documento:</label>
                                     <select class="form-control select2" style="width: 100%;" name="tbx_tipoDocumento" id="tbx_tipoDocumento" required="true">
                                         <?= $t1_terceros->select_tipo_documento() ?>
                                     </select>
@@ -105,14 +106,14 @@ require '../../../../vendor/autoload.php'; ?>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Numero de documento (*)</label>
-                                    <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control" placeholder="" required="true">
+                                    <label>Numero de documento:</label>
+                                    <input type="number" name="tbx_NumeroDocumento" id="tbx_NumeroDocumento" class="form-control validanumericos" required="true">
                                 </div>
                             </div>
                             <div id="boxPJ1" class="col">
                                 <div class="form-group">
-                                    <label>dv </label>
-                                    <input type="number" name="tbx_dv" id="tbx_dv" class="form-control" max="9" placeholder="">
+                                    <label>DV:</label>
+                                    <input type="number" name="tbx_dv" id="tbx_dv" class="form-control validanumericos" max="9" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -120,8 +121,8 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Razon social (*)</label>
-                                        <input type="text" name="tbx_RazonSocial" id="tbx_RazonSocial" class="form-control" placeholder="">
+                                        <label> Razon social:</label>
+                                        <input type="text" name="tbx_RazonSocial" id="tbx_RazonSocial" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -130,26 +131,26 @@ require '../../../../vendor/autoload.php'; ?>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Primer Nombre (*)</label>
-                                        <input type="text" name="tbx_pnombre1" id="tbx_pnombre1" class="form-control" placeholder="">
+                                        <label> Primer Nombre:</label>
+                                        <input type="text" name="tbx_pnombre1" id="tbx_pnombre1" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Segundo Nombre</label>
-                                        <input type="text" name="tbx_pnombre2" id="tbx_pnombre2" class="form-control" placeholder="">
+                                        <label> Segundo Nombre:</label>
+                                        <input type="text" name="tbx_pnombre2" id="tbx_pnombre2" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Primer Apellido (*)</label>
-                                        <input type="text" name="tbx_papellido1" id="tbx_papellido1" class="form-control" placeholder="">
+                                        <label> Primer Apellido:</label>
+                                        <input type="text" name="tbx_papellido1" id="tbx_papellido1" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label> Segundo Apellido</label>
-                                        <input type="text" name="tbx_papellido2" id="tbx_papellido2" class="form-control" placeholder="">
+                                        <label> Segundo Apellido:</label>
+                                        <input type="text" name="tbx_papellido2" id="tbx_papellido2" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -157,40 +158,36 @@ require '../../../../vendor/autoload.php'; ?>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label> E- Mail </label>
-                                    <input type="text" name="tbx_email" id="tbx_email" class="form-control" placeholder="" required="false">
+                                    <label>E- Mail:</label>
+                                    <input type="text" name="tbx_email" id="tbx_email" class="form-control" placeholder="" required="true">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Telefono </label>
-                                    <input type="text" name="tbx_telefono" id="tbx_telefono" class="form-control" placeholder="" required="true">
+                                    <label>Telefono:</label>
+                                    <input type="text" name="tbx_telefono" id="tbx_telefono" class="form-control validanumericos" placeholder="" required="true">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label> Celular </label>
-                                    <input type="text" name="tbx_celular" id="tbx_celular" class="form-control" data-inputmask="'alias': 'numeric', 'groupSeparator': ',' , 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'" data-mask>
+                                    <label>Celular:</label>
+                                    <input type="text" name="tbx_celular" id="tbx_celular" class="form-control validanumericos" data-inputmask="'alias': 'numeric', 'groupSeparator': ',' , 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'" data-mask>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" >
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Direccion</label>
-                                    <input type='text' class='form-control ' name='txt_direccion' id="txt_direccion"  />
-                                </div>
-                            </div>
-                        </div>
-                        
                         <div class="row">
-                            <div class="container">
-                                <div class="col">
-                                    <div class="col align-self-center">
-                                        <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> CREAR CLIENTE </button>
-                                    </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Direccion:</label>
+                                    <input type='text' class='form-control ' name='txt_direccion' id="txt_direccion" />
                                 </div>
-                                <br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <button class="btn btn-block btn-info swalDefaultSuccess" type="submit"> CREAR CLIENTE </button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -206,8 +203,19 @@ require '../../../../vendor/autoload.php'; ?>
 <?php include '../../../../layout/footer/footer4.php' ?>
 <script>
     $(function() {
+        $('.validanumericos').keypress(function(e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            })
+            .on("cut copy paste", function(e) {
+                e.preventDefault();
+            });
+    });
+
+    $(function() {
         $(".progress").hide();
         $('.select2').select2();
+        $("#tipo_plan_maestro").attr('disabled', true);
     });
     $("#tipo_cliente").change(function() {
         var tipo_cliente = $("#tipo_cliente").val();

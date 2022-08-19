@@ -385,7 +385,7 @@ class pedidos extends conexionPDO
     public function get_precio_producto($id)
     {
         $this->id = $id;
-        $sql = "SELECT `precio` FROM `ct65_precio_base` WHERE `id_producto` = :id AND `status` = 1";
+        $sql = "SELECT `precio_m3` FROM `ct65_lista_precio_has_precio_productos` WHERE `id_producto` = :id AND `status` = 1";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -394,7 +394,7 @@ class pedidos extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    return $fila['precio'];
+                    return $fila['precio_m3'];
                 }
             } else {
                 return false;
@@ -553,7 +553,7 @@ class pedidos extends conexionPDO
     public function get_id_precio_base($id)
     {
         $this->id = $id;
-        $sql = "SELECT `id` FROM `ct65_precio_base` WHERE `id_producto` = :id";
+        $sql = "SELECT `id` FROM `ct65_lista_precio_precio_base` WHERE `id_producto` = :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -577,7 +577,7 @@ class pedidos extends conexionPDO
     public function get_precio_base($id)
     {
         $this->id = $id;
-        $sql = "SELECT `precio` FROM `ct65_precio_base` WHERE `id_producto` = :id";
+        $sql = "SELECT `precio` FROM `ct65_lista_precio_precio_base` WHERE `id_producto` = :id";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -1078,7 +1078,7 @@ class pedidos extends conexionPDO
     //Validar la existencia de algun precio del producto mediante el codigo.
     public function validar_producto_por_id($id)
     {
-        $sql = "SELECT `id` FROM `ct65_precio_base` WHERE `id_producto` = :id";
+        $sql = "SELECT `id` FROM `ct65_lista_precio_precio_base` WHERE `id_producto` = :id";
         $stmt = $this->con->prepare($sql); // Preparar la conexion
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         // Ejecutar 

@@ -35,71 +35,46 @@ if (isset($_POST['task'])) {
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFin'];
         //Validar que modifique correctamente la programacion (Fechas)
-        if ($intEstado == 1) {
-            if ($clsProgramacionDiaria->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
-                $php_estado = true;
+        if ($dtmHoy <= $dtmFechaInicio) {
+            if ($intEstado == 4) {
+                if ($clsProgramacionDiaria->fntEditarProgramacionBool($intId, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                    $php_estado = true;
+                } else {
+                    $php_error = 'ERROR';
+                }
             } else {
-                $php_error = 'ERROR';
+                $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
             }
         } else {
-            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
+            $php_error = "No puede modificar la programacion a una hora anterior a la hora actual";
         }
     } else if ($_POST['task'] == 2) {
         //id de la programacion
         $intId = $_POST['id_prog_evento'];
         //estado de la programacion
         $intEstado = $clsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
-        //id del pedido
-        $intIdPedido = $_POST['cbxPedidoEditar'];
         //id del producto
         $intIdProducto = $_POST['cbxProductoEditar'];
         //nombre del producto mediante el id
         $strNombreProducto = $clsProgramacionDiaria->fntGetNombreProductoObj($intIdProducto);
-        //id de la linea de despacho.
-        $intIdLineaDespacho = $_POST['cbxLineaDespachoEditar'];
-        //Nombre de la linea de despacho mediante el parametro del id del producto.
-        $StrNombreLineaDespacho = $clsProgramacionDiaria->fntGetNombreLineaDespachoObj($intIdLineaDespacho);
-        //hora de cargue
-        $dtmHoraCargue = $_POST['txtHoraCargueEditar'];
-        //Hora mixer en obra
-        $dtmHoraMixerObra = $_POST['txtHoraMixerEditar'];
-        //Id de la mixer 
-        $intIdMixer = $_POST['cbxMixerEditar'];
-        //Placa de la mixer
-        $StrPlacaMixer = $clsProgramacionDiaria->fntGetPlacaMixerObj($intIdMixer);
-        //Id del conductor
-        $intIdConductor = $_POST['cbxConductorEditar'];
-        //Nombre del conductor mediante el parametro del id del conductor
-        $StrNombreConductor = $clsProgramacionDiaria->fntGetNombreClienteObj($intIdConductor);
         //Cantidad
         $decCantidad = $_POST['txtCantEditar'];
-        if (isset($_POST['chkRequiereBombaEditar'])) {
-            $bolRequiereBomba = true;
-        } else {
-            $bolRequiereBomba = false;
-        }
-        //Tipo de descargue
-        $intTipoDescargue = $_POST['cbxTipoDescargueEditar'];
-        //nombre del tipo de descargue
-        $StrNombreTipoDescargue = $clsProgramacionDiaria->fntGetNombreTipoDescargueObj($intTipoDescargue);
-        //Tipo de bomba
-        $intTipoBomba = $_POST['cbxTipoBombaEditar'];
-        //nombre del tipo de bomba
-        $StrNombreTipoBomba = $clsProgramacionDiaria->fntGetNombreTipoBombaObj($intTipoBomba);
-        //Observaciones
-        $StrObservaciones = $_POST['txtObservacionesEditar'];
         //Fecha de inicio de la programacion
         $dtmFechaInicio = $_POST['txtInicioEditar'];
         //Fecha final de la programacion
         $dtmFechaFin = $_POST['txtFinEditar'];
-        if ($intEstado == 1) {
-            if ($clsProgramacionDiaria->fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
-                $php_estado = true;
+        if ($dtmHoy <= $dtmFechaInicio) {
+            if ($intEstado == 3) {
+                if ($clsProgramacionDiaria->fntEditarProgramacionTodoClienteBool($intId, $intIdProducto, $strNombreProducto, $decCantidad, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)) {
+                    $php_estado = true;
+                } else {
+                    $php_error = 'ERROR';
+                }
             } else {
-                $php_error = 'ERROR';
+                $php_error = 'La programacion ya fue confirmada por el area de logistica de Concre Tolima';
             }
-        }else{
-            $php_error = 'La programacion ya fue enviada al area de logistica y no se puede hacer modificaciones';
+        } else {
+            $php_error = "No puede modificar la programacion a una hora anterior a la hora actual";
         }
         //Validar que la variable exista, si cumple la variable se le asigna true, de lo contrario seria false.
     } else if ($_POST['task'] == 3) {
@@ -107,7 +82,7 @@ if (isset($_POST['task'])) {
         $intId = $_POST['id'];
         $intEstado = $clsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
-        if ($intEstado == 1) {
+        if ($intEstado == 4) {
             if ($clsProgramacionDiaria->fntEliminarProgramacionDiariaObj($intId)) {
                 $php_estado = true;
             } else {
@@ -115,6 +90,27 @@ if (isset($_POST['task'])) {
             }
         } else {
             $php_error = 'La programacion ya fue enviada al area de logistica y no se puede eliminar';
+        }
+    } else if ($_POST['task'] == 4) {
+        $intId = $_POST['id'];
+        $objEstados = $clsProgramacionDiaria->fntGetEstadosProgramacionClienteUnoObj($intId);
+        if (is_array($objEstados)) {
+            foreach ($objEstados as $estado) {
+                $intEstadoProgramacion = $estado['status'];
+                if ($intEstadoProgramacion == 3) {
+                    if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionSemanalClienteDosObj($intId)) {
+                        //Si pasa la validacion se retorna verdadero(true)
+                        $php_estado = true;
+                    } else {
+                        //De lo contrario mostrara un mensaje mostrando que no se guardo
+                        $php_error = 'No Guardo Correctamente';
+                    }
+                } else {
+                    $php_error = 'No tiene programaciones pendientes por confirmar';
+                }
+            }
+        } else {
+            $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
         }
     }
 }

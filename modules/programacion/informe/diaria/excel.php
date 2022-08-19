@@ -51,7 +51,7 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
         ->setCellValue('B1', 'ESTADO')
         ->setCellValue('C1', 'NOMBRE CLIENTE')
         ->setCellValue('D1', 'NOMBRE OBRA')
-        ->setCellValue('E1', 'FECHA DEL PEDIDO')
+        ->setCellValue('E1', 'CODIGO DE LA ORDEN DE COMPRA')
         ->setCellValue('F1', 'NOMBRE DEL PRODUCTO')
         ->setCellValue('G1', 'CANTIDAD')
         ->setCellValue('H1', 'LINEA DE PRODUCCION')

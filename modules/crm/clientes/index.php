@@ -90,20 +90,20 @@ switch ($rol_user) {
                                 $Estado = $fila['ct1_Estado'];
 
                                 if ($Estado == 1) {
-                                    $s_clase = " badge-success ";
+                                    $s_clase = " badge-success";
                                     $status = "ACTIVO";
                                 }
                                 if ($Estado == 0) {
-                                    $s_clase = " badge-info ";
+                                    $s_clase = " badge-info";
                                     $status = "";
                                 }
                                 if ($Estado == 3) {
-                                    $s_clase = " badge-warning ";
-                                    $status = "Pendiente ";
+                                    $s_clase = " badge-warning";
+                                    $status = "PENDIENTE";
                                 }
                                 if ($Estado == 2) {
                                     $s_clase = " badge-danger";
-                                    $status = "Desabilitado";
+                                    $status = "DESHABILITADO";
                                 }
                             ?>
                                 <tr>

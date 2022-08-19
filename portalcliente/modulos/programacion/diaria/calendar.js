@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "#form_crear_programacion"
   );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
+  let aceptar_programacion = document.querySelector("#form_confirmar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -163,31 +164,61 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-});
 
-function editar_event(form_editar, calendar) {
-  $.ajax({
-    url: "php_editar_prog_diaria.php",
-    type: "POST",
-    data: form_editar,
-    processData: false,
-    contentType: false,
-    dataType: "json",
-    //processData: false,
-    success: function (response) {
-      calendar.refetchEvents();
-      if (response.task == 1 && response.estado) {
-        toastr.success("Programacion Actualizada Satisfactoriamente");
-      } else if (response.task == 3 && response.estado) {
-        toastr.success("Programacion eliminada Satisfactoriamente");
-      } else if (response.task == 2 && response.estado) {
-        toastr.success("Programacion Actualizada Satisfactoriamente");
-      } else {
-        toastr.warning(response.errores);
-      }
-    },
-    error: function (respuesta) {
-      alert(JSON.stringify(respuesta));
-    },
-  });
-}
+  document
+    .getElementById("btnConfirmarProgramacionDiaria")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(aceptar_programacion);
+      var form_editar = new FormData();
+      Swal.fire({
+        title: "¿Esta seguro que desea confirmar la programacion diaria?",
+        text: "NO PODRA HACER MODIFICACIONES DESPUES DE ENVIAR LA PROGRAMACION DIARIA",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si enviar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#298a00",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 4); // actualizar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
+        }
+      });
+    });
+
+  function editar_event(form_editar, calendar) {
+    $.ajax({
+      url: "php_editar_prog_diaria.php",
+      type: "POST",
+      data: form_editar,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      //processData: false,
+      success: function (response) {
+        calendar.refetchEvents();
+        if (response.task == 1 && response.estado) {
+          toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else if (response.task == 2 && response.estado) {
+          toastr.success("Programacion eliminada Satisfactoriamente");
+        } else if (response.task == 3 && response.estado) {
+          toastr.success("Programacion Actualizada Satisfactoriamente");
+        } else if (response.task == 4 && response.estado) {
+          toastr.success("Programacion diaria confirmada correctamente");
+          $('#modal_confirmar_programacion').modal("hide"); 
+        } else {
+          $('#modal_confirmar_programacion').modal("hide"); 
+          toastr.warning(response.errores);
+        }
+      },
+      error: function (respuesta) {
+        alert(JSON.stringify(respuesta));
+      },
+    });
+  }
+});

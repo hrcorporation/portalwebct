@@ -17,6 +17,7 @@ $t5_obras = new t5_obras();
 $t26_remisiones = new t26_remisiones();
 $t29_batch = new t29_batch();
 $t10_vehiculo = new t10_vehiculo();
+$clsProgramacionDiaria = new clsProgramacionDiaria();
 
 
 $general_modelos = new general_modelos();
@@ -170,9 +171,24 @@ if (isset($_POST['txt_remision_batch']) && !empty($_POST['txt_remision_batch']))
         
 
         if ($validar_existencia) {
+            //conductor
             $id_conductor =null;
-            $last_insert =  $t26_remisiones->insertar_remision($hora, $asentamiento, $despachador, $sello,$codigo_remi,$fecha, $id_planta,$id_cliente , $nit,  $nombre_cliente_remi, $id_obra, $nombre_obra, $metros, $id_producto,$codigo_producto, $descripcion_producto,  $id_vehiculo, $placa, $id_conductor, $conductor);
-
+            //guardar la remision.
+            $last_insert =  $t26_remisiones->insertar_remision($hora, $asentamiento, $despachador, $sello,$codigo_remi, $fecha, $id_planta,$id_cliente , $nit,  $nombre_cliente_remi, $id_obra, $nombre_obra, $metros, $id_producto,$codigo_producto, $descripcion_producto,  $id_vehiculo, $placa, $id_conductor, $conductor);
+            //Precio del producto de la orden de compra.
+            $precio_producto = $clsProgramacionDiaria->get_precio_producto($id_cliente, $id_obra, $id_producto);
+            //Cantidad de metros cubicos en la remision.
+            $cantidad_metros_cubicos = $clsProgramacionDiaria->get_cantidad_m3_remision($last_insert);
+            //Precio total del producto en la remision.
+            $precio_producto_total = $precio_producto * $cantidad_metros_cubicos;
+            //Ingresa el precio total a la tabla de remisiones.
+            $clsProgramacionDiaria->actualizar_valor_total($last_insert, $precio_producto_total);
+            //Id de la programacion.
+            $id_programacion = $clsProgramacionDiaria->get_id_programacion($fecha, $id_cliente, $id_obra, $id_producto);
+            //Id de la orden de compra
+            $id_orden_compra = $clsProgramacionDiaria->get_id_orden_compra($id_programacion);
+            //Ingresar los datos a la tabla de programacion_has_remision.
+            $clsProgramacionDiaria->programacion_has_remision($fecha, $id_programacion, $last_insert, $id_cliente, $id_obra, $id_producto, $id_orden_compra, $cantidad_metros_cubicos);
             if($last_insert){
                 $success[] = "Remision Generada Exitosamente";
                     $last_insert = $php_clases->HR_Crypt($last_insert,1);

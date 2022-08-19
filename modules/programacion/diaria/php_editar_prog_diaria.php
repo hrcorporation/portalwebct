@@ -90,6 +90,27 @@ if (isset($_POST['task'])) {
 
         if ($clsProgramacionDiaria->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $hoy, $id_usuario, $nombre_usuario)) {
             $php_estado = true;
+            $objEstados = $clsProgramacionDiaria->fntGetEstadosProgramacionClienteUnoObj($intId);
+            if (is_array($objEstados)) {
+                foreach ($objEstados as $estado) {
+                    $intEstadoProgramacion = $estado['status'];
+                    if ($intEstadoProgramacion == 4) {
+                        if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj($intId)) {
+                            //Si pasa la validacion se retorna verdadero(true)
+                            $php_estado = true;
+                        } else {
+                            //De lo contrario mostrara un mensaje mostrando que no se guardo
+                            $php_error = 'No Guardo Correctamente';
+                        }
+                    } else if ($intEstadoProgramacion == 3) {
+                        $php_error = 'Hay que esperar la confirmacion del cliente';
+                    } else {
+                        $php_error = 'La programacion ya fue cargada anteriormente';
+                    }
+                }
+            } else {
+                $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
+            }
         } else {
             $php_error = 'ERROR';
         }
@@ -100,6 +121,29 @@ if (isset($_POST['task'])) {
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
         if ($clsProgramacionDiaria->fntEliminarProgramacionDiariaObj($id)) {
             $php_estado = true;
+        }
+    } else if ($_POST['task'] == 4) {
+        $intId = $_POST['id'];
+        $objEstados = $clsProgramacionDiaria->fntGetEstadosProgramacionClienteUnoObj($intId);
+        if (is_array($objEstados)) {
+            foreach ($objEstados as $estado) {
+                $intEstadoProgramacion = $estado['status'];
+                if ($intEstadoProgramacion == 5) {
+                    if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionSemanalFuncionarioTresObj($intId)) {
+                        //Si pasa la validacion se retorna verdadero(true)
+                        $php_estado = true;
+                    } else {
+                        //De lo contrario mostrara un mensaje mostrando que no se guardo
+                        $php_error = 'No Guardo Correctamente';
+                    }
+                } else if ($intEstadoProgramacion == 4) {
+                    $php_error = 'Hay que completar todos los datos para poder confirmar la programacion';
+                } else {
+                    $php_error = 'La programacion ya fue cargada anteriormente';
+                }
+            }
+        } else {
+            $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
         }
     }
 }

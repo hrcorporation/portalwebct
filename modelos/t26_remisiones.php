@@ -1121,6 +1121,8 @@ class t26_remisiones extends conexionPDO
     $this->PDO->closePDO();
   }
 
+  
+
 
   //
 

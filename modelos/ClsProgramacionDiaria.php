@@ -15,7 +15,7 @@ class clsProgramacionDiaria extends conexionPDO
     // Obtener todas las programaciones (FUNCIONARIOS).
     public function fntGetProgDiariaFuncionarioObj()
     {
-        $sql = "SELECT * FROM `ct66_programacion_diaria`";
+        $sql = "SELECT * FROM `ct66_programacion_semanal_v2` WHERE `status` >= 3 ";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -40,7 +40,7 @@ class clsProgramacionDiaria extends conexionPDO
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'orange',
+                            'color' => 'light blue',
                             'textcolor' => 'black'
                         ];
                     } else if ($fila['status'] == 3) {
@@ -50,7 +50,7 @@ class clsProgramacionDiaria extends conexionPDO
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'Light Blue',
+                            'color' => 'Gray',
                             'textcolor' => 'black'
                         ];
                     } else if ($fila['status'] == 4) {
@@ -60,7 +60,67 @@ class clsProgramacionDiaria extends conexionPDO
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'green',
+                            'color' => 'purple',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 5) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'light blue',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 6) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#ffc107',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 7) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'black',
+                            'textcolor' => 'white'
+                        ];
+                    } else if ($fila['status'] == 8) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'teal',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 9) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#28a745',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 10) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#c82333',
                             'textcolor' => 'black'
                         ];
                     }
@@ -73,7 +133,7 @@ class clsProgramacionDiaria extends conexionPDO
     // Obtener todas las programaciones (FUNCIONARIOS).
     public function fntGetProgDiariaFuncionario2Obj($id_linea_produccion)
     {
-        $sql = "SELECT * FROM `ct66_programacion_diaria` WHERE `id_linea_produccion` = :linea_produccion";
+        $sql = "SELECT * FROM `ct66_programacion_semanal_v2` WHERE `id_linea_produccion` = :linea_produccion";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':linea_produccion', $id_linea_produccion, PDO::PARAM_INT);
@@ -99,7 +159,7 @@ class clsProgramacionDiaria extends conexionPDO
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'orange',
+                            'color' => 'light blue',
                             'textcolor' => 'black'
                         ];
                     } else if ($fila['status'] == 3) {
@@ -109,7 +169,7 @@ class clsProgramacionDiaria extends conexionPDO
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'Light Blue',
+                            'color' => 'Gray',
                             'textcolor' => 'black'
                         ];
                     } else if ($fila['status'] == 4) {
@@ -119,22 +179,82 @@ class clsProgramacionDiaria extends conexionPDO
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'green',
+                            'color' => 'purple',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 5) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'light blue',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 6) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#ffc107',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 7) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'black',
+                            'textcolor' => 'white'
+                        ];
+                    } else if ($fila['status'] == 8) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'teal',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 9) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#28a745',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 10) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#c82333',
                             'textcolor' => 'black'
                         ];
                     }
+                    return $events;
                 }
-                return $events;
             }
+            return false;
         }
-        return false;
     }
     // Obtener todas las programaciones (CLIENTES) mediante el id del usuario.
     public function fntGetProgDiariaClienteObj($id_usuario)
     {
         $this->id = $id_usuario;
         $sql = "SELECT `id`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `fecha_ini`, `fecha_fin`,`id_usuario` 
-        FROM `ct66_programacion_diaria` 
+        FROM `ct66_programacion_semanal_v2` 
         WHERE `id_usuario` = :id_usuario";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -147,7 +267,7 @@ class clsProgramacionDiaria extends conexionPDO
                     if ($fila['status'] == 1) {
                         $events[] = [
                             "id" => $fila['id'],
-                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . ' ' . '/-/' . ' ' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
@@ -157,31 +277,91 @@ class clsProgramacionDiaria extends conexionPDO
                     } else if ($fila['status'] == 2) {
                         $events[] = [
                             "id" => $fila['id'],
-                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . ' ' . '/-/' . ' ' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'orange',
+                            'color' => 'light blue',
                             'textcolor' => 'black'
                         ];
                     } else if ($fila['status'] == 3) {
                         $events[] = [
                             "id" => $fila['id'],
-                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . ' ' . '/-/' . ' ' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'Light Blue',
+                            'color' => 'Gray',
                             'textcolor' => 'black'
                         ];
                     } else if ($fila['status'] == 4) {
                         $events[] = [
                             "id" => $fila['id'],
-                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . ' ' . '/-/' . ' ' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'green',
+                            'color' => 'purple',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 5) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'light blue',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 6) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#ffc107',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 7) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'black',
+                            'textcolor' => 'white'
+                        ];
+                    } else if ($fila['status'] == 8) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'teal',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 9) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#28a745',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 10) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#c82333',
                             'textcolor' => 'black'
                         ];
                     }
@@ -194,7 +374,7 @@ class clsProgramacionDiaria extends conexionPDO
     // Obtener todas las programaciones (CLIENTE) mediante el cliente y obra.
     public function fntGetProgDiariaClientePorClienteObraObj($id_cliente, $id_obra)
     {
-        $sql = "SELECT * FROM `ct66_programacion_diaria` WHERE `id_cliente` IN($id_cliente) AND `id_obra` IN ($id_obra)";
+        $sql = "SELECT * FROM `ct66_programacion_semanal_v2` WHERE `id_cliente` IN($id_cliente) AND `id_obra` IN ($id_obra) AND `status` >= 3    ";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -219,7 +399,7 @@ class clsProgramacionDiaria extends conexionPDO
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'orange',
+                            'color' => 'light blue',
                             'textcolor' => 'black'
                         ];
                     } else if ($fila['status'] == 3) {
@@ -229,7 +409,7 @@ class clsProgramacionDiaria extends conexionPDO
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'Light Blue',
+                            'color' => 'Gray',
                             'textcolor' => 'black'
                         ];
                     } else if ($fila['status'] == 4) {
@@ -239,7 +419,67 @@ class clsProgramacionDiaria extends conexionPDO
                             'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
                             'start' => $fila['fecha_ini'],
                             'end' => $fila['fecha_fin'],
-                            'color' => 'green',
+                            'color' => 'purple',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 5) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'light blue',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 6) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#ffc107',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 7) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'black',
+                            'textcolor' => 'white'
+                        ];
+                    } else if ($fila['status'] == 8) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => 'teal',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 9) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#28a745',
+                            'textcolor' => 'black'
+                        ];
+                    } else if ($fila['status'] == 10) {
+                        $events[] = [
+                            "id" => $fila['id'],
+                            'title' => $fila['nombre_cliente'] . " - " . $fila['nombre_obra'] . '//' . $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3',
+                            'descrition' => $fila['nombre_producto'] . " - " . $fila['cantidad'] . ' M3 ',
+                            'start' => $fila['fecha_ini'],
+                            'end' => $fila['fecha_fin'],
+                            'color' => '#c82333',
                             'textcolor' => 'black'
                         ];
                     }
@@ -255,7 +495,7 @@ class clsProgramacionDiaria extends conexionPDO
     // Cargar datos de la programacion mediante el id de la programacion.
     public function fntCargarDataProgramacionDiariaObj($id_programacion)
     {
-        $sql = "SELECT * FROM `ct66_programacion_diaria` 
+        $sql = "SELECT * FROM `ct66_programacion_semanal_v2` 
         WHERE `id` = :id_programacion ";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -704,7 +944,7 @@ class clsProgramacionDiaria extends conexionPDO
     public function fntContarProgramacionesSinConfirmarFuncionarioObj()
     {
         $sql = "SELECT COUNT(id) as cantidad
-        FROM `ct66_programacion_diaria`
+        FROM `ct66_programacion_semanal_v2`
         WHERE `status` = 1";
         $stmt = $this->con->prepare($sql);
         if ($stmt->execute()) {
@@ -725,7 +965,7 @@ class clsProgramacionDiaria extends conexionPDO
     {
         $this->id = $id_usuario;
         $sql = "SELECT COUNT(id) as cantidad 
-        FROM `ct66_programacion_diaria` 
+        FROM `ct66_programacion_semanal_v2` 
         WHERE `status` = 1 AND `id_usuario` = :id_usuario";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
@@ -749,7 +989,7 @@ class clsProgramacionDiaria extends conexionPDO
     public function fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $dtmFechaInicio, $dtmFechaFin, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
     {
 
-        $sql = "INSERT INTO `ct66_programacion_diaria`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `id_linea_produccion`, `nombre_linea_produccion`, `hora_cargue`, `hora_mixer_obra`, `id_mixer`, `mixer`, `id_conductor`, `nombre_conductor`, `requiere_bomba`, `id_tipo_descargue`, `nombre_tipo_descargue`, `id_tipo_bomba`, `tipo_bomba`,`fecha_ini`, `fecha_fin`, `observaciones`, `id_usuario`, `nombre_usuario`) 
+        $sql = "INSERT INTO `ct66_programacion_semanal_v2`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `id_linea_produccion`, `nombre_linea_produccion`, `hora_cargue`, `hora_mixer_obra`, `id_mixer`, `mixer`, `id_conductor`, `nombre_conductor`, `requiere_bomba`, `id_tipo_descargue`, `nombre_tipo_descargue`, `id_tipo_bomba`, `tipo_bomba`,`fecha_ini`, `fecha_fin`, `observaciones`, `id_usuario`, `nombre_usuario`) 
         VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :id_linea_produccion, :nombre_linea_produccion, :hora_cargue, :hora_mixer_obra, :id_mixer, :mixer, :id_conductor, :nombre_conductor, :requiere_bomba, :id_tipo_descargue, :nombre_tipo_descargue, :id_tipo_bomba, :tipo_bomba, :fecha_ini, :fecha_fin, :observaciones, :id_usuario, :nombre_usuario)";
 
         $stmt = $this->con->prepare($sql);
@@ -791,7 +1031,7 @@ class clsProgramacionDiaria extends conexionPDO
     // Crear programacion diaria (CLIENTE)
     public function fntCrearProgDiariaClienteBool($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $dtmFechaInicio, $dtmFechaFin, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
     {
-        $sql = "INSERT INTO `ct66_programacion_diaria`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `id_linea_produccion`, `nombre_linea_produccion`, `hora_cargue`, `hora_mixer_obra`, `id_mixer`, `mixer`, `id_conductor`, `nombre_conductor`, `requiere_bomba`, `id_tipo_descargue`, `nombre_tipo_descargue`, `id_tipo_bomba`, `tipo_bomba`,`fecha_ini`, `fecha_fin`, `observaciones`, `id_usuario`, `nombre_usuario`) 
+        $sql = "INSERT INTO `ct66_programacion_semanal_v2`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `id_linea_produccion`, `nombre_linea_produccion`, `hora_cargue`, `hora_mixer_obra`, `id_mixer`, `mixer`, `id_conductor`, `nombre_conductor`, `requiere_bomba`, `id_tipo_descargue`, `nombre_tipo_descargue`, `id_tipo_bomba`, `tipo_bomba`,`fecha_ini`, `fecha_fin`, `observaciones`, `id_usuario`, `nombre_usuario`) 
         VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :id_linea_produccion, :nombre_linea_produccion, :hora_cargue, :hora_mixer_obra, :id_mixer, :mixer, :id_conductor, :nombre_conductor, :requiere_bomba, :id_tipo_descargue, :nombre_tipo_descargue, :id_tipo_bomba, :tipo_bomba, :fecha_ini, :fecha_fin, :observaciones, :id_usuario, :nombre_usuario)";
 
         $stmt = $this->con->prepare($sql);
@@ -833,10 +1073,55 @@ class clsProgramacionDiaria extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////UPDATE - EDITAR PROGRAMACION///////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Cambiar estado de la programacion semanales (CLIENTE).
+    public function fntCambiarEstadoProgramacionSemanalFuncionarioTresObj($id)
+    {
+        $estado = 6;
+        $sql = "UPDATE `ct66_programacion_semanal_v2`
+        SET `status` = :estado
+        WHERE `status` = 5 AND `id` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+    // Cambiar estado de la programacion semanales (CLIENTE).
+    public function fntCambiarEstadoProgramacionSemanalFuncionarioDosObj($id)
+    {
+        $estado = 5;
+        $sql = "UPDATE `ct66_programacion_semanal_v2`
+        SET `status` = :estado
+        WHERE `status` = 4 AND `id` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+    // Cambiar estado de la programacion semanales (CLIENTE).
+    public function fntCambiarEstadoProgramacionSemanalClienteDosObj($id)
+    {
+        $estado = 4;
+        $sql = "UPDATE `ct66_programacion_semanal_v2`
+        SET `status` = :estado
+        WHERE `status` = 3 AND `id` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
     //Editar las fechas de la programacion diaria
     public function fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)
     {
-        $sql = "UPDATE `ct66_programacion_diaria` SET `id_pedido`= :id_pedido, `id_cliente`= :id_cliente, `nombre_cliente`= :nombre_cliente, `id_obra`= :id_obra, `nombre_obra`= :nombre_obra, `id_producto`= :id_producto, `nombre_producto`= :nombre_producto, `cantidad`= :cantidad, `id_linea_produccion`= :id_linea_produccion, `nombre_linea_produccion`= :nombre_linea_produccion, `hora_cargue`= :hora_cargue, `hora_mixer_obra`= :hora_mixer_obra, `id_mixer`= :id_mixer, `mixer`= :mixer, `id_conductor`= :id_conductor, `nombre_conductor`= :nombre_conductor, `requiere_bomba`= :requiere_bomba, `id_tipo_descargue`= :id_tipo_descargue, `nombre_tipo_descargue`= :nombre_tipo_descargue, `id_tipo_bomba`= :id_tipo_bomba,`tipo_bomba`= :tipo_bomba, `fecha_ini`= :fecha_ini, `fecha_fin`= :fecha_fin,`observaciones`= :observaciones, `id_usuario_edit`= :id_usuario, `nombre_usuario_edit`= :nombre_usuario, `fecha_modificacion`= :fecha_modificacion WHERE `id` = :id_programacion";
+        $sql = "UPDATE `ct66_programacion_semanal_v2` SET `id_pedido`= :id_pedido, `id_cliente`= :id_cliente, `nombre_cliente`= :nombre_cliente, `id_obra`= :id_obra, `nombre_obra`= :nombre_obra, `id_producto`= :id_producto, `nombre_producto`= :nombre_producto, `cantidad`= :cantidad, `id_linea_produccion`= :id_linea_produccion, `nombre_linea_produccion`= :nombre_linea_produccion, `hora_cargue`= :hora_cargue, `hora_mixer_obra`= :hora_mixer_obra, `id_mixer`= :id_mixer, `mixer`= :mixer, `id_conductor`= :id_conductor, `nombre_conductor`= :nombre_conductor, `requiere_bomba`= :requiere_bomba, `id_tipo_descargue`= :id_tipo_descargue, `nombre_tipo_descargue`= :nombre_tipo_descargue, `id_tipo_bomba`= :id_tipo_bomba,`tipo_bomba`= :tipo_bomba, `fecha_ini`= :fecha_ini, `fecha_fin`= :fecha_fin,`observaciones`= :observaciones, `id_usuario_edit`= :id_usuario, `nombre_usuario_edit`= :nombre_usuario, `fecha_modificacion`= :fecha_modificacion WHERE `id` = :id_programacion";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -874,30 +1159,15 @@ class clsProgramacionDiaria extends conexionPDO
         return false;
     }
     //Editar las fechas de la programacion diaria
-    public function fntEditarProgramacionTodoClienteBool($intId, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)
+    public function fntEditarProgramacionTodoClienteBool($intId, $intIdProducto, $strNombreProducto, $decCantidad, $dtmFechaInicio, $dtmFechaFin, $dtmHoy, $intIdUsuario, $StrNombreUsuario)
     {
-        $sql = "UPDATE `ct66_programacion_diaria` SET `id_pedido`= :id_pedido, `id_producto`= :id_producto, `nombre_producto`= :nombre_producto, `cantidad`= :cantidad, `id_linea_produccion`= :id_linea_produccion, `nombre_linea_produccion`= :nombre_linea_produccion, `hora_cargue`= :hora_cargue, `hora_mixer_obra`= :hora_mixer_obra, `id_mixer`= :id_mixer, `mixer`= :mixer, `id_conductor`= :id_conductor, `nombre_conductor`= :nombre_conductor, `requiere_bomba`= :requiere_bomba, `id_tipo_descargue`= :id_tipo_descargue, `nombre_tipo_descargue`= :nombre_tipo_descargue, `id_tipo_bomba`= :id_tipo_bomba,`tipo_bomba`= :tipo_bomba, `fecha_ini`= :fecha_ini, `fecha_fin`= :fecha_fin,`observaciones`= :observaciones, `id_usuario_edit`= :id_usuario, `nombre_usuario_edit`= :nombre_usuario, `fecha_modificacion`= :fecha_modificacion WHERE `id` = :id_programacion";
+        $sql = "UPDATE `ct66_programacion_semanal_v2` SET `id_producto`= :id_producto, `nombre_producto`= :nombre_producto, `cantidad`= :cantidad, `fecha_ini`= :fecha_ini, `fecha_fin`= :fecha_fin, `id_usuario_edit`= :id_usuario, `nombre_usuario_edit`= :nombre_usuario, `fecha_modificacion`= :fecha_modificacion WHERE `id` = :id_programacion";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
-        $stmt->bindParam(':id_pedido', $intIdPedido, PDO::PARAM_STR);
         $stmt->bindParam(':id_producto', $intIdProducto, PDO::PARAM_STR);
         $stmt->bindParam(':nombre_producto', $strNombreProducto, PDO::PARAM_STR);
         $stmt->bindParam(':cantidad', $decCantidad, PDO::PARAM_INT);
-        $stmt->bindParam(':id_linea_produccion', $intIdLineaDespacho, PDO::PARAM_STR);
-        $stmt->bindParam(':nombre_linea_produccion', $StrNombreLineaDespacho, PDO::PARAM_STR);
-        $stmt->bindParam(':hora_cargue', $dtmHoraCargue, PDO::PARAM_STR);
-        $stmt->bindParam(':hora_mixer_obra', $dtmHoraMixerObra, PDO::PARAM_STR);
-        $stmt->bindParam(':id_mixer', $intIdMixer, PDO::PARAM_STR);
-        $stmt->bindParam(':mixer', $StrPlacaMixer, PDO::PARAM_STR);
-        $stmt->bindParam(':id_conductor', $intIdConductor, PDO::PARAM_STR);
-        $stmt->bindParam(':nombre_conductor', $StrNombreConductor, PDO::PARAM_STR);
-        $stmt->bindParam(':requiere_bomba', $bolRequiereBomba, PDO::PARAM_STR);
-        $stmt->bindParam(':id_tipo_descargue', $intTipoDescargue, PDO::PARAM_STR);
-        $stmt->bindParam(':nombre_tipo_descargue', $StrNombreTipoDescargue, PDO::PARAM_STR);
-        $stmt->bindParam(':id_tipo_bomba', $intTipoBomba, PDO::PARAM_STR);
-        $stmt->bindParam(':tipo_bomba', $StrNombreTipoBomba, PDO::PARAM_STR);
-        $stmt->bindParam(':observaciones', $StrObservaciones, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_ini', $dtmFechaInicio, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_fin', $dtmFechaFin, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_modificacion', $dtmHoy, PDO::PARAM_STR);
@@ -912,7 +1182,7 @@ class clsProgramacionDiaria extends conexionPDO
     //Editar las fechas de la programacion diaria
     public function fntEditarProgramacionBool($id_programacion, $start, $end, $fecha_modificacion, $id_usuario, $nombre_usuario)
     {
-        $sql = "UPDATE `ct66_programacion_diaria` 
+        $sql = "UPDATE `ct66_programacion_semanal_v2` 
          SET `fecha_ini`= :inicio ,`fecha_fin`= :fin, `fecha_modificacion` = :fecha_modificacion, `id_usuario_edit` = :id_usuario, `nombre_usuario_edit` = :nombre_usuario 
          WHERE `id` = :id_programacion";
         //Preparar Conexion
@@ -937,7 +1207,7 @@ class clsProgramacionDiaria extends conexionPDO
     {
         $this->id = $id_programacion;
         $sql = "SELECT `status` 
-        FROM `ct66_programacion_diaria`
+        FROM `ct66_programacion_semanal_v2`
         WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
@@ -981,11 +1251,11 @@ class clsProgramacionDiaria extends conexionPDO
         }
     }
     // Traer el nombre del estado
-    public function fntGetFechaVencimientoPedidoObj($id_pedido)
+    public function fntGetNombreOrdenCompraObj($id_pedido)
     {
         $this->id = $id_pedido;
         // sentencia SQL
-        $sql = "SELECT `fecha_vencimiento` FROM `ct65_pedidos` WHERE `id` = :id_pedido";
+        $sql = "SELECT `nombre_orden_compra` FROM `ct65_pedidos` WHERE `id` = :id_pedido";
         // Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $this->id, PDO::PARAM_INT);
@@ -994,7 +1264,7 @@ class clsProgramacionDiaria extends conexionPDO
             $num_reg = $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    return $fila['fecha_vencimiento'];
+                    return $fila['nombre_orden_compra'];
                 }
             } else {
                 return false;
@@ -1205,13 +1475,36 @@ class clsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
+
+    // Obtener todos los estados de las programaciones (CLIENTE).
+    public function fntGetEstadosProgramacionClienteUnoObj($id_usuario)
+    {
+        $sql = "SELECT `status`
+            FROM `ct66_programacion_semanal_v2` 
+            WHERE `id` = :id";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // Asignando Datos ARRAY => SQL
+        $stmt->bindParam(':id', $id_usuario, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    $datos['status'] = $fila['status'];
+                    $datosf[] = $datos;
+                }
+                return $datosf;
+            }
+        }
+        return false;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////DELETE - ELIMINAR PROGRAMACION/////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //Eliminar una programacion.
     function fntEliminarProgramacionDiariaObj($id_programacion)
     {
-        $sql = "DELETE FROM `ct66_programacion_diaria` WHERE `id` = :id_programacion";
+        $sql = "DELETE FROM `ct66_programacion_semanal_v2` WHERE `id` = :id_programacion";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQ
@@ -1266,7 +1559,7 @@ class clsProgramacionDiaria extends conexionPDO
 
     public function cargar_cantidad_metros($id_pedido, $id_producto)
     {
-        $sql = "SELECT `id_pedido`,`id_producto`,sum(`cantidad`) AS suma FROM `ct66_programacion_diaria` WHERE `id_pedido` = :id_pedido AND `id_producto` = :id_producto";
+        $sql = "SELECT `id_pedido`,`id_producto`,sum(`cantidad`) AS suma FROM `ct66_programacion_semanal_v2` WHERE `id_pedido` = :id_pedido AND `id_producto` = :id_producto";
         // Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
@@ -1308,6 +1601,134 @@ class clsProgramacionDiaria extends conexionPDO
             return false;
         }
     }
+    //Obtener el precio del producto a partir del cliente, obra y producto.
+    public function get_precio_producto($id_cliente, $id_obra, $id_producto)
+    {
+        $sql = "SELECT `precio_m3` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id
+        WHERE ct65_pedidos.id_cliente = :id_cliente AND ct65_pedidos.id_obra = :id_obra AND ct65_pedidos_has_precio_productos.id_producto = :id_producto AND ct65_pedidos_has_precio_productos.status = 1;";
+
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['precio_m3'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    //Obtener la cantidad de m3 de una remision.
+    public function get_cantidad_m3_remision($id_remision)
+    {
+        $sql = "SELECT `ct26_metros` FROM `ct26_remisiones` WHERE `ct26_id_remision` = :id_remision";
+
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_remision', $id_remision, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['ct26_metros'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    //Ingresar el valor total a la remision
+    public function actualizar_valor_total($id_remision, $valor_total)
+    {
+        $sql = "UPDATE `ct26_remisiones` SET `ct26_valor_total` = :valor_total WHERE `ct26_id_remision` = :id_remision";
+         // Preparar Conexion
+         $stmt = $this->con->prepare($sql);
+         $stmt->bindParam(':id_remision', $id_remision, PDO::PARAM_INT);
+         $stmt->bindParam(':valor_total', $valor_total, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    //Id de la programacion
+    public function get_id_programacion($fecha, $id_cliente, $id_obra, $id_producto){
+        $sql = "SELECT `id` FROM `ct66_programacion_semanal_v2` 
+        WHERE DATE(fecha_ini) = :fecha AND `id_cliente` = :id_cliente AND `id_obra` = :id_obra AND `id_producto` = :id_producto AND `status` >= 6";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_STR);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['id'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //Obtener el id de la orden de compra
+    public function get_id_orden_compra($id_programacion)
+    {
+        $sql = "SELECT `id_pedido` FROM `ct66_programacion_semanal_v2` WHERE `id` = :id";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id_programacion, PDO::PARAM_STR);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['id_pedido'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //Guardar datos en la tabla  ct66_programacion_has_remision
+    public function programacion_has_remision($fecha, $id_programacion, $id_remision, $id_cliente, $id_obra, $id_producto, $id_orden_compra, $metros3){
+        $sql = "INSERT INTO `ct66_programacion_has_remision`(`fecha`, `id_programacion`, `id_remision`, `id_cliente`, `id_obra`, `id_producto`, `id_orden_compra`, `metros_cubicos`) VALUES (:fecha, :id_programacion, :id_remision, :id_cliente, :id_obra, :id_producto, :id_orden_compra, :metros_cubicos)";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+        $stmt->bindParam(':id_programacion', $id_programacion, PDO::PARAM_STR);
+        $stmt->bindParam(':id_remision', $id_remision, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_STR);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
+        $stmt->bindParam(':id_orden_compra', $id_orden_compra, PDO::PARAM_STR);
+        $stmt->bindParam(':metros_cubicos', $metros3, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    } 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - INFORME EXCEL/////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1317,7 +1738,7 @@ class clsProgramacionDiaria extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT * FROM `ct66_programacion_diaria` WHERE `fecha_ini` BETWEEN :fecha_ini AND :fecha_fin";
+        $sql = "SELECT * FROM `ct66_programacion_semanal_v2` WHERE `fecha_ini` BETWEEN :fecha_ini AND :fecha_fin";
         // Preparar Conexion.
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
@@ -1332,7 +1753,7 @@ class clsProgramacionDiaria extends conexionPDO
                     $datos['status'] = SELF::fntGetNombreEstadoObj($fila['status']);
                     $datos['nombre_cliente'] = $fila['nombre_cliente'];
                     $datos['nombre_obra'] = $fila['nombre_obra'];
-                    $datos['fecha_pedido'] = SELF::fntGetFechaVencimientoPedidoObj($fila['id_pedido']);
+                    $datos['fecha_pedido'] = SELF::fntGetNombreOrdenCompraObj($fila['id_pedido']);
                     $datos['nombre_producto'] = $fila['nombre_producto'];
                     $datos['cantidad'] = $fila['cantidad'];
                     $datos['valor_programacion'] = $fila['valor_programacion'];

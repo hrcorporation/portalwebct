@@ -369,7 +369,7 @@ class t1_terceros extends conexionPDO
         $this->PDO->closePDO();
     }
 
-    function editar_cliente($id_cliente, $tipo_tercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera,$direccion)
+    function editar_cliente($id_cliente, $tipo_tercero, $id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular,$direccion , $cupo_cliente, $saldo_cartera)
     {
         $this->tipo_tercero = $tipo_tercero;
         $this->formapago    = $forma_pago;
@@ -388,22 +388,13 @@ class t1_terceros extends conexionPDO
         $this->cupo = $cupo_cliente;
         $this->id_cliente = $id_cliente;
         $this->direccion = $direccion;
-
         $this->rol = 101; //cliente
-        //$this->tipo_tercero = 1 ; // 1 Cliente   -> 10 Funcionario
-
         $this->usuario = $this->numero_documento;
         $this->pass = md5($this->numero_documento);
-
         $this->estado = 1;
         $this->saldo_cartera = $saldo_cartera;
 
-
-        if ($naturaleza == "PN") {
-            $this->razon_social =  $this->nombre1 . " " . $this->nombre2  . " " . $this->apellido1  . " " . $this->apellido2;
-        }
-
-        $sql = "UPDATE `ct1_terceros` SET `ct1_id_asesora`= :id_asesora, `ct1_nombre_asesora`= :nombre_asesora, `ct1_id_sede`= :id_sede, `ct1_nombre_sede`= :nombre_sede,`ct1_naturaleza`= :naturaleza, `ct1_TipoTercero`= :tipo_tercero, `ct1_tipo_cliente`= :tipo_cliente, `ct1_nombre_tipo_cliente`= :nombre_tipo_cliente, `ct1_tipo_plan_maestro`= :tipo_plan_maestro,`ct1_TipoIdentificacion`= :tipo_identificacion, `ct1_NumeroIdentificacion`= :numero_identificacion, `ct1_dv`= :dv, `ct1_RazonSocial`= :razon_social, `ct1_Nombre1`= :nombre1,`ct1_Nombre2`= :nombre2, `ct1_Apellido1`= :apellido1, `ct1_Apellido2`= :apellido2, `ct1_usuario`= :usuario, `ct1_pass`= :pass, `ct1_Telefono`= :telefono, `ct1_Celular`= :cel, `ct1_CorreoElectronico`= :email, ct1_Direccion = :direccion WHERE `ct1_IdTerceros` = :id_cliente";
+        $sql = "UPDATE `ct1_terceros` SET `ct1_id_asesora`= :id_asesora, `ct1_nombre_asesora`= :nombre_asesora, `ct1_id_sede`= :id_sede, `ct1_nombre_sede`= :nombre_sede,`ct1_naturaleza`= :naturaleza, `ct1_TipoTercero`= :tipo_tercero, `ct1_tipo_cliente`= :tipo_cliente, `ct1_nombre_tipo_cliente`= :nombre_tipo_cliente, `ct1_tipo_plan_maestro`= :tipo_plan_maestro,`ct1_TipoIdentificacion`= :tipo_identificacion, `ct1_NumeroIdentificacion`= :numero_identificacion, `ct1_dv`= :dv, `ct1_RazonSocial`= :razon_social, `ct1_Nombre1`= :nombre1,`ct1_Nombre2`= :nombre2, `ct1_Apellido1`= :apellido1, `ct1_Apellido2`= :apellido2, `ct1_usuario`= :usuario, `ct1_pass`= :pass, `ct1_Telefono`= :telefono, `ct1_Celular`= :cel, `ct1_CorreoElectronico`= :email, ct1_Direccion = :direccion, `ct1_cupo_cliente` = :cupo_cliente, `ct1_saldo_cliente` = :saldo_cliente WHERE `ct1_IdTerceros` = :id_cliente";
 
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -433,52 +424,18 @@ class t1_terceros extends conexionPDO
         $stmt->bindParam(':cel', $this->celular, PDO::PARAM_STR);
         $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
         $stmt->bindParam(':direccion', $this->direccion, PDO::PARAM_STR);
+        $stmt->bindParam(':cupo_cliente', $this->cupo, PDO::PARAM_STR);
+        $stmt->bindParam(':saldo_cliente', $this->saldo_cartera, PDO::PARAM_STR);
 
-        if ($stmt->execute()) { // Ejecutar primera SQL
-
-            $sql3 = "SELECT * FROM `ct3_clientes` WHERE `ct3_IdTerceros` = :id_cliente";
-            $stmt3 = $this->con->prepare($sql3);
-            $stmt3->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
-            if ($stmt3->execute()) { //  se busaca si
-                $num_reg3 =  $stmt3->rowCount(); // Get Numero de Registros
-                if ($num_reg3 > 0) {
-                    $sql4 = "UPDATE `ct3_clientes` SET `ct3_TipoCliente`= :Tipo_cliente ,`ct3_ModalidadPago`= :Modalidad_pago,`ct3_Cupo`= :cupo_cli ,`ct3_SaldoCartera`= :saldo_cartera WHERE `ct3_IdTerceros` = :id_cliente";
-                    $stmt4 = $this->con->prepare($sql4);
-                    $stmt4->bindParam(':Tipo_cliente', $this->tipo_tercero, PDO::PARAM_INT);
-                    $stmt4->bindParam(':Modalidad_pago', $this->formapago, PDO::PARAM_INT);
-                    $stmt4->bindParam(':cupo_cli', $this->cupo, PDO::PARAM_STR);
-                    $stmt4->bindParam(':saldo_cartera', $this->saldo_cartera, PDO::PARAM_STR);
-                    $stmt4->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
-                    if ($stmt4->execute()) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                } else { // Si no existe en la tabla cliente para crear
-                    $sql2 = "INSERT INTO `ct3_clientes`(`ct3_IdTerceros`, `ct3_TipoCliente`, ct3_CupoEstado , `ct3_ModalidadPago`, ct3_Cupo, ct3_SaldoCartera) VALUES (:id_cliente, :Tipo_cliente , :cupo_estado , :Modalidad_pago, :cupo_cli, :saldo_cartera )";
-                    $stmt2 = $this->con->prepare($sql2);
-                    $stmt2->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
-                    $stmt2->bindParam(':Tipo_cliente', $this->tipo_tercero, PDO::PARAM_INT);
-                    $stmt2->bindParam(':cupo_estado', $this->estado, PDO::PARAM_INT);
-                    $stmt2->bindParam(':Modalidad_pago', $this->formapago, PDO::PARAM_INT);
-                    $stmt2->bindParam(':cupo_cli', $this->cupo, PDO::PARAM_STR);
-                    $stmt2->bindParam(':saldo_cartera', $this->saldo_cartera, PDO::PARAM_STR);
-                    if ($stmt2->execute()) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            } else {
-                return false;
-            }
+        if ($stmt->execute()) {
+            return true; 
         } else {
             return false;
         }
     }
 
 
-    function crear_cliente($id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $cupo_cliente, $saldo_cartera,$direccion)
+    function crear_cliente($id_comercial, $nombre_comercial, $id_sede, $nombre_sede, $id_tipo_cliente, $nombre_tipo_cliente, $id_tipo_plan_maestro, $forma_pago, $naturaleza, $tipo_documento, $numero_documento, $dv, $nombre1, $nombre2, $apellido1, $apellido2, $razon_social, $email, $telefono, $celular, $direccion, $cupo_cliente, $saldo_cartera)
     {
         $this->tipo_cliente       = $id_tipo_cliente;
         $this->formapago          = $forma_pago;
@@ -496,26 +453,15 @@ class t1_terceros extends conexionPDO
         $this->celular            = $celular;
         $this->cupo               = $cupo_cliente;
         $this->direccion               = $direccion;
-
         $this->rol = 101; //cliente
         $this->tipo_tercero = 1; // 1 Cliente   -> 10 Funcionario
-
         $this->usuario = $this->numero_documento;
         $this->pass = md5($this->numero_documento);
-
         $this->estado = 1;
         $this->saldo_cartera = $saldo_cartera;
-
-
-        if ($naturaleza == "PN") {
-            $this->razon_social =  $this->nombre1 . " " . $this->nombre2  . " " . $this->apellido1  . " " . $this->apellido2;
-        }
-
-
-        $sql = "INSERT INTO `ct1_terceros`(`ct1_Estado`,`ct1_id_asesora`, `ct1_nombre_asesora`, `ct1_id_sede`, `ct1_nombre_sede`, `ct1_naturaleza`, `ct1_TipoTercero`, `ct1_tipo_cliente`, `ct1_nombre_tipo_cliente`, `ct1_tipo_plan_maestro`, `ct1_TipoIdentificacion`, `ct1_NumeroIdentificacion`, `ct1_dv`, `ct1_RazonSocial`, `ct1_Nombre1`, `ct1_Nombre2`, `ct1_Apellido1`, `ct1_Apellido2`, `ct1_usuario`, `ct1_pass`, `ct1_rol`,`ct1_Telefono`, `ct1_Celular`, `ct1_CorreoElectronico`, `ct1_Direccion`) VALUES  (:estado, :id_asesora, :nombre_asesora, :id_sede, :nombre_sede, :naturaleza, :tipo_tercero, :tipo_cliente, :nombre_tipo_cliente, :tipo_plan_maestro, :tipo_identificacion, :numero_identificacion, :dv, :razon_social, :nombre1, :nombre2, :apellido1, :apellido2, :usuario, :pass, :rol, :telefono, :cel, :email, :direccion)";
+        $sql = "INSERT INTO `ct1_terceros`(`ct1_Estado`,`ct1_id_asesora`, `ct1_nombre_asesora`, `ct1_id_sede`, `ct1_nombre_sede`, `ct1_naturaleza`, `ct1_TipoTercero`, `ct1_tipo_cliente`, `ct1_nombre_tipo_cliente`, `ct1_tipo_plan_maestro`, `ct1_TipoIdentificacion`, `ct1_NumeroIdentificacion`, `ct1_dv`, `ct1_RazonSocial`, `ct1_Nombre1`, `ct1_Nombre2`, `ct1_Apellido1`, `ct1_Apellido2`, `ct1_usuario`, `ct1_pass`, `ct1_rol`,`ct1_Telefono`, `ct1_Celular`, `ct1_CorreoElectronico`, `ct1_Direccion`, `ct1_cupo_cliente`,`ct1_saldo_cliente`) VALUES  (:estado, :id_asesora, :nombre_asesora, :id_sede, :nombre_sede, :naturaleza, :tipo_tercero, :tipo_cliente, :nombre_tipo_cliente, :tipo_plan_maestro, :tipo_identificacion, :numero_identificacion, :dv, :razon_social, :nombre1, :nombre2, :apellido1, :apellido2, :usuario, :pass, :rol, :telefono, :cel, :email, :direccion, :cupo_cliente, :saldo_cliente)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
-
         // $stmt->bindParam(':fecha_creacion', $this->sx, PDO::PARAM_STR);
         $stmt->bindParam(':estado', $this->estado, PDO::PARAM_STR);
         $stmt->bindParam(':id_asesora', $id_comercial, PDO::PARAM_INT);
@@ -542,24 +488,12 @@ class t1_terceros extends conexionPDO
         $stmt->bindParam(':cel', $this->celular, PDO::PARAM_STR);
         $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
         $stmt->bindParam(':direccion', $this->direccion, PDO::PARAM_STR);
+        $stmt->bindParam(':cupo_cliente', $this->cupo, PDO::PARAM_STR);
+        $stmt->bindParam(':saldo_cliente', $this->saldo_cartera, PDO::PARAM_STR);
 
-        if ($stmt->execute()) { // Ejecutar
-            $id_insert = $this->con->lastInsertId();
-            $sql2 = "INSERT INTO `ct3_clientes`(`ct3_IdTerceros`, `ct3_TipoCliente`, ct3_CupoEstado , `ct3_ModalidadPago`, ct3_Cupo, ct3_SaldoCartera) VALUES (:id_cliente, :Tipo_cliente , :cupo_estado , :Modalidad_pago, :cupo_cli, :saldo_cartera)";
 
-            $stmt2 = $this->con->prepare($sql2);
-            $stmt2->bindParam(':id_cliente', $id_insert, PDO::PARAM_INT);
-            $stmt2->bindParam(':Tipo_cliente', $this->tipo_cliente, PDO::PARAM_INT);
-            $stmt2->bindParam(':cupo_estado', $this->estado, PDO::PARAM_INT);
-            $stmt2->bindParam(':Modalidad_pago', $this->formapago, PDO::PARAM_INT);
-            $stmt2->bindParam(':cupo_cli', $this->cupo, PDO::PARAM_STR);
-            $stmt2->bindParam(':saldo_cartera', $this->saldo_cartera, PDO::PARAM_STR);
-
-            if ($stmt2->execute()) {
-                return $id_insert;
-            } else {
-                return false;
-            }
+        if ($stmt->execute()) {
+            return true;
         } else {
             return false;
         }

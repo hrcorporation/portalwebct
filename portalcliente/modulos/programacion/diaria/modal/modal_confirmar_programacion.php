@@ -12,10 +12,10 @@ $clsProgramacionDiaria = new clsProgramacionDiaria();
             </div>
             <form id="form_confirmar_programacion" name="form_aceptar_programacion" method="post">
                 <div class="modal-body">
-                    <p>Da clic en el Boton confirmar para la confirmacion final de esta programación</p>
+                    <p>Da clic en el Boton aceptar para confirmar la programacion diaria</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btnConfirmarProgramacion"> Confirmar </button>
+                    <button type="button" class="btn btn-primary" id="btnConfirmarProgramacionDiaria"> Aceptar </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
                 </div>
             </form>

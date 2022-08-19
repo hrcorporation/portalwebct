@@ -106,7 +106,7 @@ if (isset($_POST['task'])) {
             $objProgramacionesSemanales = $clsProgramacionSemanal->fntGetProgSemanalFuncionarioEstadoUnoObj($intId);
             if (is_array($objProgramacionesSemanales)) {
                 foreach ($objProgramacionesSemanales as $estado) {
-                    $intEstado = 3;
+                    $intEstado = 4;
                     $intIdCliente = $estado['id_cliente'];
                     $strNombreCliente = $estado['nombre_cliente'];
                     $intIdObra = $estado['id_obra'];
@@ -148,22 +148,13 @@ if (isset($_POST['task'])) {
                 //La hora de la mixer en obra
                 $dtmhoramixerobra = $dtmFechaInicial;
                 //Calcular la fecha final de la programacion
-                $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmFrecuencia);
+                $dtmnuevafrecuencia = $clsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
+                $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmnuevafrecuencia);
                 if ($dtmHoy <= $dtmnuevafechainicial) {
-                    for ($i = 1; $i <= $numeroViajesAp; $i++) {
-                        if ($clsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $valor_programacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmnuevafechainicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
-                            $php_estado = true;
-                            //Actualizando la nueva fecha inicial.
-                            $dtmnuevafechainicial = $dtmNuevaFechafin;
-                            //Calcular la fecha final de la programacion.
-                            $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmNuevaFechafin, $dtmFrecuencia);
-                            //Calcular la hora del cargue.
-                            $dtmhoracargue = $clsProgramacionSemanal->restar($dtmNuevaFechafin, "01:00:00");
-                            // Calcular la hora que debe de estar la mixer en obra.
-                            $dtmhoramixerobra = $dtmNuevaFechafin;
-                        } else {
-                            $php_error = 'No guardo correctamente';
-                        }
+                    if ($clsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intId, $dtmhoracargue, $dtmhoramixerobra)) {
+                        $php_estado = true;
+                    } else {
+                        $php_error = 'No guardo correctamente';
                     }
                     if ($clsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioUnoObj($intId)) {
                         //Si pasa la validacion se retorna verdadero(true)
@@ -172,7 +163,7 @@ if (isset($_POST['task'])) {
                         //De lo contrario mostrara un mensaje mostrando que no se guardo
                         $php_error = 'No guardo correctamente';
                     }
-                }else{
+                } else {
                     $php_error = 'No puede generar las programaciones diarias con una fecha posterior a la actual';
                 }
             } else {
@@ -242,23 +233,14 @@ if (isset($_POST['task'])) {
                 //Calcular la fecha final de la programacion
                 $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmFrecuencia);
                 if ($dtmHoy <= $dtmnuevafechainicial) {
-                    if($intEstadoProgramacion == 2){
-                        for ($i = 1; $i <= $numeroViajesAp; $i++) {
-                            if ($clsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intEstado, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto,  $metrosCubicos, $valor_programacion, $dtmhoracargue, $dtmhoramixerobra, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $dblMetrosTuberia, $dtmnuevafechainicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
-                                //Si pasa la validacion se retorna verdadero(true)
-                                $php_estado = true;
-                                //Actualizando la nueva fecha inicial.
-                                $dtmnuevafechainicial = $dtmNuevaFechafin;
-                                //Calcular la fecha final de la programacion.
-                                $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmNuevaFechafin, $dtmFrecuencia);
-                                //Calcular la hora del cargue.
-                                $dtmhoracargue = $clsProgramacionSemanal->restar($dtmNuevaFechafin, "01:00:00");
-                                // Calcular la hora que debe de estar la mixer en obra.
-                                $dtmhoramixerobra = $dtmNuevaFechafin;
-                            } else {
-                                $php_error = 'No guardo correctamente';
-                            }
+                    if ($intEstadoProgramacion == 2) {
+                        if ($clsProgramacionSemanal->fntCrearProgDiariaFuncionarioTodoBool($dtmhoracargue, $dtmhoramixerobra)) {
+                            //Si pasa la validacion se retorna verdadero(true)
+                            $php_estado = true;
+                        } else {
+                            $php_error = 'No guardo correctamente';
                         }
+
                         if ($clsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj()) {
                             //Si pasa la validacion se retorna verdadero(true)
                             $php_estado = true;
@@ -266,7 +248,7 @@ if (isset($_POST['task'])) {
                             //De lo contrario mostrara un mensaje mostrando que no se guardo
                             $php_error = 'No Guardo Correctamente';
                         }
-                    }else{
+                    } else {
                         $php_error = 'No tiene programaciones pendientes por confirmar';
                     }
                 } else {
