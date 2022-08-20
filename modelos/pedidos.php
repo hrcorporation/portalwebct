@@ -193,18 +193,17 @@ class pedidos extends conexionPDO
         //resultado
         return $option;
     }
-    public function select_comercial2($id_cliente, $id_obra)
+    public function select_comercial2($id_cliente)
     {
         $option = "";
-        $sql="SELECT `id_comercial`, `nombre_asesora` FROM `ct65_lista_precio` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra;";
+        $sql="SELECT `ct1_id_asesora`,`ct1_nombre_asesora` FROM `ct1_terceros` WHERE `ct1_IdTerceros` = :id_cliente;";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
-        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
         if ($stmt->execute()) {
             while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $option = "<input type='hidden' name='asesora_comercial' id='asesora_comercial' class='form-control' style='width: 100%;' value = '".$fila['id_comercial']."'/>";
-                $option .="<p>".$fila['nombre_asesora']."</p>";
+                $option = "<input type='hidden' name='asesora_comercial' id='asesora_comercial' class='form-control' style='width: 100%;' value = '".$fila['ct1_id_asesora']."'/>";
+                $option .="<p>".$fila['ct1_nombre_asesora']."</p>";
             }
         }
         return $option;
@@ -232,7 +231,7 @@ class pedidos extends conexionPDO
                 $option = "<option  selected='true' disabled='disabled'> No hay productos cargados </option>";
             }
         } else {
-            $option = "<option  selected='true' disabled='disabled'> Error al cargar los datos :(</option>";
+            $option = "<option  selected='true' disabled='disabled'> Error al cargar los datos</option>";
         }
         //Cerrar Conexion
         $this->PDO->closePDO();
@@ -240,6 +239,40 @@ class pedidos extends conexionPDO
         return $option;
     }
     //Select de los productos
+    
+    public function select_producto2($id = null)
+    {
+        $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el producto</option>";
+
+        $sql = "SELECT * FROM `ct4_productos`";
+        //Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        // $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        // $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if ($id == $fila['ct4_Id_productos']) {
+                        $selection = " selected='true' ";
+                    } else {
+                        $selection = "";
+                    }
+                    $option .= '<option value="' . $fila['ct4_Id_productos'] . '" ' . $selection . ' >' . $fila['ct4_Nombre'] . " - " . $fila['ct4_Descripcion'] . ' </option>';
+                }
+            } else {
+                $option = "<option  selected='true' disabled='disabled'> No hay productos cargados </option>";
+            }
+        } else {
+            $option = "<option  selected='true' disabled='disabled'> Error al cargar los datos :(</option>";
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+        //resultado
+        return $option;
+    }
+    
+    
     public function select_producto($id_cliente, $id_obra, $id = null)
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el producto</option>";
@@ -677,6 +710,40 @@ class pedidos extends conexionPDO
         //Cerrar Conexion
         $this->PDO->closePDO();
     }
+    //Crear el pedido
+    public function crear_pedido_obra($id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora, $nombre_orden_compra, $plan_maestro)
+    {
+        $this->status = 1;
+        $this->id_cliente = $id_cliente;
+        $this->nombre_cliente = $nombre_cliente;
+        $this->id_obra = $id_obra;
+        $this->nombre_obra = $nombre_obra;
+        $this->id_asesora = $id_asesora;
+        $this->nombre_asesora = $nombre_asesora;
+        $this->nombre_orden_compra = $nombre_orden_compra;
+        $this->plan_maestro = $plan_maestro;
+
+        $sql = "INSERT INTO `ct65_pedidos`(`nombre_orden_compra`, `status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_comercial`, `nombre_asesora`, `plan_maestro`) VALUES  (:nombre_orden_compra, :status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_comercial, :nombre_asesora, :plan_maestro)";
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':status', $this->status, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_cliente', $this->nombre_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $this->id_obra, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_obra', $this->nombre_obra, PDO::PARAM_STR);
+        $stmt->bindParam(':id_comercial', $this->id_asesora, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_asesora', $this->nombre_asesora, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_orden_compra', $this->nombre_orden_compra, PDO::PARAM_STR);
+        $stmt->bindParam(':plan_maestro', $this->plan_maestro, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return $this->con->lastInsertId();
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
     //Registrar el producto a un pedido.
     public function crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $saldo_m3, $precio_total_pedido, $observaciones)
     {
@@ -845,7 +912,8 @@ class pedidos extends conexionPDO
                     } else {
                         $datos['porcentaje_descuento'] = number_format($fila['porcentaje_descuento'], 2);
                     }
-                    $datos['cantidad_m3'] = number_format($fila['saldo_m3'], 2);
+                    $datos['cantidad_m3'] = number_format($fila['cantidad_m3'], 2);
+                    $datos['saldo_m3'] = number_format($fila['saldo_m3'], 2);
                     $datos['precio_m3'] = " $ " . number_format($fila['precio_m3'], 2);
                     $datos['observaciones'] = $fila['observaciones'];
                     $datosf[] = $datos;
@@ -1718,7 +1786,7 @@ class pedidos extends conexionPDO
     {
         $this->id = $id;
 
-        $sql = "SELECT `nombre_orden_compra`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra` FROM `ct65_pedidos` WHERE `id` = :id";
+        $sql = "SELECT `nombre_orden_compra`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`,  `plan_maestro` FROM `ct65_pedidos` WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
 
@@ -1733,6 +1801,7 @@ class pedidos extends conexionPDO
                     $data_array['nombre_cliente'] = $fila['nombre_cliente'];
                     $data_array['id_obra'] = $fila['id_obra'];
                     $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['plan_maestro'] = $fila['plan_maestro'];
                     $datosf[] = $data_array;
                 }
                 return $datosf; // Retorna el resultado
@@ -1749,5 +1818,53 @@ class pedidos extends conexionPDO
         $resultado = ($precio_base * (1 - ($porcentaje / 100)));
 
         return $resultado;
+    }
+    //obtener el id de la lista de precios
+    public function get_id_lista_precios($id_cliente, $id_obra){
+        $sql = "SELECT `id` FROM `ct65_lista_precio` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_STR);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['id'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    //obtener la lista de productos que estan relacionados con una lista de precios
+    public function obtener_productos($id){
+        $sql = "SELECT * FROM `ct65_lista_precio_has_precio_productos` WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
+            // Valida si hay registros
+            if ($num_reg > 0) {
+                // Recorrer limpieza de datos obtenidos en la consulta
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['nombre_orden_compra'] = $fila['nombre_orden_compra'];
+                    $data_array['id_cliente'] = $fila['id_cliente'];
+                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
+                    $data_array['id_obra'] = $fila['id_obra'];
+                    $data_array['nombre_obra'] = $fila['nombre_obra'];
+                    $data_array['plan_maestro'] = $fila['plan_maestro'];
+                    $datosf[] = $data_array;
+                }
+                return $datosf; // Retorna el resultado
+            } else {
+                return false; // El resultado de la sentencia SQL es igual a 0
+            }
+        } else {
+            return false; // Error en la sentencia sql
+        }
     }
 }

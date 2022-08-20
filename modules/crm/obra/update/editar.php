@@ -8,6 +8,7 @@ $t5_obras = new t5_obras();
 $t1_terceros = new t1_terceros();
 $oportunidad_negocio = new oportunidad_negocio();
 $pedidos = new pedidos();
+$clsSaldosClientes = new clsSaldosClientes();
 $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
 ?>
 <!-- Content Wrapper. Contains page content -->
@@ -20,7 +21,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                     <h1>Obras</h1>
                 </div>
                 <div class="col">
-                    <a class="btn btn-block btn-success" data-toggle="modal" data-target="#crear_pedido"> Crear pedido</a>
+                    <a class="btn btn-block btn-success" data-toggle="modal" data-target="#crear_pedido"> Crear orden de compra</a>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -63,6 +64,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                             $latitud = $fila_obra['latitud'];
                             $longitud = $fila_obra['longitud'];
                         }
+                        $plan_maestro = $clsSaldosClientes->get_plan_maestro($id_cliente);
                         ?>
                         <input type="hidden" value="<?php echo $id_obra ?>" name="id_obra" id="id_obra">
                         <div class="card">
@@ -186,6 +188,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                         </div>
                         <div class="modal-body">
                             <form name="form_crear_pedido" id="form_crear_pedido" method="post" content="width=device-width, initial-scale=1">
+                            <input type="hidden" name="plan_maestro" id="plan_maestro" class="form-control" value="<?= $plan_maestro ?>" />
                                 <div class="row">
                                     <div class="col">
                                         <label for="cliente">Cliente</label>
@@ -204,6 +207,12 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                         <div class="form-group">
                                             <label>FECHA DE VENCIMIENTO</label>
                                             <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>NOMBRE ORDEN DE COMPRA</label>
+                                            <input type="text" name="orden_compra" id="orden_compra" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="col">
@@ -354,7 +363,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                     console.log(data);
                     if (data.estado) {
                         toastr.success('Se ha guardado correctamente');
-                        window.location = '../../pedidos/editar/editar.php?id=' + data.id;
+                        window.location = '../../orden_compra/editar/editar.php?id=' + data.id;
                     } else {
                         toastr.warning(data.errores);
                     }

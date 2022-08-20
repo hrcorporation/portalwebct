@@ -47,7 +47,7 @@ if (isset($_POST['tbx_NumeroDocumento']) && !empty($_POST['tbx_NumeroDocumento']
     }else{
         $cupo_cliente = 0;
     }
-    $saldo_cliente = $cupo_cliente;
+    $saldo_cliente = 0;
     if ($naturaleza == "PJ") {
         $razon_social = htmlspecialchars($_POST['tbx_RazonSocial']);
     } else if ($naturaleza == "PN") {

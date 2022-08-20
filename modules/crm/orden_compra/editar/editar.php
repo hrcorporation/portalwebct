@@ -16,7 +16,12 @@ foreach ($datos as $dato) {
     $nombre_obra = $dato['nombre_obra'];
     $id_cliente = $dato['id_cliente'];
     $id_obra = $dato['id_obra'];
+    $plan_maestro = $dato['plan_maestro'];
 }
+
+$id_lista_pedidos = $pedidos->get_id_lista_precios($id_cliente, $id_obra);
+
+
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -56,14 +61,21 @@ foreach ($datos as $dato) {
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <h5><b>ORDEN DE COMPRA: </b> <?=$nombre_orden_compra?></h5>
+                                <h5><b>ORDEN DE COMPRA: </b> <?= $nombre_orden_compra ?></h5>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-8 col-sm-12">
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>PRODUCTOS</label>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="form-group">
+                                <button type="button" id="cargar_todo" class="btn btn-block btn-success">
+                                    <i class="fas fa-plus"></i> CARGAR TODO
+                                </button>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12">
@@ -82,7 +94,8 @@ foreach ($datos as $dato) {
                             <th>N</th>
                             <th>Status</th>
                             <th>Producto</th>
-                            <th>Cantidad</th>
+                            <th>Cantidad m3</th>
+                            <th>Saldo m3</th>
                             <th>Precio</th>
                             <th>Observaciones</th>
                             <th>Detalles</th>
@@ -175,11 +188,17 @@ foreach ($datos as $dato) {
 
 <script>
     $(function() {
+        var plan_maestro = Boolean(<?php echo $plan_maestro ?>);
+        //var plan_maestro = 0;
+        if (plan_maestro) {
+            $("#subtotal").removeAttr('disabled');
+        } else {
+            $("#subtotal").attr('disabled', 'disabled');
+        }
         $(".progress").hide();
         $('.select2').select2();
         $("#descuento_oculto").hide();
     });
-
     $('#id_producto').on('change', function() {
         $("#descuento_oculto").show();
     });
@@ -325,6 +344,9 @@ foreach ($datos as $dato) {
                 },
                 {
                     "data": "cantidad_m3"
+                },
+                {
+                    "data": "saldo_m3"
                 },
                 {
                     "data": "precio_m3"

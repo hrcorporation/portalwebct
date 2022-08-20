@@ -6,13 +6,17 @@ require '../../../modelos/autoload.php';
 require '../../../vendor/autoload.php';
 //Se crea un objeto de la clase programacion semanal
 $clsProgramacionSemanal = new clsProgramacionSemanal();
+$clsSaldosClientes = new clsSaldosClientes();
+
 $boolPhpEstado = false;
 $errores = "";
 $resultado = "";
 
 $intidpedido = intval($_POST['pedido']);
 $intidproducto = intval($_POST['producto']);
+$intidcliente = intval($_POST['cliente']);
 $cantidad_solicitada = doubleval($_POST['cantidad']);
+$valor_producto = $clsSaldosClientes->get_valor_producto($intidproducto);
 
 if ($cantidad = $clsProgramacionSemanal->cargar_cantidad_metros($intidpedido, $intidproducto)) {
     $nueva_cantidad = doubleval($cantidad) + doubleval($cantidad_solicitada);
@@ -20,8 +24,18 @@ if ($cantidad = $clsProgramacionSemanal->cargar_cantidad_metros($intidpedido, $i
     $nueva_cantidad = doubleval($cantidad_solicitada);
 }
 
+$valor_total_producto = ($valor_producto * $nueva_cantidad);
+$saldo_cliente = $clsSaldosClientes->get_saldo_cliente($intidcliente);
+$cupo_cliente = $clsSaldosClientes->get_cupo_cliente($intidcliente);
+
+
+$valor_calculo = $cupo_cliente - ($saldo_cliente + $valor_producto);
+
 if ($cantidad_pedido = $clsProgramacionSemanal->cargar_cantidad_metros_pedido($intidpedido, $intidproducto)) {
     $cantidad_final = doubleval($cantidad_pedido) - doubleval($nueva_cantidad);
+    
+    
+    
     if ($cantidad_final >= 0) {
         $boolPhpEstado = true;
     } else {
@@ -34,7 +48,7 @@ if ($cantidad_pedido = $clsProgramacionSemanal->cargar_cantidad_metros_pedido($i
 
 $datos = array(
     'estado' => $boolPhpEstado,
-    'cantidad_final' => $cantidad_pedido
+    'cantidad_final' => $valor_calculo
 
 );
 

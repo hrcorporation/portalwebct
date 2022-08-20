@@ -108,24 +108,6 @@
                 dataType: 'json',
                 success: function(data) {
                     $('#id_obra').html(data.obras);
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        });
-
-        $("#id_obra").change(function() {
-            $.ajax({
-                url: "load_data.php",
-                type: "POST",
-                data: {
-                    'task': 2,
-                    'id_cliente': $('#id_cliente').val(),
-                    'id_obra': $('#id_obra').val()
-                },
-                dataType: 'json',
-                success: function(data) {
                     $('#asesora_comercial').html(data.asesora);
                 },
                 error: function(respuesta) {

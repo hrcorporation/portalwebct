@@ -10,6 +10,7 @@ require '../../../../vendor/autoload.php';
 //Se crea un objeto de la clase php_clases
 $php_clases = new php_clases();
 $pedidos = new pedidos();
+$clsSaldosClientes = new clsSaldosClientes();
 
 $log = false;
 $php_estado = false;
@@ -23,25 +24,32 @@ if ($pedidos->validar_existencias_precio_producto($_POST['id_producto'], $_POST[
     $nombre_producto = $pedidos->get_nombre_producto($id_producto);
     $porcentaje = 0;
     $id_precio_base = $pedidos->get_id_precio_base($id_producto);
-    $precio_base = $pedidos->get_precio_producto($id_producto);
     if (!is_null($_POST['cantidad'])) {
         $cantidad_m3 = $_POST['cantidad'];
     } else {
         $cantidad_m3 = 0;
     }
     $saldo_m3 = $cantidad_m3;
-    $subtotal = $precio_base;
-    $precio_total_pedido = $subtotal * (doubleval($cantidad_m3));
+    // $plan_maestro = $clsSaldosClientes->get_plan_maestro_por_id_orden_compra($id_pedido);
+    if (!isset($_POST['subtotal'])) {
+        $precio_base = $pedidos->get_precio_producto($id_producto);
+        $subtotal = $precio_base;
+    } else {
+        $precio_base = $pedidos->get_precio_producto($id_producto);
+        $subtotal = $_POST['subtotal'];
+    }
+    if ($cantidad_m3) {
+        $precio_total_pedido = $subtotal * (doubleval($cantidad_m3));
+    } else {
+        $precio_total_pedido = $subtotal;
+    }
+
     $precio_m3 = $subtotal; // Subtotal.
     $observaciones = $_POST['observaciones'];
-    if ($pedidos->validar_producto_por_id($_POST['id_producto'])) {
-        if ($pedidos->crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $saldo_m3, $precio_total_pedido, $observaciones)) {
-            $php_estado = true;
-        } else {
-            $php_error = 'Error inesperado';
-        }
-    }else{
-        $php_error = 'Producto no existente en la base de datos';
+    if ($pedidos->crear_precio_producto($id_pedido, $id_producto, $cod_producto, $nombre_producto, $porcentaje, $id_precio_base, $precio_base, $precio_m3, $cantidad_m3, $saldo_m3, $precio_total_pedido, $observaciones)) {
+        $php_estado = true;
+    } else {
+        $php_error = 'Error inesperado';
     }
 } else {
     $php_error = "El producto ya se encuentra guardado con este pedido";

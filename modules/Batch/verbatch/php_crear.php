@@ -195,7 +195,7 @@ if (isset($_POST['txt_remision_batch']) && !empty($_POST['txt_remision_batch']))
             //Saldo del cliente
             $saldo_cliente = $clsSaldosClientes->get_saldo_cliente($id_cliente);
             //Actualizar el saldo del cliente
-            $nuevo_saldo_cliente = $saldo_cliente - $valor_remision;
+            $nuevo_saldo_cliente = $saldo_cliente + $valor_remision;
             //Actualizar el saldo del cliente
             $clsSaldosClientes->actualizar_saldo_cliente($id_cliente, $nuevo_saldo_cliente);
             //Saldo de la orden de compra

@@ -94,6 +94,7 @@
         $('#txtCant').on('change', function() {
             //Ajax 
             var formData = new FormData();
+            formData.append('cliente', $("#cbxCliente").val());
             formData.append('pedido', $("#cbxPedido").val());
             formData.append('producto', $("#cbxProducto").val());
             formData.append('cantidad', $("#txtCant").val());

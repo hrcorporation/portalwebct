@@ -21,7 +21,18 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                                 <label for="id_producto">Producto</label>
                                 <br>
                                 <select class="form-control select2" style="width:100%" name="id_producto" id="id_producto">
-                                    <?= $pedidos->select_producto($id_cliente,$id_obra); ?>
+                                    <?php
+                                    if(boolval($plan_maestro)){
+                                    
+                                    echo $pedidos->select_producto2();
+
+                                    }else{
+                                        echo $pedidos->select_producto($id_cliente, $id_obra);
+
+                                    }
+
+                                    ?>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -30,7 +41,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         <div class="col">
                             <div class="form-group">
                                 <label for="subtotal">Subtotal</label>
-                                <input type="number" name="subtotal" id="subtotal" class="form-control" required="true" disabled="true" />
+                                <input type="number" name="subtotal" id="subtotal" class="form-control" />
                             </div>
                         </div>
                         <div class="col">
