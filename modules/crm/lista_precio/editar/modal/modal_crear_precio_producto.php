@@ -39,12 +39,6 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                                 <input type="text" name="subtotal" id="subtotal" class="form-control" required="true" onkeyup="format(this)"/>
                             </div>
                         </div>
-                        <!-- <div class="col">
-                            <div class="form-group">
-                                <label for="cantidad">Cantidad m3</label>
-                                <input type="text" name="cantidad" id="cantidad" class="form-control validanumericos" />
-                            </div>
-                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col">
@@ -62,7 +56,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+                                <button type="submit" class="btn btn-success" id = "guardarProductoLP"><i class="fas fa-save"></i> Guardar</button>
                             </div>
                         </div>
                     </div>

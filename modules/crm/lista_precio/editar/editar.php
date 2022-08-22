@@ -178,10 +178,12 @@ foreach ($datos as $dato) {
         $(".progress").hide();
         $('.select2').select2();
         $("#descuento_oculto").hide();
+        $("#guardarProductoLP").attr('disabled', true);
     });
 
     $('#id_producto').on('change', function() {
         $("#descuento_oculto").show();
+        $("#guardarProductoLP").attr('disabled', false);
     });
 
     $(function() {

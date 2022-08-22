@@ -604,10 +604,10 @@ class clsProgramacionSemanal extends conexionPDO
         }
     }
     // Crear programacion semanal.
-    public function fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $fecha_ini, $fecha_fin, $observaciones, $id_usuario, $nombre_usuario)
+    public function fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $linea_despacho, $requiere_bomba, $fecha_ini, $fecha_fin, $observaciones, $id_usuario, $nombre_usuario)
     {
-        $sql = "INSERT INTO `ct66_programacion_semanal_v2`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `frecuencia`, `requiere_bomba`, `fecha_ini`, `fecha_fin`, `observaciones`, `id_usuario`, `nombre_usuario`) 
-        VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :frecuencia, :requiere_bomba, :fecha_ini, :fecha_fin, :observaciones, :id_usuario, :nombre_usuario)";
+        $sql = "INSERT INTO `ct66_programacion_semanal_v2`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `frecuencia`, `id_linea_produccion`, `requiere_bomba`, `fecha_ini`, `fecha_fin`, `observaciones`, `id_usuario`, `nombre_usuario`) 
+        VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :frecuencia, :linea_despacho, :requiere_bomba, :fecha_ini, :fecha_fin, :observaciones, :id_usuario, :nombre_usuario)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -621,6 +621,7 @@ class clsProgramacionSemanal extends conexionPDO
         $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
         $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_STR);
         $stmt->bindParam(':frecuencia', $frecuencia, PDO::PARAM_STR);
+        $stmt->bindParam(':linea_despacho', $linea_despacho, PDO::PARAM_STR);
         $stmt->bindParam(':requiere_bomba', $requiere_bomba, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_ini', $fecha_ini, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_fin', $fecha_fin, PDO::PARAM_STR);

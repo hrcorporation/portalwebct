@@ -40,6 +40,7 @@ if ($_POST['id']) {
     $frecuencia = $_POST['cbxFrecuencia'];
     $horacargue = $_POST['txtHoraCargue'];
     $fechafundida = $_POST['txtFechaFundida'];
+    $linea_despacho = $_POST['cbxlineadespacho'];
     $fecha_ini = $fechafundida . " " . $horacargue;
     $fecha_fin = $fechafundida . " " . $horacargue;
     //Validar si el checkbox esta activo o no
@@ -53,7 +54,7 @@ if ($_POST['id']) {
     $observaciones = $_POST['txtObservaciones'];
     //Se valida que se guarde correctamente todos los datos de la programacion.
     if ($fecha_hoy <= $fecha_ini) {
-        if ($clsprogramacionsemanal->fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiereBomba, $fecha_ini, $fecha_fin, $observaciones, $id_usuario, $nombre_usuario)) {
+        if ($clsprogramacionsemanal->fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $linea_despacho, $requiereBomba, $fecha_ini, $fecha_fin, $observaciones, $id_usuario, $nombre_usuario)) {
             $php_estado = true;
         } else {
             $log = 'No Guardo Correctamente';

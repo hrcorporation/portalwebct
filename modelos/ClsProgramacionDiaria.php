@@ -941,11 +941,31 @@ class clsProgramacionDiaria extends conexionPDO
     //////////////////////////////////SELECT - CONTAR PROGRAMACIONES CON X ESTADO////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //Contar los datos de las programaciones diarias con estado de Sin confirmar (FUNCIONARIO)
-    public function fntContarProgramacionesSinConfirmarFuncionarioObj()
+    public function fntContarProgramacionDiariaSinConfirmarClienteObj()
     {
         $sql = "SELECT COUNT(id) as cantidad
         FROM `ct66_programacion_semanal_v2`
-        WHERE `status` = 1";
+        WHERE `status` = 3";
+        $stmt = $this->con->prepare($sql);
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['cantidad'];
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+    //Contar los datos de las programaciones diarias con estado de Sin confirmar (FUNCIONARIO)
+    public function fntContarProgramacionDiariaSinConfirmarFuncionarioObj()
+    {
+        $sql = "SELECT COUNT(id) as cantidad
+        FROM `ct66_programacion_semanal_v2`
+        WHERE `status` = 4";
         $stmt = $this->con->prepare($sql);
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();

@@ -187,6 +187,7 @@ $id_lista_pedidos = $pedidos->get_id_lista_precios($id_cliente, $id_obra);
 <?php include 'modal/modal_cargar_precio_excel.php' ?>
 
 <script>
+    $("#guardarProductoOC").attr('disabled', true);
     $(function() {
         var plan_maestro = Boolean(<?php echo $plan_maestro ?>);
         //var plan_maestro = 0;
@@ -199,6 +200,7 @@ $id_lista_pedidos = $pedidos->get_id_lista_precios($id_cliente, $id_obra);
         $('.select2').select2();
         $("#descuento_oculto").hide();
     });
+
     $('#id_producto').on('change', function() {
         $("#descuento_oculto").show();
     });
@@ -237,6 +239,35 @@ $id_lista_pedidos = $pedidos->get_id_lista_precios($id_cliente, $id_obra);
                 },
             });
         }));
+    });
+
+    $(document).ready(function() {
+        // Formulario Cargar Precios
+        $("#cargar_todo").on('click', function() {
+            var id_lista_precios = <?php echo $id_lista_pedidos ?>;
+            var id_pedido = <?php echo $id ?>;
+            var formData = new FormData();
+            formData.append('lista_precios', id_lista_precios);
+            formData.append('id_pedido', id_pedido);
+            $.ajax({
+                url: "php_cargar_lista_precios.php",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    if (data.estado) {
+                        toastr.success('Se han cargado los productos exitosamente');
+                    } else {
+                        toastr.warning(data.errores);
+                    }
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        });
     });
 
     $(document).ready(function() {
@@ -606,6 +637,7 @@ $id_lista_pedidos = $pedidos->get_id_lista_precios($id_cliente, $id_obra);
 
     $('#id_producto').change(function() {
         var subtotal = $("#subtotal").val();
+        $("#guardarProductoOC").attr('disabled', false);
         $.ajax({
             url: "ajax_get_data_precios.php",
             type: "POST",

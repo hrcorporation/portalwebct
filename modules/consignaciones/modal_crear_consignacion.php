@@ -29,13 +29,13 @@ $ClsConsignacion = new clsConsignacion();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="txtValor" class="form-label">Valor:</label>
                                 <input name="txtValor" id="txtValor" class="form-control" style="width: 100%;" onkeyup="format(this)" />
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="cbxEstado" class="form-label">Estado:</label>
                                 <select name="cbxEstado" id="cbxEstado" class="form-control select2" style="width: 100%;">

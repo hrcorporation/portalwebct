@@ -143,7 +143,7 @@ class clsConsignacion extends conexionPDO
     // Listar mediante un select los clientes(Terceros).
     function fntOptionClienteEditObj($id_cliente = null)
     {
-        $option = "<option  selected='true' disabled='disabled'> Seleccione un Cliente</option>";
+        $option = "<option> Seleccione un Cliente</option>";
         //Consulta SQL
         $sql = "SELECT ct1_IdTerceros , ct1_NumeroIdentificacion , ct1_RazonSocial 
         FROM ct1_terceros 

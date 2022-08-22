@@ -39,7 +39,7 @@
         ?>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">EDITAR ELEMENTOS</h3>
+                <h3 class="card-title">EDITAR CONSIGNACION</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -106,7 +106,6 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary" id="btnCrear"> Guardar </button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
                         </div>
                     </form>
                 </div>
@@ -147,7 +146,7 @@
                 success: function(data) {
                     console.log(data);
                     if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
+                        toastr.success('Se ha modificado la consignacion correctamente');
                     } else {
                         toastr.warning(data.errores);
                     }

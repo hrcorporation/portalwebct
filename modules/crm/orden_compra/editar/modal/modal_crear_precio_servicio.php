@@ -19,7 +19,6 @@
                          <div class="col">
                              <div class="form-group">
                                  <label for="id_tipo_servicio">Tipo de servicio</label>
-                                 <br>
                                  <select class="form-control select2" name="id_tipo_servicio" id="id_tipo_servicio" style="width:100%">
                                      <?= $pedidos->select_servicio(); ?>
                                  </select>

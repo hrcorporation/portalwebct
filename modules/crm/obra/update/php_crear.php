@@ -25,7 +25,6 @@ if ($pedido) {
         $nombre_cliente = $pedidos->get_cliente($id_cliente);
         $id_obra = $_POST['id_obra'];
         $nombre_obra = $pedidos->get_nombre_obra($id_obra);
-        $fecha_vencimiento = $_POST['fecha_vencimiento'];
         $id_asesora = $_POST['asesora_comercial'];
         $nombre_asesora = $pedidos->get_nombre_asesora($id_asesora);
         $nombre_orden_compra = $_POST['orden_compra'];

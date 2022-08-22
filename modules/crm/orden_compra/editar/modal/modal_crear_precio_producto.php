@@ -18,21 +18,16 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="id_producto">Producto</label>
+                                <label for="id_producto">Producto:</label>
                                 <br>
                                 <select class="form-control select2" style="width:100%" name="id_producto" id="id_producto">
                                     <?php
                                     if(boolval($plan_maestro)){
-                                    
                                     echo $pedidos->select_producto2();
-
                                     }else{
                                         echo $pedidos->select_producto($id_cliente, $id_obra);
-
                                     }
-
                                     ?>
-                                    
                                 </select>
                             </div>
                         </div>
@@ -40,13 +35,13 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="subtotal">Subtotal</label>
+                                <label for="subtotal">Subtotal:</label>
                                 <input type="number" name="subtotal" id="subtotal" class="form-control" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="cantidad">Cantidad m3</label>
+                                <label for="cantidad">Cantidad m3:</label>
                                 <input type="text" name="cantidad" id="cantidad" class="form-control validanumericos" />
                             </div>
                         </div>
@@ -54,7 +49,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="observaciones">Observaciones</label>
+                                <label for="observaciones">Observaciones:</label>
                                 <input type="text" name="observaciones" id="observaciones" class="form-control" />
                             </div>
                         </div>
@@ -67,7 +62,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+                                <button type="submit" class="btn btn-success" id = "guardarProductoOC"><i class="fas fa-save"></i> Guardar</button>
                             </div>
                         </div>
                     </div>

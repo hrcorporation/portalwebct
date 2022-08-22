@@ -17,11 +17,15 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-10">
-                    <h1>Obras</h1>
+                <div class="col-9">
+                    <div class="form-group">
+                        <h1>Obras</h1>
+                    </div>
                 </div>
-                <div class="col">
-                    <a class="btn btn-block btn-success" data-toggle="modal" data-target="#crear_pedido"> Crear orden de compra</a>
+                <div class="col-3">
+                    <div class="form-group">
+                        <a class="btn btn-block btn-success" data-toggle="modal" data-target="#crear_pedido"> Crear orden de compra</a>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <!--
@@ -97,7 +101,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                         <div class="form-group">
                                             <label>Departamento</label>
                                             <select name="departamento" id="departamento" class="form-control select2">
-                                            <?php echo $oportunidad_negocio->select_departamento($id_departamento); ?>
+                                                <?php echo $oportunidad_negocio->select_departamento($id_departamento); ?>
                                             </select>
                                         </div>
                                     </div>
@@ -105,7 +109,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                         <div class="form-group">
                                             <label>Ciudad</label>
                                             <select name="municipio" id="municipio" class="form-control select2">
-                                            <?php echo  $oportunidad_negocio->select_municipio($id_departamento, $id_municipio) ?>
+                                                <?php echo  $oportunidad_negocio->select_municipio($id_departamento, $id_municipio) ?>
                                             </select>
                                         </div>
                                     </div>
@@ -113,14 +117,14 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                         <div class="form-group">
                                             <label for="">Zona/Comuna</label>
                                             <select name="comuna" id="comuna" class="form-control select2" required="true">
-                                            <?php echo $oportunidad_negocio->select_comuna($id_municipio, $id_comuna) ?>
+                                                <?php echo $oportunidad_negocio->select_comuna($id_municipio, $id_comuna) ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Barrio</label>
-                                            <input type="text" name="barrio" id="barrio" class="form-control" value = "<?=$barrio?>">
+                                            <input type="text" name="barrio" id="barrio" class="form-control" value="<?= $barrio ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +155,7 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Longitud</label> 
+                                            <label>Longitud</label>
                                             <input type="text" class="form-control" name="txt_longitud" id="txt_longitud" value="<?php echo $longitud; ?>" />
 
                                         </div>
@@ -188,15 +192,15 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                         </div>
                         <div class="modal-body">
                             <form name="form_crear_pedido" id="form_crear_pedido" method="post" content="width=device-width, initial-scale=1">
-                            <input type="hidden" name="plan_maestro" id="plan_maestro" class="form-control" value="<?= $plan_maestro ?>" />
+                                <input type="hidden" name="plan_maestro" id="plan_maestro" class="form-control" value="<?= $plan_maestro ?>" />
                                 <div class="row">
                                     <div class="col">
-                                        <label for="cliente">Cliente</label>
+                                        <label for="cliente">CLIENTE:</label>
                                         <input type="text" name="cliente" id="cliente" class="form-control" disabled="true" value="<?= $pedidos->get_cliente($id_cliente) ?>" />
                                         <input type="hidden" name="id_cliente" id="id_cliente" class="form-control" value="<?= $id_cliente ?>" />
                                     </div>
                                     <div class="col">
-                                        <label for="obra">Obra</label>
+                                        <label for="obra">OBRA:</label>
                                         <input type="text" name="obra" id="obra" class="form-control" disabled="true" value="<?= $NombreObra ?>" />
                                         <input type="hidden" name="id_obra" id="id_obra" class="form-control" value="<?= $id_obra ?>" />
                                     </div>
@@ -205,19 +209,13 @@ $id_obra  = $php_clases->HR_Crypt($_GET['id'], 2);
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>FECHA DE VENCIMIENTO</label>
-                                            <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>NOMBRE ORDEN DE COMPRA</label>
+                                            <label>NOMBRE ORDEN DE COMPRA:</label>
                                             <input type="text" name="orden_compra" id="orden_compra" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>ASESORA COMERCIAL</label>
+                                            <label>ASESORA COMERCIAL:</label>
                                             <select name="asesora_comercial" id="asesora_comercial" class="form-control select2" required style="width:100%">
                                                 <?php echo $oportunidad_negocio->select_comercial() ?>
                                             </select>

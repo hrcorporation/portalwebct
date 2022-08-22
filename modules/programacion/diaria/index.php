@@ -3,7 +3,8 @@
 <?php include 'sidebar.php'; ?>
 <?php $clsProgramacionDiaria = new clsProgramacionDiaria(); //Se crea un objeto de la clase programacion 
 ?>
-<?php $intCantidadProgramacionSinConfirmar = $clsProgramacionDiaria->fntContarProgramacionesSinConfirmarFuncionarioObj(); ?>
+<?php $intCantidadProgramacionSinConfirmarCliente = $clsProgramacionDiaria->fntContarProgramacionDiariaSinConfirmarClienteObj(); ?>
+<?php $intCantidadProgramacionSinConfirmarFuncionario = $clsProgramacionDiaria->fntContarProgramacionDiariaSinConfirmarFuncionarioObj(); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -42,10 +43,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-4">
                         <div class="form-group">
-                            <span style="position: absolute; right: 20%; top: 40%" class="badge bg-secondary">
-                                <?= $intCantidadProgramacionSinConfirmar ?> - Sin Confirmar
+                            <span  class="badge bg-secondary">
+                                <?= $intCantidadProgramacionSinConfirmarCliente ?> - Sin Confirmar programacion diaria por parte del cliente
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <span  class="badge bg-lightblue">
+                                <?= $intCantidadProgramacionSinConfirmarFuncionario ?> - Sin Confirmar programacion diaria por parte de logistica
                             </span>
                         </div>
                     </div>
@@ -55,10 +63,6 @@
                             <select name="cbxlineaproduccion" id="cbxlineaproduccion" class="form-control select" style="width: 100%;">
                                 <?= $clsProgramacionDiaria->fntOptionLineaDespachoObj() ?>
                             </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
                         </div>
                     </div>
                 </div>

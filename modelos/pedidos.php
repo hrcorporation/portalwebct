@@ -277,7 +277,7 @@ class pedidos extends conexionPDO
     {
         $option = "<option  selected='true' value='NULL' disabled='true'> Seleccione el producto</option>";
 
-        $sql = "SELECT id_producto, codigo_producto, nombre_producto FROM `ct65_lista_precio_has_precio_productos` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_productos.id_pedido = ct65_lista_precio.id WHERE ct65_lista_precio.`status` = 1 AND id_cliente = :id_cliente AND id_obra = :id_obra; ";
+        $sql = "SELECT id_producto, codigo_producto, nombre_producto FROM `ct65_lista_precio_has_precio_productos` INNER JOIN ct65_lista_precio ON ct65_lista_precio_has_precio_productos.id_lista_precios = ct65_lista_precio.id WHERE ct65_lista_precio.`status` = 1 AND ct65_lista_precio_has_precio_productos.`status` = 1 AND id_cliente = :id_cliente AND id_obra = :id_obra; ";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
@@ -1820,8 +1820,9 @@ class pedidos extends conexionPDO
         return $resultado;
     }
     //obtener el id de la lista de precios
-    public function get_id_lista_precios($id_cliente, $id_obra){
-        $sql = "SELECT `id` FROM `ct65_lista_precio` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra";
+    public function get_id_lista_precios($id_cliente, $id_obra)
+    {
+        $sql = "SELECT `id` FROM `ct65_lista_precio` WHERE `id_cliente` = :id_cliente AND `id_obra` = :id_obra AND `status` = 1";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
         $stmt->bindParam(':id_obra', $id_obra, PDO::PARAM_STR);
@@ -1833,17 +1834,18 @@ class pedidos extends conexionPDO
                     return $fila['id'];
                 }
             } else {
-                return false;
+                return 0;
             }
         } else {
             return false;
         }
     }
     //obtener la lista de productos que estan relacionados con una lista de precios
-    public function obtener_productos($id){
-        $sql = "SELECT * FROM `ct65_lista_precio_has_precio_productos` WHERE `id` = :id";
+    public function obtener_productos($id_lista)
+    {
+        $sql = "SELECT * FROM `ct65_lista_precio_has_precio_productos`  WHERE `id_lista_precios` = :id_lista";
         $stmt = $this->con->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_lista', $id_lista, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount(); // Cuenta los numero de registros de sql
@@ -1851,13 +1853,21 @@ class pedidos extends conexionPDO
             if ($num_reg > 0) {
                 // Recorrer limpieza de datos obtenidos en la consulta
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $data_array['nombre_orden_compra'] = $fila['nombre_orden_compra'];
-                    $data_array['id_cliente'] = $fila['id_cliente'];
-                    $data_array['nombre_cliente'] = $fila['nombre_cliente'];
-                    $data_array['id_obra'] = $fila['id_obra'];
-                    $data_array['nombre_obra'] = $fila['nombre_obra'];
-                    $data_array['plan_maestro'] = $fila['plan_maestro'];
-                    $datosf[] = $data_array;
+                    $datos['id'] = $fila['id'];
+                    $datos['id_lista_precios'] = $fila['id_lista_precios'];
+                    $datos['status'] = $fila['status'];
+                    $datos['id_producto'] = $fila['id_producto'];
+                    $datos['codigo_producto'] = $fila['codigo_producto'];
+                    $datos['nombre_producto'] = $fila['nombre_producto'];
+                    $datos['porcentaje_descuento'] = $fila['porcentaje_descuento'];
+                    $datos['id_precio_base'] = $fila['id_precio_base'];
+                    $datos['precio_base'] = $fila['precio_base'];
+                    $datos['precio_m3'] = $fila['precio_m3'];
+                    $datos['cantidad_m3'] = $fila['cantidad_m3'];
+                    $datos['saldo_m3'] = $fila['saldo_m3'];
+                    $datos['precio_total_pedido'] = $fila['precio_total_pedido'];
+                    $datos['observaciones'] = $fila['observaciones'];
+                    $datosf[] = $datos;
                 }
                 return $datosf; // Retorna el resultado
             } else {
