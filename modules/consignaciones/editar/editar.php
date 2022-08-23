@@ -31,7 +31,7 @@
                 $estado = $dato['estado'];
                 $fecha_consignacion = $dato['fecha_consignacion'];
                 $id_banco = $dato['id_banco'];
-                $valor = $dato['valor'];
+                $valor = number_format($dato['valor'],2,',','.' );
                 $id_cliente = $dato['id_cliente'];
                 $observaciones = $dato['observaciones'];
             }
@@ -75,7 +75,7 @@
                                 <div class="col-2">
                                     <div class="form-group">
                                         <label for="txtValorEditar" class="form-label">Valor:</label>
-                                        <input name="txtValorEditar" id="txtValorEditar" class="form-control" style="width: 100%;" value="<?= $valor ?>" onkeyup="format(this)" />
+                                        <input type="text" name="txtValorEditar" id="txtValorEditar" class="form-control" style="width: 100%;" value="<?= $valor ?>" onkeyup="format(this)" />
                                     </div>
                                 </div>
                                 <div class="col-5">

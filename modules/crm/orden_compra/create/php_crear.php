@@ -25,8 +25,14 @@ if (isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])) {
     $id_asesora = $_POST['asesora_comercial'];
     $nombre_asesora = $pedidos->get_nombre_asesora($id_asesora);
     $nombre_orden_compra = $_POST['orden_compra'];
+    $tipo_cliente = $pedidos->get_tipo_cliente($id_cliente);
+    if($tipo_cliente != 2){
+        $plan_maestro = false;
+    }else{
+        $plan_maestro = true;
+    }
     //VALIDAR QUE SE GUARDE CORRECTAMENTE EL PEDIDO...
-    if ($id = $pedidos->crear_pedido($id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora, $nombre_orden_compra)) {
+    if ($id = $pedidos->crear_pedido_obra($id_cliente, $nombre_cliente, $id_obra, $nombre_obra, $id_asesora, $nombre_asesora, $nombre_orden_compra, $plan_maestro)) {
         $php_estado = true;
     } else {
         $php_error = 'No Guardo Correctamente';

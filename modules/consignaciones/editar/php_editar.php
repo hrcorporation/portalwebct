@@ -41,18 +41,30 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
         $StrNombreCliente = $ClsConsignacion->fntGetNombreClienteObj($intIdCliente);
         //Estado de la consignacion
         $intIdEstado = 2;
-    }else{
+    } else {
         $intIdCliente = 0;
         $StrNombreCliente = "";
         $intIdEstado = 1;
     }
     //Observaciones o comentarios
     $StrObservaciones = $_POST['txtObservacionesEditar'];
+
+    $valor_anterior_consignacion = $ClsConsignacion->fntGetValorConsignacion($intId);
+    $comparacion = intval($dblValorConsignacion) - $valor_anterior_consignacion;
+    $saldo_cliente = $ClsConsignacion->fntGetSaldoCliente($intIdCliente);
+
+    if ($comparacion > 0) {
+        $nuevo_saldo_cliente = $saldo_cliente - $comparacion;
+        $ClsConsignacion->fntActualizarSaldoCliente($intIdCliente, $nuevo_saldo_cliente);
+    } else if ($comparacion < 0) {
+        $nuevo_saldo_cliente = $saldo_cliente + abs($comparacion);
+        $ClsConsignacion->fntActualizarSaldoCliente($intIdCliente, $nuevo_saldo_cliente);
+    } 
     //Modificacion de la consignacion
     if ($ClsConsignacion->fntEditarConsignacionObj($intId, $intIdEstado, $dtmFechaConsignacion, $intIdBanco, $StrBanco, $dblValorConsignacion, $intIdCliente, $StrNombreCliente, $StrObservaciones, $intIdUsuario, $StrNombreUsuario, $dtmHoy)) {
         $php_estado = true;
     } else {
-        $log = 'No Guardo Correctamente';
+        $resultado = 'No Guardo Correctamente';
     }
 }
 
@@ -60,6 +72,7 @@ $datos = array(
     'estado' => $php_estado,
     'errores' => $php_error,
     'result' => $resultado,
+    'compa' => $comparacion 
 );
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

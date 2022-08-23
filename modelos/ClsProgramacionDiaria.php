@@ -986,7 +986,7 @@ class clsProgramacionDiaria extends conexionPDO
         $this->id = $id_usuario;
         $sql = "SELECT COUNT(id) as cantidad 
         FROM `ct66_programacion_semanal_v2` 
-        WHERE `status` = 1 AND `id_usuario` = :id_usuario";
+        WHERE `status` = 3 AND `id_usuario` = :id_usuario";
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':id_usuario', $this->id, PDO::PARAM_INT);
         if ($stmt->execute()) {

@@ -20,13 +20,17 @@ if ($cantidad = $clsProgramacionDiaria->cargar_cantidad_metros($intidpedido, $in
     $nueva_cantidad = doubleval($cantidad_solicitada);
 }
 
-if ($cantidad_pedido = $clsProgramacionDiaria->cargar_cantidad_metros_pedido($intidpedido, $intidproducto)) {
+$cantidad_pedido = $clsProgramacionDiaria->cargar_cantidad_metros_pedido($intidpedido, $intidproducto);
+
+if ($cantidad_pedido > 0) {
     $cantidad_final = doubleval($cantidad_pedido) - doubleval($nueva_cantidad);
     if ($cantidad_final >= 0) {
         $boolPhpEstado = true;
     } else {
         $boolPhpEstado = false;
     }
+} else if ($cantidad_pedido == 0) {
+    $boolPhpEstado = true;
 } else {
     $boolPhpEstado = false;
 }

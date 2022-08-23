@@ -76,8 +76,8 @@
 </div>
 <!-- /.content-wrapper -->
 <!-- Modal -->
-<?php include 'modal_crear_consignacion.php' ?>
-<?php include 'modal_importar_consignacion.php' ?>
+<?php include 'modal/modal_crear_consignacion.php' ?>
+<?php include 'modal/modal_importar_consignacion.php' ?>
 <!-- /.modal-dialog -->
 <?php include '../../layout/footer/footer2.php' ?>
 <script>
@@ -242,6 +242,7 @@
             });
         }));
     });
+    
 </script>
 <script>
     $('.select2').select2({

@@ -16,13 +16,13 @@ $ClsConsignacion = new clsConsignacion();
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtFechaConsignacion" class="form-label">Fecha consignacion:</label>
-                                <input type="date" name="txtFechaConsignacion" id="txtFechaConsignacion" class="form-control" style="width: 100%;" />
+                                <input type="date" name="txtFechaConsignacion" id="txtFechaConsignacion" class="form-control" style="width: 100%;" required = "true" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="cbxBanco" class="form-label">Banco:</label>
-                                <select name="cbxBanco" id="cbxBanco" class="form-control select2" style="width: 100%;">
+                                <select name="cbxBanco" id="cbxBanco" class="form-control select2" style="width: 100%;" required = "true">
                                     <?= $ClsConsignacion->fntOptionBancosObj(); ?>
                                 </select>
                             </div>
@@ -32,13 +32,13 @@ $ClsConsignacion = new clsConsignacion();
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="txtValor" class="form-label">Valor:</label>
-                                <input name="txtValor" id="txtValor" class="form-control" style="width: 100%;" onkeyup="format(this)" />
+                                <input name="txtValor" id="txtValor" class="form-control" style="width: 100%;" onkeyup="format(this)" required = "true"/>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="cbxEstado" class="form-label">Estado:</label>
-                                <select name="cbxEstado" id="cbxEstado" class="form-control select2" style="width: 100%;">
+                                <label for="cbxEstado" class="form-label" required = "true">Estado:</label>
+                                <select name="cbxEstado" id="cbxEstado" class="form-control select2" style="width: 100%;" required>
                                     <?= $ClsConsignacion->fntOptionEstadosObj(); ?>
                                 </select>
                             </div>
@@ -56,7 +56,7 @@ $ClsConsignacion = new clsConsignacion();
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtObservaciones" class="form-label">Observaciones o comentarios:</label>
-                                <input name="txtObservaciones" id="txtObservaciones" class="form-control" style="width: 100%;" />
+                                <input name="txtObservaciones" id="txtObservaciones" class="form-control" style="width: 100%;"/>
                             </div>
                         </div>
                     </div>

@@ -10,6 +10,25 @@ class pedidos extends conexionPDO
         $this->PDO = new conexionPDO();
         $this->con = $this->PDO->connect();
     }
+    public function get_tipo_cliente($id_cliente){
+        $sql =  "SELECT `ct1_tipo_cliente` FROM `ct1_terceros` WHERE `ct1_IdTerceros` = :id_cliente";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['ct1_tipo_cliente'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     //Listar con un arreglo los valores de metros cubicos minimos.
     public function array_list_min_max($minimo, $maximo)
     {

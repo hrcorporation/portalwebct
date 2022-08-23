@@ -24,17 +24,26 @@ if (isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])) {
     $StrBanco = $ClsConsignaciones->fntGetBancoObj($intIdBanco);
     //Valor de la consignacion
     $dblValorConsignacion = str_replace(".", "", htmlspecialchars($_POST['txtValor']));
-    //Estado de la consignacion
-    $intIdEstado = $_POST['cbxEstado'];
+    if (isset($_POST['cbxEstado'])) {
+        //Estado de la consignacion
+        $intIdEstado = $_POST['cbxEstado'];
+    }else{
+        $intIdEstado = 1;
+    }
     //Id del cliente
     $intIdCliente = $_POST['cbxCliente'];
     //Nombre del cliente
     $StrNombreCliente = $ClsConsignaciones->fntGetNombreClienteObj($intIdCliente);
     //Observaciones o comentarios
     $StrObservaciones = $_POST['txtObservaciones'];
+
+    //Obtener el saldo del cliente
+    $dblSaldoCliente = $ClsConsignaciones->fntGetSaldoCliente($intIdCliente);
+    $dblSaldoNuevo = $dblSaldoCliente - $dblValorConsignacion;
     if ($ClsConsignaciones->fntCrearConsignacionObj($dtmFechaConsignacion, $intIdBanco, $StrBanco, $dblValorConsignacion, $intIdEstado,  $intIdCliente, $StrNombreCliente, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)) {
         //Si pasa la validacion se retorna verdadero(true)
         $boolPhpEstado = true;
+        $ClsConsignaciones->fntActualizarSaldoCliente($intIdCliente, $dblSaldoNuevo);
     } else {
         //De lo contrario mostrara un mensaje mostrando que no se guardo
         $php_error = 'No Guardo Correctamente';

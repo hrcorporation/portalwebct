@@ -12,6 +12,68 @@ class clsConsignacion extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - OBTENER NOMBRES////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Obtener el id del cliente mediante el id de la consignacion
+    public function fntGetValorConsignacion($id){
+        $sql = "SELECT `valor` FROM `ct66_consignacion` WHERE `id` = :id";
+         // Preparar Conexion
+         $stmt = $this->con->prepare($sql);
+         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+         // ejecuta la sentencia SQL
+         if ($stmt->execute()) {
+             $num_reg = $stmt->rowCount();
+             if ($num_reg > 0) {
+                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                     return $fila['valor'];
+                 }
+             } else {
+                 return false;
+             }
+         } else {
+             return false;
+         }
+    }
+    //Obtener el id del cliente mediante el id de la consignacion
+    public function fntGetIdCliente($id){
+        $sql = "SELECT `id_cliente` FROM `ct66_consignacion` WHERE `id` = :id";
+         // Preparar Conexion
+         $stmt = $this->con->prepare($sql);
+         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+         // ejecuta la sentencia SQL
+         if ($stmt->execute()) {
+             $num_reg = $stmt->rowCount();
+             if ($num_reg > 0) {
+                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                     return $fila['id_cliente'];
+                 }
+             } else {
+                 return false;
+             }
+         } else {
+             return false;
+         }
+    }
+    //Obtener el saldo del cliente
+    public function fntGetSaldoCliente($id_cliente)
+    {
+        $this->id_cliente = $id_cliente;
+        $sql = "SELECT `ct1_saldo_cliente` FROM `ct1_terceros` WHERE `ct1_IdTerceros` = :id_cliente;";
+        // Preparar Conexion
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        // ejecuta la sentencia SQL
+        if ($stmt->execute()) {
+            $num_reg = $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return $fila['ct1_saldo_cliente'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     // Traer el nombre del estado de la consignacion mediante el "id" de la consignacion.
     function fntGetEstadoObj($id_estado)
     {
@@ -378,6 +440,21 @@ class clsConsignacion extends conexionPDO
         $stmt->bindParam(':id_usuario', $intIdUsuario, PDO::PARAM_STR);
         $stmt->bindParam(':nombre_usuario', $StrNombreUsuario, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_modificacion', $dtmFecha, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Actualizar saldo del cliente
+    public function fntActualizarSaldoCliente($id_cliente, $saldo_cliente){
+        $this->id_cliente = $id_cliente;
+        $this->saldo_cliente = $saldo_cliente;
+        $sql = "UPDATE `ct1_terceros` SET `ct1_saldo_cliente` = :saldo WHERE `ct1_IdTerceros` = :id_cliente";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_cliente', $this->id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':saldo', $this->saldo_cliente, PDO::PARAM_STR);
         if ($stmt->execute()) {
             return true;
         } else {
