@@ -82,7 +82,7 @@ if (isset($_POST['task'])) {
         $intId = $_POST['id'];
         $intEstado = $clsProgramacionDiaria->fntGetEstadosProgramacionCliente2Obj($intId);
         //validar que la programacion se elimine correctamente mediante el parametro de el id de la programacion
-        if ($intEstado == 4) {
+        if ($intEstado == 3) {
             if ($clsProgramacionDiaria->fntEliminarProgramacionDiariaObj($intId)) {
                 $php_estado = true;
             } else {

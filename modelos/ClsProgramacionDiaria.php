@@ -133,7 +133,7 @@ class clsProgramacionDiaria extends conexionPDO
     // Obtener todas las programaciones (FUNCIONARIOS).
     public function fntGetProgDiariaFuncionario2Obj($id_linea_produccion)
     {
-        $sql = "SELECT * FROM `ct66_programacion_semanal_v2` WHERE `id_linea_produccion` = :linea_produccion";
+        $sql = "SELECT * FROM `ct66_programacion_semanal_v2` WHERE `id_linea_produccion` = :linea_produccion AND `status` >= 3 ";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':linea_produccion', $id_linea_produccion, PDO::PARAM_INT);
@@ -909,7 +909,7 @@ class clsProgramacionDiaria extends conexionPDO
     public function fntOptionLineaDespachoObj($id_linea_despacho = null)
     {
         $this->id = $id_linea_despacho;
-        $option = "<option> Seleccione la linea de despacho </option>";
+        $option = "<option value = '0'> Seleccione la linea de despacho </option>";
         $sql = "SELECT * FROM `ct66_linea_despacho` ";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -922,7 +922,7 @@ class clsProgramacionDiaria extends conexionPDO
                     } else {
                         $selection = "";
                     }
-                    $option .= '<option value="' . $fila['id'] . '"   ' . $selection . ' >' . $fila['descripcion'] . ' </option>';
+                    $option .= '<option value="' . $fila['id'] . '"   ' . $selection . '>' . $fila['descripcion'] . ' </option>';
                 }
             } else {
                 $option = "<option  selected='true' disabled='disabled'> Error al cargar datos</option>";
@@ -1094,6 +1094,21 @@ class clsProgramacionDiaria extends conexionPDO
     //////////////////////////////////UPDATE - EDITAR PROGRAMACION///////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // Cambiar estado de la programacion semanales (CLIENTE).
+    public function fntCambiarEstadoProgramacionDiariaHabilitar($id_programacion)
+    {
+        $estado = 3;
+        $sql = "UPDATE `ct66_programacion_semanal_v2`
+         SET `status` = :estado 
+         WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id_programacion, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+    // Cambiar estado de la programacion semanales (CLIENTE).
     public function fntCambiarEstadoProgramacionSemanalFuncionarioTresObj($id)
     {
         $estado = 6;
@@ -1222,6 +1237,32 @@ class clsProgramacionDiaria extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SELECT - OBTENER NOMBRES///////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    // Obtener el estado de una programacion (FUNCIONARIO).
+    public function fntGetEstadosProgramacionFuncionarioDosObj($id_programacion)
+    {
+        $this->id = $id_programacion;
+        $sql = "SELECT `id`, `status` 
+        FROM `ct66_programacion_semanal_v2`
+        WHERE `id` = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['status'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
+    }
     // Obtener todos los estados de las programaciones (CLIENTE).
     public function fntGetEstadosProgramacionCliente2Obj($id_programacion)
     {

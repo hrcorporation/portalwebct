@@ -152,6 +152,20 @@ if (isset($_POST['task'])) {
         } else {
             $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
         }
+    } else if ($_POST['task'] == 5) {
+        $intId = $_POST['id'];
+        $intEstadoProgramacion = $clsProgramacionDiaria->fntGetEstadosProgramacionFuncionarioDosObj($intId);
+        if ($intEstadoProgramacion == 4) {
+            if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionDiariaHabilitar($intId)) {
+                $php_estado = true;
+            } else {
+                $php_error = "ERROR";
+            }
+        } else if ($intEstadoProgramacion == 3) {
+            $php_error = "El cliente ya esta habilitado para modificar esta programacion";
+        } else {
+            $php_error = "Esta programacion no se le puede habilitar al cliente para hacer modificaciones";
+        }
     }
 }
 $datos = array(

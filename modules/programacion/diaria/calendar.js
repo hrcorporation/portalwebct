@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
   var calendarEl = document.getElementById("calendar"); // ID = calendar
+
+  var linea_produccion = $("#cbxlineaproduccion").val();
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
     // Configuracion
@@ -25,12 +27,45 @@ document.addEventListener("DOMContentLoaded", function () {
       // right: "dayGridMonth,timeGridWeek,timeGridDay",
       right: "timeGridDay",
     },
-    // Cargar Datos, los eventos del Calendario
+
+    // // Cargar Datos, los eventos del Calendario
+
+    //      events:  function () {
+    //     var events = [];
+    //     jQuery.ajax({
+    //       url: 'data_calendar.php',
+    //       type: 'POST',
+    //       dataType: 'json',
+    //       data: {
+    //         linea: "sadeads"
+    //       },
+    //       success: function (doc) {
+    //         console.log(doc)
+
+    //         if (doc != null) {
+    //           events.push({
+    //             id: doc.id,
+    //             title: doc.title,
+    //             start: doc.start,
+    //             end: doc.end
+    //           });
+    //         }
+    //         callback(events);
+    //       }
+    //     });
+    // },
+
     events: {
       url: "data_calendar.php",
       method: "POST",
-      extraParams: {
-        custom_param1: "something",
+      //dataType: 'json',
+      //cache: false,
+      //  type: 'POST',
+      extraParams: function () {
+        // a function that returns an object
+        return {
+          lineaproduccion: $("#cbxlineaproduccion").val(),
+        };
       },
       failure: function () {
         alert("Error al Cargar las programaciones");
@@ -180,11 +215,9 @@ document.addEventListener("DOMContentLoaded", function () {
             table.ajax.reload(null, false);
           }, 5000);
 
-//////////////////////////////////////////////
+          //////////////////////////////////////////////
 
-
-
-/////////////////////////////////////////////////
+          /////////////////////////////////////////////////
         },
         error: function (respuesta) {
           alert(JSON.stringify(respuesta));
@@ -226,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
       editar_event(form_editar, calendar);
     },
   });
-  calendar.render();
+  //calendar.render();
   // Boton Actualizar Programacion
   // Boton Actualizar Programacion
   document.getElementById("btnEliminar").addEventListener("click", function () {
@@ -278,6 +311,32 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
+  document
+    .getElementById("btnHabilitarCliente")
+    .addEventListener("click", function () {
+      const datos_form = new FormData(aceptar_programacion);
+      var form_editar = new FormData();
+      Swal.fire({
+        title:
+          "¿Esta seguro que desea habilitar al cliente para modificar la programacion?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si enviar",
+        denyButtonText: `No, Salir`,
+        confirmButtonColor: "#298a00",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          form_editar.append("task", 5); // actualizar
+          form_editar.append("id", form_show_event.id_prog_evento.value);
+          editar_event(form_editar, calendar);
+          $("#modal_show_evento").modal("hide");
+        } else if (result.isDenied) {
+        }
+      });
+    });
+
   function editar_event(form_editar, calendar) {
     $.ajax({
       url: "php_editar_prog_diaria.php",
@@ -298,6 +357,9 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (response.task == 4 && response.estado) {
           toastr.success("Programacion diaria confirmada correctamente");
           $("#modal_confirmar_programacion").modal("hide");
+        } else if (response.task == 5 && response.estado) {
+          toastr.success("El cliente ya puede modificar la programacion");
+          $("#modal_confirmar_programacion").modal("hide");
         } else {
           $("#modal_confirmar_programacion").modal("hide");
           toastr.warning(response.errores);
@@ -308,4 +370,39 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
+
+  calendar.render();
+
+  $("#cbxlineaproduccion").on("change", function () {
+    //alert($('#cbxlineaproduccion').val());
+    //$('#calendar').fullCalendar('refetchEvents');
+    calendar.refetchEvents();
+  });
+
+  $("#form_crear_programacion").on("submit", function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: "php_crear_prog_diaria.php",
+      type: "POST",
+      data: new FormData(this),
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (data) {
+        console.log(data);
+        if (data.estado) {
+          toastr.success("Se ha guardado correctamente");
+          calendar.refetchEvents();
+          $("#modal_show_evento").modal("hide");
+        } else {
+          toastr.warning(data.errores);
+        }
+      },
+      error: function (respuesta) {
+        alert(JSON.stringify(respuesta));
+      },
+    });
+  });
+
+  
 });

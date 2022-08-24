@@ -604,10 +604,10 @@ class clsProgramacionSemanal extends conexionPDO
         }
     }
     // Crear programacion semanal.
-    public function fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $linea_despacho, $requiere_bomba, $fecha_ini, $fecha_fin, $observaciones, $id_usuario, $nombre_usuario)
+    public function fntCrearProgSemanalPedidosBool($status, $id_cliente, $nombre_cliente, $id_obra, $nombre_obra,  $id_pedido, $id_producto, $nombre_producto, $cantidad, $frecuencia, $requiere_bomba, $id_tipo_descargue, $nombreTipoDescargue, $metrosTuberia, $fecha_ini, $fecha_fin, $elementos, $observaciones, $id_usuario, $nombre_usuario)
     {
-        $sql = "INSERT INTO `ct66_programacion_semanal_v2`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `frecuencia`, `id_linea_produccion`, `requiere_bomba`, `fecha_ini`, `fecha_fin`, `observaciones`, `id_usuario`, `nombre_usuario`) 
-        VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :frecuencia, :linea_despacho, :requiere_bomba, :fecha_ini, :fecha_fin, :observaciones, :id_usuario, :nombre_usuario)";
+        $sql = "INSERT INTO `ct66_programacion_semanal_v2`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `frecuencia`, `requiere_bomba`, `id_tipo_descargue`, `nombre_tipo_descargue`, `metros_tuberia`, `fecha_ini`, `fecha_fin`, `elementos_fundir`, `observaciones`, `id_usuario`, `nombre_usuario`) 
+        VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :frecuencia, :requiere_bomba, :id_tipo_descargue, :nombre_tipo_descargue, :metros_tuberia, :fecha_ini, :fecha_fin, :elementos_fundir, :observaciones, :id_usuario, :nombre_usuario)";
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
         // Asignando Datos ARRAY => SQL
@@ -621,8 +621,13 @@ class clsProgramacionSemanal extends conexionPDO
         $stmt->bindParam(':nombre_producto', $nombre_producto, PDO::PARAM_STR);
         $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_STR);
         $stmt->bindParam(':frecuencia', $frecuencia, PDO::PARAM_STR);
-        $stmt->bindParam(':linea_despacho', $linea_despacho, PDO::PARAM_STR);
         $stmt->bindParam(':requiere_bomba', $requiere_bomba, PDO::PARAM_STR);
+
+        $stmt->bindParam(':id_tipo_descargue', $id_tipo_descargue, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_tipo_descargue', $nombreTipoDescargue, PDO::PARAM_STR);
+        $stmt->bindParam(':metros_tuberia', $metrosTuberia, PDO::PARAM_STR);
+        $stmt->bindParam(':elementos_fundir', $elementos, PDO::PARAM_STR);
+
         $stmt->bindParam(':fecha_ini', $fecha_ini, PDO::PARAM_STR);
         $stmt->bindParam(':fecha_fin', $fecha_fin, PDO::PARAM_STR);
         $stmt->bindParam(':observaciones', $observaciones, PDO::PARAM_STR);

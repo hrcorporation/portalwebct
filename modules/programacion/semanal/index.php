@@ -86,7 +86,7 @@
                 e.preventDefault();
             });
     });
-    
+
     $(function() {
         //Ocultar el input del volumen o cantidad de m3
         $("#volumen").hide();
@@ -352,7 +352,7 @@
                 });
             }
         });
-        //Para crear una programacion semanal.
+        // //Para crear una programacion semanal.
         $("#form_crear_programacion").on('submit', (function(e) {
             e.preventDefault();
             $.ajax({

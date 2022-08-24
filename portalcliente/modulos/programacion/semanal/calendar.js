@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let form_crear_programacion = document.querySelector("#form_crear_programacion");
+  let form_crear_programacion = document.querySelector(
+    "#form_crear_programacion"
+  );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
-  let aceptar_programacion = document.querySelector("#form_aceptar_programacion");
+  let aceptar_programacion = document.querySelector(
+    "#form_aceptar_programacion"
+  );
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //Crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -142,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Esta seguro que desea eliminar",
       showDenyButton: true,
       showCancelButton: true,
-      confirmButtonText: "Si eliminar", 
+      confirmButtonText: "Si eliminar",
       denyButtonText: `No, Salir`,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
@@ -154,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
         editar_event(form_editar, calendar);
         $("#modal_show_evento").modal("hide");
       } else if (result.isDenied) {
-        
       }
     });
   });
@@ -167,7 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const datos_form = new FormData(aceptar_programacion);
       var form_editar = new FormData();
       Swal.fire({
-        title: "¿Esta seguro que desea enviar la programacion al area de logistica de Concre Tolima?",
+        title:
+          "¿Esta seguro que desea enviar la programacion al area de logistica de Concre Tolima?",
         text: "NO PODRA HACER MODIFICACIONES DESPUES DE ENVIAR LA PROGRAMACION",
         showDenyButton: true,
         showCancelButton: true,
@@ -178,17 +182,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          form_editar.append("task", 4); // enviar programacio 
+          form_editar.append("task", 4); // enviar programacio
           form_editar.append("id", form_show_event.id_prog_evento.value);
           editar_event(form_editar, calendar);
           $("#modal_show_evento").modal("hide");
         } else if (result.isDenied) {
-
         }
       });
     });
 
-    calendar.render();
+  calendar.render();
   // Boton Actualizar Evento btnCargarProgramacion
   document
     .getElementById("btnConfirmarTodaProgramacion")
@@ -235,12 +238,16 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (response.task == 3 && response.estado) {
           toastr.success("Programacion Actualizada Satisfactoriamente");
         } else if (response.task == 4 && response.estado) {
-          toastr.success("Programacion enviada correctamente al area de logistica");
+          toastr.success(
+            "Programacion enviada correctamente al area de logistica"
+          );
           $("#modal_aceptar_programacion").modal("hide");
-        } else if(response.task == 5 && response.estado){
-          toastr.success("Programaciones enviadas correctamente al area de logistica de Concre Tolima");
-          $('#modal_aceptar_toda_programacion').modal("hide"); 
-        }else {
+        } else if (response.task == 5 && response.estado) {
+          toastr.success(
+            "Programaciones enviadas correctamente al area de logistica de Concre Tolima"
+          );
+          $("#modal_aceptar_toda_programacion").modal("hide");
+        } else {
           toastr.warning(response.errores);
           $("#modal_aceptar_programacion").modal("hide");
           $("#modal_aceptar_toda_programacion").modal("hide");
@@ -251,4 +258,32 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
+
+  //Crear programacion semanal
+  $("#form_crear_programacion").on("submit", function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: "php_crear_prog_semanal.php",
+      type: "POST",
+      data: new FormData(this),
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (data) {
+        console.log(data);
+        if (data.estado) {
+          toastr.success("Se ha guardado correctamente");
+          calendar.refetchEvents();
+          $("#modal_crear_evento").modal("hide");
+        } else {
+          toastr.warning(data.errores);
+        }
+      },
+      error: function (respuesta) {
+        alert(JSON.stringify(respuesta));
+      },
+    });
+  });
+
+  
 });

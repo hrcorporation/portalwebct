@@ -45,14 +45,14 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="form-group">
-                            <span  class="badge bg-secondary">
+                            <span class="badge bg-secondary">
                                 <?= $intCantidadProgramacionSinConfirmarCliente ?> - Sin Confirmar programacion diaria por parte del cliente
                             </span>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group">
-                            <span  class="badge bg-lightblue">
+                            <span class="badge bg-lightblue">
                                 <?= $intCantidadProgramacionSinConfirmarFuncionario ?> - Sin Confirmar programacion diaria por parte de logistica
                             </span>
                         </div>
@@ -104,21 +104,26 @@
     $(document).ready(function() {
         $('.select').select2();
     });
-    
-    $('#cbxlineaproduccion').on('change', function() {
-        var formData = new FormData();
-        formData.append('linea_produccion', $("#cbxlineaproduccion").val());
-        $.ajax({
-            url: "data_calendar.php",
-            method: "POST",
-            extraParams: {
-                custom_param1: "something",
-            },
-            failure: function() {
-                alert("Error al Cargar las programaciones");
-            },
-        });
-    });
+
+
+    // $(document).ready(function() {
+    //     $('#cbxlineaproduccion').on('change', function() {
+    //         var formData = new FormData();
+    //         var linea = $('#cbxlineaproduccion').val();
+    //         formData.append('linea_produccion', linea);
+    //         $.ajax({
+    //             url: "data_calendar.php",
+    //             method: "POST",
+    //             extraParams: {
+    //                 custom_param1: "something",
+    //             },
+    //             failure: function() {
+    //                 alert("Error al Cargar las programaciones");
+    //             },
+    //         });
+    //     });
+    // });
+
     $("#volumen").hide();
     //Validar que la cantidad de m3 no exceda al que esta en el pedido al crear la programacion semanal
     $('#txtCant').on('change', function() {
@@ -390,29 +395,7 @@
     });
 
 
-    $("#form_crear_programacion").on('submit', (function(e) {
-        e.preventDefault();
-        $.ajax({
-            url: "php_crear_prog_diaria.php",
-            type: "POST",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(data) {
-                console.log(data);
-                if (data.estado) {
-                    toastr.success('Se ha guardado correctamente');
-                } else {
-                    toastr.warning(data.errores);
-                }
-            },
-            error: function(respuesta) {
-                alert(JSON.stringify(respuesta));
-            },
-        });
-    }));
-
+   
     $("#form_mostrar_programacion").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({

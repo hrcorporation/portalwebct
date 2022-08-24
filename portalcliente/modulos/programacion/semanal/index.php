@@ -43,9 +43,27 @@ $id_obra = $_GET['id_obra'];
                 </div>
             </div>
             <div class="card-body">
-                <button class="btn btn-success" id="btnAceptarTodaProgramacion" data-toggle="modal" data-target="#modal_aceptar_toda_programacion">
-                    Aceptar y enviar
-                </button>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <button class="btn btn-success" id="btnAceptarTodaProgramacion" data-toggle="modal" data-target="#modal_aceptar_toda_programacion">
+                                Aceptar y enviar
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <div class="col-4">
+                        <div class="form-group">
+                            <a class="btn btn-info" href="https://wa.me/+573175331444" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Contacto a Logistica de Concre Tolima
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="col-6">
+                        <div class="form-group">
+                            
+                        </div>
+                    </div>
+                </div>
                 <div id='calendar'></div>
             </div>
             <!-- /.card-body -->
@@ -166,29 +184,29 @@ $id_obra = $_GET['id_obra'];
             });
         }));
         //Crear programacion semanal
-        $("#form_crear_programacion").on('submit', (function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "php_crear_prog_semanal.php",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data);
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
-                        $('#modal_crear_evento').modal('hide');
-                    } else {
-                        toastr.warning(data.errores);
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        }));
+        // $("#form_crear_programacion").on('submit', (function(e) {
+        //     e.preventDefault();
+        //     $.ajax({
+        //         url: "php_crear_prog_semanal.php",
+        //         type: "POST",
+        //         data: new FormData(this),
+        //         contentType: false,
+        //         cache: false,
+        //         processData: false,
+        //         success: function(data) {
+        //             console.log(data);
+        //             if (data.estado) {
+        //                 toastr.success('Se ha guardado correctamente');
+        //                 $('#modal_crear_evento').modal('hide');
+        //             } else {
+        //                 toastr.warning(data.errores);
+        //             }
+        //         },
+        //         error: function(respuesta) {
+        //             alert(JSON.stringify(respuesta));
+        //         },
+        //     });
+        // }));
         //Aceptar programacion y cambiar estado a (Por confirmar)
         $("#form_aceptar_toda_programacion").on('submit', (function(e) {
             e.preventDefault();

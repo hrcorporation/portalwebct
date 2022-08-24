@@ -87,7 +87,7 @@ $pedidos = new pedidos();
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="txtcantidadmetros" class="form-label">Cantidad metros cubicos:</label>
-                                    <input type="text" name="txtcantidadmetros" id="txtcantidadmetros" class="form-control validanumericos" style="width: 100%;" value = "<?=$cantidad?>"/>
+                                    <input type="text" name="txtcantidadmetros" id="txtcantidadmetros" class="form-control validanumericos" style="width: 100%;" value="<?= $cantidad ?>" />
                                 </div>
                             </div>
                             <div class="col-5">
@@ -134,8 +134,10 @@ $pedidos = new pedidos();
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="txtEspesorPlaca" class="form-label">Espesor de la placa:</label>
-                                    <input type="number" name="txtEspesorPlaca" id="txtEspesorPlaca" class="form-control" style="width: 100%;" />
+                                    <label for="cbxTipoDescargue" class="form-label">Tipo de descargue:</label>
+                                    <select name="cbxTipoDescargue" id="cbxTipoDescargue" class="form-control select2" style="width: 100%;" required="true">
+                                        <?= $clsProgramacionSemanal->fntOptionTipoDescargueObj(); ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col">
@@ -152,16 +154,28 @@ $pedidos = new pedidos();
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label class="form-label">Linea de despacho:</label>
-                                    <select name="cbxlineadespacho" id="cbxlineadespacho" class="form-control select2" style="width: 100%;">
-                                        <?= $clsProgramacionSemanal->fntOptionLineaDespachoObj() ?>
-                                    </select>
+                                    <label for="txtEspesorPlaca" class="form-label">Espesor de la placa:</label>
+                                    <input type="number" name="txtEspesorPlaca" id="txtEspesorPlaca" class="form-control" style="width: 100%;" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="txtHoraCargue" class="form-label">Hora de cargue:</label>
                                     <input type="time" name="txtHoraCargue" id="txtHoraCargue" class="form-control" style="width: 100%;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="txtHoraCargue" class="form-label">Elementos a fundir:</label>
+                                    <input type="text" name="txtElementosFundir" id="txtElementosFundir" class="form-control" style="width: 100%;" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="txtHoraCargue" class="form-label">Metros tuberia:</label>
+                                    <input type="text" name="txtMetrosTuberia" id="txtMetrosTuberia" class="form-control" style="width: 100%;" />
                                 </div>
                             </div>
                         </div>
@@ -187,10 +201,43 @@ $pedidos = new pedidos();
 <?php include '../../../../layout/footer/footer4.php' ?>
 
 <script>
+    //Al dar click al checkbox se despliega una lista diferente de tipo de descargue a la hora de crear una programacion semanal.
+    $('#chkRequiereBomba').on('click', function() {
+        //Ajax 
+        var formData = 'null';
+        if ($(this).is(':checked')) {
+            $.ajax({
+                url: "load_tipo_descargue.php", // URL
+                type: "POST", // Metodo HTTP
+                data: formData,
+
+                success: function(data) {
+                    $("#cbxTipoDescargue").html(data.select_tipo_uno)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        } else {
+            $.ajax({
+                url: "load_tipo_descargue.php", // URL
+                type: "POST", // Metodo HTTP
+                data: formData,
+                success: function(data) {
+                    $("#cbxTipoDescargue").html(data.select_tipo_dos)
+                },
+                error: function(respuesta) {
+                    alert(JSON.stringify(respuesta));
+                },
+            });
+        }
+    });
+
     $(function() {
         $(".progress").hide();
         $('.select2').select2();
     });
+
     $(function() {
         $('.validanumericos').keypress(function(e) {
                 if (isNaN(this.value + String.fromCharCode(e.charCode)))
@@ -200,6 +247,7 @@ $pedidos = new pedidos();
                 e.preventDefault();
             });
     });
+    
     $("#form_crear_programacion").on('submit', (function(e) {
         e.preventDefault();
         $.ajax({

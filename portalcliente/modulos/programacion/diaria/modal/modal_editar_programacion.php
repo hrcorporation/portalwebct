@@ -137,7 +137,7 @@ $clsProgramacionDiaria = new clsProgramacionDiaria();
                 <div class="modal-footer">
                     <button type="button" id="btnConfirmarProgramacion" class="btn btn-success" data-toggle="modal" data-target="#modal_confirmar_programacion">Confirmar</button>
                     <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
-                    <button type="button" id="btnEliminar" class="btn btn-danger">Eliminar</button>
+                    <button type="button" id="btnEliminar" class="btn btn-danger">Cancelar programacion</button>
                 </div>
             </form>
         </div>

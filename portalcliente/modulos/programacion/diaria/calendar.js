@@ -203,11 +203,11 @@ document.addEventListener("DOMContentLoaded", function () {
       success: function (response) {
         calendar.refetchEvents();
         if (response.task == 1 && response.estado) {
-          toastr.success("Programacion Actualizada Satisfactoriamente");
+          toastr.success("Programacion Actualizada satisfactoriamente");
         } else if (response.task == 2 && response.estado) {
-          toastr.success("Programacion eliminada Satisfactoriamente");
+          toastr.success("Programacion Actualizada satisfactoriamente");
         } else if (response.task == 3 && response.estado) {
-          toastr.success("Programacion Actualizada Satisfactoriamente");
+          toastr.success("Programacion cancelada satisfactoriamente");
         } else if (response.task == 4 && response.estado) {
           toastr.success("Programacion diaria confirmada correctamente");
           $('#modal_confirmar_programacion').modal("hide"); 

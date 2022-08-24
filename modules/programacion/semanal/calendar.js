@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let form_crear_programacion = document.querySelector("#form_crear_programacion");
+  let form_crear_programacion = document.querySelector(
+    "#form_crear_programacion"
+  );
   let form_show_event = document.querySelector("#form_mostrar_programacion");
-  let aceptar_programacion = document.querySelector("#form_confirmar_programacion");
+  let aceptar_programacion = document.querySelector(
+    "#form_confirmar_programacion"
+  );
   var calendarEl = document.getElementById("calendar"); // ID = calendar
   //crear calendario
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -106,8 +110,14 @@ document.addEventListener("DOMContentLoaded", function () {
       var form_editar = new FormData();
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
-      form_editar.append("txtInicio", moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss"));
-      form_editar.append("txtFin", moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss"));
+      form_editar.append(
+        "txtInicio",
+        moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
+      );
+      form_editar.append(
+        "txtFin",
+        moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
+      );
       editar_event(form_editar, calendar);
     },
 
@@ -117,8 +127,14 @@ document.addEventListener("DOMContentLoaded", function () {
       var form_editar = new FormData();
       form_editar.append("task", 1);
       form_editar.append("id", info.event.id);
-      form_editar.append("txtInicio", moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss"));
-      form_editar.append("txtFin", moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss"));
+      form_editar.append(
+        "txtInicio",
+        moment(info.event.startStr).format("YYYY-MM-DD HH:mm:ss")
+      );
+      form_editar.append(
+        "txtFin",
+        moment(info.event.endStr).format("YYYY-MM-DD HH:mm:ss")
+      );
       console.log(form_editar);
       editar_event(form_editar, calendar);
     },
@@ -157,7 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const datos_form = new FormData(aceptar_programacion);
       var form_editar = new FormData();
       Swal.fire({
-        title: "¿Esta seguro que desea confirmar y cargar la programacion diaria?",
+        title:
+          "¿Esta seguro que desea confirmar y cargar la programacion diaria?",
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Si enviar",
@@ -212,7 +229,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const datos_form = new FormData(aceptar_programacion);
       var form_editar = new FormData();
       Swal.fire({
-        title: "¿Esta seguro que desea confirmar y cargar todas las programaciones diarias?",
+        title:
+          "¿Esta seguro que desea confirmar y cargar todas las programaciones diarias?",
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Si enviar",
@@ -254,7 +272,9 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (response.task == 5 && response.estado) {
           toastr.success("El cliente ya puede modificar la programacion");
         } else if (response.task == 6 && response.estado) {
-          toastr.success("Programaciones confirmadas y enviadas a la programacion diaria");
+          toastr.success(
+            "Programaciones confirmadas y enviadas a la programacion diaria"
+          );
           $("#modal_cargar_programacion").modal("hide");
         } else {
           toastr.warning(response.errores);
@@ -266,4 +286,32 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
+
+  // //Para crear una programacion semanal.
+  $("#form_crear_programacion").on("submit", function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: "php_crear_prog_semanal.php",
+      type: "POST",
+      data: new FormData(this),
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (data) {
+        console.log(data);
+        if (data.estado) {
+          toastr.success("Se ha guardado correctamente");
+          calendar.refetchEvents();
+          $("#modal_crear_evento").modal("hide");
+        } else {
+          toastr.warning(data.errores);
+        }
+      },
+      error: function (respuesta) {
+        alert(JSON.stringify(respuesta));
+      },
+    });
+  });
+
+
 });

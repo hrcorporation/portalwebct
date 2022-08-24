@@ -117,7 +117,7 @@
                 <div class="modal-footer">
                     <button type="button" id="btnConfirmar" class="btn btn-success" data-toggle="modal" data-target="#modal_aceptar_programacion"> Confirmar </button>
                     <button type="submit" id="btnGuardar" class="btn btn-primary"> Guardar </button>
-                    <button type="button" id="btnEliminar" class="btn btn-danger"> Eliminar </button>
+                    <button type="button" id="btnEliminar" class="btn btn-danger"> Cancelar programacion </button>
                     <button type="button" class="btn btn-info" data-dismiss="modal"> Cerrar </button>
                 </div>
             </form>
