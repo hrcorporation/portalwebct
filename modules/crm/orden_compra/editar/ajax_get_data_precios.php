@@ -13,10 +13,8 @@ $resultado = "";
 $precio_subtotal = 0;
 if (isset($_POST['task']) && !empty($_POST['task'])) {
     $id_producto = $_POST['id_producto'];
-    $precio_producto = doubleval($pedidos->get_precio_producto($id_producto));
-    // $descuento = doubleval($_POST['descuento']);
-    // CALCULAR EL DESCUENTO DEL VALOR DEL PRODUCTO
-    // $precio_subtotal = $pedidos->calcularDescuento($precio_producto, $descuento);
+    $id_lista_precios = $_POST['id_lista_precios'];
+    $precio_producto = doubleval($pedidos->get_precio_producto($id_producto, $id_lista_precios));
     $php_msg = "bien";
     $php_estado = true;
 } else {

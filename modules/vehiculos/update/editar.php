@@ -19,11 +19,14 @@ if ($datos_vehiculo) {
         $letras = $fila['ct10_letras'];
         $num = $fila['ct10_num'];
         $placa = $fila['ct10_Placa'];
+        $cantidadm3 = $fila['ct10_cantidadm3'];
     }
 }
 
 ?>
-<script> var id = <?php echo json_encode($id_vehiculo);?>; </script>
+<script>
+    var id = <?php echo json_encode($id_vehiculo); ?>;
+</script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -35,29 +38,25 @@ if ($datos_vehiculo) {
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Editar Datos Vehiculo</h3>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                 </div>
             </div>
             <div class="card-body">
@@ -65,15 +64,9 @@ if ($datos_vehiculo) {
                     <form name="F_editar" id="F_editar" method="POST">
                         <input type="hidden" value="<?php echo $_GET['id']; ?>" name="txt_id" id="txt_id">
                         <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Escribir Placa del Vehiculo</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-2">
                                 <div class="form-group">
+                                    <label>Escribir Placa del Vehiculo - LETRAS</label>
                                     <input type="text" id="txt_letras" name="txt_letras" value="<?php echo $letras; ?>" class="form-control" placeholder="Solo Letras">
                                 </div>
                             </div>
@@ -82,24 +75,31 @@ if ($datos_vehiculo) {
                             </div>
                             <div class="col-2">
                                 <div class="form-group">
+                                    <label>Escribir Placa del Vehiculo - NUMEROS</label>
                                     <input type="text" id="txt_num" name="txt_num" class="form-control" value="<?php echo $num; ?>" placeholder="Solo numeros">
                                 </div>
                             </div>
-
-
+                            <div class="col-1">
+                                <center> - </center>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label>Cantidad m3 limite:</label>
+                                    <br><br>
+                                    <input type="text" id="txt_m3" name="txt_m3" class="form-control" value = "<?php echo $cantidadm3?>">
+                                </div>
+                            </div>
                         </div>
-
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <button type="submit">Guardar</button>
+                                    <button class="btn btn-success" type="submit">Guardar</button>
 
                                 </div>
                             </div>
-
                             <div class="col">
                                 <div class="form-group">
-                                    <button type="button" id="btn-eliminar">Eliminar</button>
+                                    <button class="btn btn-danger" id="btn-eliminar">Eliminar</button>
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,7 @@ $ClsProgramacionSemanal = new ClsProgramacionSemanal();
             <div class="modal-body">
                 <form name="form_crear_precio_producto" id="form_crear_precio_producto" method="post">
                     <input type="hidden" name="id" id="id" value="<?= $id ?>">
+                    <input type="hidden" name="id_lista_precio" id="id_lista_precio" value="<?= $id_lista_pedidos ?>">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">

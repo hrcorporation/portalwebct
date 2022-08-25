@@ -32,24 +32,26 @@ $cupo_cliente = $clsSaldosClientes->get_cupo_cliente($intidcliente);
 $valor_calculo = $cupo_cliente - ($saldo_cliente + $valor_producto);
 $cantidad_pedido = $clsProgramacionSemanal->cargar_cantidad_metros_pedido($intidpedido, $intidproducto);
 
-if ($cantidad_pedido >0) {
+if ($cantidad_pedido > 0) {
     $cantidad_final = doubleval($cantidad_pedido) - doubleval($nueva_cantidad);
-    if ($cantidad_final >= 0) {
+    if ($cantidad_final > 0) {
         $boolPhpEstado = true;
-    } else {
+        $cantidad_imp = $cantidad_solicitada;
+    } else if($cantidad_final == 0){
+        $boolPhpEstado = true;
+        $cantidad_imp = $cantidad_solicitada;
+    }else {
         $boolPhpEstado = false;
+        $cantidad_imp = $cantidad_pedido;
     }
-} else if($cantidad_pedido == 0){
-    $boolPhpEstado = true;
-} else {
+}  else {
     $boolPhpEstado = false;
 }
 
 
 $datos = array(
     'estado' => $boolPhpEstado,
-    'cantidad_final' => $valor_calculo
-
+    'cantidad_final' => $cantidad_imp
 );
 
 echo json_encode($datos, JSON_FORCE_OBJECT);

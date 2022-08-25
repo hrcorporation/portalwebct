@@ -94,26 +94,19 @@ if (isset($_POST['task'])) {
         if ($hoy <= $dtmFechaInicio) {
             if ($clsProgramacionDiaria->fntEditarProgramacionTodoFuncionarioBool($intId, $intIdCliente, $strNombreCliente, $intIdObra, $StrNombreObra, $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $StrObservaciones, $dtmFechaInicio, $dtmFechaFin, $hoy, $id_usuario, $nombre_usuario)) {
                 $php_estado = true;
-                $objEstados = $clsProgramacionDiaria->fntGetEstadosProgramacionClienteUnoObj($intId);
-                if (is_array($objEstados)) {
-                    foreach ($objEstados as $estado) {
-                        $intEstadoProgramacion = $estado['status'];
-                        if ($intEstadoProgramacion == 4) {
-                            if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj($intId)) {
-                                //Si pasa la validacion se retorna verdadero(true)
-                                $php_estado = true;
-                            } else {
-                                //De lo contrario mostrara un mensaje mostrando que no se guardo
-                                $php_error = 'No Guardo Correctamente';
-                            }
-                        } else if ($intEstadoProgramacion == 3) {
-                            $php_error = 'Hay que esperar la confirmacion del cliente';
-                        } else {
-                            $php_error = 'La programacion ya fue cargada anteriormente';
-                        }
+                $intEstadoProgramacion = $clsProgramacionDiaria->fntGetEstadosProgramacionClienteUnoObj($intId);
+                if ($intEstadoProgramacion == 4) {
+                    if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionSemanalFuncionarioDosObj($intId)) {
+                        //Si pasa la validacion se retorna verdadero(true)
+                        $php_estado = true;
+                    } else {
+                        //De lo contrario mostrara un mensaje mostrando que no se guardo
+                        $php_error = 'No Guardo Correctamente';
                     }
+                } else if ($intEstadoProgramacion == 3) {
+                    $php_error = 'Hay que esperar la confirmacion del cliente';
                 } else {
-                    $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
+                    $php_error = 'La programacion ya fue cargada anteriormente';
                 }
             } else {
                 $php_error = 'ERROR';
@@ -131,26 +124,83 @@ if (isset($_POST['task'])) {
         }
     } else if ($_POST['task'] == 4) {
         $intId = $_POST['id'];
-        $objEstados = $clsProgramacionDiaria->fntGetEstadosProgramacionClienteUnoObj($intId);
-        if (is_array($objEstados)) {
-            foreach ($objEstados as $estado) {
-                $intEstadoProgramacion = $estado['status'];
-                if ($intEstadoProgramacion == 5) {
-                    if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionSemanalFuncionarioTresObj($intId)) {
-                        //Si pasa la validacion se retorna verdadero(true)
-                        $php_estado = true;
-                    } else {
-                        //De lo contrario mostrara un mensaje mostrando que no se guardo
-                        $php_error = 'No Guardo Correctamente';
+        $intEstadoProgramacion = $clsProgramacionDiaria->fntGetEstadosProgramacionClienteUnoObj($intId);
+        $datos_programacion = $clsProgramacionDiaria->fntCargarDataProgramacionDiariaObj($intId);
+        if ($intEstadoProgramacion == 5) {
+            if ($clsProgramacionDiaria->fntCambiarEstadoProgramacionSemanalFuncionarioTresObj($intId)) {
+                //Si pasa la validacion se retorna verdadero(true).
+                $php_estado = true;
+                if (is_array($datos_programacion)) {
+                    foreach ($datos_programacion as $dato) {
+                        $intEstadoProgramacion  = 6;
+                        $intIdCliente = $dato['cliente'];
+                        $strNombreCliente = $dato['nombre_cliente'];
+                        $intIdObra = $dato['obra'];
+                        $strNombreObra = $dato['nombre_obra'];
+                        $intIdPedido = $dato['id_pedido'];
+                        $intIdProducto = $dato['producto'];
+                        $strNombreProducto = $dato['nombre_producto'];
+                        $intCantidad = $dato['cantidad'];
+                        $dtmFrecuencia = $dato['frecuencia'];
+                        $boolRequiereBomba = $dato['requiere_bomba'];
+                        $intIdLineaDespacho = $dato['id_linea_produccion'];
+                        $strNombreLineaDespacho = $dato['nombre_linea_produccion'];
+                        $intIdTipoDescargue = $dato['id_tipo_descargue'];
+                        $strNombreTipoDescargue = $dato['nombre_tipo_descargue'];
+                        $dtmFechaInicial = $dato['inicio'];
+                        $dtmFechaFinal = $dato['fin'];
+                        $strElementosFundir = $dato['elementos_fundir'];
+                        $strObservaciones = $dato['observaciones'];
+                        $intIdUsuario = $dato['id_usuario'];
+                        $strNombreUsuario = $dato['nombre_usuario'];
+                        $valor_programacion = 0;
+
+                        if ($intCantidad > 7) {
+                            $numeroViajes = ($intCantidad / 7);
+                            $numeroViajesAp = intval(ceil($numeroViajes));
+                        } else {
+                            $numeroViajesAp = 1;
+                        }
+
+                        $intIdMixer = $dato['id_mixer'];
+                        $strPlacaMixer = $dato['mixer'];
+                        $intIdConductor = $dato['id_conductor'];
+                        $strNombreConductor = $dato['nombre_conductor'];
+                        $intTipoBomba = $dato['id_tipo_bomba'];
+                        $strNombreTipoBomba = $dato['tipo_bomba'];
+                        $metrosTuberia = $dato['metros'];
+                        //Calcular los metros cubicos de cada viaje
+                        $metrosCubicos = ($intCantidad / $numeroViajesAp);
+                        //Calcular la hora del cargue
+                        $dtmhoracargue = $clsProgramacionDiaria->restar($dtmFechaInicial, "01:00:00");
+                        //La hora de la mixer en obra
+                        $dtmhoramixerobra = $dtmFechaInicial;
+                        //Calcular la nueva fecha inicial teniendo en cuenta la frecuencia
+                        $dtmnuevafechainicial = $clsProgramacionDiaria->restar($dtmFechaInicial, $dtmFrecuencia);
+                        //Calcular la fecha final de la programacion
+                        $dtmNuevaFechafin = $clsProgramacionDiaria->sumar($dtmnuevafechainicial, $dtmFrecuencia);
                     }
-                } else if ($intEstadoProgramacion == 4) {
-                    $php_error = 'Hay que completar todos los datos para poder confirmar la programacion';
-                } else {
-                    $php_error = 'La programacion ya fue cargada anteriormente';
+                    for ($i = 0; $i < $numeroViajesAp; $i++) {
+                        if ($clsProgramacionDiaria->fntDividirProgramacion($intEstadoProgramacion, $intIdCliente, $strNombreCliente, $intIdObra, $strNombreObra,  $intIdPedido, $intIdProducto, $strNombreProducto, $intIdLineaDespacho, $strNombreLineaDespacho, $dtmhoracargue, $dtmhoramixerobra, $intIdMixer, $strPlacaMixer, $intIdConductor, $strNombreConductor, $metrosCubicos, $boolRequiereBomba, $intIdTipoDescargue, $strNombreTipoDescargue, $intTipoBomba, $strNombreTipoBomba, $metrosTuberia, $dtmnuevafechainicial, $dtmNuevaFechafin, $strElementosFundir, $strObservaciones, $intIdUsuario, $strNombreUsuario)) {
+                            //Calcular la nueva fecha inicial teniendo en cuenta la frecuencia
+                            $dtmnuevafechainicial = $clsProgramacionDiaria->sumar($dtmnuevafechainicial, $dtmFrecuencia);
+                            //Calcular la fecha final de la programacion
+                            $dtmNuevaFechafin = $clsProgramacionDiaria->sumar($dtmnuevafechainicial, $dtmFrecuencia);
+                            //Calcular la hora del cargue
+                            $dtmhoracargue = $clsProgramacionDiaria->sumar($dtmnuevafechainicial, $dtmFrecuencia);
+                            //La hora de la mixer en obra
+                            $dtmhoramixerobra = $clsProgramacionDiaria->sumar($dtmhoracargue, "01:00:00");
+                        }
+                    }
                 }
+            } else {
+                //De lo contrario mostrara un mensaje mostrando que no se guardo.
+                $php_error = 'No Guardo Correctamente';
             }
+        } else if ($intEstadoProgramacion == 4) {
+            $php_error = 'Hay que completar todos los datos para poder confirmar la programacion';
         } else {
-            $php_error = 'NO HAY PROGRAMACIONES REALIZADAS';
+            $php_error = 'La programacion ya fue cargada anteriormente';
         }
     } else if ($_POST['task'] == 5) {
         $intId = $_POST['id'];

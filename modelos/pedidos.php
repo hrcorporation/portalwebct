@@ -381,7 +381,7 @@ class pedidos extends conexionPDO
                 } else {
                     $selection = " ";
                 }
-                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . $fila['nombre_cliente'] . ' - ' . $fila['nombre_obra'] . ' FV: ' . $fila['fecha_vencimiento'] . ' </option>';
+                $option .= '<option value="' . $fila['id'] . '" ' . $selection . ' >' . $fila['id'] . ' - ' . $fila['nombre_cliente'] . ' - ' . $fila['nombre_obra'] . ' OC: ' . $fila['nombre_orden_compra'] . ' </option>';
             }
         }
         return $option;
@@ -434,13 +434,15 @@ class pedidos extends conexionPDO
         $this->PDO->closePDO();
     }
     //Obtener el precio del producto mediante el id
-    public function get_precio_producto($id)
+    public function get_precio_producto($id, $id_lista_precio)
     {
         $this->id = $id;
-        $sql = "SELECT `precio_m3` FROM `ct65_lista_precio_has_precio_productos` WHERE `id_producto` = :id AND `status` = 1";
+        $this->id_lista_precio = $id_lista_precio;
+        $sql = "SELECT `precio_m3` FROM `ct65_lista_precio_has_precio_productos` WHERE `id_producto` = :id AND `status` = 1 AND `id_lista_precios` = :id_lista_precios";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_lista_precios', $this->id_lista_precio, PDO::PARAM_INT);
         // Ejecutar 
         if ($stmt->execute()) {
             $num_reg =  $stmt->rowCount();
@@ -1511,7 +1513,7 @@ class pedidos extends conexionPDO
         $this->cliente = $cliente;
         $this->obra = $obra;
 
-        $sql = "SELECT `id`, `fecha_creacion`, `fecha_vencimiento`,`nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `nombre_cliente` = :cliente AND `nombre_obra` = :obra AND ct65_pedidos.status = 1";
+        $sql = "SELECT `id`, `fecha_creacion`, `nombre_cliente`,`nombre_obra`,`nombre_asesora` FROM `ct65_pedidos` WHERE `nombre_cliente` = :cliente AND `nombre_obra` = :obra AND ct65_pedidos.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1528,7 +1530,6 @@ class pedidos extends conexionPDO
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $data_array['id'] = $fila['id'];
                     $data_array['fecha_creacion'] = $fila['fecha_creacion'];
-                    $data_array['fecha_vencimiento'] = $fila['fecha_vencimiento'];
                     $data_array['nombre_cliente'] = $fila['nombre_cliente'];
                     $data_array['nombre_obra'] = $fila['nombre_obra'];
                     $data_array['nombre_asesora'] = $fila['nombre_asesora'];
@@ -1548,7 +1549,7 @@ class pedidos extends conexionPDO
         $this->cliente = $cliente;
         $this->obra = $obra;
 
-        $sql = "SELECT ct65_pedidos.fecha_vencimiento, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
+        $sql = "SELECT ct65_pedidos.fecha_creacion, ct65_pedidos.nombre_cliente, ct65_pedidos.nombre_obra,`codigo_producto`, `nombre_producto`, `precio_m3`, `cantidad_m3`, `nombre_asesora` FROM `ct65_pedidos_has_precio_productos` INNER JOIN ct65_pedidos ON ct65_pedidos_has_precio_productos.id_pedido = ct65_pedidos.id WHERE ct65_pedidos.nombre_cliente = :cliente AND ct65_pedidos.nombre_obra = :obra AND ct65_pedidos_has_precio_productos.status = 1 AND ct65_pedidos.status = 1";
 
         // Preparar la conexion del sentencia SQL
         $stmt = $this->con->prepare($sql);
@@ -1563,6 +1564,7 @@ class pedidos extends conexionPDO
             if ($num_reg > 0) {
                 // Recorrer limpieza de datos obtenidos en la consulta
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $data_array['fecha_creacion'] = $fila['fecha_creacion'];
                     $data_array['nombre_cliente'] = $fila['nombre_cliente'];
                     $data_array['nombre_obra'] = $fila['nombre_obra'];
                     $data_array['codigo_producto'] = $fila['codigo_producto'];

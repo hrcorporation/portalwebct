@@ -639,8 +639,8 @@ class clsProgramacionSemanal extends conexionPDO
             return false;
         }
     }
-    // Crear programacion diaria (FUNCIONARIO)
-    public function fntCrearProgDiariaFuncionarioBool($intid, $hora_cargue, $hora_mixer_obra)
+    // Agregar la hora del cargue y la hora mixer en obra (FUNCIONARIO).
+    public function fntEditarHorasProgramacion($intid, $hora_cargue, $hora_mixer_obra)
     {
         $sql = "UPDATE `ct66_programacion_semanal_v2` SET `hora_cargue` = :hora_cargue, `hora_mixer_obra` = :hora_mixer_obra WHERE `id` = :id";
         $stmt = $this->con->prepare($sql);
@@ -653,6 +653,10 @@ class clsProgramacionSemanal extends conexionPDO
         } else {
             return false;
         }
+    }
+    // Agregar la programacion diaria dividida con los numeros de viajes.
+    public function fntGuardarProgramacionDiaria(){
+        
     }
 
     // Crear programacion diaria (FUNCIONARIO)

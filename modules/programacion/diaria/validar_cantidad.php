@@ -24,13 +24,13 @@ $cantidad_pedido = $clsProgramacionDiaria->cargar_cantidad_metros_pedido($intidp
 
 if ($cantidad_pedido > 0) {
     $cantidad_final = doubleval($cantidad_pedido) - doubleval($nueva_cantidad);
-    if ($cantidad_final >= 0) {
+    if ($cantidad_final > 0) {
+        $boolPhpEstado = true;
+    } else if ($cantidad_final == 0) {
         $boolPhpEstado = true;
     } else {
         $boolPhpEstado = false;
     }
-} else if ($cantidad_pedido == 0) {
-    $boolPhpEstado = true;
 } else {
     $boolPhpEstado = false;
 }

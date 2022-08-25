@@ -20,6 +20,7 @@ $resultado = "";
 if ($pedidos->validar_existencias_precio_producto($_POST['id_producto'], $_POST['id'])) {
     $id_pedido = $_POST['id'];
     $id_producto = $_POST['id_producto'];
+    $id_lista_precio = $_POST['id_lista_precio'];
     $cod_producto = $pedidos->get_codigo_producto($id_producto);
     $nombre_producto = $pedidos->get_nombre_producto($id_producto);
     $porcentaje = 0;
@@ -32,10 +33,10 @@ if ($pedidos->validar_existencias_precio_producto($_POST['id_producto'], $_POST[
     $saldo_m3 = $cantidad_m3;
     // $plan_maestro = $clsSaldosClientes->get_plan_maestro_por_id_orden_compra($id_pedido);
     if (!isset($_POST['subtotal'])) {
-        $precio_base = $pedidos->get_precio_producto($id_producto);
+        $precio_base = $pedidos->get_precio_producto($id_producto, $id_lista_precio);
         $subtotal = $precio_base;
     } else {
-        $precio_base = $pedidos->get_precio_producto($id_producto);
+        $precio_base = $pedidos->get_precio_producto($id_producto, $id_lista_precio);
         $subtotal = $_POST['subtotal'];
     }
     if ($cantidad_m3) {

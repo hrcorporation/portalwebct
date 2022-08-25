@@ -107,11 +107,10 @@ $spreadsheet->setActiveSheetIndex(0)
     ->setCellValue('C2', 'PEDIDOS')
     ->setCellValue('C3', 'CODIGO')
     ->setCellValue('C4', 'FECHA DE CREACION')
-    ->setCellValue('C5', 'FECHA DE VENCIMIENTO')
-    ->setCellValue('C6', 'ASESORA COMERCIAL');
+    ->setCellValue('C5', 'ASESORA COMERCIAL');
 $spreadsheet->getActiveSheet()->mergeCells('C2:D2');
 $spreadsheet->getActiveSheet()->getStyle('C2:D2')->applyFromArray($styleArray);
-$spreadsheet->getActiveSheet()->getStyle('C2:D6')->applyFromArray($styleArraybordes);
+$spreadsheet->getActiveSheet()->getStyle('C2:D5')->applyFromArray($styleArraybordes);
 
 $iz1 = 3;
 $iz2 = 4;
@@ -122,8 +121,7 @@ if (is_array($datos_pedidos)) {
         $spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('D' . $iz1, $fila['id'])
             ->setCellValue('D' . $iz2, $fila['fecha_creacion'])
-            ->setCellValue('D' . $iz3, $fila['fecha_vencimiento'])
-            ->setCellValue('D' . $iz4, $fila['nombre_asesora']);
+            ->setCellValue('D' . $iz3, $fila['nombre_asesora']);
     }
 }
 
@@ -265,7 +263,7 @@ $spreadsheet->setActiveSheetIndex(0);
 // Redirect output to a client’s web browser (Xlsx)
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Pedidos.xlsx"');
+header('Content-Disposition: attachment;filename="OrdenCompra.xlsx"');
 header('Cache-Control: max-age=0');
 
 // If you're serving to IE 9, then the following may be needed

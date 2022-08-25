@@ -103,7 +103,7 @@ class t10_vehiculo extends conexionPDO
     }
 
 
-    function insertarVehiculos($letras, $num)
+    function insertarVehiculos($letras, $num, $cantidadm3)
     {
         // Asignacion de Variables
         $this->fecha_creacion = date("Y-m-d H:i:s");
@@ -112,7 +112,7 @@ class t10_vehiculo extends conexionPDO
         $this->num = intval($num);
         $this->placa = $letras . $num;
         //SQL
-        $sql = "INSERT INTO ct10_vehiculo(ct10_FechaCreacion,ct10_Estado, ct10_Placa,ct10_letras,ct10_num) VALUES (:FechaCreacion, :Estado, :Placa,:letras,:num)";
+        $sql = "INSERT INTO ct10_vehiculo(ct10_FechaCreacion,ct10_Estado, ct10_Placa,ct10_letras,ct10_num, `ct10_cantidadm3`) VALUES (:FechaCreacion, :Estado, :Placa,:letras,:num, :cantidad)";
 
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -123,6 +123,7 @@ class t10_vehiculo extends conexionPDO
         $stmt->bindParam(':Placa', $this->placa, PDO::PARAM_STR);
         $stmt->bindParam(':letras', $letras, PDO::PARAM_STR);
         $stmt->bindParam(':num', $num, PDO::PARAM_STR);
+        $stmt->bindParam(':cantidad', $cantidadm3, PDO::PARAM_STR);
 
         // Ejecutar 
         if ($stmt->execute()) {
@@ -322,7 +323,7 @@ class t10_vehiculo extends conexionPDO
 
 
 
-    function editar_vehiculos($letras, $num, $id_vehiculo)
+    function editar_vehiculos($letras, $num, $id_vehiculo, $cantidadm3)
     {
         // Asignacion de Variables
         $this->fecha_creacion = date("Y-m-d H:i:s");
@@ -332,9 +333,10 @@ class t10_vehiculo extends conexionPDO
         $this->letras = strtoupper($letras);
         $this->num = intval($num);
         $this->placa = $letras . $num;
+        $this->cantidadm3 = $cantidadm3;
 
         //SQL
-        $sql = "UPDATE `ct10_vehiculo` SET  `ct10_Placa`= :Placa, `ct10_letras`= :letras,`ct10_num`= :num WHERE `ct10_IdVehiculo` = :id_vehiculo";
+        $sql = "UPDATE `ct10_vehiculo` SET  `ct10_Placa`= :Placa, `ct10_letras`= :letras,`ct10_num`= :num, `ct10_cantidadm3`= :cantidadm3 WHERE `ct10_IdVehiculo` = :id_vehiculo";
 
         //Preparar Conexion
         $stmt = $this->con->prepare($sql);
@@ -346,6 +348,7 @@ class t10_vehiculo extends conexionPDO
         $stmt->bindParam(':letras', $this->letras, PDO::PARAM_STR);
         $stmt->bindParam(':num', $this->num, PDO::PARAM_STR);
         $stmt->bindParam(':id_vehiculo', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':cantidadm3', $this->cantidadm3, PDO::PARAM_STR);
 
 
         // Ejecutar 

@@ -506,7 +506,7 @@ class clsProgramacionDiaria extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
                     $datos['id'] = $fila['id'];
-                    $datos['estado'] = $fila['status'];
+                    $datos['status'] = $fila['status'];
                     $datos['cliente'] = $fila['id_cliente'];
                     $datos['nombre_cliente'] = $fila['nombre_cliente'];
                     $datos['obra'] = $fila['id_obra'];
@@ -514,19 +514,28 @@ class clsProgramacionDiaria extends conexionPDO
                     $datos['id_pedido'] = $fila['id_pedido'];
                     $datos['id_tipo_descargue'] = $fila['id_tipo_descargue'];
                     $datos['producto'] = $fila['id_producto'];
+                    $datos['nombre_producto'] = $fila['nombre_producto'];
                     $datos['cantidad'] = $fila['cantidad'];
                     $datos['inicio'] = $fila['fecha_ini'];
                     $datos['fin'] = $fila['fecha_fin'];
                     $datos['hora_cargue'] = $fila['hora_cargue'];
                     $datos['hora_mixer_obra'] = $fila['hora_mixer_obra'];
-                    $datos['elementos'] = $fila['elementos_fundir'];
+                    $datos['elementos_fundir'] = $fila['elementos_fundir'];
                     $datos['observaciones'] = $fila['observaciones'];
                     $datos['metros'] = $fila['metros_tuberia'];
                     $datos['requiere_bomba'] = $fila['requiere_bomba'];
                     $datos['id_linea_produccion'] = $fila['id_linea_produccion'];
+                    $datos['frecuencia'] = $fila['frecuencia'];
+                    $datos['nombre_tipo_descargue'] = $fila['nombre_tipo_descargue'];
+                    $datos['nombre_linea_produccion'] = $fila['nombre_linea_produccion'];
                     $datos['id_mixer'] = $fila['id_mixer'];
+                    $datos['mixer'] = $fila['mixer'];
                     $datos['id_conductor'] = $fila['id_conductor'];
+                    $datos['nombre_conductor'] = $fila['nombre_conductor'];
                     $datos['id_tipo_bomba'] = $fila['id_tipo_bomba'];
+                    $datos['tipo_bomba'] = $fila['tipo_bomba'];
+                    $datos['id_usuario'] = $fila['id_usuario'];
+                    $datos['nombre_usuario'] = $fila['nombre_usuario'];
                     $datos['color'] = 'orange';
                     $datos['textcolor'] = 'black';
                     $datosf[] = $datos;
@@ -1090,6 +1099,50 @@ class clsProgramacionDiaria extends conexionPDO
             return false;
         }
     }
+    //Crear y dividir las programaciones diarias.
+    public function fntDividirProgramacion($intEstado, $intIdCliente, $StrNombreCliente, $intIdObra, $StrNombreObra,  $intPedido, $intIdProducto, $StrNombreProducto, $intIdLineaDespacho, $StrNombreLineaDespacho, $dtmHoraCargue, $dtmHoraMixerObra, $intIdMixer, $StrPlacaMixer, $intIdConductor, $StrNombreConductor, $decCantidad, $bolRequiereBomba, $intTipoDescargue, $StrNombreTipoDescargue, $intTipoBomba, $StrNombreTipoBomba, $metros_tuberia, $dtmFechaInicio, $dtmFechaFin, $elementos, $StrObservaciones, $intIdUsuario, $StrNombreUsuario)
+    {
+        $sql = "INSERT INTO `ct66_programacion_diaria`(`status`, `id_cliente`, `nombre_cliente`, `id_obra`, `nombre_obra`, `id_pedido`, `id_producto`, `nombre_producto`, `cantidad`, `id_linea_produccion`, `nombre_linea_produccion`, `hora_cargue`, `hora_mixer_obra`, `id_mixer`, `mixer`, `id_conductor`, `nombre_conductor`, `requiere_bomba`, `id_tipo_descargue`, `nombre_tipo_descargue`, `id_tipo_bomba`, `tipo_bomba`, `metros_tuberia`, `fecha_ini`, `fecha_fin`, `elementos_fundir`, `observaciones`, `id_usuario`, `nombre_usuario`) 
+        VALUES (:status, :id_cliente, :nombre_cliente, :id_obra, :nombre_obra, :id_pedido, :id_producto, :nombre_producto, :cantidad, :id_linea_produccion, :nombre_linea_produccion, :hora_cargue, :hora_mixer_obra, :id_mixer, :mixer, :id_conductor, :nombre_conductor, :requiere_bomba, :id_tipo_descargue, :nombre_tipo_descargue, :id_tipo_bomba, :tipo_bomba, :metros_tuberia, :fecha_ini, :fecha_fin, :elementos, :observaciones, :id_usuario, :nombre_usuario)";
+
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(':status', $intEstado, PDO::PARAM_INT);
+        $stmt->bindParam(':id_cliente', $intIdCliente, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_cliente', $StrNombreCliente, PDO::PARAM_STR);
+        $stmt->bindParam(':id_obra', $intIdObra, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_obra', $StrNombreObra, PDO::PARAM_STR);
+        $stmt->bindParam(':id_pedido', $intPedido, PDO::PARAM_INT);
+        $stmt->bindParam(':id_producto', $intIdProducto, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_producto', $StrNombreProducto, PDO::PARAM_STR);
+        $stmt->bindParam(':cantidad', $decCantidad, PDO::PARAM_STR);
+        $stmt->bindParam(':id_linea_produccion', $intIdLineaDespacho, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_linea_produccion', $StrNombreLineaDespacho, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_cargue', $dtmHoraCargue, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_mixer_obra', $dtmHoraMixerObra, PDO::PARAM_STR);
+        $stmt->bindParam(':id_mixer', $intIdMixer, PDO::PARAM_STR);
+        $stmt->bindParam(':mixer', $StrPlacaMixer, PDO::PARAM_STR);
+        $stmt->bindParam(':id_conductor', $intIdConductor, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_conductor', $StrNombreConductor, PDO::PARAM_STR);
+        $stmt->bindParam(':requiere_bomba', $bolRequiereBomba, PDO::PARAM_STR);
+        $stmt->bindParam(':id_tipo_descargue', $intTipoDescargue, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_tipo_descargue', $StrNombreTipoDescargue, PDO::PARAM_STR);
+        $stmt->bindParam(':id_tipo_bomba', $intTipoBomba, PDO::PARAM_STR);
+        $stmt->bindParam(':tipo_bomba', $StrNombreTipoBomba, PDO::PARAM_STR);
+        $stmt->bindParam(':metros_tuberia', $metros_tuberia, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_ini', $dtmFechaInicio, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $dtmFechaFin, PDO::PARAM_STR);
+        $stmt->bindParam(':elementos', $elementos, PDO::PARAM_STR);
+        $stmt->bindParam(':observaciones', $StrObservaciones, PDO::PARAM_STR);
+        $stmt->bindParam(':id_usuario', $intIdUsuario, PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_usuario', $StrNombreUsuario, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////UPDATE - EDITAR PROGRAMACION///////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1536,7 +1589,6 @@ class clsProgramacionDiaria extends conexionPDO
         }
         return false;
     }
-
     // Obtener todos los estados de las programaciones (CLIENTE).
     public function fntGetEstadosProgramacionClienteUnoObj($id_usuario)
     {
@@ -1551,13 +1603,33 @@ class clsProgramacionDiaria extends conexionPDO
             $num_reg =  $stmt->rowCount();
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-                    $datos['status'] = $fila['status'];
-                    $datosf[] = $datos;
+                    return $fila['status'];
                 }
-                return $datosf;
             }
         }
         return false;
+    }
+    //Obtener el codigo del producto.
+    public function fntGetCodigoProducto($id_producto)
+    {
+        $sql = "SELECT `ct4_Nombre` FROM `ct4_productos` WHERE `ct4_Id_productos` = :id_producto";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        // Ejecutar 
+        if ($stmt->execute()) {
+            $num_reg =  $stmt->rowCount();
+            if ($num_reg > 0) {
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+                    return $fila['ct4_Nombre'];
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        //Cerrar Conexion
+        $this->PDO->closePDO();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////DELETE - ELIMINAR PROGRAMACION/////////////////////////////////////
@@ -1579,6 +1651,15 @@ class clsProgramacionDiaria extends conexionPDO
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////OTRAS FUNCIONES///////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //restar horas
+    public function restar($hora1, $hora2)
+    {
+        list($h, $m, $s) = explode(':', $hora2); //Separo los elementos de la segunda hora.
+        $a = new DateTime($hora1); //Creo un DateTime.
+        $b = new DateInterval(sprintf('PT%sH%sM%sS', $h, $m, $s)); //Creo un DateInterval.
+        $a->sub($b); //SUMO las horas.
+        return $a->format('Y-m-d H:i:s'); //Retorno la Suma.
+    }
     //Sumar horas
     function sumar($hora1, $hora2)
     {
@@ -1877,7 +1958,7 @@ class clsProgramacionDiaria extends conexionPDO
         $this->fecha_ini = $fecha_ini;
         $this->fecha_fin = $fecha_fin;
 
-        $sql = "SELECT * FROM `ct66_programacion_semanal_v2` WHERE `fecha_ini` BETWEEN :fecha_ini AND :fecha_fin";
+        $sql = "SELECT * FROM `ct66_programacion_diaria` WHERE `fecha_ini` BETWEEN :fecha_ini AND :fecha_fin";
         // Preparar Conexion.
         $stmt = $this->con->prepare($sql);
         $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
@@ -1888,17 +1969,15 @@ class clsProgramacionDiaria extends conexionPDO
             if ($num_reg > 0) {
                 while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     // Obtener los datos de los valores.
-                    $datos['id'] = $fila['id'];
-                    $datos['status'] = SELF::fntGetNombreEstadoObj($fila['status']);
-                    $datos['nombre_cliente'] = $fila['nombre_cliente'];
-                    $datos['nombre_obra'] = $fila['nombre_obra'];
-                    $datos['fecha_pedido'] = SELF::fntGetNombreOrdenCompraObj($fila['id_pedido']);
-                    $datos['nombre_producto'] = $fila['nombre_producto'];
-                    $datos['cantidad'] = $fila['cantidad'];
-                    $datos['valor_programacion'] = $fila['valor_programacion'];
                     $datos['nombre_linea_produccion'] = $fila['nombre_linea_produccion'];
                     $datos['hora_cargue'] = $fila['hora_cargue'];
                     $datos['hora_mixer_obra'] = $fila['hora_mixer_obra'];
+                    $datos['nombre_cliente'] = $fila['nombre_cliente'];
+                    $datos['nombre_obra'] = $fila['nombre_obra'];
+                    $datos['id_producto'] = $fila['id_producto'];
+                    $datos['codigo_producto'] = SELF::fntGetCodigoProducto($fila['id_producto']);
+                    $datos['nombre_producto'] = $fila['nombre_producto'];
+                    $datos['cantidad'] = $fila['cantidad'];
                     $datos['mixer'] = $fila['mixer'];
                     $datos['nombre_conductor'] = $fila['nombre_conductor'];
                     if ($fila['requiere_bomba']) {

@@ -150,12 +150,16 @@ if (isset($_POST['task'])) {
                 //Calcular la fecha final de la programacion
                 $dtmnuevafrecuencia = $clsProgramacionSemanal->multiplicar_horas($numeroViajesAp, $dtmFrecuencia);
                 $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmnuevafrecuencia);
+
+
+
                 if ($dtmHoy <= $dtmnuevafechainicial) {
-                    if ($clsProgramacionSemanal->fntCrearProgDiariaFuncionarioBool($intId, $dtmhoracargue, $dtmhoramixerobra)) {
+                    if ($clsProgramacionSemanal->fntEditarHorasProgramacion($intId, $dtmhoracargue, $dtmhoramixerobra)) {
                         $php_estado = true;
                     } else {
                         $php_error = 'No guardo correctamente';
                     }
+                    //
                     if ($clsProgramacionSemanal->fntCambiarEstadoProgramacionSemanalFuncionarioUnoObj($intId)) {
                         //Si pasa la validacion se retorna verdadero(true)
                         $php_estado = true;
@@ -163,6 +167,7 @@ if (isset($_POST['task'])) {
                         //De lo contrario mostrara un mensaje mostrando que no se guardo
                         $php_error = 'No guardo correctamente';
                     }
+                    //
                 } else {
                     $php_error = 'No puede generar las programaciones diarias con una fecha posterior a la actual';
                 }
@@ -221,15 +226,16 @@ if (isset($_POST['task'])) {
                 } else {
                     $numeroViajesAp = 1;
                 }
+                
                 $valor_programacion = 0;
                 //Calcular los metros cubicos de cada viaje
                 $metrosCubicos = ($intCantidad / $numeroViajesAp);
                 //Calcular la hora del cargue
                 $dtmhoracargue = $clsProgramacionSemanal->restar($dtmFechaInicial, "01:00:00");
-                //Calcular la nueva fecha inicial teniendo en cuenta la frecuencia
-                $dtmnuevafechainicial = $clsProgramacionSemanal->restar($dtmFechaInicial, $dtmFrecuencia);
                 //La hora de la mixer en obra
                 $dtmhoramixerobra = $dtmFechaInicial;
+                //Calcular la nueva fecha inicial teniendo en cuenta la frecuencia
+                $dtmnuevafechainicial = $clsProgramacionSemanal->restar($dtmFechaInicial, $dtmFrecuencia);
                 //Calcular la fecha final de la programacion
                 $dtmNuevaFechafin = $clsProgramacionSemanal->sumar($dtmnuevafechainicial, $dtmFrecuencia);
                 if ($dtmHoy <= $dtmnuevafechainicial) {

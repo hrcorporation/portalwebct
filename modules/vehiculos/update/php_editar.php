@@ -19,13 +19,11 @@ if (isset($_POST['txt_letras']) && !empty($_POST['txt_letras']) && isset($_POST[
     $id_vehiculo  = $php_clases->HR_Crypt($_POST['txt_id'],2);
     $letras = htmlspecialchars($_POST['txt_letras']);
     $num = htmlspecialchars($_POST['txt_num']);
-
-    $resultado = $t10_vehiculo->editar_vehiculos($letras, $num, $id_vehiculo);
-
+    $cantidadm3 = $_POST['txt_m3'];
+    $resultado = $t10_vehiculo->editar_vehiculos($letras, $num, $id_vehiculo, $cantidadm3);
     if($resultado){
         $php_estado = true;
     }
-
 }
 
 $datos = array(

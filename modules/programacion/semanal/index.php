@@ -112,6 +112,7 @@
                     } else {
                         toastr.warning("La cantidad excede la del pedido");
                         $("#btnCrear").attr('disabled', true);
+                        $("#txtCant").html(data.cantidad_final);
                     }
                 },
                 error: function(respuesta) {
@@ -352,30 +353,6 @@
                 });
             }
         });
-        // //Para crear una programacion semanal.
-        $("#form_crear_programacion").on('submit', (function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "php_crear_prog_semanal.php",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data);
-                    if (data.estado) {
-                        toastr.success('Se ha guardado correctamente');
-                        $('#modal_crear_evento').modal('hide');
-                    } else {
-                        toastr.warning(data.errores);
-                    }
-                },
-                error: function(respuesta) {
-                    alert(JSON.stringify(respuesta));
-                },
-            });
-        }));
         //Para editar una programacion semanal.
         $("#form_mostrar_programacion").on('submit', (function(e) {
             e.preventDefault();

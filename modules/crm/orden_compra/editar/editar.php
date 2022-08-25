@@ -637,6 +637,7 @@ $id_lista_pedidos = $pedidos->get_id_lista_precios($id_cliente, $id_obra);
 
     $('#id_producto').change(function() {
         var subtotal = $("#subtotal").val();
+        var id_lista_precios = <?php echo $id_lista_pedidos ?>;
         $("#guardarProductoOC").attr('disabled', false);
         $.ajax({
             url: "ajax_get_data_precios.php",
@@ -645,6 +646,7 @@ $id_lista_pedidos = $pedidos->get_id_lista_precios($id_cliente, $id_obra);
                 task: 1,
                 id_producto: $("#id_producto").val(),
                 descuento: $('#descuento').val(),
+                id_lista_precios: id_lista_precios,
             },
             success: function(response) {
                 if (response.estado) {

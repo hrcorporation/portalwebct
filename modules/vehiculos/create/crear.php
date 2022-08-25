@@ -18,11 +18,11 @@ require '../../../vendor/autoload.php'; ?>
                 </div>
                 <div class="col-sm-6">
                     <!--
-                              <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Actual</li>
-                              </ol> 
-                                -->
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item active">Actual</li>
+                        </ol> 
+                    -->
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -35,30 +35,20 @@ require '../../../vendor/autoload.php'; ?>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Registrar Nuevo Vehiculo</h3>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-
                 </div>
             </div>
             <div class="card-body">
                 <div id="contenido">
                     <form name="F_crear" id="F_crear" method="POST">
-
-
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Escribir Placa del Vehiculo</label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-2">
                                 <div class="form-group">
-                                    <input type="text" id="txt_letras" name="txt_letras" class="form-control" placeholder="Solo Letras" >
+                                    <label>Escribir Placa del Vehiculo - LETRAS</label>
+                                    <input type="text" id="txt_letras" name="txt_letras" class="form-control" placeholder="Solo Letras" maxlength="3">
                                 </div>
                             </div>
                             <div class="col-1">
@@ -66,13 +56,21 @@ require '../../../vendor/autoload.php'; ?>
                             </div>
                             <div class="col-2">
                                 <div class="form-group">
-                                    <input type="text" id="txt_num" name="txt_num" class="form-control" placeholder="Solo numeros" >
+                                    <label>Escribir Placa del Vehiculo - NUMEROS</label>
+                                    <input type="text" id="txt_num" name="txt_num" class="form-control validanumericos" placeholder="Solo numeros" maxlength="3">
                                 </div>
                             </div>
-
-
+                            <div class="col-1">
+                                <center> - </center>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label>Cantidad m3 limite:</label>
+                                    <br><br>
+                                    <input type="text" id="txt_m3" name="txt_m3" class="form-control">
+                                </div>
+                            </div>
                         </div>
-
                         <div class="row">
                             <div class="col-2">
                                 <div class="form-group">
@@ -101,71 +99,40 @@ require '../../../vendor/autoload.php'; ?>
 <?php include '../../../layout/footer/footer3.php' ?>
 
 <script>
-    $(document).ready(function() {
-    $('#F_crear').validate({
-        rules: {
-            txt_letras: {
-                required: true,
-                maxlength: 3,
-                minlength: 3,
-                lettersonly: true,
-
-            },
-            txt_num: {
-                required: true,
-                maxlength: 3,
-                minlength: 3,
-                digits : true,
-            },
-            
-        },
-        messages: {
-            txt_letras: {
-                required: "Este campo es Requerido",
-                
-            },
-            txt_num: {
-                required: "Este campo es Requerido",
-                
-            },
-           
-        },
-        errorElement: 'span',
-        errorPlacement: function(error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
-        },
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-        },
-        submitHandler: function(form) {
+    $(function() {
+        $('.validanumericos').keypress(function(e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            })
+            .on("cut copy paste", function(e) {
+                e.preventDefault();
+            });
+    });
+    $(document).ready(function(e) {
+        $("#F_crear").on('submit', (function(e) {
+            e.preventDefault();
             $.ajax({
                 url: "php_crear.php",
                 type: "POST",
-                data: $(form).serialize(),
+                data: new FormData(this),
+                contentType: false,
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    if(data.estado){
+                    console.log(data.estado);
+                    if (data.estado) {
                         toastr.success('exitoso');
-                        
-                    }else{
-                        toastr.warning(data.errores);               
+                    } else {
+                        toastr.warning(data.errores);
                     }
                 },
                 error: function(respuesta) {
                     alert(JSON.stringify(respuesta));
                 },
             });
-        }
+        }));
     });
-});
 </script>
-</script>
-
 
 </body>
 
