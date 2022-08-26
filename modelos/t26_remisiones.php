@@ -838,23 +838,23 @@ class t26_remisiones extends conexionPDO
 
   function remisiones_cliente_torreon()
   {
-    
-    
-      $sql_cli = "SELECT `ct26_id_remision`, `ct26_codigo_remi`, `ct26_imagen_remi`, `ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra`, `ct26_fecha_remi`, `ct26_estado`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra`, `ct26_hora_inicio_descargue`, `ct26_hora_terminada_descargue` FROM `ct26_remisiones` WHERE `ct26_idObra` IN(202,1307,1266) ORDER BY `ct26_remisiones`.`ct26_fecha_remi` DESC LIMIT 100;"; //Select Cliente
-      $stmt_cli = $this->con->prepare($sql_cli);
-      if ($stmt_cli->execute()) {
-        $num_reg =  $stmt_cli->rowCount();
-        if ($num_reg > 0) {
-          while ($fila = $stmt_cli->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
-            $datos[] = $fila;
-          }
-          return $datos;
-        } else {
-          return false;
+
+
+    $sql_cli = "SELECT `ct26_id_remision`, `ct26_codigo_remi`, `ct26_imagen_remi`, `ct26_idcliente`,`ct26_razon_social`,`ct26_idObra`,`ct26_nombre_obra`, `ct26_fecha_remi`, `ct26_estado`, `ct26_hora_salida_planta`, `ct26_hora_llegada_obra`, `ct26_hora_inicio_descargue`, `ct26_hora_terminada_descargue` FROM `ct26_remisiones` WHERE `ct26_idObra` IN(202,1307,1266) ORDER BY `ct26_remisiones`.`ct26_fecha_remi` DESC LIMIT 100;"; //Select Cliente
+    $stmt_cli = $this->con->prepare($sql_cli);
+    if ($stmt_cli->execute()) {
+      $num_reg =  $stmt_cli->rowCount();
+      if ($num_reg > 0) {
+        while ($fila = $stmt_cli->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+          $datos[] = $fila;
         }
+        return $datos;
       } else {
         return false;
       }
+    } else {
+      return false;
+    }
   }
 
 
@@ -1008,18 +1008,39 @@ class t26_remisiones extends conexionPDO
     $this->fecha_ini = $fecha_ini;
     $this->fecha_fin = $fecha_fin;
     $this->id_planta = $id_planta;
-
-    $sql = "SELECT * FROM `ct26_remisiones` WHERE `ct26_idplanta` = :id_planta AND `ct26_fecha_remi` BETWEEN  :fecha_ini AND :fecha_fin  ORDER BY `ct26_remisiones`.`ct26_codigo_remi` ASC";
-
+    $sql = "SELECT * FROM `ct29_batch` WHERE `ct29_IdPlanta` = :id_planta AND `ct29_Fecha` BETWEEN  :fecha_ini AND :fecha_fin ORDER BY `ct29_batch`.`ct29_Remision` ASC;";
     $stmt = $this->con->prepare($sql);
     $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
     $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
     $stmt->bindParam(':id_planta', $this->id_planta, PDO::PARAM_STR);
-
-
-
     // Ejecutar 
-    if ($result = $stmt->execute()) {
+    if ($stmt->execute()) {
+      $num_reg =  $stmt->rowCount();
+      if ($num_reg > 0) {
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
+          $datos[] = $fila;
+        }
+        return $datos;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+    //Cerrar Conexion
+    $this->PDO->closePDO();
+  }
+
+  function planotxt_remi2($fecha_ini, $fecha_fin)
+  {
+    $this->fecha_ini = $fecha_ini;
+    $this->fecha_fin = $fecha_fin;
+    $sql = "SELECT * FROM `ct29_batch` WHERE `ct29_Fecha` BETWEEN  :fecha_ini AND :fecha_fin ORDER BY `ct29_batch`.`ct29_Remision` ASC;";
+    $stmt = $this->con->prepare($sql);
+    $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
+    $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
+    // Ejecutar 
+    if ($stmt->execute()) {
       $num_reg =  $stmt->rowCount();
       if ($num_reg > 0) {
         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) { // Obtener los datos de los valores
@@ -1069,7 +1090,7 @@ class t26_remisiones extends conexionPDO
     $this->fisica = 0;
     $php_fechatime = date("Y-m-d H:i:s");
     $date = "" . date('Y/m/d h:i:s', time());
-    $this->consolidado_remi = $this->id_planta. ' - '.$this->codigo_remi;
+    $this->consolidado_remi = $this->id_planta . ' - ' . $this->codigo_remi;
 
     $sql = "INSERT INTO `ct26_remisiones`(ct26_date_create, `ct26_codigo_remi`, `ct26_idplanta`, `ct26_fecha_remi` , `ct26_idcliente`,`ct26_nitcliente` ,`ct26_razon_social`, `ct26_idObra`, `ct26_nombre_obra`, `ct26_metros` ,`ct26_id_producto`, `ct26_codigo_producto`, `ct26_descripcion_producto`,`ct26_id_vehiculo`, `ct26_vehiculo`,`ct26_conductor`, `ct26_nombre_conductor` , `ct26_estado`, `ct26_hora_remi`, `ct26_sello`, `ct26_asentamiento`, `ct26_despachador`,`ct26_notificacion`,  ct26_fisica, consolidado_remi) VALUES";
     $sql .= " (:datetime_remi, :codigo_remi, :id_planta , :fecha , :id_cliente , :nit, :razon_social, :id_obra, :nombre_obra, :metros ,:id_producto , :codigo_producto, :descripcion_producto , :id_vehiculo, :placa, :id_conductor, :nombre_conductor, :estado, :hora_remi, :sello , :asentamiento, :despachador, :notificacion , :fisica,:consolidado_remi)";
@@ -1121,7 +1142,7 @@ class t26_remisiones extends conexionPDO
     $this->PDO->closePDO();
   }
 
-  
+
 
 
   //
@@ -1806,7 +1827,8 @@ class t26_remisiones extends conexionPDO
     return $stmt;
   }
 
-  function insert_datos_remi($codigo_remi, $fecha, $hora, $cliente, $placa, $obra, $conductor, $planta, $sello, $metrosC,$producto, $asentamiento, $observacion) {
+  function insert_datos_remi($codigo_remi, $fecha, $hora, $cliente, $placa, $obra, $conductor, $planta, $sello, $metrosC, $producto, $asentamiento, $observacion)
+  {
     $this->codigo_remi = $codigo_remi;
     $this->fecha = $fecha;
     $this->hora = $hora;

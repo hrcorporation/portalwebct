@@ -9,20 +9,15 @@ $(document).ready(function (e) {
             cache: false,
             processData: false,
             success: function (data) {
-
                 console.log(data.rst);
                 const drst = Object.values(data.rst);
                 const derrores = Object.values(data.errores);
-
                 for (let index = 0; index < drst.length; index++) {
                     toastr.info(data.rst[index]);
                 }
-
-
                 //toastr.info();
-
                 if (data.estado) {
-
+                    toastr.success('se exporto exitosamente');
                 } else {
                     for (let index = 0; index < derrores.length; index++) {
                         //var element = data.errores[index];
