@@ -3,6 +3,9 @@
 <?php include 'sidebar.php';
 
 $t1_terceros = new t1_terceros();
+$visita_clientes = new visitas_clientes();
+$t5_obras = new t5_obras();
+$oportunidad_negocio = new oportunidad_negocio();
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -27,13 +30,6 @@ $t1_terceros = new t1_terceros();
 
     <!-- Main content -->
     <section class="content">
-
-        <?php
-        /**
-         * Validacion de Usuario
-         */
-        $t1_terceros = new t1_terceros();
-        ?>
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -47,7 +43,7 @@ $t1_terceros = new t1_terceros();
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                    
+                <div id='calendar'></div>
                 </div>
               </div>
             </div>
@@ -61,8 +57,19 @@ $t1_terceros = new t1_terceros();
 </div>
 <!-- /.content-wrapper -->
 
-<?php include '../../../layout/footer/footer3.php' ?>
 
+<!----- modales ---------->
+    <!--- modal Crear Visita Comercial -->
+    <?php include 'modal/crear_visita.php'; ?>
+    <?php include 'modal/editar_visita_comercial.php'; ?>
+
+    
+
+
+<!----- Fin Modales--->
+
+<?php include '../../../layout/footer/footer3.php' ?>
+<script src="calendar.js"> </script>
 
 
 </body>

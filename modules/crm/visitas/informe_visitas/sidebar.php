@@ -2,7 +2,7 @@
  <aside class="main-sidebar sidebar-light-orange elevation-4">
      <!-- Brand Logo -->
      <a href="#" class="brand-link">
-         <img src="../../../assets/images/logos/Logo-v8.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+         <img src="../../../../assets/images/logos/Logo-v8.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
          <span class="brand-text font-weight-light">CONCRETOL</span>
      </a>
@@ -18,7 +18,7 @@
               
                 <li class="nav-header"></li>
                  <li class="nav-item ">
-                     <a href="../index.php" class="nav-link ">
+                     <a href="../../index.php" class="nav-link ">
                          <i class="nav-icon fas fa-arrow-left"></i>
                          <p>
                              CRM
@@ -28,7 +28,7 @@
                  
                  <li class="nav-header">Visitas comerciales</li>
                  <li class="nav-item has-treeview">
-                     <a href="index.php" class="nav-link active">
+                     <a href="../index.php" class="nav-link ">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Explorar
@@ -39,7 +39,7 @@
                 
                  <li class="nav-header">Exportar</li>
                  <li class="nav-item has-treeview">
-                     <a href="informe_visitas/index.php" class="nav-link ">
+                     <a href="index.php" class="nav-link active">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
                              Exportar informe visitas
