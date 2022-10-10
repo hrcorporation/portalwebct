@@ -82,6 +82,10 @@
                                 <select name="txt_estado" id="txt_estado">
                                     <option value="2">Naranja</option>
                                     <option value="3">Rojo</option>
+                                    <option value="4">Morado</option>
+                                    <option value="5">Verde</option>
+                                    <option value="6">Verde</option>
+                                    <option value="7">Azul</option>
                                     <option value="1">Verde</option>
                                 </select>
                             </div>

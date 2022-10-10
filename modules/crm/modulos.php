@@ -132,3 +132,31 @@ switch ($rol_user) {
         break;
 }
 ?>
+
+<?php
+
+switch ($rol_user) {
+    case 1:
+    case 8:
+    case 12:
+    case 13:
+    case 32:
+?>
+        <div class="col-4" id="">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Visitas Comerciales</H3>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <a class="small-box-footer" href="visitas/">
+                    Ir <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+<?php
+        break;
+}
+?>

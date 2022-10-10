@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         success: function (data) {
           //form_show_event.id_prog_evento.value = info.event.id;
-          
+
           $("#modal_editar_evento").modal("show");
           $("#txt_id").val(data.id);
           $("#txt_id2").val(data.id);
@@ -90,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
           $("#obs_visit_edit").val(data.observaciones);
           $("#asesora_comercial_edit").html(data.select_comercial);
 
-          
           $("#txt_inicio_edit").val(data.inicio);
           $("#txt_fin_edit").val(data.fin);
 
@@ -99,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
             table.destroy();
           }
           table = datatable_anexo(data.id);
-          
         },
         error: function (respuesta) {
           alert(JSON.stringify(respuesta));
@@ -159,7 +157,8 @@ document.addEventListener("DOMContentLoaded", function () {
       success: function (data) {
         //console.log(data);
         if (data.estado) {
-          calendar.render();
+          calendar.refetchEvents();
+          $("#modal_crear_evento").modal("hide");
           toastr.success("Visita Creada correctamente");
         } else {
           console.log("mal");
@@ -187,8 +186,12 @@ document.addEventListener("DOMContentLoaded", function () {
       success: function (data) {
         //console.log(data);
         if (data.estado) {
+          calendar.refetchEvents();
+          $("#modal_editar_evento").modal("hide");
           toastr.success("Visita Editada correctamente");
         } else {
+           toastr.info(data.errores);
+
           console.log("visita cliente guardo mal");
         }
         //const datos_errores = Object.values(data.errores);
@@ -210,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cache: false,
       processData: false,
       success: function (data) {
+        calendar.refetchEvents();
         //console.log(data);
         if (data.estado) {
           toastr.success("Anexo Cargado  correctamente");
@@ -313,9 +317,10 @@ function datatable_anexo(id_visita) {
         data: "archivo",
       },
       {
-        "data": null,
-        "defaultContent": "<button class='btn btn-danger btn-sm'> Eliminar </button>"
-    }
+        data: null,
+        defaultContent:
+          "<button class='btn btn-danger btn-sm'> Eliminar </button>",
+      },
     ],
     paging: false,
     searching: false,
@@ -338,40 +343,37 @@ function datatable_anexo(id_visita) {
   return table;
 }
 
-
-$('#tabla_anexos tbody').on('click', 'button', function() {
-  var data = table.row($(this).parents('tr')).data();
-  var id = data['id'];
+$("#tabla_anexos tbody").on("click", "button", function () {
+  var data = table.row($(this).parents("tr")).data();
+  var id = data["id"];
   Swal.fire({
-      title: '',
-      text: "",
-      icon: 'success',
-      html: "Esta seguro de eliminar <br>",
-      showCancelButton: true,
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Aceptar'
+    title: "",
+    text: "",
+    icon: "success",
+    html: "Esta seguro de eliminar <br>",
+    showCancelButton: true,
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Aceptar",
   }).then((result) => {
-      if (result.value) {
-          $.ajax({
-              url: "eliminar_anexo.php",
-              type: "POST",
-              data: {
-                  id: id,
-              },
-              success: function(response) {
-                table.ajax.reload();
-                  toastr.success('exitoso');
-              },
-              error: function(respuesta) {
-                  alert(JSON.stringify(respuesta));
-              },
-          });
-
-      } else {
-
-
-      }
-  })
-
+    if (result.value) {
+      $.ajax({
+        url: "eliminar_anexo.php",
+        type: "POST",
+        data: {
+          id: id,
+        },
+        success: function (response) {
+          table.ajax.reload();
+          toastr.success("exitoso");
+        },
+        error: function (respuesta) {
+          alert(JSON.stringify(respuesta));
+        },
+      });
+    } else {
+    }
+  });
 });
+
+
 

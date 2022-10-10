@@ -9,8 +9,21 @@ $arrayPhpError[] = "";
 $StrResultado = "";
 //se crea un objeto de la clase clsProgramacionSemanal.
 $cls_visitas_comerciales = new cls_visitas_comerciales();
+$php_clases = new php_clases();
 //Se listan todas las programaciones.
-$objData = $cls_visitas_comerciales->get_visitas_comerciales();
+
+$id_usuario = (int)$php_clases->HR_Crypt($_SESSION['id_usuario'], 2);
+
+if (intval($_SESSION['rol_funcionario']) == 1 || $_SESSION['rol_funcionario'] == 32) {
+    $objData = $cls_visitas_comerciales->get_visitas_comerciales();
+}else{
+    if($objData = $cls_visitas_comerciales->get_visitas_comerciales_for_comercial($id_usuario)){
+
+    }else{
+        $objData = $cls_visitas_comerciales->get_visitas_comerciales_for_comercial2($id_usuario);
+    }
+
+}
 $boolPhpEstado = true;
 //Datos de los arreglos.
 $datos = array(

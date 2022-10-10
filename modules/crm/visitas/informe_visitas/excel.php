@@ -48,11 +48,12 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     // FILA 1 = NOMBRE DE COLUMNAS
     $spreadsheet->setActiveSheetIndex(0)
         ->setCellValue('A1', 'CODIGO DE LA VISITA')
-        ->setCellValue('B1', 'FECHA VISITA')
+        ->setCellValue('B1', 'FECHA PROGRAMADO')
         ->setCellValue('C1', 'COMERCIAL')
         ->setCellValue('D1', 'TIPO DE VISITA')
         ->setCellValue('E1', 'NOMBRE DEL CLIENTE')
         ->setCellValue('F1', 'NOMBRE DE LA OBRA')
+        ->setCellValue('F1', 'FECHA EJECUTADO')
         ->setCellValue('G1', 'OBSERVACIONES');
         // ->setCellValue('E1', 'DEPARTAMENTO')
         // ->setCellValue('F1', 'MUNICIPIO')
@@ -78,13 +79,20 @@ if (isset($_GET['txt_fecha_ini']) && isset($_GET['txt_fecha_fin'])) {
     if (is_array($datos)) {
         foreach ($datos as $fila) {
 
+            if(is_null($fila['id_comercial'])){
+                $nombre_asesora = $cls_visitas_comerciales->get_nombre_asesora_comercial_cliente($fila['id_cliente']);
+            }else{
+                $nombre_asesora = $cls_visitas_comerciales->get_nombre_asesora_comercial2($fila['id_comercial']);
+                
+            }
             $spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $x, $fila['id'])
                 ->setCellValue('B' . $x, $fila['fecha'])
-                ->setCellValue('C' . $x, 'PAULA GOMEZ')
+                ->setCellValue('C' . $x, $nombre_asesora)
                 ->setCellValue('D' . $x, $fila['tipo_visita'])
                 ->setCellValue('E' . $x, $fila['nombre_cliente'])
                 ->setCellValue('F' . $x, $fila['nombre_obra'])
+                ->setCellValue('F' . $x, $fila['fecha_cumplimiento'])
                 ->setCellValue('G' . $x, $fila['observaciones']);
                 // ->setCellValue('G' . $x, $fila['resultado'])
                 // ->setCellValue('H' . $x, $fila['nombre_motivo'])

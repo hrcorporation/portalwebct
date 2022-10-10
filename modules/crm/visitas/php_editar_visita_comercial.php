@@ -15,7 +15,7 @@ $cls_visitas_comerciales = new cls_visitas_comerciales();
 $errores = "nada";
 
 if (
-    isset($_POST['txt_inicio_edit']) && !empty($_POST['txt_inicio_edit']) && isset($_POST['txt_fin_edit']) && !empty($_POST['txt_fin_edit'])
+    isset($_POST['txt_inicio_edit']) && !empty($_POST['txt_inicio_edit']) && isset($_POST['txt_fin_edit']) && !empty($_POST['txt_fin_edit'] && isset($_POST['asesora_comercial_edit']) && !empty($_POST['asesora_comercial_edit']))
 ) {
 
     $id = $_POST['txt_id'];

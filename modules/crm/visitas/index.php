@@ -6,6 +6,7 @@ $t1_terceros = new t1_terceros();
 $visita_clientes = new visitas_clientes();
 $t5_obras = new t5_obras();
 $oportunidad_negocio = new oportunidad_negocio();
+$php_clases = new php_clases();
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -41,6 +42,7 @@ $oportunidad_negocio = new oportunidad_negocio();
                 </div>
             </div>
             <div class="card-body">
+                
               <div class="row">
                 <div class="col">
                 <div id='calendar'></div>
