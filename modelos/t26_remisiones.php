@@ -1008,7 +1008,7 @@ class t26_remisiones extends conexionPDO
     $this->fecha_ini = $fecha_ini;
     $this->fecha_fin = $fecha_fin;
     $this->id_planta = $id_planta;
-    $sql = "SELECT * FROM `ct29_batch` WHERE `ct29_IdPlanta` = :id_planta AND `ct29_Fecha` BETWEEN  :fecha_ini AND :fecha_fin ORDER BY `ct29_batch`.`ct29_Remision` ASC;";
+    $sql = "SELECT * FROM `ct29_batch` WHERE `ct29_IdPlanta` = :id_planta AND `ct29_Fecha` BETWEEN  :fecha_ini AND :fecha_fin ORDER BY `ct29_batch`.`ct29_Remision` ASC";
     $stmt = $this->con->prepare($sql);
     $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
     $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);
@@ -1035,7 +1035,7 @@ class t26_remisiones extends conexionPDO
   {
     $this->fecha_ini = $fecha_ini;
     $this->fecha_fin = $fecha_fin;
-    $sql = "SELECT * FROM `ct29_batch` WHERE `ct29_Fecha` BETWEEN  :fecha_ini AND :fecha_fin ORDER BY `ct29_batch`.`ct29_Remision` ASC;";
+    $sql = "SELECT * FROM `ct29_batch` WHERE `ct29_Fecha` BETWEEN  :fecha_ini AND :fecha_fin ORDER BY `ct29_batch`.`ct29_Remision` ASC";
     $stmt = $this->con->prepare($sql);
     $stmt->bindParam(':fecha_ini', $this->fecha_ini, PDO::PARAM_STR);
     $stmt->bindParam(':fecha_fin', $this->fecha_fin, PDO::PARAM_STR);

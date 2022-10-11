@@ -53,13 +53,13 @@ if (isset($_POST['txt_fechaini']) && !empty($_POST['txt_fechaini']) && isset($_P
             }else{
                 $num_remi = $datos['ct29_Remision'];
             }
-            //////////////////////////////////
+            ////////////////////////////////////////////////////////
             $fecha_remision_remi = $datos['ct29_Fecha'];
             $fecha  = date('Y-m-d', strtotime($fecha_remision_remi));
             $dia = date('d', strtotime($fecha));
             $mes = date('m', strtotime($fecha));
             $year = date('Y', strtotime($fecha));
-            ////////////////////////////////////////
+            ////////////////////////////////////////////////////////
             $nit_cliente = $datos['ct29_NIT'];
             $nit_cliente = $php_clases->quitar_dv($nit_cliente);
             $cant_caracteres_nit = strlen($datos['ct29_NIT']);
@@ -74,7 +74,7 @@ if (isset($_POST['txt_fechaini']) && !empty($_POST['txt_fechaini']) && isset($_P
             }else if($cant_caracteres_nit ==6){
                 $nit_cliente = " "." "." "." ".$datos['ct29_NIT'];
             }
-            //////////////////////////////////////
+            ////////////////////////////////////////////////////////
             $nombre_cliente_remi = $datos['ct29_IdCliente'];
             $nombre_obra =  $datos['ct29_IdObra'];
             $hora = $datos['ct29_Hora'];
